@@ -53,6 +53,10 @@ const LoginFormContainer = styled.div`
     }
   }
 
+  .signup {
+    margin-top: 2rem;
+  }
+
   .forgot-pass {
     font-weight: 600;
     margin-bottom: 3rem;
@@ -127,9 +131,9 @@ const LoginForm = ({ error, loginHandler, isLoading }) => (
             <span className="forgot-pass">
               <Link to={routes.forgotPassword}>Forgot your password?</Link>
             </span>
-            <span>
+            <span className="signup">
               If you are a new costumer
-              <Link to={routes.signUp}>
+              <Link to={routes.signup}>
                 <strong>Sign up here</strong>
               </Link>
             </span>
