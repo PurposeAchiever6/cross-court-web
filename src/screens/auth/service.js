@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export default {
   login: credentials =>
     axios
-      .post(`https://cross-court-internal.herokuapp.com/api/v1/users/sign_in`, {
+      .post(`${API_URL}/users/sign_in`, {
         user: {
           email: credentials.email,
           password: credentials.password,
