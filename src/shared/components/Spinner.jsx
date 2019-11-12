@@ -14,10 +14,10 @@ const SpinnerContainer = styled.div`
   }
 `;
 
-export default function Spinner() {
-  return (
-    <SpinnerContainer>
-      <FontAwesomeIcon className="spinner" icon={faCircleNotch} />
-    </SpinnerContainer>
-  );
-}
+const Spinner = () => (
+  <SpinnerContainer>
+    <FontAwesomeIcon className="spinner" icon={faCircleNotch} />
+  </SpinnerContainer>
+);
+
+export default Spinner;

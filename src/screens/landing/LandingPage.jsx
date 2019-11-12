@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from 'shared/styles/constants';
+import colors from 'shared/styles/constants';
 
 const PageContainer = styled.div`
   display: flex;

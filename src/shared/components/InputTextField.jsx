@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'formik';
 import styled from 'styled-components';
-import { colors } from 'shared/styles/constants';
+import colors from 'shared/styles/constants';
 import { isNil } from 'ramda';
 
 const InputTextContainer = styled.div`
@@ -46,7 +46,7 @@ function InputTextField({
       {({ field, form: { touched, errors: formikError } }) => {
         return (
           <InputTextContainer>
-            {showLabel ? <label htmlFor={field.name}>{labelText}</label> : null}
+            {showLabel && <label htmlFor={field.name}>{labelText}</label>}
             <input
               className={
                 (touched[field.name] && formikError[field.name]) || error
@@ -59,14 +59,14 @@ function InputTextField({
               {...field}
               type={type}
             />
-            {displayErrorMsg ? (
+            {displayErrorMsg && (
               <small
                 id={`${field.name}-error`}
                 className={isNil(formikError[field.name]) ? 'inactive' : 'form-text'}
               >
                 {isNil(error) ? formikError[field.name] : error}
               </small>
-            ) : null}
+            )}
           </InputTextContainer>
         );
       }}
