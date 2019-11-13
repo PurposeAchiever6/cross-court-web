@@ -8,26 +8,29 @@ import { isNil } from 'ramda';
 const InputTextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
 
   label {
     font-family: 'Untitled Sans';
-    font-size: 12px;
-    line-height: 15px;
-    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    letter-spacing: 0.2rem;
     color: ${colors.polarPlum};
     margin: 0 0 0.75rem;
     text-transform: uppercase;
     font-weight: bold;
   }
   small {
-    color: red;
+    text-align: right;
+    margin-top: 1rem;
+    color: ${colors.errorRed};
     text-transform: capitalize;
   }
   input {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0;
-    padding: 1.5rem 0.5rem;
+    padding: 1rem 0.5rem;
+    font-size: 1.2rem;
   }
 `;
 

@@ -1,16 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LoginForm from 'screens/auth/components/LoginForm';
+import styled from 'styled-components';
 
+const PageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 const LoginPage = ({ actions, isLoading, error }) => {
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col">
-          <LoginForm loginHandler={actions.loginInit} isLoading={isLoading} error={error} />
-        </div>
-      </div>
-    </div>
+    <PageContainer>
+      <LoginForm loginHandler={actions.loginInit} isLoading={isLoading} error={error} />
+    </PageContainer>
   );
 };
 

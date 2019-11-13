@@ -9,34 +9,29 @@ import PropTypes from 'prop-types';
 import InputTextField from 'shared/components/InputTextField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
+import device from 'shared/styles/mediaQueries';
 
 const LoginFormContainer = styled.div`
+  width: 20rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  padding: 0 2.5rem;
-  .forgot-pass {
-    font-weight: bold;
-  }
+  margin-top: 5rem;
   h1 {
     font-weight: 600;
     font-size: 2rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
   }
   form {
-    width: 30%;
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
-  button[type='submit'] {
-    background-color: #03449e;
-    color: #fff;
-    width: 100%;
-    margin: 2rem 0;
-  }
-  a {
-    color: #000;
+
+  button {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
   }
   span {
     font-size: 1rem;
@@ -50,17 +45,23 @@ const LoginFormContainer = styled.div`
       }
     }
   }
+  .forgot-pass {
+    font-weight: bold;
+    margin-bottom: 3rem;
+  }
   .error-container {
     display: flex;
     justify-content: center;
-    padding: 4px 20px;
-    margin: 10px 0;
+    padding: 0.25rem 1.5rem;
+    margin: 0.5rem 0;
     background: #e84747;
     color: #fff;
     border-radius: 4px;
     font-size: 0.8rem;
   }
-  @media (max-width: 767px) {
+
+  @media ${device.mobile} {
+    margin-top: 1rem;
     form {
       width: 100%;
     }
