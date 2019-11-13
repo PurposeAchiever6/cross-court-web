@@ -3,9 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 
 import { history } from 'shared/history';
-import LoginPage from 'screens/auth/pages/login';
-import LandingPage from 'screens/landing';
-import DashboardPage from 'screens/dashboard';
+import LoginPage from 'screens/auth/pages/LoginPage';
+import LandingPage from 'screens/landing/LandingPage';
+import DashboardPage from 'screens/dashboard/DashboardPage';
 import PrivateRoute from './PrivateRoute';
 
 const Routes = props => (

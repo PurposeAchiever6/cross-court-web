@@ -6,7 +6,7 @@ const initialState = {
   loginError: '',
 };
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_INIT:
       return {
@@ -24,7 +24,7 @@ export default function(state = initialState, action) {
     default:
       return state;
   }
-}
+};
 
 const getAuth = state => state.auth;
 

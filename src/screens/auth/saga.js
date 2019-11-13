@@ -1,6 +1,7 @@
 import { put, all, takeLatest, call } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 
+import routes from 'shared/constants/routes';
 import {
   LOGIN_INIT,
   LOGIN_SUCCESS,
@@ -16,7 +17,7 @@ export function* loginFlow({ payload }) {
     const loginPayload = yield call(authService.login, payload);
     yield call(authUtils.setLocalStorage, loginPayload);
     yield put({ type: LOGIN_SUCCESS, payload: loginPayload.user });
-    yield put(push('/dashboard'));
+    yield put(push(routes.dashboard));
   } catch (err) {
     yield put({ type: LOGIN_FAILURE, error: err.response.data.error });
   }
