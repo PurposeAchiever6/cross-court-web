@@ -15,7 +15,7 @@ import authUtils from './utils';
 export function* loginFlow({ payload }) {
   try {
     const loginPayload = yield call(authService.login, payload);
-    yield call(authUtils.setLocalStorage, loginPayload);
+    yield call(authUtils.setTokens, loginPayload);
     yield put({ type: LOGIN_SUCCESS, payload: loginPayload.user });
     yield put(push(routes.dashboard));
   } catch (err) {
