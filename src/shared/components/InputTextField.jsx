@@ -9,7 +9,6 @@ const InputTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 2.5rem;
-  width: 20rem;
 
   label {
     font-family: 'Untitled Sans';
@@ -28,10 +27,16 @@ const InputTextContainer = styled.div`
     text-transform: capitalize;
   }
   input {
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.5);
     border-radius: 0;
-    padding: 1rem 0.5rem;
     font-size: 1.2rem;
+    padding: 1rem 0.5rem;
+    &:focus {
+      border: 1px solid rgba(0, 0, 0, 1);
+      color: rgba(0, 0, 0, 1);
+      box-shadow: none;
+    }
   }
 `;
 

@@ -28,7 +28,6 @@ const SignupFormContainer = styled.div`
   }
 
   form {
-    width: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -44,12 +43,21 @@ const SignupFormContainer = styled.div`
     }
   }
 
+  button {
+    width: 20rem;
+  }
+
   .login {
-    margin-top: 2rem;
+    span {
+      width: 60%;
+      margin-top: 2rem;
+      text-align: center;
+    }
   }
 
   @media ${device.mobile} {
     margin-top: 1rem;
+
     form {
       width: 100%;
     }
@@ -117,12 +125,14 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
             {!isLoading ? 'Sign Up' : <Spinner />}
           </Button>
 
-          <span className="login">
-            Already have an account?{' '}
-            <Link to={routes.login}>
-              <strong>Log in</strong>
-            </Link>
-          </span>
+          <div className="login">
+            <span>
+              Already have an account?
+              <Link to={routes.login}>
+                <strong>Log in</strong>
+              </Link>
+            </span>
+          </div>
         </Form>
       )}
     </Formik>

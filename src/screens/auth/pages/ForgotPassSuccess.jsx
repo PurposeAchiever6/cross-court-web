@@ -1,0 +1,70 @@
+import React from 'react';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import routes from 'shared/constants/routes';
+import { getUserEmail } from 'screens/auth/reducer';
+import PaperPlaneIcon from 'shared/images/PaperPlaneIcon.png';
+import device from 'shared/styles/mediaQueries';
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    margin-bottom: 4rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 900;
+    margin-bottom: 4.5rem;
+    margin-top: 5rem;
+  }
+
+  p {
+    width: 26%;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 5rem;
+    text-align: center;
+
+    strong {
+      font-weight: bold;
+    }
+
+    span {
+      display: block;
+    }
+  }
+
+  @media ${device.mobile} {
+    p {
+      width: 80%;
+    }
+  }
+`;
+
+const ForgotPassSuccess = () => {
+  const userEmail = useSelector(getUserEmail);
+
+  return (
+    <PageContainer>
+      <h1>Check your Email</h1>
+      <img src={PaperPlaneIcon} alt="Sent mail icon" />
+      <p>
+        We sent an email to <strong>{userEmail}</strong> which contains an link to reset your
+        password.
+      </p>
+      <Link to={routes.login}>
+        <strong>Back to Log In</strong>
+      </Link>
+    </PageContainer>
+  );
+};
+
+export default ForgotPassSuccess;

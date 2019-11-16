@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { getUserEmail } from 'screens/auth/reducer';
 import { sendConfirmationEmailInit } from 'screens/auth/actionCreators';
-import SentEmailIcon from 'shared/images/SentEmailIcon.png';
+import PaperPlaneIcon from 'shared/images/PaperPlaneIcon.png';
 
 const PageContainer = styled.div`
   display: flex;
@@ -43,8 +43,10 @@ const PageContainer = styled.div`
 
     strong {
       display: block;
-      text-decoration: underline;
       cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 `;
@@ -57,7 +59,7 @@ const SignupSuccessPage = () => {
 
   return (
     <PageContainer>
-      <img src={SentEmailIcon} alt="Sent mail icon" />
+      <img src={PaperPlaneIcon} alt="Sent mail icon" />
       <h1>You are almost there!</h1>
       <p>
         We have sent a confirmation e-mail to <strong>{`${userEmail}`}</strong>.{' '}
