@@ -13,6 +13,23 @@ export default {
 
     const { client, uid } = response.headers;
     const accessToken = response.headers['access-token'];
+
     return { client, uid, accessToken };
+  },
+  signup: async credentials => {
+    const response = await axios.post(`${API_URL}/users`, {
+      user: {
+        ...credentials,
+      },
+    });
+
+    return response.data.user;
+  },
+  sendConfirmationEmail: async email => {
+    const response = await axios.post(`${API_URL}/user/resend_confirmation_instructions`, {
+      email,
+    });
+
+    return response.data;
   },
 };

@@ -9,6 +9,7 @@ const InputTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 2.5rem;
+  width: 20rem;
 
   label {
     font-family: 'Untitled Sans';
