@@ -1,11 +1,11 @@
-function setTokens(loginPayload) {
+const setTokens = loginPayload => {
   localStorage.setItem('CLIENT', loginPayload.client);
   localStorage.setItem('UID', loginPayload.uid);
   localStorage.setItem('ACCESS-TOKEN', loginPayload.accessToken);
   localStorage.setItem('isAuthenticated', true);
-}
+};
 
-function getTokens() {
+const getTokens = () => {
   const CLIENT = localStorage.getItem('CLIENT');
   const UID = localStorage.getItem('UID');
   const ACCESS_TOKEN = localStorage.getItem('ACCESS-TOKEN');
@@ -15,7 +15,7 @@ function getTokens() {
     client: CLIENT,
     accessToken: ACCESS_TOKEN,
   };
-}
+};
 
 export const getHeaders = (extraStuff = {}) => {
   const { uid, client, accessToken } = getTokens();

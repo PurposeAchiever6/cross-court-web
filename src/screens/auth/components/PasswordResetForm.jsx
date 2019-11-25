@@ -35,7 +35,7 @@ const PasswordResetFormContainer = styled.div`
   }
 
   a {
-    font-weight: bold;
+    font-weight: 600;
     text-align: center;
   }
 
@@ -109,7 +109,7 @@ const PasswordResetForm = ({ error, passResetHandler, isLoading }) => {
                   placeholder="Confirm password"
                 />
               </div>
-              {isEmpty(error) ? null : <div className="error-container">{error}</div>}
+              {!isEmpty(error) && <div className="error-container">{error}</div>}
               <Button type="submit" disabled={isLoading}>
                 {!isLoading ? 'Set New Password' : <Spinner />}
               </Button>

@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { isEmpty } from 'ramda';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { string, func, bool } from 'prop-types';
 
 import routes from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
@@ -113,7 +113,7 @@ const ForgotPassForm = ({ error, forgotPassHandler, isLoading }) => (
             <div className="form-group">
               <InputTextField labelText="Email" name="email" placeholder="example@crosscourt.com" />
             </div>
-            {isEmpty(error) ? null : <div className="error-container">{error}</div>}
+            {!isEmpty(error) && <div className="error-container"> {error}</div>}
             <Button type="submit" disabled={isLoading}>
               {!isLoading ? 'Reset Password' : <Spinner />}
             </Button>
@@ -130,9 +130,9 @@ const ForgotPassForm = ({ error, forgotPassHandler, isLoading }) => (
 );
 
 ForgotPassForm.propTypes = {
-  error: PropTypes.string,
-  forgotPassHandler: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  error: string,
+  forgotPassHandler: func.isRequired,
+  isLoading: bool.isRequired,
 };
 
 export default ForgotPassForm;
