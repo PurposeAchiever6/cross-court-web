@@ -13,7 +13,10 @@ import DashboardPage from 'screens/dashboard/DashboardPage';
 import SignupPage from 'screens/auth/pages/SignupPage';
 import SignupSuccessPage from 'screens/auth/pages/SignupSuccess';
 import SignupConfirmationPage from 'screens/auth/pages/SignupConfirmation';
-
+import ForgotPassPage from 'screens/auth/pages/ForgotPassPage';
+import ForgotPassSuccessPage from 'screens/auth/pages/ForgotPassSuccess';
+import PassResetPage from 'screens/auth/pages/PassResetPage';
+import PassResetSuccessPage from 'screens/auth/pages/PassResetSuccess';
 import PrivateRoute from './PrivateRoute';
 
 const AppWrapper = styled.div`
@@ -33,6 +36,10 @@ const Routes = props => (
           <Route path={routes.signup} exact component={SignupPage} {...props} />
           <Route path={routes.signupSuccess} component={SignupSuccessPage} {...props} />
           <Route path={routes.signupConfirmation} component={SignupConfirmationPage} {...props} />
+          <Route path={routes.forgotPassword} exact component={ForgotPassPage} {...props} />
+          <Route path={routes.forgotPasswordSuccess} component={ForgotPassSuccessPage} {...props} />
+          <Route path={routes.resetPassword} exact component={PassResetPage} {...props} />
+          <Route path={routes.resetPasswordSuccess} component={PassResetSuccessPage} {...props} />
           <PrivateRoute path={routes.dashboard} component={DashboardPage} {...props} />
           <Route path={routes.home} component={LandingPage} {...props} />
         </Switch>

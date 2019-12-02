@@ -53,6 +53,7 @@
     "history": "^4.10.1",
     "node-sass": "^4.13.0",
     "polished": "^3.4.2",
+    "query-string": "^6.8.3",
     "ramda": "^0.26.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",

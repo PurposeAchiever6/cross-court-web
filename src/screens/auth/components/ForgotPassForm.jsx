@@ -6,25 +6,29 @@ import { isEmpty } from 'ramda';
 import { Link } from 'react-router-dom';
 import { string, func, bool } from 'prop-types';
 
+import routes from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
-import routes from 'shared/constants/routes';
 
-const LoginFormContainer = styled.div`
-  width: 20rem;
+const ForgotPassFormContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 2.5rem;
+  flex-direction: column;
   margin-top: 5rem;
+
+  .forgot-pass {
+    font-weight: 600;
+  }
 
   h1 {
     font-weight: 600;
     font-size: 2rem;
-    margin-bottom: 3rem;
-    text-align: center;
+    margin-bottom: 2rem;
   }
 
   form {
@@ -32,8 +36,11 @@ const LoginFormContainer = styled.div`
     flex-direction: column;
   }
 
-  button {
-    margin-top: 1rem;
+  p {
+    width: 64%;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    text-align: center;
     margin-bottom: 3rem;
   }
 
@@ -52,13 +59,8 @@ const LoginFormContainer = styled.div`
     }
   }
 
-  .signup {
-    margin-top: 2rem;
-  }
-
-  .forgot-pass {
-    font-weight: 600;
-    margin-bottom: 3rem;
+  .cancel {
+    margin-top: 3rem;
   }
 
   .error-container {
@@ -73,80 +75,64 @@ const LoginFormContainer = styled.div`
   }
 
   @media ${device.mobile} {
-    margin-top: 1rem;
     form {
       width: 100%;
+    }
+
+    p {
+      width: 100%;
+      font-size: 1.1rem;
     }
   }
 `;
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().required('Required'),
-  password: Yup.string().required('Required'),
-});
-
 const initialValues = {
   email: '',
-  password: '',
 };
 
-const LoginForm = ({ error, loginHandler, isLoading }) => (
-  <LoginFormContainer>
+const validationSchema = Yup.object().shape({
+  email: Yup.string().required('Required'),
+});
+
+const ForgotPassForm = ({ error, forgotPassHandler, isLoading }) => (
+  <ForgotPassFormContainer>
     <Formik
       validateOnChange={false}
       validateOnBlur={false}
       initialValues={initialValues}
       onSubmit={values => {
-        loginHandler({ ...values });
+        forgotPassHandler({ ...values });
       }}
       validationSchema={validationSchema}
     >
-      {props => {
-        const { errors } = props;
-        return (
+      {() => (
+        <>
+          <h1>Forgot your Password?</h1>
+          <p>Enter your email and we will send you a link to reset your password</p>
           <Form className="form">
-            <h1>Log in</h1>
             <div className="form-group">
-              <InputTextField
-                labelText="Email"
-                error={errors.username}
-                name="email"
-                placeholder="example@crosscourt.com"
-              />
+              <InputTextField labelText="Email" name="email" placeholder="example@crosscourt.com" />
             </div>
-            <div className="form-group">
-              <InputTextField
-                type="password"
-                labelText="Password"
-                error={errors.password}
-                name="password"
-                placeholder="Type password"
-              />
-            </div>
-            {isEmpty(error) ? null : <div className="error-container">{error}</div>}
+            {!isEmpty(error) && <div className="error-container"> {error}</div>}
             <Button type="submit" disabled={isLoading}>
-              {!isLoading ? 'Log in' : <Spinner />}
+              {!isLoading ? 'Reset Password' : <Spinner />}
             </Button>
-            <span className="forgot-pass">
-              <Link to={routes.forgotPassword}>Forgot your password?</Link>
-            </span>
-            <span className="signup">
-              If you are a new costumer
-              <Link to={routes.signup}>
-                <strong>Sign up here</strong>
+            <span className="cancel">
+              <Link to={routes.login}>
+                <strong>Cancel</strong>
               </Link>
             </span>
           </Form>
-        );
-      }}
+        </>
+      )}
     </Formik>
-  </LoginFormContainer>
+  </ForgotPassFormContainer>
 );
 
-LoginForm.propTypes = {
+ForgotPassForm.propTypes = {
   error: string,
-  loginHandler: func.isRequired,
+  forgotPassHandler: func.isRequired,
   isLoading: bool.isRequired,
 };
 
-export default LoginForm;
+export default ForgotPassForm;

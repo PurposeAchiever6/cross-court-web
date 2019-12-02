@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import FlipBallIcon from 'shared/images/FlipBallIcon.png';
+import CheckIcon from 'shared/images/CheckIcon.png';
 import Button from 'shared/components/Button';
 import routes from 'shared/constants/routes';
 
@@ -27,7 +27,7 @@ const PageContainer = styled.div`
 
 const SignupConfirmationPage = () => (
   <PageContainer>
-    <img src={FlipBallIcon} alt="Flip Ball icon" />
+    <img src={CheckIcon} alt="Check icon" />
     <h1>Your e-mail was successfully verified!</h1>
     <Link to={routes.login}>
       <Button>Continue</Button>
