@@ -2576,6 +2576,15 @@ chardet@^0.7.0:
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
 
+cheeseburger-menu@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/cheeseburger-menu/-/cheeseburger-menu-0.0.13.tgz#733ccdfeb729c666c3fe0d18fd650c7d62fcfbdc"
+  integrity sha512-6kXrfUGmDpjPK5btog45+u2Pph6Hcdd4c+BqpJQIOCG95Odh9/n8TojlZ4O40Yjk7fpToGuOgh6i645RvoVmyw==
+  dependencies:
+    classnames "^2.2.6"
+    prop-types "^15.6.2"
+    react-easy-swipe "^0.0.17"
+
 chokidar@^2.0.0, chokidar@^2.0.2, chokidar@^2.0.4:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.8.tgz#804b3a7b6a99358c3c5c61e71d8728f041cff917"
@@ -2629,6 +2638,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
 clean-css@4.2.x:
   version "4.2.1"
@@ -4243,6 +4257,11 @@ execa@^1.0.0:
     p-finally "^1.0.0"
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
+
+exenv@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
+  integrity sha1-KueOhdmJQVhnCwPUe+wfA72Ru50=
 
 exit@^0.1.2:
   version "0.1.2"
@@ -8994,7 +9013,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -9254,6 +9273,13 @@ react-dom@^16.11.0:
     prop-types "^15.6.2"
     scheduler "^0.17.0"
 
+react-easy-swipe@^0.0.17:
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/react-easy-swipe/-/react-easy-swipe-0.0.17.tgz#029aae58c7f0ebe0056f19b8da3ee6e63c863055"
+  integrity sha512-+4486duR/1Gq16o4+eRkDLG/uKWur+aZ6TOLq4p8GvdHmQblZLbgEaN+Cr6U8P7Dcnou5gA3shMr9B3gq+AD7w==
+  dependencies:
+    prop-types "^15.5.8"
+
 react-error-overlay@^6.0.3:
   version "6.0.3"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.3.tgz#c378c4b0a21e88b2e159a3e62b2f531fd63bf60d"
@@ -9263,6 +9289,11 @@ react-fast-compare@^2.0.1:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
+
+react-hamburger-menu@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/react-hamburger-menu/-/react-hamburger-menu-1.1.1.tgz#36fb5d38b55f3babb472f94f8cc3640345bfa9ae"
+  integrity sha512-uBmRe8UTmmNsuqKx/Z4H9SnWEa7Wok0ZAzvtfrLgTY2NimLI3lvaPUP/i8q2rfIHfP2gH9u8ltP+YunCHciHdQ==
 
 react-hot-loader@^4.12.15:
   version "4.12.15"
@@ -9292,6 +9323,11 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-node-resolver@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/react-node-resolver/-/react-node-resolver-2.0.1.tgz#1f0cc83938bf590a1cf42006b23f6b8f68e7b886"
+  integrity sha512-+PPy/FtAAo5wsLQYMlHkxJ3AMUGL33gpEIx/HBzS8OrcIfacRhGaNVWUJ8bhEbc64en+/bbCNTVZR+pkhqXEbA==
 
 react-redux@^7.1.1:
   version "7.1.1"
@@ -9394,6 +9430,14 @@ react-scripts@3.2.0:
     workbox-webpack-plugin "4.3.1"
   optionalDependencies:
     fsevents "2.0.7"
+
+react-scrolllock@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-scrolllock/-/react-scrolllock-4.0.1.tgz#05bb1e1575c97cbd869f2b60623a0e8227695b60"
+  integrity sha512-XWtRucd411402AfwnUyR0cZqN/beJy0NAygX92APzgeAhkHzpfWrsiakqKVIVqMNkgM8s2lIku/hzaFoTgw7Gw==
+  dependencies:
+    exenv "^1.2.2"
+    react-node-resolver "^2.0.1"
 
 react@^16.11.0:
   version "16.11.0"

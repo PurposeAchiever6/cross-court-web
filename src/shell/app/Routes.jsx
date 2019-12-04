@@ -7,41 +7,69 @@ import { history } from 'shared/history';
 import colors from 'shared/styles/constants';
 import routes from 'shared/constants/routes';
 
-import LoginPage from 'screens/auth/pages/LoginPage';
-import HomePage from 'screens/homepage/HomePage';
-import DashboardPage from 'screens/dashboard/DashboardPage';
-import SignupPage from 'screens/auth/pages/SignupPage';
-import SignupSuccessPage from 'screens/auth/pages/SignupSuccess';
-import SignupConfirmationPage from 'screens/auth/pages/SignupConfirmation';
-import ForgotPassPage from 'screens/auth/pages/ForgotPassPage';
-import ForgotPassSuccessPage from 'screens/auth/pages/ForgotPassSuccess';
-import PassResetPage from 'screens/auth/pages/PassResetPage';
-import PassResetSuccessPage from 'screens/auth/pages/PassResetSuccess';
+import Home from 'screens/homepage/HomePage';
+import Login from 'screens/auth/pages/LoginPage';
+import Dashboard from 'screens/dashboard/DashboardPage';
+import Signup from 'screens/auth/pages/SignupPage';
+import SignupSuccess from 'screens/auth/pages/SignupSuccess';
+import SignupConfirmation from 'screens/auth/pages/SignupConfirmation';
+import ForgotPass from 'screens/auth/pages/ForgotPassPage';
+import ForgotPassSuccess from 'screens/auth/pages/ForgotPassSuccess';
+import PassReset from 'screens/auth/pages/PassResetPage';
+import PassResetSuccess from 'screens/auth/pages/PassResetSuccess';
+import Header from 'shared/components/Header';
+
 import PrivateRoute from './PrivateRoute';
 
 const AppWrapper = styled.div`
   font-family: 'Untitled Sans';
+  padding-top: 82px;
 
   a {
     color: ${colors.black};
   }
+
+  main {
+    overflow: hidden;
+  }
 `;
 
-const Routes = props => (
+const Routes = () => (
   <AppWrapper>
     <ConnectedRouter history={history}>
+      <Header />
       <main>
         <Switch>
-          <Route path={routes.login} component={LoginPage} {...props} />
-          <Route path={routes.signup} exact component={SignupPage} {...props} />
-          <Route path={routes.signupSuccess} component={SignupSuccessPage} {...props} />
-          <Route path={routes.signupConfirmation} component={SignupConfirmationPage} {...props} />
-          <Route path={routes.forgotPassword} exact component={ForgotPassPage} {...props} />
-          <Route path={routes.forgotPasswordSuccess} component={ForgotPassSuccessPage} {...props} />
-          <Route path={routes.resetPassword} exact component={PassResetPage} {...props} />
-          <Route path={routes.resetPasswordSuccess} component={PassResetSuccessPage} {...props} />
-          <PrivateRoute path={routes.dashboard} component={DashboardPage} {...props} />
-          <Route path={routes.home} component={HomePage} exact {...props} />
+          <Route path={routes.login}>
+            <Login />
+          </Route>
+          <Route path={routes.signup} exact>
+            <Signup />
+          </Route>
+          <Route path={routes.signupSuccess}>
+            <SignupSuccess />
+          </Route>
+          <Route path={routes.signupConfirmation}>
+            <SignupConfirmation />
+          </Route>
+          <Route path={routes.forgotPassword} exact>
+            <ForgotPass />
+          </Route>
+          <Route path={routes.forgotPasswordSuccess}>
+            <ForgotPassSuccess />
+          </Route>
+          <Route path={routes.resetPassword} exact>
+            <PassReset />
+          </Route>
+          <Route path={routes.resetPasswordSuccess}>
+            <PassResetSuccess />
+          </Route>
+          <Route path={routes.home}>
+            <Home />
+          </Route>
+          <PrivateRoute path={routes.dashboard}>
+            <Dashboard />
+          </PrivateRoute>
         </Switch>
       </main>
     </ConnectedRouter>

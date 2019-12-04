@@ -1,0 +1,18 @@
+:root {
+  --main-font-family: 'Untitled Sans';
+}
+
+body {
+  margin: 0;
+}
+
+#modal-root {
+  position: relative;
+  z-index: 999;
+  font-family: var(--main-font-family);
+}
+
+#root {
+  position: relative;
+  overflow: auto;
+}

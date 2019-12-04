@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 import colors from 'shared/styles/constants';
 
-const ButtonComponent = styled.button`
+const StyledButton = styled.button`
   outline: none;
   background-color: ${colors.polarPlum};
   color: ${colors.white};
@@ -20,17 +20,21 @@ const ButtonComponent = styled.button`
   }
 `;
 
-export const Button = ({ children, disabled, type = 'button' }) => {
-  return (
-    <ButtonComponent type={type} disabled={disabled}>
-      {children}
-    </ButtonComponent>
-  );
+const Button = ({ children, ...props }) => {
+  return <StyledButton {...props}>{children}</StyledButton>;
 };
 
 Button.propTypes = {
   children: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
+  type: PropTypes.string,
+  className: PropTypes.string,
+};
+
+Button.defaultProps = {
+  type: 'button',
+  disabled: false,
+  className: '',
 };
 
 export default Button;

@@ -9,4 +9,8 @@ export default {
   forgotPasswordSuccess: '/forgotpassword/success',
   resetPassword: '/resetpassword',
   resetPasswordSuccess: '/resetpassword/success',
+  howItWorks: '/how-it-works',
+  locations: '/locations',
+  schedule: '/schedule',
+  memberships: '/memberships',
 };
