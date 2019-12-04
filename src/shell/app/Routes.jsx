@@ -18,6 +18,7 @@ import ForgotPassSuccess from 'screens/auth/pages/ForgotPassSuccess';
 import PassReset from 'screens/auth/pages/PassResetPage';
 import PassResetSuccess from 'screens/auth/pages/PassResetSuccess';
 import Header from 'shared/components/Header';
+import Footer from 'shared/components/Footer';
 
 import PrivateRoute from './PrivateRoute';
 
@@ -72,6 +73,7 @@ const Routes = () => (
           </PrivateRoute>
         </Switch>
       </main>
+      <Footer />
     </ConnectedRouter>
   </AppWrapper>
 );
