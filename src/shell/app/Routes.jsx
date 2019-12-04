@@ -8,7 +8,7 @@ import colors from 'shared/styles/constants';
 import routes from 'shared/constants/routes';
 
 import LoginPage from 'screens/auth/pages/LoginPage';
-import LandingPage from 'screens/landing/LandingPage';
+import HomePage from 'screens/homepage/HomePage';
 import DashboardPage from 'screens/dashboard/DashboardPage';
 import SignupPage from 'screens/auth/pages/SignupPage';
 import SignupSuccessPage from 'screens/auth/pages/SignupSuccess';
@@ -41,7 +41,7 @@ const Routes = props => (
           <Route path={routes.resetPassword} exact component={PassResetPage} {...props} />
           <Route path={routes.resetPasswordSuccess} component={PassResetSuccessPage} {...props} />
           <PrivateRoute path={routes.dashboard} component={DashboardPage} {...props} />
-          <Route path={routes.home} component={LandingPage} {...props} />
+          <Route path={routes.home} component={HomePage} exact {...props} />
         </Switch>
       </main>
     </ConnectedRouter>
