@@ -17,6 +17,8 @@ import ForgotPass from 'screens/auth/pages/ForgotPassPage';
 import ForgotPassSuccess from 'screens/auth/pages/ForgotPassSuccess';
 import PassReset from 'screens/auth/pages/PassResetPage';
 import PassResetSuccess from 'screens/auth/pages/PassResetSuccess';
+import HowItWorks from 'screens/howItWorks/HowItWorksPage';
+
 import Header from 'shared/components/Header';
 import Footer from 'shared/components/Footer';
 
@@ -65,8 +67,11 @@ const Routes = () => (
           <Route path={routes.resetPasswordSuccess}>
             <PassResetSuccess />
           </Route>
-          <Route path={routes.home}>
+          <Route path={routes.home} exact>
             <Home />
+          </Route>
+          <Route path={routes.howItWorks}>
+            <HowItWorks />
           </Route>
           <PrivateRoute path={routes.dashboard}>
             <Dashboard />

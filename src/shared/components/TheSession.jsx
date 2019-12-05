@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from 'shared/components/Button';
+
 import device from 'shared/styles/mediaQueries';
-import CourtIcon from '../images/CourtIcon.png';
-import MerchIcon from '../images/MerchIcon.png';
-import PlayerIcon from '../images/PlayerIcon.png';
-import RefereeIcon from '../images/RefereeIcon.png';
-import SpeakerIcon from '../images/SpeakerIcon.png';
-import TimerIcon from '../images/TimerIcon.png';
+import colors from 'shared/styles/constants';
+import FieldSvg from 'shared/components/FieldSvg';
+import MerchSvg from 'shared/components/MerchSvg';
+import StopwatchSvg from 'shared/components/StopwatchSvg';
+import WhistleSvg from 'shared/components/WhistleSvg';
+import PlayerSvg from 'shared/components/PlayerSvg';
+import SpeakerSvg from 'shared/components/SpeakerSvg';
 
 const Section = styled.section`
-  padding: 10rem 5rem;
-  margin-bottom: 5rem;
+  padding: 4.5rem 5rem;
+  background: ${colors.offWhite};
 
   .text {
     font-weight: bold;
@@ -25,18 +26,10 @@ const Section = styled.section`
     font-weight: 500;
   }
 
-  .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 3rem;
-  }
-
   .boxes {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 4.5rem;
   }
 
   .boxes__item {
@@ -57,7 +50,7 @@ const Section = styled.section`
   }
 
   @media ${device.mobile} {
-    padding: 0;
+    padding: 4.5rem 0;
 
     .title {
       text-align: center;
@@ -74,39 +67,48 @@ const Section = styled.section`
   }
 `;
 
-const TheSession = () => (
-  <Section>
+const TheSession = props => (
+  <Section {...props}>
     <h2 className="title">
       THE <span className="text">SESSION</span>
     </h2>
     <div className="boxes">
       <div className="boxes__item">
-        <img src={TimerIcon} className="boxes__image" alt="Timer" />
+        <div className="boxes__image">
+          <StopwatchSvg />
+        </div>
         <span className="boxes__text">1 Hour Session</span>
       </div>
       <div className="boxes__item">
-        <img src={CourtIcon} className="boxes__image" alt="Timer" />
+        <div className="boxes__image">
+          <FieldSvg />
+        </div>
         <span className="boxes__text">Premium Facilities</span>
       </div>
       <div className="boxes__item">
-        <img src={RefereeIcon} className="boxes__image" alt="Timer" />
+        <div className="boxes__image">
+          <WhistleSvg />
+        </div>
         <span className="boxes__text">Session Officials</span>
       </div>
       <div className="boxes__item">
-        <img src={PlayerIcon} className="boxes__image" alt="Timer" />
+        <div className="boxes__image">
+          <PlayerSvg />
+        </div>
         <span className="boxes__text">15 Player Limit</span>
       </div>
       <div className="boxes__item">
-        <img src={MerchIcon} className="boxes__image" alt="Timer" />
+        <div className="boxes__image">
+          <MerchSvg />
+        </div>
         <span className="boxes__text">Custom Merch</span>
       </div>
       <div className="boxes__item">
-        <img src={SpeakerIcon} className="boxes__image" alt="Timer" />
+        <div className="boxes__image">
+          <SpeakerSvg />
+        </div>
         <span className="boxes__text">Hype Soundtracks</span>
       </div>
-    </div>
-    <div className="button-container">
-      <Button>Learn More</Button>
     </div>
   </Section>
 );

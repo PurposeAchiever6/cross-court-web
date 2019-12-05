@@ -6,6 +6,7 @@ import colors from 'shared/styles/constants';
 
 const StyledButton = styled.button`
   outline: none;
+  font-family: 'Untitled Sans';
   background-color: ${colors.polarPlum};
   color: ${colors.white};
   border-color: ${colors.polarPlum};
