@@ -91,47 +91,20 @@ export default (state = initialState, action) => {
 
 const getAuth = state => state.auth;
 
-export const getLoginLoading = createSelector(
-  getAuth,
-  auth => auth.loginLoading
-);
+export const getLoginLoading = createSelector(getAuth, auth => auth.loginLoading);
 
-export const getLoginError = createSelector(
-  getAuth,
-  auth => auth.loginError
-);
+export const getLoginError = createSelector(getAuth, auth => auth.loginError);
 
-export const getSignupLoading = createSelector(
-  getAuth,
-  auth => auth.signupLoading
-);
+export const getSignupLoading = createSelector(getAuth, auth => auth.signupLoading);
 
-export const getSignupErrors = createSelector(
-  getAuth,
-  auth => auth.signupErrors
-);
+export const getSignupErrors = createSelector(getAuth, auth => auth.signupErrors);
 
-export const getUserEmail = createSelector(
-  getAuth,
-  auth => auth.userEmail
-);
+export const getUserEmail = createSelector(getAuth, auth => auth.userEmail);
 
-export const getForgotPassLoading = createSelector(
-  getAuth,
-  auth => auth.forgotPassLoading
-);
+export const getForgotPassLoading = createSelector(getAuth, auth => auth.forgotPassLoading);
 
-export const getForgotPassError = createSelector(
-  getAuth,
-  auth => auth.forgotPassError
-);
+export const getForgotPassError = createSelector(getAuth, auth => auth.forgotPassError);
 
-export const getPassResetLoading = createSelector(
-  getAuth,
-  auth => auth.passResetLoading
-);
+export const getPassResetLoading = createSelector(getAuth, auth => auth.passResetLoading);
 
-export const getPassResetError = createSelector(
-  getAuth,
-  auth => auth.passResetError
-);
+export const getPassResetError = createSelector(getAuth, auth => auth.passResetError);

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import colors from 'shared/styles/constants';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import AnyQuestionsImage from '../../images/any-questions.png';
-import ImageContainer from '../ImageContainer';
+import ImageContainer from './ImageContainer';
 
 const Container = styled.div`
   color: ${colors.white};
