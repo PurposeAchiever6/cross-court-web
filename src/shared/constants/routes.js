@@ -13,4 +13,5 @@ export default {
   locations: '/locations',
   schedule: '/schedule',
   memberships: '/memberships',
+  sem: '/sem',
 };
