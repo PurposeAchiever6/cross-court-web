@@ -6,25 +6,31 @@ import { sessionExperienceText } from 'shared/texts/constants';
 import SessionExperienceImage from '../../images/session-experience-manager.png';
 import ImageContainer from './ImageContainer';
 
+const Container = styled.div`
+  .image {
+    padding-bottom: 5rem;
+  }
+`;
+
 const TextContainer = styled.div`
   background-color: ${colors.white};
-  padding: 0 8rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: ${colors.black};
-  font-size: 1.4rem;
-  height: 100vh;
-  max-width: 50rem;
+  font-size: 1.2rem;
 
   .button {
     margin-top: 3rem;
-    width: 20rem;
+    margin-bottom: 5rem;
+    width: 15rem;
   }
 
   .title {
     font-weight: bold;
-    font-size: 4.5rem;
+    font-size: 2rem;
     letter-spacing: 0.1rem;
     margin: 0;
     color: ${colors.polarPlum};
@@ -32,7 +38,10 @@ const TextContainer = styled.div`
 `;
 
 const SessionExperienceManager = () => (
-  <>
+  <Container>
+    <div className="image">
+      <ImageContainer img={SessionExperienceImage} overlayColor={colors.blueOverlay} />
+    </div>
     <TextContainer>
       <h2 className="title">SESSION</h2>
       <h2 className="title">EXPERIENCE</h2>
@@ -40,10 +49,7 @@ const SessionExperienceManager = () => (
       <p>{sessionExperienceText}</p>
       <Button className="button">Apply to be SEM</Button>
     </TextContainer>
-    <div>
-      <ImageContainer img={SessionExperienceImage} overlayColor={colors.blueOverlay} />
-    </div>
-  </>
+  </Container>
 );
 
 export default SessionExperienceManager;

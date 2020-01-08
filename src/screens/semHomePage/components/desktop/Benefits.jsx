@@ -28,11 +28,11 @@ const Container = styled.div`
   .icons {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-end;
   }
 `;
 
-const YourBenefits = () => (
+const Benefits = () => (
   <Container>
     <div className="title">
       YOUR <strong>BENEFITS</strong>
@@ -66,4 +66,4 @@ const YourBenefits = () => (
   </Container>
 );
 
-export default YourBenefits;
+export default Benefits;

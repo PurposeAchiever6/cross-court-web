@@ -1,19 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
+import device from 'shared/styles/mediaQueries';
 import ArrowDownSvg from 'shared/components/ArrowDownSvg';
 import JoinImage from '../../images/join.png';
-import ImageContainer from '../ImageContainer';
+import ImageContainer from './ImageContainer';
 
 const Container = styled.div`
   color: ${colors.white};
-  font-size: 2rem;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 6rem;
+  text-align: center;
 
   .title {
     font-size: 5rem;
@@ -27,6 +28,23 @@ const Container = styled.div`
     margin-bottom: 2rem;
     max-width: 50rem;
     text-align: center;
+    font-size: 2rem;
+  }
+
+  @media ${device.mobile} {
+    height: 70vh;
+
+    * {
+      width: 85%;
+    }
+
+    .title {
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+    }
   }
 `;
 
