@@ -18,6 +18,7 @@ import ForgotPassSuccess from 'screens/auth/pages/ForgotPassSuccess';
 import PassReset from 'screens/auth/pages/PassResetPage';
 import PassResetSuccess from 'screens/auth/pages/PassResetSuccess';
 import HowItWorks from 'screens/howItWorks/HowItWorksPage';
+import SemHomePage from 'screens/semHomePage/semHomePage';
 
 import Header from 'shared/components/Header';
 import Footer from 'shared/components/Footer';
@@ -72,6 +73,9 @@ const Routes = () => (
           </Route>
           <Route path={routes.howItWorks}>
             <HowItWorks />
+          </Route>
+          <Route path={routes.sem}>
+            <SemHomePage />
           </Route>
           <PrivateRoute path={routes.dashboard}>
             <Dashboard />

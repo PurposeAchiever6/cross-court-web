@@ -1,4 +1,6 @@
 const polarPlum = '#AAAFF3';
+const blueOverlay = '#AAAFF366';
+const blackOverlay = '#00000088';
 const lightGrey = '#E8E9EF';
 const black = '#000';
 const white = '#FFF';
@@ -12,4 +14,6 @@ export default {
   white,
   errorRed,
   offWhite,
+  blueOverlay,
+  blackOverlay,
 };
