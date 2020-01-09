@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import colors from 'shared/styles/constants';
 import Loading from 'shared/components/Loading';
 import Button from 'shared/components/Button';
-import { initialLoadInit } from './actionCreators';
+import { initialLoadInit, checkInInit } from './actionCreators';
 import { getPageLoading, getSessionInfo, getPlayers } from './reducer';
 import ArrivedPlayersList from './components/ArrivedPlayersList';
 import NotArrivedPlayersList from './components/NotArrivedPlayersList';
@@ -78,6 +78,11 @@ const SemSession = () => {
     setNotCheckedInPlayers(notCheckedInPlayers.filter(({ id }) => id !== player.id));
   };
 
+  const confirmCheckedInPlayers = () => {
+    const checkInIds = checkedInPlayers.map(player => player.id);
+    dispatch(checkInInit(checkInIds, notCheckedInPlayers.length));
+  };
+
   useEffect(() => {
     dispatch(initialLoadInit(id, date));
   }, [dispatch, id, date]);
@@ -109,7 +114,9 @@ const SemSession = () => {
         <NotArrivedPlayersList players={notCheckedInPlayers} checkInPlayer={checkInPlayer} />
       )}
       <div className="button-container">
-        <Button className="button">Go to session</Button>
+        <Button onClick={confirmCheckedInPlayers} className="button">
+          Go to session
+        </Button>
       </div>
     </Container>
   );

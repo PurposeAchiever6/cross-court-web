@@ -16,4 +16,16 @@ export default {
 
     return response.data;
   },
+
+  checkIn: async ids => {
+    await axios.put(
+      `${API_URL}/sem/user_sessions/check_in`,
+      {
+        ids,
+      },
+      {
+        headers: getHeaders(),
+      }
+    );
+  },
 };

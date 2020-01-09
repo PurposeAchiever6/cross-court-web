@@ -15,4 +15,5 @@ export default {
   memberships: '/memberships',
   sem: '/sem',
   semSession: '/sem/session/:id/:date',
+  sessionState: '/sem/session/state',
 };
