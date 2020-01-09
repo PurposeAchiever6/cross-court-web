@@ -1,6 +1,7 @@
 import { put, all, takeLatest, call, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import routes from 'shared/constants/routes';
+import authUtils from 'shared/utils/auth';
 import { head } from 'ramda';
 import {
   LOGIN_INIT,
@@ -22,7 +23,6 @@ import {
   PASS_RESET_FAILURE,
 } from './actionTypes';
 import authService from './service';
-import authUtils from './utils';
 import { getUserEmail } from './reducer';
 
 export function* loginFlow({ payload }) {

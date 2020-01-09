@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { passResetInit } from 'screens/auth/actionCreators';
 import { getPassResetLoading, getPassResetError } from 'screens/auth/reducer';
 import PasswordResetForm from 'screens/auth/components/PasswordResetForm';
-import utils from 'screens/auth/utils';
+import utils from 'shared/utils/auth';
 
 const PageContainer = styled.div`
   display: flex;

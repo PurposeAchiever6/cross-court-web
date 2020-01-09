@@ -19,6 +19,7 @@ import PassReset from 'screens/auth/pages/PassResetPage';
 import PassResetSuccess from 'screens/auth/pages/PassResetSuccess';
 import HowItWorks from 'screens/howItWorks/HowItWorksPage';
 import SemHomePage from 'screens/semHomePage/semHomePage';
+import SemSession from 'screens/sem-session/semSession';
 
 import Header from 'shared/components/Header';
 import Footer from 'shared/components/Footer';
@@ -74,11 +75,14 @@ const Routes = () => (
           <Route path={routes.howItWorks}>
             <HowItWorks />
           </Route>
-          <Route path={routes.sem}>
+          <Route path={routes.sem} exact>
             <SemHomePage />
           </Route>
           <PrivateRoute path={routes.dashboard}>
             <Dashboard />
+          </PrivateRoute>
+          <PrivateRoute path={routes.semSession}>
+            <SemSession />
           </PrivateRoute>
         </Switch>
       </main>
