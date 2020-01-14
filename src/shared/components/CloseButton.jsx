@@ -18,14 +18,16 @@ const Button = styled.button`
   }
 `;
 
-const CloseButton = ({ onClick }) => (
-  <Button onClick={onClick}>
-    <CrossSvg />
+const CloseButton = ({ onClick, className, color = 'white' }) => (
+  <Button className={className} onClick={onClick}>
+    <CrossSvg color={color} />
   </Button>
 );
 
 CloseButton.propTypes = {
   onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  color: PropTypes.string,
 };
 
 export default CloseButton;

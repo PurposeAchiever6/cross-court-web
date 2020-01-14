@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { takeWhile } from 'ramda';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
 
@@ -88,13 +89,49 @@ const Container = styled.div`
       border-color: ${colors.white};
       color: ${colors.black};
     }
+
+    .in-a-row {
+      height: auto;
+
+      p {
+        margin: 0;
+        font-size: 1.3rem;
+        text-transform: uppercase;
+      }
+
+      .subtitle {
+        font-weight: 500;
+      }
+
+      .white {
+        background-color: ${colors.white};
+        color: ${colors.black};
+      }
+
+      .black {
+        background-color: ${colors.black};
+        color: ${colors.white};
+      }
+    }
   }
 `;
 
 const WinStreak = () => {
   const [streak, setStreak] = useState([]);
+  const [threeInARow, setThreeInARow] = useState();
+
+  const resetStreak = () => {
+    setThreeInARow();
+    setStreak([]);
+  };
 
   const addWin = winner => {
+    if (takeWhile(item => item === winner, streak).length === 2) {
+      setThreeInARow(winner);
+      setTimeout(() => {
+        resetStreak();
+      }, 3000);
+    }
     setStreak([winner, ...streak]);
   };
 
@@ -103,12 +140,30 @@ const WinStreak = () => {
       <p className="title">win streak</p>
       <div className="team-buttons">
         <button className="black-btn" type="button" onClick={() => addWin('black')}>
-          <p className="plus-one">+1</p>
-          <p className="shirt-color">black</p>
+          {threeInARow === 'black' ? (
+            <div className="in-a-row black">
+              <p>black won</p>
+              <p className="subtitle"> 3 in a row!</p>
+            </div>
+          ) : (
+            <>
+              <p className="plus-one">+1</p>
+              <p className="shirt-color">white</p>
+            </>
+          )}
         </button>
         <button className="white-btn" type="button" onClick={() => addWin('white')}>
-          <p className="plus-one">+1</p>
-          <p className="shirt-color">white</p>
+          {threeInARow === 'white' ? (
+            <div className="in-a-row white">
+              <p>white won</p>
+              <p className="subtitle"> 3 in a row!</p>
+            </div>
+          ) : (
+            <>
+              <p className="plus-one">+1</p>
+              <p className="shirt-color">white</p>
+            </>
+          )}
         </button>
       </div>
       <div className="streak">
