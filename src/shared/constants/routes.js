@@ -14,4 +14,5 @@ export default {
   schedule: '/schedule',
   memberships: '/memberships',
   sem: '/sem',
+  semSession: '/sem/session/:id/:date',
 };

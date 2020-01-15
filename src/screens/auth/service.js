@@ -1,6 +1,6 @@
 import axios from 'axios';
 import routes from 'shared/constants/routes';
-import { getHeaders } from './utils';
+import { getHeaders } from 'shared/utils/auth';
 
 const API_URL = process.env.REACT_APP_API_URL;
 const APP_URL = process.env.REACT_APP_URL;
