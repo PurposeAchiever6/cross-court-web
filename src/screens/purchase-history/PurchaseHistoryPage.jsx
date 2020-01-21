@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import currency from 'currency.js';
-import { format } from 'date-fns';
+import { purchaseFormattedDate } from 'shared/utils/date';
 import Loading from 'shared/components/Loading';
 import BackButton from 'shared/components/BackButton';
 import { initialLoadInit } from './actionCreators';
@@ -63,7 +63,6 @@ const PurchaseHistoryPage = () => {
   if (isLoading) {
     return <Loading />;
   }
-  console.log(purchaseHistory);
   return (
     <PurchaseHistoryPageContainer>
       <div className="buttons-container">
@@ -75,7 +74,7 @@ const PurchaseHistoryPage = () => {
           <div className="purchase-item" key={purchase.id}>
             <span className="plan-name">The Rookie</span>
             <span className="sessions-qty">3 Sessions</span>
-            <span className="date">{format(new Date(purchase.date), 'MM/d/y')}</span>
+            <span className="date">{purchaseFormattedDate(purchase.date)}</span>
             <span className="price">{`$ ${currency(purchase.price, {
               symbol: '$',
               precision: 2,

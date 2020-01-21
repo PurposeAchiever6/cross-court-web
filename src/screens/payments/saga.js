@@ -19,7 +19,6 @@ import paymentsService from './service';
 export function* initialLoadFlow() {
   try {
     const paymentMethodsPayload = yield call(paymentsService.getAllPaymentMethods);
-    console.log(paymentMethodsPayload);
     yield put({
       type: INITIAL_LOAD_SUCCESS,
       payload: {

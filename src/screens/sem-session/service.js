@@ -1,13 +1,12 @@
 import api from 'shared/services';
-
-import { format } from 'date-fns';
+import { requestFormattedDate } from 'shared/utils/date';
 
 export default {
   getSessionInfo: async (id, date) => {
     const response = await api.get(`/sem/sessions/${id}`, {
       data: {},
       params: {
-        date: format(new Date(date), 'dd/MM/yyyy'),
+        date: requestFormattedDate(date),
       },
     });
 

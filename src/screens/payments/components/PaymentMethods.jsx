@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { isEmpty } from 'ramda';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -192,7 +193,6 @@ const PaymentMethods = ({ availableCards }) => {
                   <div className="ccnumber-container">
                     <span>{`**** ${payment.card.last4}`}</span>
                   </div>
-
                   <div className="expire-container">
                     <span>Expires {`${payment.card.expMonth}/${payment.card.expYear}`}</span>
                   </div>
@@ -217,6 +217,10 @@ const PaymentMethods = ({ availableCards }) => {
       </div>
     </PaymentMethodsContainer>
   );
+};
+
+PaymentMethods.propTypes = {
+  availableCards: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default PaymentMethods;

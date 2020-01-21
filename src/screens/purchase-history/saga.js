@@ -7,7 +7,6 @@ import purchaseHistoryService from './service';
 export function* initialLoadFlow() {
   try {
     const purchaseHistoryPayload = yield call(purchaseHistoryService.getPurchaseHistory);
-    console.log(purchaseHistoryPayload);
     yield put({
       type: INITIAL_LOAD_SUCCESS,
       payload: {

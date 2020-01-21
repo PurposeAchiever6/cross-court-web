@@ -1,13 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
-import { formatSessionTime } from 'shared/utils/date-time';
-import colors from 'shared/styles/constants';
-import AlternativeButton from 'shared/components/AlternativeButton';
 import { isNil } from 'ramda';
-
+import { hourRange, shortSessionDate, urlFormattedDate } from 'shared/utils/date';
+import AlternativeButton from 'shared/components/AlternativeButton';
 import ImageSvg from 'shared/components/svg/Image.svg';
+import colors from 'shared/styles/constants';
 
 const PastSessionsContainer = styled.div`
   padding: 3rem;
@@ -97,40 +96,35 @@ const PastSessionsContainer = styled.div`
   }
 `;
 
-const PastSessions = ({ sessions }) => {
-  const formatDateTitle = date => format(new Date(date), 'eeee M/d');
-
-  return (
-    <PastSessionsContainer>
-      <h3>Past Sessions</h3>
-      <div className="sessions-container">
-        {sessions.map(session => (
-          <div className="session-item" key={session.id}>
-            {isNil(session.session.location.imageUrl) ? (
-              <div className="no-image">
-                <ImageSvg />
-              </div>
-            ) : (
-              <img src={session.session.location.imageUrl} alt="Session" />
-            )}
-            <span className="date">{formatDateTitle(session.date)}</span>
-            <div className="details">
-              <span className="time">{formatSessionTime(session.session.time)}</span>
-              <span className="location">{session.session.location.name}</span>
-              <Link
-                to={`/session/${session.session.id}/${format(
-                  new Date(session.date),
-                  'yyyy-MM-dd'
-                )}`}
-              >
-                <AlternativeButton className="btn-alt">See Details</AlternativeButton>
-              </Link>
+const PastSessions = ({ sessions }) => (
+  <PastSessionsContainer>
+    <h3>Past Sessions</h3>
+    <div className="sessions-container">
+      {sessions.map(session => (
+        <div className="session-item" key={session.id}>
+          {isNil(session.session.location.imageUrl) ? (
+            <div className="no-image">
+              <ImageSvg />
             </div>
+          ) : (
+            <img src={session.session.location.imageUrl} alt="Session" />
+          )}
+          <span className="date">{shortSessionDate(session.date)}</span>
+          <div className="details">
+            <span className="time">{hourRange(session.session.time)}</span>
+            <span className="location">{session.session.location.name}</span>
+            <Link to={`/session/${session.session.id}/${urlFormattedDate(session.date)}`}>
+              <AlternativeButton className="btn-alt">See Details</AlternativeButton>
+            </Link>
           </div>
-        ))}
-      </div>
-    </PastSessionsContainer>
-  );
+        </div>
+      ))}
+    </div>
+  </PastSessionsContainer>
+);
+
+PastSessions.propTypes = {
+  sessions: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default PastSessions;

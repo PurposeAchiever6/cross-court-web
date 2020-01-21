@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { format, isSameDay } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { isEmpty } from 'ramda';
 
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
-import { formatSessionTime } from 'shared/utils/date-time';
 import device from 'shared/styles/mediaQueries';
+import { hourRange, urlFormattedDate, isSameDay } from 'shared/utils/date';
 
 const SessionsListContainer = styled.div`
   display: flex;
@@ -72,8 +71,8 @@ const SessionsListContainer = styled.div`
 `;
 
 const SessionsList = ({ availableSessions, selectedDate }) => {
-  const sessionList = availableSessions.filter(session =>
-    isSameDay(new Date(session.startTime), selectedDate)
+  const sessionList = availableSessions.filter(({ startTime }) =>
+    isSameDay(startTime, selectedDate)
   );
 
   if (isEmpty(sessionList)) {
@@ -90,20 +89,18 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
   return (
     <SessionsListContainer>
-      {sessionList.map((session, idx) => (
-        <div className="session-list-item-container" key={`${session.startTime}+${idx}`}>
+      {sessionList.map(({ id, startTime, time, isFull, location }) => (
+        <div className="session-list-item-container" key={id}>
           <div className="text-container">
-            <div className="time">{formatSessionTime(session.time)}</div>
-            <div className="location">{session.location.name}</div>
+            <div className="time">{hourRange(time)}</div>
+            <div className="location">{location.name}</div>
           </div>
-          {session.isFull ? (
+          {isFull ? (
             <a href="mailto:info@crosscourt.com">
               <AlternativeButton className="btn-alternative">Join Waitlist</AlternativeButton>
             </a>
           ) : (
-            <Link
-              to={`/session/${session.id}/${format(new Date(session.startTime), 'yyyy-MM-dd')}`}
-            >
+            <Link to={`/session/${id}/${urlFormattedDate(startTime)}`}>
               <Button>Reserve</Button>
             </Link>
           )}

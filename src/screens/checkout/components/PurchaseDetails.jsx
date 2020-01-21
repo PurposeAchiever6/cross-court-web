@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { format } from 'date-fns';
+import PropTypes from 'prop-types';
 import currency from 'currency.js';
 import { useSelector } from 'react-redux';
 
 import device from 'shared/styles/mediaQueries';
+import { purchaseFormattedDate } from 'shared/utils/date';
 import Button from 'shared/components/Button';
 import CCIcon from 'shared/components/CCIcon';
 import { getCheckoutLoading } from '../reducer';
@@ -205,7 +206,7 @@ const PurchaseDetails = ({
           </div>
         </div>
         <div className="right-side">
-          <div className="date">{format(new Date(), 'M/d/yyyy')}</div>
+          <div className="date">{purchaseFormattedDate()}</div>
           <div className="total-container">
             {isFreeSession ? (
               <span>FREE</span>
@@ -225,6 +226,14 @@ const PurchaseDetails = ({
       </div>
     </PurchaseDetailsContainer>
   );
+};
+
+PurchaseDetails.propTypes = {
+  paymentDetails: PropTypes.object.isRequired,
+  productDetails: PropTypes.object.isRequired,
+  isFreeSession: PropTypes.bool.isRequired,
+  createPurchaseHandler: PropTypes.func,
+  createFreeSessionHandler: PropTypes.func,
 };
 
 export default PurchaseDetails;

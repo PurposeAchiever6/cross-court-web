@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { addWeeks } from 'date-fns';
 
 import Loading from 'shared/components/Loading';
 import device from 'shared/styles/mediaQueries';
 import Map from 'shared/components/Map/Map';
+import { add } from 'shared/utils/date';
 
 import LocationPicker from './components/LocationPicker';
 import WeekSelector from './components/WeekSelector';
@@ -64,13 +64,13 @@ const LocationsPage = () => {
   const setSelectedDateHandler = date => dispatch(setSelectedDate(date));
 
   const increaseCurrentDayHandler = () => {
-    const nextWeekDate = addWeeks(selectedDate, 1);
+    const nextWeekDate = add(selectedDate, 1, 'weeks');
     getSessionsByDateHandler(nextWeekDate);
     setSelectedDateHandler(nextWeekDate);
   };
 
   const decreaseCurrentDayHandler = () => {
-    const pastWeekDate = addWeeks(selectedDate, -1);
+    const pastWeekDate = add(selectedDate, -1, 'weeks');
     getSessionsByDateHandler(pastWeekDate);
     setSelectedDateHandler(pastWeekDate);
   };

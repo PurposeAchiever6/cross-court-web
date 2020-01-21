@@ -41,7 +41,7 @@ const CheckoutPage = () => {
   if (isNil(productDetails) || isNil(paymentDetails)) {
     return <Redirect to={ROUTES.SERIES} />;
   }
-  console.log(productDetails);
+
   return (
     <CheckoutPageContainer>
       <div className="button-container">

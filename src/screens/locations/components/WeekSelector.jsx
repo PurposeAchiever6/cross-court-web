@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {
-  startOfWeek,
-  subDays,
-  addWeeks,
-  eachDayOfInterval,
-  format,
-  isSameDay,
-  isThisWeek,
-  isPast,
-  isToday,
-} from 'date-fns';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import {
+  isSameDay,
+  startOfWeek,
+  weekRangeTitle,
+  weekRange,
+  dayShort,
+  dayNumber,
+  isThisWeek,
+  isPast,
+} from 'shared/utils/date';
 import colors from 'shared/styles/constants';
 
 const WeekSelectorContainer = styled.div`
@@ -74,51 +73,34 @@ const WeekSelector = ({
   increaseHandler,
   decreaseHandler,
   getSessionsByDateHandler,
-}) => {
-  const startOfWeekDate = startOfWeek(selectedDate, { weekStartsOn: 1 });
-  const endOfWeek = subDays(addWeeks(startOfWeekDate, 1), 1);
-  const weekRange = eachDayOfInterval({ start: startOfWeekDate, end: endOfWeek });
-  const weekTitle = ` WEEK ${format(startOfWeekDate, 'LLLL')} ${format(
-    startOfWeekDate,
-    'd'
-  )} - ${format(endOfWeek, 'LLLL')} ${format(endOfWeek, 'd')}`;
-
-  return (
-    <WeekSelectorContainer>
-      <div className="week-handler">
-        <button type="button" onClick={decreaseHandler} disabled={isThisWeek(selectedDate)}>
-          <FontAwesomeIcon icon={faAngleLeft} />
-        </button>
-        <span className="weektitle-container">{weekTitle}</span>
-        <button type="button" onClick={increaseHandler}>
-          <FontAwesomeIcon icon={faAngleRight} />
-        </button>
-      </div>
-      <div className="weekdays-container">
-        {weekRange.map(day => {
-          const isPastToday = isPast(day) && !isToday(day);
-          const clickHandler = () => getSessionsByDateHandler(day);
-          const dayName = format(day, 'EEEEEE');
-          const dayNumber = format(day, 'd');
-
-          return (
-            <DayContainer
-              key={day}
-              day={day}
-              currentDay={selectedDate}
-              className={`${isPastToday ? 'day-container disabled' : 'day-container'}`}
-              onClick={clickHandler}
-              disabled={isPastToday}
-            >
-              <span className="day-name">{dayName}</span>
-              <span className="day-number">{dayNumber}</span>
-            </DayContainer>
-          );
-        })}
-      </div>
-    </WeekSelectorContainer>
-  );
-};
+}) => (
+  <WeekSelectorContainer>
+    <div className="week-handler">
+      <button type="button" onClick={decreaseHandler} disabled={isThisWeek(selectedDate)}>
+        <FontAwesomeIcon icon={faAngleLeft} />
+      </button>
+      <span className="weektitle-container">{weekRangeTitle(selectedDate)}</span>
+      <button type="button" onClick={increaseHandler}>
+        <FontAwesomeIcon icon={faAngleRight} />
+      </button>
+    </div>
+    <div className="weekdays-container">
+      {weekRange(startOfWeek(selectedDate)).map(day => (
+        <DayContainer
+          key={day}
+          day={day}
+          currentDay={selectedDate}
+          className={`${isPast(day) ? 'day-container disabled' : 'day-container'}`}
+          onClick={() => getSessionsByDateHandler(day)}
+          disabled={isPast(day)}
+        >
+          <span className="day-name">{dayShort(day)}</span>
+          <span className="day-number">{dayNumber(day)}</span>
+        </DayContainer>
+      ))}
+    </div>
+  </WeekSelectorContainer>
+);
 
 WeekSelector.propTypes = {
   selectedDate: PropTypes.instanceOf(Date).isRequired,

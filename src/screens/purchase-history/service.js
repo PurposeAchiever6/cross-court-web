@@ -5,7 +5,6 @@ export default {
     const response = await api.get(`/purchases`, {
       data: {},
     });
-
     return response.data.purchases;
   },
 };

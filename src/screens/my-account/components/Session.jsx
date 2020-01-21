@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format, addHours } from 'date-fns';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
+import { urlFormattedDate, shortSessionDate, hourRange } from 'shared/utils/date';
 
 const SessionContainer = styled.div`
   display: flex;
@@ -127,10 +127,6 @@ const Session = ({
     },
   },
 }) => {
-  const formatDateTitle = date => format(new Date(date), 'EEE. M/d');
-  const formatedTime = time =>
-    `${format(new Date(time), 'p')} - ${format(addHours(new Date(time), 1), 'p')}`;
-  const formatedDate = format(new Date(date), 'yyyy-MM-dd');
   let dateClassName = 'date';
   if (past) {
     dateClassName += ' past';
@@ -143,15 +139,15 @@ const Session = ({
         <img src={imageUrl} alt="Session" />
       </div>
       <div className="details">
-        <p className={dateClassName}>{formatDateTitle(date)}</p>
-        <p className="time">{formatedTime(time)}</p>
+        <p className={dateClassName}>{shortSessionDate(date)}</p>
+        <p className="time">{hourRange(time)}</p>
         <p className="location">{name}</p>
         {isSem && inStartTime ? (
-          <Link to={`/sem/session/${id}/${formatedDate}`}>
+          <Link to={`/sem/session/${id}/${urlFormattedDate(date)}`}>
             <Button className="btn">Start Session</Button>
           </Link>
         ) : (
-          <Link to={`/session/${id}/${formatedDate}`}>
+          <Link to={`/session/${id}/${urlFormattedDate(date)}`}>
             <AlternativeButton className="btn-alt">See Details</AlternativeButton>
           </Link>
         )}
