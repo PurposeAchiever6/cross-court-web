@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { passResetInit } from 'screens/auth/actionCreators';
 import { getPassResetLoading, getPassResetError } from 'screens/auth/reducer';
 import PasswordResetForm from 'screens/auth/components/PasswordResetForm';
-import utils from 'shared/utils/auth';
+import AuthUtils from 'shared/utils/auth';
 
 const PageContainer = styled.div`
   display: flex;
@@ -17,7 +17,7 @@ const PageContainer = styled.div`
 
 const PassResetPage = ({ location }) => {
   const { client, token, uid } = queryString.parse(location.search);
-  utils.setTokens({ client, accessToken: token, uid });
+  AuthUtils.setTokens({ client, accessToken: token, uid });
 
   const dispatch = useDispatch();
   const isLoading = useSelector(getPassResetLoading);

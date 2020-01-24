@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 import CheckIcon from 'shared/images/CheckIcon.png';
 import Button from 'shared/components/Button';
-import routes from 'shared/constants/routes';
+import ROUTES from 'shared/constants/routes';
 
 const PageContainer = styled.div`
   display: flex;
@@ -29,7 +29,7 @@ const SignupConfirmationPage = () => (
   <PageContainer>
     <img src={CheckIcon} alt="Check icon" />
     <h1>Your e-mail was successfully verified!</h1>
-    <Link to={routes.login}>
+    <Link to={ROUTES.LOGIN}>
       <Button>Continue</Button>
     </Link>
   </PageContainer>

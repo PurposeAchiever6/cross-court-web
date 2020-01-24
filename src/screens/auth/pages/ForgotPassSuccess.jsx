@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import routes from 'shared/constants/routes';
+import ROUTES from 'shared/constants/routes';
 import { getUserEmail } from 'screens/auth/reducer';
 import PaperPlaneIcon from 'shared/images/PaperPlaneIcon.png';
 import device from 'shared/styles/mediaQueries';
 
 const PageContainer = styled.div`
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +61,7 @@ const ForgotPassSuccess = () => {
         We sent an email to <strong>{userEmail}</strong> which contains an link to reset your
         password.
       </p>
-      <Link to={routes.login}>
+      <Link to={ROUTES.LOGIN}>
         <strong>Back to Log In</strong>
       </Link>
     </PageContainer>

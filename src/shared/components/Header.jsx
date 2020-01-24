@@ -2,19 +2,21 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import DesktopMenu from 'cheeseburger-menu';
 import ScrollLock from 'react-scrolllock';
-
+import { Link } from 'react-router-dom';
+import ROUTES from 'shared/constants/routes';
 import Button from 'shared/components/Button';
-import MenuSvg from 'shared/components/MenuSvg';
-import LogoSvg from 'shared/components/LogoSvg';
+import MenuSvg from 'shared/components/svg/MenuSvg';
+import LogoSvg from 'shared/components/svg/LogoSvg';
 import device from 'shared/styles/mediaQueries';
+import colors from 'shared/styles/constants';
 import SidebarMenu from './SidebarMenu';
 import Modal from './Modal';
 
 const Container = styled.div`
   z-index: 10;
-  background-color: #fff;
+  background-color: ${colors.white};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  height: 82px;
+  height: 5rem;
   position: fixed;
   width: 100%;
   left: 0;
@@ -111,7 +113,7 @@ function Header() {
           </MobileMenu>
         </ScrollLock>
       </Modal>
-      <DesktopMenu isOpen={menuOpen} closeCallback={toggleMenu} topOffset="82px" width="23rem">
+      <DesktopMenu isOpen={menuOpen} closeCallback={toggleMenu} topOffset="82px" width={400}>
         <SidebarMenu menuToggler={toggleMenu} />
       </DesktopMenu>
       <div className="header-content">
@@ -121,9 +123,13 @@ function Header() {
               <MenuSvg color={menuOpen ? 'white' : 'black'} />
             </button>
           </div>
-          <LogoSvg className="logo-icon" />
+          <Link to={ROUTES.HOME}>
+            <LogoSvg className="logo-icon" />
+          </Link>
         </div>
-        <Button className="button">Reserve session</Button>
+        <Link to={ROUTES.LOCATIONS}>
+          <Button className="button">Reserve session</Button>
+        </Link>
       </div>
     </Container>
   );

@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import CloseButton from 'shared/components/CloseButton';
 import colors from 'shared/styles/constants';
 import device from 'shared/styles/mediaQueries';
-import routes from 'shared/constants/routes';
+import ROUTES from 'shared/constants/routes';
+import { logoutInit } from 'screens/auth/actionCreators';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
 
 const Nav = styled.nav`
   display: flex;
@@ -22,16 +26,20 @@ const Nav = styled.nav`
   .list {
     display: flex;
     flex-direction: column;
-    height: 60%;
+    height: 40%;
     justify-content: space-around;
     padding: 0;
     list-style-type: none;
 
-    .list-item a {
+    .list-item a,
+    button {
       text-decoration: none;
       color: white;
       font-size: 1.5em;
       font-weight: normal;
+      background-color: transparent;
+      border: 0;
+      padding: 0;
 
       &.active {
         font-weight: bold;
@@ -47,6 +55,7 @@ const Nav = styled.nav`
 
   .button {
     height: 50px;
+    width: 100%;
   }
 
   @media ${device.mobile} {
@@ -64,49 +73,82 @@ const Nav = styled.nav`
   }
 `;
 
-const SidebarMenu = ({ menuToggler }) => (
-  <Nav>
-    <CloseButton onClick={menuToggler} />
-    <ul className="list">
-      <li className="list-item">
-        <NavLink exact to={routes.home} onClick={menuToggler}>
-          Home
-        </NavLink>
-      </li>
-      <li className="list-item">
-        <NavLink exact to={routes.howItWorks} onClick={menuToggler}>
-          First Time?
-        </NavLink>
-      </li>
-      <li className="list-item">
-        <NavLink exact to={routes.locations} onClick={menuToggler}>
-          Locations
-        </NavLink>
-      </li>
-      <li className="list-item">
-        <NavLink exact to={routes.schedule} onClick={menuToggler}>
-          Schedule
-        </NavLink>
-      </li>
-      <li className="list-item">
-        <NavLink exact to={routes.memberships} onClick={menuToggler}>
-          Memberships
-        </NavLink>
-      </li>
-      <li className="list-item">
-        <NavLink exact to={routes.login} onClick={menuToggler}>
-          Log In
-        </NavLink>
-      </li>
-      <li className="list-item">
-        <NavLink exact to={routes.signup} onClick={menuToggler}>
-          Sign Up
-        </NavLink>
-      </li>
-    </ul>
-    <AlternativeButton className="button">Become SEM/Referee</AlternativeButton>
-  </Nav>
-);
+const SidebarMenu = ({ menuToggler }) => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(getIsAuthenticated);
+  const userProfile = useSelector(getUserProfile);
+
+  const logoutAction = () => dispatch(logoutInit());
+
+  return (
+    <Nav>
+      <CloseButton onClick={menuToggler} />
+      <ul className="list">
+        <li className="list-item">
+          <NavLink exact to={ROUTES.HOME} onClick={menuToggler}>
+            Home
+          </NavLink>
+        </li>
+        <li className="list-item">
+          <NavLink exact to={ROUTES.HOWITWORKS} onClick={menuToggler}>
+            {isAuthenticated ? 'Learn More' : 'First Time?'}
+          </NavLink>
+        </li>
+        <li className="list-item">
+          <NavLink exact to={ROUTES.LOCATIONS} onClick={menuToggler}>
+            Schedule/Locations
+          </NavLink>
+        </li>
+        <li className="list-item">
+          <NavLink exact to={ROUTES.SERIES} onClick={menuToggler}>
+            Series
+          </NavLink>
+        </li>
+        {!isAuthenticated && (
+          <li className="list-item">
+            <NavLink exact to={ROUTES.LOGIN} onClick={menuToggler}>
+              Log In
+            </NavLink>
+          </li>
+        )}
+        {!isAuthenticated && (
+          <li className="list-item">
+            <NavLink exact to={ROUTES.SIGNUP} onClick={menuToggler}>
+              Sign Up
+            </NavLink>
+          </li>
+        )}
+        {isAuthenticated && (
+          <li className="list-item">
+            <NavLink exact to={ROUTES.MYACCOUNT} onClick={menuToggler}>
+              My Account
+            </NavLink>
+          </li>
+        )}
+        {isAuthenticated && (
+          <li className="list-item">
+            <button href="#" onClick={() => logoutAction()}>
+              Logout
+            </button>
+          </li>
+        )}
+      </ul>
+      {userProfile.isSem ? (
+        <Link to={ROUTES.SEMHANDBOOK}>
+          <AlternativeButton className="button" onClick={menuToggler}>
+            SEM Handbook
+          </AlternativeButton>
+        </Link>
+      ) : (
+        <Link to={ROUTES.SEM}>
+          <AlternativeButton className="button" onClick={menuToggler}>
+            Join the team
+          </AlternativeButton>
+        </Link>
+      )}
+    </Nav>
+  );
+};
 
 SidebarMenu.propTypes = {
   menuToggler: PropTypes.func.isRequired,

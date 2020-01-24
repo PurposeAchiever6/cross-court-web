@@ -11,14 +11,14 @@ import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
-import routes from 'shared/constants/routes';
+import ROUTES from 'shared/constants/routes';
 
 const LoginFormContainer = styled.div`
   width: 20rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 5rem;
+  margin: 5rem 0;
 
   h1 {
     font-weight: 600;
@@ -128,11 +128,11 @@ const LoginForm = ({ error, loginHandler, isLoading }) => (
               {!isLoading ? 'Log in' : <Spinner />}
             </Button>
             <span className="forgot-pass">
-              <Link to={routes.forgotPassword}>Forgot your password?</Link>
+              <Link to={ROUTES.FORGOTPASSWORD}>Forgot your password?</Link>
             </span>
             <span className="signup">
               If you are a new costumer
-              <Link to={routes.signup}>
+              <Link to={ROUTES.SIGNUP}>
                 <strong>Sign up here</strong>
               </Link>
             </span>

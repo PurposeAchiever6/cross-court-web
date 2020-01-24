@@ -1,8 +1,9 @@
 import { put, all, takeLatest, call, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-import routes from 'shared/constants/routes';
-import authUtils from 'shared/utils/auth';
+import ROUTES from 'shared/constants/routes';
 import { head } from 'ramda';
+
+import AuthUtils from 'shared/utils/auth';
 import {
   LOGIN_INIT,
   LOGIN_SUCCESS,
@@ -28,9 +29,9 @@ import { getUserEmail } from './reducer';
 export function* loginFlow({ payload }) {
   try {
     const loginPayload = yield call(authService.login, payload);
-    yield call(authUtils.setTokens, loginPayload);
+    yield call(AuthUtils.setTokens, loginPayload);
     yield put({ type: LOGIN_SUCCESS, payload: loginPayload.user });
-    yield put(push(routes.dashboard));
+    yield put(push(ROUTES.MYACCOUNT));
   } catch (err) {
     yield put({ type: LOGIN_FAILURE, error: err.response.data.error });
   }
@@ -39,8 +40,8 @@ export function* loginFlow({ payload }) {
 export function* logoutFlow() {
   const localStorageClear = localStorage.clear();
   const reload = window.location.reload();
-  yield call(reload);
   yield call(localStorageClear);
+  yield call(reload);
   yield put({ type: LOGOUT_SUCCESS });
 }
 
@@ -48,7 +49,7 @@ export function* signupFlow({ payload }) {
   try {
     const signupPayload = yield call(authService.signup, payload);
     yield put({ type: SIGN_UP_SUCCESS, payload: signupPayload });
-    yield put(push(routes.signupSuccess));
+    yield put(push(ROUTES.SIGNUPSUCCESS));
   } catch (err) {
     yield put({ type: SIGN_UP_FAILURE, errors: err.response.data.errors });
   }
@@ -68,7 +69,7 @@ export function* forgotPassFlow({ payload }) {
   try {
     yield call(authService.forgotPassword, payload);
     yield put({ type: FORGOT_PASS_SUCCESS, payload: { email: payload.email } });
-    yield put(push(routes.forgotPasswordSuccess));
+    yield put(push(ROUTES.FORGOTPASSWORDSUCCESS));
   } catch (err) {
     yield put({ type: FORGOT_PASS_FAILURE, error: err.response.data.error });
   }
@@ -78,7 +79,7 @@ export function* passResetFlow({ payload }) {
   try {
     yield call(authService.resetPassword, payload);
     yield put({ type: PASS_RESET_SUCCESS });
-    yield put(push(routes.resetPasswordSuccess));
+    yield put(push(ROUTES.RESETPASSWORDSUCCESS));
   } catch (err) {
     yield put({ type: PASS_RESET_FAILURE, error: head(err.response.data.errors.full_messages) });
   }

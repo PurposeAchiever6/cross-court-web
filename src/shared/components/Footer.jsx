@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
+import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import device from 'shared/styles/mediaQueries';
-import FacebookSvg from './FacebookSvg';
-import LinkedInSvg from './LinkedInSvg';
+import FacebookSvg from './svg/Facebook.svg';
+import LinkedInSvg from './svg/LinkedIn.svg';
+import TwitterSvg from './svg/Twitter.svg';
+import InstagramSvg from './svg/Instagram.svg';
 import AlternativeButton from './AlternativeButton';
 
 const FooterContainer = styled.footer`
@@ -12,87 +16,140 @@ const FooterContainer = styled.footer`
   background-color: ${colors.polarPlum};
   font-family: var(--main-font-family);
   font-size: 0.875rem;
-  padding: 2.5rem 1rem;
+  padding: 1rem 0.5rem 0.5rem;
 
   .footer-content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    display: flex;
     align-items: center;
-    width: 16rem;
     margin: 0 auto;
-  }
-
-  .social-icons {
-    grid-column: 2;
-    display: flex;
-    justify-content: space-around;
-    padding-left: 2rem;
-  }
-
-  .icon-container {
-    display: flex;
+    flex-direction: row-reverse;
     justify-content: center;
-    align-items: center;
+    .first-row {
+      display: flex;
+      width: 83%;
+
+      justify-content: flex-end;
+
+      .social-icons {
+        display: flex;
+        justify-content: space-around;
+        padding-left: 2rem;
+        width: 20rem;
+
+        .icon-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: ${colors.white};
+          color: ${colors.polarPlum};
+          border-radius: 3rem;
+          height: 3rem;
+          width: 3rem;
+          a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+          }
+          .faq-button {
+            padding: 0.7rem 5rem;
+          }
+          svg {
+            height: 1.5rem;
+            width: 1.5rem;
+            color: ${colors.polarPlum};
+          }
+        }
+      }
+    }
   }
 
-  .faq-button {
-    grid-column: 1;
-  }
-
-  .footer-par {
-    grid-row: 2;
-    grid-column: 1 / 3;
-    justify-self: center;
-  }
-
-  @media ${device.desktop} {
+  @media ${device.mobile} {
     padding: 1rem;
+    height: auto;
 
     .footer-content {
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: 1fr;
-      width: initial;
-      margin: 0 2.5rem;
-    }
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      width: 100%;
+      padding: 0;
+      .first-row {
+        width: 100%;
+        flex-direction: column;
+        a {
+          text-align: center;
+          button {
+            width: 100%;
+          }
+        }
+        .social-icons {
+          width: 100%;
+          padding: 0;
+          margin: 1rem 0;
+          order: 3;
+          .icon-container {
+            margin: 0;
+            justify-content: space-between;
+          }
+        }
+      }
+      & > a {
+        margin: 1rem 0 2rem;
+        order: 2;
+        width: 84%;
+        button {
+          width: 100%;
+        }
+      }
 
-    .footer-par {
-      grid-row: 1;
-      grid-column: 1 / 4;
-      justify-self: flex-start;
-    }
-
-    .faq-button {
-      grid-column: 4;
-      width: 11rem;
-      justify-self: end;
-    }
-
-    .social-icons {
-      grid-column: 5;
-      justify-self: center;
-    }
-
-    .icon-container {
-      margin: 0 1rem;
+      .copyright {
+        margin: 0;
+        order: 1;
+      }
     }
   }
 `;
 
 function Footer() {
+  const FACEBOOK_LINK = process.env.REACT_APP_FACEBOOK_LINK;
+  const TWITTER_LINK = process.env.REACT_APP_TWITTER_LINK;
+  const INSTAGRAM_LINK = process.env.REACT_APP_INSTAGRAM_LINK;
+  const LINKEDIN_LINK = process.env.REACT_APP_LINKEDIN_LINK;
+
   return (
     <FooterContainer>
       <div className="footer-content">
-        <AlternativeButton className="faq-button">FAQ</AlternativeButton>
-        <div className="social-icons">
-          <div className="icon-container">
-            <FacebookSvg />
-          </div>
-          <div className="icon-container">
-            <LinkedInSvg />
+        <div className="first-row">
+          <Link to={ROUTES.FAQ}>
+            <AlternativeButton className="faq-button">FAQ</AlternativeButton>
+          </Link>
+          <div className="social-icons">
+            <div className="icon-container">
+              <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer">
+                <FacebookSvg />
+              </a>
+            </div>
+            <div className="icon-container">
+              <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
+                <TwitterSvg />
+              </a>
+            </div>
+            <div className="icon-container">
+              <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
+                <InstagramSvg />
+              </a>
+            </div>
+            <div className="icon-container">
+              <a href={LINKEDIN_LINK} target="_blank" rel="noopener noreferrer">
+                <LinkedInSvg />
+              </a>
+            </div>
           </div>
         </div>
-        <p className="footer-par">© 2019 CrossCourt All Rights Reserved</p>
+        <span className="copyright">© 2019 CrossCourt All Rights Reserved</span>
       </div>
     </FooterContainer>
   );

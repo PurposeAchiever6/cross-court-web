@@ -6,7 +6,7 @@ import { isEmpty } from 'ramda';
 import { Link } from 'react-router-dom';
 import { string, func, bool } from 'prop-types';
 
-import routes from 'shared/constants/routes';
+import ROUTES from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
@@ -118,7 +118,7 @@ const ForgotPassForm = ({ error, forgotPassHandler, isLoading }) => (
               {!isLoading ? 'Reset Password' : <Spinner />}
             </Button>
             <span className="cancel">
-              <Link to={routes.login}>
+              <Link to={ROUTES.LOGIN}>
                 <strong>Cancel</strong>
               </Link>
             </span>

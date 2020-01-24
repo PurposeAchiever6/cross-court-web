@@ -1,5 +1,5 @@
 import axios from 'axios';
-import routes from 'shared/constants/routes';
+import ROUTES from 'shared/constants/routes';
 import { getHeaders } from 'shared/utils/auth';
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -38,7 +38,7 @@ export default {
   forgotPassword: async ({ email }) => {
     const response = await axios.post(`${API_URL}/users/password`, {
       email,
-      redirect_url: `${APP_URL}${routes.resetPassword}`,
+      redirect_url: `${APP_URL}${ROUTES.RESETPASSWORD}`,
     });
 
     return response.data;
@@ -56,5 +56,19 @@ export default {
     );
 
     return response.data;
+  },
+  getTermsAndCondtions: async () => {
+    const response = await axios.get(`${API_URL}/legals/terms_and_conditions`, {
+      data: {},
+    });
+
+    return response.data.text;
+  },
+  getCancelationPolicy: async () => {
+    const response = await axios.get(`${API_URL}/legals/cancelation_policy`, {
+      data: {},
+    });
+
+    return response.data.text;
   },
 };

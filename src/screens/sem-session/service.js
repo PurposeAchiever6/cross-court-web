@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getHeaders } from 'shared/utils/auth';
-import { formatDate } from 'shared/utils/formatters';
+import { format } from 'date-fns';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -10,7 +10,7 @@ export default {
       headers: getHeaders(),
       data: {},
       params: {
-        date: formatDate(date),
+        date: format(new Date(date), 'dd/MM/yyyy')
       },
     });
 

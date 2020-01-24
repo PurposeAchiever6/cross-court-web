@@ -8,7 +8,7 @@ import { isNil } from 'ramda';
 const InputTextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 
   label {
     font-family: 'Untitled Sans';
@@ -49,12 +49,13 @@ function InputTextField({
   disabled = false,
   showLabel = true,
   displayErrorMsg = true,
+  ...props
 }) {
   return (
     <Field name={name}>
       {({ field, form: { touched, errors: formikError } }) => {
         return (
-          <InputTextContainer>
+          <InputTextContainer {...props}>
             {showLabel && <label htmlFor={field.name}>{labelText}</label>}
             <input
               className={

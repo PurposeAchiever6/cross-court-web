@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
+import device from 'shared/styles/mediaQueries';
 
 const BackButtonContainer = styled.button`
   font-size: 1.5rem;
@@ -13,9 +15,21 @@ const BackButtonContainer = styled.button`
   margin-left: 3rem;
   margin-top: 2rem;
   cursor: pointer;
+
   svg {
     font-size: 1.5rem;
     margin-right: 1rem;
+  }
+
+  @media ${device.mobile} {
+    margin-left: 1rem;
+    margin-top: 2rem;
+    font-size: 1.3rem;
+    
+    svg {
+      font-size: 1.3rem;
+      margin-right: 1rem;
+    }
   }
 `;
 

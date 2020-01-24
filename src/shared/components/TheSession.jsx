@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
-import FieldSvg from 'shared/components/FieldSvg';
-import MerchSvg from 'shared/components/MerchSvg';
-import StopwatchSvg from 'shared/components/StopwatchSvg';
-import WhistleSvg from 'shared/components/WhistleSvg';
-import PlayerSvg from 'shared/components/PlayerSvg';
-import SpeakerSvg from 'shared/components/SpeakerSvg';
+import FieldSvg from 'shared/components/svg/FieldSvg';
+import MerchSvg from 'shared/components/svg/MerchSvg';
+import StopwatchSvg from 'shared/components/svg/StopwatchSvg';
+import WhistleSvg from 'shared/components/svg/WhistleSvg';
+import PlayerSvg from 'shared/components/svg/PlayerSvg';
+import SpeakerSvg from 'shared/components/svg/SpeakerSvg';
 
 const Section = styled.section`
   padding: 4.5rem 5rem;

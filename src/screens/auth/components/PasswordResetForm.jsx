@@ -6,7 +6,7 @@ import { isEmpty } from 'ramda';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import routes from 'shared/constants/routes';
+import ROUTES from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
@@ -35,7 +35,7 @@ const PasswordResetFormContainer = styled.div`
   }
 
   a {
-    font-weight: 600;
+    font-weight: bold;
     text-align: center;
   }
 
@@ -113,7 +113,7 @@ const PasswordResetForm = ({ error, passResetHandler, isLoading }) => {
               <Button type="submit" disabled={isLoading}>
                 {!isLoading ? 'Set New Password' : <Spinner />}
               </Button>
-              <Link to={routes.login} className="login">
+              <Link to={ROUTES.LOGIN} className="login">
                 Back to Log in
               </Link>
             </Form>

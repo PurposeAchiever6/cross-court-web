@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
+import ROUTES from 'shared/constants/routes';
 import MembershipDesktopBg from '../images/membership-desktop-bg.jpg';
 
 const Section = styled.section`
@@ -63,11 +64,15 @@ const Memberships = () => (
       <p className="note">
         <em>You bring the energy.</em>
       </p>
-      <Button>Explore Memberships</Button>
+      <Link to={ROUTES.SERIES}>
+        <Button>Explore Memberships</Button>
+      </Link>
     </div>
     <div className="memberships-container">
       <span className="text">Are you a first time player?</span>
-      <AlternativeButton>Learn More</AlternativeButton>
+      <Link to={ROUTES.FAQ}>
+        <AlternativeButton>Learn More</AlternativeButton>
+      </Link>
     </div>
   </Section>
 );

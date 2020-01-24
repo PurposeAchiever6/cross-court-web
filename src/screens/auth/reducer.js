@@ -12,6 +12,7 @@ import {
   PASS_RESET_INIT,
   PASS_RESET_SUCCESS,
   PASS_RESET_FAILURE,
+  LOGOUT_INIT,
 } from './actionTypes';
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   signupLoading: false,
   forgotPassLoading: false,
   passResetLoading: false,
+  isAuthenticated: false,
   loginError: '',
   signupErrors: {},
   userEmail: '',
@@ -38,6 +40,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loginLoading: false,
+        isAuthenticated: true,
       };
     case LOGIN_FAILURE:
       return { ...state, loginError: action.error, loginLoading: false };
@@ -84,6 +87,11 @@ export default (state = initialState, action) => {
       };
     case PASS_RESET_FAILURE:
       return { ...state, passResetError: action.error, passResetLoading: false };
+    case LOGOUT_INIT:
+      return {
+        ...state,
+        isAuthenticated: false,
+      };
     default:
       return state;
   }
@@ -108,3 +116,5 @@ export const getForgotPassError = createSelector(getAuth, auth => auth.forgotPas
 export const getPassResetLoading = createSelector(getAuth, auth => auth.passResetLoading);
 
 export const getPassResetError = createSelector(getAuth, auth => auth.passResetError);
+
+export const getIsAuthenticated = createSelector(getAuth, auth => auth.isAuthenticated);

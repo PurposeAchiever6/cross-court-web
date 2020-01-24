@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 import CheckIcon from 'shared/images/CheckIcon.png';
 import Button from 'shared/components/Button';
-import device from 'shared/styles/mediaQueries';
+import device from 'shared/styles/constants';
 
 const PageContainer = styled.div`
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

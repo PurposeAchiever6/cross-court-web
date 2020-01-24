@@ -4,6 +4,8 @@ import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
+import { Link } from 'react-router-dom';
+import ROUTES from 'shared/constants/routes';
 
 const TextWrapper = styled.div`
   flex: 1;
@@ -86,8 +88,12 @@ const Signup = () => (
     </TextWrapper>
     <Buttons>
       <div className="buttons-container">
-        <AlternativeButton>Book a session</AlternativeButton>
-        <Button>First Time?</Button>
+        <Link to={ROUTES.LOCATIONS}>
+          <AlternativeButton>Book a session</AlternativeButton>
+        </Link>
+        <Link to={ROUTES.HOWITWORKS}>
+          <Button>First Time?</Button>
+        </Link>
       </div>
     </Buttons>
   </>

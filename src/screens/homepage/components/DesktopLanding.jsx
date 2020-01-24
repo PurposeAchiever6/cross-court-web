@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import device from 'shared/styles/mediaQueries';
-
 import TheExperience from './desktop/TheExperience';
 import NothingButVibe from './desktop/NothingButVibe';
 import NoBullshit from './desktop/NoBullshit';

@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import routes from 'shared/constants/routes';
+import ROUTES from 'shared/constants/routes';
 import device from 'shared/styles/mediaQueries';
 import InputTextField from 'shared/components/InputTextField';
 import Spinner from 'shared/components/Spinner';
@@ -16,6 +16,7 @@ const SignupFormContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0 2.5rem;
+  margin: 5rem 0;
 
   .forgot-pass {
     font-weight: 600;
@@ -48,8 +49,12 @@ const SignupFormContainer = styled.div`
   }
 
   .login {
+    text-align: center;
+    margin: 3rem 0;
+
     span {
-      width: 60%;
+      display: flex;
+      flex-direction: column;
       margin-top: 2rem;
       text-align: center;
     }
@@ -66,7 +71,7 @@ const SignupFormContainer = styled.div`
 
 const initialValues = {
   name: '',
-  phone: '',
+  phone_number: '',
   email: '',
   password: '',
   confirmPassword: '',
@@ -74,7 +79,7 @@ const initialValues = {
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
-  phone: Yup.string().required('Required'),
+  phone_number: Yup.string().required('Required'),
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
   confirmPassword: Yup.string()
@@ -100,7 +105,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
             <InputTextField labelText="Name" error={errors.username} name="name" />
           </div>
           <div className="form-group">
-            <InputTextField labelText="Phone" error={errors.phone} name="phone" />
+            <InputTextField labelText="Phone" error={errors.phone_number} name="phone_number" />
           </div>
           <div className="form-group">
             <InputTextField labelText="email" error={errors.email} name="email" />
@@ -128,8 +133,8 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
           <div className="login">
             <span>
               Already have an account?
-              <Link to={routes.login}>
-                <strong>Log in</strong>
+              <Link to={ROUTES.LOGIN}>
+                <strong>&nbsp;Log in</strong>
               </Link>
             </span>
           </div>

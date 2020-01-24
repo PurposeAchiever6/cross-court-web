@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import styled from 'styled-components';
+import { ToastContainer, Zoom } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 
 import { history } from 'shared/history';
 import colors from 'shared/styles/constants';
-import routes from 'shared/constants/routes';
-
+import ROUTES from 'shared/constants/routes';
+import { getLegalDocs } from 'screens/legal-docs/actionCreators';
 import Home from 'screens/homepage/HomePage';
 import Login from 'screens/auth/pages/LoginPage';
-import Dashboard from 'screens/dashboard/DashboardPage';
 import Signup from 'screens/auth/pages/SignupPage';
 import SignupSuccess from 'screens/auth/pages/SignupSuccess';
 import SignupConfirmation from 'screens/auth/pages/SignupConfirmation';
@@ -17,10 +18,25 @@ import ForgotPass from 'screens/auth/pages/ForgotPassPage';
 import ForgotPassSuccess from 'screens/auth/pages/ForgotPassSuccess';
 import PassReset from 'screens/auth/pages/PassResetPage';
 import PassResetSuccess from 'screens/auth/pages/PassResetSuccess';
-import HowItWorks from 'screens/howItWorks/HowItWorksPage';
-import SemHomePage from 'screens/semHomePage/semHomePage';
 import SemSession from 'screens/sem-session/semSession';
 import SessionState from 'screens/sem-session/pages/sessionState';
+import HowItWorks from 'screens/how-it-works/HowItWorksPage';
+import SemHomePage from 'screens/sem/semHomePage';
+import Locations from 'screens/locations/LocationsPage';
+import Sessions from 'screens/sessions/SessionsPage';
+import SessionConfirmed from 'screens/sessions/pages/SessionConfirmed';
+import SessionReserved from 'screens/sessions/pages/SessionReserved';
+import Checkout from 'screens/checkout/CheckoutPage';
+import SeriesPage from 'screens/series/SeriesPage';
+import MyAccount from 'screens/my-account/MyAccountPage';
+import PurchaseHistory from 'screens/purchase-history/PurchaseHistoryPage';
+import CheckoutConfirm from 'screens/checkout/pages/CheckoutConfirm';
+import Payments from 'screens/payments/PaymentsPage';
+import PaymentsAddCard from 'screens/payments/pages/AddCard';
+import SemHandbook from 'shared/pages/SemHandbookPage';
+import FAQ from 'shared/pages/FaqPage';
+import CancelationPolicy from 'screens/legal-docs/pages/CancelationPolicy';
+import TermsAndConditions from 'screens/legal-docs/pages/TermsAndConditions';
 import Header from 'shared/components/Header';
 import Footer from 'shared/components/Footer';
 
@@ -28,70 +44,140 @@ import PrivateRoute from './PrivateRoute';
 
 const AppWrapper = styled.div`
   font-family: 'Untitled Sans';
-  padding-top: 82px;
-
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   a {
     color: ${colors.black};
   }
 
   main {
     overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 5rem;
+    overflow-y: auto;
   }
 `;
 
-const Routes = () => (
-  <AppWrapper>
-    <ConnectedRouter history={history}>
-      <Header />
-      <main>
-        <Switch>
-          <Route path={routes.login}>
-            <Login />
-          </Route>
-          <Route path={routes.signup} exact>
-            <Signup />
-          </Route>
-          <Route path={routes.signupSuccess}>
-            <SignupSuccess />
-          </Route>
-          <Route path={routes.signupConfirmation}>
-            <SignupConfirmation />
-          </Route>
-          <Route path={routes.forgotPassword} exact>
-            <ForgotPass />
-          </Route>
-          <Route path={routes.forgotPasswordSuccess}>
-            <ForgotPassSuccess />
-          </Route>
-          <Route path={routes.resetPassword} exact>
-            <PassReset />
-          </Route>
-          <Route path={routes.resetPasswordSuccess}>
-            <PassResetSuccess />
-          </Route>
-          <Route path={routes.home} exact>
-            <Home />
-          </Route>
-          <Route path={routes.howItWorks}>
-            <HowItWorks />
-          </Route>
-          <Route path={routes.sem} exact>
-            <SemHomePage />
-          </Route>
-          <PrivateRoute path={routes.dashboard}>
-            <Dashboard />
-          </PrivateRoute>
-          <PrivateRoute path={routes.semSession} exact>
-            <SemSession />
-          </PrivateRoute>
-          <PrivateRoute path={routes.sessionState} exact>
-            <SessionState />
-          </PrivateRoute>
-        </Switch>
-      </main>
-      <Footer />
-    </ConnectedRouter>
-  </AppWrapper>
-);
+const Routes = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getLegalDocs());
+  }, [dispatch]);
+
+  return (
+    <AppWrapper>
+      <ToastContainer
+        transition={Zoom}
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange
+        draggable
+        pauseOnHover
+        closeButton={false}
+        bodyClassName="toaster-container"
+      />
+      <ConnectedRouter history={history}>
+        <Header />
+        <main>
+          <Switch>
+            <Route path={ROUTES.LOGIN}>
+              <Login />
+            </Route>
+            <Route path={ROUTES.SIGNUP} exact>
+              <Signup />
+            </Route>
+            <Route path={ROUTES.SIGNUPSUCCESS}>
+              <SignupSuccess />
+            </Route>
+            <Route path={ROUTES.SIGNUPCONFIRMATION}>
+              <SignupConfirmation />
+            </Route>
+            <Route path={ROUTES.FORGOTPASSWORD} exact>
+              <ForgotPass />
+            </Route>
+            <Route path={ROUTES.FORGOTPASSWORDSUCCESS}>
+              <ForgotPassSuccess />
+            </Route>
+            <Route path={ROUTES.RESETPASSWORD} exact>
+              <PassReset />
+            </Route>
+            <Route path={ROUTES.RESETPASSWORDSUCCESS}>
+              <PassResetSuccess />
+            </Route>
+            <Route path={ROUTES.LOCATIONS}>
+              <Locations />
+            </Route>
+            <Route path={ROUTES.SESSION} exact>
+              <Sessions />
+            </Route>
+            <Route path={ROUTES.SESSIONRESERVED}>
+              <SessionReserved />
+            </Route>
+            <Route path={ROUTES.SESSIONCONFIRMED}>
+              <SessionConfirmed />
+            </Route>
+            <Route path={ROUTES.HOWITWORKS}>
+              <HowItWorks />
+            </Route>
+            <Route path={ROUTES.SEM} exact>
+              <SemHomePage />
+            </Route>
+            <Route path={ROUTES.SERIES}>
+              <SeriesPage />
+            </Route>
+            <Route path={ROUTES.TERMS}>
+              <TermsAndConditions />
+            </Route>
+            <Route path={ROUTES.CANCELATIONPOLICY}>
+              <CancelationPolicy />
+            </Route>
+            <PrivateRoute path={ROUTES.PURCHASEHISTORY}>
+              <PurchaseHistory />
+            </PrivateRoute>
+            <PrivateRoute path={ROUTES.CHECKOUT} exact>
+              <Checkout />
+            </PrivateRoute>
+            <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED}>
+              <CheckoutConfirm />
+            </PrivateRoute>
+            <PrivateRoute path={ROUTES.PAYMENTS} exact>
+              <Payments />
+            </PrivateRoute>
+            <PrivateRoute path={ROUTES.PAYMENTSADDCARD}>
+              <PaymentsAddCard />
+            </PrivateRoute>
+            <PrivateRoute path={ROUTES.MYACCOUNT}>
+              <MyAccount />
+            </PrivateRoute>
+            <PrivateRoute path={ROUTES.SEMSESSION} exact>
+              <SemSession />
+            </PrivateRoute>
+            <PrivateRoute path={ROUTES.SESSIONSTATE} exact>
+              <SessionState />
+            </PrivateRoute>
+            <PrivateRoute path={ROUTES.SEMHANDBOOK}>
+              <SemHandbook />
+            </PrivateRoute>
+            <Route path={ROUTES.FAQ}>
+              <FAQ />
+            </Route>
+            <Route path={ROUTES.HOME} exact>
+              <Home />
+            </Route>
+          </Switch>
+        </main>
+        <Footer />
+      </ConnectedRouter>
+    </AppWrapper>
+  );
+};
 
 export default Routes;

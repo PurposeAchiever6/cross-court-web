@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
+import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import TheSession from 'shared/components/TheSession';
 import Button from 'shared/components/Button';
@@ -31,7 +33,9 @@ const HomePage = () => (
     <DesktopLanding />
     <TheSession />
     <div className="button-container">
-      <Button>Learn More</Button>
+      <Link to={ROUTES.HOWITWORKS}>
+        <Button>Learn More</Button>
+      </Link>
     </div>
     <Memberships />
   </PageContainer>

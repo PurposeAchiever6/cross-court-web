@@ -21,8 +21,7 @@ export const getHeaders = (extraStuff = {}) => {
   const { uid, client, accessToken } = getTokens();
 
   const headers = {
-    Accept: 'application/json; charset=utf-8',
-    'Content-Type': 'application/json; charset=utf-8',
+    'Content-Type': 'application/json',
     uid,
     client,
     'access-token': accessToken,
@@ -31,7 +30,13 @@ export const getHeaders = (extraStuff = {}) => {
   return { ...headers, ...extraStuff };
 };
 
+const isAuthenticated = () => {
+  return Boolean(localStorage.getItem('isAuthenticated'));
+};
+
 export default {
   setTokens,
+  getTokens,
   getHeaders,
+  isAuthenticated,
 };
