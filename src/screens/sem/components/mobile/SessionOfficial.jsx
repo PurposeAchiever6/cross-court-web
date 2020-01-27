@@ -32,18 +32,24 @@ const TextContainer = styled.div`
   }
 `;
 
-const SessionOfficial = () => (
-  <>
-    <div>
-      <ImageContainer img={SessionOfficialImage} overlayColor={colors.blackOverlay} />
-    </div>
-    <TextContainer>
-      <h2 className="title">SESSION</h2>
-      <h2 className="title">OFFICIAL</h2>
-      <p>{sessionOfficialText}</p>
-      <Button className="button">Apply to be SO</Button>
-    </TextContainer>
-  </>
-);
+const SessionOfficial = () => {
+  const SO_LINK = process.env.REACT_APP_FOUNTAIN_SO_LINK;
+
+  return (
+    <>
+      <div>
+        <ImageContainer img={SessionOfficialImage} overlayColor={colors.blackOverlay} />
+      </div>
+      <TextContainer>
+        <h2 className="title">SESSION</h2>
+        <h2 className="title">OFFICIAL</h2>
+        <p>{sessionOfficialText}</p>
+        <a href={SO_LINK} target="_blank" rel="noopener noreferrer">
+          <Button className="button">Apply to be SO</Button>
+        </a>
+      </TextContainer>
+    </>
+  );
+};
 
 export default SessionOfficial;

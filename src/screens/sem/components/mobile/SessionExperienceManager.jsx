@@ -37,19 +37,26 @@ const TextContainer = styled.div`
   }
 `;
 
-const SessionExperienceManager = () => (
-  <Container>
-    <div className="image">
-      <ImageContainer img={SessionExperienceImage} overlayColor={colors.blueOverlay} />
-    </div>
-    <TextContainer>
-      <h2 className="title">SESSION</h2>
-      <h2 className="title">EXPERIENCE</h2>
-      <h2 className="title">MANAGER</h2>
-      <p>{sessionExperienceText}</p>
-      <Button className="button">Apply to be SEM</Button>
-    </TextContainer>
-  </Container>
-);
+const SessionExperienceManager = () => {
+  const SEM_LINK = process.env.REACT_APP_FOUNTAIN_SEM_LINK;
+
+  return (
+    <Container>
+      <div className="image">
+        <ImageContainer img={SessionExperienceImage} overlayColor={colors.blueOverlay} />
+      </div>
+      <TextContainer>
+        <h2 className="title">SESSION</h2>
+        <h2 className="title">EXPERIENCE</h2>
+        <h2 className="title">MANAGER</h2>
+        <p>{sessionExperienceText}</p>
+
+        <a href={SEM_LINK} target="_blank" rel="noopener noreferrer">
+          <Button className="button">Apply to be SEM</Button>
+        </a>
+      </TextContainer>
+    </Container>
+  );
+};
 
 export default SessionExperienceManager;

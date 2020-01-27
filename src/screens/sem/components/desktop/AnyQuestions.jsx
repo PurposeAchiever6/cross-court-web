@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
+import { Link } from 'react-router-dom';
+import ROUTES from 'shared/constants/routes';
+
 import AlternativeButton from 'shared/components/AlternativeButton';
 import AnyQuestionsImage from '../../images/any-questions.png';
 import ImageContainer from './ImageContainer';
@@ -24,7 +27,9 @@ const AnyQuestions = () => (
     <Container>
       <p>Any Questions?</p>
       <div>
-        <AlternativeButton>Learn More</AlternativeButton>
+        <Link to={ROUTES.HOWITWORKS}>
+          <AlternativeButton>Learn More</AlternativeButton>
+        </Link>
       </div>
     </Container>
   </ImageContainer>
