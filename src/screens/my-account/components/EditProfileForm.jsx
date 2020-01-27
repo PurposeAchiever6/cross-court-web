@@ -39,13 +39,13 @@ const EditProfileFormContainer = styled.div`
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
-  phone_number: Yup.string().required('Required'),
+  phoneNumber: Yup.string().required('Required'),
 });
 
 const EditProfileForm = ({ error, editProfileAction, editProfileLoading, profile }) => {
   const initialValues = {
     name: profile ? profile.name : '',
-    phone_number: profile ? profile.phoneNumber : '',
+    phoneNumber: profile ? profile.phoneNumber : '',
   };
 
   return (
@@ -56,7 +56,7 @@ const EditProfileForm = ({ error, editProfileAction, editProfileLoading, profile
         initialValues={initialValues}
         enableReinitialize
         onSubmit={values => {
-          editProfileAction(values.name, values.phone_number);
+          editProfileAction(values.name, values.phoneNumber);
         }}
         validationSchema={validationSchema}
       >
@@ -76,8 +76,8 @@ const EditProfileForm = ({ error, editProfileAction, editProfileLoading, profile
                 <InputTextField
                   type="text"
                   labelText="Phone"
-                  error={errors.phone_number}
-                  name="phone_number"
+                  error={errors.phoneNumber}
+                  name="phoneNumber"
                   placeholder="(123) 123-4567"
                 />
               </div>
@@ -96,8 +96,8 @@ const EditProfileForm = ({ error, editProfileAction, editProfileLoading, profile
 
 EditProfileForm.propTypes = {
   error: string,
-  loginHandler: func.isRequired,
-  isLoading: bool.isRequired,
+  editProfileAction: func.isRequired,
+  editProfileLoading: bool.isRequired,
 };
 
 export default EditProfileForm;

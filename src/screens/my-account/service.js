@@ -32,6 +32,6 @@ export default {
         headers: getHeaders(),
       }
     );
-    return response.data.user;
+    return camelizeKeys(response.data.user);
   },
 };

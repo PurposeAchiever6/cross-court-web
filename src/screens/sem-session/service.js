@@ -10,7 +10,7 @@ export default {
       headers: getHeaders(),
       data: {},
       params: {
-        date: format(new Date(date), 'dd/MM/yyyy')
+        date: format(new Date(date), 'dd/MM/yyyy'),
       },
     });
 

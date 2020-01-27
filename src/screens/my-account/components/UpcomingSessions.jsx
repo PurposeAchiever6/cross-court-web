@@ -41,7 +41,7 @@ const UpcomingSessionsContainer = styled.div`
       flex-direction: column;
       box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.15);
       margin-right: 2rem;
-      min-width: 24rem;
+      width: 24rem;
 
       .no-image {
         width: 100%;

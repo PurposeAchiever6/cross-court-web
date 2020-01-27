@@ -22,6 +22,6 @@ export default function* rootSaga() {
     rootPurchaseHistorySaga(),
     rootPaymentsSaga(),
     rootCheckoutSaga(),
-    rootLegalDocsSaga()
+    rootLegalDocsSaga(),
   ]);
 }
