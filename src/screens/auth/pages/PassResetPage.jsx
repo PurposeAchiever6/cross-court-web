@@ -2,6 +2,7 @@ import React from 'react';
 import queryString from 'query-string';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 
 import { passResetInit } from 'screens/auth/actionCreators';
 import { getPassResetLoading, getPassResetError } from 'screens/auth/reducer';
@@ -15,7 +16,8 @@ const PageContainer = styled.div`
   justify-content: center;
 `;
 
-const PassResetPage = ({ location }) => {
+const PassResetPage = props => {
+  const location = useLocation();
   const { client, token, uid } = queryString.parse(location.search);
   AuthUtils.setTokens({ client, accessToken: token, uid });
 

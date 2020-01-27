@@ -7,7 +7,6 @@ import Button from 'shared/components/Button';
 import device from 'shared/styles/constants';
 
 const PageContainer = styled.div`
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -15,7 +14,7 @@ const PageContainer = styled.div`
   text-align: center;
 
   img {
-    margin-top: 9.5rem;
+    margin-top: 1rem;
   }
 
   h1 {
