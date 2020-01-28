@@ -4,11 +4,11 @@ export const initialLoadInit = () => ({
   type: INITIAL_LOAD_INIT,
 });
 
-export const editProfileInit = (name, phone_number) => ({
+export const editProfileInit = (name, phoneNumber) => ({
   type: EDIT_PROFILE_INIT,
   payload: {
     name,
-    phone_number,
+    phoneNumber,
   },
 });
 

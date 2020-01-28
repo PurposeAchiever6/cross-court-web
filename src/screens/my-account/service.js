@@ -19,13 +19,13 @@ export default {
     });
     return camelizeKeys(response.data.user);
   },
-  editUserProfile: async ({ name, phone_number }) => {
+  editUserProfile: async ({ name, phoneNumber }) => {
     const response = await axios.put(
       `${API_URL}/user`,
       {
         user: {
           name,
-          phone_number,
+          phone_number: phoneNumber,
         },
       },
       {
