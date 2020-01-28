@@ -121,7 +121,7 @@ const WeekSelector = ({
 };
 
 WeekSelector.propTypes = {
-  selectedDate: PropTypes.string.isRequired,
+  selectedDate: PropTypes.instanceOf(Date).isRequired,
   increaseHandler: PropTypes.func.isRequired,
   decreaseHandler: PropTypes.func.isRequired,
   getSessionsByDateHandler: PropTypes.func.isRequired,

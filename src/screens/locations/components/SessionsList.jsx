@@ -90,8 +90,8 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
   return (
     <SessionsListContainer>
-      {sessionList.map(session => (
-        <div className="session-list-item-container" key={session.start_time}>
+      {sessionList.map((session, idx) => (
+        <div className="session-list-item-container" key={`${session.start_time}+${idx}`}>
           <div className="text-container">
             <div className="time">{formatSessionTime(session.time)}</div>
             <div className="location">{session.location.name}</div>
@@ -116,13 +116,13 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 SessionsList.propTypes = {
   availableSessions: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       start_time: PropTypes.string.isRequired,
       time: PropTypes.string.isRequired,
       location: PropTypes.object.isRequired,
     })
   ),
-  selectedDate: PropTypes.string.isRequired,
+  selectedDate: PropTypes.instanceOf(Date).isRequired,
 };
 
 export default SessionsList;

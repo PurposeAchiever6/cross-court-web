@@ -90,11 +90,11 @@ const LocationPicker = ({ availableLocations, selectedLocation, setLocationHandl
 LocationPicker.propTypes = {
   availableLocations: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
+      id: PropTypes.number,
+      name: PropTypes.string,
     })
   ),
-  selectedLocation: PropTypes.object.isRequired,
+  selectedLocation: PropTypes.object,
   setLocationHandler: PropTypes.func.isRequired,
 };
 export default LocationPicker;
