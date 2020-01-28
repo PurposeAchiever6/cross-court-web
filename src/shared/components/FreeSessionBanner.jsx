@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { not, equals } from 'ramda';
 import styled from 'styled-components';
-import Button from 'shared/components/Button';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+
+import ROUTES from 'shared/constants/routes';
+import { getUserProfile } from 'screens/my-account/reducer';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import Button from 'shared/components/Button';
 
 const BannerContainer = styled.div`
   display: ${({ showBanner }) => (showBanner ? 'flex' : 'none')};
@@ -49,13 +56,23 @@ const BannerContainer = styled.div`
 
 const FreeSessionBanner = ({ modalHandler, claimFreeSession }) => {
   const [showBanner, setShowBanner] = useState(true);
+  
+  const userProfile = useSelector(getUserProfile);
+  const isAuthenticated = useSelector(getIsAuthenticated);
+  const isFreeSessionUsed = not(equals(userProfile.freeSessionState, 'used'));
 
   return (
-    <BannerContainer showBanner={showBanner && !claimFreeSession}>
+    <BannerContainer showBanner={showBanner && isFreeSessionUsed}>
       <FontAwesomeIcon icon={faTimes} onClick={() => setShowBanner(false)} />
       <span className="secondary">First session</span>
       <span className="primary">FREE</span>
-      <Button onClick={modalHandler}>Let's Sweat</Button>
+      {isAuthenticated ? (
+        <Button onClick={modalHandler}>Let's Sweat</Button>
+      ) : (
+        <Link to={ROUTES.LOGIN}>
+          <Button onClick={modalHandler}>Let's Sweat</Button>
+        </Link>
+      )}
     </BannerContainer>
   );
 };
