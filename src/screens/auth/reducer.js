@@ -58,7 +58,7 @@ export default (state = initialState, action) => {
         userEmail: action.payload.email,
       };
     case SIGN_UP_FAILURE:
-      return { ...state, signupErrors: action.error, signupLoading: false };
+      return { ...state, signupErrors: action.payload.errors, signupLoading: false };
     case FORGOT_PASS_INIT:
       return {
         ...state,

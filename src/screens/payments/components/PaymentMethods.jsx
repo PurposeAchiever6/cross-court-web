@@ -13,7 +13,7 @@ import device from 'shared/styles/constants';
 import { deleteCard, setSelectedCard } from '../actionCreators';
 
 const PaymentMethodsContainer = styled.div`
-  width: 50%;
+  width: 25%;
   margin-top: 5rem;
 
   .payment-methods-container {
@@ -93,6 +93,7 @@ const PaymentMethodsContainer = styled.div`
       }
     }
   }
+
   .buttons-container {
     display: flex;
     justify-content: space-between;
@@ -140,6 +141,7 @@ const PaymentMethodsContainer = styled.div`
       }
     }
   }
+
   .buttons-container {
     .alt-btn {
       height: 100%;

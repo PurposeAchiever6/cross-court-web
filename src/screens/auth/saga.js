@@ -51,7 +51,12 @@ export function* signupFlow({ payload }) {
     yield put({ type: SIGN_UP_SUCCESS, payload: signupPayload });
     yield put(push(ROUTES.SIGNUPSUCCESS));
   } catch (err) {
-    yield put({ type: SIGN_UP_FAILURE, errors: err.response.data.errors });
+    yield put({
+      type: SIGN_UP_FAILURE,
+      payload: {
+        errors: err.response.data.errors,
+      },
+    });
   }
 }
 
