@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect';
 import { INITIAL_LOAD_AUTH_SUCCESS as SESSIONS_INITIAL_LOAD } from 'screens/sessions/actionTypes';
+import { INITIAL_APP_LOAD_SUCCESS } from 'shared/actions/actionTypes';
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -63,6 +64,7 @@ export default (state = initialState, action) => {
         showEditProfile: !state.showEditProfile,
       };
     case SESSIONS_INITIAL_LOAD:
+    case INITIAL_APP_LOAD_SUCCESS:
       return {
         ...state,
         userProfile: { ...action.payload.userProfile },

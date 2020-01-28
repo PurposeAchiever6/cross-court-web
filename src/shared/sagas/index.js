@@ -1,5 +1,6 @@
 import { all } from 'redux-saga/effects';
 
+import rootAppSaga from 'shared/sagas/appSaga';
 import rootAuthSaga from 'screens/auth/saga';
 import rootSemSessionSaga from 'screens/sem-session/saga';
 import rootLocationSaga from 'screens/locations/saga';
@@ -13,6 +14,7 @@ import rootLegalDocsSaga from 'screens/legal-docs/saga';
 
 export default function* rootSaga() {
   yield all([
+    rootAppSaga(),
     rootAuthSaga(),
     rootLocationSaga(),
     rootSessionSaga(),

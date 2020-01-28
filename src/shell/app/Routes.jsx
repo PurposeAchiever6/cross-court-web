@@ -3,8 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import styled from 'styled-components';
 import { ToastContainer, Zoom } from 'react-toastify';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { getIsAuthenticated } from 'screens/auth/reducer';
 import { history } from 'shared/history';
 import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
@@ -39,7 +39,8 @@ import CancelationPolicy from 'screens/legal-docs/pages/CancelationPolicy';
 import TermsAndConditions from 'screens/legal-docs/pages/TermsAndConditions';
 import Header from 'shared/components/Header';
 import Footer from 'shared/components/Footer';
-
+import { initialAppLoad } from 'shared/actions/actionCreators';
+// import ScrollToTop from 'shared/components/ScrollToTop';
 import PrivateRoute from './PrivateRoute';
 
 const AppWrapper = styled.div`
@@ -63,10 +64,16 @@ const AppWrapper = styled.div`
 
 const Routes = () => {
   const dispatch = useDispatch();
+  const isAuthenticated = useSelector(getIsAuthenticated);
 
   useEffect(() => {
-    dispatch(getLegalDocs());
-  }, [dispatch]);
+    if (isAuthenticated) {
+      dispatch(initialAppLoad());
+      dispatch(getLegalDocs());
+    } else {
+      dispatch(getLegalDocs());
+    }
+  }, [dispatch, isAuthenticated]);
 
   return (
     <AppWrapper>
