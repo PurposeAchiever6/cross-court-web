@@ -79,7 +79,7 @@ const initialValues = {
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
-  phone_number: Yup.string().required('Required'),
+  phone_number: Yup.number().required('Required'),
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
   confirmPassword: Yup.string()
