@@ -30,6 +30,7 @@ const LoginFormContainer = styled.div`
   form {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
 
   button {
