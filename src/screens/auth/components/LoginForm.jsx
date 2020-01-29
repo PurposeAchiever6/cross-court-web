@@ -14,11 +14,19 @@ import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
 
 const LoginFormContainer = styled.div`
-  width: 20rem;
+  width: 23rem;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 5rem 0;
+
+  @media ${device.mobile} {
+    width: 80%;
+  }
+
+  form {
+    width: 100%;
+  }
 
   h1 {
     font-weight: 600;
@@ -100,6 +108,7 @@ const LoginForm = ({ error, loginHandler, isLoading }) => (
         loginHandler({ ...values });
       }}
       validationSchema={validationSchema}
+      className="form"
     >
       {props => {
         const { errors } = props;
