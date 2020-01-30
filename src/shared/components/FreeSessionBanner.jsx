@@ -56,13 +56,14 @@ const BannerContainer = styled.div`
 
 const FreeSessionBanner = ({ modalHandler, claimFreeSession }) => {
   const [showBanner, setShowBanner] = useState(true);
-  
+
   const userProfile = useSelector(getUserProfile);
   const isAuthenticated = useSelector(getIsAuthenticated);
-  const isFreeSessionUsed = not(equals(userProfile.freeSessionState, 'used'));
+  const freeSessionNotUsed = not(equals(userProfile.freeSessionState, 'used'));
+  const freeSessionNotClaimed = not(equals(userProfile.freeSessionState, 'claimed'));
 
   return (
-    <BannerContainer showBanner={showBanner && isFreeSessionUsed}>
+    <BannerContainer showBanner={showBanner && freeSessionNotUsed && freeSessionNotClaimed}>
       <FontAwesomeIcon icon={faTimes} onClick={() => setShowBanner(false)} />
       <span className="secondary">First session</span>
       <span className="primary">FREE</span>
