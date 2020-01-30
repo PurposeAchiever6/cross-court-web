@@ -31,7 +31,9 @@ const SeriesPage = () => {
   };
 
   const claimFreeSessionAction = () => {
-    const selectedProduct = head(availableProducts.filter(product => product.name === 'DROP-IN'));
+    const selectedProduct = head(
+      availableProducts.filter(product => product.name === 'Free Session')
+    );
 
     setShowFreeSessionModal(false);
     dispatch(claimFreeSessionInit());
@@ -58,6 +60,7 @@ const SeriesPage = () => {
           closeHandler={() => setShowFreeSessionModal(false)}
         />
       </NewModal>
+
       <FreeSessionBanner
         modalHandler={() => setShowFreeSessionModal(true)}
         claimFreeSession={claimFreeSession}

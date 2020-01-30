@@ -10,6 +10,12 @@ export default {
       data: {},
     });
 
-    return response.data.products;
+    const freeSession = {
+      name: 'Free Session',
+      description: '1 session for free',
+      price: '0',
+    };
+
+    return [...response.data.products, freeSession];
   },
 };

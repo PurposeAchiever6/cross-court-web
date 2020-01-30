@@ -1,5 +1,9 @@
 import { createSelector } from 'reselect';
 import {
+  CREATE_FREE_SESSION_SUCCESS,
+  CREATE_FREE_SESSION_FAILURE,
+} from 'screens/checkout/actionTypes';
+import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
   INITIAL_LOAD_FAILURE,
@@ -40,6 +44,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         claimFreeSession: true,
+      };
+    case CREATE_FREE_SESSION_SUCCESS:
+    case CREATE_FREE_SESSION_FAILURE:
+      return {
+        ...state,
+        claimFreeSession: false,
       };
     default:
       return state;

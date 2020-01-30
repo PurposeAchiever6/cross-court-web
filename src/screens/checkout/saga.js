@@ -1,5 +1,6 @@
 import { put, takeLatest, call, select, all } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
+import { toast } from 'react-toastify';
 import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/series/reducer';
 import { getSelectedCard } from 'screens/payments/reducer';
@@ -24,6 +25,8 @@ export function* createPurchaseFlow() {
     });
     yield put(push(ROUTES.CHECKOUTCONFIRMED));
   } catch (err) {
+    yield call(toast.error, err.response.data.error);
+
     yield put({ type: CREATE_PURCHASE_FAILURE, error: err.response.data.error });
   }
 }
@@ -38,6 +41,7 @@ export function* createFreeSessionFlow() {
     });
     yield put(push(ROUTES.CHECKOUTCONFIRMED));
   } catch (err) {
+    yield call(toast.error, err.response.data.error);
     yield put({ type: CREATE_FREE_SESSION_FAILURE, error: err.response.data.error });
   }
 }

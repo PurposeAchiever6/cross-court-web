@@ -104,7 +104,8 @@ const PlanContainer = styled.div`
     .sticker {
       height: 8rem;
       width: 8rem;
-      top: 6rem;      right: 1rem;
+      top: 6rem;
+      right: 1rem;
 
       .price {
         font-size: 2rem;
@@ -137,10 +138,12 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
       precision: 0,
     });
 
+  const products = availableProducts.filter(product => product.name !== 'Free Session');
+
   return (
     <PlansContainer>
       <div className="plans-container">
-        {availableProducts.map(product => {
+        {products.map(product => {
           const [firstWord, secondWord] = product.name.split(' ');
           return (
             <PlanContainer key={product.stripe_id} product={product}>
