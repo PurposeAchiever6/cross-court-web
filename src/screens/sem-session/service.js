@@ -1,13 +1,10 @@
-import axios from 'axios';
-import { getHeaders } from 'shared/utils/auth';
-import { format } from 'date-fns';
+import api from 'shared/services';
 
-const API_URL = process.env.REACT_APP_API_URL;
+import { format } from 'date-fns';
 
 export default {
   getSessionInfo: async (id, date) => {
-    const response = await axios.get(`${API_URL}/sem/sessions/${id}`, {
-      headers: getHeaders(),
+    const response = await api.get(`/sem/sessions/${id}`, {
       data: {},
       params: {
         date: format(new Date(date), 'dd/MM/yyyy'),
@@ -18,14 +15,8 @@ export default {
   },
 
   checkIn: async ids => {
-    await axios.put(
-      `${API_URL}/sem/user_sessions/check_in`,
-      {
-        ids,
-      },
-      {
-        headers: getHeaders(),
-      }
-    );
+    await api.put(`/sem/user_sessions/check_in`, {
+      ids,
+    });
   },
 };

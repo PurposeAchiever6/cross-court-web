@@ -1,25 +1,21 @@
-import axios from 'axios';
-import { getHeaders } from 'shared/utils/auth';
-import { format } from 'date-fns';
+import api from 'shared/services';
 
-const API_URL = process.env.REACT_APP_API_URL;
+import { format } from 'date-fns';
 
 export default {
   getLocations: async () => {
-    const response = await axios.get(`${API_URL}/locations`, {
-      headers: getHeaders(),
+    const response = await api.get(`/locations`, {
       data: {},
     });
 
     return response.data.locations;
   },
-  getSessions: async (location_id = null, date) => {
-    const response = await axios.get(`${API_URL}/sessions/`, {
-      headers: getHeaders(),
+  getSessions: async (locationId = null, date) => {
+    const response = await api.get(`/sessions/`, {
       data: {},
       params: {
-        from_date: format(new Date(date), 'dd/MM/yyyy'),
-        location_id,
+        fromDate: format(new Date(date), 'dd/MM/yyyy'),
+        locationId,
       },
     });
 

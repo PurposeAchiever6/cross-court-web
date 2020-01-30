@@ -1,37 +1,25 @@
-import axios from 'axios';
-import { camelizeKeys } from 'humps';
-import { getHeaders } from 'shared/utils/api';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import api from 'shared/services';
 
 export default {
   getUserSessions: async () => {
-    const response = await axios.get(`${API_URL}/user_sessions`, {
-      headers: getHeaders(),
+    const response = await api.get(`/user_sessions`, {
       data: {},
     });
-    return camelizeKeys(response.data);
+    return response.data;
   },
   getUserProfile: async () => {
-    const response = await axios.get(`${API_URL}/user`, {
-      headers: getHeaders(),
+    const response = await api.get(`/user`, {
       data: {},
     });
-    return camelizeKeys(response.data.user);
+    return response.data.user;
   },
   editUserProfile: async ({ name, phoneNumber }) => {
-    const response = await axios.put(
-      `${API_URL}/user`,
-      {
-        user: {
-          name,
-          phone_number: phoneNumber,
-        },
+    const response = await api.put(`/user`, {
+      user: {
+        name,
+        phoneNumber,
       },
-      {
-        headers: getHeaders(),
-      }
-    );
-    return camelizeKeys(response.data.user);
+    });
+    return response.data.user;
   },
 };

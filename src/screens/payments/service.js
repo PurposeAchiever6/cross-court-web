@@ -1,17 +1,12 @@
-import axios from 'axios';
-import { getHeaders } from 'shared/utils/api';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import api from 'shared/services';
 
 export default {
   getAllPaymentMethods: async () => {
-    const response = await axios.get(`${API_URL}/payment_methods`, {
-      headers: getHeaders(),
+    const response = await api.get(`/payment_methods`, {
       data: {},
     });
 
-    console.log(response.data);
-    return response.data.payment_methods;
+    return response.data.paymentMethods;
   },
   createPaymentMethod: async (stripe, cardElement) => {
     const response = await stripe.createPaymentMethod({
@@ -19,30 +14,20 @@ export default {
       card: cardElement,
     });
 
-    console.log(response);
     return response.paymentMethod.id;
   },
   addPaymentMethod: async paymentMethodId => {
-    const response = await axios.post(
-      `${API_URL}/payment_methods`,
-      {
-        payment_method: paymentMethodId,
-      },
-      {
-        headers: getHeaders(),
-      }
-    );
+    const response = await api.post(`/payment_methods`, {
+      paymentMethod: paymentMethodId,
+    });
 
-    console.log(response.data);
     return response.data;
   },
   deletePaymentMethod: async paymentMethodId => {
-    const response = await axios.delete(`${API_URL}/payment_methods/${paymentMethodId}`, {
-      headers: getHeaders(),
+    const response = await api.delete(`/payment_methods/${paymentMethodId}`, {
       data: {},
     });
 
-    console.log(response.data);
     return response.data;
   },
 };

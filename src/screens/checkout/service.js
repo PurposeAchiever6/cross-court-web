@@ -1,36 +1,19 @@
-import axios from 'axios';
-import { getHeaders } from 'shared/utils/api';
-
-const API_URL = process.env.REACT_APP_API_URL;
+import api from 'shared/services';
 
 export default {
   createPurchase: async (productId, cardId) => {
-    const response = await axios.post(
-      `${API_URL}/purchases`,
-      {
-        payment_method: cardId,
-        product_id: productId,
-      },
-      {
-        headers: getHeaders(),
-      }
-    );
+    const response = await api.post('/purchases', {
+      productId,
+      paymentMethod: cardId,
+    });
 
-    console.log(response.data);
     return response.data;
   },
   createFreeSession: async cardId => {
-    const response = await axios.put(
-      `${API_URL}/purchases/claim_free_session`,
-      {
-        payment_method: cardId,
-      },
-      {
-        headers: getHeaders(),
-      }
-    );
+    const response = await api.put(`/purchases/claim_free_session`, {
+      payment_method: cardId,
+    });
 
-    console.log(response.data);
     return response.data;
   },
 };
