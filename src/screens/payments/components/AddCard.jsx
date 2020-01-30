@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   injectStripe,
   CardNumberElement,
@@ -8,6 +9,7 @@ import {
 import styled from 'styled-components';
 import device from 'shared/styles/mediaQueries';
 import Button from 'shared/components/Button';
+import { getAddCardLoading } from '../reducer';
 
 const AddCardContainer = styled.div`
   h2 {
@@ -106,6 +108,7 @@ const createOptions = (fontSize, padding) => {
 };
 
 const AddCard = ({ stripe, elements, addCardHandler }) => {
+  const addCardLoading = useSelector(getAddCardLoading);
   const submitHandler = e => {
     e.preventDefault();
 
@@ -134,7 +137,9 @@ const AddCard = ({ stripe, elements, addCardHandler }) => {
         </div>
       </div>
       <div className="buttons-container">
-        <Button onClick={submitHandler}>Add</Button>
+        <Button onClick={submitHandler} loading={addCardLoading} disabled={addCardLoading}>
+          Add
+        </Button>
       </div>
     </AddCardContainer>
   );

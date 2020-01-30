@@ -1,5 +1,6 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
+import { toast } from 'react-toastify';
 import ROUTES from 'shared/constants/routes';
 import {
   INITIAL_LOAD_INIT,
@@ -42,8 +43,12 @@ export function* addCardFlow(action) {
     yield put({
       type: ADD_CARD_SUCCESS,
     });
+    yield call(toast.success, 'Card sucessfully added!');
+
     yield put(push(ROUTES.PAYMENTS));
   } catch (err) {
+    yield call(toast.error, err.response.data.error);
+
     yield put({ type: ADD_CARD_FAILURE, error: err.response.data.error });
   }
 }
@@ -55,10 +60,14 @@ export function* deleteCardFlow(action) {
     yield put({
       type: DELETE_CARD_SUCCESS,
     });
+    yield call(toast.success, 'Card successfully deleted');
+
     yield put({
       type: INITIAL_LOAD_INIT,
     });
   } catch (err) {
+    yield call(toast.error, err.response.data.error);
+
     yield put({ type: DELETE_CARD_FAILURE, error: err.response.data.error });
   }
 }
@@ -68,7 +77,5 @@ export default function* paymentsSaga() {
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
     takeLatest(ADD_CARD_INIT, addCardFlow),
     takeLatest(DELETE_CARD_INIT, deleteCardFlow),
-    takeLatest(DELETE_CARD_INIT, deleteCardFlow),
-    // takeLatest(CLAIM_FREE_SESSION, claimFreeSessionFlow),
   ]);
 }

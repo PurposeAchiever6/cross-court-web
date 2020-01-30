@@ -9,6 +9,9 @@ import {
   INITIAL_LOAD_FAILURE,
   SET_SELECTED_CARD,
   CLAIM_FREE_SESSION,
+  ADD_CARD_INIT,
+  ADD_CARD_SUCCESS,
+  ADD_CARD_FAILURE,
 } from './actionTypes';
 
 const initialState = {
@@ -17,6 +20,7 @@ const initialState = {
   availableCards: [],
   selectedCard: null,
   claimFreeSession: false,
+  addCardLoading: false,
 };
 
 export default (state = initialState, action) => {
@@ -51,6 +55,17 @@ export default (state = initialState, action) => {
         ...state,
         claimFreeSession: false,
       };
+    case ADD_CARD_INIT:
+      return {
+        ...state,
+        addCardLoading: true,
+      };
+    case ADD_CARD_SUCCESS:
+    case ADD_CARD_FAILURE:
+      return {
+        ...state,
+        addCardLoading: false,
+      };
     default:
       return state;
   }
@@ -69,3 +84,5 @@ export const getClaimFreeSession = createSelector(
   getPayments,
   payments => payments.claimFreeSession
 );
+
+export const getAddCardLoading = createSelector(getPayments, payments => payments.addCardLoading);
