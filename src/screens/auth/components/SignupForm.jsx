@@ -83,8 +83,8 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null])
-    .required('Required'),
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Password confirm is required'),
 });
 
 const SignupForm = ({ signupHandler, isLoading, errors }) => (
