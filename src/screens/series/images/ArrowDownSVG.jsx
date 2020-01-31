@@ -5,16 +5,16 @@ const ArrowDownSVG = props => (
     <path
       d="M12 5V19"
       stroke="#AAAFF3"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M19 12L12 19L5 12"
       stroke="#AAAFF3"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );

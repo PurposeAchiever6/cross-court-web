@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import Button from 'shared/components/Button';
@@ -9,8 +8,8 @@ import device from 'shared/styles/mediaQueries';
 import ROUTES from 'shared/constants/routes';
 import { isEmpty, isNil } from 'ramda';
 import colors from 'shared/styles/constants';
-import { formatSessionTime } from 'shared/utils/date-time';
 import ImageSvg from 'shared/components/svg/Image.svg';
+import { hourRange, shortSessionDate, urlFormattedDate } from 'shared/utils/date';
 
 const UpcomingSessionsContainer = styled.div`
   padding: 3rem;
@@ -132,55 +131,41 @@ const UpcomingSessionsContainer = styled.div`
   }
 `;
 
-const UpcomingSessions = ({ sessions }) => {
-  const formatDateTitle = date => format(new Date(date), 'eeee M/d');
-
-  return (
-    <UpcomingSessionsContainer>
-      <h3>Upcoming Sessions</h3>
-      <div className="sessions-container">
-        {isEmpty(sessions) ? (
-          <div className="container-empty-message">
-            <h1>YOU HAVE NO UPCOMING SESSIONS</h1>
-            <Link to={ROUTES.LOCATIONS}>
-              <Button>Explore Sessions</Button>
-            </Link>
-          </div>
-        ) : (
-          sessions.map(session => (
-            <div className="session-item" key={session.id}>
-              {isNil(session.session.location.imageUrl) ? (
-                <div className="no-image">
-                  <ImageSvg />
-                </div>
-              ) : (
-                <img src={session.session.location.imageUrl} alt="Session" />
-              )}
-              <span className="date">{formatDateTitle(session.date)}</span>
-              <div className="details">
-                <span className="time">{formatSessionTime(session.session.time)}</span>
-                <span className="location">{session.session.location.name}</span>
-                <Link
-                  to={`/session/${session.session.id}/${format(
-                    new Date(session.date),
-                    'yyyy-MM-dd'
-                  )}`}
-                >
-                  <AlternativeButton className="btn-alt">See Details</AlternativeButton>
-                </Link>
+const UpcomingSessions = ({ sessions }) => (
+  <UpcomingSessionsContainer>
+    <h3>Upcoming Sessions</h3>
+    <div className="sessions-container">
+      {isEmpty(sessions) ? (
+        <div className="container-empty-message">
+          <h1>YOU HAVE NO UPCOMING SESSIONS</h1>
+          <Link to={ROUTES.LOCATIONS}>
+            <Button>Explore Sessions</Button>
+          </Link>
+        </div>
+      ) : (
+        sessions.map(session => (
+          <div className="session-item" key={session.id}>
+            {isNil(session.session.location.imageUrl) ? (
+              <div className="no-image">
+                <ImageSvg />
               </div>
+            ) : (
+              <img src={session.session.location.imageUrl} alt="Session" />
+            )}
+            <span className="date">{shortSessionDate(session.date)}</span>
+            <div className="details">
+              <span className="time">{hourRange(session.session.time)}</span>
+              <span className="location">{session.session.location.name}</span>
+              <Link to={`/session/${session.session.id}/${urlFormattedDate(session.date)}`}>
+                <AlternativeButton className="btn-alt">See Details</AlternativeButton>
+              </Link>
             </div>
-          ))
-        )}
-      </div>
-
-      {/* <h3>
-        You have no <em>upcoming sessions</em>
-      </h3>
-      <Button>Explore Sessions</Button> */}
-    </UpcomingSessionsContainer>
-  );
-};
+          </div>
+        ))
+      )}
+    </div>
+  </UpcomingSessionsContainer>
+);
 
 UpcomingSessions.propTypes = {
   sessions: PropTypes.arrayOf(PropTypes.object),

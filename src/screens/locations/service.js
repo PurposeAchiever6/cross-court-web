@@ -1,6 +1,6 @@
 import api from 'shared/services';
 
-import { format } from 'date-fns';
+import { requestFormattedDate } from 'shared/utils/date';
 
 export default {
   getLocations: async () => {
@@ -14,7 +14,7 @@ export default {
     const response = await api.get(`/sessions/`, {
       data: {},
       params: {
-        from_date: format(new Date(date), 'dd/MM/yyyy'),
+        from_date: requestFormattedDate(date),
         location_id: locationId,
       },
     });

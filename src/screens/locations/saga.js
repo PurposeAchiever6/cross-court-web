@@ -29,7 +29,6 @@ export function* initialLoadFlow() {
       },
     });
   } catch (err) {
-    console.log(err);
     yield put({ type: INITIAL_LOAD_FAILURE, error: err.response.data.error });
   }
 }
@@ -49,7 +48,6 @@ export function* getSessionsByLocationFlow({ payload }) {
       },
     });
   } catch (err) {
-    console.log(err);
     yield put({ type: GET_SESSIONS_BY_LOCATION_FAILURE, error: err.response.data.error });
   }
 }
@@ -69,7 +67,6 @@ export function* getSessionsByDateFlow({ payload }) {
       },
     });
   } catch (err) {
-    console.log(err);
     yield put({ type: GET_SESSIONS_BY_DATE_FAILURE, error: err.response.data.error });
   }
 }

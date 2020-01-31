@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { string, func, bool } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import InputTextField from 'shared/components/InputTextField';
 import Spinner from 'shared/components/Spinner';
@@ -42,7 +42,7 @@ const validationSchema = Yup.object().shape({
   phoneNumber: Yup.string().required('Required'),
 });
 
-const EditProfileForm = ({ error, editProfileAction, editProfileLoading, profile }) => {
+const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => {
   const initialValues = {
     name: profile ? profile.name : '',
     phoneNumber: profile ? profile.phoneNumber : '',
@@ -95,9 +95,9 @@ const EditProfileForm = ({ error, editProfileAction, editProfileLoading, profile
 };
 
 EditProfileForm.propTypes = {
-  error: string,
-  editProfileAction: func.isRequired,
-  editProfileLoading: bool.isRequired,
+  editProfileAction: PropTypes.func.isRequired,
+  editProfileLoading: PropTypes.bool.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
 export default EditProfileForm;

@@ -9,9 +9,10 @@ import NewModal from 'shared/components/NewModal';
 import BackButton from 'shared/components/BackButton';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
-import UserSvg from 'shared/components/svg/User.svg';
-import { formatSessionTime, formatSessionDate } from 'shared/utils/date-time';
+import UserSvg from 'shared/components/svg/UserSvg';
+import { longSessionDate, hourRange } from 'shared/utils/date';
 import ROUTES from 'shared/constants/routes';
+
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import AlternativeButton from 'shared/components/AlternativeButton';
@@ -278,11 +279,11 @@ const SessionsPage = () => {
           <div className="session-data-container">
             <div className="date-container">
               <span className="title">Date</span>
-              <span className="text">{formatSessionDate(date)}</span>
+              <span className="text">{longSessionDate(date)}</span>
             </div>
             <div className="time-container">
               <span className="title">Time</span>
-              <span className="text">{formatSessionTime(sessionInfo.time)}</span>
+              <span className="text">{hourRange(sessionInfo.time)}</span>
             </div>
             <div className="address-container">
               <span className="title">Address</span>

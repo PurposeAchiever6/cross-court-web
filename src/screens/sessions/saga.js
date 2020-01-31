@@ -38,7 +38,6 @@ export function* initialLoadFlow({ payload }) {
       },
     });
   } catch (err) {
-    console.log(err);
     yield put({ type: INITIAL_LOAD_FAILURE, error: err.response.data.error });
   }
 }
@@ -57,7 +56,6 @@ export function* initialLoadAuthFlow({ payload }) {
       },
     });
   } catch (err) {
-    console.log(err);
     yield put({ type: INITIAL_LOAD_AUTH_FAILURE, error: err.response.data.error });
   }
 }
@@ -86,7 +84,6 @@ export function* cancelSessionFlow({ payload }) {
       type: INITIAL_LOAD_INIT,
     });
   } catch (err) {
-    console.log(err);
     yield put({ type: CANCEL_SESSION_FAILURE, error: err.response.data.error });
   }
 }
