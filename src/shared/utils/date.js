@@ -57,7 +57,7 @@ export const hourRange = time =>
 export const weekRangeTitle = date =>
   ` WEEK ${startOfWeek(date).format(FORMAT_MONTH)} ${startOfWeek(date).date()} - ${endOfWeek(
     date
-  ).date()}`;
+  ).format(FORMAT_MONTH)} ${endOfWeek(date).date()}`;
 
 export const purchaseFormattedDate = () =>
   dayjs(new Date())
@@ -109,3 +109,5 @@ export const isThisWeek = date =>
   dayjs(new Date(date)).isBetween(startOfWeek(new Date()), endOfWeek(new Date()));
 
 export const isPast = date => new Date(date) < new Date() && !isSameDay(new Date(date), new Date());
+
+export const todayDate = () => dayjs(new Date()).utc();
