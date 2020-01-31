@@ -7,7 +7,7 @@ const CancelButton = ({ modalToggler, session }) => (
   <AlternativeButton
     className="cancel-btn"
     onClick={modalToggler}
-    disabled={not(session.user_session.in_cancellation_time)}
+    disabled={not(session.userSession.inCancellationTime)}
   >
     Cancel Reservation
   </AlternativeButton>

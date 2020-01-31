@@ -197,7 +197,7 @@ const PurchaseDetails = ({
                 <span className="card-numbers">{`**** ${paymentDetails.card.last4}`}</span>
                 <div className="expire-container">
                   <span>
-                    Expires {`${paymentDetails.card.exp_month}/${paymentDetails.card.exp_year}`}
+                    Expires {`${paymentDetails.card.expMonth}/${paymentDetails.card.expYear}`}
                   </span>
                 </div>
               </div>

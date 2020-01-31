@@ -240,8 +240,8 @@ const SessionsPage = () => {
   const shouldShowCancelModal = useSelector(getShowCancelModal);
 
   const reserveSessionAction = () => dispatch(reserveSessionInit(sessionInfo.id, date));
-  const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.user_session.id));
-  const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.user_session.id));
+  const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
+  const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
   const showCancelModalAction = () => dispatch(showCancelModal());
 
   useEffect(() => {
@@ -273,7 +273,7 @@ const SessionsPage = () => {
         </h2>
       </div>
       <div className="session-details-container">
-        <img src={sessionInfo.location.image_url} alt="Location" />
+        <img src={sessionInfo.location.imageUrl} alt="Location" />
         <div className="details-container">
           <div className="session-data-container">
             <div className="date-container">
@@ -297,12 +297,12 @@ const SessionsPage = () => {
             <div className="sem-referee-container">
               <div className="sem-container">
                 <span className="title">Your Sem</span>
-                {isNil(sessionInfo.sem) || isNil(sessionInfo.sem.image_url) ? (
+                {isNil(sessionInfo.sem) || isNil(sessionInfo.sem.imageUrl) ? (
                   <div className="not-assigned-container">
                     <UserSvg />
                   </div>
                 ) : (
-                  <img src={sessionInfo.sem.image_url} alt="SEM" />
+                  <img src={sessionInfo.sem.imageUrl} alt="SEM" />
                 )}
 
                 <span className="name">
@@ -311,12 +311,12 @@ const SessionsPage = () => {
               </div>
               <div className="referee-container">
                 <span className="title">Your Referee</span>
-                {isNil(sessionInfo.referee) || isNil(sessionInfo.referee.image_url) ? (
+                {isNil(sessionInfo.referee) || isNil(sessionInfo.referee.imageUrl) ? (
                   <div className="not-assigned-container">
                     <UserSvg />
                   </div>
                 ) : (
-                  <img src={sessionInfo.referee.image_url} alt="SEM" />
+                  <img src={sessionInfo.referee.imageUrl} alt="SEM" />
                 )}
                 <span className="name">
                   {sessionInfo.referee.name ? sessionInfo.referee.name : 'Not assigned'}

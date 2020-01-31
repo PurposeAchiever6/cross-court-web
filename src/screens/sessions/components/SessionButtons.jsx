@@ -24,7 +24,7 @@ const SessionButtons = ({
           session={session}
         />
       )}
-      {isAuthenticated && !isNil(session.user_session) && (
+      {isAuthenticated && !isNil(session.userSession) && (
         <CancelButton modalToggler={showCancelModalAction} session={session} />
       )}
     </>

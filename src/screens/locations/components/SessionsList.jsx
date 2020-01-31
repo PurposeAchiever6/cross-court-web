@@ -73,7 +73,7 @@ const SessionsListContainer = styled.div`
 
 const SessionsList = ({ availableSessions, selectedDate }) => {
   const sessionList = availableSessions.filter(session =>
-    isSameDay(new Date(session.start_time), selectedDate)
+    isSameDay(new Date(session.startTime), selectedDate)
   );
 
   if (isEmpty(sessionList)) {
@@ -91,7 +91,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   return (
     <SessionsListContainer>
       {sessionList.map((session, idx) => (
-        <div className="session-list-item-container" key={`${session.start_time}+${idx}`}>
+        <div className="session-list-item-container" key={`${session.startTime}+${idx}`}>
           <div className="text-container">
             <div className="time">{formatSessionTime(session.time)}</div>
             <div className="location">{session.location.name}</div>
@@ -102,7 +102,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
             </a>
           ) : (
             <Link
-              to={`/session/${session.id}/${format(new Date(session.start_time), 'yyyy-MM-dd')}`}
+              to={`/session/${session.id}/${format(new Date(session.startTime), 'yyyy-MM-dd')}`}
             >
               <Button>Reserve</Button>
             </Link>
@@ -117,7 +117,7 @@ SessionsList.propTypes = {
   availableSessions: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      start_time: PropTypes.string.isRequired,
+      startTime: PropTypes.string.isRequired,
       time: PropTypes.string.isRequired,
       location: PropTypes.object.isRequired,
     })

@@ -71,7 +71,7 @@ const SignupFormContainer = styled.div`
 
 const initialValues = {
   name: '',
-  phone_number: '',
+  phoneNumber: '',
   email: '',
   password: '',
   confirmPassword: '',
@@ -79,7 +79,7 @@ const initialValues = {
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
-  phone_number: Yup.number().required('Required'),
+  phoneNumber: Yup.number().required('Required'),
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
   confirmPassword: Yup.string()
@@ -105,7 +105,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
             <InputTextField labelText="Name" error={errors.username} name="name" />
           </div>
           <div className="form-group">
-            <InputTextField labelText="Phone" error={errors.phone_number} name="phone_number" />
+            <InputTextField labelText="Phone" error={errors.phoneNumber} name="phoneNumber" />
           </div>
           <div className="form-group">
             <InputTextField labelText="email" error={errors.email} name="email" />

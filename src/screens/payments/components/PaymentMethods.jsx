@@ -194,7 +194,7 @@ const PaymentMethods = ({ availableCards }) => {
                   </div>
 
                   <div className="expire-container">
-                    <span>Expires {`${payment.card.exp_month}/${payment.card.exp_year}`}</span>
+                    <span>Expires {`${payment.card.expMonth}/${payment.card.expYear}`}</span>
                   </div>
                 </div>
                 <div className="button-container">

@@ -19,7 +19,7 @@ export function* createPurchaseFlow() {
     const selectedProduct = yield select(getSelectedProduct);
     const selectedCard = yield select(getSelectedCard);
 
-    yield call(checkoutService.createPurchase, selectedProduct.stripe_id, selectedCard.id);
+    yield call(checkoutService.createPurchase, selectedProduct.stripeId, selectedCard.id);
     yield put({
       type: CREATE_PURCHASE_SUCCESS,
     });

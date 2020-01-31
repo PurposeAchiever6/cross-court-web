@@ -86,7 +86,7 @@ export function* passResetFlow({ payload }) {
     yield put({ type: PASS_RESET_SUCCESS });
     yield put(push(ROUTES.RESETPASSWORDSUCCESS));
   } catch (err) {
-    yield put({ type: PASS_RESET_FAILURE, error: head(err.response.data.errors.full_messages) });
+    yield put({ type: PASS_RESET_FAILURE, error: head(err.response.data.errors.fullMessages) });
   }
 }
 

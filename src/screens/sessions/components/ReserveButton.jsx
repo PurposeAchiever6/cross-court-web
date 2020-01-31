@@ -11,7 +11,7 @@ const ReserveButton = ({ reserveSessionAction, session, confirmSessionAction }) 
   const isAuthenticated = useSelector(getIsAuthenticated);
 
   if (isAuthenticated) {
-    if (isNil(session.user_session)) {
+    if (isNil(session.userSession)) {
       return (
         <Button className="reserve-btn" onClick={reserveSessionAction}>
           Reserve Session
@@ -19,16 +19,16 @@ const ReserveButton = ({ reserveSessionAction, session, confirmSessionAction }) 
       );
     }
 
-    if (equals(session.user_session.state, 'reserved')) {
+    if (equals(session.userSession.state, 'reserved')) {
       return (
         <Button className="reserve-btn" onClick={confirmSessionAction}>
           Confirm Session
         </Button>
       );
     }
-    if (equals(session.user_session.state, 'confirmed')) {
+    if (equals(session.userSession.state, 'confirmed')) {
       return (
-        <Button className="reserve-btn" disabled={equals(session.user_session.state, 'confirmed')}>
+        <Button className="reserve-btn" disabled={equals(session.userSession.state, 'confirmed')}>
           Confirm Session
         </Button>
       );

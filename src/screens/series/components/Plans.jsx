@@ -31,7 +31,7 @@ const PlansContainer = styled.div`
 const PlanContainer = styled.div`
   position: relative;
   height: 34rem;
-  background-image: url(${props => props.product.image_url});
+  background-image: url(${props => props.product.imageUrl});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -146,7 +146,7 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
         {products.map(product => {
           const [firstWord, secondWord] = product.name.split(' ');
           return (
-            <PlanContainer key={product.stripe_id} product={product}>
+            <PlanContainer key={product.stripeId} product={product}>
               <div className="sticker">
                 <span className="price">{`$ ${formatPrice(product.price)}`}</span>
                 <span className="text">/session</span>
