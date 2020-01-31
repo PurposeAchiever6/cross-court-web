@@ -8,7 +8,7 @@ export const editProfileInit = (name, phoneNumber) => ({
   type: EDIT_PROFILE_INIT,
   payload: {
     name,
-    phoneNumber: phoneNumber,
+    phoneNumber,
   },
 });
 

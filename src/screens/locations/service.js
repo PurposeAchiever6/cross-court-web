@@ -14,8 +14,8 @@ export default {
     const response = await api.get(`/sessions/`, {
       data: {},
       params: {
-        fromDate: format(new Date(date), 'dd/MM/yyyy'),
-        locationId,
+        from_date: format(new Date(date), 'dd/MM/yyyy'),
+        location_id: locationId,
       },
     });
 
