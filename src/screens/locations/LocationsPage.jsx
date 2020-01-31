@@ -63,13 +63,13 @@ const LocationsPage = () => {
   const getSessionsByDateHandler = date => dispatch(getSessionsByDate(date));
   const setSelectedDateHandler = date => dispatch(setSelectedDate(date));
 
-  const increaseCurrentDayHandler = () => {
+  const increaseCurrentWeekHandler = () => {
     const nextWeekDate = add(selectedDate, 1, 'weeks');
     setSelectedDateHandler(nextWeekDate);
     getSessionsByDateHandler(nextWeekDate);
   };
 
-  const decreaseCurrentDayHandler = () => {
+  const decreaseCurrentWeekHandler = () => {
     const pastWeekDate = add(selectedDate, -1, 'weeks');
 
     if (isPast(pastWeekDate)) {
@@ -98,9 +98,9 @@ const LocationsPage = () => {
         <WeekSelector
           availableSessions={availableSessions}
           selectedDate={selectedDate}
-          increaseHandler={increaseCurrentDayHandler}
-          decreaseHandler={decreaseCurrentDayHandler}
-          getSessionsByDateHandler={getSessionsByDateHandler}
+          increaseHandler={increaseCurrentWeekHandler}
+          decreaseHandler={decreaseCurrentWeekHandler}
+          setSelectedDateHandler={setSelectedDateHandler}
         />
         {isSessionsLoading ? (
           <Loading />
