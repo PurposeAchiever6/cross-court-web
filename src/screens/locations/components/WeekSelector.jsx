@@ -72,7 +72,7 @@ const WeekSelector = ({
   selectedDate,
   increaseHandler,
   decreaseHandler,
-  getSessionsByDateHandler,
+  setSelectedDateHandler,
 }) => (
   <WeekSelectorContainer>
     <div className="week-handler">
@@ -91,7 +91,7 @@ const WeekSelector = ({
           day={day}
           currentDay={selectedDate}
           className={`${isPast(day) ? 'day-container disabled' : 'day-container'}`}
-          onClick={() => getSessionsByDateHandler(day)}
+          onClick={() => setSelectedDateHandler(day)}
           disabled={isPast(day)}
         >
           <span className="day-name">{dayShort(day)}</span>
@@ -106,7 +106,7 @@ WeekSelector.propTypes = {
   selectedDate: PropTypes.instanceOf(Date).isRequired,
   increaseHandler: PropTypes.func.isRequired,
   decreaseHandler: PropTypes.func.isRequired,
-  getSessionsByDateHandler: PropTypes.func.isRequired,
+  setSelectedDateHandler: PropTypes.func.isRequired,
 };
 
 export default WeekSelector;

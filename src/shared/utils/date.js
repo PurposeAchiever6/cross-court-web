@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import isBetween from 'dayjs/plugin/isBetween';
+import en from 'dayjs/locale/en';
 
 import {
   FORMAT_SESSION_DATE,
@@ -18,6 +19,10 @@ import {
 dayjs.extend(utc);
 dayjs.extend(advancedFormat);
 dayjs.extend(isBetween);
+dayjs.locale({
+  ...en,
+  weekStart: 1,
+});
 
 export const shortSessionDate = date =>
   dayjs(new Date(date))
@@ -37,14 +42,12 @@ export const urlFormattedDate = date =>
 export const startOfWeek = date =>
   dayjs(new Date(date))
     .utc()
-    .startOf('week')
-    .add(1, 'day');
+    .startOf('week');
 
 export const endOfWeek = date =>
   dayjs(new Date(date))
     .utc()
-    .endOf('week')
-    .add(1, 'day');
+    .endOf('week');
 
 export const hourRange = time =>
   `${dayjs(new Date(time))
