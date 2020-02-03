@@ -114,40 +114,29 @@ const SessionContainer = styled.div`
   }
 `;
 
-const Session = ({
-  past,
-  isSem,
-  sessionInfo: {
-    date,
-    inStartTime,
-    session: {
-      id,
-      time,
-      location: { name, imageUrl },
-    },
-  },
-}) => {
+const Session = ({ past, isSem, sessionInfo }) => {
   let dateClassName = 'date';
   if (past) {
     dateClassName += ' past';
-  } else if (isSem && inStartTime) {
+  } else if (isSem && sessionInfo.inStartTime) {
     dateClassName += ' first';
   }
+
   return (
     <SessionContainer>
       <div className="image">
-        <img src={imageUrl} alt="Session" />
+        <img src={sessionInfo.session.location.imageUrl} alt="Session" />
       </div>
       <div className="details">
-        <p className={dateClassName}>{shortSessionDate(date)}</p>
-        <p className="time">{hourRange(time)}</p>
-        <p className="location">{name}</p>
-        {isSem && inStartTime ? (
-          <Link to={`/sem/session/${id}/${urlFormattedDate(date)}`}>
+        <p className={dateClassName}>{shortSessionDate(sessionInfo.date)}</p>
+        <p className="time">{hourRange(sessionInfo.session.time)}</p>
+        <p className="location">{sessionInfo.session.location.name}</p>
+        {isSem && sessionInfo.inStartTime ? (
+          <Link to={`/sem/session/${sessionInfo.session.id}/${urlFormattedDate(sessionInfo.date)}`}>
             <Button className="btn">Start Session</Button>
           </Link>
         ) : (
-          <Link to={`/session/${id}/${urlFormattedDate(date)}`}>
+          <Link to={`/session/${sessionInfo.session.id}/${urlFormattedDate(sessionInfo.date)}`}>
             <AlternativeButton className="btn-alt">See Details</AlternativeButton>
           </Link>
         )}

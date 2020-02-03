@@ -72,10 +72,14 @@ const PurchaseHistoryPage = () => {
       <div className="purchases-container">
         {purchaseHistory.map(purchase => (
           <div className="purchase-item" key={purchase.id}>
-            <span className="plan-name">The Rookie</span>
-            <span className="sessions-qty">3 Sessions</span>
+            <span className="plan-name">{purchase.name}</span>
+            <span className="sessions-qty">
+              {purchase.credits > 1
+                ? `${purchase.credits} Sessions`
+                : `${purchase.credits} Session`}
+            </span>
             <span className="date">{purchaseFormattedDate(purchase.date)}</span>
-            <span className="price">{`$ ${currency(purchase.price, {
+            <span className="price">{`$ ${currency(purchase.price / 100, {
               symbol: '$',
               precision: 2,
             })}`}</span>
