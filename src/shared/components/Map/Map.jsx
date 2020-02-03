@@ -39,7 +39,7 @@ const apiIsLoaded = (map, maps, locations) => {
 const Map = ({ locations, selectedLocation, setLocationHandler }) => (
   <div style={{ height: '82.5vh', width: '100%' }}>
     <GoogleMapReact
-      bootstrapURLKeys={{ key: 'AIzaSyA-GOpIwemLp-zCfVmFCTeRjRikXjnCmf0' }}
+      bootstrapURLKeys={{ key: 'AIzaSyDLr9IoxSVY-V0lN_Z7-EDjFWei2F6a55Y' }}
       center={{
         lat: 34.0688791,
         lng: -118.2711009,

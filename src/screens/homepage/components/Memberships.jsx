@@ -60,7 +60,7 @@ const Section = styled.section`
 const Memberships = () => (
   <Section>
     <div className="memberships-container">
-      <p className="note">We bring the venue, referee, and equipment.</p>
+      <p className="note">We bring the venue, staff, and equipment.</p>
       <p className="note">
         <em>You bring the energy.</em>
       </p>

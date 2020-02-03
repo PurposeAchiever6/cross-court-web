@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from 'shared/components/Button';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -42,13 +43,18 @@ const FreeSessionModal = ({ claimFreeSessionAction, closeHandler }) => (
   <FreeSessionModalContainer>
     <FontAwesomeIcon icon={faTimes} onClick={closeHandler} />
 
-    <span className="title">Free Credit Claimed!</span>
+    <span className="title">Let&apos;s sweat!</span>
     <span className="text">
-      Why do we ask for a payment method? Even though your credit remains a 100% free, you will be
-      charged if you book a session and don’t attend to it.
+      While your first Session is on us, we do require you to input a payment method in case you do
+      not show up and we have to charge your account.
     </span>
     <Button onClick={claimFreeSessionAction}>I Understand</Button>
   </FreeSessionModalContainer>
 );
+
+FreeSessionModal.propTypes = {
+  claimFreeSessionAction: PropTypes.func.isRequired,
+  closeHandler: PropTypes.func.isRequired,
+};
 
 export default FreeSessionModal;
