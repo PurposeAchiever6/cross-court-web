@@ -71,11 +71,11 @@ const TheSession = () => {
       <div className="boxes-container">
         <div className="box">
           <img src={TimerIcon} alt="Timer" />
-          <span>1 Hour Session</span>
+          <span>1 Hour</span>
         </div>
         <div className="box">
           <img src={CourtIcon} alt="Timer" />
-          <span>Premium Facilities</span>
+          <span>Premium Facility</span>
         </div>
         <div className="box">
           <img src={RefereeIcon} alt="Timer" />

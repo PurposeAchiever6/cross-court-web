@@ -34,25 +34,19 @@ const Container = styled.div`
 
 const Benefits = () => (
   <Container>
-    <div className="title">
-      YOUR <strong>BENEFITS</strong>
-    </div>
+    <div className="title">WHAT YOU GET</div>
     <div className="icons">
       <Icon>
         <MoneySvg />
-        <p>Make Money</p>
+        <p>Competitive wage</p>
       </Icon>
       <Icon>
         <DropsSvg />
-        <p>Sweat for Free</p>
+        <p>Free sessions</p>
       </Icon>
       <Icon>
         <WhistleSvg />
-        <p>Equity Potential</p>
-      </Icon>
-      <Icon>
-        <BallSvg />
-        <p>Face of Crosscourt</p>
+        <p>Equity</p>
       </Icon>
       <Icon>
         <TrophySvg />
@@ -61,6 +55,10 @@ const Benefits = () => (
       <Icon>
         <MerchSvg />
         <p>Exclusive Merch</p>
+      </Icon>
+      <Icon>
+        <BallSvg />
+        <p>Face of Crosscourt</p>
       </Icon>
     </div>
   </Container>
