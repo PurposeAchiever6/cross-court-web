@@ -73,8 +73,8 @@ const PlanContainer = styled.div`
 
   .title {
     display: flex;
-    font-size: 57px;
-    line-height: 62px;
+    font-size: 3.5rem;
+    line-height: 4rem;
     letter-spacing: 0.04em;
     color: #fff;
     text-transform: uppercase;
@@ -93,14 +93,25 @@ const PlanContainer = styled.div`
     }
   }
 
-  button {
+  .button-container {
     width: 100%;
+    hr {
+      display: none;
+    }
+    button {
+      width: 100%;
+    }
   }
 
   @media ${device.mobile} {
-    height: 22rem;
+    height: 32rem;
+    margin-bottom: 6rem;
     padding: 0;
+    background-image: url(${props => props.product.imageUrl});
 
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
     .sticker {
       height: 8rem;
       width: 8rem;
@@ -119,14 +130,18 @@ const PlanContainer = styled.div`
 
     .title {
       position: absolute;
-      bottom: -4rem;
+      bottom: -0.5rem;
       left: 1rem;
     }
 
-    button {
+    .button-container {
+      width: 90%;
       position: absolute;
-
-      bottom: -10rem;
+      bottom: -7rem;
+      button {
+        width: 100%;
+        margin-bottom: 1.5rem;
+      }
     }
   }
 `;
@@ -139,7 +154,7 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
     });
 
   const products = availableProducts.filter(product => product.name !== 'Free Session');
-
+  console.log(availableProducts);
   return (
     <PlansContainer>
       <div className="plans-container">
@@ -155,7 +170,10 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
                 <span className="first-word">{firstWord}</span>
                 <span className="second-word">{secondWord}</span>
               </div>
-              <Button onClick={() => selectProductHandler(product)}>{product.description}</Button>
+              <div className="button-container">
+                <Button onClick={() => selectProductHandler(product)}>{product.description}</Button>
+                <hr />
+              </div>
             </PlanContainer>
           );
         })}
