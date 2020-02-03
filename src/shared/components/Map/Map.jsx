@@ -36,10 +36,12 @@ const apiIsLoaded = (map, maps, locations) => {
   bindResizeListener(map, maps, bounds);
 };
 
+const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 const Map = ({ locations, selectedLocation, setLocationHandler }) => (
   <div style={{ height: '82.5vh', width: '100%' }}>
     <GoogleMapReact
-      bootstrapURLKeys={{ key: 'AIzaSyDLr9IoxSVY-V0lN_Z7-EDjFWei2F6a55Y' }}
+      bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
       center={{
         lat: 34.0688791,
         lng: -118.2711009,
