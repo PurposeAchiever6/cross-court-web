@@ -1,4 +1,4 @@
-export const FORMAT_SESSION_DATE = 'ddd. M/DD';
+export const FORMAT_SESSION_DATE = 'ddd. MM/DD';
 export const FORMAT_SESSION_DATE_LONG = 'dddd D, MMMM';
 export const FORMAT_URL = 'YYYY-MM-DD';
 export const FORMAT_HOUR = 'h:mm A';

@@ -14,7 +14,7 @@ import {
   FORMAT_DAY_SHORT,
   FORMAT_DAY_NUMBER,
   FORMAT_MONTH,
-} from 'shared/constants/constants';
+} from 'shared/constants/date';
 
 dayjs.extend(utc);
 dayjs.extend(advancedFormat);
@@ -24,36 +24,20 @@ dayjs.locale({
   weekStart: 1,
 });
 
-export const shortSessionDate = date =>
-  dayjs(new Date(date))
-    .utc()
-    .format(FORMAT_SESSION_DATE);
+const getUTCDate = (date = new Date()) => dayjs(new Date(date)).utc();
 
-export const longSessionDate = date =>
-  dayjs(new Date(date))
-    .utc()
-    .format(FORMAT_SESSION_DATE_LONG);
+export const shortSessionDate = date => getUTCDate(date).format(FORMAT_SESSION_DATE);
 
-export const urlFormattedDate = date =>
-  dayjs(new Date(date))
-    .utc()
-    .format(FORMAT_URL);
+export const longSessionDate = date => getUTCDate(date).format(FORMAT_SESSION_DATE_LONG);
 
-export const startOfWeek = date =>
-  dayjs(new Date(date))
-    .utc()
-    .startOf('week');
+export const urlFormattedDate = date => getUTCDate(date).format(FORMAT_URL);
 
-export const endOfWeek = date =>
-  dayjs(new Date(date))
-    .utc()
-    .endOf('week');
+export const startOfWeek = date => getUTCDate(date).startOf('week');
+
+export const endOfWeek = date => getUTCDate(date).endOf('week');
 
 export const hourRange = time =>
-  `${dayjs(new Date(time))
-    .utc()
-    .format(FORMAT_HOUR)} - ${dayjs(new Date(time))
-    .utc()
+  `${getUTCDate(time).format(FORMAT_HOUR)} - ${getUTCDate(time)
     .add(1, 'hour')
     .format(FORMAT_HOUR)}`;
 
@@ -62,55 +46,32 @@ export const weekRangeTitle = date =>
     date
   ).format(FORMAT_MONTH)} ${endOfWeek(date).date()}`;
 
-export const purchaseFormattedDate = () =>
-  dayjs(new Date())
-    .utc()
-    .format(FORMAT_DATE_PURCHASE);
+export const purchaseFormattedDate = date => getUTCDate(date).format(FORMAT_DATE_PURCHASE);
 
-export const requestFormattedDate = date =>
-  dayjs(new Date(date))
-    .utc()
-    .format(FORMAT_DATE_REQUEST);
+export const requestFormattedDate = date => getUTCDate(date).format(FORMAT_DATE_REQUEST);
 
 export const isSameDay = (date1, date2) =>
   requestFormattedDate(date1) === requestFormattedDate(date2);
 
-export const add = (date, time, measure) =>
-  dayjs(new Date(date))
-    .utc()
-    .add(time, measure);
+export const add = (date, time, measure) => getUTCDate(date).add(time, measure);
 
-export const subtract = (date, time, measure) =>
-  dayjs(new Date(date))
-    .utc()
-    .subtract(time, measure);
+export const subtract = (date, time, measure) => getUTCDate(date).subtract(time, measure);
 
 export const weekRange = date => {
   let dates = [];
   for (let i = 0; i < 7; i += 1) {
-    dates = [
-      ...dates,
-      dayjs(new Date(date))
-        .utc()
-        .add(i, 'days'),
-    ];
+    dates = [...dates, getUTCDate(date).add(i, 'days')];
   }
   return dates;
 };
 
-export const dayShort = date =>
-  dayjs(new Date(date))
-    .utc()
-    .format(FORMAT_DAY_SHORT);
+export const dayShort = date => getUTCDate(date).format(FORMAT_DAY_SHORT);
 
-export const dayNumber = date =>
-  dayjs(new Date(date))
-    .utc()
-    .format(FORMAT_DAY_NUMBER);
+export const dayNumber = date => getUTCDate(date).format(FORMAT_DAY_NUMBER);
 
 export const isThisWeek = date =>
   dayjs(new Date(date)).isBetween(startOfWeek(new Date()), endOfWeek(new Date()));
 
 export const isPast = date => new Date(date) < new Date() && !isSameDay(new Date(date), new Date());
 
-export const todayDate = () => dayjs(new Date()).utc();
+export const todayDate = () => getUTCDate();
