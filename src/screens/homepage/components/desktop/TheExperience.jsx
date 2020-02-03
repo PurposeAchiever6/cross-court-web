@@ -36,7 +36,7 @@ const TheExperience = () => (
       </p>
       <p>
         We exist to remove the barriers that make sports more work than workout. We bring the venue,
-        referee, and equipment. You just sign up, show up and <strong>sweat.</strong>
+        staff, and equipment. You just sign up, show up and <strong>sweat.</strong>
       </p>
     </Container>
     <Image>
