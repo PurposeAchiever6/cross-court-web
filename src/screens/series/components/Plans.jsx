@@ -160,6 +160,10 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
       <div className="plans-container">
         {products.map(product => {
           const [firstWord, secondWord] = product.name.split(' ');
+          const buttonText = `${product.credits} ${
+            product.credits > 1 ? 'sessions' : 'session'
+          } for $ ${formatPrice(product.price)}`;
+
           return (
             <PlanContainer key={product.stripeId} product={product}>
               <div className="sticker">
@@ -171,7 +175,7 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
                 <span className="second-word">{secondWord}</span>
               </div>
               <div className="button-container">
-                <Button onClick={() => selectProductHandler(product)}>{product.description}</Button>
+                <Button onClick={() => selectProductHandler(product)}>{buttonText}</Button>
                 <hr />
               </div>
             </PlanContainer>
