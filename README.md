@@ -13,6 +13,18 @@ You should create a `.env.local` file in the project root directory with the fol
 ```
 REACT_APP_API_URL=https://cross-court-testing.herokuapp.com/api/v1
 REACT_APP_URL=http://localhost:3000
+
+REACT_APP_GOOGLE_ANALYTICS_CODE=UA-111654318-1
+REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyDLr9IoxSVY-V0lN_Z7-EDjFWei2F6a55Y
+REACT_APP_STRIPE_API_KEY=pk_test_ruSiCBKu2EJm5li5MQ69Q5h900wyV2yYKw
+
+REACT_APP_FOUNTAIN_SO_LINK=https://work.fountain.com/jobs/CrossCourt-CrossCourt---Session-Official-Referee-gse4gsOYGacFc5z0
+REACT_APP_FOUNTAIN_SEM_LINK=https://work.fountain.com/jobs/CrossCourt-CrossCourt---Session-Experience-Manager-UhUp3IPnPhcKNMdP
+
+REACT_APP_FACEBOOK_LINK=https://www.facebook.com/CrossCourtBall/
+REACT_APP_TWITTER_LINK=https://twitter.com/crosscourtball
+REACT_APP_INSTAGRAM_LINK=https://instagram.com/crosscourtball
+REACT_APP_LINKEDIN_LINK=https://www.linkedin.com/in/crosscourt-basketball-42539b162
 ```
 
 ## Commands
