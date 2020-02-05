@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { isNil, equals } from 'ramda';
+import { isNil, equals, not } from 'ramda';
 
 import ROUTES from 'shared/constants/routes';
 import Button from 'shared/components/Button';
@@ -21,7 +21,11 @@ const ReserveButton = ({ reserveSessionAction, session, confirmSessionAction }) 
 
     if (equals(session.userSession.state, 'reserved')) {
       return (
-        <Button className="reserve-btn" onClick={confirmSessionAction}>
+        <Button
+          className="reserve-btn"
+          onClick={confirmSessionAction}
+          disabled={not(session.userSession.inConfirmationTime)}
+        >
           Confirm Session
         </Button>
       );
