@@ -167,7 +167,7 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
           return (
             <PlanContainer key={product.stripeId} product={product}>
               <div className="sticker">
-                <span className="price">{`$ ${formatPrice(product.price)}`}</span>
+                <span className="price">{`$ ${formatPrice(product.price / product.credits)}`}</span>
                 <span className="text">/session</span>
               </div>
               <div className="title">
