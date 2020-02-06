@@ -49,7 +49,7 @@ const Container = styled.div`
 `;
 
 const Join = () => (
-  <ImageContainer img={JoinImage} overlayColor={colors.blackOverlay}>
+  <ImageContainer img={JoinImage}>
     <Container>
       <p className="title">JOIN THE</p>
       <h2 className="title">

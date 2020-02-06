@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
 
-import Vibe from '../../images/Vibe-mobile.png';
+import Vibe from '../../images/Vibe.png';
 import ImageContainer from '../ImageContainer';
 import BoxContainer from './BoxContainer';
 
