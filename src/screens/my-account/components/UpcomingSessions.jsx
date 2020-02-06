@@ -94,7 +94,9 @@ const UpcomingSessionsContainer = styled.div`
           text-transform: uppercase;
           margin-bottom: 2rem;
         }
-
+        .canceled-msg {
+          color: red;
+        }
         .btn-alt {
           color: #000;
           border: 1px solid #000;
@@ -131,41 +133,46 @@ const UpcomingSessionsContainer = styled.div`
   }
 `;
 
-const UpcomingSessions = ({ sessions }) => (
-  <UpcomingSessionsContainer>
-    <h3>Upcoming Sessions</h3>
-    <div className="sessions-container">
-      {isEmpty(sessions) ? (
-        <div className="container-empty-message">
-          <h1>YOU HAVE NO UPCOMING SESSIONS</h1>
-          <Link to={ROUTES.LOCATIONS}>
-            <Button>Explore Sessions</Button>
-          </Link>
-        </div>
-      ) : (
-        sessions.map(session => (
-          <div className="session-item" key={session.id}>
-            {isNil(session.session.location.imageUrl) ? (
-              <div className="no-image">
-                <ImageSvg />
-              </div>
-            ) : (
-              <img src={session.session.location.imageUrl} alt="Session" />
-            )}
-            <span className="date">{shortSessionDate(session.date)}</span>
-            <div className="details">
-              <span className="time">{hourRange(session.session.time)}</span>
-              <span className="location">{session.session.location.name}</span>
-              <Link to={`/session/${session.session.id}/${urlFormattedDate(session.date)}`}>
-                <AlternativeButton className="btn-alt">See Details</AlternativeButton>
-              </Link>
-            </div>
+const UpcomingSessions = ({ sessions }) => {
+  const availableSessions = sessions.filter(session => session.state !== 'canceled');
+
+  return (
+    <UpcomingSessionsContainer>
+      <h3>Upcoming Sessions</h3>
+      <div className="sessions-container">
+        {isEmpty(availableSessions) ? (
+          <div className="container-empty-message">
+            <h1>YOU HAVE NO UPCOMING SESSIONS</h1>
+            <Link to={ROUTES.LOCATIONS}>
+              <Button>Explore Sessions</Button>
+            </Link>
           </div>
-        ))
-      )}
-    </div>
-  </UpcomingSessionsContainer>
-);
+        ) : (
+          availableSessions.map(session => (
+            <div className="session-item" key={session.id}>
+              {isNil(session.session.location.imageUrl) ? (
+                <div className="no-image">
+                  <ImageSvg />
+                </div>
+              ) : (
+                <img src={session.session.location.imageUrl} alt="Session" />
+              )}
+              <span className="date">{shortSessionDate(session.date)}</span>
+              <div className="details">
+                <span className="time">{hourRange(session.session.time)}</span>
+                <span className="location">{session.session.location.name}</span>
+
+                <Link to={`/session/${session.session.id}/${urlFormattedDate(session.date)}`}>
+                  <AlternativeButton className="btn-alt">See Details</AlternativeButton>
+                </Link>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+    </UpcomingSessionsContainer>
+  );
+};
 
 UpcomingSessions.propTypes = {
   sessions: PropTypes.arrayOf(PropTypes.object),
