@@ -10,7 +10,6 @@ import { claimFreeSessionInit } from 'screens/payments/actionCreators';
 import { getClaimFreeSession } from 'screens/payments/reducer';
 import { initialLoad, setSelectedProduct } from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
-import Hero from './components/Hero';
 import Plans from './components/Plans';
 import Series from './components/Series';
 import FreeSessionModal from './components/FreeSessionModal';
@@ -65,7 +64,6 @@ const SeriesPage = () => {
         modalHandler={() => setShowFreeSessionModal(true)}
         claimFreeSession={claimFreeSession}
       />
-      <Hero />
       <Plans selectProductHandler={selectProductHandler} availableProducts={availableProducts} />
       <Series />
     </div>
