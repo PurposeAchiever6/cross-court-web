@@ -7,6 +7,6 @@ export default styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  box-shadow: inset 0 0 0 2000px ${props => props.overlayColor};
+  box-shadow: inset 0 0 0 2000px ${props => props.overlayColor || 'transparent'};
   height: 100%;
 `;

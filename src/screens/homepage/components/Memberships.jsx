@@ -5,7 +5,9 @@ import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import ROUTES from 'shared/constants/routes';
+import device from 'shared/styles/mediaQueries';
 import MembershipDesktopBg from '../images/membership-desktop-bg.jpg';
+import MembershipMobileBg from '../images/membership-mobile-bg.jpg';
 
 const Section = styled.section`
   height: 100vh;
@@ -20,6 +22,10 @@ const Section = styled.section`
   padding: 0 0.5rem;
   padding-top: 7rem;
   box-sizing: border-box;
+
+  @media ${device.mobile} {
+    background-image: url(${MembershipMobileBg});
+  }
 
   button {
     margin-top: 1.75rem;

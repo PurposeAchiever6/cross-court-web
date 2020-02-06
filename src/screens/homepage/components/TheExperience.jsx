@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
-import TheExperienceImage from '../images/TheExperience.jpg';
+import TheExperienceImage from '../images/TheExperience-mobile.jpg';
 import EveryonesAnAthleteImage from '../images/EveryonesAnAthlete.jpg';
 import NoBullshitPic from '../images/NoBullshitPic.jpg';
 import NothingButVibePic from '../images/NothingButVibePic.jpg';

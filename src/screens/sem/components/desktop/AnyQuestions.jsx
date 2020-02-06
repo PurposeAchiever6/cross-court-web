@@ -23,7 +23,7 @@ const Container = styled.div`
 `;
 
 const AnyQuestions = () => (
-  <ImageContainer img={AnyQuestionsImage} overlayColor={colors.blackOverlay}>
+  <ImageContainer img={AnyQuestionsImage}>
     <Container>
       <p>Any Questions?</p>
       <div>
