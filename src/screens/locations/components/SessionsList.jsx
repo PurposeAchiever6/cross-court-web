@@ -6,7 +6,6 @@ import { isEmpty } from 'ramda';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
-import device from 'shared/styles/mediaQueries';
 import { hourRange, urlFormattedDate, isSameDay, sortSessionsByDate } from 'shared/utils/date';
 
 const SessionsListContainer = styled.div`
@@ -27,6 +26,10 @@ const SessionsListContainer = styled.div`
     .text-container {
       display: flex;
       flex-direction: column;
+      max-width: 50%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       .time {
         font-size: 0.9em;
@@ -59,12 +62,6 @@ const SessionsListContainer = styled.div`
 
     em {
       font-weight: 600;
-    }
-  }
-
-  @media ${device.mobile} {
-    .session-list-item-container {
-      height: 50vh;
     }
   }
 `;

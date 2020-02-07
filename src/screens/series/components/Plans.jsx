@@ -7,21 +7,16 @@ import device from 'shared/styles/mediaQueries';
 import PurpleBg from '../images/CirclePurpleBg.png';
 
 const PlansContainer = styled.div`
-  padding: 4rem 0;
-
   .plans-container {
-    display: grid;
-    grid-template-columns: repeat(2, 4fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 6rem;
-    grid-row-gap: 6rem;
-    padding: 0 10rem;
+    margin: 0 6rem;
+    padding-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   @media ${device.mobile} {
     .plans-container {
-      grid-row-gap: 16rem;
-      display: flex;
+      margin: 0;
       flex-direction: column;
       padding: 0;
     }
@@ -30,7 +25,9 @@ const PlansContainer = styled.div`
 
 const PlanContainer = styled.div`
   position: relative;
-  height: 34rem;
+  margin: 2rem auto 0;
+  height: 30vw;
+  width: 30vw;
   background-image: url(${props => props.product.imageUrl});
   background-repeat: no-repeat;
   background-size: cover;
@@ -60,8 +57,9 @@ const PlanContainer = styled.div`
 
     .price {
       font-weight: bold;
-      font-size: 45.6489px;
-      line-height: 68px;
+      font-size: 4rem;
+      line-height: 5rem;
+      font-family: Space Mono;
     }
 
     .text {
@@ -104,18 +102,18 @@ const PlanContainer = styled.div`
   }
 
   @media ${device.mobile} {
-    height: 32rem;
-    margin-bottom: 6rem;
+    height: 20rem;
+    width: 100%;
+    margin: 0 0 8rem 0;
     padding: 0;
     background-image: url(${props => props.product.imageUrl});
 
     background-repeat: no-repeat;
-    background-size: contain;
     background-position: center;
     .sticker {
       height: 8rem;
       width: 8rem;
-      top: 6rem;
+      top: 2rem;
       right: 1rem;
 
       .price {
@@ -130,7 +128,7 @@ const PlanContainer = styled.div`
 
     .title {
       position: absolute;
-      bottom: -0.5rem;
+      bottom: -2.7rem;
       left: 1rem;
     }
 
@@ -154,7 +152,6 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
     });
 
   const products = availableProducts.filter(product => product.name !== 'Free Session');
-  console.log(availableProducts);
   return (
     <PlansContainer>
       <div className="plans-container">
@@ -167,7 +164,7 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
           return (
             <PlanContainer key={product.stripeId} product={product}>
               <div className="sticker">
-                <span className="price">{`$ ${formatPrice(product.price / product.credits)}`}</span>
+                <span className="price">{`$${formatPrice(product.price / product.credits)}`}</span>
                 <span className="text">/session</span>
               </div>
               <div className="title">
