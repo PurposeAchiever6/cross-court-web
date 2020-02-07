@@ -32,8 +32,8 @@ const ReserveButton = ({ reserveSessionAction, session, confirmSessionAction }) 
     }
     if (equals(session.userSession.state, 'confirmed')) {
       return (
-        <Button className="reserve-btn" disabled={equals(session.userSession.state, 'confirmed')}>
-          Confirm Session
+        <Button className="reserve-btn" disabled>
+          Session Confirmed
         </Button>
       );
     }
