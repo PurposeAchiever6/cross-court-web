@@ -311,7 +311,7 @@ const SessionsPage = () => {
                 </span>
               </div>
               <div className="referee-container">
-                <span className="title">Your Referee</span>
+                <span className="title">Your Session Official</span>
                 {isNil(sessionInfo.referee) || isNil(sessionInfo.referee.imageUrl) ? (
                   <div className="not-assigned-container">
                     <UserSvg />
