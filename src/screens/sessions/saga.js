@@ -1,4 +1,4 @@
-import { put, all, takeLatest, call, select } from 'redux-saga/effects';
+import { put, all, takeLatest, call } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import ROUTES from 'shared/constants/routes';
 import { toast } from 'react-toastify';
@@ -22,7 +22,6 @@ import {
   CONFIRM_SESSION_FAILURE,
 } from './actionTypes';
 import sessionService from './service';
-import { getSessionId, getSessionDate } from './reducer';
 
 export function* initialLoadFlow({ payload }) {
   try {
@@ -77,21 +76,13 @@ export function* reserveSessionFlow({ payload }) {
 
 export function* cancelSessionFlow({ payload }) {
   try {
-    const sessionId = yield select(getSessionId);
-    const sessionDate = yield select(getSessionDate);
     yield call(sessionService.cancelSession, payload.sessionId);
 
     yield put({
       type: CANCEL_SESSION_SUCCESS,
     });
     yield call(toast.success, 'Session successfully cancelled!');
-    yield put({
-      type: INITIAL_LOAD_AUTH_INIT,
-      payload: {
-        sessionId,
-        date: sessionDate,
-      },
-    });
+    yield put(push(ROUTES.MYACCOUNT));
   } catch (err) {
     yield put({ type: CANCEL_SESSION_FAILURE, error: err.response.data.error });
   }
