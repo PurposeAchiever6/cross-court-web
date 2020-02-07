@@ -104,17 +104,17 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
         <Form className="form">
           <h1>Sign up</h1>
           <div className="form-group">
-            <InputTextField labelText="Name" error={errors.username} name="name" />
+            <InputTextField labelText="Name*" error={errors.username} name="name" />
           </div>
           <div className="form-group">
-            <InputTextField labelText="Phone" error={errors.phoneNumber} name="phoneNumber" />
+            <InputTextField labelText="Phone*" error={errors.phoneNumber} name="phoneNumber" />
           </div>
           <div className="form-group">
-            <InputTextField labelText="email" error={errors.email} name="email" />
+            <InputTextField labelText="Email*" error={errors.email} name="email" />
           </div>
           <div className="form-group">
             <InputTextField
-              labelText="Password"
+              labelText="Password*"
               error={errors.password}
               name="password"
               type="password"
@@ -122,7 +122,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
           </div>
           <div className="form-group">
             <InputTextField
-              labelText="Confirm Password"
+              labelText="Confirm Password*"
               error={errors.password}
               name="confirmPassword"
               type="password"
