@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { LOCATION_CHANGE } from 'shared/actions/actionTypes';
 import {
   LOGIN_INIT,
   LOGIN_SUCCESS,
@@ -91,6 +92,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isAuthenticated: false,
+      };
+    case LOCATION_CHANGE:
+      return {
+        ...state,
+        loginError: '',
       };
     default:
       return state;
