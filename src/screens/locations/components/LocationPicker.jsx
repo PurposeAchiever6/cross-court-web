@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { isNil } from 'ramda';
 import PropTypes from 'prop-types';
 import colors from 'shared/styles/constants';
+import { transparentize } from 'polished';
 
 const LocationPickerContainer = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
@@ -11,9 +12,6 @@ const LocationPickerContainer = styled.div`
   .location-picker__control {
     border: 0;
     border-radius: 0;
-  }
-
-  .location-picker__control {
     padding: 1.5rem;
   }
 
@@ -27,6 +25,7 @@ const LocationPickerContainer = styled.div`
 
   .location-picker__menu {
     justify-content: center;
+    margin-top: 0;
 
     .location-picker__menu-list {
       justify-content: center;
@@ -35,12 +34,23 @@ const LocationPickerContainer = styled.div`
         text-align: center;
         padding: 1rem;
         font-size: 1.75rem;
+        &:hover {
+          background-color: ${transparentize(0.5, `${colors.polarPlum}`)};
+        }
+      }
+
+      .location-picker__option--is-selected {
+        background-color: ${colors.polarPlum};
+        &:hover {
+          background-color: ${colors.polarPlum};
+        }
       }
     }
   }
 
   .location-picker__value-container--has-value {
     justify-content: center;
+    padding: 0.5rem;
 
     .location-picker__single-value {
       font-size: 1.75rem;
