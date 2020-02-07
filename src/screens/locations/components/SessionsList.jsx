@@ -3,12 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { isEmpty } from 'ramda';
-
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import device from 'shared/styles/mediaQueries';
-import { hourRange, urlFormattedDate, isSameDay } from 'shared/utils/date';
+import { hourRange, urlFormattedDate, isSameDay, sortSessionsByDate } from 'shared/utils/date';
 
 const SessionsListContainer = styled.div`
   display: flex;
@@ -74,8 +73,9 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   const sessionList = availableSessions.filter(({ startTime }) =>
     isSameDay(startTime, selectedDate)
   );
+  const sortedSessions = sortSessionsByDate(sessionList);
 
-  if (isEmpty(sessionList)) {
+  if (isEmpty(sortedSessions)) {
     return (
       <SessionsListContainer>
         <div className="no-sessions-container">
@@ -89,7 +89,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
   return (
     <SessionsListContainer>
-      {sessionList.map(({ id, startTime, time, isFull, location }) => (
+      {sortedSessions.map(({ id, startTime, time, isFull, location }) => (
         <div className="session-list-item-container" key={id}>
           <div className="text-container">
             <div className="time">{hourRange(time)}</div>

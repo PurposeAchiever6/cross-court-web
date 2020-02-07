@@ -3,7 +3,7 @@ import utc from 'dayjs/plugin/utc';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import isBetween from 'dayjs/plugin/isBetween';
 import en from 'dayjs/locale/en';
-
+import { sort } from 'ramda';
 import {
   FORMAT_SESSION_DATE,
   FORMAT_SESSION_DATE_LONG,
@@ -75,3 +75,6 @@ export const isThisWeek = date =>
 export const isPast = date => new Date(date) < new Date() && !isSameDay(new Date(date), new Date());
 
 export const todayDate = () => getUTCDate();
+
+export const sortSessionsByDate = sessions =>
+  sort((a, b) => (dayjs(new Date(a.time)).isAfter(dayjs(new Date(b.time))) ? 1 : -1), sessions);
