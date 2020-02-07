@@ -24,7 +24,7 @@ const InputTextContainer = styled.div`
     text-align: right;
     margin-top: 1rem;
     color: ${colors.errorRed};
-    text-transform: capitalize;
+    text-transform: initial;
   }
   input {
     border: 1px solid rgba(0, 0, 0, 0.5);

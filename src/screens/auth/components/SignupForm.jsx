@@ -79,12 +79,14 @@ const initialValues = {
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
-  phoneNumber: Yup.number().required('Required'),
+  phoneNumber: Yup.number()
+    .typeError("That doesn't look like a phone number")
+    .required('Required'),
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Password confirm is required'),
+    .required('Confirm Password is required'),
 });
 
 const SignupForm = ({ signupHandler, isLoading, errors }) => (
