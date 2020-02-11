@@ -89,24 +89,6 @@ const AddCardContainer = styled.div`
   }
 `;
 
-const createOptions = (fontSize, padding) => {
-  return {
-    style: {
-      base: {
-        fontSize,
-        color: '#424770',
-        '::placeholder': {
-          color: '#aab7c4',
-        },
-        padding,
-      },
-      invalid: {
-        color: '#9e2146',
-      },
-    },
-  };
-};
-
 const AddCard = ({ stripe, elements, addCardHandler }) => {
   const addCardLoading = useSelector(getAddCardLoading);
   const submitHandler = e => {
@@ -123,16 +105,16 @@ const AddCard = ({ stripe, elements, addCardHandler }) => {
       <div className="card-container">
         <span className="label card-number">
           Card Number
-          <CardNumberElement className="card-number-element" {...createOptions('1rem')} />
+          <CardNumberElement className="card-number-element" />
         </span>
         <div className="row-container">
           <span className="label card-expire">
             Expiration
-            <CardExpiryElement className="expiration-date-element" {...createOptions('1rem')} />
+            <CardExpiryElement className="expiration-date-element" />
           </span>
           <span className="label card-cvc">
             CVC
-            <CardCvcElement className="cvc-element" {...createOptions('1rem')} />
+            <CardCvcElement className="cvc-element" />
           </span>
         </div>
       </div>

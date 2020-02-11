@@ -14,7 +14,11 @@ export default {
       card: cardElement,
     });
 
-    return response.paymentMethod.id;
+    if (response.error) {
+      throw new Error(response.error.message);
+    } else {
+      return response.paymentMethod.id;
+    }
   },
   addPaymentMethod: async paymentMethodId => {
     const response = await api.post(`/payment_methods`, {

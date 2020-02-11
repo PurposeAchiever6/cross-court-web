@@ -46,9 +46,9 @@ export function* addCardFlow(action) {
 
     yield put(push(ROUTES.PAYMENTS));
   } catch (err) {
-    yield call(toast.error, err.response.data.error);
+    yield call(toast.error, err.message);
 
-    yield put({ type: ADD_CARD_FAILURE, error: err.response.data.error });
+    yield put({ type: ADD_CARD_FAILURE, error: err });
   }
 }
 

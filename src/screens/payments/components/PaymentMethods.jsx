@@ -10,7 +10,7 @@ import AlternativeButton from 'shared/components/AlternativeButton';
 import CCIcon from 'shared/components/CCIcon';
 import { Link, useHistory } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
-import device from 'shared/styles/constants';
+import device from 'shared/styles/mediaQueries';
 import { deleteCard, setSelectedCard } from '../actionCreators';
 
 const PaymentMethodsContainer = styled.div`
@@ -112,8 +112,6 @@ const PaymentMethodsContainer = styled.div`
     .payment-methods-container {
       .credit-card-container {
         align-items: center;
-        &:last-child {
-        }
         .select-container {
           padding: 0.1rem;
           height: 1rem;

@@ -80,7 +80,6 @@
     "react-toastify": "^5.5.0",
     "react-sticky": "^6.0.3",
     "react-stripe-elements": "^6.0.1",
-    "react-toastify": "^5.5.0",
     "react-transition-group": "^4.3.0",
     "redux": "^4.0.4",
     "redux-persist": "^6.0.0",
