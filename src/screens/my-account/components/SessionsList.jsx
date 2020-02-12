@@ -58,7 +58,8 @@ const SessionsListContainer = styled.div`
     }
   }
 
-  @media ${device.desktop} {
+  @media ${device.mobile} {
+    margin: 0 0 1rem;
   }
 `;
 
@@ -69,9 +70,11 @@ const SessionsList = ({ title, sessions, past, isSem }) => (
         <div className="container-empty-message">
           <p>YOU HAVE NO</p>
           <p className="title">{title}</p>
-          <Link to={ROUTES.LOCATIONS}>
-            <Button>Explore Sessions</Button>
-          </Link>
+          {!past && !isSem && (
+            <Link to={ROUTES.LOCATIONS}>
+              <Button>Explore Sessions</Button>
+            </Link>
+          )}
         </div>
       </div>
     ) : (

@@ -4,8 +4,6 @@ import { object, arrayOf } from 'prop-types';
 
 import device from 'shared/styles/mediaQueries';
 import Tabs from 'shared/components/Tabs';
-import UpcomingSessions from './components/UpcomingSessions';
-import PastSessions from './components/PastSessions';
 import MyProfile from './components/MyProfile';
 import SessionsList from './components/SessionsList';
 import MyCredits from './components/mobile/MyCredits';
@@ -36,7 +34,7 @@ export const MyAccountPageMobile = ({
       </div>
     </Tabs>
 
-    {userProfile.isSem ? (
+    {userProfile.isSem || userProfile.isReferee ? (
       <Tabs>
         <div label="As SEM">
           <SessionsList title="Upcoming sessions" sessions={semUpcomingSessions} isSem />
@@ -48,8 +46,8 @@ export const MyAccountPageMobile = ({
       </Tabs>
     ) : (
       <div>
-        <UpcomingSessions sessions={upcomingSessions} />
-        <PastSessions sessions={previousSessions} />
+        <SessionsList title="Upcoming sessions" sessions={upcomingSessions} />
+        <SessionsList title="Previous sessions" sessions={previousSessions} past />
       </div>
     )}
   </MyAccountPageContainer>
