@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { not, equals } from 'ramda';
 import styled from 'styled-components';
@@ -54,9 +54,7 @@ const BannerContainer = styled.div`
   }
 `;
 
-const FreeSessionBanner = ({ modalHandler, claimFreeSession }) => {
-  const [showBanner, setShowBanner] = useState(true);
-
+const FreeSessionBanner = ({ showBanner, modalHandler, claimFreeSession, closeModal }) => {
   const userProfile = useSelector(getUserProfile);
   const isAuthenticated = useSelector(getIsAuthenticated);
   const freeSessionNotUsed = not(equals(userProfile.freeSessionState, 'used'));
@@ -64,7 +62,7 @@ const FreeSessionBanner = ({ modalHandler, claimFreeSession }) => {
 
   return (
     <BannerContainer showBanner={showBanner && freeSessionNotUsed && freeSessionNotClaimed}>
-      <FontAwesomeIcon icon={faTimes} onClick={() => setShowBanner(false)} />
+      <FontAwesomeIcon icon={faTimes} onClick={closeModal} />
       <span className="secondary">First session</span>
       <span className="primary">FREE</span>
       {isAuthenticated ? (

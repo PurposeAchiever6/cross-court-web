@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const FreeSessionModalContainer = styled.div`
-  width: 25rem;
   display: flex;
   flex-direction: column;
   font-family: Untitled Sans;

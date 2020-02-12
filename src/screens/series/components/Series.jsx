@@ -48,8 +48,11 @@ const SeriesContainer = styled.div`
     }
   }
   @media ${device.mobile} {
+    padding: 2rem 0;
+
     h2 {
       font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
     .content {
