@@ -16,7 +16,11 @@ const SessionContainer = styled.div`
 
   @media ${device.desktop} {
     max-width: 30%;
-    margin: auto;
+    margin-right: 3%;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 
   h3 {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { object } from 'prop-types';
+import PropTypes from 'prop-types';
 import colors from 'shared/styles/constants';
 import MyProfile from '../MyProfile';
 import MyCredits from './MyCredits';
@@ -23,7 +23,7 @@ const ProfileTabsContainer = styled.div`
   }
 `;
 
-const ProfileTabs = ({ profile,editProfileLoading }) => {
+const ProfileTabs = ({ profile, editProfileLoading }) => {
   const [showCredits, setShowCredits] = useState(false);
 
   return (
@@ -46,7 +46,8 @@ const ProfileTabs = ({ profile,editProfileLoading }) => {
 };
 
 ProfileTabs.propTypes = {
-  profile: object.isRequired,
+  profile: PropTypes.object.isRequired,
+  editProfileLoading: PropTypes.bool,
 };
 
 export default ProfileTabs;

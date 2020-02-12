@@ -8,8 +8,6 @@ import Tabs from 'shared/components/Tabs';
 import SessionsList from './components/SessionsList';
 import MyProfile from './components/MyProfile';
 import MyCredits from './components/MyCredits';
-import UpcomingSessions from './components/UpcomingSessions';
-import PastSessions from './components/PastSessions';
 
 const MyAccountPageContainer = styled.div`
   display: flex;
@@ -44,7 +42,7 @@ export const MyAccountPageDesktop = ({
       <MyCredits credits={userProfile.credits} />
     </div>
     <div className="content-container">
-      {userProfile.isSem ? (
+      {userProfile.isSem || userProfile.isReferee ? (
         <Tabs>
           <div label="As SEM">
             <SessionsList title="Upcoming sessions" sessions={semUpcomingSessions} isSem />
@@ -56,8 +54,8 @@ export const MyAccountPageDesktop = ({
         </Tabs>
       ) : (
         <div>
-          <UpcomingSessions sessions={upcomingSessions} />
-          <PastSessions sessions={previousSessions} />
+          <SessionsList title="Upcoming sessions" sessions={upcomingSessions} />
+          <SessionsList title="Previous sessions" sessions={previousSessions} past />
         </div>
       )}
     </div>
