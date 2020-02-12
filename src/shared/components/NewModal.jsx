@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import useWindowSize from 'shared/hooks/useWindowSize';
+import { size } from 'shared/styles/mediaQueries';
 
-const ModalContainer = styled.div``;
 const modalStyle = {
   overlay: {
     display: 'flex',
@@ -24,22 +24,25 @@ const modalStyle = {
 };
 
 ReactModal.setAppElement('#root');
-export default function Modal({ children, shouldClose, closeHandler, isOpen }) {
+const Modal = ({ children, shouldClose, closeHandler, isOpen }) => {
+  const { width: windowSize } = useWindowSize();
+  const newModalStyle = {
+    ...modalStyle,
+    content: { ...modalStyle.content, width: windowSize < size.desktop ? '80%' : '25rem' },
+  };
   return (
-    <ModalContainer>
-      <ReactModal
-        style={modalStyle}
-        shouldCloseOnOverlayClick={shouldClose}
-        onRequestClose={closeHandler}
-        isOpen={isOpen}
-      >
-        {
-          <div className="frame">
-            <div className="scroll">{children}</div>
-          </div>
-        }
-      </ReactModal>
-    </ModalContainer>
+    <ReactModal
+      style={newModalStyle}
+      shouldCloseOnOverlayClick={shouldClose}
+      onRequestClose={closeHandler}
+      isOpen={isOpen}
+    >
+      {
+        <div className="frame">
+          <div className="scroll">{children}</div>
+        </div>
+      }
+    </ReactModal>
   );
 }
 
@@ -49,3 +52,5 @@ Modal.propTypes = {
   closeHandler: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
+
+export default Modal;
