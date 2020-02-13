@@ -34,14 +34,18 @@ const ForgotPassFormContainer = styled.div`
   form {
     display: flex;
     flex-direction: column;
+    width: 20rem;
   }
 
   p {
     width: 64%;
     font-size: 1.2rem;
     line-height: 1.5rem;
-    text-align: center;
     margin-bottom: 3rem;
+
+    @media ${device.desktop} {
+      text-align: center;
+    }
   }
 
   span {
