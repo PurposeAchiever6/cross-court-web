@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import CheckedSvg from 'shared/components/CheckedSvg';
 import colors from 'shared/styles/constants';
+import CheckboxButton from 'shared/components/CheckboxButton';
 
 const Container = styled.div`
   margin-bottom: 3rem;
@@ -49,10 +50,6 @@ const PlayerContainer = styled.div`
     width: 3.5rem;
     max-width: 3.5rem;
   }
-
-  .radio-button {
-    padding: 0;
-  }
 `;
 
 export const ArrivedPlayersList = ({ players, checkOutPlayer }) => (
@@ -61,9 +58,9 @@ export const ArrivedPlayersList = ({ players, checkOutPlayer }) => (
       <p className="title">arrived</p>
       {players.map((player, index) => (
         <PlayerContainer key={player.id}>
-          <button type="button" className="radio-button" onClick={() => checkOutPlayer(player)}>
+          <CheckboxButton onClick={() => checkOutPlayer(player)}>
             <CheckedSvg />
-          </button>
+          </CheckboxButton>
           <p className="player-name">{player.name}</p>
           <p className="player-number">{index + 1}</p>
         </PlayerContainer>

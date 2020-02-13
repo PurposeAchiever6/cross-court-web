@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import UncheckedSvg from 'shared/components/UncheckedSvg';
 import colors from 'shared/styles/constants';
+import CheckboxButton from 'shared/components/CheckboxButton';
 
 const Container = styled.div`
   margin-bottom: 3rem;
@@ -37,10 +38,6 @@ const PlayerContainer = styled.div`
     padding-left: 1rem;
     flex: 6;
   }
-
-  .radio-button {
-    padding: 0;
-  }
 `;
 
 export const NotArrivedPlayersList = ({ players, checkInPlayer }) => (
@@ -50,9 +47,9 @@ export const NotArrivedPlayersList = ({ players, checkInPlayer }) => (
         <p className="title">yet to arrive</p>
         {players.map(player => (
           <PlayerContainer key={player.id}>
-            <button type="button" className="radio-button" onClick={() => checkInPlayer(player)}>
+            <CheckboxButton onClick={() => checkInPlayer(player)}>
               <UncheckedSvg />
-            </button>
+            </CheckboxButton>
             <p className="player-name">{player.name}</p>
           </PlayerContainer>
         ))}
