@@ -41,17 +41,33 @@ const Container = styled.div`
     justify-content: space-between;
     margin: 1.2rem;
 
-    * {
-      flex: 0 0 auto;
-    }
-
     .number {
       border: 1px solid ${colors.black};
       font-size: 1.8rem;
       padding-left: 0.5rem;
       line-height: 1.5;
-      flex: 1;
+      flex: 5 3 7rem;
       margin-right: 0.5rem;
+    }
+
+    .first {
+      margin-right: 0.5rem;
+    }
+
+    .players-btn {
+      width: 100%;
+      border: 1px solid ${colors.black};
+      background-color: ${colors.white};
+      flex: 2 1 3rem;
+
+      button {
+        font-size: 1.8rem;
+        text-align: center;
+        width: 100%;
+        background-color: ${colors.white};
+        outline: none;
+        border: none;
+      }
     }
 
     p {
@@ -59,14 +75,6 @@ const Container = styled.div`
       line-height: 2rem;
       padding-bottom: 0.5rem;
     }
-  }
-
-  .players-btn {
-    height: 3rem;
-    font-size: 1.8rem;
-    border: 1px solid ${colors.black};
-    background-color: ${colors.white};
-    flex: 1;
   }
 
   .randomize-btn {
@@ -132,16 +140,16 @@ const Randomizer = () => {
       <p className="text subtitle">players missing</p>
       <div className="missing-players">
         <div className="number">
-          <p>{missingPlayers}</p>
+          <span>{missingPlayers}</span>
         </div>
-        <div>
-          <button className="players-btn" type="button" onClick={substractMissingPlayer}>
-            <p>-</p>
+        <div className="players-btn first">
+          <button type="button" onClick={substractMissingPlayer}>
+            -
           </button>
         </div>
-        <div>
-          <button className="players-btn" type="button" onClick={addMissingPlayer}>
-            <p>+</p>
+        <div className="players-btn">
+          <button type="button" onClick={addMissingPlayer}>
+            +
           </button>
         </div>
       </div>
