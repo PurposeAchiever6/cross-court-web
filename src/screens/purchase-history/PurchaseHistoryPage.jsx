@@ -124,7 +124,7 @@ const PurchaseHistoryPage = () => {
             </div>
             <div className="text-row">
               <span className="date">{purchaseFormattedDate(purchase.date)}</span>
-              <span className="price">{`$ ${currency(purchase.price / 100, {
+              <span className="price">{`$ ${currency(purchase.price, {
                 symbol: '$',
                 precision: 2,
               })}`}</span>
