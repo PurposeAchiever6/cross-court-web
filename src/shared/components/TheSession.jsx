@@ -32,7 +32,7 @@ const Section = styled.section`
     align-items: center;
   }
 
-  .boxes__item {
+  .boxes-item {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -45,7 +45,7 @@ const Section = styled.section`
     font-weight: bold;
   }
 
-  .boxes__image {
+  .boxes-image {
     margin-bottom: 1rem;
   }
 
@@ -73,38 +73,38 @@ const TheSession = props => (
       THE <span className="text">SESSION</span>
     </h2>
     <div className="boxes">
-      <div className="boxes__item">
-        <div className="boxes__image">
+      <div className="boxes-item">
+        <div className="boxes-image">
           <StopwatchSvg />
         </div>
-        <span className="boxes__text">1 Hour Session</span>
+        <span className="boxes__text">1 Hour</span>
       </div>
-      <div className="boxes__item">
-        <div className="boxes__image">
+      <div className="boxes-item">
+        <div className="boxes-image">
           <FieldSvg />
         </div>
-        <span className="boxes__text">Premium Facilities</span>
+        <span className="boxes__text">Premium Facility</span>
       </div>
-      <div className="boxes__item">
-        <div className="boxes__image">
+      <div className="boxes-item">
+        <div className="boxes-image">
           <WhistleSvg />
         </div>
         <span className="boxes__text">Session Officials</span>
       </div>
-      <div className="boxes__item">
-        <div className="boxes__image">
+      <div className="boxes-item">
+        <div className="boxes-image">
           <PlayerSvg />
         </div>
         <span className="boxes__text">15 Player Limit</span>
       </div>
-      <div className="boxes__item">
-        <div className="boxes__image">
+      <div className="boxes-item">
+        <div className="boxes-image">
           <MerchSvg />
         </div>
         <span className="boxes__text">Custom Merch</span>
       </div>
-      <div className="boxes__item">
-        <div className="boxes__image">
+      <div className="boxes-item">
+        <div className="boxes-image">
           <SpeakerSvg />
         </div>
         <span className="boxes__text">Hype Soundtracks</span>
