@@ -60,9 +60,9 @@ const SignupSuccessPage = () => {
   return (
     <PageContainer>
       <img src={PaperPlaneIcon} alt="Sent mail icon" />
-      <h1>You are almost there!</h1>
+      <h1>You&apos;re almost there!</h1>
       <p>
-        We have sent a confirmation e-mail to <strong>{`${userEmail}`}</strong>.{' '}
+        We&apos;ve sent a confirmation e-mail to <strong>{`${userEmail}`}</strong>.{' '}
         <span>Please verify your account.</span>
       </p>
       <div className="send-again-container">

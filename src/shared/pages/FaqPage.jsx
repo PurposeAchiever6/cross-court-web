@@ -102,21 +102,25 @@ const SemHandbookPage = () => {
           <h4>What are the rules and format?</h4>
           <ul>
             <li>
-              The 60 minute Session is made up of games to 5 minutes or 11 points by 2's and 3's,
-              whichever happens first
+              The 60 minute Session is made up of games to 5 minutes or 11 points by 2&apos;s and
+              3&apos;s, whichever happens first
             </li>
             <li>Winner stays on for a max of 3 in a row</li>
             <li>All fouls are taken out of bounds closest to the foul</li>
-            <li>All And 1's result in the ball back, taken out of bounds</li>
+            <li>All And 1&apos;s result in the ball back, taken out of bounds</li>
             <li>Each team gets 4 fouls, then all additional result in a 1 and 1 scenario</li>
             <li>
-              At CrossCourt, all 1 and 1's are instead a single free throw that counts as 2 points
+              At CrossCourt, all 1 and 1&apos;s are instead a single free throw that counts as 2
+              points
             </li>
             <li>
               All fouls under 10 seconds result in a CrossCourt 1 and 1The clock only stops under 10
               seconds
             </li>
-            <li>If a game is tied after 5 minutes, we tip off for a "next basket wins" scenario</li>
+            <li>
+              If a game is tied after 5 minutes, we tip off for a &quot;next basket wins&quot;
+              scenario
+            </li>
           </ul>
         </li>
         <li>
