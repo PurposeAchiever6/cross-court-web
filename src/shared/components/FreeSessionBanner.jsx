@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { not, equals } from 'ramda';
 import styled from 'styled-components';
@@ -54,7 +54,10 @@ const BannerContainer = styled.div`
   }
 `;
 
-const FreeSessionBanner = ({ showBanner, modalHandler, claimFreeSession, closeModal }) => {
+const FreeSessionBanner = ({ modalHandler }) => {
+  const [showBanner, setShowBanner] = useState(true);
+
+  const closeBannerHandler = () => setShowBanner(false);
   const userProfile = useSelector(getUserProfile);
   const isAuthenticated = useSelector(getIsAuthenticated);
   const freeSessionNotUsed = not(equals(userProfile.freeSessionState, 'used'));
@@ -62,14 +65,14 @@ const FreeSessionBanner = ({ showBanner, modalHandler, claimFreeSession, closeMo
 
   return (
     <BannerContainer showBanner={showBanner && freeSessionNotUsed && freeSessionNotClaimed}>
-      <FontAwesomeIcon icon={faTimes} onClick={closeModal} />
+      <FontAwesomeIcon icon={faTimes} onClick={closeBannerHandler} />
       <span className="secondary">First session</span>
       <span className="primary">FREE</span>
       {isAuthenticated ? (
-        <Button onClick={modalHandler}>Let's Sweat</Button>
+        <Button onClick={modalHandler}>Let&apos;s Sweat</Button>
       ) : (
         <Link to={ROUTES.LOGIN}>
-          <Button onClick={modalHandler}>Let's Sweat</Button>
+          <Button onClick={modalHandler}>Let&apos;s Sweat</Button>
         </Link>
       )}
     </BannerContainer>

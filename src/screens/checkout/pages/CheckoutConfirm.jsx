@@ -30,7 +30,7 @@ const PageContainer = styled.div`
   button {
     padding: 1rem 5rem;
   }
-  
+
   @media ${device.mobile} {
     h1 {
       width: 80%;
@@ -49,7 +49,7 @@ const CheckoutConfirm = () => {
     <PageContainer>
       <img src={CheckIcon} alt="Check icon" />
       <h1>Your purchase was completed successfully</h1>
-      <Link to={ROUTES.HOME}>
+      <Link to={ROUTES.MYACCOUNT}>
         <Button>Thanks</Button>
       </Link>
     </PageContainer>

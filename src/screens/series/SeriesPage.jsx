@@ -16,7 +16,6 @@ import FreeSessionModal from './components/FreeSessionModal';
 
 const SeriesPage = () => {
   const [showFreeSessionModal, setShowFreeSessionModal] = useState(false);
-  const [showBanner, setShowBanner] = useState(true);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -63,12 +62,9 @@ const SeriesPage = () => {
 
       <FreeSessionBanner
         modalHandler={() => {
-          setShowBanner(false);
           setShowFreeSessionModal(true);
         }}
         claimFreeSession={claimFreeSession}
-        showBanner={showBanner}
-        closeBanner={() => setShowBanner(false)}
       />
       <Plans selectProductHandler={selectProductHandler} availableProducts={availableProducts} />
       <Series />
