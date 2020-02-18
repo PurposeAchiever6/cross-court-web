@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { not, equals } from 'ramda';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import ROUTES from 'shared/constants/routes';
-import { getUserProfile } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
+
+import ROUTES from 'shared/constants/routes';
 import Button from 'shared/components/Button';
+import Modal from 'shared/components/Modal';
+import FreeSessionConfirmModal from 'shared/components/FreeSessionConfirmModal';
 
 const BannerContainer = styled.div`
   display: ${({ showBanner }) => (showBanner ? 'flex' : 'none')};
@@ -54,28 +57,39 @@ const BannerContainer = styled.div`
   }
 `;
 
-const FreeSessionBanner = ({ modalHandler }) => {
+const FreeSessionBanner = () => {
   const [showBanner, setShowBanner] = useState(true);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const closeBannerHandler = () => setShowBanner(false);
-  const userProfile = useSelector(getUserProfile);
+
+  const showConfirmModalHandler = () => setShowConfirmModal(true);
+  const hideConfirmModalHandler = () => setShowConfirmModal(false);
+
+  const { freeSessionState } = useSelector(getUserProfile);
   const isAuthenticated = useSelector(getIsAuthenticated);
-  const freeSessionNotUsed = not(equals(userProfile.freeSessionState, 'used'));
-  const freeSessionNotClaimed = not(equals(userProfile.freeSessionState, 'claimed'));
+
+  const freeSessionNotUsed = not(equals(freeSessionState, 'used'));
+  const freeSessionNotClaimed = not(equals(freeSessionState, 'claimed'));
 
   return (
-    <BannerContainer showBanner={showBanner && freeSessionNotUsed && freeSessionNotClaimed}>
-      <FontAwesomeIcon icon={faTimes} onClick={closeBannerHandler} />
-      <span className="secondary">First session</span>
-      <span className="primary">FREE</span>
-      {isAuthenticated ? (
-        <Button onClick={modalHandler}>Let&apos;s Sweat</Button>
-      ) : (
-        <Link to={ROUTES.LOGIN}>
-          <Button onClick={modalHandler}>Let&apos;s Sweat</Button>
-        </Link>
-      )}
-    </BannerContainer>
+    <>
+      <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
+        <FreeSessionConfirmModal closeHandler={hideConfirmModalHandler} />
+      </Modal>
+      <BannerContainer showBanner={showBanner && freeSessionNotUsed && freeSessionNotClaimed}>
+        <FontAwesomeIcon icon={faTimes} onClick={closeBannerHandler} />
+        <span className="secondary">First session</span>
+        <span className="primary">FREE</span>
+        {isAuthenticated ? (
+          <Button onClick={showConfirmModalHandler}>Let&apos;s Sweat</Button>
+        ) : (
+          <Link to={ROUTES.LOGIN}>
+            <Button>Let&apos;s Sweat</Button>
+          </Link>
+        )}
+      </BannerContainer>
+    </>
   );
 };
 

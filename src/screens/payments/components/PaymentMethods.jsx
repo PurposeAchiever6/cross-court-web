@@ -31,6 +31,7 @@ const PaymentMethodsContainer = styled.div`
       font-size: 2rem;
       font-weight: 500;
       color: #bbbecd;
+      text-align: center;
     }
     .credit-card-container {
       display: flex;
