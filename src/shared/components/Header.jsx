@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import DesktopMenu from 'cheeseburger-menu';
-import ScrollLock from 'react-scrolllock';
 import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 import Button from 'shared/components/Button';
@@ -10,7 +9,7 @@ import LogoSvg from 'shared/components/svg/LogoSvg';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import SidebarMenu from './SidebarMenu';
-import Modal from './Modal';
+import MobileMenu from './MobileMenu';
 
 const Container = styled.div`
   z-index: 10;
@@ -84,19 +83,6 @@ const Container = styled.div`
   }
 `;
 
-const MobileMenu = styled.div`
-  display: none;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-
-  @media ${device.mobile} {
-    display: ${({ open }) => (open ? 'block' : 'none')};
-  }
-`;
-
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -106,13 +92,7 @@ function Header() {
 
   return (
     <Container>
-      <Modal>
-        <ScrollLock isActive={menuOpen}>
-          <MobileMenu open={menuOpen}>
-            <SidebarMenu menuToggler={toggleMenu} />
-          </MobileMenu>
-        </ScrollLock>
-      </Modal>
+      <MobileMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />
       <DesktopMenu isOpen={menuOpen} closeCallback={toggleMenu} topOffset="82px" width={400}>
         <SidebarMenu menuToggler={toggleMenu} />
       </DesktopMenu>
