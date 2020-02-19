@@ -234,6 +234,7 @@ const SessionsPageContainer = styled.div`
 const SessionsPage = () => {
   const { id, date } = useParams();
   const dispatch = useDispatch();
+
   const isPageLoading = useSelector(getPageLoading);
   const sessionInfo = useSelector(getSessionInfo);
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -256,6 +257,7 @@ const SessionsPage = () => {
   if (isNil(id)) {
     return <Redirect to="/" />;
   }
+
   return isPageLoading ? (
     <Loading />
   ) : (

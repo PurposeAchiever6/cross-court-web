@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { isEmpty } from 'ramda';
+import { isEmpty, take } from 'ramda';
 import Button from 'shared/components/Button';
 import colors from 'shared/styles/constants';
 import device from 'shared/styles/mediaQueries';
@@ -63,32 +63,37 @@ const SessionsListContainer = styled.div`
   }
 `;
 
-const SessionsList = ({ title, sessions, past, isSem }) => (
-  <SessionsListContainer>
-    {isEmpty(sessions) ? (
-      <div className="empty-container">
-        <div className="container-empty-message">
-          <p>YOU HAVE NO</p>
-          <p className="title">{title}</p>
-          {!past && !isSem && (
-            <Link to={ROUTES.LOCATIONS}>
-              <Button>Explore Sessions</Button>
-            </Link>
-          )}
+const SessionsList = ({ title, sessions, past, isSem }) => {
+  const filteredSessions = sessions.filter(session => session.state !== 'canceled');
+  const sesionsToShow = take(3, filteredSessions);
+
+  return (
+    <SessionsListContainer>
+      {isEmpty(sesionsToShow) ? (
+        <div className="empty-container">
+          <div className="container-empty-message">
+            <p>YOU HAVE NO</p>
+            <p className="title">{title}</p>
+            {!past && !isSem && (
+              <Link to={ROUTES.LOCATIONS}>
+                <Button>Explore Sessions</Button>
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
-    ) : (
-      <div className="sessions">
-        <h3>{title}</h3>
-        <div className="sessions-container">
-          {sessions.map(session => (
-            <Session isSem={isSem} past={past} key={session.id} sessionInfo={session} />
-          ))}
+      ) : (
+        <div className="sessions">
+          <h3>{title}</h3>
+          <div className="sessions-container">
+            {sesionsToShow.map(session => (
+              <Session isSem={isSem} past={past} key={session.id} sessionInfo={session} />
+            ))}
+          </div>
         </div>
-      </div>
-    )}
-  </SessionsListContainer>
-);
+      )}
+    </SessionsListContainer>
+  );
+};
 
 SessionsList.propTypes = {
   past: PropTypes.bool,
