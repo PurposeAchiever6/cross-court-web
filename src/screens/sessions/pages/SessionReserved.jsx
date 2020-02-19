@@ -10,6 +10,8 @@ import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import CheckImg from 'shared/images/CheckIcon.png';
 import Button from 'shared/components/Button';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { toast } from 'react-toastify';
 import { getSessionId, getSessionDate } from '../reducer';
 
 const SessionReservedContainer = styled.div`
@@ -61,6 +63,7 @@ const SessionReservedContainer = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
     }
 
     .facebook {
@@ -101,6 +104,8 @@ const SessionReserved = () => {
   const APP_URL = process.env.REACT_APP_URL;
   const SHARE_URL = `${APP_URL}/session/${sessionId}/${sessionDate}`;
 
+  const onCopyHandler = () => toast.success('Link Copied!');
+
   return (
     <SessionReservedContainer>
       <div className="session-info-container">
@@ -117,7 +122,9 @@ const SessionReserved = () => {
             <FontAwesomeIcon icon={faWhatsapp} />
           </WhatsappShareButton>
           <button className="external-link" type="button">
-            <FontAwesomeIcon icon={faExternalLinkAlt} />
+            <CopyToClipboard text={SHARE_URL} onCopy={onCopyHandler}>
+              <FontAwesomeIcon icon={faExternalLinkAlt} />
+            </CopyToClipboard>
           </button>
         </div>
         <Link to={ROUTES.MYACCOUNT}>
