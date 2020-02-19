@@ -70,11 +70,11 @@ Map.propTypes = {
   locations: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      lat: PropTypes.string.isRequired,
-      lng: PropTypes.string.isRequired,
+      lat: PropTypes.number.isRequired,
+      lng: PropTypes.number.isRequired,
     })
   ),
-  selectedLocation: PropTypes.string.isRequired,
+  selectedLocation: PropTypes.string,
   setLocationHandler: PropTypes.func.isRequired,
 };
 

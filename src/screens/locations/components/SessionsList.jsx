@@ -6,7 +6,9 @@ import { isEmpty } from 'ramda';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
+import SessionLevel from 'shared/components/SessionLevel';
 import { hourRange, urlFormattedDate, isSameDay, sortSessionsByDate } from 'shared/utils/date';
+import { advancedLevel } from 'shared/texts/constants';
 
 const SessionsListContainer = styled.div`
   display: flex;
@@ -42,6 +44,7 @@ const SessionsListContainer = styled.div`
         font-size: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 0.1rem;
+        margin-bottom: 0.25rem;
       }
     }
 
@@ -86,11 +89,12 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
   return (
     <SessionsListContainer>
-      {sortedSessions.map(({ id, startTime, time, isFull, location }) => (
+      {sortedSessions.map(({ id, startTime, time, isFull, location, level }) => (
         <div className="session-list-item-container" key={id}>
           <div className="text-container">
             <div className="time">{hourRange(time)}</div>
             <div className="location">{location.name}</div>
+            {level === advancedLevel && <SessionLevel level={level} />}
           </div>
           {isFull ? (
             <a href="mailto:info@crosscourt.com">
@@ -114,6 +118,7 @@ SessionsList.propTypes = {
       startTime: PropTypes.string.isRequired,
       time: PropTypes.string.isRequired,
       location: PropTypes.object.isRequired,
+      level: PropTypes.string.isRequired,
     })
   ),
   selectedDate: PropTypes.instanceOf(Date).isRequired,

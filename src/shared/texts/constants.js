@@ -13,4 +13,9 @@ const sessionOfficialText = `
   seamless and enjoyable in session experience, every time.
 `;
 
-export { sessionExperienceText, sessionOfficialText };
+const advancedLevel = 'advanced';
+
+const advancedExplanation =
+  '<p>Advanced sessions are for</p><p>expert players only. No ball</p><p>droppers, no slow runners.</p>';
+
+export { sessionExperienceText, sessionOfficialText, advancedLevel, advancedExplanation };

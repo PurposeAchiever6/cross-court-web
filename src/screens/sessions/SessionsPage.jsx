@@ -16,6 +16,8 @@ import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import AlternativeButton from 'shared/components/AlternativeButton';
+import { advancedLevel } from 'shared/texts/constants';
+import SessionLevel from 'shared/components/SessionLevel';
 
 import {
   initialLoadInit,
@@ -71,14 +73,11 @@ const SessionsPageContainer = styled.div`
 
         .date-container,
         .address-container,
+        .level-container,
         .time-container {
           display: flex;
           flex-direction: column;
           margin-bottom: 2rem;
-        }
-
-        .address-container {
-          flex: 1;
         }
 
         .sessions-available-container {
@@ -92,6 +91,7 @@ const SessionsPageContainer = styled.div`
           text-transform: uppercase;
           margin-bottom: 1rem;
           letter-spacing: 0.2rem;
+          display: block;
         }
       }
 
@@ -290,6 +290,12 @@ const SessionsPage = () => {
               <span className="text">{sessionInfo.location.direction}</span>
               <span className="location">{`${sessionInfo.location.city}, CA ${sessionInfo.location.zipcode}`}</span>
             </div>
+            {sessionInfo.level === advancedLevel && (
+              <div className="level-container">
+                <span className="title">Level</span>
+                <SessionLevel showInfo level={sessionInfo.level} />
+              </div>
+            )}
             {isAuthenticated && (
               <span className="sessions-available-container">{`You have ${userProfile.credits} available sessions`}</span>
             )}
@@ -311,7 +317,7 @@ const SessionsPage = () => {
                 </span>
               </div>
               <div className="referee-container">
-                <span className="title">Your Session Official</span>
+                <span className="title">Your SO</span>
                 {isNil(sessionInfo.referee) || isNil(sessionInfo.referee.imageUrl) ? (
                   <div className="not-assigned-container">
                     <UserSvg />
