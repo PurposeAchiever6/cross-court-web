@@ -256,7 +256,6 @@ const SessionsPage = () => {
   if (isNil(id)) {
     return <Redirect to="/" />;
   }
-
   return isPageLoading ? (
     <Loading />
   ) : (

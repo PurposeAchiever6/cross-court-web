@@ -2,6 +2,7 @@ import React from 'react';
 import { isNil } from 'ramda';
 import { useSelector } from 'react-redux';
 import { getIsAuthenticated } from 'screens/auth/reducer';
+import PropTypes from 'prop-types';
 
 import ReserveButton from './ReserveButton';
 import CancelButton from './CancelButton';
@@ -29,6 +30,14 @@ const SessionButtons = ({
       )}
     </>
   );
+};
+
+SessionButtons.propTypes = {
+  reserveSessionAction: PropTypes.func.isRequired,
+  confirmSessionAction: PropTypes.func.isRequired,
+  showCancelModalAction: PropTypes.func.isRequired,
+  userProfile: PropTypes.object.isRequired,
+  session: PropTypes.object.isRequired,
 };
 
 export default SessionButtons;
