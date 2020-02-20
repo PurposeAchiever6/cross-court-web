@@ -21,6 +21,7 @@ const Container = styled.div`
   .text {
     font-weight: bolder;
     display: block;
+    font-style: italic;
   }
 
   .note {

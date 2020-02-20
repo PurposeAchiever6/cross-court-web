@@ -23,7 +23,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,json,scss,css,md}": [
+    "*.{js,jsx,json,scss,css}": [
       "prettier --write",
       "yarn lint:fix --quiet",
       "git add"

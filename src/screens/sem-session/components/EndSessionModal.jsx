@@ -58,13 +58,13 @@ const EndSessionModal = ({ closeHandler, endSession }) => (
   <Container>
     <CloseButton className="close-btn" color={colors.black} onClick={closeHandler} />
     <ContentContainer>
-      <h2>End session</h2>
+      <h2>End Session</h2>
       <p>Are you sure you want to end this session?</p>
       <Button className="end-session-btn" onClick={endSession}>
-        End session
+        End Session
       </Button>
       <span className="link" onClick={closeHandler}>
-        continue session
+        Continue Session
       </span>
     </ContentContainer>
   </Container>

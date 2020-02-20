@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import FieldSvg from 'shared/components/svg/FieldSvg';
-import MerchSvg from 'shared/components/svg/MerchSvg';
 import StopwatchSvg from 'shared/components/svg/StopwatchSvg';
 import WhistleSvg from 'shared/components/svg/WhistleSvg';
 import PlayerSvg from 'shared/components/svg/PlayerSvg';
@@ -39,7 +38,7 @@ const Section = styled.section`
     align-items: center;
   }
 
-  .boxes__text {
+  .boxes-text {
     width: 99%;
     text-align: center;
     font-weight: bold;
@@ -77,37 +76,31 @@ const TheSession = props => (
         <div className="boxes-image">
           <StopwatchSvg />
         </div>
-        <span className="boxes__text">1 Hour</span>
+        <span className="boxes-text">1 Hour</span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
           <FieldSvg />
         </div>
-        <span className="boxes__text">Premium Facility</span>
+        <span className="boxes-text">Premium Facility</span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
           <WhistleSvg />
         </div>
-        <span className="boxes__text">Session Officials</span>
+        <span className="boxes-text">Session Officials</span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
           <PlayerSvg />
         </div>
-        <span className="boxes__text">15 Player Limit</span>
-      </div>
-      <div className="boxes-item">
-        <div className="boxes-image">
-          <MerchSvg />
-        </div>
-        <span className="boxes__text">Custom Merch</span>
+        <span className="boxes-text">15 Player Limit</span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
           <SpeakerSvg />
         </div>
-        <span className="boxes__text">Hype Soundtracks</span>
+        <span className="boxes-text">Hype Soundtracks</span>
       </div>
     </div>
   </Section>

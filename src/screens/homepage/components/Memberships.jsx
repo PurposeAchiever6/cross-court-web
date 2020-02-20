@@ -70,12 +70,12 @@ const Memberships = () => (
       <p className="note">
         <em>You bring the energy.</em>
       </p>
-      <Link to={ROUTES.SERIES}>
-        <Button>Explore Memberships</Button>
+      <Link to={ROUTES.LOCATIONS}>
+        <Button>Find a Session</Button>
       </Link>
     </div>
     <div className="memberships-container">
-      <span className="text">Are you a first time player?</span>
+      <span className="text">New to CrossCourt?</span>
       <Link to={ROUTES.FAQ}>
         <AlternativeButton>Learn More</AlternativeButton>
       </Link>
