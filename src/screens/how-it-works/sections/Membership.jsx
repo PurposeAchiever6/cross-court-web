@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import ROUTES from 'shared/constants/routes';
 import { Link } from 'react-router-dom';
-import AlternativeButton from 'shared/components/AlternativeButton';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
@@ -25,7 +24,7 @@ const MembershipSection = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 3.25rem;
+    margin-bottom: 1rem;
   }
 
   .membership-title {
@@ -69,15 +68,11 @@ function Membership() {
   return (
     <MembershipSection>
       <div className="membership-info">
-        <h2 className="membership-title">Sounds good?</h2>
-        <p className="membership-text">Your first month is on us.</p>
+        <h2 className="membership-title">Ready to Sweat?</h2>
       </div>
       <div className="membership-find">
         <Link to={ROUTES.LOCATIONS}>
           <Button>See Schedule</Button>
-        </Link>
-        <Link to={ROUTES.SERIES}>
-          <AlternativeButton>Explore Memberships</AlternativeButton>
         </Link>
       </div>
     </MembershipSection>

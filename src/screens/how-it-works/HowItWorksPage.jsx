@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import TheSession from 'shared/components/TheSession';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
+import FreeSessionBanner from 'shared/components/FreeSessionBanner';
 import Membership from './sections/Membership';
 import Sweat from './sections/Sweat';
 import SweatDesktop from './sections/SweatDesktop';
@@ -68,6 +69,7 @@ const Desktop = styled.div`
 function HowItWorksPage() {
   return (
     <>
+      <FreeSessionBanner />
       <Hero />
       <Mobile>
         <Signup />

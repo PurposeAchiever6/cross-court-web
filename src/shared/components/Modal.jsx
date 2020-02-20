@@ -24,12 +24,14 @@ const modalStyle = {
 };
 
 ReactModal.setAppElement('#root');
+
 const Modal = ({ children, shouldClose, closeHandler, isOpen }) => {
   const { width: windowSize } = useWindowSize();
   const newModalStyle = {
     ...modalStyle,
     content: { ...modalStyle.content, width: windowSize < size.desktop ? '80%' : '25rem' },
   };
+
   return (
     <ReactModal
       style={newModalStyle}
@@ -44,7 +46,7 @@ const Modal = ({ children, shouldClose, closeHandler, isOpen }) => {
       }
     </ReactModal>
   );
-}
+};
 
 Modal.propTypes = {
   children: PropTypes.element.isRequired,

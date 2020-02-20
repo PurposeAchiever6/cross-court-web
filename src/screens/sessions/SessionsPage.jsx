@@ -5,7 +5,7 @@ import { isNil } from 'ramda';
 import styled from 'styled-components';
 
 import Loading from 'shared/components/Loading';
-import NewModal from 'shared/components/NewModal';
+import Modal from 'shared/components/Modal';
 import BackButton from 'shared/components/BackButton';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
@@ -234,6 +234,7 @@ const SessionsPageContainer = styled.div`
 const SessionsPage = () => {
   const { id, date } = useParams();
   const dispatch = useDispatch();
+
   const isPageLoading = useSelector(getPageLoading);
   const sessionInfo = useSelector(getSessionInfo);
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -261,12 +262,12 @@ const SessionsPage = () => {
     <Loading />
   ) : (
     <SessionsPageContainer>
-      <NewModal shouldClose closeHandler={showCancelModalAction} isOpen={shouldShowCancelModal}>
+      <Modal shouldClose closeHandler={showCancelModalAction} isOpen={shouldShowCancelModal}>
         <CancelModal
           closeHandler={showCancelModalAction}
           cancelSessionAction={cancelSessionAction}
         />
-      </NewModal>
+      </Modal>
       <div className="title-container">
         <BackButton />
         <h2>
@@ -334,7 +335,7 @@ const SessionsPage = () => {
               />
               {userProfile.credits === 0 && (
                 <Link to={ROUTES.SERIES}>
-                  <AlternativeButton className="buy-btn">Buy Credits</AlternativeButton>
+                  <AlternativeButton className="buy-btn">Purchase Sessions</AlternativeButton>
                 </Link>
               )}
             </div>

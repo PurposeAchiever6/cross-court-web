@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
+import FreeSessionBanner from 'shared/components/FreeSessionBanner';
 
 const SemHandbookPageContainer = styled.div`
   display: flex;
@@ -21,6 +22,7 @@ const SemHandbookPageContainer = styled.div`
 const SemHandbookPage = () => {
   return (
     <SemHandbookPageContainer>
+      <FreeSessionBanner />
       <h2>CrossCourt FAQ</h2>
       <h3>Players</h3>
       <ul>
@@ -197,7 +199,7 @@ const SemHandbookPage = () => {
         </li>
         <li>
           <h4>If I join, can I go to any location?</h4>
-          <p>Yes, our series are location transferable.</p>
+          <p>Yes, use your series at any of our locations.</p>
         </li>
         <li>
           <h4>Do you offer corporate events or private parties?</h4>

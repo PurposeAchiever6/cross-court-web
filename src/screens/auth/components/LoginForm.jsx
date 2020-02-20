@@ -141,7 +141,7 @@ const LoginForm = ({ error, loginHandler, isLoading }) => (
               <Link to={ROUTES.FORGOTPASSWORD}>Forgot your password?</Link>
             </span>
             <span className="signup">
-              If you are a new costumer
+              If you are a new player
               <Link to={ROUTES.SIGNUP}>
                 <strong>Sign up here</strong>
               </Link>

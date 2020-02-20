@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
-import NewModal from 'shared/components/NewModal';
+import Modal from 'shared/components/Modal';
 import Button from 'shared/components/Button';
 
 import Timer from '../components/Timer';
@@ -49,11 +49,11 @@ const SessionStatePage = () => {
       <WinStreak />
       <Randomizer />
       <Button className="end-session-btn" onClick={() => setShowModal(true)}>
-        End session
+        End Session
       </Button>
-      <NewModal shouldClose closeHandler={() => setShowModal(false)} isOpen={showModal}>
+      <Modal shouldClose closeHandler={() => setShowModal(false)} isOpen={showModal}>
         <EndSessionModal closeHandler={() => setShowModal(false)} endSession={endSession} />
-      </NewModal>
+      </Modal>
     </Container>
   );
 };

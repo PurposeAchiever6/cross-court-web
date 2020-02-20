@@ -35,6 +35,7 @@ const SessionContainer = styled.div`
     object-fit: cover;
     object-position: top;
     display: flex;
+    height: 13.5rem;
   }
 
   .image {
@@ -114,7 +115,7 @@ const SessionContainer = styled.div`
 
   @media ${device.mobile} {
     flex-direction: row;
-    height: 12rem;
+    height: 13.5rem;
 
     img {
       height: 100%;

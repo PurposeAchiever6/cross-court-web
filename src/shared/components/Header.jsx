@@ -108,7 +108,7 @@ function Header() {
           </Link>
         </div>
         <Link to={ROUTES.LOCATIONS}>
-          <Button className="button">Reserve session</Button>
+          <Button className="button">Reserve Session</Button>
         </Link>
       </div>
     </Container>

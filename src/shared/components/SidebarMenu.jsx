@@ -127,7 +127,7 @@ const SidebarMenu = ({ menuToggler }) => {
         )}
         {isAuthenticated && (
           <li className="list-item">
-            <button href="#" onClick={() => logoutAction()}>
+            <button type="button" href="#" onClick={() => logoutAction()}>
               Logout
             </button>
           </li>

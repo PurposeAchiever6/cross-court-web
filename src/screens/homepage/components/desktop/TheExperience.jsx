@@ -12,9 +12,11 @@ const Container = styled.div`
 
   .title {
     font-size: 2rem;
+    font-weight: 500;
 
     span {
-      font-weight: 500;
+      font-style: italic;
+      font-weight: 600;
     }
   }
 `;
@@ -28,7 +30,7 @@ const TheExperience = () => (
   <>
     <Container>
       <h1 className="title">
-        <span>THE</span> EXPERIENCE
+        THE <span>EXPERIENCE</span>
       </h1>
       <p>
         CrossCourt is a high-intensity, team based fitness experience. An electric-yet-cathartic
