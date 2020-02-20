@@ -115,7 +115,7 @@ const SemSession = () => {
       )}
       <div className="button-container">
         <Button onClick={confirmCheckedInPlayers} className="button">
-          Go to session
+          Go to Session
         </Button>
       </div>
     </Container>

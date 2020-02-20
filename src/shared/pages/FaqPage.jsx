@@ -197,7 +197,7 @@ const SemHandbookPage = () => {
         </li>
         <li>
           <h4>If I join, can I go to any location?</h4>
-          <p>Yes, our series are location transferable.</p>
+          <p>Yes, use your series at any of our locations.</p>
         </li>
         <li>
           <h4>Do you offer corporate events or private parties?</h4>

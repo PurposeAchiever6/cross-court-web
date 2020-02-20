@@ -49,7 +49,7 @@ const SessionStatePage = () => {
       <WinStreak />
       <Randomizer />
       <Button className="end-session-btn" onClick={() => setShowModal(true)}>
-        End session
+        End Session
       </Button>
       <NewModal shouldClose closeHandler={() => setShowModal(false)} isOpen={showModal}>
         <EndSessionModal closeHandler={() => setShowModal(false)} endSession={endSession} />

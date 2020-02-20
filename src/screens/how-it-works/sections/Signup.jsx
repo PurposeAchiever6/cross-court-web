@@ -1,5 +1,5 @@
 import React from 'react';
-import ROUTES from 'shared/constants/routes'
+import ROUTES from 'shared/constants/routes';
 import ClockSvg from 'shared/components/svg/ClockSvg';
 import FieldSvg from 'shared/components/svg/FieldSvg';
 import ArrowLeftSvg from 'shared/components/svg/ArrowLeftSvg';
@@ -29,8 +29,8 @@ function Signup() {
       </Icons>
       <Par>
         <p>
-          Whether you’re an existing member, first time player, or just looking to drop in, find a
-          session that fits your schedule and apply your credits.
+          Reserve one of the 15 available spots in a session at a location near you. Come solo or
+          bring a friend. Bring your shoes, some water, a towel, and a ball if you have em.
         </p>
       </Par>
       <Link to={ROUTES.LOCATIONS}>

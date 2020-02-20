@@ -23,7 +23,7 @@ REACT_APP_FOUNTAIN_SEM_LINK=https://work.fountain.com/jobs/CrossCourt-CrossCourt
 
 REACT_APP_FACEBOOK_LINK=https://www.facebook.com/CrossCourtBall/
 REACT_APP_TWITTER_LINK=https://twitter.com/crosscourtball
-REACT_APP_INSTAGRAM_LINK=https://instagram.com/crosscourtball
+REACT_APP_INSTAGRAM_LINK=https://instagram.com/crosscourt
 REACT_APP_LINKEDIN_LINK=https://www.linkedin.com/in/crosscourt-basketball-42539b162
 ```
 

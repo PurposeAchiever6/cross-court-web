@@ -334,7 +334,7 @@ const SessionsPage = () => {
               />
               {userProfile.credits === 0 && (
                 <Link to={ROUTES.SERIES}>
-                  <AlternativeButton className="buy-btn">Buy Credits</AlternativeButton>
+                  <AlternativeButton className="buy-btn">Purchase Sessions</AlternativeButton>
                 </Link>
               )}
             </div>

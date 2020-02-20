@@ -34,8 +34,8 @@ function Sweat() {
           you covered.
         </p>
         <p>
-          Our sessions are fast paced and non stop with a 15 player limit to guarantee you leave
-          dripping in sweat. Walking on the court is frowned upon as we expect 60 minutes of
+          CrossCourt series are fast paced and non stop with a 15 player limit to guarantee you
+          leave dripping in sweat. Walking on the court is frowned upon as we expect 60 minutes of
           straight hustle.
         </p>
         <p>
