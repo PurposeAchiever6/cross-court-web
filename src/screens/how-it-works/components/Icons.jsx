@@ -8,7 +8,7 @@ const Icons = styled.div`
   align-items: center;
   margin: 0 2rem;
   margin-top: 5rem;
-  text-align: center;
+  text-align: baseline;
 
   @media ${device.desktop} {
     margin: 0;

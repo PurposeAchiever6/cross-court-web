@@ -26,26 +26,15 @@ function Showup() {
               </Icon>
               <Icon>
                 <TimerSvg />
-                <Text>Arrive at least 10 minutes early</Text>
+                <Text>Guided Experience</Text>
               </Icon>
             </Icons>
             <Par>
+              <p>Each hour-long session is run by our trained Experience Team</p>
               <p>
-                Athletic shoes are required, and we also suggest bringing a ball, water, and towel.
-                We’ll take care of the rest.
-              </p>
-              <p>
-                Arriving early is recommended since the first 10 players to check in start the first
-                game.
-              </p>
-              <p>
-                When you arrive, your Session Experience Manager will check you in and hand you a
-                jersey. Depending on the order of your arrival, your SEM will let you know which
-                color jersey to wear.
-              </p>
-              <p>
-                In the meantime, talk strategy with your teammates, or stretch out until you hear
-                the whistle.
+                Our Session Experience Managers will check you in, bump music, keep score, and make
+                sure you leave dripping in sweat, while our Session Officials will enforce the rules
+                and maintain order on the court
               </p>
             </Par>
           </div>

@@ -81,15 +81,15 @@ const Series = () => {
         <div className="item">
           <img src={CalendarIcon} alt="Calendar icon" />
           <div className="text-container">
-            <span className="title">Non Expiring</span>
+            <span className="title">Don&apos;t Expire</span>
             <span className="text">Purchase and use your series at your convenience</span>
           </div>
         </div>
         <div className="item">
           <img src={CourtIcon} alt="Court icon" />
           <div className="text-container">
-            <div className="title">On Any Location</div>
-            <div className="text">Your sessions are valid for any of the CrossCourt locations.</div>
+            <div className="title">Are Location Transferable</div>
+            <div className="text">Use your series at any of our locations.</div>
           </div>
         </div>
       </div>
