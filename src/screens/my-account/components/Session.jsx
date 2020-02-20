@@ -31,7 +31,7 @@ const SessionContainer = styled.div`
 
   img {
     width: 100%;
-    height: 100%;
+    height: 10rem;
     object-fit: cover;
     object-position: top;
     display: flex;
@@ -116,6 +116,13 @@ const SessionContainer = styled.div`
   @media ${device.mobile} {
     flex-direction: row;
     height: 13.5rem;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: flex;
+    }
   }
 `;
 
