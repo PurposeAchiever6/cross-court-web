@@ -8,7 +8,6 @@ import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import SessionLevel from 'shared/components/SessionLevel';
 import { hourRange, urlFormattedDate, isSameDay, sortSessionsByDate } from 'shared/utils/date';
-import { advancedLevel } from 'shared/texts/constants';
 
 const SessionsListContainer = styled.div`
   display: flex;
@@ -94,7 +93,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           <div className="text-container">
             <div className="time">{hourRange(time)}</div>
             <div className="location">{location.name}</div>
-            {level === advancedLevel && <SessionLevel level={level} />}
+            <SessionLevel level={level} />
           </div>
           {isFull ? (
             <a href="mailto:info@crosscourt.com">
