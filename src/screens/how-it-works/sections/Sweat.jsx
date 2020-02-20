@@ -30,21 +30,13 @@ function Sweat() {
       </Icons>
       <Par>
         <p>
-          Whether you’re looking for an hour long sweat sesh or some upbeat competition, we’ve got
-          you covered.
+          Whether you’re looking to sweat for 60 minutes or get a little competitive, we’ve got you
+          covered.
         </p>
         <p>
-          CrossCourt series are fast paced and non stop with a 15 player limit to guarantee you
-          leave dripping in sweat. Walking on the court is frowned upon as we expect 60 minutes of
-          straight hustle.
-        </p>
-        <p>
-          Each Session is made up of games to 5 minutes or first to 11 by 2s and 3s - whichever
-          comes first. Winning team stays for a max of three wins in a row.
-        </p>
-        <p>
-          If there’s less than 15 players, our custom Player Selection Process randomly chooses who
-          gets to stay on the court.
+          Our high intensity sessions are fast paced and non stop. Games are to 5 minutes or first
+          to 11 by 2’s and 3’s, whichever comes first. Winner stays, but only for a max of 3 games
+          in a row to ensure you leave dripping in sweat.
         </p>
       </Par>
       <Link to={ROUTES.LOCATIONS}>

@@ -59,7 +59,6 @@ const PlanContainer = styled.div`
       font-weight: bold;
       font-size: 4rem;
       line-height: 5rem;
-      font-family: Space Mono;
     }
 
     .text {
