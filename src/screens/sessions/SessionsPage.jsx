@@ -155,6 +155,12 @@ const SessionsPageContainer = styled.div`
             width: 94%;
           }
 
+          .btn-alternative {
+            color: ${colors.black};
+            border-color: ${colors.black};
+            padding: 1rem 2.3rem;
+          }
+
           .buy-btn {
             background-color: ${colors.black};
             color: ${colors.white};

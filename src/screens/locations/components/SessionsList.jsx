@@ -2,12 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { isEmpty } from 'ramda';
+
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import SessionLevel from 'shared/components/SessionLevel';
-import { hourRange, urlFormattedDate, isSameDay, sortSessionsByDate } from 'shared/utils/date';
+import {
+  hourRange,
+  urlFormattedDate,
+  isSameDay,
+  sortSessionsByDate,
+  formatSessionTime,
+  formatSessionDate,
+} from 'shared/utils/date';
+import { getUserProfile } from 'screens/my-account/reducer';
 
 const SessionsListContainer = styled.div`
   display: flex;
@@ -50,6 +60,7 @@ const SessionsListContainer = styled.div`
     .btn-alternative {
       color: ${colors.black};
       border-color: ${colors.black};
+      padding: 1rem 2.3rem;
     }
   }
 
@@ -69,6 +80,8 @@ const SessionsListContainer = styled.div`
 `;
 
 const SessionsList = ({ availableSessions, selectedDate }) => {
+  const { phoneNumber } = useSelector(getUserProfile);
+
   const sessionList = availableSessions.filter(({ startTime }) =>
     isSameDay(startTime, selectedDate)
   );
@@ -88,24 +101,31 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
   return (
     <SessionsListContainer>
-      {sortedSessions.map(({ id, startTime, time, isFull, location, level }) => (
-        <div className="session-list-item-container" key={id}>
-          <div className="text-container">
-            <div className="time">{hourRange(time)}</div>
-            <div className="location">{location.name}</div>
-            <SessionLevel level={level} />
+      {sortedSessions.map(({ id, startTime, time, full, location, level }) => {
+        const sessionTime = formatSessionTime(time);
+        const URLdate = urlFormattedDate(startTime);
+        const emailSessionDate = formatSessionDate(startTime);
+        const mailInfo = `mailto:info@crosscourt.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${location.name}. Please notify me if a spot opens up. You can reach me at ${phoneNumber}.`;
+
+        return (
+          <div className="session-list-item-container" key={id}>
+            <div className="text-container">
+              <div className="time">{hourRange(time)}</div>
+              <div className="location">{location.name}</div>
+              <SessionLevel level={level} />
+            </div>
+            {full ? (
+              <a href={mailInfo}>
+                <AlternativeButton className="btn-alternative">Join Waitlist</AlternativeButton>
+              </a>
+            ) : (
+              <Link to={`/session/${id}/${URLdate}`}>
+                <Button>Reserve</Button>
+              </Link>
+            )}
           </div>
-          {isFull ? (
-            <a href="mailto:info@crosscourt.com">
-              <AlternativeButton className="btn-alternative">Join Waitlist</AlternativeButton>
-            </a>
-          ) : (
-            <Link to={`/session/${id}/${urlFormattedDate(startTime)}`}>
-              <Button>Reserve</Button>
-            </Link>
-          )}
-        </div>
-      ))}
+        );
+      })}
     </SessionsListContainer>
   );
 };
