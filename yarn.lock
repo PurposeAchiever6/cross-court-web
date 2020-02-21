@@ -9551,6 +9551,11 @@ react-stripe-elements@^6.0.1:
   dependencies:
     prop-types "15.7.2"
 
+react-stripe-script-loader@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-stripe-script-loader/-/react-stripe-script-loader-1.1.0.tgz#80f98b6720fdb2dc51b9b22e4ead6587e48b484f"
+  integrity sha512-E9tBtT8d3pnDNuilY2V5X4Vtk/f8ljdyMW4pPlUMJrRdaG/b8D86w+nhRT74Bnp3wcQhc17QSvFovv/W+k2TPw==
+
 react-table@^7.0.0-rc.16:
   version "7.0.0-rc.16"
   resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.0.0-rc.16.tgz#61aa22e5c6e4796ea3a0085653f5e4bb90bdab5d"

@@ -80,6 +80,7 @@
     "react-spinners": "^0.6.1",
     "react-sticky": "^6.0.3",
     "react-stripe-elements": "^6.0.1",
+    "react-stripe-script-loader": "^1.1.0",
     "react-table": "^7.0.0-rc.16",
     "react-toastify": "^5.5.0",
     "react-tooltip": "^4.0.3",

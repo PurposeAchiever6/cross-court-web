@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Elements, StripeProvider } from 'react-stripe-elements';
+import StripeScriptLoader from 'react-stripe-script-loader';
 import { useDispatch } from 'react-redux';
-import { addCard } from '../actionCreators';
 
+import Loading from 'shared/components/Loading';
+import { addCard } from '../actionCreators';
 import AddCardStripe from '../components/AddCard';
 
 const PageContainer = styled.div`
@@ -20,13 +22,15 @@ const AddCard = () => {
   const addCardHandler = (stripe, cardElement) => dispatch(addCard(stripe, cardElement));
 
   return (
-    <StripeProvider apiKey={STRIPE_API_KEY}>
-      <PageContainer>
-        <Elements>
-          <AddCardStripe addCardHandler={addCardHandler} />
-        </Elements>
-      </PageContainer>
-    </StripeProvider>
+    <StripeScriptLoader uniqueId="stripeLib" script="https://js.stripe.com/v3/" loader={Loading}>
+      <StripeProvider apiKey={STRIPE_API_KEY}>
+        <PageContainer>
+          <Elements>
+            <AddCardStripe addCardHandler={addCardHandler} />
+          </Elements>
+        </PageContainer>
+      </StripeProvider>
+    </StripeScriptLoader>
   );
 };
 
