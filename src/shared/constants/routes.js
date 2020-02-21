@@ -26,6 +26,7 @@ export default {
   PAYMENTS: '/payments',
   PAYMENTSADDCARD: '/payments/add',
   FAQ: '/faq',
+  FAQSEM: '/faq#sem',
   CANCELATIONPOLICY: '/cancelation-policy',
   TERMS: '/terms-and-conditions',
 };
