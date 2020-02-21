@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import device from 'shared/styles/mediaQueries';
-import HeroDesktop from '../images/Hero-desktop-bg.jpg';
-import HeroMobile from '../images/Hero-mobile-bg.jpg';
-import ArrowDownSVG from '../images/ArrowDownSVG';
+import ArrowDownSvg from 'shared/components/svg/ArrowDownSvg';
+
+import HeroDesktop from '../images/hero-desktop-bg.webp';
+import HeroMobile from '../images/hero-mobile-bg.webp';
 
 const HeroContainer = styled.div`
   height: 100vh;
@@ -52,7 +54,7 @@ const Hero = () => (
         Find a plan that
         <span>fits your lifestyle</span>
       </p>
-      <ArrowDownSVG />
+      <ArrowDownSvg />
     </div>
   </HeroContainer>
 );

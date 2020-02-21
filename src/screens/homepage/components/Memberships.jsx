@@ -6,8 +6,8 @@ import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import ROUTES from 'shared/constants/routes';
 import device from 'shared/styles/mediaQueries';
-import MembershipDesktopBg from '../images/membership-desktop-bg.jpg';
-import MembershipMobileBg from '../images/membership-mobile-bg.jpg';
+import MembershipDesktopBg from '../images/membership-desktop-bg.webp';
+import MembershipMobileBg from '../images/membership-mobile-bg.webp';
 
 const Section = styled.section`
   height: 100vh;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
-import Vibe from '../../images/Vibe.png';
+import Vibe from '../../images/vibe.webp';
 import ImageContainer from '../ImageContainer';
 
 const TextContainer = styled.div`

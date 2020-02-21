@@ -8,8 +8,9 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import colors from 'shared/styles/constants';
 import { FacebookShareButton, WhatsappShareButton } from 'react-share';
-import CheckImg from 'shared/images/CheckIcon.png';
+import CheckIcon from 'shared/images/check-icon.webp';
 import Button from 'shared/components/Button';
+
 import { getSessionId, getSessionDate } from '../reducer';
 
 const SessionConfirmedContainer = styled.div`
@@ -103,7 +104,7 @@ const SessionConfirmed = () => {
   return (
     <SessionConfirmedContainer>
       <div className="session-info-container">
-        <img src={CheckImg} alt="Check Icon" />
+        <img src={CheckIcon} alt="Check Icon" />
         <h1>The session was re-confirmed successfully!</h1>
         <span>
           Invite a friend !<strong>Share your session</strong>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import CheckIcon from 'shared/images/CheckIcon.png';
+import CheckIcon from 'shared/images/check-icon.webp';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/constants';
 

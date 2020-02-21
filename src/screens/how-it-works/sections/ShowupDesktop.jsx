@@ -1,10 +1,12 @@
 import React from 'react';
+
 import ROUTES from 'shared/constants/routes';
 import ArrowLeftSvg from 'shared/components/svg/ArrowLeftSvg';
 import MerchSvg from 'shared/components/svg/MerchSvg';
 import TimerSvg from 'shared/components/svg/TimerSvg';
 import Icon from 'shared/components/Icon';
-import ShowupImage from '../images/ShowupDesktop.jpg';
+
+import ShowupImage from '../images/showup-desktop.webp';
 import Icons from '../components/Icons';
 import Link from '../components/Link';
 import Par from '../components/Par';

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import TheExperienceImage from '../../images/TheExperience-desktop.jpg';
+import TheExperienceImage from '../../images/the-experience-desktop.webp';
 import ImageContainer from '../ImageContainer';
 
 const Container = styled.div`

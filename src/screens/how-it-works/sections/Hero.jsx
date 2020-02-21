@@ -6,8 +6,8 @@ import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
-import HeroImage from '../images/Hero.jpg';
-import HeroDesktop from '../images/HeroDesktop.jpg';
+import HeroImage from '../images/hero-mobile.webp';
+import HeroDesktop from '../images/hero-desktop.webp';
 
 const HeroSection = styled.section`
   display: flex;

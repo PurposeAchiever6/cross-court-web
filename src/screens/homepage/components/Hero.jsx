@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import device from 'shared/styles/mediaQueries';
-import HeroDesktop from '../images/Hero-desktop.png';
-import HeroMobile from '../images/Hero-mobile.jpg';
+import HeroDesktop from '../images/hero-desktop.webp';
+import HeroMobile from '../images/hero-mobile.webp';
 
 const HeroSection = styled.section`
   height: 100vh;

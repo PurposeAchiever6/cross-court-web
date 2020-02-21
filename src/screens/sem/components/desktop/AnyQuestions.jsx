@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import colors from 'shared/styles/constants';
 import { Link } from 'react-router-dom';
-import ROUTES from 'shared/constants/routes';
 
+import colors from 'shared/styles/constants';
+import ROUTES from 'shared/constants/routes';
 import AlternativeButton from 'shared/components/AlternativeButton';
-import AnyQuestionsImage from '../../images/any-questions.png';
+
+import AnyQuestionsImage from '../../images/any-questions.webp';
 import ImageContainer from './ImageContainer';
 
 const Container = styled.div`

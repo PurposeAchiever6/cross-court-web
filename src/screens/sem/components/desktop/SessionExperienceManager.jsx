@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import { sessionExperienceText } from 'shared/texts/constants';
-import SessionExperienceImage from '../../images/session-experience-manager.png';
+
+import SessionExperienceImage from '../../images/session-experience-manager.webp';
 import ImageContainer from './ImageContainer';
 
 const TextContainer = styled.div`

@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import colors from 'shared/styles/constants';
 import device from 'shared/styles/mediaQueries';
 import ArrowDownSvg from 'shared/components/svg/ArrowDownSvg';
-import JoinImage from '../../images/join.png';
+
+import JoinImage from '../../images/join.webp';
 import ImageContainer from './ImageContainer';
 
 const Container = styled.div`

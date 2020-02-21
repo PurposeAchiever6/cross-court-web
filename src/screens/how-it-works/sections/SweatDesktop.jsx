@@ -1,10 +1,12 @@
 import React from 'react';
+
 import ROUTES from 'shared/constants/routes';
 import SweatSvg from 'shared/components/svg/SweatSvg';
 import LockSvg from 'shared/components/svg/LockSvg';
 import ArrowLeftSvg from 'shared/components/svg/ArrowLeftSvg';
 import Icon from 'shared/components/Icon';
-import SweatImage from '../images/SweatDesktop.jpg';
+
+import SweatImage from '../images/sweat-desktop.webp';
 import Icons from '../components/Icons';
 import Link from '../components/Link';
 import Par from '../components/Par';

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import TheExperienceImage from '../../images/TheExperience-mobile.jpg';
+import TheExperienceImage from '../../images/the-experience-mobile.webp';
 
 const Container = styled.div`
   display: flex;

@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import { sessionOfficialText } from 'shared/texts/constants';
-import SessionOfficialImage from '../../images/session-official.png';
+
+import SessionOfficialImage from '../../images/session-official.webp';
 import ImageContainer from './ImageContainer';
 
 const TextContainer = styled.div`

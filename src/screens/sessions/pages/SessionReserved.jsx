@@ -2,16 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { toast } from 'react-toastify';
+import { FacebookShareButton, WhatsappShareButton } from 'react-share';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import { FacebookShareButton, WhatsappShareButton } from 'react-share';
+
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
-import CheckImg from 'shared/images/CheckIcon.png';
+import CheckIcon from 'shared/images/check-icon.webp';
 import Button from 'shared/components/Button';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { toast } from 'react-toastify';
+
 import { getSessionId, getSessionDate } from '../reducer';
 
 const SessionReservedContainer = styled.div`
@@ -109,7 +111,7 @@ const SessionReserved = () => {
   return (
     <SessionReservedContainer>
       <div className="session-info-container">
-        <img src={CheckImg} alt="Check Icon" />
+        <img src={CheckIcon} alt="Check Icon" />
         <h1>The session was booked successfully!</h1>
         <span>
           Invite a friend !<strong>Share your session</strong>

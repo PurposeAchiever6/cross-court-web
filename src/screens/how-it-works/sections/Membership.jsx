@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import ROUTES from 'shared/constants/routes';
 import { Link } from 'react-router-dom';
+
+import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
-import MembershipImage from '../images/Membership.jpg';
-import MembershipDesktop from '../images/MembershipDesktop.jpg';
+import MembershipImage from '../images/membership-mobile.webp';
+import MembershipDesktop from '../images/membership-desktop.webp';
 
 const MembershipSection = styled.section`
   display: flex;

@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
-import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 
 const TextWrapper = styled.div`

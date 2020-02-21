@@ -2,8 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import device from 'shared/styles/mediaQueries';
-import CalendarIcon from '../images/CalendarIcon.png';
-import CourtIcon from '../images/CourtIcon.png';
+
+import CalendarIcon from '../images/calendar-icon.webp';
+import CourtIcon from '../images/court-icon.webp';
 
 const SeriesContainer = styled.div`
   display: flex;
