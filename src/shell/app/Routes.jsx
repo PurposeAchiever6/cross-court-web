@@ -4,6 +4,8 @@ import { ConnectedRouter } from 'connected-react-router';
 import styled from 'styled-components';
 import { ToastContainer, Zoom } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
+import ReactGA from 'react-ga';
+
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { history } from 'shared/history';
 import colors from 'shared/styles/constants';
@@ -62,6 +64,11 @@ const AppWrapper = styled.div`
     overflow-y: auto;
   }
 `;
+
+history.listen(location => {
+  ReactGA.set({ page: location.pathname }); // Update the user's current page
+  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+});
 
 const Routes = () => {
   const dispatch = useDispatch();
