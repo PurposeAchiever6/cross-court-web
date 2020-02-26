@@ -28,7 +28,7 @@ const AnyQuestions = () => (
     <Container>
       <p>Any Questions?</p>
       <div>
-        <Link to={ROUTES.HOWITWORKS}>
+        <Link to={ROUTES.FAQSEM}>
           <AlternativeButton>Learn More</AlternativeButton>
         </Link>
       </div>

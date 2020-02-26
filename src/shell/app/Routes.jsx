@@ -42,7 +42,7 @@ import TermsAndConditions from 'screens/legal-docs/pages/TermsAndConditions';
 import Header from 'shared/components/Header';
 import Footer from 'shared/components/Footer';
 import { initialAppLoad } from 'shared/actions/actionCreators';
-import ScrollToTop from 'shared/components/ScrollToTop';
+import ScrollToPosition from 'shared/components/ScrollToPosition';
 
 import PrivateRoute from './PrivateRoute';
 
@@ -101,7 +101,7 @@ const Routes = () => {
       />
       <ConnectedRouter history={history}>
         <Header />
-        <ScrollToTop />
+        <ScrollToPosition />
         <main>
           <Switch>
             <Route path={ROUTES.LOGIN}>

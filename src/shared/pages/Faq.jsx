@@ -241,7 +241,7 @@ const SemHandbookPage = () => {
         </li>
       </ul>
 
-      <h3>Session Experience Manager </h3>
+      <h3 id="sem">Session Experience Manager </h3>
 
       <ol>
         <li>
