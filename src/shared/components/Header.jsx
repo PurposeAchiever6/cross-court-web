@@ -99,7 +99,12 @@ function Header() {
       <div className="header-content">
         <div className="header-left">
           <div className="menu-button-container" data-active={menuOpen}>
-            <button className="menu-button" type="button" onClick={toggleMenu}>
+            <button
+              className="menu-button"
+              aria-label="Menu Button"
+              type="button"
+              onClick={toggleMenu}
+            >
               <MenuSvg color={menuOpen ? 'white' : 'black'} />
             </button>
           </div>

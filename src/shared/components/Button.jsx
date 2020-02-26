@@ -36,7 +36,7 @@ const StyledButton = styled.button`
 
 const Button = ({ children, loading, ...props }) => {
   return (
-    <StyledButton {...props}>
+    <StyledButton {...props} aria-label={children}>
       {loading ? <FontAwesomeIcon className="spinner" icon={faCircleNotch} /> : children}
     </StyledButton>
   );
