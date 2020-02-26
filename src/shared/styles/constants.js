@@ -5,6 +5,7 @@ const blackBorder = '#00000032';
 const lightblackOverlay = '#00000044';
 const lightGrey = '#E8E9EF';
 const grey = '#BBBECD';
+const darkGrey = '#62656B';
 const black = '#000';
 const white = '#FFF';
 const errorRed = '#FF4444';
@@ -24,4 +25,5 @@ export default {
   blackBorder,
   red,
   grey,
+  darkGrey,
 };
