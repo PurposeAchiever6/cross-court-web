@@ -20,14 +20,14 @@ const Container = styled.div`
   span {
     text-align: center;
     padding: 0.3rem 1rem;
-    background-color: ${colors.red};
+    background-color: ${colors.darkGrey};
     border-radius: 5rem;
     width: 6rem;
     color: ${colors.white};
     text-transform: uppercase;
     font-size: 0.8rem;
     margin-right: 1rem;
-    line-height: 1.5rem;
+    line-height: 1rem;
   }
 `;
 
@@ -38,7 +38,7 @@ const SessionLevel = ({ level, showInfo = false }) => {
 
   return (
     <Container>
-      <span>{LEVELS.ADVANCED}</span>
+      <span>LEVEL 2</span>
       {showInfo && (
         <>
           <InfoSvg dataTip={TEXT.ADVANCED_TOOLTIP} />
