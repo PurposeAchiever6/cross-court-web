@@ -68,7 +68,7 @@ export const Landing = () => {
       </div>
       <div className="buttons-container">
         <Link to={ROUTES.LOCATIONS}>
-          <AlternativeButton>Book a session</AlternativeButton>
+          <AlternativeButton>Book a Session</AlternativeButton>
         </Link>
         <Link to={ROUTES.HOWITWORKS}>
           <Button>First Time?</Button>

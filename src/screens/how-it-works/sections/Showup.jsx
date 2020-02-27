@@ -43,7 +43,7 @@ const Showup = () => (
       </p>
     </Par>
     <Link to={ROUTES.SEM}>
-      <Button className="button">Join the team</Button>
+      <Button className="button">Join the Team</Button>
     </Link>
     <Link to={ROUTES.LOCATIONS}>
       reserve now <ArrowLeftSvg />
