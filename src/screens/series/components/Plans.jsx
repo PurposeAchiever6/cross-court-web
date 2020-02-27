@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import currency from 'currency.js';
 
@@ -60,6 +61,7 @@ const PlanContainer = styled.div`
       font-weight: bold;
       font-size: 4rem;
       line-height: 5rem;
+      font-family: 'Space Mono';
     }
 
     .text {
@@ -181,6 +183,11 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
       </div>
     </PlansContainer>
   );
+};
+
+Plans.propTypes = {
+  selectProductHandler: PropTypes.func.isRequired,
+  availableProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Plans;

@@ -142,7 +142,7 @@ const SidebarMenu = ({ menuToggler }) => {
       ) : (
         <Link to={ROUTES.SEM}>
           <AlternativeButton className="button" onClick={menuToggler}>
-            Join the team
+            Join the Team
           </AlternativeButton>
         </Link>
       )}
