@@ -66,6 +66,7 @@
     "react-dom": "^16.11.0",
     "react-ga": "^2.7.0",
     "react-hamburger-menu": "^1.1.1",
+    "react-https-redirect": "^1.1.0",
     "react-modal": "^3.11.1",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
