@@ -33,6 +33,7 @@ const Nav = styled.nav`
 
     .list-item a,
     button {
+      text-transform: uppercase;
       text-decoration: none;
       color: white;
       font-size: 1.5em;
