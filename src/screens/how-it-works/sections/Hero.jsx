@@ -76,7 +76,7 @@ function Hero() {
       </div>
       <div className="hero-find">
         <Link to={ROUTES.LOCATIONS}>
-          <Button>See Schedule</Button>
+          <Button>See schedule</Button>
         </Link>
       </div>
     </HeroSection>
