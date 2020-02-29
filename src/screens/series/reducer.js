@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { CHECK_PROMO_CODE_SUCCESS } from 'screens/checkout/actionTypes';
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -35,6 +36,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selectedProduct: { ...action.payload.selectedProduct },
+      };
+    case CHECK_PROMO_CODE_SUCCESS:
+      return {
+        ...state,
+        selectedProduct: {
+          ...state.selectedProduct,
+          price: action.payload.price,
+        },
       };
     default:
       return state;

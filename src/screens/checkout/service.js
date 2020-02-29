@@ -16,4 +16,11 @@ export default {
 
     return response.data;
   },
+  checkPromoCode: async (promoCode, price) => {
+    const response = await api.get(`/promo_code?promo_code=${promoCode}&price=${Number(price)}`, {
+      data: {},
+    });
+
+    return response.data;
+  },
 };

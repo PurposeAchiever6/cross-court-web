@@ -6,12 +6,18 @@ import {
   CREATE_FREE_SESSION_INIT,
   CREATE_FREE_SESSION_SUCCESS,
   CREATE_FREE_SESSION_FAILURE,
+  CHECK_PROMO_CODE_INIT,
+  CHECK_PROMO_CODE_SUCCESS,
+  CHECK_PROMO_CODE_FAILURE,
 } from './actionTypes';
 
 const initialState = {
   error: '',
   checkoutLoading: false,
   purchaseConfirmed: false,
+  promoCodeLoading: false,
+  promoCodeError: '',
+  promoCodeValid: false,
 };
 
 export default (state = initialState, action) => {
@@ -29,10 +35,29 @@ export default (state = initialState, action) => {
         ...state,
         checkoutLoading: false,
         purchaseConfirmed: true,
+        promoCodeValid: false,
       };
     case CREATE_PURCHASE_FAILURE:
     case CREATE_FREE_SESSION_FAILURE:
       return { ...state, error: action.error, checkoutLoading: false };
+    case CHECK_PROMO_CODE_INIT:
+      return {
+        ...state,
+        promoCodeLoading: true,
+      };
+    case CHECK_PROMO_CODE_SUCCESS:
+      return {
+        ...state,
+        promoCodeLoading: false,
+        promoCodeValid: true,
+      };
+    case CHECK_PROMO_CODE_FAILURE:
+      return {
+        ...state,
+        promoCodeLoading: false,
+        promoCodeError: action.error,
+        promoCodeValid: false,
+      };
     default:
       return state;
   }
@@ -48,3 +73,11 @@ export const getPurchaseConfirmed = createSelector(
   getCheckout,
   checkout => checkout.purchaseConfirmed
 );
+
+export const getPromoCodeLoading = createSelector(
+  getCheckout,
+  checkout => checkout.promoCodeLoading
+);
+
+export const getPromoCodeError = createSelector(getCheckout, checkout => checkout.promoCodeError);
+export const getPromoCodeValid = createSelector(getCheckout, checkout => checkout.promoCodeValid);

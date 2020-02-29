@@ -11,6 +11,9 @@ import {
   CREATE_FREE_SESSION_INIT,
   CREATE_FREE_SESSION_SUCCESS,
   CREATE_FREE_SESSION_FAILURE,
+  CHECK_PROMO_CODE_INIT,
+  CHECK_PROMO_CODE_SUCCESS,
+  CHECK_PROMO_CODE_FAILURE,
 } from './actionTypes';
 import checkoutService from './service';
 
@@ -46,9 +49,31 @@ export function* createFreeSessionFlow() {
   }
 }
 
+export function* checkPromoCodeFlow({ payload }) {
+  try {
+    const selectedProduct = yield select(getSelectedProduct);
+    const { price } = yield call(
+      checkoutService.checkPromoCode,
+      payload.promoCode,
+      selectedProduct.price
+    );
+    
+    yield put({
+      type: CHECK_PROMO_CODE_SUCCESS,
+      payload: {
+        price,
+      },
+    });
+  } catch (err) {
+    yield call(toast.error, 'Invalid discount code');
+    yield put({ type: CHECK_PROMO_CODE_FAILURE, error: err.response.data.error });
+  }
+}
+
 export default function* checkoutSaga() {
   yield all([
     takeLatest(CREATE_PURCHASE_INIT, createPurchaseFlow),
     takeLatest(CREATE_FREE_SESSION_INIT, createFreeSessionFlow),
+    takeLatest(CHECK_PROMO_CODE_INIT, checkPromoCodeFlow),
   ]);
 }
