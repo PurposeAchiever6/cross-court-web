@@ -9,6 +9,7 @@ import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import SessionLevel from 'shared/components/SessionLevel';
+import SpotsLeft from 'shared/components/SpotsLeft';
 import {
   hourRange,
   urlFormattedDate,
@@ -101,7 +102,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
   return (
     <SessionsListContainer>
-      {sortedSessions.map(({ id, startTime, time, full, location, level }) => {
+      {sortedSessions.map(({ id, startTime, time, full, location, level, spotsLeft }) => {
         const sessionTime = formatSessionTime(time);
         const URLdate = urlFormattedDate(startTime);
         const emailSessionDate = formatSessionDate(startTime);
@@ -113,6 +114,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
               <div className="time">{hourRange(time)}</div>
               <div className="location">{location.name}</div>
               <SessionLevel level={level} />
+              <SpotsLeft spotsLeft={spotsLeft} />
             </div>
             {full ? (
               <a href={mailInfo}>
