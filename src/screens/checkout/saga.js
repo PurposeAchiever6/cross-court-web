@@ -57,7 +57,7 @@ export function* checkPromoCodeFlow({ payload }) {
       payload.promoCode,
       selectedProduct.price
     );
-    
+
     yield put({
       type: CHECK_PROMO_CODE_SUCCESS,
       payload: {

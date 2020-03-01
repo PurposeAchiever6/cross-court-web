@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
+import AlternativeButton from 'shared/components/AlternativeButton';
 import device from 'shared/styles/mediaQueries';
 import MembershipImage from '../images/membership-mobile.webp';
 import MembershipDesktop from '../images/membership-desktop.webp';
