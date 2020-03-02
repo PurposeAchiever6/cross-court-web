@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import ScrollLock from 'react-scrolllock';
 
 import ROUTES from 'shared/constants/routes';
 import { claimFreeSessionInit } from 'screens/payments/actionCreators';
@@ -47,7 +48,7 @@ const FreeSessionModalContainer = styled.div`
   }
 `;
 
-const FreeSessionModal = ({ closeHandler }) => {
+const FreeSessionModal = ({ closeHandler, isOpen }) => {
   const history = useHistory();
   const dispatch = useDispatch();
   const availableProducts = useSelector(getAvailableProducts);
@@ -68,21 +69,24 @@ const FreeSessionModal = ({ closeHandler }) => {
   };
 
   return (
-    <FreeSessionModalContainer>
-      <FontAwesomeIcon icon={faTimes} onClick={closeHandler} />
+    <ScrollLock isActive={isOpen}>
+      <FreeSessionModalContainer>
+        <FontAwesomeIcon icon={faTimes} onClick={closeHandler} />
 
-      <span className="title">Let&apos;s sweat!</span>
-      <span className="text">
-        While your first Session is on us, we do require you to input a payment method in case you
-        do not show up and we have to charge your account.
-      </span>
-      <Button onClick={claimFreeSessionAction}>I Understand</Button>
-    </FreeSessionModalContainer>
+        <span className="title">Let&apos;s sweat!</span>
+        <span className="text">
+          While your first Session is on us, we do require you to input a payment method in case you
+          do not show up and we have to charge your account.
+        </span>
+        <Button onClick={claimFreeSessionAction}>I Understand</Button>
+      </FreeSessionModalContainer>
+    </ScrollLock>
   );
 };
 
 FreeSessionModal.propTypes = {
   closeHandler: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
 };
 
 export default FreeSessionModal;

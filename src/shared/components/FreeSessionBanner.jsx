@@ -118,7 +118,7 @@ const FreeSessionBanner = () => {
   return (
     <>
       <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
-        <FreeSessionConfirmModal closeHandler={hideConfirmModalHandler} />
+        <FreeSessionConfirmModal closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal} />
       </Modal>
       <BannerContainer showBanner={showBanner && freeSessionNotUsed && freeSessionNotClaimed}>
         <div className="desktop-container">
