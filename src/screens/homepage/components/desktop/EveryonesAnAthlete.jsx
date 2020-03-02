@@ -33,7 +33,7 @@ const TextContainer = styled.div`
 const EveryonesAnAthlete = () => (
   <>
     <div>
-      <ImageContainer img={EveryonesAnAthleteImage} />
+      <ImageContainer img={EveryonesAnAthleteImage} overlayColor={colors.blackOverlay} />
     </div>
     <TextContainer>
       <h2 className="title">

@@ -27,7 +27,7 @@ const Text = styled.div`
 const NoBullshit = () => (
   <>
     <Container>
-      <ImageContainer img={NoBullshitPic} />
+      <ImageContainer img={NoBullshitPic} overlayColor={colors.blueOverlay} />
       <h2 className="title">
         <span className="text">No</span> <em>BULLSH*T</em>
       </h2>

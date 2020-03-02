@@ -6,7 +6,7 @@ import FieldSvg from 'shared/components/svg/FieldSvg';
 import ArrowLeftSvg from 'shared/components/svg/ArrowLeftSvg';
 import Icon from 'shared/components/Icon';
 
-import SignupImage from '../images/signup-desktop.jpg';
+import SignupImage from '../images/signup.jpg';
 import Icons from '../components/Icons';
 import Link from '../components/Link';
 import Par from '../components/Par';

@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
-import AlternativeButton from 'shared/components/AlternativeButton';
 import device from 'shared/styles/mediaQueries';
 
 import MembershipImage from '../images/membership-mobile.jpg';
@@ -72,14 +71,10 @@ function Membership() {
     <MembershipSection>
       <div className="membership-info">
         <h2 className="membership-title">Sounds good?</h2>
-        <p className="membership-text">Your first month is on us.</p>
       </div>
       <div className="membership-find">
         <Link to={ROUTES.LOCATIONS}>
           <Button>See Schedule</Button>
-        </Link>
-        <Link to={ROUTES.SERIES}>
-          <AlternativeButton>Explore memberships</AlternativeButton>
         </Link>
       </div>
     </MembershipSection>

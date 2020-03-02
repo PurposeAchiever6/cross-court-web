@@ -16,6 +16,7 @@ const Container = styled.div`
   .img {
     width: 100%;
     object-fit: cover;
+    box-shadow: inset 0 0 0 2000px ${props => props.overlayColor || 'transparent'};
   }
 
   .title {

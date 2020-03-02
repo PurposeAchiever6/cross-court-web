@@ -12,6 +12,7 @@ import MembershipMobileBg from '../images/membership-mobile-bg.jpg';
 const Section = styled.section`
   height: 100vh;
   background-image: url(${MembershipDesktopBg});
+  box-shadow: inset 0 0 0 2000px ${colors.blackOverlay};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

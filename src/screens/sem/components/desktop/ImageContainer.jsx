@@ -5,7 +5,7 @@ export default styled.div`
   grid-column: 1 / 4;
   background-image: url(${props => props.img});
   background-size: cover;
-  background-position: center;
+  background-position: top;
   background-repeat: no-repeat;
   box-shadow: inset 0 0 0 2000px ${props => props.overlayColor || 'transparent'};
   height: 100%;

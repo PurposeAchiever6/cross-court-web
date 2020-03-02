@@ -40,7 +40,7 @@ const NoBullshit = () => (
       </p>
     </TextContainer>
     <div>
-      <ImageContainer img={NoBullshitPic} />
+      <ImageContainer img={NoBullshitPic} overlayColor={colors.blueOverlay} />
     </div>
   </>
 );
