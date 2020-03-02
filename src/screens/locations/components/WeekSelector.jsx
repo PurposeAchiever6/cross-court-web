@@ -64,8 +64,13 @@ const DayContainer = styled.button`
   padding: 1rem;
   border: 0;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
   background-color: ${({ day, currentDay }) => (isSameDay(day, currentDay) ? 'black' : 'white')};
   color: ${({ day, currentDay }) => (isSameDay(day, currentDay) ? 'white' : 'black')};
+  .day-number {
+    text-align: center;
+  }
 `;
 
 const WeekSelector = ({

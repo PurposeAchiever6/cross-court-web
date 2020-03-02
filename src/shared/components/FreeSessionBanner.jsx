@@ -56,7 +56,7 @@ const BannerContainer = styled.div`
       color: white;
       position: fixed;
       bottom: 2rem;
-      right: 2rem;
+      right: 1rem;
       z-index: 100;
       border-radius: 6px;
       padding: 1rem;

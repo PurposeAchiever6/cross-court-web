@@ -23,6 +23,7 @@ export default function useWindowSize() {
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
+    // eslint-disable-next-line
   }, []);
 
   return windowSize;
