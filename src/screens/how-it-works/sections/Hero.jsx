@@ -18,6 +18,7 @@ const HeroSection = styled.section`
   height: 100vh;
   color: ${colors.white};
   background-image: url(${HeroImage});
+  box-shadow: inset 0 0 0 2000px ${colors.blackOverlay};
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
