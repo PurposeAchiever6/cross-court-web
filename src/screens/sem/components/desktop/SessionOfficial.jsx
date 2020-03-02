@@ -18,6 +18,7 @@ const TextContainer = styled.div`
   font-size: 1.6rem;
   height: 100vh;
   max-width: 40rem;
+  min-height: 55rem;
 
   .button {
     margin-top: 3rem;

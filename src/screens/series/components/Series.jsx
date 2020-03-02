@@ -77,7 +77,7 @@ const SeriesContainer = styled.div`
 const Series = () => {
   return (
     <SeriesContainer>
-      <h2>All Session Are</h2>
+      <h2>Our Series</h2>
       <div className="content">
         <div className="item">
           <img src={CalendarIcon} alt="Calendar icon" />
