@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
@@ -114,10 +115,12 @@ const FooterContainer = styled.footer`
 `;
 
 function Footer() {
-  const FACEBOOK_LINK = process.env.REACT_APP_FACEBOOK_LINK;
-  const TWITTER_LINK = process.env.REACT_APP_TWITTER_LINK;
-  const INSTAGRAM_LINK = process.env.REACT_APP_INSTAGRAM_LINK;
-  const LINKEDIN_LINK = process.env.REACT_APP_LINKEDIN_LINK;
+  const env = runtimeEnv();
+
+  const FACEBOOK_LINK = env.REACT_APP_FACEBOOK_LINK;
+  const TWITTER_LINK = env.REACT_APP_TWITTER_LINK;
+  const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
+  const LINKEDIN_LINK = env.REACT_APP_LINKEDIN_LINK;
 
   return (
     <FooterContainer>

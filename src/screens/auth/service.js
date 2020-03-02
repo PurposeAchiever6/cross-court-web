@@ -1,7 +1,10 @@
+import runtimeEnv from '@mars/heroku-js-runtime-env';
+
 import ROUTES from 'shared/constants/routes';
 import api from 'shared/services';
 
-const APP_URL = process.env.REACT_APP_URL;
+const env = runtimeEnv();
+const APP_URL = env.REACT_APP_URL;
 
 export default {
   login: async credentials => {

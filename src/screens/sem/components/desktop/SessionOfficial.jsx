@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
@@ -35,7 +36,8 @@ const TextContainer = styled.div`
 `;
 
 const SessionOfficial = () => {
-  const SO_LINK = process.env.REACT_APP_FOUNTAIN_SO_LINK;
+  const env = runtimeEnv();
+  const SO_LINK = env.REACT_APP_FOUNTAIN_SO_LINK;
 
   return (
     <>

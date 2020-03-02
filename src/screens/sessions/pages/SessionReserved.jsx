@@ -8,6 +8,7 @@ import { FacebookShareButton, WhatsappShareButton } from 'react-share';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
@@ -103,7 +104,8 @@ const SessionReserved = () => {
   const sessionId = useSelector(getSessionId);
   const sessionDate = useSelector(getSessionDate);
 
-  const APP_URL = process.env.REACT_APP_URL;
+  const env = runtimeEnv();
+  const APP_URL = env.REACT_APP_URL;
   const SHARE_URL = `${APP_URL}/session/${sessionId}/${sessionDate}`;
 
   const onCopyHandler = () => toast.success('Link Copied!');

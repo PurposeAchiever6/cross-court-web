@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import colors from 'shared/styles/constants';
 import { FacebookShareButton, WhatsappShareButton } from 'react-share';
@@ -99,7 +100,8 @@ const SessionConfirmed = () => {
   const sessionId = useSelector(getSessionId);
   const sessionDate = useSelector(getSessionDate);
 
-  const APP_URL = process.env.REACT_APP_URL;
+  const env = runtimeEnv();
+  const APP_URL = env.REACT_APP_URL;
   const SHARE_URL = `${APP_URL}/session/${sessionId}/${sessionDate}`;
   return (
     <SessionConfirmedContainer>
