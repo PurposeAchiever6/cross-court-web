@@ -23,7 +23,7 @@ const PromoCodeContainer = styled.div`
     margin-top: 0.5rem;
     margin-left: 0.5rem;
     padding: 1rem 2rem;
-    align-self: end;
+    align-self: flex-end;
     width: 9rem;
   }
 
