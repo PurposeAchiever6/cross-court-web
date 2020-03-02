@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import colors from 'shared/styles/constants';
 import Icon from 'shared/components/Icon';
 import MoneySvg from 'shared/components/svg/MoneySvg';

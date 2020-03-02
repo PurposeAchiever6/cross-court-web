@@ -5,7 +5,7 @@ import colors from 'shared/styles/constants';
 import device from 'shared/styles/mediaQueries';
 import ArrowDownSvg from 'shared/components/svg/ArrowDownSvg';
 
-import JoinImage from '../../images/join.webp';
+import JoinImage from '../../images/join.jpg';
 import ImageContainer from './ImageContainer';
 
 const Container = styled.div`

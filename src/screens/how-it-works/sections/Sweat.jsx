@@ -6,7 +6,7 @@ import LockSvg from 'shared/components/svg/LockSvg';
 import ArrowLeftSvg from 'shared/components/svg/ArrowLeftSvg';
 import Icon from 'shared/components/Icon';
 
-import SweatImage from '../images/sweat-mobile.webp';
+import SweatImage from '../images/sweat-mobile.jpg';
 import Icons from '../components/Icons';
 import Image from '../components/Image';
 import Link from '../components/Link';

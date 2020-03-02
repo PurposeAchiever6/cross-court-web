@@ -7,8 +7,9 @@ import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import device from 'shared/styles/mediaQueries';
-import MembershipImage from '../images/membership-mobile.webp';
-import MembershipDesktop from '../images/membership-desktop.webp';
+
+import MembershipImage from '../images/membership-mobile.jpg';
+import MembershipDesktop from '../images/membership-desktop.jpg';
 
 const MembershipSection = styled.section`
   display: flex;

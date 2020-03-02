@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { getUserEmail } from 'screens/auth/reducer';
 import { sendConfirmationEmailInit } from 'screens/auth/actionCreators';
-import PaperPlaneIcon from 'shared/images/paper-plane-icon.webp';
+import PaperPlaneIcon from 'shared/images/paper-plane-icon.png';
 
 const PageContainer = styled.div`
   display: flex;

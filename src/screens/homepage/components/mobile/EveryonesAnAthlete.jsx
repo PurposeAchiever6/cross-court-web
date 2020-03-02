@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
-import EveryonesAnAthleteImage from '../../images/everyones-an-athlete.webp';
+import EveryonesAnAthleteImage from '../../images/everyones-an-athlete.jpg';
 import ImageContainer from '../ImageContainer';
 import BoxContainer from './BoxContainer';
 

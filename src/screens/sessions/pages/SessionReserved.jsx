@@ -12,7 +12,7 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
-import CheckIcon from 'shared/images/check-icon.webp';
+import CheckIcon from 'shared/images/check-icon.png';
 import Button from 'shared/components/Button';
 
 import { getSessionId, getSessionDate } from '../reducer';

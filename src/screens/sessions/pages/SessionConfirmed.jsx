@@ -9,7 +9,7 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import colors from 'shared/styles/constants';
 import { FacebookShareButton, WhatsappShareButton } from 'react-share';
-import CheckIcon from 'shared/images/check-icon.webp';
+import CheckIcon from 'shared/images/check-icon.png';
 import Button from 'shared/components/Button';
 
 import { getSessionId, getSessionDate } from '../reducer';

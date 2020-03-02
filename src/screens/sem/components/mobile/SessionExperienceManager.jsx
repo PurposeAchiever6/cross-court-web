@@ -6,7 +6,7 @@ import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import { sessionExperienceText } from 'shared/texts/constants';
 
-import SessionExperienceImage from '../../images/session-experience-manager.webp';
+import SessionExperienceImage from '../../images/session-experience-manager.jpg';
 import ImageContainer from './ImageContainer';
 
 const Container = styled.div`

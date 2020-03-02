@@ -6,7 +6,7 @@ import currency from 'currency.js';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
 
-import PurpleBg from '../images/circle-purple-bg.webp';
+import PurpleBg from '../images/circle-purple-bg.png';
 
 const PlansContainer = styled.div`
   .plans-container {

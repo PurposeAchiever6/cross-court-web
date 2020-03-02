@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import CheckIcon from 'shared/images/check-icon.webp';
+import CheckIcon from 'shared/images/check-icon.png';
 import Button from 'shared/components/Button';
 import ROUTES from 'shared/constants/routes';
 import device from 'shared/styles/mediaQueries';

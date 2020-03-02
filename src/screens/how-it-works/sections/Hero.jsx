@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import ROUTES from 'shared/constants/routes';
 
+import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
-import HeroImage from '../images/hero-mobile.webp';
-import HeroDesktop from '../images/hero-desktop.webp';
+
+import HeroImage from '../images/hero-mobile.jpg';
+import HeroDesktop from '../images/hero-desktop.jpg';
 
 const HeroSection = styled.section`
   display: flex;

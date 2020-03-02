@@ -4,7 +4,7 @@ import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
-import LandingBg from '../images/landing-bg.webp';
+import LandingBg from '../images/landing-bg.jpg';
 
 const LandingContainer = styled.div`
   height: 100vh;

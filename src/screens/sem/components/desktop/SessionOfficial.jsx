@@ -6,7 +6,7 @@ import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import { sessionOfficialText } from 'shared/texts/constants';
 
-import SessionOfficialImage from '../../images/session-official.webp';
+import SessionOfficialImage from '../../images/session-official.jpg';
 import ImageContainer from './ImageContainer';
 
 const TextContainer = styled.div`

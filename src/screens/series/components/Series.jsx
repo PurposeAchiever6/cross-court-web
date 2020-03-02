@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import device from 'shared/styles/mediaQueries';
 
-import CalendarIcon from '../images/calendar-icon.webp';
-import CourtIcon from '../images/court-icon.webp';
+import CalendarIcon from '../images/calendar-icon.png';
+import CourtIcon from '../images/court-icon.png';
 
 const SeriesContainer = styled.div`
   display: flex;

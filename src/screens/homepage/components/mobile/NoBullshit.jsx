@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import colors from 'shared/styles/constants';
-import NoBullshitPic from '../../images/no-bullshit.webp';
+import NoBullshitPic from '../../images/no-bullshit.jpg';
 import ImageContainer from '../ImageContainer';
 import BoxContainer from './BoxContainer';
 
