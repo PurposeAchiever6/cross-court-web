@@ -77,7 +77,7 @@ const Memberships = () => (
     </div>
     <div className="memberships-container">
       <span className="text">New to CrossCourt?</span>
-      <Link to={ROUTES.FAQ}>
+      <Link to={ROUTES.HOWITWORKS}>
         <AlternativeButton>Learn More</AlternativeButton>
       </Link>
     </div>
