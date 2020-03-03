@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { SET_SELECTED_PRODUCT } from 'screens/series/actionTypes';
 import {
   CREATE_PURCHASE_INIT,
   CREATE_PURCHASE_SUCCESS,
@@ -56,6 +57,11 @@ export default (state = initialState, action) => {
         ...state,
         promoCodeLoading: false,
         promoCodeError: action.error,
+        promoCodeValid: false,
+      };
+    case SET_SELECTED_PRODUCT:
+      return {
+        ...state,
         promoCodeValid: false,
       };
     default:
