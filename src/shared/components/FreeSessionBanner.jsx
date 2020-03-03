@@ -39,7 +39,7 @@ const BannerContainer = styled.div`
     text-transform: uppercase;
     cursor: pointer;
   }
-  
+
   @media ${device.mobile} {
     right: 1rem;
   }
