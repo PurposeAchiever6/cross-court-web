@@ -8,6 +8,7 @@ import StopwatchSvg from 'shared/components/svg/StopwatchSvg';
 import WhistleSvg from 'shared/components/svg/WhistleSvg';
 import PlayerSvg from 'shared/components/svg/PlayerSvg';
 import SpeakerSvg from 'shared/components/svg/SpeakerSvg';
+import MerchSvg from 'shared/components/svg/MerchSvg';
 
 const Section = styled.section`
   padding: 4.5rem 5rem;
@@ -101,6 +102,12 @@ const TheSession = props => (
           <SpeakerSvg />
         </div>
         <span className="boxes-text">Hype Soundtracks</span>
+      </div>
+      <div className="boxes-item">
+        <div className="boxes-image">
+          <MerchSvg />
+        </div>
+        <span className="boxes-text">Equipement provided</span>
       </div>
     </div>
   </Section>
