@@ -19,6 +19,10 @@ const Container = styled.div`
   .button {
     padding: 1rem 2rem;
   }
+
+  img {
+    object-position: 0 -4rem;
+  }
 `;
 
 const Showup = () => (
