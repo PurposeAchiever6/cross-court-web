@@ -38,6 +38,7 @@ const BannerContainer = styled.div`
     padding: 1rem;
     text-transform: uppercase;
     cursor: pointer;
+    font-family: Untitled Sans;
   }
 
   @media ${device.mobile} {

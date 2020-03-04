@@ -2,7 +2,6 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import PropTypes from 'prop-types';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
-import { length } from 'ramda';
 import MapMarker from './MapMarker';
 import styles from './styles';
 
@@ -48,10 +47,14 @@ const Map = ({ locations, selectedLocation, setLocationHandler }) => (
   <div style={{ height: '82.5vh', width: '100%' }}>
     <GoogleMapReact
       bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
-      defaultCenter={length(locations) === 1 ? locations[0] : LA_CENTER}
+      center={{
+        lat: 34.0688791,
+        lng: -118.2711009,
+      }}
       yesIWantToUseGoogleMapApiInternals
       onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, locations)}
-      defaultZoom={10}
+      defaultZoom={15}
+      zoom={15}
       options={{ styles }}
     >
       {locations.map(location => (
