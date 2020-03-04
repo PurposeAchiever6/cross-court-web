@@ -36,7 +36,7 @@ export const MyAccountPageMobile = ({
 
     {userProfile.isSem || userProfile.isReferee ? (
       <Tabs>
-        <div label="As SEM">
+        <div label="As ETM">
           <SessionsList title="Upcoming sessions" sessions={semUpcomingSessions} isSem />
         </div>
         <div label="As player">
