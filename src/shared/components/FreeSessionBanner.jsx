@@ -30,7 +30,7 @@ const BannerContainer = styled.div`
     font-weight: 400;
     padding: 1rem 5rem;
     font-family: Space Mono;
-    font-weight: bold;
+    //font-weight: bold;
     font-size: 21px;
     line-height: 31px;
     width: 100%;
@@ -39,7 +39,9 @@ const BannerContainer = styled.div`
     text-transform: uppercase;
     cursor: pointer;
     font-family: Untitled Sans;
-    font-style: italic;
+    i {
+      font-weight: bold;
+    }
   }
 
   @media ${device.mobile} {
@@ -68,7 +70,9 @@ const FreeSessionBanner = () => {
           <Button onClick={showConfirmModalHandler}>First Session Free</Button>
         ) : (
           <Link to={ROUTES.LOGIN}>
-            <Button>First Session Free</Button>
+            <Button>
+              First Session <b>Free</b>
+            </Button>
           </Link>
         )}
       </BannerContainer>
