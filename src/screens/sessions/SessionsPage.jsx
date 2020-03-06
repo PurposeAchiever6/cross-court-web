@@ -114,10 +114,12 @@ const SessionsPageContainer = styled.div`
             justify-content: center;
             align-items: center;
             img {
-              max-width: 5rem;
+              width: 5rem;
+              height: 5rem;
               margin: 0 auto;
               border-radius: 10rem;
               margin-bottom: 0.5rem;
+              object-fit: cover;
             }
 
             .not-assigned-container {
@@ -348,7 +350,7 @@ const SessionsPage = () => {
               />
               {userProfile.credits === 0 && (
                 <Link to={ROUTES.SERIES}>
-                  <AlternativeButton className="buy-btn">Purchase Sessions</AlternativeButton>
+                  <AlternativeButton className="buy-btn">Purchase Session</AlternativeButton>
                 </Link>
               )}
             </div>
