@@ -20,7 +20,7 @@ const PageContainer = styled.div`
   }
 
   h1 {
-    width: 20%;
+    width: 28%;
     font-size: 1.5rem;
     line-height: 2rem;
     font-weight: 900;
@@ -48,9 +48,9 @@ const CheckoutConfirm = () => {
   return (
     <PageContainer>
       <img src={CheckIcon} alt="Check icon" />
-      <h1>Your purchase was completed successfully</h1>
-      <Link to={ROUTES.MYACCOUNT}>
-        <Button>Thanks</Button>
+      <h1>Thank you for purchasing a Series! Now click below to sign up for a session.</h1>
+      <Link to={ROUTES.LOCATIONS}>
+        <Button>See Schedule</Button>
       </Link>
     </PageContainer>
   );

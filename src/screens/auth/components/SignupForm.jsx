@@ -104,7 +104,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
         <Form className="form">
           <h1>Sign up</h1>
           <div className="form-group">
-            <InputTextField labelText="Name*" error={errors.username} name="name" />
+            <InputTextField labelText="Full Name*" error={errors.username} name="name" />
           </div>
           <div className="form-group">
             <InputTextField labelText="Phone*" error={errors.phoneNumber} name="phoneNumber" />
