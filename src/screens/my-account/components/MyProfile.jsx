@@ -59,7 +59,7 @@ const MyProfile = ({ profile, showTitle = true }) => {
       <button className="edit-btn" type="button" onClick={showEditProfileAction}>
         <EditIcon />
       </button>
-      {showTitle && <h3>My Profile</h3>}
+      {showTitle && <h3>My Account</h3>}
 
       <div className="detail-row">
         <span className="title">email</span>

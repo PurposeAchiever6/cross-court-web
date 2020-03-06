@@ -26,7 +26,7 @@ export const MyAccountPageMobile = ({
 }) => (
   <MyAccountPageContainer>
     <Tabs>
-      <div label="My Profile">
+      <div label="My Account">
         <MyProfile profile={userProfile} showTitle={false} />
       </div>
       <div label="My Credits">

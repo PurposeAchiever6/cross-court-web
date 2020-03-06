@@ -33,7 +33,7 @@ const TheExperience = () => (
         THE <span>EXPERIENCE</span>
       </h1>
       <p>
-        CrossCourt is a high-intensity, team based fitness experience. An electric-yet-cathartic
+        Crosscourt is a high-intensity, team based fitness experience. An electric-yet-cathartic
         workout that’s accesible, shareable, and covetable.
       </p>
       <p>

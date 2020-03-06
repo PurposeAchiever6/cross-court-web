@@ -1,10 +1,11 @@
 import api from 'shared/services';
 
 export default {
-  createPurchase: async (productId, cardId) => {
+  createPurchase: async (productId, cardId, promoCode) => {
     const response = await api.post('/purchases', {
       productId,
       paymentMethod: cardId,
+      promoCode,
     });
 
     return response.data;

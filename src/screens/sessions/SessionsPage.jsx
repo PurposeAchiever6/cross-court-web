@@ -348,7 +348,7 @@ const SessionsPage = () => {
               />
               {userProfile.credits === 0 && (
                 <Link to={ROUTES.SERIES}>
-                  <AlternativeButton className="buy-btn">Purchase Sessions</AlternativeButton>
+                  <AlternativeButton className="buy-btn">Purchase Session</AlternativeButton>
                 </Link>
               )}
             </div>

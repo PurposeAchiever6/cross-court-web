@@ -19,6 +19,7 @@ const initialState = {
   promoCodeLoading: false,
   promoCodeError: '',
   promoCodeValid: false,
+  promoCode: null,
 };
 
 export default (state = initialState, action) => {
@@ -51,6 +52,7 @@ export default (state = initialState, action) => {
         ...state,
         promoCodeLoading: false,
         promoCodeValid: true,
+        promoCode: action.payload.promoCode,
       };
     case CHECK_PROMO_CODE_FAILURE:
       return {
@@ -87,3 +89,4 @@ export const getPromoCodeLoading = createSelector(
 
 export const getPromoCodeError = createSelector(getCheckout, checkout => checkout.promoCodeError);
 export const getPromoCodeValid = createSelector(getCheckout, checkout => checkout.promoCodeValid);
+export const getPromoCode = createSelector(getCheckout, checkout => checkout.promoCode);
