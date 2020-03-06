@@ -70,7 +70,7 @@ function Membership() {
   return (
     <MembershipSection>
       <div className="membership-info">
-        <h2 className="membership-title">Sounds good?</h2>
+        <h2 className="membership-title">Sound good?</h2>
       </div>
       <div className="membership-find">
         <Link to={ROUTES.LOCATIONS}>
