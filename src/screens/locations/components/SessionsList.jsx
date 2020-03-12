@@ -106,7 +106,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
         const sessionTime = formatSessionTime(time);
         const URLdate = urlFormattedDate(startTime);
         const emailSessionDate = formatSessionDate(startTime);
-        const mailInfo = `mailto:info@crosscourt.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${location.name}. Please notify me if a spot opens up. You can reach me at ${phoneNumber}.`;
+        const mailInfo = `mailto:ccteam@cross-court.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${location.name}. Please notify me if a spot opens up. You can reach me at ${phoneNumber}.`;
 
         return (
           <div className="session-list-item-container" key={id}>
