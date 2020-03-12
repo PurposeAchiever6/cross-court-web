@@ -1,12 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { equals } from 'ramda';
+
 import AlternativeButton from 'shared/components/AlternativeButton';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import { urlFormattedDate, shortSessionDate, hourRange } from 'shared/utils/date';
+import CheckCircle from 'shared/components/svg/CheckCircleSvg';
+import { confirmSessionInit } from 'screens/sessions/actionCreators';
 
 const SessionContainer = styled.div`
   display: flex;
@@ -37,7 +42,23 @@ const SessionContainer = styled.div`
     display: flex;
     height: 13.5rem;
   }
+  .reserved-check {
+    height: 2rem;
+    width: 2rem;
+    background-color: #aaaff3;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 0;
+    margin-left: 1rem;
 
+    svg {
+      font-size: 0.5rem;
+      color: #fff;
+      padding-left: 0;
+    }
+  }
   .image {
     flex: 1;
   }
@@ -46,21 +67,16 @@ const SessionContainer = styled.div`
     flex: 2;
     padding-bottom: 1rem;
 
-    * {
-      padding-left: 2rem;
-    }
-
     .date {
+      display: flex;
+      align-items: center;
       margin: 0;
       background-color: ${colors.black};
       color: white;
       font-weight: 500;
       font-size: 1.7rem;
       line-height: 2;
-
-      @media ${device.mobile} {
-        font-size: 1.5rem;
-      }
+      padding: 0 2rem;
     }
 
     .first {
@@ -76,40 +92,43 @@ const SessionContainer = styled.div`
       font-weight: 500;
       font-size: 1.4rem;
       margin-top: 1rem;
-
-      @media ${device.mobile} {
-        font-size: 1.2rem;
-      }
+      padding: 0 2rem;
     }
 
     .location {
       font-size: 1.4rem;
       letter-spacing: 0.1em;
       margin-top: 0.5rem;
-
-      @media ${device.mobile} {
-        font-size: 1.2rem;
-      }
+      padding: 0 2rem;
     }
 
     p {
       margin: 0;
     }
 
-    .btn {
-      margin-top: 1rem;
-      outline: none;
-      border: 1px solid ${colors.white};
-      font-size: 0.85rem;
-      font-weight: 500;
-      padding: 0.7rem 2rem;
-      cursor: pointer;
-    }
+    .buttons-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      .btn {
+        outline: none;
+        border: 1px solid ${colors.white};
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 0.7rem 2rem;
+        cursor: pointer;
+      }
 
-    .btn-alt {
-      margin-top: 1rem;
-      border: 1px solid ${colors.black};
-      color: ${colors.black};
+      .confirm-btn {
+        padding: 0.7rem 2rem;
+      }
+
+      .btn-alt {
+        border: 1px solid ${colors.black};
+        color: ${colors.black};
+        padding: 0.7rem 1.5rem;
+      }
     }
   }
 
@@ -123,6 +142,15 @@ const SessionContainer = styled.div`
       object-position: top;
       display: flex;
     }
+    .location {
+      font-size: 1.2rem;
+    }
+    .time {
+      font-size: 1.2rem;
+    }
+    .date {
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -133,6 +161,12 @@ const Session = ({ past, isSem, sessionInfo }) => {
   } else if (isSem && sessionInfo.inStartTime) {
     dateClassName += ' first';
   }
+  const dispatch = useDispatch();
+
+  const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.id));
+  
+  const isReserved = equals(sessionInfo.state, 'reserved');
+  const isConfirmed = equals(sessionInfo.state, 'confirmed');
 
   return (
     <SessionContainer>
@@ -140,7 +174,14 @@ const Session = ({ past, isSem, sessionInfo }) => {
         <img src={sessionInfo.session.location.imageUrl} alt="Session" />
       </div>
       <div className="details">
-        <p className={dateClassName}>{shortSessionDate(sessionInfo.date)}</p>
+        <span className={dateClassName}>
+          {shortSessionDate(sessionInfo.date)}
+          {isConfirmed && !past && (
+            <span className="reserved-check">
+              <CheckCircle />
+            </span>
+          )}
+        </span>
         <p className="time">{hourRange(sessionInfo.session.time)}</p>
         <p className="location">{sessionInfo.session.location.name}</p>
         {isSem && sessionInfo.inStartTime ? (
@@ -148,9 +189,16 @@ const Session = ({ past, isSem, sessionInfo }) => {
             <Button className="btn">Start Session</Button>
           </Link>
         ) : (
-          <Link to={`/session/${sessionInfo.session.id}/${urlFormattedDate(sessionInfo.date)}`}>
-            <AlternativeButton className="btn-alt">See Details</AlternativeButton>
-          </Link>
+          <div className="buttons-container">
+            <Link to={`/session/${sessionInfo.session.id}/${urlFormattedDate(sessionInfo.date)}`}>
+              <AlternativeButton className="btn-alt">See Details</AlternativeButton>
+            </Link>
+            {isReserved && sessionInfo.inConfirmationTime && (
+              <Button className="confirm-btn" onClick={confirmSessionAction}>
+                Confirm
+              </Button>
+            )}
+          </div>
         )}
       </div>
     </SessionContainer>
