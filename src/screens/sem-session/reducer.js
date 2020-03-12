@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pageLoading: false,
-        playersMissing: action.payload.playersMissing,
+        playersMissing: action.payload.playersMissingIds.length,
       };
     case CHECK_IN_FAILURE:
       return {

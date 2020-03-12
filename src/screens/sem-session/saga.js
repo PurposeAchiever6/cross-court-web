@@ -29,7 +29,7 @@ export function* initialLoadFlow({ payload }) {
 
 export function* checkInFlow({ payload }) {
   try {
-    yield call(sessionService.checkIn, payload.ids);
+    yield call(sessionService.checkIn, payload.ids, payload.playersMissingIds);
     yield put({
       type: CHECK_IN_SUCCESS,
       payload,

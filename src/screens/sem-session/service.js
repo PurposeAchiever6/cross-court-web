@@ -13,9 +13,10 @@ export default {
     return response.data;
   },
 
-  checkIn: async ids => {
+  checkIn: async (ids, playersMissingIds) => {
     await api.put(`/sem/user_sessions/check_in`, {
-      ids,
+      checkedInIds: ids,
+      notCheckedInIds: playersMissingIds,
     });
   },
 };
