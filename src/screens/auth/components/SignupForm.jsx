@@ -10,6 +10,7 @@ import device from 'shared/styles/mediaQueries';
 import InputTextField from 'shared/components/InputTextField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
+import InputCheckboxField from 'shared/components/InputCheckboxField';
 
 const SignupFormContainer = styled.div`
   display: flex;
@@ -75,6 +76,7 @@ const initialValues = {
   email: '',
   password: '',
   confirmPassword: '',
+  terms: false,
 };
 
 const validationSchema = Yup.object().shape({
@@ -84,6 +86,7 @@ const validationSchema = Yup.object().shape({
     .required('Required'),
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
+  terms: Yup.bool().oneOf([true], 'Required'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
@@ -127,6 +130,11 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
               name="confirmPassword"
               type="password"
             />
+          </div>
+          <div className="form-group">
+            <InputCheckboxField name="terms">
+              Agree our <Link to={ROUTES.TERMS}>terms & conditions</Link>
+            </InputCheckboxField>
           </div>
           <Button type="submit" disabled={isLoading}>
             {!isLoading ? 'Sign Up' : <Spinner />}
