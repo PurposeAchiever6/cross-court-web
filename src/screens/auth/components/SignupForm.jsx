@@ -133,7 +133,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
           </div>
           <div className="form-group">
             <InputCheckboxField name="terms">
-              Agree our <Link to={ROUTES.TERMS}>terms & conditions</Link>
+              I agree to the <Link to={ROUTES.TERMS}>terms and conditions</Link>
             </InputCheckboxField>
           </div>
           <Button type="submit" disabled={isLoading}>
