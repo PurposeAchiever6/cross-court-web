@@ -19,7 +19,7 @@ const BannerContainer = styled.div`
   background: #aaaff3;
   color: white;
   position: fixed;
-  bottom: 2rem;
+  bottom: 5rem;
   right: 3rem;
   z-index: 100;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);

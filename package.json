@@ -64,6 +64,7 @@
     "ramda": "^0.26.1",
     "react": "^16.11.0",
     "react-copy-to-clipboard": "^5.0.2",
+    "react-device-detect": "^1.11.14",
     "react-dom": "^16.11.0",
     "react-ga": "^2.7.0",
     "react-hamburger-menu": "^1.1.1",

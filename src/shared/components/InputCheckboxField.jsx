@@ -27,6 +27,9 @@ const InputCheckboxContainer = styled.div`
     input {
       margin-left: 0;
     }
+    .text-container {
+      padding-left: 0.5rem;
+    }
   }
 
   small {

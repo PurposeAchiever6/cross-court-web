@@ -7,6 +7,7 @@ import colors from 'shared/styles/constants';
 import TheSession from 'shared/components/TheSession';
 import Button from 'shared/components/Button';
 import FreeSessionBanner from 'shared/components/FreeSessionBanner';
+import PWABanner from 'shared/components/PWABanner';
 import Hero from './components/Hero';
 import Signup from './components/Signup';
 import MobileLanding from './components/MobileLanding';
@@ -27,6 +28,7 @@ const PageContainer = styled.div`
 
 const HomePage = () => (
   <PageContainer>
+    <PWABanner />
     <FreeSessionBanner />
     <Hero>
       <Signup />
