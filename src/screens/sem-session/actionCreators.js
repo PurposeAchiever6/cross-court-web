@@ -8,10 +8,10 @@ export const initialLoadInit = (id, date) => ({
   },
 });
 
-export const checkInInit = (ids, playersMissing) => ({
+export const checkInInit = (ids, playersMissingIds) => ({
   type: CHECK_IN_INIT,
   payload: {
     ids,
-    playersMissing,
+    playersMissingIds,
   },
 });
