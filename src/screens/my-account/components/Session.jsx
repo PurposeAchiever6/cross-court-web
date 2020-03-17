@@ -20,6 +20,7 @@ const SessionContainer = styled.div`
   box-shadow: 0px 2px 5px ${colors.blackOverlay};
 
   @media ${device.desktop} {
+    min-width: 18rem;
     max-width: 30%;
     margin-right: 3%;
 
@@ -154,49 +155,65 @@ const SessionContainer = styled.div`
   }
 `;
 
-const Session = ({ past, isSem, sessionInfo }) => {
+const Session = ({
+  past,
+  isSem,
+  sessionInfo: {
+    id,
+    inStartTime,
+    state,
+    date,
+    inConfirmationTime,
+    session: {
+      id: sessionId,
+      time,
+      location: { name: locationName, imageUrl },
+    },
+  },
+}) => {
   let dateClassName = 'date';
   if (past) {
     dateClassName += ' past';
-  } else if (isSem && sessionInfo.inStartTime) {
+  } else if (isSem && inStartTime) {
     dateClassName += ' first';
   }
   const dispatch = useDispatch();
 
-  const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.id));
-  
-  const isReserved = equals(sessionInfo.state, 'reserved');
-  const isConfirmed = equals(sessionInfo.state, 'confirmed');
+  const confirmSessionAction = () => dispatch(confirmSessionInit(id));
+
+  const isReserved = equals(state, 'reserved');
+  const isConfirmed = equals(state, 'confirmed');
 
   return (
     <SessionContainer>
       <div className="image">
-        <img src={sessionInfo.session.location.imageUrl} alt="Session" />
+        <img src={imageUrl} alt="Session" />
       </div>
       <div className="details">
         <span className={dateClassName}>
-          {shortSessionDate(sessionInfo.date)}
+          {shortSessionDate(date)}
           {isConfirmed && !past && (
             <span className="reserved-check">
               <CheckCircle />
             </span>
           )}
         </span>
-        <p className="time">{hourRange(sessionInfo.session.time)}</p>
-        <p className="location">{sessionInfo.session.location.name}</p>
-        {isSem && sessionInfo.inStartTime ? (
-          <Link to={`/sem/session/${sessionInfo.session.id}/${urlFormattedDate(sessionInfo.date)}`}>
+        <p className="time">{hourRange(time)}</p>
+        <p className="location">{locationName}</p>
+        {isSem && inStartTime ? (
+          <Link to={`/sem/session/${sessionId}/${urlFormattedDate(date)}`}>
             <Button className="btn">Start Session</Button>
           </Link>
         ) : (
           <div className="buttons-container">
-            <Link to={`/session/${sessionInfo.session.id}/${urlFormattedDate(sessionInfo.date)}`}>
-              <AlternativeButton className="btn-alt">See Details</AlternativeButton>
-            </Link>
-            {isReserved && sessionInfo.inConfirmationTime && (
+            {isReserved && inConfirmationTime ? (
               <Button className="confirm-btn" onClick={confirmSessionAction}>
                 Confirm
               </Button>
+            ) : (
+              <Link to={`/session/${sessionId}/${urlFormattedDate(date)}`}>
+                <AlternativeButton className="btn-alt">See Details</AlternativeButton>
+              </Link>
             )}
           </div>
         )}
