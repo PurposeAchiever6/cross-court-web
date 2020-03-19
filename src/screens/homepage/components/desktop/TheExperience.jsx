@@ -34,7 +34,7 @@ const TheExperience = () => (
       </h1>
       <p>
         Crosscourt is a high-intensity, team based fitness experience. An electric-yet-cathartic
-        workout that’s accesible, shareable, and covetable.
+        workout that’s accessible, shareable, and covetable.
       </p>
       <p>
         We exist to remove the barriers that make sports more work than workout. We bring the venue,

@@ -41,11 +41,11 @@ const Showup = () => (
       </Icon>
     </Icons>
     <Par>
-      <p>Each hour-long session is run by our trained Experience Team</p>
+      <p>Each hour-long session is run by our trained Experience Team.</p>
       <p>
         Our Session Experience Managers will check you in, bump music, keep score, and make sure you
         leave dripping in sweat, while our Session Officials will enforce the rules and maintain
-        order on the court
+        order on the court.
       </p>
     </Par>
     <Link to={ROUTES.SEM}>

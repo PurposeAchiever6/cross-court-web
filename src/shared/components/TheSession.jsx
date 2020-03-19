@@ -107,7 +107,7 @@ const TheSession = props => (
         <div className="boxes-image">
           <MerchSvg />
         </div>
-        <span className="boxes-text">Equipement provided</span>
+        <span className="boxes-text">Equipment provided</span>
       </div>
     </div>
   </Section>

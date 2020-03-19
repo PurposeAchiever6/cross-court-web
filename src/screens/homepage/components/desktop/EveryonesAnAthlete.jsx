@@ -45,7 +45,7 @@ const EveryonesAnAthlete = () => (
       <p>
         The court is where overworked professionals, weekend warriors, and up-and-coming creatives
         come together to sweat as equals. We are building a community where it’s not the differences
-        that define us, but what we have in common
+        that define us, but what we have in common.
       </p>
     </TextContainer>
   </>
