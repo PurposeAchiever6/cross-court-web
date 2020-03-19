@@ -39,7 +39,6 @@ const InputCheckboxContainer = styled.div`
   }
 `;
 export default function InputCheckbox({ error, name, labelText, disabled = false, children }) {
-  console.log(error);
   return (
     <Field name={name}>
       {({ field, form: { touched, errors: formikError } }) => (

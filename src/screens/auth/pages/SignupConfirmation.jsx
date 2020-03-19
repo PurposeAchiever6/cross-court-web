@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import CheckIcon from 'shared/images/check-icon.png';
 import Button from 'shared/components/Button';
 import ROUTES from 'shared/constants/routes';
+import AuthUtils from 'shared/utils/auth';
+import useQuery from 'shared/hooks/useQuery';
 
 const PageContainer = styled.div`
   display: flex;
@@ -25,14 +27,22 @@ const PageContainer = styled.div`
   }
 `;
 
-const SignupConfirmationPage = () => (
-  <PageContainer>
-    <img src={CheckIcon} alt="Check icon" />
-    <h1>Your e-mail was successfully verified!</h1>
-    <Link to={ROUTES.LOGIN}>
-      <Button>Continue</Button>
-    </Link>
-  </PageContainer>
-);
+const SignupConfirmationPage = () => {
+  const query = useQuery();
+  const client = query.get('client');
+  const accessToken = query.get('access-token');
+  const uid = query.get('uid');
+  AuthUtils.setTokens({ client, accessToken, uid });
+
+  return (
+    <PageContainer>
+      <img src={CheckIcon} alt="Check icon" />
+      <h1>Your e-mail was successfully verified!</h1>
+      <Link to={ROUTES.MYACCOUNT}>
+        <Button>Continue</Button>
+      </Link>
+    </PageContainer>
+  );
+};
 
 export default SignupConfirmationPage;

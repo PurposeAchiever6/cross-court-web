@@ -19,7 +19,6 @@ ServiceInstance.interceptors.request.use(
   async config => {
     const tokens = AuthUtils.getTokens();
     const { uid, accessToken, client } = tokens;
-
     if (tokens) {
       config.headers.uid = uid;
       config.headers.client = client;
@@ -30,32 +29,5 @@ ServiceInstance.interceptors.request.use(
   },
   async error => Promise.reject(error)
 );
-
-// ServiceInstance.interceptors.response.use(
-//   response => {
-//     return response;
-//   },
-//   error => {
-//     const originalRequest = error.config;
-
-//     if (!error.response) {
-//       return Promise.reject(new Error('Network error'));
-//     }
-
-//     if (error.response.status === 401 && !originalRequest._retry) {
-//       const tokens = AuthUtils.getTokens();
-//       const { uid, accessToken, client } = tokens;
-
-//       originalRequest._retry = true;
-//       originalRequest.headers.uid = uid;
-//       originalRequest.headers.client = client;
-//       originalRequest.headers['access-token'] = accessToken;
-
-//       return axios(originalRequest);
-//     }
-
-//     return error.response;
-//   }
-// );
 
 export default ServiceInstance;
