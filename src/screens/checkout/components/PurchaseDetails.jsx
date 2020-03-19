@@ -19,7 +19,6 @@ const PurchaseDetailsContainer = styled.div`
   width: 100%;
 
   .purchase-details-box {
-    width: 40%;
     display: flex;
     flex-direction: column;
     border: 1px solid #bbbecd;
@@ -123,7 +122,9 @@ const PurchaseDetailsContainer = styled.div`
   }
 
   .btn-container {
-    width: 43%;
+    width: 60%;
+    min-width: 40rem;
+    padding-right: 2rem;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
@@ -136,6 +137,9 @@ const PurchaseDetailsContainer = styled.div`
   @media ${device.mobile} {
     .purchase-details-box {
       width: 75%;
+      border: none;
+      margin-top: 0;
+      padding-top: 0;
 
       .date {
         font-size: 1rem;

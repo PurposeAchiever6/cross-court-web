@@ -14,7 +14,7 @@ import device from 'shared/styles/mediaQueries';
 import { deleteCard, setSelectedCard } from '../actionCreators';
 
 const PaymentMethodsContainer = styled.div`
-  width: 25%;
+  width: 35%;
   margin-top: 5rem;
 
   .payment-methods-container {
