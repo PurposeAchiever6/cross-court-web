@@ -42,7 +42,7 @@ const TheExperience = () => (
     <img src={TheExperienceImage} className="image" alt="The Experience" />
     <p className="note">
       Crosscourt is a high-intensity, team based fitness experience. An electric-yet-cathartic
-      workout that’s accesible, shareable, and covetable.
+      workout that’s accessible, shareable, and covetable.
     </p>
     <p className="note">
       We exist to remove the barriers that make sports more work than workout. We bring the venue,

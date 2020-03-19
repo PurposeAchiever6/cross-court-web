@@ -35,7 +35,7 @@ const NoBullshit = () => (
     <Text>
       <p>
         Sports shouldn’t be more work than workout. No more underwhelming pickup sessions. No more
-        long term commitments to leagues. No more lame cardio. Just sign up, show up and sweat
+        long term commitments to leagues. No more lame cardio. Just sign up, show up and sweat.
       </p>
     </Text>
   </>

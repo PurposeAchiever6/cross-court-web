@@ -83,7 +83,7 @@ const Series = () => {
           <img src={CalendarIcon} alt="Calendar icon" />
           <div className="text-container">
             <span className="title">Don&apos;t Expire</span>
-            <span className="text">Purchase and use your series at your convenience</span>
+            <span className="text">Purchase and use your series at your convenience.</span>
           </div>
         </div>
         <div className="item">
