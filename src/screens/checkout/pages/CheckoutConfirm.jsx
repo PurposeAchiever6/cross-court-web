@@ -50,8 +50,6 @@ const CheckoutConfirm = () => {
   if (!purchaseConfirmed) {
     return <Redirect to={ROUTES.SERIES} />;
   }
-  console.log(sessionSaved);
-  console.log(!isNil(sessionSaved));
   return (
     <PageContainer>
       <img src={CheckIcon} alt="Check icon" />
