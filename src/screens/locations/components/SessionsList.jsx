@@ -102,43 +102,45 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
   return (
     <SessionsListContainer>
-      {sortedSessions.map(({ id, startTime, time, full, location, level, spotsLeft, reserved }) => {
-        const sessionTime = formatSessionTime(time);
-        const URLdate = urlFormattedDate(startTime);
-        const emailSessionDate = formatSessionDate(startTime);
-        const mailInfo = `mailto:ccteam@cross-court.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${location.name}. Please notify me if a spot opens up. You can reach me at ${phoneNumber}.`;
-        let button;
-        if (reserved) {
-          button = (
-            <Link to={`/session/${id}/${URLdate}`}>
-              <AlternativeButton className="btn-alternative">See Details</AlternativeButton>
-            </Link>
-          );
-        } else if (full) {
-          button = (
-            <a href={mailInfo}>
-              <AlternativeButton className="btn-alternative">Join Waitlist</AlternativeButton>
-            </a>
-          );
-        } else {
-          button = (
-            <Link to={`/session/${id}/${URLdate}`}>
-              <Button>Reserve</Button>
-            </Link>
+      {sortedSessions.map(
+        ({ id, startTime, time, full, location, level, spotsLeft, reserved, past }) => {
+          const sessionTime = formatSessionTime(time);
+          const URLdate = urlFormattedDate(startTime);
+          const emailSessionDate = formatSessionDate(startTime);
+          const mailInfo = `mailto:ccteam@cross-court.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${location.name}. Please notify me if a spot opens up. You can reach me at ${phoneNumber}.`;
+          let button;
+          if (reserved || past) {
+            button = (
+              <Link to={`/session/${id}/${URLdate}`}>
+                <AlternativeButton className="btn-alternative">See Details</AlternativeButton>
+              </Link>
+            );
+          } else if (full) {
+            button = (
+              <a href={mailInfo}>
+                <AlternativeButton className="btn-alternative">Join Waitlist</AlternativeButton>
+              </a>
+            );
+          } else {
+            button = (
+              <Link to={`/session/${id}/${URLdate}`}>
+                <Button>Reserve</Button>
+              </Link>
+            );
+          }
+          return (
+            <div className="session-list-item-container" key={id}>
+              <div className="text-container">
+                <div className="time">{hourRange(time)}</div>
+                <div className="location">{location.name}</div>
+                <SessionLevel level={level} />
+                <SpotsLeft spotsLeft={spotsLeft} />
+              </div>
+              {button}
+            </div>
           );
         }
-        return (
-          <div className="session-list-item-container" key={id}>
-            <div className="text-container">
-              <div className="time">{hourRange(time)}</div>
-              <div className="location">{location.name}</div>
-              <SessionLevel level={level} />
-              <SpotsLeft spotsLeft={spotsLeft} />
-            </div>
-            {button}
-          </div>
-        );
-      })}
+      )}
     </SessionsListContainer>
   );
 };
