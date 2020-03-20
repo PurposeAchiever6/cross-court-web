@@ -50,11 +50,12 @@ const CheckoutConfirm = () => {
   if (!purchaseConfirmed) {
     return <Redirect to={ROUTES.SERIES} />;
   }
+  
   return (
     <PageContainer>
       <img src={CheckIcon} alt="Check icon" />
       <h1>Thank you for purchasing a Series! Now click below to sign up for a session.</h1>
-      {!isNil(sessionSaved.id) || !isNil(sessionSaved.date) ? (
+      {!isNil(sessionSaved.id) && !isNil(sessionSaved.date) ? (
         <Link to={sessionURL}>
           <Button>Go to session</Button>
         </Link>
