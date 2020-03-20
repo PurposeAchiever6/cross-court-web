@@ -5,6 +5,7 @@ import {
   SEND_CONFIRMATION_EMAIL_INIT,
   FORGOT_PASS_INIT,
   PASS_RESET_INIT,
+  AUTO_LOGIN_INIT,
 } from './actionTypes';
 
 export const loginInit = payload => ({
@@ -33,4 +34,11 @@ export const forgotPassInit = payload => ({
 export const passResetInit = payload => ({
   type: PASS_RESET_INIT,
   payload,
+});
+
+export const autoLogin = headers => ({
+  type: AUTO_LOGIN_INIT,
+  payload: {
+    headers,
+  },
 });

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useParams, Link } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { isNil } from 'ramda';
 import styled from 'styled-components';
 
@@ -11,7 +11,6 @@ import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import UserSvg from 'shared/components/svg/UserSvg';
 import { longSessionDate, hourRange } from 'shared/utils/date';
-import ROUTES from 'shared/constants/routes';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -19,6 +18,7 @@ import AlternativeButton from 'shared/components/AlternativeButton';
 import SessionLevel from 'shared/components/SessionLevel';
 import LEVELS from 'shared/constants/levels';
 
+import { removeSessionFromStorage } from 'shared/actions/actionCreators';
 import {
   initialLoadInit,
   reserveSessionInit,
@@ -26,6 +26,8 @@ import {
   confirmSessionInit,
   showCancelModal,
   initialLoadAuthInit,
+  signupBookSession,
+  buyCreditsAndBookSession,
 } from './actionCreators';
 import { getPageLoading, getSessionInfo, getShowCancelModal } from './reducer';
 import CancelModal from './components/CancelModal';
@@ -253,14 +255,18 @@ const SessionsPage = () => {
   const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
   const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
   const showCancelModalAction = () => dispatch(showCancelModal());
+  const signupBookSessionAction = () => dispatch(signupBookSession(id, date));
+  const buyCreditsAndBookSessionAction = () => dispatch(buyCreditsAndBookSession(id, date));
+  const removeSessionFromStorageAction = () => dispatch(removeSessionFromStorage());
 
   useEffect(() => {
     if (isAuthenticated) {
+      dispatch(removeSessionFromStorageAction());
       dispatch(initialLoadAuthInit(id, date));
     } else {
       dispatch(initialLoadInit(id, date));
     }
-  }, [dispatch, id, date, isAuthenticated]);
+  }, [isAuthenticated]);
 
   if (isNil(id)) {
     return <Redirect to="/" />;
@@ -347,11 +353,12 @@ const SessionsPage = () => {
                 confirmSessionAction={confirmSessionAction}
                 showCancelModalAction={showCancelModalAction}
                 userProfile={userProfile}
+                signupBookSessionAction={signupBookSessionAction}
               />
               {userProfile.credits === 0 && (
-                <Link to={ROUTES.SERIES}>
-                  <AlternativeButton className="buy-btn">Purchase Session</AlternativeButton>
-                </Link>
+                <AlternativeButton className="buy-btn" onClick={buyCreditsAndBookSessionAction}>
+                  Purchase Session
+                </AlternativeButton>
               )}
             </div>
           </div>

@@ -20,3 +20,7 @@ export const FORGOT_PASS_FAILURE = '@auth/FORGOT_PASS_FAILURE';
 export const PASS_RESET_INIT = '@auth/PASS_RESET_INIT';
 export const PASS_RESET_SUCCESS = '@auth/PASS_RESET_SUCCESS';
 export const PASS_RESET_FAILURE = '@auth/PASS_RESET_FAILURE';
+
+export const AUTO_LOGIN_INIT = '@auth/AUTO_LOGIN_INIT';
+export const AUTO_LOGIN_SUCCESS = '@auth/AUTO_LOGIN_SUCCESS';
+export const AUTO_LOGIN_FAILURE = '@auth/AUTO_LOGIN_FAILURE';

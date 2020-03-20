@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { isNil } from 'ramda';
+import { useDispatch } from 'react-redux';
 
 import CheckIcon from 'shared/images/check-icon.png';
 import Button from 'shared/components/Button';
 import ROUTES from 'shared/constants/routes';
-import AuthUtils from 'shared/utils/auth';
 import useQuery from 'shared/hooks/useQuery';
+import StorageUtils from 'shared/utils/storage';
+
+import { autoLogin } from '../actionCreators';
 
 const PageContainer = styled.div`
   display: flex;
@@ -28,11 +32,21 @@ const PageContainer = styled.div`
 `;
 
 const SignupConfirmationPage = () => {
+  const dispatch = useDispatch();
   const query = useQuery();
   const client = query.get('client');
   const accessToken = query.get('access-token');
   const uid = query.get('uid');
-  AuthUtils.setTokens({ client, accessToken, uid });
+
+  useEffect(() => {
+    dispatch(autoLogin({ client, accessToken, uid }));
+  }, [accessToken, client, dispatch, uid]);
+
+  const savedSession = StorageUtils.getSavedSession();
+
+  if (!isNil(savedSession)) {
+    return <Redirect to={ROUTES.SERIES} />;
+  }
 
   return (
     <PageContainer>

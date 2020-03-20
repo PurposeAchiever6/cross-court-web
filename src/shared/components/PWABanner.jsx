@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { isIOS, isMobileSafari, isChrome } from 'react-device-detect';
-import SafariMenuImg from 'shared/images/safari-menu.png';
 
 const PWABannerContainer = styled.div`
   position: fixed;
@@ -43,7 +42,6 @@ const PWABannerContainer = styled.div`
 `;
 
 const PWABanner = () => {
-  console.log(isChrome);
   const isInstalled =
     window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
 

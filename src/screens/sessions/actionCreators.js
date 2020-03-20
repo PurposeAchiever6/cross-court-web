@@ -5,6 +5,8 @@ import {
   CANCEL_SESSION_INIT,
   CONFIRM_SESSION_INIT,
   SHOW_CANCEL_MODAL,
+  SIGNUP_BOOK_SESSION,
+  BUY_CREDITS_AND_BOOK_SESSION,
 } from './actionTypes';
 
 export const initialLoadInit = (sessionId, date) => ({
@@ -47,4 +49,20 @@ export const confirmSessionInit = sessionId => ({
 
 export const showCancelModal = () => ({
   type: SHOW_CANCEL_MODAL,
+});
+
+export const signupBookSession = (id, date) => ({
+  type: SIGNUP_BOOK_SESSION,
+  payload: {
+    sessionId: id,
+    date,
+  },
+});
+
+export const buyCreditsAndBookSession = (id, date) => ({
+  type: BUY_CREDITS_AND_BOOK_SESSION,
+  payload: {
+    sessionId: id,
+    date,
+  },
 });

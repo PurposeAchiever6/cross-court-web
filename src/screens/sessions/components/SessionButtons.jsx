@@ -13,6 +13,7 @@ const SessionButtons = ({
   confirmSessionAction,
   showCancelModalAction,
   userProfile,
+  signupBookSessionAction,
 }) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
 
@@ -22,6 +23,7 @@ const SessionButtons = ({
         <ReserveButton
           reserveSessionAction={reserveSessionAction}
           confirmSessionAction={confirmSessionAction}
+          signupBookSessionAction={signupBookSessionAction}
           session={session}
         />
       )}

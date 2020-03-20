@@ -14,6 +14,7 @@ import {
   PASS_RESET_SUCCESS,
   PASS_RESET_FAILURE,
   LOGOUT_INIT,
+  AUTO_LOGIN_SUCCESS,
 } from './actionTypes';
 
 const initialState = {
@@ -97,6 +98,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loginError: '',
+      };
+    case AUTO_LOGIN_SUCCESS:
+      return {
+        ...state,
+        isAuthenticated: true,
       };
     default:
       return state;

@@ -1,10 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { isNil, equals, not } from 'ramda';
 import PropTypes from 'prop-types';
 
-import ROUTES from 'shared/constants/routes';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import { getIsAuthenticated } from 'screens/auth/reducer';
@@ -13,7 +11,12 @@ import { getUserProfile } from 'screens/my-account/reducer';
 
 import { getSessionDate } from '../reducer';
 
-const ReserveButton = ({ reserveSessionAction, session, confirmSessionAction }) => {
+const ReserveButton = ({
+  reserveSessionAction,
+  session,
+  confirmSessionAction,
+  signupBookSessionAction,
+}) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const sessionDate = useSelector(getSessionDate);
   const { phoneNumber } = useSelector(getUserProfile);
@@ -63,9 +66,9 @@ const ReserveButton = ({ reserveSessionAction, session, confirmSessionAction }) 
   }
 
   return (
-    <Link to={ROUTES.LOGIN}>
-      <Button className="reserve-btn">Reserve</Button>
-    </Link>
+    <Button className="reserve-btn" onClick={signupBookSessionAction}>
+      Reserve
+    </Button>
   );
 };
 

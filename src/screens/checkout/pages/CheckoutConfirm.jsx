@@ -2,10 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { isNil } from 'ramda';
+
 import CheckIcon from 'shared/images/check-icon.png';
 import Button from 'shared/components/Button';
 import ROUTES from 'shared/constants/routes';
 import device from 'shared/styles/mediaQueries';
+import StorageUtils from 'shared/utils/storage';
+
 import { getPurchaseConfirmed } from '../reducer';
 
 const PageContainer = styled.div`
@@ -40,6 +44,8 @@ const PageContainer = styled.div`
 
 const CheckoutConfirm = () => {
   const purchaseConfirmed = useSelector(getPurchaseConfirmed);
+  const sessionSaved = StorageUtils.getSavedSession();
+  const sessionURL = `/session/${sessionSaved.id}/${sessionSaved.date}`;
 
   if (!purchaseConfirmed) {
     return <Redirect to={ROUTES.SERIES} />;
@@ -49,9 +55,15 @@ const CheckoutConfirm = () => {
     <PageContainer>
       <img src={CheckIcon} alt="Check icon" />
       <h1>Thank you for purchasing a Series! Now click below to sign up for a session.</h1>
-      <Link to={ROUTES.LOCATIONS}>
-        <Button>See Schedule</Button>
-      </Link>
+      {!isNil(sessionSaved) ? (
+        <Link to={sessionURL}>
+          <Button>Go to session</Button>
+        </Link>
+      ) : (
+        <Link to={ROUTES.LOCATIONS}>
+          <Button>See Schedule</Button>
+        </Link>
+      )}
     </PageContainer>
   );
 };

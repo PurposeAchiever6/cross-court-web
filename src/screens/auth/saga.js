@@ -1,9 +1,10 @@
 import { put, all, takeLatest, call, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-import ROUTES from 'shared/constants/routes';
 import { head } from 'ramda';
 
+import ROUTES from 'shared/constants/routes';
 import AuthUtils from 'shared/utils/auth';
+
 import {
   LOGIN_INIT,
   LOGIN_SUCCESS,
@@ -22,6 +23,9 @@ import {
   PASS_RESET_INIT,
   PASS_RESET_SUCCESS,
   PASS_RESET_FAILURE,
+  AUTO_LOGIN_INIT,
+  AUTO_LOGIN_SUCCESS,
+  AUTO_LOGIN_FAILURE,
 } from './actionTypes';
 import authService from './service';
 import { getUserEmail } from './reducer';
@@ -90,6 +94,16 @@ export function* passResetFlow({ payload }) {
   }
 }
 
+export function* autoLoginFlow({ payload }) {
+  try {
+    yield call(AuthUtils.setTokens, payload.headers);
+    yield put({ type: AUTO_LOGIN_SUCCESS });
+    yield put(push(ROUTES.SERIES));
+  } catch (err) {
+    yield put({ type: AUTO_LOGIN_FAILURE, error: err });
+  }
+}
+
 export default function* rootLoginSaga() {
   yield all([
     takeLatest(LOGIN_INIT, loginFlow),
@@ -98,5 +112,6 @@ export default function* rootLoginSaga() {
     takeLatest(SEND_CONFIRMATION_EMAIL_INIT, sendConfirmationEmailFlow),
     takeLatest(FORGOT_PASS_INIT, forgotPassFlow),
     takeLatest(PASS_RESET_INIT, passResetFlow),
+    takeLatest(AUTO_LOGIN_INIT, autoLoginFlow),
   ]);
 }
