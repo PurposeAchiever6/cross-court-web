@@ -347,14 +347,16 @@ const SessionsPage = () => {
               </div>
             </div>
             <div className="button-container">
-              <SessionButtons
-                session={sessionInfo}
-                reserveSessionAction={reserveSessionAction}
-                confirmSessionAction={confirmSessionAction}
-                showCancelModalAction={showCancelModalAction}
-                userProfile={userProfile}
-                signupBookSessionAction={signupBookSessionAction}
-              />
+              {!sessionInfo.past && (
+                <SessionButtons
+                  session={sessionInfo}
+                  reserveSessionAction={reserveSessionAction}
+                  confirmSessionAction={confirmSessionAction}
+                  showCancelModalAction={showCancelModalAction}
+                  userProfile={userProfile}
+                  signupBookSessionAction={signupBookSessionAction}
+                />
+              )}
               {userProfile.credits === 0 && (
                 <AlternativeButton className="buy-btn" onClick={buyCreditsAndBookSessionAction}>
                   Purchase Session
