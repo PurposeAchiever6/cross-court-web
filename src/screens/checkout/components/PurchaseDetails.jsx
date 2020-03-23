@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import currency from 'currency.js';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import device from 'shared/styles/mediaQueries';
 import { purchaseFormattedDate } from 'shared/utils/date';
 import Button from 'shared/components/Button';
 import CCIcon from 'shared/components/CCIcon';
 import { getCheckoutLoading } from '../reducer';
+import { clearDiscount } from '../actionCreators';
 import PromoCode from './PromoCode';
 
 const PurchaseDetailsContainer = styled.div`
@@ -188,9 +189,14 @@ const PurchaseDetails = ({
   isFreeSession,
   createFreeSessionHandler,
 }) => {
+  const dispatch = useDispatch();
   const isLoading = useSelector(getCheckoutLoading);
   const checkoutHandler = isFreeSession ? createFreeSessionHandler : createPurchaseHandler;
   const purchaseDate = purchaseFormattedDate();
+
+  useEffect(() => {
+    dispatch(clearDiscount());
+  }, [dispatch]);
 
   return (
     <PurchaseDetailsContainer>

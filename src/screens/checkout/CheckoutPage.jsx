@@ -20,7 +20,7 @@ const CheckoutPageContainer = styled.div`
   .button-container {
     width: 100%;
   }
-  
+
   @media ${device.mobile} {
     h1 {
       font-size: 1.5rem;
