@@ -280,6 +280,7 @@ const SessionsPage = () => {
         <CancelModal
           closeHandler={showCancelModalAction}
           cancelSessionAction={cancelSessionAction}
+          inCancellationTime={sessionInfo.userSession.inCancellationTime}
         />
       </Modal>
       <div className="title-container">

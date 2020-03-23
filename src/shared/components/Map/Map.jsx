@@ -48,8 +48,8 @@ const Map = ({ locations, selectedLocation, setLocationHandler }) => (
     <GoogleMapReact
       bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
       center={{
-        lat: 34.0688791,
-        lng: -118.2711009,
+        lat: LA_CENTER.lat,
+        lng: LA_CENTER.lng,
       }}
       yesIWantToUseGoogleMapApiInternals
       onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, locations)}

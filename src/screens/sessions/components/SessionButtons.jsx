@@ -28,7 +28,7 @@ const SessionButtons = ({
         />
       )}
       {isAuthenticated && !isNil(session.userSession) && (
-        <CancelButton modalToggler={showCancelModalAction} session={session} />
+        <CancelButton modalToggler={showCancelModalAction} />
       )}
     </>
   );
@@ -38,6 +38,7 @@ SessionButtons.propTypes = {
   reserveSessionAction: PropTypes.func.isRequired,
   confirmSessionAction: PropTypes.func.isRequired,
   showCancelModalAction: PropTypes.func.isRequired,
+  signupBookSessionAction: PropTypes.func.isRequired,
   userProfile: PropTypes.object.isRequired,
   session: PropTypes.object.isRequired,
 };

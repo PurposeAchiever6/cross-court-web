@@ -22,7 +22,7 @@ import {
   CONFIRM_SESSION_SUCCESS,
   CONFIRM_SESSION_FAILURE,
   SIGNUP_BOOK_SESSION,
-  BUY_CREDITS_AND_BOOK_SESSION
+  BUY_CREDITS_AND_BOOK_SESSION,
 } from './actionTypes';
 import sessionService from './service';
 
