@@ -66,7 +66,6 @@ const SessionContainer = styled.div`
 
   .details {
     flex: 2;
-    padding-bottom: 1rem;
 
     .date {
       display: flex;
@@ -135,7 +134,6 @@ const SessionContainer = styled.div`
 
   @media ${device.mobile} {
     flex-direction: row;
-    height: 13.5rem;
 
     img {
       height: 100%;
