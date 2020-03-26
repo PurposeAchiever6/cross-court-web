@@ -17,7 +17,7 @@ const PurchaseDetailsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 40rem;
 
   .purchase-details-box {
     display: flex;
@@ -123,9 +123,7 @@ const PurchaseDetailsContainer = styled.div`
   }
 
   .btn-container {
-    width: 60%;
-    min-width: 40rem;
-    padding-right: 2rem;
+    width: inherit;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
@@ -137,7 +135,6 @@ const PurchaseDetailsContainer = styled.div`
 
   @media ${device.mobile} {
     .purchase-details-box {
-      width: 75%;
       border: none;
       margin-top: 0;
       padding-top: 0;
@@ -175,9 +172,8 @@ const PurchaseDetailsContainer = styled.div`
         }
       }
     }
-
     .btn-container {
-      width: 48%;
+      width: 50%;
     }
   }
 `;
