@@ -148,7 +148,7 @@ const WinStreak = () => {
           ) : (
             <>
               <p className="plus-one">+1</p>
-              <p className="shirt-color">white</p>
+              <p className="shirt-color">black</p>
             </>
           )}
         </button>
