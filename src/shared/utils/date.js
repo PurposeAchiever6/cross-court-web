@@ -48,7 +48,7 @@ export const weekRangeTitle = date =>
 
 export const purchaseFormattedDate = date => getUTCDate(date).format(FORMAT_DATE_PURCHASE);
 
-export const requestFormattedDate = date => getUTCDate(date).format(FORMAT_DATE_REQUEST);
+export const requestFormattedDate = date => dayjs(new Date(date)).format(FORMAT_DATE_REQUEST);
 
 export const isSameDay = (date1, date2) =>
   requestFormattedDate(date1) === requestFormattedDate(date2);
