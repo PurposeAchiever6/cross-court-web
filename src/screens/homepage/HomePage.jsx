@@ -13,6 +13,7 @@ import Signup from './components/Signup';
 import MobileLanding from './components/MobileLanding';
 import DesktopLanding from './components/DesktopLanding';
 import Memberships from './components/Memberships';
+import VideoPlayer from './components/VideoPlayer';
 
 const PageContainer = styled.div`
   background-color: ${colors.white};
@@ -41,6 +42,7 @@ const HomePage = () => (
         <Button>Learn More</Button>
       </Link>
     </div>
+    <VideoPlayer />
     <Memberships />
   </PageContainer>
 );

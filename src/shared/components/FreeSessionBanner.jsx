@@ -19,7 +19,7 @@ const BannerContainer = styled.div`
   background: #aaaff3;
   color: white;
   position: fixed;
-  bottom: 5rem;
+  bottom: 2rem;
   right: 3rem;
   z-index: 100;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -30,7 +30,6 @@ const BannerContainer = styled.div`
     font-weight: 400;
     padding: 1rem 5rem;
     font-family: Space Mono;
-    //font-weight: bold;
     font-size: 21px;
     line-height: 31px;
     width: 100%;
@@ -46,6 +45,7 @@ const BannerContainer = styled.div`
 
   @media ${device.mobile} {
     right: 1rem;
+    bottom: 5rem;
   }
 `;
 
