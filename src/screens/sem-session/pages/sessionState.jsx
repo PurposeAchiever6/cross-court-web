@@ -44,7 +44,7 @@ const SessionStatePage = () => {
 
   return (
     <Container>
-      <Header name={sessionInfo.location.name} />
+      <Header sessionInfo={sessionInfo} />
       <Timer />
       <WinStreak />
       <Randomizer />

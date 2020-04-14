@@ -80,3 +80,6 @@ export const sortSessionsByDate = sessions =>
 
 export const formatSessionTime = time => getUTCDate(time).format(FORMAT_HOUR);
 export const formatSessionDate = time => getUTCDate(time).format(FORMAT_DATE_PURCHASE);
+
+export const semSessionFormatTime = (date, time) =>
+  `${shortSessionDate(date)} ${formatSessionTime(time)}`;
