@@ -23,15 +23,15 @@ const SemHandbookPage = () => {
   return (
     <SemHandbookPageContainer>
       <FreeSessionBanner />
-      <h2>CrossCourt FAQ</h2>
+      <h2>Crosscourt FAQ</h2>
       <h3>Players</h3>
       <ul>
         <li>
-          <h4>What is CrossCourt?</h4>
+          <h4>What is Crosscourt?</h4>
           <p>
-            CrossCourt is a premium high-intensity fitness experience achieved through team-based
+            Crosscourt is a premium high-intensity fitness experience achieved through team-based
             sports. We host basketball sessions geared to help athletes of all abilities shed sweat
-            and stress with a fast-paced one-hour workout. CrossCourt connects teammates via an
+            and stress with a fast-paced one-hour workout. Crosscourt connects teammates via an
             innovative digital experience, and crafts the ultimate vibe with certified session
             officials, quality facilities, and fresh soundtracks. You just have to sign up, show up,
             and sweat.
@@ -112,11 +112,11 @@ const SemHandbookPage = () => {
             <li>All And 1&apos;s result in the ball back, taken out of bounds</li>
             <li>Each team gets 4 fouls, then all additional result in a 1 and 1 scenario</li>
             <li>
-              At CrossCourt, all 1 and 1&apos;s are instead a single free throw that counts as 2
+              At Crosscourt, all 1 and 1&apos;s are instead a single free throw that counts as 2
               points
             </li>
             <li>
-              All fouls under 10 seconds result in a CrossCourt 1 and 1The clock only stops under 10
+              All fouls under 10 seconds result in a Crosscourt 1 and 1The clock only stops under 10
               seconds
             </li>
             <li>
@@ -132,7 +132,7 @@ const SemHandbookPage = () => {
               You can cancel your reservation up to 8 hours before your session begins in order to
               receive a refund.
             </strong>{' '}
-            CrossCourt being a team sports based fitness experience means that your teammates are
+            Crosscourt being a team sports based fitness experience means that your teammates are
             relying on your presence, so our cancellation policy is strict
           </p>
         </li>
@@ -166,7 +166,7 @@ const SemHandbookPage = () => {
         <li>
           <h4>Can I request to be on a specific team?</h4>
           <p>
-            As of today, we cannot make specific arrangements. CrossCourt is a social form of
+            As of today, we cannot make specific arrangements. Crosscourt is a social form of
             exercise, and as such we recommend getting to know some of the other players in your
             session. If you enjoy going to the same location at the same time each week, then you
             will likely see the same players frequently.
@@ -192,7 +192,7 @@ const SemHandbookPage = () => {
         <li>
           <h4>How can I become a Session Experience Manager or Session Official?</h4>
           <p>
-            We are always looking for brand advocates to join the CrossCourt Experience Team. Just
+            We are always looking for brand advocates to join the Crosscourt Experience Team. Just
             click the <Link to={ROUTES.SEM}>Become an SEM/SO</Link> button on our website and fill
             out an application.
           </p>
@@ -234,7 +234,7 @@ const SemHandbookPage = () => {
         <li>
           <h4>How can I become a Session Experience Manager or Session Official?</h4>
           <p>
-            We are always looking for brand advocates to join the CrossCourt Experience Team. Just
+            We are always looking for brand advocates to join the Crosscourt Experience Team. Just
             click the <Link to={ROUTES.SEM}>Become an SEM/SO</Link> button on our website and fill
             out an application.
           </p>
@@ -247,7 +247,7 @@ const SemHandbookPage = () => {
         <li>
           <h4>What does the Session Experience Manager do?</h4>
           <p>
-            The Session Experience Manager is the face of CrossCourt at each session and is
+            The Session Experience Manager is the face of Crosscourt at each session and is
             responsible for managing the session from beginning to end. That includes being early to
             set up the kit, greeting players as they arrive, keeping score/time, and motivating
             players throughout Session.
@@ -273,7 +273,7 @@ const SemHandbookPage = () => {
             <li>Performance Bonus’</li>
             <li>Equity in company </li>
             <li>Exclusive Merch </li>
-            <li>To be the face of CrossCourt </li>
+            <li>To be the face of Crosscourt </li>
           </ul>
         </li>
         <li>
@@ -315,7 +315,7 @@ const SemHandbookPage = () => {
             <li>Performance Bonus’</li>
             <li>Equity in company </li>
             <li>Exclusive Merch </li>
-            <li>To be the face of CrossCourt </li>
+            <li>To be the face of Crosscourt </li>
           </ul>
         </li>
         <li>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useParams, Link } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { isNil } from 'ramda';
 import styled from 'styled-components';
 
@@ -11,7 +11,6 @@ import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import UserSvg from 'shared/components/svg/UserSvg';
 import { longSessionDate, hourRange } from 'shared/utils/date';
-import ROUTES from 'shared/constants/routes';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -19,6 +18,7 @@ import AlternativeButton from 'shared/components/AlternativeButton';
 import SessionLevel from 'shared/components/SessionLevel';
 import LEVELS from 'shared/constants/levels';
 
+import { removeSessionFromStorage } from 'shared/actions/actionCreators';
 import {
   initialLoadInit,
   reserveSessionInit,
@@ -26,6 +26,8 @@ import {
   confirmSessionInit,
   showCancelModal,
   initialLoadAuthInit,
+  signupBookSession,
+  buyCreditsAndBookSession,
 } from './actionCreators';
 import { getPageLoading, getSessionInfo, getShowCancelModal } from './reducer';
 import CancelModal from './components/CancelModal';
@@ -114,10 +116,12 @@ const SessionsPageContainer = styled.div`
             justify-content: center;
             align-items: center;
             img {
-              max-width: 5rem;
+              width: 5rem;
+              height: 5rem;
               margin: 0 auto;
               border-radius: 10rem;
               margin-bottom: 0.5rem;
+              object-fit: cover;
             }
 
             .not-assigned-container {
@@ -251,18 +255,24 @@ const SessionsPage = () => {
   const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
   const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
   const showCancelModalAction = () => dispatch(showCancelModal());
+  const signupBookSessionAction = () => dispatch(signupBookSession(id, date));
+  const buyCreditsAndBookSessionAction = () => dispatch(buyCreditsAndBookSession(id, date));
+  const removeSessionFromStorageAction = () => dispatch(removeSessionFromStorage());
 
   useEffect(() => {
     if (isAuthenticated) {
+      dispatch(removeSessionFromStorageAction());
       dispatch(initialLoadAuthInit(id, date));
     } else {
       dispatch(initialLoadInit(id, date));
     }
-  }, [dispatch, id, date, isAuthenticated]);
+  }, [isAuthenticated]);
 
   if (isNil(id)) {
     return <Redirect to="/" />;
   }
+  const inCancellationTime =
+    sessionInfo && sessionInfo.userSession && sessionInfo.userSession.inCancellationTime;
 
   return isPageLoading ? (
     <Loading />
@@ -272,6 +282,7 @@ const SessionsPage = () => {
         <CancelModal
           closeHandler={showCancelModalAction}
           cancelSessionAction={cancelSessionAction}
+          inCancellationTime={inCancellationTime}
         />
       </Modal>
       <div className="title-container">
@@ -339,17 +350,20 @@ const SessionsPage = () => {
               </div>
             </div>
             <div className="button-container">
-              <SessionButtons
-                session={sessionInfo}
-                reserveSessionAction={reserveSessionAction}
-                confirmSessionAction={confirmSessionAction}
-                showCancelModalAction={showCancelModalAction}
-                userProfile={userProfile}
-              />
+              {!sessionInfo.past && (
+                <SessionButtons
+                  session={sessionInfo}
+                  reserveSessionAction={reserveSessionAction}
+                  confirmSessionAction={confirmSessionAction}
+                  showCancelModalAction={showCancelModalAction}
+                  userProfile={userProfile}
+                  signupBookSessionAction={signupBookSessionAction}
+                />
+              )}
               {userProfile.credits === 0 && (
-                <Link to={ROUTES.SERIES}>
-                  <AlternativeButton className="buy-btn">Purchase Sessions</AlternativeButton>
-                </Link>
+                <AlternativeButton className="buy-btn" onClick={buyCreditsAndBookSessionAction}>
+                  Purchase Session
+                </AlternativeButton>
               )}
             </div>
           </div>

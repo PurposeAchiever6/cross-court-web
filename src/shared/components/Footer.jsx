@@ -152,7 +152,7 @@ function Footer() {
             </div>
           </div>
         </div>
-        <span className="copyright">© 2019 CrossCourt All Rights Reserved</span>
+        <span className="copyright">© 2019 Crosscourt All Rights Reserved</span>
       </div>
     </FooterContainer>
   );

@@ -56,7 +56,7 @@ const PassResetSuccess = () => (
   <PageContainer>
     <img src={CheckIcon} alt="Check icon" />
     <h1>Password Reset</h1>
-    <p>Your CrossCourt Password was succesfully reset</p>
+    <p>Your Crosscourt Password was succesfully reset</p>
     <Link to="/login">
       <Button>Go to Login</Button>
     </Link>

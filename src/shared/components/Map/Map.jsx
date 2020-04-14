@@ -2,14 +2,18 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import PropTypes from 'prop-types';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
-
 import MapMarker from './MapMarker';
 import styles from './styles';
+
+const LA_CENTER = {
+  lat: 34.0688791,
+  lng: -118.2711009,
+};
 
 const getMapBounds = (map, maps, locations) => {
   const bounds = new maps.LatLngBounds();
 
-  locations.forEach(location => {
+  [...locations, LA_CENTER].forEach(location => {
     bounds.extend(new maps.LatLng(location.lat, location.lng));
   });
 
@@ -44,8 +48,8 @@ const Map = ({ locations, selectedLocation, setLocationHandler }) => (
     <GoogleMapReact
       bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
       center={{
-        lat: 34.0688791,
-        lng: -118.2711009,
+        lat: LA_CENTER.lat,
+        lng: LA_CENTER.lng,
       }}
       yesIWantToUseGoogleMapApiInternals
       onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, locations)}

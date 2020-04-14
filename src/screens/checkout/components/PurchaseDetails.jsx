@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import currency from 'currency.js';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import device from 'shared/styles/mediaQueries';
 import { purchaseFormattedDate } from 'shared/utils/date';
 import Button from 'shared/components/Button';
 import CCIcon from 'shared/components/CCIcon';
 import { getCheckoutLoading } from '../reducer';
+import { clearDiscount } from '../actionCreators';
 import PromoCode from './PromoCode';
 
 const PurchaseDetailsContainer = styled.div`
@@ -16,10 +17,9 @@ const PurchaseDetailsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 40rem;
 
   .purchase-details-box {
-    width: 40%;
     display: flex;
     flex-direction: column;
     border: 1px solid #bbbecd;
@@ -123,7 +123,7 @@ const PurchaseDetailsContainer = styled.div`
   }
 
   .btn-container {
-    width: 43%;
+    width: inherit;
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
@@ -135,7 +135,9 @@ const PurchaseDetailsContainer = styled.div`
 
   @media ${device.mobile} {
     .purchase-details-box {
-      width: 75%;
+      border: none;
+      margin-top: 0;
+      padding-top: 0;
 
       .date {
         font-size: 1rem;
@@ -170,9 +172,8 @@ const PurchaseDetailsContainer = styled.div`
         }
       }
     }
-
     .btn-container {
-      width: 48%;
+      width: 50%;
     }
   }
 `;
@@ -184,9 +185,14 @@ const PurchaseDetails = ({
   isFreeSession,
   createFreeSessionHandler,
 }) => {
+  const dispatch = useDispatch();
   const isLoading = useSelector(getCheckoutLoading);
   const checkoutHandler = isFreeSession ? createFreeSessionHandler : createPurchaseHandler;
   const purchaseDate = purchaseFormattedDate();
+
+  useEffect(() => {
+    dispatch(clearDiscount());
+  }, [dispatch]);
 
   return (
     <PurchaseDetailsContainer>

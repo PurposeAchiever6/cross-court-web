@@ -76,8 +76,8 @@ const Memberships = () => (
       </Link>
     </div>
     <div className="memberships-container">
-      <span className="text">New to CrossCourt?</span>
-      <Link to={ROUTES.FAQ}>
+      <span className="text">New to Crosscourt?</span>
+      <Link to={ROUTES.HOWITWORKS}>
         <AlternativeButton>Learn More</AlternativeButton>
       </Link>
     </div>

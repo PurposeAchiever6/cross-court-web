@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import TheExperienceImage from '../../images/the-experience-desktop.jpg';
+import TheExperienceImage from '../../images/the-experience.jpg';
 import ImageContainer from '../ImageContainer';
 
 const Container = styled.div`
@@ -33,8 +33,8 @@ const TheExperience = () => (
         THE <span>EXPERIENCE</span>
       </h1>
       <p>
-        CrossCourt is a high-intensity, team based fitness experience. An electric-yet-cathartic
-        workout that’s accesible, shareable, and covetable.
+        Crosscourt is a high-intensity, team based fitness experience. An electric-yet-cathartic
+        workout that’s accessible, shareable, and covetable.
       </p>
       <p>
         We exist to remove the barriers that make sports more work than workout. We bring the venue,

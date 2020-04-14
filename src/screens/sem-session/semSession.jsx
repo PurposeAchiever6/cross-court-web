@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { isEmpty } from 'ramda';
+import { isEmpty, partition } from 'ramda';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
 import Loading from 'shared/components/Loading';
 import Button from 'shared/components/Button';
+import { semSessionFormatTime } from 'shared/utils/date';
 import { initialLoadInit, checkInInit } from './actionCreators';
 import { getPageLoading, getSessionInfo, getPlayers } from './reducer';
 import ArrivedPlayersList from './components/ArrivedPlayersList';
@@ -80,7 +81,8 @@ const SemSession = () => {
 
   const confirmCheckedInPlayers = () => {
     const checkInIds = checkedInPlayers.map(player => player.id);
-    dispatch(checkInInit(checkInIds, notCheckedInPlayers.length));
+    const notCheckInIds = notCheckedInPlayers.map(player => player.id);
+    dispatch(checkInInit(checkInIds, notCheckInIds));
   };
 
   useEffect(() => {
@@ -88,7 +90,9 @@ const SemSession = () => {
   }, [dispatch, id, date]);
 
   useEffect(() => {
-    setNotCheckedInPlayers(players);
+    const [alreadyCheckedIn, notCheckedIn] = partition(player => player.checkedIn, players);
+    setCheckedInPlayers(alreadyCheckedIn);
+    setNotCheckedInPlayers(notCheckedIn);
   }, [players]);
 
   return isPageLoading ? (
@@ -103,6 +107,7 @@ const SemSession = () => {
           <div className="title">
             <p>{sessionInfo.location && sessionInfo.location.name}</p>
             <p className="bold">session</p>
+            <p>{semSessionFormatTime(sessionInfo.startTime, sessionInfo.time)}</p>
           </div>
         </ImageContainer>
         <h2 className="players-title">Players list</h2>

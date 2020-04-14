@@ -7,11 +7,13 @@ import colors from 'shared/styles/constants';
 import TheSession from 'shared/components/TheSession';
 import Button from 'shared/components/Button';
 import FreeSessionBanner from 'shared/components/FreeSessionBanner';
+import PWABanner from 'shared/components/PWABanner';
 import Hero from './components/Hero';
 import Signup from './components/Signup';
 import MobileLanding from './components/MobileLanding';
 import DesktopLanding from './components/DesktopLanding';
 import Memberships from './components/Memberships';
+import VideoPlayer from './components/VideoPlayer';
 
 const PageContainer = styled.div`
   background-color: ${colors.white};
@@ -27,6 +29,7 @@ const PageContainer = styled.div`
 
 const HomePage = () => (
   <PageContainer>
+    <PWABanner />
     <FreeSessionBanner />
     <Hero>
       <Signup />
@@ -39,6 +42,7 @@ const HomePage = () => (
         <Button>Learn More</Button>
       </Link>
     </div>
+    <VideoPlayer />
     <Memberships />
   </PageContainer>
 );

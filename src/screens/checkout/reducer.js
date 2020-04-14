@@ -1,5 +1,7 @@
 import { createSelector } from 'reselect';
+import { SET_SELECTED_PRODUCT } from 'screens/series/actionTypes';
 import {
+  CLEAR_DISCOUNT,
   CREATE_PURCHASE_INIT,
   CREATE_PURCHASE_SUCCESS,
   CREATE_PURCHASE_FAILURE,
@@ -18,6 +20,7 @@ const initialState = {
   promoCodeLoading: false,
   promoCodeError: '',
   promoCodeValid: false,
+  promoCode: null,
 };
 
 export default (state = initialState, action) => {
@@ -50,6 +53,7 @@ export default (state = initialState, action) => {
         ...state,
         promoCodeLoading: false,
         promoCodeValid: true,
+        promoCode: action.payload.promoCode,
       };
     case CHECK_PROMO_CODE_FAILURE:
       return {
@@ -57,6 +61,19 @@ export default (state = initialState, action) => {
         promoCodeLoading: false,
         promoCodeError: action.error,
         promoCodeValid: false,
+      };
+    case SET_SELECTED_PRODUCT:
+      return {
+        ...state,
+        promoCodeValid: false,
+      };
+    case CLEAR_DISCOUNT:
+      return {
+        ...state,
+        promoCodeLoading: false,
+        promoCodeError: '',
+        promoCodeValid: false,
+        promoCode: null,
       };
     default:
       return state;
@@ -81,3 +98,4 @@ export const getPromoCodeLoading = createSelector(
 
 export const getPromoCodeError = createSelector(getCheckout, checkout => checkout.promoCodeError);
 export const getPromoCodeValid = createSelector(getCheckout, checkout => checkout.promoCodeValid);
+export const getPromoCode = createSelector(getCheckout, checkout => checkout.promoCode);

@@ -68,7 +68,7 @@ const MyCredits = ({ credits }) => (
     </div>
     <div className="links">
       <Link to={ROUTES.SERIES}>
-        <Button className="btn">Purchase Sessions</Button>
+        <Button className="btn">Purchase Session</Button>
       </Link>
       <Link to={ROUTES.PURCHASEHISTORY}>
         <AlternativeButton className="alt-btn">Purchases History</AlternativeButton>

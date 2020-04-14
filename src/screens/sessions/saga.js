@@ -4,6 +4,7 @@ import ROUTES from 'shared/constants/routes';
 import { toast } from 'react-toastify';
 
 import myAccountService from 'screens/my-account/service';
+import { SAVE_SESSION_TO_STORAGE } from 'shared/actions/actionTypes';
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -20,6 +21,8 @@ import {
   CONFIRM_SESSION_INIT,
   CONFIRM_SESSION_SUCCESS,
   CONFIRM_SESSION_FAILURE,
+  SIGNUP_BOOK_SESSION,
+  BUY_CREDITS_AND_BOOK_SESSION,
 } from './actionTypes';
 import sessionService from './service';
 
@@ -102,6 +105,20 @@ export function* confirmSessionFlow({ payload }) {
   }
 }
 
+export function* signupBookSessionFlow({ payload }) {
+  try {
+    yield put({ type: SAVE_SESSION_TO_STORAGE, payload });
+    yield put(push(ROUTES.SIGNUP));
+  } catch (err) {}
+}
+
+export function* buyCreditsAndBookSessionFlow({ payload }) {
+  try {
+    yield put({ type: SAVE_SESSION_TO_STORAGE, payload });
+    yield put(push(ROUTES.SERIES));
+  } catch (err) {}
+}
+
 export default function* rootSessionSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
@@ -109,5 +126,7 @@ export default function* rootSessionSaga() {
     takeLatest(RESERVE_SESSION_INIT, reserveSessionFlow),
     takeLatest(CANCEL_SESSION_INIT, cancelSessionFlow),
     takeLatest(CONFIRM_SESSION_INIT, confirmSessionFlow),
+    takeLatest(SIGNUP_BOOK_SESSION, signupBookSessionFlow),
+    takeLatest(BUY_CREDITS_AND_BOOK_SESSION, buyCreditsAndBookSessionFlow),
   ]);
 }

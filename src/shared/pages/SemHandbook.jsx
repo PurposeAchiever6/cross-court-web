@@ -85,7 +85,7 @@ const SemHandbookPage = () => {
           group before you is off the court)
         </li>
         <li>
-          Take out CrossCourt podium and assemble at center and half court on the sideline so the
+          Take out Crosscourt podium and assemble at center and half court on the sideline so the
           front is facing the court OPEN WHITE CONTAINER AND SET LID ASIDE NEATLY
         </li>
         <li>
@@ -221,7 +221,7 @@ const SemHandbookPage = () => {
           closed
         </li>
         <li>
-          Put the stand down carefully and place in CrossCourt kit near the side with the wheels
+          Put the stand down carefully and place in Crosscourt kit near the side with the wheels
         </li>
         <li>
           The 2nd to last item you want to put away is the speaker because you want to keep the
@@ -237,7 +237,7 @@ const SemHandbookPage = () => {
         <li>Grab laundry bag with all jerseys and wash/dry at home </li>
         <li>
           Make sure to thank all players for coming out to the session! Have them leave with a
-          positive memory of CrossCourt!
+          positive memory of Crosscourt!
         </li>
       </ol>
     </SemHandbookPageContainer>

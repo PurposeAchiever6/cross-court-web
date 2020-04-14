@@ -30,7 +30,7 @@ const ProfileTabs = ({ profile, editProfileLoading }) => {
     <ProfileTabsContainer>
       <div className="tabs">
         <span className={!showCredits && 'selected'} onClick={() => setShowCredits(false)}>
-          My Profile
+          My Account
         </span>
         <span className={showCredits && 'selected'} onClick={() => setShowCredits(true)}>
           My Credits

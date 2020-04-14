@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/series/reducer';
 import { getSelectedCard } from 'screens/payments/reducer';
+
+import { getPromoCode } from './reducer';
 import {
   CREATE_PURCHASE_INIT,
   CREATE_PURCHASE_SUCCESS,
@@ -21,8 +23,14 @@ export function* createPurchaseFlow() {
   try {
     const selectedProduct = yield select(getSelectedProduct);
     const selectedCard = yield select(getSelectedCard);
+    const promoCode = yield select(getPromoCode);
 
-    yield call(checkoutService.createPurchase, selectedProduct.stripeId, selectedCard.id);
+    yield call(
+      checkoutService.createPurchase,
+      selectedProduct.stripeId,
+      selectedCard.id,
+      promoCode
+    );
     yield put({
       type: CREATE_PURCHASE_SUCCESS,
     });
@@ -62,6 +70,7 @@ export function* checkPromoCodeFlow({ payload }) {
       type: CHECK_PROMO_CODE_SUCCESS,
       payload: {
         price,
+        promoCode: payload.promoCode,
       },
     });
   } catch (err) {

@@ -11,7 +11,7 @@ import colors from 'shared/styles/constants';
 import { FacebookShareButton, WhatsappShareButton } from 'react-share';
 import CheckIcon from 'shared/images/check-icon.png';
 import Button from 'shared/components/Button';
-
+import ROUTES from 'shared/constants/routes';
 import { getSessionId, getSessionDate } from '../reducer';
 
 const SessionConfirmedContainer = styled.div`
@@ -122,7 +122,7 @@ const SessionConfirmed = () => {
             <FontAwesomeIcon icon={faExternalLinkAlt} />
           </button>
         </div>
-        <Link to="/">
+        <Link to={ROUTES.MYACCOUNT}>
           <Button>Done</Button>
         </Link>
       </div>
