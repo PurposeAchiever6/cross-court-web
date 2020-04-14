@@ -24,7 +24,7 @@ dayjs.locale({
   weekStart: 1,
 });
 
-const getUTCDate = (date = new Date()) => dayjs(new Date(date)).utc();
+export const getUTCDate = (date = new Date()) => dayjs(new Date(date)).utc();
 
 export const shortSessionDate = date => getUTCDate(date).format(FORMAT_SESSION_DATE);
 
@@ -72,9 +72,8 @@ export const dayNumber = date => getUTCDate(date).format(FORMAT_DAY_NUMBER);
 export const isThisWeek = date =>
   dayjs(new Date(date)).isBetween(startOfWeek(new Date()), endOfWeek(new Date()));
 
-export const isPast = date => new Date(date) < new Date() && !isSameDay(new Date(date), new Date());
-
-export const todayDate = () => getUTCDate();
+export const isPast = date =>
+  dayjs(date).format(FORMAT_DATE_REQUEST) < new Date().toLocaleDateString();
 
 export const sortSessionsByDate = sessions =>
   sort((a, b) => (dayjs(new Date(a.time)).isAfter(dayjs(new Date(b.time))) ? 1 : -1), sessions);

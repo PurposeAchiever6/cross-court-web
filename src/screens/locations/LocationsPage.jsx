@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Loading from 'shared/components/Loading';
 import device from 'shared/styles/mediaQueries';
 import Map from 'shared/components/Map/Map';
-import { add, isPast, todayDate } from 'shared/utils/date';
+import { add, isPast, getUTCDate } from 'shared/utils/date';
 
 import LocationPicker from './components/LocationPicker';
 import WeekSelector from './components/WeekSelector';
@@ -73,8 +73,8 @@ const LocationsPage = () => {
     const pastWeekDate = add(selectedDate, -1, 'weeks');
 
     if (isPast(pastWeekDate)) {
-      setSelectedDateHandler(todayDate());
-      getSessionsByDateHandler(todayDate());
+      setSelectedDateHandler(getUTCDate());
+      getSessionsByDateHandler(getUTCDate());
     } else {
       setSelectedDateHandler(pastWeekDate);
       getSessionsByDateHandler(pastWeekDate);

@@ -76,6 +76,7 @@ ReserveButton.propTypes = {
   reserveSessionAction: PropTypes.func.isRequired,
   session: PropTypes.object.isRequired,
   confirmSessionAction: PropTypes.func.isRequired,
+  signupBookSessionAction: PropTypes.func.isRequired,
 };
 
 export default ReserveButton;
