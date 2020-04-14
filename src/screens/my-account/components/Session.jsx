@@ -199,9 +199,11 @@ const Session = ({
         <p className="time">{hourRange(time)}</p>
         <p className="location">{locationName}</p>
         {isSem && inStartTime ? (
-          <Link to={`/sem/session/${sessionId}/${urlFormattedDate(date)}`}>
-            <Button className="btn">Start Session</Button>
-          </Link>
+          <div className="buttons-container">
+            <Link to={`/sem/session/${sessionId}/${urlFormattedDate(date)}`}>
+              <Button className="btn">Start Session</Button>
+            </Link>
+          </div>
         ) : (
           <div className="buttons-container">
             {isReserved && inConfirmationTime ? (
