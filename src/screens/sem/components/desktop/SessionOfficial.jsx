@@ -28,7 +28,7 @@ const TextContainer = styled.div`
 
   .title {
     font-weight: bold;
-    font-size: 5rem;
+    font-size: 3.5rem;
     letter-spacing: 0.1rem;
     margin: 0;
     color: ${colors.black};

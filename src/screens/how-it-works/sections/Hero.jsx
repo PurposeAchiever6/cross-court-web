@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import ReactPlayer from 'react-player';
+import ReactModal from 'react-modal';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
-import ROUTES from 'shared/constants/routes';
+import useWindowSize from 'shared/hooks/useWindowSize';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
-import device from 'shared/styles/mediaQueries';
+import device, { size } from 'shared/styles/mediaQueries';
 
 import HeroImage from '../images/hero-mobile.jpg';
 import HeroDesktop from '../images/hero-desktop.jpg';
@@ -67,7 +69,31 @@ const HeroSection = styled.section`
   }
 `;
 
-function Hero() {
+const Hero = () => {
+  const [showModal, setShowModal] = useState(false);
+  const { width: windowSize } = useWindowSize();
+
+  const modalStyle = {
+    overlay: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    },
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      border: 'none',
+      borderRadius: '0',
+      transform: 'translate(-50%, -50%)',
+      background: 'none',
+      padding: 0,
+      width: '80%',
+      height: windowSize < size.desktop ? '25%' : '70%',
+    },
+  };
   return (
     <HeroSection>
       <div>
@@ -77,12 +103,24 @@ function Hero() {
         <p className="hero-text">Just sign up, show up and sweat.</p>
       </div>
       <div className="hero-find">
-        <Link to={ROUTES.LOCATIONS}>
-          <Button>See schedule</Button>
-        </Link>
+        <Button onClick={() => setShowModal(true)}>Watch Video</Button>
       </div>
+      <ReactModal
+        shouldCloseOnOverlayClick
+        style={modalStyle}
+        onRequestClose={() => setShowModal(false)}
+        isOpen={showModal}
+      >
+        <ReactPlayer
+          controls
+          playing
+          width="100%"
+          height="100%"
+          url={runtimeEnv().REACT_APP_VIDEO_URL}
+        />
+      </ReactModal>
     </HeroSection>
   );
-}
+};
 
 export default Hero;
