@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import colors from 'shared/styles/constants';
 import BackButton from 'shared/components/BackButton';
 import InfoCircleIcon from 'shared/components/InfoCircleIcon';
+import { semSessionFormatTime } from 'shared/utils/date';
 
 const Container = styled.div`
   width: 90%;
@@ -37,15 +38,20 @@ const Container = styled.div`
     background-color: ${colors.white};
     border: none;
   }
+
+  .time {
+    font-size: 1.2rem;
+  }
 `;
 
-const Header = ({ name }) => {
+const Header = ({ sessionInfo: { name, startTime, time } }) => {
   return (
     <Container>
       <BackButton className="back-btn" showText={false} />
       <div className="title">
         <p>{name}</p>
         <p className="bold">session</p>
+        <p className="time">{semSessionFormatTime(startTime, time)}</p>
       </div>
       <button className="icon-btn" type="button">
         <InfoCircleIcon />
@@ -55,7 +61,11 @@ const Header = ({ name }) => {
 };
 
 Header.propTypes = {
-  name: PropTypes.string.isRequired,
+  sessionInfo: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    startTime: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default Header;
