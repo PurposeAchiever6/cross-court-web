@@ -6,8 +6,9 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import useWindowSize from 'shared/hooks/useWindowSize';
 import colors from 'shared/styles/constants';
-import Button from 'shared/components/Button';
 import device, { size } from 'shared/styles/mediaQueries';
+import Button from 'shared/components/Button';
+import PlaySvg from 'shared/components/svg/PlaySvg';
 
 import HeroImage from '../images/hero-mobile.jpg';
 import HeroDesktop from '../images/hero-desktop.jpg';
@@ -50,6 +51,22 @@ const HeroSection = styled.section`
 
   .hero-find {
     margin-top: 3rem;
+
+    button {
+      display: flex;
+      padding: 1rem;
+      align-items: center;
+    }
+
+    .text {
+      text-transform: uppercase;
+      margin-left: 1rem;
+      font-size: 1.2rem;
+
+      .bold {
+        font-weight: bold;
+      }
+    }
   }
 
   @media ${device.desktop} {
@@ -103,7 +120,12 @@ const Hero = () => {
         <p className="hero-text">Just sign up, show up and sweat.</p>
       </div>
       <div className="hero-find">
-        <Button onClick={() => setShowModal(true)}>Watch Video</Button>
+        <Button onClick={() => setShowModal(true)}>
+          <PlaySvg />
+          <span className="text">
+            how it <span className="bold">works</span>
+          </span>
+        </Button>
       </div>
       <ReactModal
         shouldCloseOnOverlayClick
