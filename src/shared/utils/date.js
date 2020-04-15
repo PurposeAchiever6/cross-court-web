@@ -72,8 +72,7 @@ export const dayNumber = date => getUTCDate(date).format(FORMAT_DAY_NUMBER);
 export const isThisWeek = date =>
   dayjs(new Date(date)).isBetween(startOfWeek(new Date()), endOfWeek(new Date()));
 
-export const isPast = date =>
-  dayjs(date).format(FORMAT_DATE_REQUEST) < new Date().toLocaleDateString();
+export const isPast = date => date.diff(dayjs(), 'day') < 0;
 
 export const sortSessionsByDate = sessions =>
   sort((a, b) => (dayjs(new Date(a.time)).isAfter(dayjs(new Date(b.time))) ? 1 : -1), sessions);
