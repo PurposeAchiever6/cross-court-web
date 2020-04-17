@@ -4,9 +4,9 @@ export const initialLoad = () => ({
   type: INITIAL_LOAD_INIT,
 });
 
-export const setSelectedProduct = productId => ({
+export const setSelectedProduct = product => ({
   type: SET_SELECTED_PRODUCT,
   payload: {
-    selectedProduct: productId,
+    selectedProduct: product,
   },
 });

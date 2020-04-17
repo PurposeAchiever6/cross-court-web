@@ -107,7 +107,7 @@ const SemSession = () => {
           <div className="title">
             <p>{sessionInfo.location && sessionInfo.location.name}</p>
             <p className="bold">session</p>
-            <p>{semSessionFormatTime(sessionInfo.startTime, sessionInfo.time)}</p>
+            <p>{semSessionFormatTime(sessionInfo.date, sessionInfo.time)}</p>
           </div>
         </ImageContainer>
         <h2 className="players-title">Players list</h2>
