@@ -62,6 +62,7 @@ const HeroSection = styled.section`
       text-transform: uppercase;
       margin-left: 1rem;
       font-size: 1.2rem;
+      font-weight: 400;
 
       .bold {
         font-weight: bold;
