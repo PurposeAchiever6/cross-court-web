@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 import colors from 'shared/styles/constants';
 import Icon from 'shared/components/Icon';
-import MoneySvg from 'shared/components/svg/MoneySvg';
-import DropsSvg from 'shared/components/svg/DropsSvg';
-import WhistleSvg from 'shared/components/svg/WhistleSvg';
-import BallSvg from 'shared/components/svg/BallSvg';
-import TrophySvg from 'shared/components/svg/TrophySvg';
-import MerchSvg from 'shared/components/svg/MerchSvg';
+import { ReactComponent as CompetitiveWageSvg } from 'shared/components/svg/competitive-wage.svg';
+import { ReactComponent as FreeSessionsSvg } from 'shared/components/svg/free-sessions.svg';
+import { ReactComponent as EquitySvg } from 'shared/components/svg/equity.svg';
+import { ReactComponent as RewardsSvg } from 'shared/components/svg/rewards.svg';
+import { ReactComponent as JerseySvg } from 'shared/components/svg/jersey.svg';
+import { ReactComponent as CrosscourtFace } from 'shared/components/svg/crosscourt-face.svg';
 
 const Container = styled.div`
   background-color: ${colors.offWhite};
@@ -41,27 +41,27 @@ const Benefits = () => (
     </div>
     <div className="icons">
       <Icon>
-        <MoneySvg />
+        <CompetitiveWageSvg />
         <p>Competitive wage</p>
       </Icon>
       <Icon>
-        <DropsSvg />
-        <p>Sweat for Free</p>
+        <FreeSessionsSvg />
+        <p>Free sessions</p>
       </Icon>
       <Icon>
-        <WhistleSvg />
+        <EquitySvg />
         <p>Equity</p>
       </Icon>
       <Icon>
-        <TrophySvg />
+        <RewardsSvg />
         <p>Performance Rewads</p>
       </Icon>
       <Icon>
-        <MerchSvg />
+        <JerseySvg />
         <p>Exclusive Merch</p>
       </Icon>
       <Icon>
-        <BallSvg />
+        <CrosscourtFace />
         <p>Face of Crosscourt</p>
       </Icon>
     </div>

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
 import ArrowLeftSvg from 'shared/components/svg/ArrowLeftSvg';
-import MerchSvg from 'shared/components/svg/MerchSvg';
-import TimerSvg from 'shared/components/svg/TimerSvg';
+import { ReactComponent as JerseySvg } from 'shared/components/svg/jersey.svg';
+import { ReactComponent as GuidedExperienceSvg } from 'shared/components/svg/guided-experience.svg';
 import Icon from 'shared/components/Icon';
 import Button from 'shared/components/Button';
 
@@ -32,11 +32,11 @@ const Showup = () => (
     </Image>
     <Icons>
       <Icon>
-        <MerchSvg />
+        <JerseySvg />
         <Text>All equipment provided</Text>
       </Icon>
       <Icon>
-        <TimerSvg />
+        <GuidedExperienceSvg />
         <Text>Guided Experience</Text>
       </Icon>
     </Icons>
