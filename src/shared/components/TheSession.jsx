@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
-import { ReactComponent as GymSvg } from 'shared/components/svg/gym.svg';
+import GymSvg from 'shared/components/svg/GymSvg';
 import { ReactComponent as ClockSvg } from 'shared/components/svg/clock.svg';
 import { ReactComponent as OfficialSvg } from 'shared/components/svg/official.svg';
 import { ReactComponent as PlayerSvg } from 'shared/components/svg/player-min.svg';

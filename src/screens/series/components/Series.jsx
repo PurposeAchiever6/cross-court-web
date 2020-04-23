@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import device from 'shared/styles/mediaQueries';
-
-import CalendarIcon from '../images/calendar-icon.png';
-import CourtIcon from '../images/court-icon.png';
+import device, { size } from 'shared/styles/mediaQueries';
+import GymSvg from 'shared/components/svg/GymSvg';
+import OnYourTimeSvg from 'shared/components/svg/OnYourTimeSvg';
+import useWindowSize from 'shared/hooks/useWindowSize';
 
 const SeriesContainer = styled.div`
   display: flex;
@@ -75,19 +75,22 @@ const SeriesContainer = styled.div`
 `;
 
 const Series = () => {
+  const { width: windowSize } = useWindowSize();
+  const iconSize = windowSize < size.desktop ? '4rem' : '7rem';
+
   return (
     <SeriesContainer>
       <h2>Our Series</h2>
       <div className="content">
         <div className="item">
-          <img src={CalendarIcon} alt="Calendar icon" />
+          <OnYourTimeSvg width={iconSize} height={iconSize} />
           <div className="text-container">
             <span className="title">Don&apos;t Expire</span>
             <span className="text">Purchase and use your series at your convenience.</span>
           </div>
         </div>
         <div className="item">
-          <img src={CourtIcon} alt="Court icon" />
+          <GymSvg width={iconSize} height={iconSize} />
           <div className="text-container">
             <div className="title">Are Location Transferable</div>
             <div className="text">Use your series at any of our locations.</div>

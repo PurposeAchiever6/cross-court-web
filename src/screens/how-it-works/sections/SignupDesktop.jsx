@@ -1,8 +1,8 @@
 import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
-import { ReactComponent as OnYourTimeSvg } from 'shared/components/svg/on-your-time.svg';
-import { ReactComponent as GymSvg } from 'shared/components/svg/gym.svg';
+import OnYourTimeSvg from 'shared/components/svg/OnYourTimeSvg';
+import GymSvg from 'shared/components/svg/GymSvg';
 import ArrowLeftSvg from 'shared/components/svg/ArrowLeftSvg';
 import Icon from 'shared/components/Icon';
 
