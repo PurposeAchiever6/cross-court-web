@@ -8,9 +8,11 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import device from 'shared/styles/mediaQueries';
 import InputTextField from 'shared/components/InputTextField';
+import InputPhoneField from 'shared/components/InputPhoneField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
+import { phoneRegExp } from 'shared/utils/helpers';
 
 const SignupFormContainer = styled.div`
   display: flex;
@@ -74,6 +76,7 @@ const initialValues = {
   firstName: '',
   lastName: '',
   phoneNumber: '',
+  confirmPhoneNumber: '',
   email: '',
   password: '',
   confirmPassword: '',
@@ -83,9 +86,13 @@ const initialValues = {
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('Required'),
   lastName: Yup.string().required('Required'),
-  phoneNumber: Yup.number()
-    .typeError("That doesn't look like a phone number")
+  phoneNumber: Yup.string()
+    .transform(value => value.replace(/\D/g, ''))
+    .matches(phoneRegExp, "That doesn't look like a phone number")
     .required('Required'),
+  confirmPhoneNumber: Yup.string()
+    .oneOf([Yup.ref('phoneNumber'), null], 'Phone numbers must match')
+    .required('Confirm Phone Number is required'),
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
   terms: Yup.bool().oneOf([true], 'Required'),
@@ -115,7 +122,18 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
             <InputTextField labelText="Last Name*" error={errors.lastName} name="lastName" />
           </div>
           <div className="form-group">
-            <InputTextField labelText="Phone*" error={errors.phoneNumber} name="phoneNumber" />
+            <InputPhoneField
+              labelText="Phone Number*"
+              error={errors.phoneNumber}
+              name="phoneNumber"
+            />
+          </div>
+          <div className="form-group">
+            <InputPhoneField
+              labelText="Confirm Phone Number*"
+              error={errors.confirmPhoneNumber}
+              name="confirmPhoneNumber"
+            />
           </div>
           <div className="form-group">
             <InputTextField labelText="Email*" error={errors.email} name="email" />

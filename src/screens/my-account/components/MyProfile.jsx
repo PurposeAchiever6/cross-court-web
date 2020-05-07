@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { object, bool } from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import EditIcon from 'shared/components/svg/EditIcon.svg';
+import { formatPhoneNumber } from 'shared/utils/helpers';
 import { editProfileInit, showEditProfile } from '../actionCreators';
 import { getEditProfileLoading, getShowEditProfile } from '../reducer';
 
@@ -79,7 +80,9 @@ const MyProfile = ({ profile, showTitle = true }) => {
           </div>
           <div className="detail-row">
             <span className="title">Phone</span>
-            <span className="text">{profile.phoneNumber || 'No phone'}</span>
+            <span className="text">
+              {profile.phoneNumber ? formatPhoneNumber(profile.phoneNumber) : 'No phone'}
+            </span>
           </div>
         </>
       )}

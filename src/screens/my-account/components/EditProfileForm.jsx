@@ -5,9 +5,11 @@ import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
 import InputTextField from 'shared/components/InputTextField';
+import InputPhoneField from 'shared/components/InputPhoneField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
 import device from 'shared/styles/mediaQueries';
+import { formatPhoneNumber, phoneRegExp } from 'shared/utils/helpers';
 
 const EditProfileFormContainer = styled.div`
   form {
@@ -40,14 +42,17 @@ const EditProfileFormContainer = styled.div`
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('Required'),
   lastName: Yup.string().required('Required'),
-  phoneNumber: Yup.string().required('Required'),
+  phoneNumber: Yup.string()
+    .transform(value => value.replace(/\D/g, ''))
+    .matches(phoneRegExp, "That doesn't look like a phone number")
+    .required('Required'),
 });
 
 const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => {
   const initialValues = {
     firstName: profile ? profile.firstName : '',
     lastName: profile ? profile.lastName : '',
-    phoneNumber: profile ? profile.phoneNumber : '',
+    phoneNumber: profile ? formatPhoneNumber(profile.phoneNumber) : '',
   };
 
   return (
@@ -83,8 +88,7 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
                 />
               </div>
               <div className="form-group">
-                <InputTextField
-                  type="text"
+                <InputPhoneField
                   labelText="Phone"
                   error={errors.phoneNumber}
                   name="phoneNumber"
