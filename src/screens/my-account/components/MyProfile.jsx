@@ -49,8 +49,8 @@ const MyProfileContainer = styled.div`
 const MyProfile = ({ profile, showTitle = true }) => {
   const dispatch = useDispatch();
 
-  const editProfileAction = (name, phone) => dispatch(editProfileInit(name, phone));
-  const showEditProfileAction = (name, phone) => dispatch(showEditProfile(name, phone));
+  const editProfileAction = values => dispatch(editProfileInit(values));
+  const showEditProfileAction = () => dispatch(showEditProfile());
   const editProfileLoading = useSelector(getEditProfileLoading);
   const showEditProfileForm = useSelector(getShowEditProfile);
 
@@ -74,8 +74,8 @@ const MyProfile = ({ profile, showTitle = true }) => {
       ) : (
         <>
           <div className="detail-row">
-            <span className="title">name</span>
-            <span className="text">{profile.name}</span>
+            <span className="title">full name</span>
+            <span className="text">{`${profile.firstName} ${profile.lastName}`}</span>
           </div>
           <div className="detail-row">
             <span className="title">Phone</span>

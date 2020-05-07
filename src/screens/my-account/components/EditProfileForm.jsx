@@ -38,13 +38,15 @@ const EditProfileFormContainer = styled.div`
 `;
 
 const validationSchema = Yup.object().shape({
-  name: Yup.string().required('Required'),
+  firstName: Yup.string().required('Required'),
+  lastName: Yup.string().required('Required'),
   phoneNumber: Yup.string().required('Required'),
 });
 
 const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => {
   const initialValues = {
-    name: profile ? profile.name : '',
+    firstName: profile ? profile.firstName : '',
+    lastName: profile ? profile.lastName : '',
     phoneNumber: profile ? profile.phoneNumber : '',
   };
 
@@ -56,7 +58,7 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
         initialValues={initialValues}
         enableReinitialize
         onSubmit={values => {
-          editProfileAction(values.name, values.phoneNumber);
+          editProfileAction(values);
         }}
         validationSchema={validationSchema}
       >
@@ -66,10 +68,18 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
             <Form className="form">
               <div className="form-group">
                 <InputTextField
-                  labelText="Name"
-                  error={errors.name}
-                  name="name"
-                  placeholder="John Doe"
+                  labelText="First Name"
+                  error={errors.firstName}
+                  name="firstName"
+                  placeholder="John"
+                />
+              </div>
+              <div className="form-group">
+                <InputTextField
+                  labelText="Last Name"
+                  error={errors.lastName}
+                  name="lastName"
+                  placeholder="Doe"
                 />
               </div>
               <div className="form-group">
