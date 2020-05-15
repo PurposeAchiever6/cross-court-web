@@ -91,6 +91,7 @@ const validationSchema = Yup.object().shape({
     .matches(phoneRegExp, "That doesn't look like a phone number")
     .required('Required'),
   confirmPhoneNumber: Yup.string()
+    .transform(value => value.replace(/\D/g, ''))
     .oneOf([Yup.ref('phoneNumber'), null], 'Phone numbers must match')
     .required('Confirm Phone Number is required'),
   email: Yup.string().required('Required'),

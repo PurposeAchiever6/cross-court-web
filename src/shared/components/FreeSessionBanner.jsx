@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { not, equals } from 'ramda';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import useScrollPosition from '@react-hook/window-scroll';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -18,8 +19,8 @@ const BannerContainer = styled.div`
   flex-direction: column;
   background: #aaaff3;
   color: white;
-  position: fixed;
-  bottom: 2rem;
+  position: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 65 ? 'fixed' : 'absolute')};
+  bottom: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 65 ? '2rem' : '6rem')};
   right: 3rem;
   z-index: 100;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -45,7 +46,8 @@ const BannerContainer = styled.div`
 
   @media ${device.mobile} {
     right: 1rem;
-    bottom: 5rem;
+    bottom: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 165 ? '2rem' : '12rem')};
+    position: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 165 ? 'fixed' : 'absolute')};
   }
 `;
 
@@ -59,13 +61,19 @@ const FreeSessionBanner = () => {
 
   const freeSessionNotUsed = not(equals(freeSessionState, 'used'));
   const freeSessionNotClaimed = not(equals(freeSessionState, 'claimed'));
+  const scrollY = useScrollPosition();
+  const scrollLimit = document.body.offsetHeight - window.innerHeight;
 
   return (
     <>
       <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
         <FreeSessionConfirmModal closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal} />
       </Modal>
-      <BannerContainer showBanner={freeSessionNotUsed && freeSessionNotClaimed}>
+      <BannerContainer
+        showBanner={freeSessionNotUsed && freeSessionNotClaimed}
+        scrollY={scrollY}
+        scrollLimit={scrollLimit}
+      >
         {isAuthenticated ? (
           <Button onClick={showConfirmModalHandler}>First Session Free</Button>
         ) : (
