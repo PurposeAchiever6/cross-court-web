@@ -4,7 +4,7 @@
     url('../fonts/UntitledSans-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Untitled Sans';
@@ -12,7 +12,7 @@
     url('../fonts/UntitledSans-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Untitled Sans';
@@ -20,7 +20,7 @@
     url('../fonts/UntitledSans-Medium.woff') format('woff');
   font-weight: 500;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Untitled Sans';
@@ -28,7 +28,7 @@
     url('../fonts/UntitledSans-Black.woff') format('woff');
   font-weight: 900;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Space Mono';
@@ -38,7 +38,7 @@
     url('../fonts/space-mono-v5-latin-regular.woff2') format('woff2'),
     /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/space-mono-v5-latin-regular.woff')
       format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: 'Space Mono';
@@ -48,5 +48,5 @@
     url('../fonts/space-mono-v5-latin-700.woff2') format('woff2'),
     /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/space-mono-v5-latin-700.woff')
       format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-  font-display: swap;
+  font-display: block;
 }
