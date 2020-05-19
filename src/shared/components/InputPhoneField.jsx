@@ -88,6 +88,7 @@ const InputTextField = ({
             value={formatPhoneNumber(value)}
             type="tel"
             maxLength="17"
+            onPaste={e => e.preventDefault() && false}
           />
         </div>
         {displayErrorMsg && (
