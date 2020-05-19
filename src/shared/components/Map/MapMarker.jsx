@@ -4,8 +4,8 @@ import colors from 'shared/styles/constants';
 import styled from 'styled-components';
 
 const MarkerContainer = styled.div`
-  position: 'absolute';
-  transform: 'translate(-50%, -50%)';
+  position: absolute;
+  transform: translate(-50%, -50%);
 `;
 
 const MapMarker = ({ onClickHandler, selected }) => {
