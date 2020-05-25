@@ -12,7 +12,6 @@ export default {
   SEM: '/sem',
   SEMHANDBOOK: '/sem/handbook',
   SEMSESSION: '/sem/session/:id/:date',
-  SESSIONSTATE: '/sem/session/state',
   LOCATIONS: '/locations',
   SESSION: '/session/:id/:date',
   SESSIONRESERVED: '/session/reserved',

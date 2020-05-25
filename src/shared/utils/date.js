@@ -53,6 +53,8 @@ export const requestFormattedDate = date => getUTCDate(date).format(FORMAT_DATE_
 export const isSameDay = (date1, date2) =>
   requestFormattedDate(date1) === requestFormattedDate(date2);
 
+export const isToday = date => dayjs().isSame(date, 'date');
+
 export const add = (date, time, measure) => getUTCDate(date).add(time, measure);
 
 export const subtract = (date, time, measure) => getUTCDate(date).subtract(time, measure);
@@ -79,6 +81,3 @@ export const sortSessionsByDate = sessions =>
 
 export const formatSessionTime = time => getUTCDate(time).format(FORMAT_HOUR);
 export const formatSessionDate = time => getUTCDate(time).format(FORMAT_DATE_PURCHASE);
-
-export const semSessionFormatTime = (date, time) =>
-  `${shortSessionDate(date)} ${formatSessionTime(time)}`;
