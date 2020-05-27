@@ -1,130 +1,60 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { isEmpty, partition } from 'ramda';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import colors from 'shared/styles/constants';
-import Loading from 'shared/components/Loading';
-import Button from 'shared/components/Button';
-import { semSessionFormatTime } from 'shared/utils/date';
-import { initialLoadInit, checkInInit } from './actionCreators';
-import { getPageLoading, getSessionInfo, getPlayers } from './reducer';
-import ArrivedPlayersList from './components/ArrivedPlayersList';
-import NotArrivedPlayersList from './components/NotArrivedPlayersList';
 
-import ImageContainer from './components/ImageContainer';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
+import { getSemSessionsForToday } from 'screens/my-account/reducer';
+
+import Timer from './components/Timer';
+import WinStreak from './components/WinStreak';
+import Randomizer from './components/Randomizer';
+import Header from './components/Header';
+import PlayersListModal from './components/PlayersListModal';
 
 const Container = styled.div`
-  .button-container {
-    width: 100%;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .button {
-    width: 80%;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 `;
 
-const SessionContainer = styled.div`
-  position: relative;
-
-  img {
-    width: 100%;
-    max-height: 18rem;
-  }
-
-  .title {
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    font-weight: 100;
-    color: ${colors.white};
-    position: absolute;
-    bottom: 0;
-    padding-left: 2rem;
-    letter-spacing: 0.2rem;
-    margin-bottom: 1rem;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  .bold {
-    font-weight: bold;
-  }
-
-  .players-title {
-    padding-left: 2rem;
-    font-weight: 400;
-  }
-`;
-
-const SemSession = () => {
-  const dispatch = useDispatch();
+const SessionStatePage = () => {
+  const todaySessions = useSelector(getSemSessionsForToday);
+  const [showPlayersModal, setShowPlayersModal] = useState(false);
+  const [selectedSession, setSelectedSession] = useState();
   const { id, date } = useParams();
-  const sessionInfo = useSelector(getSessionInfo);
-  const isPageLoading = useSelector(getPageLoading);
-  const players = useSelector(getPlayers);
-  const [checkedInPlayers, setCheckedInPlayers] = useState([]);
-  const [notCheckedInPlayers, setNotCheckedInPlayers] = useState([]);
-
-  const checkOutPlayer = player => {
-    setCheckedInPlayers(checkedInPlayers.filter(({ id }) => id !== player.id));
-    setNotCheckedInPlayers([...notCheckedInPlayers, player]);
-  };
-
-  const checkInPlayer = player => {
-    setCheckedInPlayers([...checkedInPlayers, player]);
-    setNotCheckedInPlayers(notCheckedInPlayers.filter(({ id }) => id !== player.id));
-  };
-
-  const confirmCheckedInPlayers = () => {
-    const checkInIds = checkedInPlayers.map(player => player.id);
-    const notCheckInIds = notCheckedInPlayers.map(player => player.id);
-    dispatch(checkInInit(checkInIds, notCheckInIds));
-  };
 
   useEffect(() => {
-    dispatch(initialLoadInit(id, date));
-  }, [dispatch, id, date]);
+    if (todaySessions.length) {
+      const index = todaySessions.findIndex(
+        ({ date: sessionDate, session: { id: sessionId } }) =>
+          id === sessionId.toString() && date === sessionDate
+      );
+      setSelectedSession(index);
+    }
+  }, [todaySessions, id, date]);
 
-  useEffect(() => {
-    const [alreadyCheckedIn, notCheckedIn] = partition(player => player.checkedIn, players);
-    setCheckedInPlayers(alreadyCheckedIn);
-    setNotCheckedInPlayers(notCheckedIn);
-  }, [players]);
-
-  return isPageLoading ? (
-    <Loading />
+  return showPlayersModal ? (
+    <PlayersListModal
+      closeHandler={() => setShowPlayersModal(false)}
+      selectedSession={todaySessions[selectedSession]}
+    />
   ) : (
     <Container>
-      <SessionContainer>
-        <ImageContainer
-          img="https://ak9.picdn.net/shutterstock/videos/23220619/thumb/1.jpg"
-          overlayColor={colors.lightblackOverlay}
-        >
-          <div className="title">
-            <p>{sessionInfo.location && sessionInfo.location.name}</p>
-            <p className="bold">session</p>
-            <p>{semSessionFormatTime(sessionInfo.date, sessionInfo.time)}</p>
-          </div>
-        </ImageContainer>
-        <h2 className="players-title">Players list</h2>
-      </SessionContainer>
-      {!isEmpty(checkedInPlayers) && (
-        <ArrivedPlayersList players={checkedInPlayers} checkOutPlayer={checkOutPlayer} />
+      {selectedSession !== undefined && (
+        <Header
+          todaySessions={todaySessions}
+          selectedSession={selectedSession}
+          goToNextSession={() => setSelectedSession(selectedSession + 1)}
+          goToPreviousSession={() => setSelectedSession(selectedSession - 1)}
+          showPlayersModal={() => setShowPlayersModal(true)}
+        />
       )}
-      {!isEmpty(notCheckedInPlayers) && (
-        <NotArrivedPlayersList players={notCheckedInPlayers} checkInPlayer={checkInPlayer} />
-      )}
-      <div className="button-container">
-        <Button onClick={confirmCheckedInPlayers} className="button">
-          Go to Session
-        </Button>
-      </div>
+      <Timer />
+      <WinStreak />
+      <Randomizer />
     </Container>
   );
 };
 
-export default SemSession;
+export default SessionStatePage;

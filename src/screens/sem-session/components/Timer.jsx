@@ -1,7 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Button from 'shared/components/Button';
 import colors from 'shared/styles/constants';
+
+import { getTimerOn, getTimerStart } from '../reducer';
+import { startTimer, pauseTimer, resumeTimer, resetTimer } from '../actionCreators';
 
 const Container = styled.div`
   min-width: 90%;
@@ -53,39 +57,39 @@ const Container = styled.div`
 `;
 
 const Timer = () => {
+  const dispatch = useDispatch();
   const timerId = useRef();
-  const [timerStart, setTimerStart] = useState();
-  const [timerOn, setTimerOn] = useState(false);
   const [timerTime, setTimerTime] = useState(0);
 
-  const startTimer = () => {
-    setTimerOn(true);
-    setTimerStart(Date.now());
+  const timerOn = useSelector(getTimerOn);
+  const timerStart = useSelector(getTimerStart);
+
+  const start = () => {
+    dispatch(startTimer());
   };
 
-  const pauseTimer = () => {
-    setTimerOn(false);
+  const pause = () => {
+    dispatch(pauseTimer());
     clearInterval(timerId.current);
   };
 
-  const resumeTimer = () => {
-    setTimerOn(true);
-    setTimerStart(Date.now() - timerTime);
+  const resume = () => {
+    dispatch(resumeTimer(Date.now() - timerTime));
   };
 
-  const resetTimer = () => {
+  const reset = () => {
+    dispatch(resetTimer());
     clearInterval(timerId.current);
     setTimerTime(0);
-    setTimerOn(false);
   };
 
   useEffect(() => {
-    if (timerStart) {
+    if (timerStart && timerOn) {
       timerId.current = setInterval(() => {
         setTimerTime(Date.now() - timerStart);
       }, 10);
     }
-  }, [timerStart]);
+  }, [timerStart, timerOn]);
 
   const centiseconds = `0${Math.floor(timerTime / 10) % 100}`.slice(-2);
   const seconds = `0${Math.floor(timerTime / 1000) % 60}`.slice(-2);
@@ -95,14 +99,14 @@ const Timer = () => {
 
   if (timerOn) {
     rightButton = (
-      <Button className="pause" onClick={pauseTimer}>
+      <Button className="pause" onClick={pause}>
         Pause Timer
       </Button>
     );
   } else if (timerTime) {
-    rightButton = <Button onClick={resumeTimer}>Resume Timer</Button>;
+    rightButton = <Button onClick={resume}>Resume Timer</Button>;
   } else {
-    rightButton = <Button onClick={startTimer}>Start Timer</Button>;
+    rightButton = <Button onClick={start}>Start Timer</Button>;
   }
 
   return (
@@ -113,7 +117,7 @@ const Timer = () => {
         </p>
       </div>
       <div className="buttons">
-        <Button className="reset" onClick={resetTimer}>
+        <Button className="reset" onClick={reset}>
           Reset
         </Button>
         {rightButton}

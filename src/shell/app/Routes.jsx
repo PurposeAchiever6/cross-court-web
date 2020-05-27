@@ -30,7 +30,6 @@ const ForgotPassSuccess = lazy(() => import('screens/auth/pages/ForgotPassSucces
 const PassReset = lazy(() => import('screens/auth/pages/PassResetPage'));
 const PassResetSuccess = lazy(() => import('screens/auth/pages/PassResetSuccess'));
 const SemSession = lazy(() => import('screens/sem-session/semSession'));
-const SessionState = lazy(() => import('screens/sem-session/pages/sessionState'));
 const HowItWorks = lazy(() => import('screens/how-it-works/HowItWorksPage'));
 const SemHomePage = lazy(() => import('screens/sem/semHomePage'));
 const Locations = lazy(() => import('screens/locations/LocationsPage'));
@@ -179,9 +178,6 @@ const Routes = () => {
               </PrivateRoute>
               <PrivateRoute path={ROUTES.SEMSESSION} exact>
                 <SemSession />
-              </PrivateRoute>
-              <PrivateRoute path={ROUTES.SESSIONSTATE} exact>
-                <SessionState />
               </PrivateRoute>
               <PrivateRoute path={ROUTES.SEMHANDBOOK}>
                 <SemHandbook />

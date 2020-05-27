@@ -25,7 +25,7 @@ const BackButtonContainer = styled.button`
     margin-left: 1rem;
     margin-top: 2rem;
     font-size: 1.3rem;
-    
+
     svg {
       font-size: 1.3rem;
       margin-right: 1rem;
@@ -33,12 +33,12 @@ const BackButtonContainer = styled.button`
   }
 `;
 
-const BackButton = ({ showText = true, className }) => {
+const BackButton = ({ className, showText = true, color = 'black' }) => {
   const { goBack } = useHistory();
 
   return (
     <BackButtonContainer type="button" className={`go-back ${className}`} onClick={goBack}>
-      <FontAwesomeIcon icon={faArrowLeft} /> {showText && 'Back'}
+      <FontAwesomeIcon icon={faArrowLeft} color={color} /> {showText && 'Back'}
     </BackButtonContainer>
   );
 };
@@ -46,6 +46,7 @@ const BackButton = ({ showText = true, className }) => {
 BackButton.propTypes = {
   showText: PropTypes.bool,
   className: PropTypes.string,
+  color: PropTypes.string,
 };
 
 export default BackButton;

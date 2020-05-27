@@ -5,14 +5,21 @@ import {
   CHECK_IN_INIT,
   CHECK_IN_SUCCESS,
   CHECK_IN_FAILURE,
+  TIMER_START,
+  TIMER_PAUSE,
+  TIMER_RESUME,
+  TIMER_RESET,
+  ADD_WIN,
+  CLEAR_STREAK,
 } from './actionTypes';
 
 const initialState = {
   error: '',
   pageLoading: true,
-  sessionInfo: {},
   users: [],
-  playersMissing: 0,
+  timerOn: false,
+  timerStart: undefined,
+  streak: [],
 };
 
 export default (state = initialState, action) => {
@@ -21,13 +28,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pageLoading: true,
+        users: [],
         error: '',
       };
     case INITIAL_LOAD_SUCCESS:
       return {
         ...state,
         pageLoading: false,
-        sessionInfo: { ...action.payload.session },
         users: action.payload.users,
       };
     case INITIAL_LOAD_FAILURE:
@@ -42,13 +49,45 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pageLoading: false,
-        playersMissing: action.payload.playersMissingIds.length,
       };
     case CHECK_IN_FAILURE:
       return {
         ...state,
         pageLoading: false,
         error: action.error,
+      };
+    case TIMER_START:
+      return {
+        ...state,
+        timerOn: true,
+        timerStart: Date.now(),
+      };
+    case TIMER_PAUSE:
+      return {
+        ...state,
+        timerOn: false,
+      };
+    case TIMER_RESUME:
+      return {
+        ...state,
+        timerOn: true,
+        timerStart: action.payload.startTime,
+      };
+    case TIMER_RESET:
+      return {
+        ...state,
+        timerOn: false,
+      };
+    case ADD_WIN:
+      return {
+        ...state,
+        streak: [action.payload.winner, ...state.streak],
+      };
+    case CLEAR_STREAK:
+      return {
+        ...state,
+        timerOn: false,
+        streak: [],
       };
     default:
       return state;
@@ -57,6 +96,7 @@ export default (state = initialState, action) => {
 
 export const getPageLoading = state => state.semSession.pageLoading;
 export const getError = state => state.semSession.error;
-export const getSessionInfo = state => state.semSession.sessionInfo;
 export const getPlayers = state => state.semSession.users;
-export const getPlayersMissing = state => state.semSession.playersMissing;
+export const getTimerOn = state => state.semSession.timerOn;
+export const getTimerStart = state => state.semSession.timerStart;
+export const getStreak = state => state.semSession.streak;

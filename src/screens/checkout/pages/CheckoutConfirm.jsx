@@ -50,7 +50,7 @@ const CheckoutConfirm = () => {
   if (!purchaseConfirmed) {
     return <Redirect to={ROUTES.SERIES} />;
   }
-  
+
   return (
     <PageContainer>
       <img src={CheckIcon} alt="Check icon" />
