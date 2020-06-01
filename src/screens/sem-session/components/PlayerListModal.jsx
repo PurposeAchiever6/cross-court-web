@@ -7,6 +7,7 @@ import Loading from 'shared/components/Loading';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import LeftArrowSvg from 'shared/components/svg/LeftArrowSvg';
+import { shortSessionDate, formatSessionTime } from 'shared/utils/date';
 
 import { initialLoadInit, checkInInit } from '../actionCreators';
 import { getPageLoading, getPlayers } from '../reducer';
@@ -16,10 +17,20 @@ import NotArrivedPlayersList from './NotArrivedPlayersList';
 const Container = styled.div`
   .header {
     display: flex;
+    flex-direction: column;
+    font-weight: 400;
 
     .players-title {
-      padding-left: 2rem;
-      font-weight: 400;
+      display: inline-block;
+      font-weight: 500;
+    }
+
+    .details {
+      margin-bottom: 1rem;
+      p {
+        margin: 0 0 0.5rem 2rem;
+        font-size: 1.3rem;
+      }
     }
   }
 
@@ -34,11 +45,11 @@ const Container = styled.div`
   }
 `;
 
-const PlayersListModal = ({
+const PlayerListModal = ({
   closeHandler,
   selectedSession: {
     date,
-    session: { id },
+    session: { id, location, time },
   },
 }) => {
   const dispatch = useDispatch();
@@ -79,10 +90,17 @@ const PlayersListModal = ({
   ) : (
     <Container>
       <div className="header">
-        <AlternativeButton onClick={closeHandler}>
-          <LeftArrowSvg />
-        </AlternativeButton>
-        <h2 className="players-title">Players list</h2>
+        <div>
+          <AlternativeButton onClick={closeHandler}>
+            <LeftArrowSvg />
+          </AlternativeButton>
+          <h2 className="players-title">Players list</h2>
+        </div>
+        <div className="details">
+          <p>{location.name}</p>
+          <p>{formatSessionTime(time)}</p>
+          <p className="date">{shortSessionDate(date)}</p>
+        </div>
       </div>
       {!isEmpty(checkedInPlayers) && (
         <ArrivedPlayersList players={checkedInPlayers} checkOutPlayer={checkOutPlayer} />
@@ -99,14 +117,16 @@ const PlayersListModal = ({
   );
 };
 
-PlayersListModal.propTypes = {
+PlayerListModal.propTypes = {
   closeHandler: PropTypes.func.isRequired,
   selectedSession: PropTypes.shape({
     date: PropTypes.string.isRequired,
     session: PropTypes.shape({
       id: PropTypes.string.isRequired,
+      location: PropTypes.object.isRequired,
+      time: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };
 
-export default PlayersListModal;
+export default PlayerListModal;

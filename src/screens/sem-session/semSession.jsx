@@ -9,7 +9,7 @@ import Timer from './components/Timer';
 import WinStreak from './components/WinStreak';
 import Randomizer from './components/Randomizer';
 import Header from './components/Header';
-import PlayersListModal from './components/PlayersListModal';
+import PlayerListModal from './components/PlayerListModal';
 
 const Container = styled.div`
   display: flex;
@@ -35,7 +35,7 @@ const SessionStatePage = () => {
   }, [todaySessions, id, date]);
 
   return showPlayersModal ? (
-    <PlayersListModal
+    <PlayerListModal
       closeHandler={() => setShowPlayersModal(false)}
       selectedSession={todaySessions[selectedSession]}
     />
