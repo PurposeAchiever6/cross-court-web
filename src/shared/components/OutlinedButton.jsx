@@ -6,6 +6,7 @@ import { shade } from 'polished';
 import colors from 'shared/styles/constants';
 
 const Button = styled.button`
+  align-items: center;
   background-color: ${props => (props.disabled ? colors.white : colors.white)}
   border: 1px solid ${props => (props.disabled ? colors.grey : colors.black)}
   color: ${props => (props.disabled ? colors.grey : colors.black)}

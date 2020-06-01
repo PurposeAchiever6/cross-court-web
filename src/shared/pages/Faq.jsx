@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 import FreeSessionBanner from 'shared/components/FreeSessionBanner';
 
-const SemHandbookPageContainer = styled.div`
+const FaqContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -19,9 +19,9 @@ const SemHandbookPageContainer = styled.div`
   }
 `;
 
-const SemHandbookPage = () => {
+const Faq = () => {
   return (
-    <SemHandbookPageContainer>
+    <FaqContainer>
       <FreeSessionBanner />
       <h2>Crosscourt FAQ</h2>
       <h3>Players</h3>
@@ -327,8 +327,8 @@ const SemHandbookPage = () => {
           </p>
         </li>
       </ul>
-    </SemHandbookPageContainer>
+    </FaqContainer>
   );
 };
 
-export default SemHandbookPage;
+export default Faq;
