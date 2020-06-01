@@ -17,7 +17,7 @@ const PageContainer = styled.div`
   }
 `;
 
-const SemHandbookPage = () => {
+const CancelationPolicy = () => {
   const isLoading = useSelector(getPageLoading);
   const cancelationPolicyText = useSelector(getCancelationPolicy);
 
@@ -31,4 +31,4 @@ const SemHandbookPage = () => {
   );
 };
 
-export default SemHandbookPage;
+export default CancelationPolicy;
