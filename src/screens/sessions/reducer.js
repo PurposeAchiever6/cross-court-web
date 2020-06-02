@@ -8,6 +8,12 @@ import {
   INITIAL_LOAD_AUTH_FAILURE,
   SHOW_CANCEL_MODAL,
   CANCEL_SESSION_SUCCESS,
+  RESERVE_SESSION_INIT,
+  RESERVE_SESSION_SUCCESS,
+  RESERVE_SESSION_FAILURE,
+  CONFIRM_SESSION_INIT,
+  CONFIRM_SESSION_SUCCESS,
+  CONFIRM_SESSION_FAILURE,
 } from './actionTypes';
 
 const initialState = {
@@ -39,6 +45,8 @@ export default (state = initialState, action) => {
       };
     case INITIAL_LOAD_FAILURE:
     case INITIAL_LOAD_AUTH_FAILURE:
+    case RESERVE_SESSION_FAILURE:
+    case CONFIRM_SESSION_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
     case SHOW_CANCEL_MODAL:
       return { ...state, showCancelModal: !state.showCancelModal };
@@ -46,6 +54,18 @@ export default (state = initialState, action) => {
       return {
         ...state,
         showCancelModal: false,
+      };
+    case RESERVE_SESSION_INIT:
+    case CONFIRM_SESSION_INIT:
+      return {
+        ...state,
+        pageLoading: true,
+      };
+    case RESERVE_SESSION_SUCCESS:
+    case CONFIRM_SESSION_SUCCESS:
+      return {
+        ...state,
+        pageLoading: false,
       };
     default:
       return state;
