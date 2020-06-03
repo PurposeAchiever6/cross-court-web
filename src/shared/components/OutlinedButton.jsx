@@ -34,7 +34,7 @@ const OutlinedButton = ({ children, className, ...props }) => (
 );
 
 OutlinedButton.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
   type: PropTypes.string,
   className: PropTypes.string,
