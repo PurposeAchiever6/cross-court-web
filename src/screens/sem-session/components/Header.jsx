@@ -67,7 +67,7 @@ const Container = styled.div`
 
 const SessionsContainer = styled.div`
   align-items: flex-end
-  display: flex;
+  display: ${({ sessions }) => (sessions.length === 1 ? 'none' : 'flex')}
   height: 5rem;
   justify-content: space-between;
   margin: auto;
@@ -124,7 +124,7 @@ const Header = ({
           Players List
         </Button>
       </ImageContainer>
-      <SessionsContainer>
+      <SessionsContainer sessions={todaySessions}>
         <div>
           {previousSession && (
             <p className="session-time align-left">
