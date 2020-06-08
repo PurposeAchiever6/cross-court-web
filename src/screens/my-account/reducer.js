@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { INITIAL_LOAD_AUTH_SUCCESS as SESSIONS_INITIAL_LOAD } from 'screens/sessions/actionTypes';
 import { INITIAL_APP_LOAD_SUCCESS } from 'shared/actions/actionTypes';
+import { isToday } from 'shared/utils/date';
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -20,6 +21,7 @@ const initialState = {
   previousSessions: [],
   upcomingSessions: [],
   semUpcomingSessions: [],
+  todaySemSessions: [],
 };
 
 export default (state = initialState, action) => {
@@ -38,6 +40,11 @@ export default (state = initialState, action) => {
         previousSessions: [...action.payload.availableUserSessions.previousSessions],
         upcomingSessions: [...action.payload.availableUserSessions.upcomingSessions],
         semUpcomingSessions: [...action.payload.availableUserSessions.semUpcomingSessions],
+        todaySemSessions: [
+          ...action.payload.availableUserSessions.semUpcomingSessions.filter(({ date }) =>
+            isToday(date)
+          ),
+        ],
       };
     case INITIAL_LOAD_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
@@ -105,4 +112,9 @@ export const getShowEditProfile = createSelector(
 export const getSemUpcomingSessions = createSelector(
   getMyAccount,
   myAccount => myAccount.semUpcomingSessions
+);
+
+export const getSemSessionsForToday = createSelector(
+  getMyAccount,
+  myAccount => myAccount.todaySemSessions
 );

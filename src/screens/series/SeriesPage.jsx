@@ -4,9 +4,12 @@ import { useHistory } from 'react-router-dom';
 import FreeSessionBanner from 'shared/components/FreeSessionBanner';
 import Loading from 'shared/components/Loading';
 import ROUTES from 'shared/constants/routes';
-
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
+import { identify, startedCheckout } from 'shared/utils/klaviyo';
 import { initialLoad, setSelectedProduct } from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
+
 import Plans from './components/Plans';
 import Series from './components/Series';
 
@@ -16,9 +19,15 @@ const SeriesPage = () => {
 
   const availableProducts = useSelector(getAvailableProducts);
   const isLoading = useSelector(getPageLoading);
+  const isAuthenticated = useSelector(getIsAuthenticated);
+  const { email } = useSelector(getUserProfile);
 
   const selectProductHandler = product => {
     dispatch(setSelectedProduct(product));
+    if (isAuthenticated) {
+      identify(email);
+      startedCheckout(product);
+    }
     history.push(ROUTES.PAYMENTS);
   };
 

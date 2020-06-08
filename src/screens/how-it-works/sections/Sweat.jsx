@@ -1,8 +1,8 @@
 import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
-import SweatSvg from 'shared/components/svg/SweatSvg';
-import LockSvg from 'shared/components/svg/LockSvg';
+import { ReactComponent as CatchASweatSvg } from 'shared/components/svg/catch-a-sweat.svg';
+import { ReactComponent as SecureTheWSvg } from 'shared/components/svg/secure-the-w.svg';
 import ArrowLeftSvg from 'shared/components/svg/ArrowLeftSvg';
 import Icon from 'shared/components/Icon';
 
@@ -21,11 +21,11 @@ function Sweat() {
       </Image>
       <Icons>
         <Icon>
-          <SweatSvg />
+          <CatchASweatSvg />
           <Text>Catch a sweat</Text>
         </Icon>
         <Icon>
-          <LockSvg />
+          <SecureTheWSvg />
           <Text>Secure the W</Text>
         </Icon>
       </Icons>

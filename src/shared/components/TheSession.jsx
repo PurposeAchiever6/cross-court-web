@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
-import FieldSvg from 'shared/components/svg/FieldSvg';
-import StopwatchSvg from 'shared/components/svg/StopwatchSvg';
-import WhistleSvg from 'shared/components/svg/WhistleSvg';
-import PlayerSvg from 'shared/components/svg/PlayerSvg';
-import SpeakerSvg from 'shared/components/svg/SpeakerSvg';
-import MerchSvg from 'shared/components/svg/MerchSvg';
+import GymSvg from 'shared/components/svg/GymSvg';
+import { ReactComponent as ClockSvg } from 'shared/components/svg/clock.svg';
+import { ReactComponent as OfficialSvg } from 'shared/components/svg/official.svg';
+import { ReactComponent as PlayerSvg } from 'shared/components/svg/player-min.svg';
+import { ReactComponent as SpeakerSvg } from 'shared/components/svg/speaker.svg';
+import { ReactComponent as JerseySvg } from 'shared/components/svg/jersey.svg';
 
 const Section = styled.section`
   padding: 4.5rem 5rem;
@@ -34,8 +34,9 @@ const Section = styled.section`
 
   .boxes-item {
     display: flex;
+    height: 7rem;
+    justify-content: space-between;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
 
@@ -75,19 +76,19 @@ const TheSession = props => (
     <div className="boxes">
       <div className="boxes-item">
         <div className="boxes-image">
-          <StopwatchSvg />
+          <ClockSvg />
         </div>
         <span className="boxes-text">1 Hour</span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <FieldSvg />
+          <GymSvg />
         </div>
         <span className="boxes-text">Premium Facility</span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <WhistleSvg />
+          <OfficialSvg />
         </div>
         <span className="boxes-text">Session Officials</span>
       </div>
@@ -105,7 +106,7 @@ const TheSession = props => (
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <MerchSvg />
+          <JerseySvg />
         </div>
         <span className="boxes-text">Equipment provided</span>
       </div>

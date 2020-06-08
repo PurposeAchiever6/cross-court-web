@@ -4,12 +4,9 @@ export const initialLoadInit = () => ({
   type: INITIAL_LOAD_INIT,
 });
 
-export const editProfileInit = (name, phoneNumber) => ({
+export const editProfileInit = payload => ({
   type: EDIT_PROFILE_INIT,
-  payload: {
-    name,
-    phoneNumber,
-  },
+  payload,
 });
 
 export const showEditProfile = () => ({

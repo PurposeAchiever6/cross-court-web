@@ -30,7 +30,6 @@ const ForgotPassSuccess = lazy(() => import('screens/auth/pages/ForgotPassSucces
 const PassReset = lazy(() => import('screens/auth/pages/PassResetPage'));
 const PassResetSuccess = lazy(() => import('screens/auth/pages/PassResetSuccess'));
 const SemSession = lazy(() => import('screens/sem-session/semSession'));
-const SessionState = lazy(() => import('screens/sem-session/pages/sessionState'));
 const HowItWorks = lazy(() => import('screens/how-it-works/HowItWorksPage'));
 const SemHomePage = lazy(() => import('screens/sem/semHomePage'));
 const Locations = lazy(() => import('screens/locations/LocationsPage'));
@@ -86,6 +85,100 @@ const Routes = () => {
     }
   }, [dispatch, isAuthenticated]);
 
+  const RoutesWithoutFooter = () => (
+    <Switch>
+      <PrivateRoute path={ROUTES.SEMSESSION} exact>
+        <SemSession />
+      </PrivateRoute>
+    </Switch>
+  );
+
+  const RoutesWithFooter = () => (
+    <>
+      <Switch>
+        <Route path={ROUTES.LOGIN}>
+          <Login />
+        </Route>
+        <Route path={ROUTES.SIGNUP} exact>
+          <Signup />
+        </Route>
+        <Route path={ROUTES.SIGNUPSUCCESS}>
+          <SignupSuccess />
+        </Route>
+        <Route path={ROUTES.SIGNUPCONFIRMATION}>
+          <SignupConfirmation />
+        </Route>
+        <Route path={ROUTES.FORGOTPASSWORD} exact>
+          <ForgotPass />
+        </Route>
+        <Route path={ROUTES.FORGOTPASSWORDSUCCESS}>
+          <ForgotPassSuccess />
+        </Route>
+        <Route path={ROUTES.RESETPASSWORD} exact>
+          <PassReset />
+        </Route>
+        <Route path={ROUTES.RESETPASSWORDSUCCESS}>
+          <PassResetSuccess />
+        </Route>
+        <Route path={ROUTES.LOCATIONS}>
+          <Locations />
+        </Route>
+        <Route path={ROUTES.SESSION} exact>
+          <Sessions />
+        </Route>
+        <Route path={ROUTES.SESSIONRESERVED}>
+          <SessionReserved />
+        </Route>
+        <Route path={ROUTES.SESSIONCONFIRMED}>
+          <SessionConfirmed />
+        </Route>
+        <Route path={ROUTES.HOWITWORKS}>
+          <HowItWorks />
+        </Route>
+        <Route path={ROUTES.SERIES}>
+          <SeriesPage />
+        </Route>
+        <Route path={ROUTES.TERMS}>
+          <TermsAndConditions />
+        </Route>
+        <Route path={ROUTES.CANCELATIONPOLICY}>
+          <CancelationPolicy />
+        </Route>
+        <PrivateRoute path={ROUTES.PURCHASEHISTORY}>
+          <PurchaseHistory />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.CHECKOUT} exact>
+          <Checkout />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED}>
+          <CheckoutConfirm />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.PAYMENTS} exact>
+          <Payments />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.PAYMENTSADDCARD}>
+          <PaymentsAddCard />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.MYACCOUNT}>
+          <MyAccount />
+        </PrivateRoute>
+        <Route path={ROUTES.FAQ}>
+          <FAQ />
+        </Route>
+        <Route path={ROUTES.HOME} exact>
+          <Home />
+        </Route>
+        <Route path={ROUTES.SEM} exact>
+          <SemHomePage />
+        </Route>
+        <PrivateRoute path={ROUTES.SEMHANDBOOK}>
+          <SemHandbook />
+        </PrivateRoute>
+      </Switch>
+      <Footer />
+    </>
+  );
+
   return (
     <AppWrapper>
       <ToastContainer
@@ -108,93 +201,14 @@ const Routes = () => {
           <ScrollToPosition />
           <main>
             <Switch>
-              <Route path={ROUTES.LOGIN}>
-                <Login />
+              <Route path="/sem/session">
+                <RoutesWithoutFooter />
               </Route>
-              <Route path={ROUTES.SIGNUP} exact>
-                <Signup />
-              </Route>
-              <Route path={ROUTES.SIGNUPSUCCESS}>
-                <SignupSuccess />
-              </Route>
-              <Route path={ROUTES.SIGNUPCONFIRMATION}>
-                <SignupConfirmation />
-              </Route>
-              <Route path={ROUTES.FORGOTPASSWORD} exact>
-                <ForgotPass />
-              </Route>
-              <Route path={ROUTES.FORGOTPASSWORDSUCCESS}>
-                <ForgotPassSuccess />
-              </Route>
-              <Route path={ROUTES.RESETPASSWORD} exact>
-                <PassReset />
-              </Route>
-              <Route path={ROUTES.RESETPASSWORDSUCCESS}>
-                <PassResetSuccess />
-              </Route>
-              <Route path={ROUTES.LOCATIONS}>
-                <Locations />
-              </Route>
-              <Route path={ROUTES.SESSION} exact>
-                <Sessions />
-              </Route>
-              <Route path={ROUTES.SESSIONRESERVED}>
-                <SessionReserved />
-              </Route>
-              <Route path={ROUTES.SESSIONCONFIRMED}>
-                <SessionConfirmed />
-              </Route>
-              <Route path={ROUTES.HOWITWORKS}>
-                <HowItWorks />
-              </Route>
-              <Route path={ROUTES.SEM} exact>
-                <SemHomePage />
-              </Route>
-              <Route path={ROUTES.SERIES}>
-                <SeriesPage />
-              </Route>
-              <Route path={ROUTES.TERMS}>
-                <TermsAndConditions />
-              </Route>
-              <Route path={ROUTES.CANCELATIONPOLICY}>
-                <CancelationPolicy />
-              </Route>
-              <PrivateRoute path={ROUTES.PURCHASEHISTORY}>
-                <PurchaseHistory />
-              </PrivateRoute>
-              <PrivateRoute path={ROUTES.CHECKOUT} exact>
-                <Checkout />
-              </PrivateRoute>
-              <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED}>
-                <CheckoutConfirm />
-              </PrivateRoute>
-              <PrivateRoute path={ROUTES.PAYMENTS} exact>
-                <Payments />
-              </PrivateRoute>
-              <PrivateRoute path={ROUTES.PAYMENTSADDCARD}>
-                <PaymentsAddCard />
-              </PrivateRoute>
-              <PrivateRoute path={ROUTES.MYACCOUNT}>
-                <MyAccount />
-              </PrivateRoute>
-              <PrivateRoute path={ROUTES.SEMSESSION} exact>
-                <SemSession />
-              </PrivateRoute>
-              <PrivateRoute path={ROUTES.SESSIONSTATE} exact>
-                <SessionState />
-              </PrivateRoute>
-              <PrivateRoute path={ROUTES.SEMHANDBOOK}>
-                <SemHandbook />
-              </PrivateRoute>
-              <Route path={ROUTES.FAQ}>
-                <FAQ />
-              </Route>
-              <Route path={ROUTES.HOME} exact>
-                <Home />
+              <Route path="/">
+                <RoutesWithFooter />
               </Route>
             </Switch>
           </main>
-          <Footer />
         </ConnectedRouter>
       </Suspense>
     </AppWrapper>

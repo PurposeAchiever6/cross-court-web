@@ -1,7 +1,4 @@
 import { put, all, takeLatest, call } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
-import ROUTES from 'shared/constants/routes';
-
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -34,7 +31,6 @@ export function* checkInFlow({ payload }) {
       type: CHECK_IN_SUCCESS,
       payload,
     });
-    yield put(push(ROUTES.SESSIONSTATE));
   } catch (err) {
     yield put({ type: CHECK_IN_FAILURE, error: err.response.data.error });
   }

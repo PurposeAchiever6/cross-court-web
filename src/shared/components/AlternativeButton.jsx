@@ -31,7 +31,7 @@ const AlternativeButton = ({ children, className, ...props }) => {
 };
 
 AlternativeButton.propTypes = {
-  children: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
   type: PropTypes.string,
   className: PropTypes.string,

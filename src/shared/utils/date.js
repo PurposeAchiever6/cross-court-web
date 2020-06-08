@@ -53,6 +53,8 @@ export const requestFormattedDate = date => getUTCDate(date).format(FORMAT_DATE_
 export const isSameDay = (date1, date2) =>
   requestFormattedDate(date1) === requestFormattedDate(date2);
 
+export const isToday = date => dayjs().isSame(date, 'date');
+
 export const add = (date, time, measure) => getUTCDate(date).add(time, measure);
 
 export const subtract = (date, time, measure) => getUTCDate(date).subtract(time, measure);
@@ -72,14 +74,10 @@ export const dayNumber = date => getUTCDate(date).format(FORMAT_DAY_NUMBER);
 export const isThisWeek = date =>
   dayjs(new Date(date)).isBetween(startOfWeek(new Date()), endOfWeek(new Date()));
 
-export const isPast = date =>
-  dayjs(date).format(FORMAT_DATE_REQUEST) < new Date().toLocaleDateString();
+export const isPast = date => dayjs(date).diff(dayjs(), 'day') < 0;
 
 export const sortSessionsByDate = sessions =>
   sort((a, b) => (dayjs(new Date(a.time)).isAfter(dayjs(new Date(b.time))) ? 1 : -1), sessions);
 
 export const formatSessionTime = time => getUTCDate(time).format(FORMAT_HOUR);
 export const formatSessionDate = time => getUTCDate(time).format(FORMAT_DATE_PURCHASE);
-
-export const semSessionFormatTime = (date, time) =>
-  `${shortSessionDate(date)} ${formatSessionTime(time)}`;

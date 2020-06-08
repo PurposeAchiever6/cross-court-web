@@ -13,10 +13,11 @@ export default {
     });
     return response.data.user;
   },
-  editUserProfile: async ({ name, phoneNumber }) => {
+  editUserProfile: async ({ firstName, lastName, phoneNumber }) => {
     const response = await api.put(`/user`, {
       user: {
-        name,
+        firstName,
+        lastName,
         phoneNumber,
       },
     });

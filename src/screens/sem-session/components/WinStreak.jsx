@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { takeWhile } from 'ramda';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
+
+import { getStreak } from '../reducer';
+import { addWin, clearStreak } from '../actionCreators';
 
 const Container = styled.div`
   width: 100%;
@@ -117,29 +121,25 @@ const Container = styled.div`
 `;
 
 const WinStreak = () => {
-  const [streak, setStreak] = useState([]);
+  const dispatch = useDispatch();
   const [threeInARow, setThreeInARow] = useState();
+  const streak = useSelector(getStreak);
 
-  const resetStreak = () => {
-    setThreeInARow();
-    setStreak([]);
-  };
-
-  const addWin = winner => {
-    if (takeWhile(item => item === winner, streak).length === 2) {
-      setThreeInARow(winner);
+  useEffect(() => {
+    if (takeWhile(item => item === streak[0], streak).length === 3) {
+      setThreeInARow(streak[0]);
       setTimeout(() => {
-        resetStreak();
+        setThreeInARow();
+        dispatch(clearStreak());
       }, 3000);
     }
-    setStreak([winner, ...streak]);
-  };
+  }, [streak, dispatch]);
 
   return (
     <Container>
       <p className="title">win streak</p>
       <div className="team-buttons">
-        <button className="black-btn" type="button" onClick={() => addWin('black')}>
+        <button className="black-btn" type="button" onClick={() => dispatch(addWin('black'))}>
           {threeInARow === 'black' ? (
             <div className="in-a-row black">
               <p>black won</p>
@@ -152,7 +152,7 @@ const WinStreak = () => {
             </>
           )}
         </button>
-        <button className="white-btn" type="button" onClick={() => addWin('white')}>
+        <button className="white-btn" type="button" onClick={() => dispatch(addWin('white'))}>
           {threeInARow === 'white' ? (
             <div className="in-a-row white">
               <p>white won</p>

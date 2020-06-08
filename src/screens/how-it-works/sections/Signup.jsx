@@ -1,8 +1,8 @@
 import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
-import ClockSvg from 'shared/components/svg/ClockSvg';
-import FieldSvg from 'shared/components/svg/FieldSvg';
+import OnYourTimeSvg from 'shared/components/svg/OnYourTimeSvg';
+import GymSvg from 'shared/components/svg/GymSvg';
 import ArrowLeftSvg from 'shared/components/svg/ArrowLeftSvg';
 import Icon from 'shared/components/Icon';
 
@@ -21,11 +21,11 @@ function Signup() {
       </Image>
       <Icons>
         <Icon>
-          <ClockSvg />
+          <OnYourTimeSvg />
           <Text>On your time</Text>
         </Icon>
         <Icon>
-          <FieldSvg />
+          <GymSvg />
           <Text>At a gym near you</Text>
         </Icon>
       </Icons>

@@ -7,10 +7,13 @@ const Image = styled.div(
   background-image: url(${props.img});
   background-position: top;
   box-shadow: inset 0 0 0 2000px ${props.overlayColor};
-  height: 25vh;
   background-size: cover;
   background-repeat: no-repeat;
+  display: flex;
+  height: 20vh;
+  padding: 1rem;
   position: relative;
+  width: 100%;
 `
 );
 

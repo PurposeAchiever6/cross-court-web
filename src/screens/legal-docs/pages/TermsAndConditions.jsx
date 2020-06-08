@@ -17,7 +17,7 @@ const PageContainer = styled.div`
   }
 `;
 
-const SemHandbookPage = () => {
+const TermsAndConditions = () => {
   const isLoading = useSelector(getPageLoading);
   const termsAndConditionsText = useSelector(getTermsAndConditions);
 
@@ -31,4 +31,4 @@ const SemHandbookPage = () => {
   );
 };
 
-export default SemHandbookPage;
+export default TermsAndConditions;

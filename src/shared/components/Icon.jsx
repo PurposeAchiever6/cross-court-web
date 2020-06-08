@@ -9,11 +9,7 @@ const Icon = styled.div`
   flex: 0 0 50%;
 
   @media ${device.desktop} {
-    flex: initial;
-
-    &:first-child {
-      margin-right: 4rem;
-    }
+    flex: 1;
   }
 `;
 

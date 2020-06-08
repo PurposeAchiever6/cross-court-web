@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
 import Button from 'shared/components/Button';
 import { PLAYERS_PER_TEAM, MAX_MISSING_PLAYERS } from 'shared/constants/gameConstants';
-import { getPlayersMissing } from '../reducer';
 
 const Container = styled.div`
   width: 100%;
@@ -110,7 +108,6 @@ const Container = styled.div`
 `;
 
 const Randomizer = () => {
-  const playersMissing = useSelector(getPlayersMissing);
   const [missingPlayers, setMissingPlayers] = useState(0);
   const [playersThatStay, setPlayersThatStay] = useState([]);
   const addMissingPlayer = () => {
@@ -120,10 +117,6 @@ const Randomizer = () => {
   const substractMissingPlayer = () => {
     setMissingPlayers(Math.max(missingPlayers - 1, 0));
   };
-
-  useEffect(() => {
-    setMissingPlayers(parseInt(playersMissing, 10));
-  }, [playersMissing]);
 
   const randomize = () => {
     const result = [];

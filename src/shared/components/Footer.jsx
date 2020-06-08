@@ -6,10 +6,10 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import device from 'shared/styles/mediaQueries';
-import FacebookSvg from './svg/Facebook.svg';
-import LinkedInSvg from './svg/LinkedIn.svg';
-import TwitterSvg from './svg/Twitter.svg';
-import InstagramSvg from './svg/Instagram.svg';
+import FacebookSvg from './svg/FacebookSvg';
+import LinkedInSvg from './svg/LinkedInSvg';
+import TwitterSvg from './svg/TwitterSvg';
+import InstagramSvg from './svg/InstagramSvg';
 import AlternativeButton from './AlternativeButton';
 
 const FooterContainer = styled.footer`
