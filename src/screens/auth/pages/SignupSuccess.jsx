@@ -8,6 +8,7 @@ import PaperPlaneIcon from 'shared/images/paper-plane-icon.png';
 
 const PageContainer = styled.div`
   display: flex;
+  flex: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
