@@ -15,6 +15,7 @@ const BackButtonContainer = styled.button`
   margin-left: 3rem;
   margin-top: 2rem;
   cursor: pointer;
+  touch-action: manipulation;
 
   svg {
     font-size: 1.5rem;

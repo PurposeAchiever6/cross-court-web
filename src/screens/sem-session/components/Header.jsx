@@ -113,7 +113,7 @@ const Header = ({
 
   return (
     <Container>
-      <ImageContainer img={location.imageUrl} overlayColor={colors.lightblackOverlay}>
+      <ImageContainer img={location.imageUrl} overlayColor={colors.lightBlackOverlay}>
         <BackButton className="back-btn" showText={false} color={colors.white} />
         <div className="title">
           <p>{location.name}</p>

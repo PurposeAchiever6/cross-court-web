@@ -20,7 +20,7 @@ const Container = styled.div`
 
   button {
     width: 100%;
-    padding: 1rem 2rem;
+    padding: 1rem;
     &:hover {
       background-color: ${colors.polarPlum};
     }
@@ -42,16 +42,16 @@ const Container = styled.div`
   }
 
   .time {
-    display: flex;
-    justify-content: space-between;
-
-    * {
-      flex-basis: 100%;
-      text-align: center;
-    }
+    display: inline-flex;
 
     p {
-      margin-bottom: 1rem;
+      margin: 1rem 0;
+      width: 4rem;
+    }
+
+    .dots {
+      line-height: 3.2rem;
+      width: 1rem;
     }
   }
 `;
@@ -112,9 +112,11 @@ const Timer = () => {
   return (
     <Container>
       <div className="time">
-        <p>
-          {minutes}:{seconds}:{centiseconds}
-        </p>
+        <p>{minutes}</p>
+        <p className="dots">:</p>
+        <p>{seconds}</p>
+        <p className="dots">:</p>
+        <p>{centiseconds}</p>
       </div>
       <div className="buttons">
         <Button className="reset" onClick={reset}>
