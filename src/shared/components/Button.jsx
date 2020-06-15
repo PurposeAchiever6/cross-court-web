@@ -18,6 +18,7 @@ const StyledButton = styled.button`
   font-weight: 500;
   padding: 1rem 3rem;
   cursor: pointer;
+  touch-action: manipulation;
   &:hover {
     background-color: ${shade(0.5, `${colors.polarPlum}`)};
   }

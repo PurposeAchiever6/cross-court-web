@@ -17,6 +17,7 @@ const Button = styled.button`
   justify-content: space-around;
   line-height: 1rem;
   padding: 0.5rem;
+  touch-action: manipulation;
   width: 8rem;
 
   ${props =>

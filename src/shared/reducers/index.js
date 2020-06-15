@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import authReducer from 'screens/auth/reducer';
 import semSessionReducer from 'screens/sem-session/reducer';
@@ -16,13 +18,31 @@ export default history =>
   combineReducers({
     router: connectRouter(history),
     auth: authReducer,
-    semSession: semSessionReducer,
+    semSession: persistReducer(
+      {
+        key: 'semSession',
+        storage,
+      },
+      semSessionReducer
+    ),
     locations: locationsReducer,
     session: sessionReducer,
     series: seriesReducer,
-    myAccount: myAccountReducer,
+    myAccount: persistReducer(
+      {
+        key: 'myAccount',
+        storage,
+      },
+      myAccountReducer
+    ),
     purchaseHistory: purchaseHistoryReducer,
     payments: paymentsReducer,
     checkout: checkoutReducer,
-    legalDocs: legalDocsReducer,
+    legalDocs: persistReducer(
+      {
+        key: 'legalDocs',
+        storage,
+      },
+      legalDocsReducer
+    ),
   });
