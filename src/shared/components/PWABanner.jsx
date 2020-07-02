@@ -6,7 +6,7 @@ const PWABannerContainer = styled.div`
   position: fixed;
   bottom: -1rem;
   right: 0rem;
-  z-index: 100;
+  z-index: 101;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   width: 100%;
   border-radius: 20px;
