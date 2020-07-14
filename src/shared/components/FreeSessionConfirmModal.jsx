@@ -70,10 +70,9 @@ const FreeSessionModal = ({ closeHandler, isOpen }) => {
 
   return (
     <ScrollLock isActive={isOpen}>
-      <FreeSessionModalContainer>
+      <FreeSessionModalContainer className="free-session-modal">
         <FontAwesomeIcon icon={faTimes} onClick={closeHandler} />
-
-        <span className="title">Let&apos;s sweat!</span>
+        <span className="title">LET&apos;S SWEAT!</span>
         <span className="text">
           While your first Session is on us, we do require you to input a payment method in case you
           do not show up and we have to charge your account.

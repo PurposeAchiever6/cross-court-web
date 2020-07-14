@@ -143,13 +143,20 @@ body {
   background-color: transparent;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   height: 25px;
-  left: 60px;
+  left: 55px;
   overflow: hidden;
   position: fixed;
   top: 18px;
-  transition: 500ms opacity ease;
-  width: 205px;
+  transition: 500ms opacity ease, 500ms width ease;
+  width: 150px;
   z-index: 10;
+}
+@media (min-width: 768px) {
+  .header .logo-icon,
+  .header .logo-icon-alt {
+    left: 60px;
+    width: 205px;
+  }
 }
 .header .logo-icon:hover,
 .header .logo-icon-alt:hover {
@@ -167,6 +174,7 @@ body {
 .header.scrolled .logo-icon-alt {
   opacity: 1;
 }
+
 /* MAIN */
 main {
   padding-top: 4rem;
@@ -224,6 +232,15 @@ body[data-page='how-it-works'] main {
   text-align: center;
   text-decoration: none;
 }
+.ar-button.mobile-compact {
+  font-size: 14px;
+  transition: 500ms font-size ease;
+}
+@media (min-width: 768px) {
+  .ar-button.mobile-compact {
+    font-size: 16px;
+  }
+}
 .ar-button.disabled {
   opacity: 0.3;
   pointer-events: none;
@@ -239,6 +256,15 @@ body[data-page='how-it-works'] main {
   position: relative;
   transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
   z-index: 1;
+}
+.ar-button.mobile-compact .ar-button-inner {
+  padding: 4px 10px;
+  transition: 500ms padding ease;
+}
+@media (min-width: 768px) {
+  .ar-button.mobile-compact .ar-button-inner {
+    padding: 8px 15px;
+  }
 }
 .ar-button:hover .ar-button-inner {
   background-color: #fff;
@@ -361,6 +387,12 @@ body[data-page='how-it-works'] main {
   position: absolute;
   z-index: 1;
 }
+/* FREE SESSION MODAL */
+.free-session-modal .title {
+  font-family: 'shapiro95_super_wide';
+  font-size: 24px;
+  text-align: center;
+}
 
 /* HOMEPAGE */
 .make-sport-your-lifestyle {
@@ -387,21 +419,42 @@ body[data-page='how-it-works'] main {
   z-index: 1;
 }
 .make-sport-your-lifestyle .title-and-buttons-block .title {
-  font-size: 50px;
-  margin-bottom: 50px;
+  font-size: 30px;
+  line-height: 36px;
+  margin-bottom: 80px;
+}
+@media (min-width: 768px) {
+  .make-sport-your-lifestyle .title-and-buttons-block .title {
+    font-size: 50px;
+    line-height: 56px;
+    margin-bottom: 50px;
+  }
 }
 .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
-  margin: 0 35px;
+  display: block;
+  margin: 0 auto 40px;
+  max-width: 220px;
+}
+@media (min-width: 768px) {
+  .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
+    display: inline-block;
+    margin: 0 35px;
+    max-width: none;
+  }
+}
+.make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
+  font-family: 'shapiro96_inclined_wide';
 }
 .make-sport-your-lifestyle .crosscourt-big-title {
-  font-size: 730px;
-  line-height: 580px;
+  bottom: -19.6vw;
+  font-size: 45vw;
+  left: -0.7vw;
+  line-height: 36vw;
   margin: 0;
   opacity: 0;
   position: absolute;
   text-align: center;
   transition: opacity 300ms ease;
-  top: 71vh;
   width: 100vw;
   z-index: 1;
 }
@@ -436,8 +489,14 @@ body[data-page='how-it-works'] main {
   z-index: 1;
 }
 .crosscourt-is-a-high-intensity .title-block .title {
-  font-size: 38px;
-  line-height: 42px;
+  font-size: 30px;
+  line-height: 36px;
+}
+@media (min-width: 768px) {
+  .crosscourt-is-a-high-intensity .title-block .title {
+    font-size: 50px;
+    line-height: 56px;
+  }
 }
 .why-we-exist {
   background-color: #000;

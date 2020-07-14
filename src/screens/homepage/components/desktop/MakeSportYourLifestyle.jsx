@@ -8,7 +8,7 @@ const MakeSportYourLifestyle = () => (
       <p className="title shapiro95_super_wide">
         MAKE SPORT YOUR <em className="shapiro96_inclined_wide">LIFESTYLE</em>
       </p>
-      <ArButton link={ROUTES.HOWITWORKS} double inverted>
+      <ArButton className="first-time-button" link={ROUTES.HOWITWORKS} double inverted>
         FIRST TIME?
       </ArButton>
       <ArButton link={ROUTES.LOCATIONS} double>

@@ -10,15 +10,7 @@ import KeysToCrosscourt from './desktop/KeysToCrosscourt';
 import FollowUsOnInstagram from './desktop/FollowUsOnInstagram';
 import Ready from './desktop/Ready';
 
-const Section = styled.section`
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  min-height: 125rem;
-
-  @media ${device.mobile} {
-    display: none;
-  }
-`;
+const Section = styled.section``;
 
 const DesktopLanding = () => (
   <Section>

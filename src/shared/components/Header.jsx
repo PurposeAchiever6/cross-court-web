@@ -30,7 +30,7 @@ const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    padding-right: 1rem;
+    padding-right: 10px;
   }
 
   .header-left {
@@ -112,7 +112,7 @@ function Header() {
             <LogoSvgAlt className="logo-icon-alt" />
           </Link>
         </div>
-        <ArButton link={ROUTES.LOCATIONS} font="shapiro96_inclined_wide">
+        <ArButton className="mobile-compact" link={ROUTES.LOCATIONS} font="shapiro96_inclined_wide">
           RESERVE SESSION
         </ArButton>
       </div>
