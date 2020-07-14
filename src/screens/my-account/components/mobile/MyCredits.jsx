@@ -24,11 +24,7 @@ const MyCreditsContainer = styled.div`
     margin-bottom: 2rem;
   }
   .sessions-number-container {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid ${colors.grey};
     text-align: center;
-    padding: 1rem;
     margin-right: 1rem;
 
     .session-number {

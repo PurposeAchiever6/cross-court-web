@@ -13,12 +13,8 @@ const MyCreditsContainer = styled.div`
     margin: 0 0 2rem 0;
   }
   .sessions-number-container {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #bbbecd;
     font-size: 18px;
     line-height: 22px;
-    padding: 1rem 2rem;
     text-align: center;
     padding: 1rem;
     margin-bottom: 2rem;
