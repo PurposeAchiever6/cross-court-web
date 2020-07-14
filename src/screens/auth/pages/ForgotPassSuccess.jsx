@@ -9,7 +9,7 @@ import PaperPlaneIcon from 'shared/images/paper-plane-icon.png';
 import device from 'shared/styles/mediaQueries';
 
 const PageContainer = styled.div`
-  height: 100vh;
+  // height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -54,8 +54,8 @@ const ForgotPassSuccess = () => {
   const userEmail = useSelector(getUserEmail);
 
   return (
-    <PageContainer>
-      <h1>Check your Email</h1>
+    <PageContainer className="forgot-pass-success">
+      <h1>CHECK YOUR EMAIL</h1>
       <img src={PaperPlaneIcon} alt="Sent mail icon" />
       <p>
         We sent an email to <strong>{userEmail}</strong> which contains an link to reset your

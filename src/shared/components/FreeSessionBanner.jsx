@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { not, equals } from 'ramda';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import useScrollPosition from '@react-hook/window-scroll';
 
@@ -10,6 +9,7 @@ import { getUserProfile } from 'screens/my-account/reducer';
 
 import ROUTES from 'shared/constants/routes';
 import Button from 'shared/components/Button';
+import ArButton from 'shared/components/ArButton';
 import Modal from 'shared/components/Modal';
 import FreeSessionConfirmModal from 'shared/components/FreeSessionConfirmModal';
 import device from 'shared/styles/mediaQueries';
@@ -24,25 +24,6 @@ const BannerContainer = styled.div`
   right: 3rem;
   z-index: 100;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-
-  button {
-    background: #aaaff3;
-    color: #fff;
-    font-weight: 400;
-    padding: 1rem 5rem;
-    font-family: Space Mono;
-    font-size: 21px;
-    line-height: 31px;
-    width: 100%;
-
-    padding: 1rem;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-family: Untitled Sans;
-    i {
-      font-weight: bold;
-    }
-  }
 
   @media ${device.mobile} {
     right: 1rem;
@@ -75,13 +56,11 @@ const FreeSessionBanner = () => {
         scrollLimit={scrollLimit}
       >
         {isAuthenticated ? (
-          <Button onClick={showConfirmModalHandler}>First Session Free</Button>
+          <Button className="ar-button" onClick={showConfirmModalHandler}>
+            <div className="ar-button-inner">FIRST SESSION FREE</div>
+          </Button>
         ) : (
-          <Link to={ROUTES.LOGIN}>
-            <Button>
-              First Session <b>Free</b>
-            </Button>
-          </Link>
+          <ArButton link={ROUTES.LOGIN}>FIRST SESSION FREE</ArButton>
         )}
       </BannerContainer>
     </>

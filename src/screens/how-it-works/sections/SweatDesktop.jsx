@@ -3,57 +3,42 @@ import React from 'react';
 import ROUTES from 'shared/constants/routes';
 import { ReactComponent as CatchASweatSvg } from 'shared/components/svg/catch-a-sweat.svg';
 import { ReactComponent as SecureTheWSvg } from 'shared/components/svg/secure-the-w.svg';
-import ArrowLeftSvg from 'shared/components/svg/ArrowLeftSvg';
 import Icon from 'shared/components/Icon';
 
-import SweatImage from '../images/sweat-desktop.jpg';
+import ArButton from 'shared/components/ArButton';
 import Icons from '../components/Icons';
-import Link from '../components/Link';
-import Par from '../components/Par';
 import Text from '../components/Text';
 
 function SweatDesktop() {
   return (
-    <>
-      <div className="desktop-container">
-        <img src={SweatImage} className="image image--large" alt="match being played" />
-      </div>
-      <div className="desktop-container">
-        <div className="info">
-          <div>
-            <h2 className="title">
-              <em>sweat</em>
-            </h2>
-            <Icons>
-              <Icon>
-                <CatchASweatSvg />
-                <Text>Catch a sweat</Text>
-              </Icon>
-              <Icon>
-                <SecureTheWSvg />
-                <Text>Secure the W</Text>
-              </Icon>
-            </Icons>
-            <Par>
-              <p>
-                Whether you’re looking to sweat for 60 minutes or get a little competitive, we’ve
-                got you covered.
-              </p>
-              <p>
-                Our high intensity sessions are fast paced and non stop. Games are to 5 minutes or
-                first to 11 by 2’s and 3’s, whichever comes first. Winner stays, but only for a max
-                of 3 games in a row to ensure you leave dripping in sweat.
-              </p>
-            </Par>
-          </div>
-          <div>
-            <Link to={ROUTES.LOCATIONS}>
-              ready to sweat <ArrowLeftSvg />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </>
+    <section className="sweat section-block text-white">
+      <section className="left-section"></section>
+      <section className="right-section">
+        <p className="title dharma_gothic_cheavy">SWEAT</p>
+        <Icons className="icons">
+          <Icon>
+            <CatchASweatSvg />
+            <Text>CATCH A SWEAT</Text>
+          </Icon>
+          <Icon>
+            <SecureTheWSvg />
+            <Text>SECURE THE W</Text>
+          </Icon>
+        </Icons>
+        <p className="whether-you">
+          Whether you&apos;re looking to sweat for 60 minutes or get a little competitive,
+          we&apos;ve got you covered.
+        </p>
+        <p className="our-high-intensity">
+          Our high intensity sessions are fast paced and non stop. Games are to 5 minutes or first
+          to 11 by 2&apos;s and 3&apos;s, whichever comes first. Winner stays, but only for a max of
+          3 games in a row to ensure you leave dripping in sweat.
+        </p>
+        <ArButton link={ROUTES.LOCATIONS} double>
+          LET&apos;S RIDE
+        </ArButton>
+      </section>
+    </section>
   );
 }
 

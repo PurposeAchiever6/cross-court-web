@@ -100,8 +100,8 @@ const AddCard = ({ stripe, elements, addCardHandler }) => {
   };
 
   return (
-    <AddCardContainer>
-      <h2>Add new Card</h2>
+    <AddCardContainer className="add-card">
+      <h2>ADD NEW CARD</h2>
       <div className="card-container">
         <span className="label card-number">
           Card Number
@@ -119,8 +119,13 @@ const AddCard = ({ stripe, elements, addCardHandler }) => {
         </div>
       </div>
       <div className="buttons-container">
-        <Button onClick={submitHandler} loading={addCardLoading} disabled={addCardLoading}>
-          Add
+        <Button
+          className="ar-button"
+          onClick={submitHandler}
+          loading={addCardLoading}
+          disabled={addCardLoading}
+        >
+          <div className="ar-button-inner">ADD</div>
         </Button>
       </div>
     </AddCardContainer>

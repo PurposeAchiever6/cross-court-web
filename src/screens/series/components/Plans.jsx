@@ -155,13 +155,13 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
 
   const products = availableProducts.filter(product => product.name !== 'Free Session');
   return (
-    <PlansContainer>
+    <PlansContainer className="series-plans-container">
       <div className="plans-container">
         {products.map(product => {
           const [firstWord, secondWord] = product.name.split(' ');
           const buttonText = `${product.credits} ${
-            product.credits > 1 ? 'sessions' : 'session'
-          } for $ ${formatPrice(product.price)}`;
+            product.credits > 1 ? 'SESSIONS' : 'SESSION'
+          } FOR $${formatPrice(product.price)}`;
 
           return (
             <PlanContainer key={product.stripeId} product={product}>
@@ -174,7 +174,9 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
                 <span className="second-word">{secondWord}</span>
               </div>
               <div className="button-container">
-                <Button onClick={() => selectProductHandler(product)}>{buttonText}</Button>
+                <Button className="ar-button" onClick={() => selectProductHandler(product)}>
+                  <div className="ar-button-inner">{buttonText}</div>
+                </Button>
                 <hr />
               </div>
             </PlanContainer>

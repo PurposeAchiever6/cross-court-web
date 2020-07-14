@@ -88,10 +88,10 @@ const LocationsPage = () => {
   return isPageLoading ? (
     <Loading />
   ) : (
-    <PageContainer>
+    <PageContainer className="locations">
       <div className="sessions-container">
         <LocationPicker
-          availableLocations={[{ id: null, name: 'All Locations' }, ...availableLocations]}
+          availableLocations={[{ id: null, name: 'ALL LOCATIONS' }, ...availableLocations]}
           setLocationHandler={setLocationHandler}
           selectedLocation={selectedLocation}
         />

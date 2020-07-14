@@ -100,7 +100,7 @@ const initialValues = {
 };
 
 const LoginForm = ({ error, loginHandler, isLoading }) => (
-  <LoginFormContainer>
+  <LoginFormContainer className="login">
     <Formik
       validateOnChange={false}
       validateOnBlur={false}
@@ -115,7 +115,7 @@ const LoginForm = ({ error, loginHandler, isLoading }) => (
         const { errors } = props;
         return (
           <Form className="form">
-            <h1>Log in</h1>
+            <h1>LOG IN</h1>
             <div className="form-group">
               <InputTextField
                 labelText="Email"
@@ -134,8 +134,8 @@ const LoginForm = ({ error, loginHandler, isLoading }) => (
               />
             </div>
             {isEmpty(error) ? null : <div className="error-container">{error}</div>}
-            <Button type="submit" disabled={isLoading}>
-              {!isLoading ? 'Log in' : <Spinner />}
+            <Button className="ar-button" type="submit" disabled={isLoading}>
+              <div className="ar-button-inner">{!isLoading ? 'LOG IN' : <Spinner />}</div>
             </Button>
             <span className="forgot-pass">
               <Link to={ROUTES.FORGOTPASSWORD}>Forgot your password?</Link>

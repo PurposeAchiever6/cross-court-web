@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-import Button from 'shared/components/Button';
-import AlternativeButton from 'shared/components/AlternativeButton';
+import ArButton from 'shared/components/ArButton';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
@@ -23,13 +21,6 @@ const TextWrapper = styled.div`
     max-width: 37.5rem;
   }
 
-  .text {
-    font-weight: 500;
-    font-size: 3.5rem;
-    color: ${colors.white};
-    text-transform: uppercase;
-  }
-
   .text-show {
     grid-row: 2;
     justify-self: center;
@@ -40,6 +31,11 @@ const TextWrapper = styled.div`
     font-style: italic;
     font-weight: bold;
     justify-self: flex-end;
+  }
+
+  .make-sport-your-lifestyle {
+    color: ${colors.white};
+    font-size: 3.5rem;
   }
 
   @media ${device.mobile} {
@@ -82,19 +78,19 @@ const Signup = () => (
   <>
     <TextWrapper>
       <div className="text-container">
-        <span className="text">Sign up.</span>
-        <span className="text text-show">Show up.</span>
-        <span className="text text-sweat">Sweat</span>
+        <span className="make-sport-your-lifestyle shapiro95_super_wide">
+          MAKE SPORT YOUR <em className="shapiro96_inclined_wide">LIFESTYLE</em>
+        </span>
       </div>
     </TextWrapper>
     <Buttons>
       <div className="buttons-container">
-        <Link to={ROUTES.LOCATIONS}>
-          <AlternativeButton>Book a Session</AlternativeButton>
-        </Link>
-        <Link to={ROUTES.HOWITWORKS}>
-          <Button>First Time?</Button>
-        </Link>
+        <ArButton link={ROUTES.HOWITWORKS} double inverted>
+          FIRST TIME?
+        </ArButton>
+        <ArButton link={ROUTES.LOCATIONS} double>
+          BOOK SESSION
+        </ArButton>
       </div>
     </Buttons>
   </>

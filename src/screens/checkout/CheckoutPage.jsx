@@ -43,11 +43,11 @@ const CheckoutPage = () => {
   }
 
   return (
-    <CheckoutPageContainer>
+    <CheckoutPageContainer className="checkout">
       <div className="button-container">
         <BackButton />
       </div>
-      <h1>Purchase Details</h1>
+      <h1>PURCHASE DETAILS</h1>
       <ProductDetails
         productDetails={productDetails}
         paymentDetails={paymentDetails}

@@ -89,7 +89,7 @@ const LocationPicker = ({ availableLocations, selectedLocation, setLocationHandl
         isSearchable={false}
       />
       {isNil(selectedValue.direction) ? null : (
-        <div className="address-container">
+        <div className="address-container shapiro95_super_wide">
           <span>{selectedValue.direction}</span>
         </div>
       )}

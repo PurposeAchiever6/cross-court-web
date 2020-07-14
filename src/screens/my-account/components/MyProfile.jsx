@@ -56,14 +56,14 @@ const MyProfile = ({ profile, showTitle = true }) => {
   const showEditProfileForm = useSelector(getShowEditProfile);
 
   return (
-    <MyProfileContainer>
+    <MyProfileContainer className="my-profile">
       <button className="edit-btn" type="button" onClick={showEditProfileAction}>
         <EditIcon />
       </button>
-      {showTitle && <h3>My Account</h3>}
+      {showTitle && <h3>MY ACCOUNT</h3>}
 
       <div className="detail-row">
-        <span className="title">email</span>
+        <span className="title">EMAIL</span>
         <span className="text">{profile.email}</span>
       </div>
       {showEditProfileForm ? (
@@ -75,11 +75,11 @@ const MyProfile = ({ profile, showTitle = true }) => {
       ) : (
         <>
           <div className="detail-row">
-            <span className="title">full name</span>
+            <span className="title">FULL NAME</span>
             <span className="text">{`${profile.firstName} ${profile.lastName}`}</span>
           </div>
           <div className="detail-row">
-            <span className="title">Phone</span>
+            <span className="title">PHONE</span>
             <span className="text">
               {profile.phoneNumber ? formatPhoneNumber(profile.phoneNumber) : 'No phone'}
             </span>

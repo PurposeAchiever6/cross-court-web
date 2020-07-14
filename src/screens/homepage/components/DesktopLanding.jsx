@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import device from 'shared/styles/mediaQueries';
-import TheExperience from './desktop/TheExperience';
-import NothingButVibe from './desktop/NothingButVibe';
-import NoBullshit from './desktop/NoBullshit';
-import EveryonesAnAthlete from './desktop/EveryonesAnAthlete';
+import MakeSportYourLifestyle from './desktop/MakeSportYourLifestyle';
+import CrosscourtIsAHighIntensity from './desktop/CrosscourtIsAHighIntensity';
+import WhyWeExist from './desktop/WhyWeExist';
+import WhoWeAre from './desktop/WhoWeAre';
+import WhatWeDo from './desktop/WhatWeDo';
+import KeysToCrosscourt from './desktop/KeysToCrosscourt';
+import FollowUsOnInstagram from './desktop/FollowUsOnInstagram';
+import Ready from './desktop/Ready';
 
 const Section = styled.section`
-  display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5, 1fr);
   min-height: 125rem;
@@ -19,10 +22,14 @@ const Section = styled.section`
 
 const DesktopLanding = () => (
   <Section>
-    <TheExperience />
-    <NothingButVibe />
-    <NoBullshit />
-    <EveryonesAnAthlete />
+    <MakeSportYourLifestyle />
+    <CrosscourtIsAHighIntensity />
+    <WhyWeExist />
+    <WhoWeAre />
+    <WhatWeDo />
+    <KeysToCrosscourt />
+    <FollowUsOnInstagram />
+    <Ready />
   </Section>
 );
 

@@ -15,18 +15,19 @@ import { getUserProfile } from 'screens/my-account/reducer';
 const Nav = styled.nav`
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 92vh;
-  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  height: 100vh;
+  background-color: #9999ff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(20px);
   padding: 0 3rem;
   position: relative;
+  text-align: right;
 
   .list {
     display: flex;
     flex-direction: column;
-    height: 40%;
+    // height: 40%;
     justify-content: space-around;
     padding: 0;
     list-style-type: none;
@@ -54,11 +55,6 @@ const Nav = styled.nav`
     }
   }
 
-  .button {
-    height: 50px;
-    width: 100%;
-  }
-
   @media ${device.mobile} {
     height: 100%;
     align-items: center;
@@ -82,54 +78,49 @@ const SidebarMenu = ({ menuToggler }) => {
   const logoutAction = () => dispatch(logoutInit());
 
   return (
-    <Nav>
+    <Nav className="sidebar-nav">
       <CloseButton onClick={menuToggler} />
       <ul className="list">
         <li className="list-item">
           <NavLink exact to={ROUTES.HOME} onClick={menuToggler}>
-            Home
+            HOME
           </NavLink>
         </li>
         <li className="list-item">
           <NavLink exact to={ROUTES.HOWITWORKS} onClick={menuToggler}>
-            {isAuthenticated ? 'Learn More' : 'First Time?'}
+            {isAuthenticated ? 'LEARN MORE' : 'FIRST TIME?'}
           </NavLink>
         </li>
         <li className="list-item">
           <NavLink exact to={ROUTES.LOCATIONS} onClick={menuToggler}>
-            Schedule/Locations
-          </NavLink>
-        </li>
-        <li className="list-item">
-          <NavLink exact to={ROUTES.SERIES} onClick={menuToggler}>
-            Series
+            SCHEDULE/LOCATIONS
           </NavLink>
         </li>
         {!isAuthenticated && (
           <li className="list-item">
             <NavLink exact to={ROUTES.LOGIN} onClick={menuToggler}>
-              Log In
+              LOG IN
             </NavLink>
           </li>
         )}
         {!isAuthenticated && (
           <li className="list-item">
             <NavLink exact to={ROUTES.SIGNUP} onClick={menuToggler}>
-              Sign Up
+              SIGN UP
             </NavLink>
           </li>
         )}
         {isAuthenticated && (
           <li className="list-item">
             <NavLink exact to={ROUTES.MYACCOUNT} onClick={menuToggler}>
-              My Account
+              MY ACCOUNT
             </NavLink>
           </li>
         )}
         {isAuthenticated && (
           <li className="list-item">
             <button type="button" href="#" onClick={() => logoutAction()}>
-              Logout
+              LOGOUT
             </button>
           </li>
         )}
@@ -137,16 +128,19 @@ const SidebarMenu = ({ menuToggler }) => {
       {userProfile.isSem ? (
         <Link to={ROUTES.SEMHANDBOOK}>
           <AlternativeButton className="button" onClick={menuToggler}>
-            SEM Handbook
+            SEM HANDBOOK
           </AlternativeButton>
         </Link>
       ) : (
-        <Link to={ROUTES.SEM}>
+        <Link to={ROUTES.SEM} className="join-the-team">
           <AlternativeButton className="button" onClick={menuToggler}>
             JOIN THE TEAM
           </AlternativeButton>
         </Link>
       )}
+      <a className="email shapiro95_super_wide" href="mailto:ccteam@cross-court.com">
+        CCTEAM@CROSS-COURT.COM
+      </a>
     </Nav>
   );
 };

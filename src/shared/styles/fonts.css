@@ -50,3 +50,262 @@
       format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
   font-display: block;
 }
+@font-face {
+  font-family: 'dharma_gothic_cexbold';
+  src: url('../fonts/dharmagothicc_exbold_r-webfont.woff2') format('woff2'),
+    url('../fonts/dharmagothicc_exbold_r-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dharma_gothic_cheavy_italic';
+  src: url('../fonts/dharmagothicc_heavy_i-webfont.woff2') format('woff2'),
+    url('../fonts/dharmagothicc_heavy_i-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'dharma_gothic_cheavy';
+  src: url('../fonts/dharmagothicc_heavy_r-webfont.woff2') format('woff2'),
+    url('../fonts/dharmagothicc_heavy_r-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro5_light_fly';
+  src: url('../fonts/shapiro-5lightfly-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-5lightfly-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro15_fly';
+  src: url('../fonts/shapiro-15fly-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-15fly-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro25_super_fly';
+  src: url('../fonts/shapiro-25superfly-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-25superfly-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro25_super_fly_text';
+  src: url('../fonts/shapiro-25superflytext-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-25superflytext-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro35_feather';
+  src: url('../fonts/shapiro-35feather-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-35feather-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro35_feather_text';
+  src: url('../fonts/shapiro-35feathertext-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-35feathertext-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro36_inclined_text';
+  src: url('../fonts/shapiro-36inclinedtext-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-36inclinedtext-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro45_welter';
+  src: url('../fonts/shapiro-45welter-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-45welter-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro45_welter_extd';
+  src: url('../fonts/shapiro-45welterextd-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-45welterextd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro45_welter_text';
+  src: url('../fonts/shapiro-45weltertext-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-45weltertext-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro45_welter_wide';
+  src: url('../fonts/shapiro-45welterwide-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-45welterwide-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro55_middle';
+  src: url('../fonts/shapiro-55middle-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-55middle-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro55_middle_extd';
+  src: url('../fonts/shapiro-55middleextd-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-55middleextd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro55_middle_text';
+  src: url('../fonts/shapiro-55middletext-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-55middletext-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro55_middle_wide';
+  src: url('../fonts/shapiro-55middlewide-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-55middlewide-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro65_light_heavy';
+  src: url('../fonts/shapiro-65lightheavy-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-65lightheavy-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro65_light_heavy_extd';
+  src: url('../fonts/shapiro-65lightheavyextd-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-65lightheavyextd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro65_light_heavy_text';
+  src: url('../fonts/shapiro-65lightheavytext-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-65lightheavytext-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro65_light_heavy_wide';
+  src: url('../fonts/shapiro-65lightheavywide-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-65lightheavywide-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro75_heavy';
+  src: url('../fonts/shapiro-75heavy-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-75heavy-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro75_heavy_extd';
+  src: url('../fonts/shapiro-75heavyextd-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-75heavyextd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro75_heavy_text';
+  src: url('../fonts/shapiro-75heavytext-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-75heavytext-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro75_heavy_wide';
+  src: url('../fonts/shapiro-75heavywide-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-75heavywide-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro85_super_heavy';
+  src: url('../fonts/shapiro-85superheavy-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-85superheavy-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro85_super_heavy_extd';
+  src: url('../fonts/shapiro-85superheavyextd-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-85superheavyextd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro85_super_heavy_wide';
+  src: url('../fonts/shapiro-85superheavywide-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-85superheavywide-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro95_super';
+  src: url('../fonts/shapiro-95super-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-95super-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro95_super_extd';
+  src: url('../fonts/shapiro-95superextd-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-95superextd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro95_super_wide';
+  src: url('../fonts/shapiro-95superwide-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-95superwide-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro96_inclined_wide';
+  src: url('../fonts/shapiro-96inclinedwide-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-96inclinedwide-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro97_air_extd';
+  src: url('../fonts/shapiro-97airextd-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-97airextd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro105_max_extd';
+  src: url('../fonts/shapiro-105maxextd-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-105maxextd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro115_plus_extd';
+  src: url('../fonts/shapiro-115plusextd-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-115plusextd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'shapiro116_inclined_extd';
+  src: url('../fonts/shapiro-116inclinedextd-webfont.woff2') format('woff2'),
+    url('../fonts/shapiro-116inclinedextd-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

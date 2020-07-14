@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from 'react-redux';
 import Button from 'shared/components/Button';
-import AlternativeButton from 'shared/components/AlternativeButton';
 import CCIcon from 'shared/components/CCIcon';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 import device from 'shared/styles/mediaQueries';
+import ArButton from 'shared/components/ArButton';
 import { deleteCard, setSelectedCard } from '../actionCreators';
 
 const PaymentMethodsContainer = styled.div`
@@ -166,8 +166,8 @@ const PaymentMethods = ({ availableCards }) => {
   };
 
   return (
-    <PaymentMethodsContainer>
-      <h2>Choose a Payment Method</h2>
+    <PaymentMethodsContainer className="payments">
+      <h2>CHOOSE A PAYMENT METHOD</h2>
       <div className="payment-methods-container">
         {isEmpty(availableCards) ? (
           <div className="empty-message">
@@ -190,7 +190,7 @@ const PaymentMethods = ({ availableCards }) => {
                 </div>
                 <div className="cc-info">
                   <div className="ccnumber-container">
-                    <span>{`**** ${payment.card.last4}`}</span>
+                    <span>{`***${payment.card.last4}`}</span>
                   </div>
                   <div className="expire-container">
                     <span>Expires {`${payment.card.expMonth}/${payment.card.expYear}`}</span>
@@ -207,11 +207,11 @@ const PaymentMethods = ({ availableCards }) => {
         )}
       </div>
       <div className="buttons-container">
-        <Link to={ROUTES.PAYMENTSADDCARD}>
-          <AlternativeButton className="alt-btn">Add New Card</AlternativeButton>
-        </Link>
-        <Button disabled={isEmpty(selectedCard)} onClick={nextHandler}>
-          Next
+        <ArButton link={ROUTES.PAYMENTSADDCARD} inverted>
+          ADD NEW CARD
+        </ArButton>
+        <Button className="ar-button" disabled={isEmpty(selectedCard)} onClick={nextHandler}>
+          <div className="ar-button-inner">NEXT</div>
         </Button>
       </div>
     </PaymentMethodsContainer>

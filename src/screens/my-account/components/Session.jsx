@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { equals } from 'ramda';
 
-import AlternativeButton from 'shared/components/AlternativeButton';
 import Button from 'shared/components/Button';
+import ArButton from 'shared/components/ArButton';
 import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import { urlFormattedDate, shortSessionDate, hourRange } from 'shared/utils/date';
@@ -17,7 +16,7 @@ const SessionContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  box-shadow: 0px 2px 5px ${colors.blackOverlay};
+  //box-shadow: 0px 2px 5px ${colors.blackOverlay};
 
   @media ${device.desktop} {
     min-width: 18rem;
@@ -183,40 +182,48 @@ const Session = ({
   const isConfirmed = equals(state, 'confirmed');
 
   return (
-    <SessionContainer>
+    <SessionContainer className="session-container">
       <div className="image">
         <img src={imageUrl} alt="Session" />
       </div>
       <div className="details">
         <span className={dateClassName}>
-          {shortSessionDate(date)}
+          {shortSessionDate(date)
+            .replace('.', '')
+            .replace('/', '.')}
           {isConfirmed && !past && (
             <span className="reserved-check">
               <CheckCircle />
             </span>
           )}
         </span>
-        <p className="time">{hourRange(time)}</p>
-        <p className="location">{locationName}</p>
-        {isSem && inStartTime ? (
-          <div className="buttons-container">
-            <Link to={`/sem/session/${sessionId}/${urlFormattedDate(date)}`}>
-              <Button className="btn">Start Session</Button>
-            </Link>
-          </div>
-        ) : (
-          <div className="buttons-container">
-            {isReserved && inConfirmationTime ? (
-              <Button className="confirm-btn" onClick={confirmSessionAction}>
-                Confirm
-              </Button>
-            ) : (
-              <Link to={`/session/${sessionId}/${urlFormattedDate(date)}`}>
-                <AlternativeButton className="btn-alt">See Details</AlternativeButton>
-              </Link>
-            )}
-          </div>
-        )}
+        <div className="time-location-buttons-container">
+          <p className="time">{hourRange(time)}</p>
+          <p className="location">{locationName}</p>
+          {isSem && inStartTime ? (
+            <div className="buttons-container">
+              <ArButton link={`/sem/session/${sessionId}/${urlFormattedDate(date)}`}>
+                START SESSION
+              </ArButton>
+            </div>
+          ) : (
+            <div className="buttons-container">
+              {isReserved && inConfirmationTime ? (
+                <Button className="ar-button confirm-button" onClick={confirmSessionAction}>
+                  <div className="ar-button-inner">CONFIRM</div>
+                </Button>
+              ) : (
+                <ArButton
+                  className="see-details-button"
+                  link={`/session/${sessionId}/${urlFormattedDate(date)}`}
+                  inverted={past}
+                >
+                  SEE DETAILS
+                </ArButton>
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </SessionContainer>
   );

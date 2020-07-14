@@ -103,7 +103,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const SignupForm = ({ signupHandler, isLoading, errors }) => (
-  <SignupFormContainer>
+  <SignupFormContainer className="signup">
     <Formik
       validateOnChange={false}
       validateOnBlur={false}
@@ -115,7 +115,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
     >
       {() => (
         <Form className="form">
-          <h1>Sign up</h1>
+          <h1>SIGN UP</h1>
           <div className="form-group">
             <InputTextField labelText="First Name*" error={errors.firstName} name="firstName" />
           </div>
@@ -160,8 +160,8 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
               I agree to the <Link to={ROUTES.TERMS}>terms and conditions</Link>
             </InputCheckboxField>
           </div>
-          <Button type="submit" disabled={isLoading}>
-            {!isLoading ? 'Sign Up' : <Spinner />}
+          <Button type="submit" disabled={isLoading} className="ar-button">
+            <div className="ar-button-inner">{!isLoading ? 'SIGN UP' : <Spinner />}</div>
           </Button>
 
           <div className="login">

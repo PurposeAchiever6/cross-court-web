@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
 import { FacebookShareButton, WhatsappShareButton } from 'react-share';
@@ -12,8 +11,8 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
-import CheckIcon from 'shared/images/check-icon.png';
-import Button from 'shared/components/Button';
+import SportCharacter from 'shared/images/sport-character.png';
+import ArButton from 'shared/components/ArButton';
 
 import { getSessionId, getSessionDate } from '../reducer';
 
@@ -111,10 +110,11 @@ const SessionReserved = () => {
   const onCopyHandler = () => toast.success('Link Copied!');
 
   return (
-    <SessionReservedContainer>
+    <SessionReservedContainer className="session-reserved">
       <div className="session-info-container">
-        <img src={CheckIcon} alt="Check Icon" />
-        <h1>The session was booked successfully!</h1>
+        <img className="sport-character-image" src={SportCharacter} alt="Check Icon" />
+        <h1>SESSION BOOKED</h1>
+        <h2>SUCCESSFULLY!</h2>
         <span>
           Invite a friend !<strong>Share your session</strong>
         </span>
@@ -131,9 +131,9 @@ const SessionReserved = () => {
             </CopyToClipboard>
           </button>
         </div>
-        <Link to={ROUTES.MYACCOUNT}>
-          <Button>Done</Button>
-        </Link>
+        <ArButton className="done-button" inverted link={ROUTES.MYACCOUNT}>
+          SKIP
+        </ArButton>
       </div>
     </SessionReservedContainer>
   );

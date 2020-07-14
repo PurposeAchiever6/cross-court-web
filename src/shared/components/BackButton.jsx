@@ -39,7 +39,7 @@ const BackButton = ({ className, showText = true, color = 'black' }) => {
 
   return (
     <BackButtonContainer type="button" className={`go-back ${className}`} onClick={goBack}>
-      <FontAwesomeIcon icon={faArrowLeft} color={color} /> {showText && 'Back'}
+      <FontAwesomeIcon icon={faArrowLeft} color={color} /> {showText && 'BACK'}
     </BackButtonContainer>
   );
 };

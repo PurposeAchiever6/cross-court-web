@@ -89,7 +89,7 @@ const PurchaseHistoryTable = ({ purchaseHistory }) => {
 
   // Render the UI for your table
   return (
-    <TableContainer>
+    <TableContainer className="purchase-history-table">
       <table {...getTableProps()}>
         <tbody {...getTableBodyProps()}>
           {rows.map((row, idx) => {

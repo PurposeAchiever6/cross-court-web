@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +9,7 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 import colors from 'shared/styles/constants';
 import { FacebookShareButton, WhatsappShareButton } from 'react-share';
 import CheckIcon from 'shared/images/check-icon.png';
-import Button from 'shared/components/Button';
+import ArButton from 'shared/components/ArButton';
 import ROUTES from 'shared/constants/routes';
 import { getSessionId, getSessionDate } from '../reducer';
 
@@ -104,7 +103,7 @@ const SessionConfirmed = () => {
   const APP_URL = env.REACT_APP_URL;
   const SHARE_URL = `${APP_URL}/session/${sessionId}/${sessionDate}`;
   return (
-    <SessionConfirmedContainer>
+    <SessionConfirmedContainer className="session-confirmed">
       <div className="session-info-container">
         <img src={CheckIcon} alt="Check Icon" />
         <h1>The session was re-confirmed successfully!</h1>
@@ -122,9 +121,9 @@ const SessionConfirmed = () => {
             <FontAwesomeIcon icon={faExternalLinkAlt} />
           </button>
         </div>
-        <Link to={ROUTES.MYACCOUNT}>
-          <Button>Done</Button>
-        </Link>
+        <ArButton className="done-button" link={ROUTES.MYACCOUNT}>
+          DONE
+        </ArButton>
       </div>
     </SessionConfirmedContainer>
   );

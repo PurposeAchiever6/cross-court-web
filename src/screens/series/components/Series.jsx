@@ -79,8 +79,8 @@ const Series = () => {
   const iconSize = windowSize < size.desktop ? '4rem' : '7rem';
 
   return (
-    <SeriesContainer>
-      <h2>Our Series</h2>
+    <SeriesContainer className="series-series-container">
+      <h2>OUR SERIES</h2>
       <div className="content">
         <div className="item">
           <OnYourTimeSvg width={iconSize} height={iconSize} />

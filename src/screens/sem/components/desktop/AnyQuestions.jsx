@@ -1,39 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
-import AlternativeButton from 'shared/components/AlternativeButton';
-
-import AnyQuestionsImage from '../../images/any-questions.jpg';
-import ImageContainer from './ImageContainer';
-
-const Container = styled.div`
-  color: ${colors.white};
-  font-size: 2rem;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  * {
-    width: 15rem;
-  }
-`;
+import ArButton from 'shared/components/ArButton';
 
 const AnyQuestions = () => (
-  <ImageContainer overlayColor={colors.blackOverlay} img={AnyQuestionsImage}>
-    <Container>
-      <p>Any Questions?</p>
-      <div>
-        <Link to={ROUTES.FAQSEM}>
-          <AlternativeButton>Learn More</AlternativeButton>
-        </Link>
+  <section className="any-questions section-block text-white">
+    <div className="title-and-button-block">
+      <p className="title-1">ANY QUESTIONS?</p>
+      <a className="title-2" href="mailto:ccteam@cross-court.com">
+        EMAIL CCTEAM@CROSS-COURT.COM
+      </a>
+      <div className="button-wrapper">
+        <ArButton link={ROUTES.FAQSEM} double>
+          FAQ
+        </ArButton>
       </div>
-    </Container>
-  </ImageContainer>
+    </div>
+  </section>
 );
 
 export default AnyQuestions;

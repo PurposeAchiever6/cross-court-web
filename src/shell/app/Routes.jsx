@@ -49,7 +49,6 @@ const CancelationPolicy = lazy(() => import('screens/legal-docs/pages/Cancelatio
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
 
 const AppWrapper = styled.div`
-  font-family: 'Untitled Sans';
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -62,15 +61,109 @@ const AppWrapper = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding-top: 5rem;
     overflow-y: auto;
   }
 `;
+const { body } = document;
+
+function setPageNameOnBodyClass(pathname) {
+  let pageName = '';
+
+  if (pathname === '/') {
+    pageName = 'home';
+  } else {
+    pageName = pathname.replace(/\//g, '-').replace(/^-/, '');
+  }
+
+  body.setAttribute('data-page', pageName);
+}
 
 history.listen(location => {
   ReactGA.set({ page: location.pathname }); // Update the user's current page
   ReactGA.pageview(location.pathname); // Record a pageview for the given page
+
+  setPageNameOnBodyClass(location.pathname);
+  setScrollClasses();
 });
+
+function setScrollClasses() {
+  const { body } = document;
+  const header = document.querySelector('.header');
+
+  if (body.getAttribute('data-page') === 'home') {
+    const bigTitle = document.querySelector('.crosscourt-big-title');
+
+    if (bigTitle) {
+      if (window.scrollY < 300) {
+        bigTitle.classList.remove('scrolled');
+        bigTitle.classList.remove('scrolling');
+      } else if (window.scrollY >= 300 && window.scrollY < 500) {
+        bigTitle.classList.remove('scrolled');
+        bigTitle.classList.add('scrolling');
+      } else if (window.scrollY >= 500 && window.scrollY < 700) {
+        bigTitle.classList.add('scrolled');
+        bigTitle.classList.remove('scrolling');
+      } else if (window.scrollY >= 700 && window.scrollY < 900) {
+        bigTitle.classList.remove('scrolled');
+        bigTitle.classList.add('scrolling');
+      } else if (window.scrollY >= 900) {
+        bigTitle.classList.remove('scrolled');
+        bigTitle.classList.remove('scrolling');
+      }
+    }
+
+    window.setTimeout(function() {
+      const video = document.querySelector('.video-player');
+
+      if (video) {
+        video.addEventListener('pause', function() {
+          video.classList.add('data-user-paused');
+        });
+
+        const options = {
+          rootMargin: '0px',
+          threshold: 0,
+        };
+
+        function callback(entries, observer) {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              if (!video.classList.contains('data-user-paused')) {
+                video.play();
+              }
+            } else {
+              video.pause();
+              video.classList.remove('data-user-paused');
+            }
+          });
+        }
+
+        window.observer = new IntersectionObserver(callback, options);
+        window.observer.observe(document.querySelector('.video-player'));
+      }
+    }, 2000);
+  } else if (window.observer) {
+    window.observer.disconnect();
+  }
+
+  if (
+    body.getAttribute('data-page') === 'home' ||
+    body.getAttribute('data-page') === 'how-it-works'
+  ) {
+    if (window.scrollY > 800) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  } else {
+    header.classList.add('scrolled');
+  }
+}
+
+window.addEventListener('scroll', setScrollClasses);
+
+setPageNameOnBodyClass(window.location.pathname);
+window.setTimeout(setScrollClasses, 0);
 
 const Routes = () => {
   const dispatch = useDispatch();

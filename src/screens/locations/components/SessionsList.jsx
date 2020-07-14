@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { isEmpty } from 'ramda';
 
 import colors from 'shared/styles/constants';
-import Button from 'shared/components/Button';
-import AlternativeButton from 'shared/components/AlternativeButton';
 import SessionLevel from 'shared/components/SessionLevel';
 import SpotsLeft from 'shared/components/SpotsLeft';
 import {
@@ -19,6 +16,7 @@ import {
   formatSessionDate,
 } from 'shared/utils/date';
 import { getUserProfile } from 'screens/my-account/reducer';
+import ArButton from 'shared/components/ArButton';
 
 const SessionsListContainer = styled.div`
   display: flex;
@@ -111,22 +109,14 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           let button;
           if (reserved || past) {
             button = (
-              <Link to={`/session/${id}/${URLdate}`}>
-                <AlternativeButton className="btn-alternative">See Details</AlternativeButton>
-              </Link>
+              <ArButton link={`/session/${id}/${URLdate}`} inverted>
+                SEE DETAILS
+              </ArButton>
             );
           } else if (full) {
-            button = (
-              <a href={mailInfo}>
-                <AlternativeButton className="btn-alternative">Join Waitlist</AlternativeButton>
-              </a>
-            );
+            button = <ArButton link={mailInfo}>JOIN WAITLIST</ArButton>;
           } else {
-            button = (
-              <Link to={`/session/${id}/${URLdate}`}>
-                <Button>Reserve</Button>
-              </Link>
-            );
+            button = <ArButton link={`/session/${id}/${URLdate}`}>RESERVE</ArButton>;
           }
           return (
             <div className="session-list-item-container" key={id}>

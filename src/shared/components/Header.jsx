@@ -3,19 +3,18 @@ import styled from 'styled-components';
 import DesktopMenu from 'cheeseburger-menu';
 import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
-import Button from 'shared/components/Button';
+import ArButton from 'shared/components/ArButton';
 import MenuSvg from 'shared/components/svg/MenuSvg';
+import MenuSvgAlt from 'shared/components/svg/MenuSvgAlt';
 import LogoSvg from 'shared/components/svg/LogoSvg';
+import LogoSvgAlt from 'shared/components/svg/LogoSvgAlt';
 import device from 'shared/styles/mediaQueries';
-import colors from 'shared/styles/constants';
 import SidebarMenu from './SidebarMenu';
 import MobileMenu from './MobileMenu';
 
 const Container = styled.div`
   z-index: 10;
-  background-color: ${colors.white};
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  height: 5rem;
+  height: 4rem;
   position: fixed;
   width: 100%;
   left: 0;
@@ -42,7 +41,7 @@ const Container = styled.div`
 
   .menu-button-container {
     height: 100%;
-    width: 5em;
+    width: 4em;
     display: flex;
     justify-content: center;
 
@@ -69,13 +68,12 @@ const Container = styled.div`
 
   @media ${device.desktop} {
     .header-left {
-      .menu-button-container[data-active='true'] {
-        background: rgba(0, 0, 0, 0.7);
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      }
+      // .menu-button-container[data-active='true'] {
+      //   background: rgba(0, 0, 0, 0.7);
+      //   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      // }
 
       .logo-icon {
-        padding-left: 3.5rem;
         width: 205px;
         height: 25px;
       }
@@ -91,9 +89,9 @@ function Header() {
   }
 
   return (
-    <Container>
+    <Container className="header">
       <MobileMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />
-      <DesktopMenu isOpen={menuOpen} closeCallback={toggleMenu} topOffset="82px" width={400}>
+      <DesktopMenu isOpen={menuOpen} closeCallback={toggleMenu} topOffset="0" width="50vw">
         <SidebarMenu menuToggler={toggleMenu} />
       </DesktopMenu>
       <div className="header-content">
@@ -105,16 +103,18 @@ function Header() {
               type="button"
               onClick={toggleMenu}
             >
-              <MenuSvg color={menuOpen ? 'white' : 'black'} />
+              <MenuSvg className="menu-bars" color={menuOpen ? '#000000' : '#FFFFFF'} />
+              <MenuSvgAlt className="menu-bars-alt" color={menuOpen ? '#000000' : '#9999FF'} />
             </button>
           </div>
           <Link to={ROUTES.HOME}>
             <LogoSvg className="logo-icon" />
+            <LogoSvgAlt className="logo-icon-alt" />
           </Link>
         </div>
-        <Link to={ROUTES.LOCATIONS}>
-          <Button className="button">Reserve Session</Button>
-        </Link>
+        <ArButton link={ROUTES.LOCATIONS} font="shapiro96_inclined_wide">
+          RESERVE SESSION
+        </ArButton>
       </div>
     </Container>
   );

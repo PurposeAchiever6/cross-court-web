@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { isEmpty, take } from 'ramda';
-import Button from 'shared/components/Button';
 import colors from 'shared/styles/constants';
 import device from 'shared/styles/mediaQueries';
 import ROUTES from 'shared/constants/routes';
+import ArButton from 'shared/components/ArButton';
 import Session from './Session';
 
 const SessionsListContainer = styled.div`
@@ -68,16 +67,16 @@ const SessionsList = ({ title, sessions, past, isSem }) => {
   const sesionsToShow = take(3, filteredSessions);
 
   return (
-    <SessionsListContainer>
+    <SessionsListContainer className={!past ? 'upcoming-sessions' : 'past-sessions'}>
       {isEmpty(sesionsToShow) ? (
         <div className="empty-container">
           <div className="container-empty-message">
             <p>YOU HAVE NO</p>
             <p className="title">{title}</p>
             {!past && !isSem && (
-              <Link to={ROUTES.LOCATIONS}>
-                <Button>Explore Sessions</Button>
-              </Link>
+              <ArButton link={ROUTES.LOCATIONS} inverted={false}>
+                EXPLORE SESSIONS
+              </ArButton>
             )}
           </div>
         </div>

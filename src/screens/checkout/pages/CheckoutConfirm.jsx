@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { isNil } from 'ramda';
 
 import CheckIcon from 'shared/images/check-icon.png';
-import Button from 'shared/components/Button';
+import ArButton from 'shared/components/ArButton';
 import ROUTES from 'shared/constants/routes';
 import device from 'shared/styles/mediaQueries';
 import StorageUtils from 'shared/utils/storage';
@@ -52,17 +52,17 @@ const CheckoutConfirm = () => {
   }
 
   return (
-    <PageContainer>
+    <PageContainer className="checkout-confirm">
       <img src={CheckIcon} alt="Check icon" />
       <h1>Thank you for purchasing a Series! Now click below to sign up for a session.</h1>
       {!isNil(sessionSaved.id) && !isNil(sessionSaved.date) ? (
-        <Link to={sessionURL}>
-          <Button>Go to session</Button>
-        </Link>
+        <ArButton className="go-to-session-button" link={sessionURL} inverted={false}>
+          GO TO SESSION
+        </ArButton>
       ) : (
-        <Link to={ROUTES.LOCATIONS}>
-          <Button>See Schedule</Button>
-        </Link>
+        <ArButton className="see-schedule-button" link={ROUTES.LOCATIONS} inverted={false}>
+          SEE SCHEDULE
+        </ArButton>
       )}
     </PageContainer>
   );

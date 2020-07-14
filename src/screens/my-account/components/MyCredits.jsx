@@ -1,9 +1,7 @@
 import React from 'react';
 import { number } from 'prop-types';
 import styled from 'styled-components';
-import Button from 'shared/components/Button';
-import AlternativeButton from 'shared/components/AlternativeButton';
-import { Link } from 'react-router-dom';
+import ArButton from 'shared/components/ArButton';
 
 const MyCreditsContainer = styled.div`
   padding: 2.5rem;
@@ -51,18 +49,21 @@ const MyCreditsContainer = styled.div`
 
 const MyCredits = ({ credits }) => {
   return (
-    <MyCreditsContainer>
-      <h3>My Credits</h3>
+    <MyCreditsContainer className="my-credits">
+      <h3>SERIES</h3>
       <div className="sessions-number-container">
         <span className="session-number">{credits}</span>
-        <span>Sessions Left</span>
+        <span className="session-title-block">
+          <span className="session-title-1">SESSIONS</span>
+          <span className="session-title-2">LEFT</span>
+        </span>
       </div>
-      <Link to="/series">
-        <Button className="btn">Purchase Session</Button>
-      </Link>
-      <Link to="/purchase-history">
-        <AlternativeButton className="alt-btn">Purchases History</AlternativeButton>
-      </Link>
+      <ArButton className="buy-series-button" link="/series" inverted={false}>
+        BUY SERIES
+      </ArButton>
+      <ArButton link="/purchase-history" inverted>
+        PURCHASE HISTORY
+      </ArButton>
     </MyCreditsContainer>
   );
 };

@@ -37,17 +37,17 @@ export const MyAccountPageMobile = ({
     {userProfile.isSem || userProfile.isReferee ? (
       <Tabs>
         <div label="As ETM">
-          <SessionsList title="Upcoming sessions" sessions={semUpcomingSessions} isSem />
+          <SessionsList title="UPCOMING SESSIONS" sessions={semUpcomingSessions} isSem />
         </div>
         <div label="As player">
-          <SessionsList title="Upcoming sessions" sessions={upcomingSessions} />
-          <SessionsList title="Previous sessions" sessions={previousSessions} past />
+          <SessionsList title="UPCOMING SESSIONS" sessions={upcomingSessions} />
+          <SessionsList title="PAST SESSIONS" sessions={previousSessions} past />
         </div>
       </Tabs>
     ) : (
       <div>
-        <SessionsList title="Upcoming sessions" sessions={upcomingSessions} />
-        <SessionsList title="Previous sessions" sessions={previousSessions} past />
+        <SessionsList title="UPCOMING SESSIONS" sessions={upcomingSessions} />
+        <SessionsList title="PAST SESSIONS" sessions={previousSessions} past />
       </div>
     )}
   </MyAccountPageContainer>

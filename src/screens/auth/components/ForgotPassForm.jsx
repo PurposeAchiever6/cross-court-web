@@ -99,7 +99,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const ForgotPassForm = ({ error, forgotPassHandler, isLoading }) => (
-  <ForgotPassFormContainer>
+  <ForgotPassFormContainer className="forgotpassword">
     <Formik
       validateOnChange={false}
       validateOnBlur={false}
@@ -111,15 +111,15 @@ const ForgotPassForm = ({ error, forgotPassHandler, isLoading }) => (
     >
       {() => (
         <>
-          <h1>Forgot your Password?</h1>
-          <p>Enter your email and we will send you a link to reset your password</p>
+          <h1>FORGOT YOUR PASSWORD?</h1>
+          <p>Enter your email and we will send you a link to reset your password.</p>
           <Form className="form">
             <div className="form-group">
               <InputTextField labelText="Email" name="email" placeholder="example@crosscourt.com" />
             </div>
             {!isEmpty(error) && <div className="error-container"> {error}</div>}
-            <Button type="submit" disabled={isLoading}>
-              {!isLoading ? 'Reset Password' : <Spinner />}
+            <Button className="ar-button" type="submit" disabled={isLoading}>
+              <div className="ar-button-inner">{!isLoading ? 'RESET PASSWORD' : <Spinner />}</div>
             </Button>
             <span className="cancel">
               <Link to={ROUTES.LOGIN}>

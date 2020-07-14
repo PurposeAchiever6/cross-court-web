@@ -30,17 +30,18 @@ const ReserveButton = ({
       if (session.full) {
         return (
           <a href={mailInfo}>
-            <AlternativeButton className="btn-alternative">Join Waitlist</AlternativeButton>
+            <AlternativeButton className="btn-alternative">JOIN WAITLIST</AlternativeButton>
           </a>
         );
       }
       return (
         <Button
-          className="reserve-btn"
+          className="ar-button double reserve-btn"
           onClick={reserveSessionAction}
           disabled={isPast(sessionDate)}
         >
-          Reserve Session
+          <div className="ar-button-inner">RESERVE SESSION</div>
+          <div className="double-drop"></div>
         </Button>
       );
     }
@@ -52,22 +53,22 @@ const ReserveButton = ({
           onClick={confirmSessionAction}
           disabled={not(session.userSession.inConfirmationTime)}
         >
-          Confirm Session
+          CONFIRM SESSION
         </Button>
       );
     }
     if (equals(session.userSession.state, 'confirmed')) {
       return (
-        <Button className="reserve-btn" disabled>
-          Session Confirmed
+        <Button className="ar-button double disabled reserve-btn" disabled>
+          <div className="ar-button-inner">SESSION CONFIRMED</div>
         </Button>
       );
     }
   }
 
   return (
-    <Button className="reserve-btn" onClick={signupBookSessionAction}>
-      Reserve
+    <Button className="ar-button reserve-btn" onClick={signupBookSessionAction}>
+      <div className="ar-button-inner">RESERVE</div>
     </Button>
   );
 };

@@ -10,6 +10,7 @@ const modalStyle = {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.75)',
+    zIndex: 100,
   },
   content: {
     top: '50%',

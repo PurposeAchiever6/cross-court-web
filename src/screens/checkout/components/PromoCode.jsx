@@ -96,20 +96,20 @@ const PromoCode = () => {
       validationSchema={validationSchema}
     >
       {() => (
-        <PromoCodeContainer>
+        <PromoCodeContainer className="promo-code">
           <Form className="form">
             <InputTextField
-              labelText="Discount Code"
+              labelText="DISCOUNT CODE"
               name="promoCode"
               placeholder="Enter your code"
               className="input-container"
               disabled={isPromoCodeValid}
             />
             {isPromoCodeValid ? (
-              <span className="success-msg">Discount Added!</span>
+              <span className="success-msg">DISCOUNT ADDED!</span>
             ) : (
-              <Button type="submit" disabled={isLoading}>
-                {!isLoading ? 'Use Code' : <Spinner />}
+              <Button className="use-code-button ar-button" type="submit" disabled={isLoading}>
+                <div className="ar-button-inner">{!isLoading ? 'USE CODE' : <Spinner />}</div>
               </Button>
             )}
           </Form>

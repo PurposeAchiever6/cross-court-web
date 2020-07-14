@@ -7,7 +7,7 @@ import colors from 'shared/styles/constants';
 
 const Button = styled.button`
   outline: none;
-  font-family: 'Untitled Sans';
+  // font-family: 'Untitled Sans';
   background-color: transparent;
   color: ${colors.white};
   border: 1px solid ${colors.white};

@@ -41,11 +41,11 @@ const PurchaseHistoryPage = () => {
   }
 
   return (
-    <PurchaseHistoryPageContainer>
+    <PurchaseHistoryPageContainer className="purchase-history">
       <div className="buttons-container">
         <BackButton />
       </div>
-      <h2>Purchase History</h2>
+      <h2>PURCHASE HISTORY</h2>
       <PurchaseHistoryTable purchaseHistory={purchaseHistory} />
     </PurchaseHistoryPageContainer>
   );

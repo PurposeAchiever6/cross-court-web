@@ -11,7 +11,7 @@ import Button from 'shared/components/Button';
 import PlaySvg from 'shared/components/svg/PlaySvg';
 
 import HeroImage from '../images/hero-mobile.jpg';
-import HeroDesktop from '../images/hero-desktop.jpg';
+import HeroDesktop from '../images/hero-desktop.png';
 
 const HeroSection = styled.section`
   display: flex;
@@ -20,10 +20,10 @@ const HeroSection = styled.section`
   align-items: center;
   height: 100vh;
   color: ${colors.white};
+  background-color: #9999ff;
   background-image: url(${HeroImage});
-  box-shadow: inset 0 0 0 2000px ${colors.blackOverlay};
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
 
   .hero-title {
@@ -118,14 +118,11 @@ const Hero = () => {
         <h1 className="hero-title">
           new to <span className="hero-company">crosscourt?</span>
         </h1>
-        <p className="hero-text">Just sign up, show up and sweat.</p>
       </div>
       <div className="hero-find">
         <Button onClick={() => setShowModal(true)}>
           <PlaySvg />
-          <span className="text">
-            how it <span className="bold">works</span>
-          </span>
+          <span className="text">CHECK IT OUT</span>
         </Button>
       </div>
       <ReactModal

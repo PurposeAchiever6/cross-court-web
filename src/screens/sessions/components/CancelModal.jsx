@@ -9,7 +9,7 @@ const CancelModalContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Untitled Sans';
+  // font-family: 'Untitled Sans';
 
   h2 {
     font-weight: bold;
@@ -36,8 +36,8 @@ const CancelModalContainer = styled.div`
   }
 
   button {
-    background-color: ${colors.errorRed};
-    color: ${colors.white};
+    // background-color: ${colors.errorRed};
+    // color: ${colors.white};
     margin-bottom: 2rem;
   }
 
@@ -52,15 +52,17 @@ const CancelModalContainer = styled.div`
 `;
 
 export const CancelModal = ({ closeHandler, cancelSessionAction, inCancellationTime }) => (
-  <CancelModalContainer>
-    <h2>Cancelation</h2>
+  <CancelModalContainer className="cancel-modal">
+    <h2>CANCELLATION</h2>
     <span className="text">Are you sure you want to cancel your session?</span>
     <strong>
       {inCancellationTime
         ? '1 credit will be refunded to your account'
         : 'The credit will not be refunded'}
     </strong>
-    <Button onClick={cancelSessionAction}>Cancel Reservation</Button>
+    <Button className="ar-button inverted" onClick={cancelSessionAction}>
+      <div className="ar-button-inner">CANCEL RESERVATION</div>
+    </Button>
     <span className="link" onClick={closeHandler}>
       Nevermind
     </span>

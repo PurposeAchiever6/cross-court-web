@@ -199,16 +199,16 @@ const PurchaseDetails = ({
         <div className="date">{purchaseDate}</div>
 
         <div className="purchase-details-container">
-          <span className="title">Your Purchase</span>
+          <span className="title">YOUR PURCHASE</span>
           <div className="plan-name">{productDetails.name}</div>
           <div className="sessions-qty">{productDetails.description}</div>
         </div>
         <div className="payment-method-container">
-          <span className="title">Payment Method</span>
+          <span className="title">PAYMENT METHOD</span>
           <div className="card-data">
             <CCIcon ccType={paymentDetails.card.brand} />
             <div className="card-info">
-              <span className="card-numbers">{`**** ${paymentDetails.card.last4}`}</span>
+              <span className="card-numbers">{`***${paymentDetails.card.last4}`}</span>
               <div className="expire-container">
                 <span>
                   Expires {`${paymentDetails.card.expMonth}/${paymentDetails.card.expYear}`}
@@ -232,8 +232,8 @@ const PurchaseDetails = ({
         </div>
       </div>
       <div className="btn-container">
-        <Button onClick={checkoutHandler} loading={isLoading}>
-          Check-out
+        <Button className="ar-button" onClick={checkoutHandler} loading={isLoading}>
+          <div className="ar-button-inner">CHECKOUT</div>
         </Button>
       </div>
     </PurchaseDetailsContainer>

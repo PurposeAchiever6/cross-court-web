@@ -21,7 +21,7 @@ const ContentContainer = styled.div`
   width: 80%;
   margin: auto;
   height: 20rem;
-  font-family: 'Untitled Sans';
+  // font-family: 'Untitled Sans';
 
   h2 {
     font-weight: bold;

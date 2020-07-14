@@ -13,7 +13,7 @@ const InputTextContainer = styled.div`
   margin-bottom: 1.5rem;
 
   label {
-    font-family: 'Untitled Sans';
+    // font-family: 'Untitled Sans';
     font-size: 0.75rem;
     line-height: 1rem;
     letter-spacing: 0.2rem;

@@ -153,12 +153,6 @@ const SessionsPageContainer = styled.div`
           }
         }
         .button-container {
-          width: 80%;
-
-          button {
-            width: 94%;
-          }
-
           .btn-alternative {
             color: ${colors.black};
             border-color: ${colors.black};
@@ -168,12 +162,6 @@ const SessionsPageContainer = styled.div`
           .buy-btn {
             background-color: ${colors.black};
             color: ${colors.white};
-          }
-
-          .cancel-btn {
-            color: red;
-            border-color: red;
-            margin-top: 1rem;
           }
         }
       }
@@ -266,6 +254,7 @@ const SessionsPage = () => {
     } else {
       dispatch(initialLoadInit(id, date));
     }
+    // eslint-disable-next-line
   }, [isAuthenticated]);
 
   if (isNil(id)) {
@@ -277,7 +266,7 @@ const SessionsPage = () => {
   return isPageLoading ? (
     <Loading />
   ) : (
-    <SessionsPageContainer>
+    <SessionsPageContainer className="sessions">
       <Modal shouldClose closeHandler={showCancelModalAction} isOpen={shouldShowCancelModal}>
         <CancelModal
           closeHandler={showCancelModalAction}
@@ -295,28 +284,28 @@ const SessionsPage = () => {
         <img src={sessionInfo.location.imageUrl} alt="Location" />
         <div className="details-container">
           <div className="session-data-container">
-            <div className="date-container">
-              <span className="title">Date</span>
+            <div className="date-container shapiro95_super_wide">
+              <span className="title">DATE</span>
               <span className="text">{longSessionDate(date)}</span>
             </div>
-            <div className="time-container">
-              <span className="title">Time</span>
+            <div className="time-container shapiro95_super_wide">
+              <span className="title">TIME</span>
               <span className="text">{hourRange(sessionInfo.time)}</span>
             </div>
-            <div className="address-container">
-              <span className="title">Address</span>
+            <div className="address-container shapiro95_super_wide">
+              <span className="title">LOCATION</span>
               <span className="text">{sessionInfo.location.direction}</span>
               <span className="location">{`${sessionInfo.location.city}, CA ${sessionInfo.location.zipcode}`}</span>
             </div>
             {sessionInfo.level === LEVELS.ADVANCED && (
-              <div className="level-container">
+              <div className="level-container shapiro95_super_wide">
                 <span className="title">Level</span>
                 <SessionLevel showInfo level={sessionInfo.level} />
               </div>
             )}
 
             {isAuthenticated && (
-              <span className="sessions-available-container">{`You have ${userProfile.credits} available sessions`}</span>
+              <span className="sessions-available-container">{`YOU HAVE ${userProfile.credits} SESSIONS AVAILABLE`}</span>
             )}
           </div>
           <div className="side-container">
@@ -332,7 +321,7 @@ const SessionsPage = () => {
                 )}
 
                 <span className="name">
-                  {sessionInfo.sem.name ? sessionInfo.sem.name : 'Not assigned'}
+                  {sessionInfo.sem.name ? sessionInfo.sem.name : 'NOT ASSIGNED'}
                 </span>
               </div>
               <div className="referee-container">
@@ -345,7 +334,7 @@ const SessionsPage = () => {
                   <img src={sessionInfo.referee.imageUrl} alt="SEM" />
                 )}
                 <span className="name">
-                  {sessionInfo.referee.name ? sessionInfo.referee.name : 'Not assigned'}
+                  {sessionInfo.referee.name ? sessionInfo.referee.name : 'NOT ASSIGNED'}
                 </span>
               </div>
             </div>
@@ -361,8 +350,12 @@ const SessionsPage = () => {
                 />
               )}
               {userProfile.credits === 0 && (
-                <AlternativeButton className="buy-btn" onClick={buyCreditsAndBookSessionAction}>
-                  Purchase Session
+                <AlternativeButton
+                  className="buy-btn ar-button double"
+                  onClick={buyCreditsAndBookSessionAction}
+                >
+                  <div className="ar-button-inner">RESERVE SESSION</div>
+                  <div className="double-drop"></div>
                 </AlternativeButton>
               )}
             </div>

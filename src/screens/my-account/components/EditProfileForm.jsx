@@ -96,8 +96,14 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
                 />
               </div>
               <div className="button-container">
-                <Button type="submit" disabled={editProfileLoading}>
-                  {!editProfileLoading ? 'Save' : <Spinner />}
+                <Button
+                  className="ar-button save-button"
+                  type="submit"
+                  disabled={editProfileLoading}
+                >
+                  <div className="ar-button-inner">
+                    {!editProfileLoading ? 'SAVE' : <Spinner />}
+                  </div>
                 </Button>
               </div>
             </Form>

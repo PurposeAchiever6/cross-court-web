@@ -1,20 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import ArButton from 'shared/components/ArButton';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import device from 'shared/styles/mediaQueries';
-import FacebookSvg from './svg/FacebookSvg';
-import LinkedInSvg from './svg/LinkedInSvg';
-import TwitterSvg from './svg/TwitterSvg';
 import InstagramSvg from './svg/InstagramSvg';
-import AlternativeButton from './AlternativeButton';
+import PaperPlaneSvg from './svg/PaperPlaneSvg';
 
 const FooterContainer = styled.footer`
   color: ${colors.white};
-  background-color: ${colors.polarPlum};
+  background-color: #9999ff;
   font-family: var(--main-font-family);
   font-size: 0.875rem;
   padding: 1rem 0.5rem 0.5rem;
@@ -27,7 +24,7 @@ const FooterContainer = styled.footer`
     justify-content: center;
     .first-row {
       display: flex;
-      width: 83%;
+      width: 70%;
 
       justify-content: flex-end;
 
@@ -117,43 +114,27 @@ const FooterContainer = styled.footer`
 function Footer() {
   const env = runtimeEnv();
 
-  const FACEBOOK_LINK = env.REACT_APP_FACEBOOK_LINK;
-  const TWITTER_LINK = env.REACT_APP_TWITTER_LINK;
   const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
-  const LINKEDIN_LINK = env.REACT_APP_LINKEDIN_LINK;
+  const EMAIL_LINK = env.REACT_APP_EMAIL_LINK;
 
   return (
-    <FooterContainer>
-      <div className="footer-content">
-        <div className="first-row">
-          <Link to={ROUTES.FAQ}>
-            <AlternativeButton className="faq-button">FAQ</AlternativeButton>
-          </Link>
-          <div className="social-icons">
-            <div className="icon-container">
-              <a href={FACEBOOK_LINK} target="_blank" rel="noopener noreferrer">
-                <FacebookSvg />
-              </a>
-            </div>
-            <div className="icon-container">
-              <a href={TWITTER_LINK} target="_blank" rel="noopener noreferrer">
-                <TwitterSvg />
-              </a>
-            </div>
-            <div className="icon-container">
-              <a href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
-                <InstagramSvg />
-              </a>
-            </div>
-            <div className="icon-container">
-              <a href={LINKEDIN_LINK} target="_blank" rel="noopener noreferrer">
-                <LinkedInSvg />
-              </a>
-            </div>
-          </div>
-        </div>
-        <span className="copyright">© 2019 Crosscourt All Rights Reserved</span>
-      </div>
+    <FooterContainer className="footer">
+      <section className="left-side">
+        <p className="copyright title shapiro95_super_wide">
+          &copy;2020 CROSSCOURT ALL RIGHTS RESERVED
+        </p>
+      </section>
+      <section className="right-side">
+        <ArButton link={ROUTES.FAQ} double font="shapiro96_inclined_wide">
+          FAQ
+        </ArButton>
+        <a className="social" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
+          <InstagramSvg />
+        </a>
+        <a className="social" href={EMAIL_LINK} rel="noopener noreferrer">
+          <PaperPlaneSvg />
+        </a>
+      </section>
     </FooterContainer>
   );
 }
