@@ -10,7 +10,6 @@ import { ReactComponent as SpeakerSvg } from 'shared/components/svg/speaker.svg'
 import { ReactComponent as JerseySvg } from 'shared/components/svg/jersey.svg';
 
 const Section = styled.section`
-  padding: 4.5rem 5rem;
   display: flex;
 
   .text {
@@ -49,8 +48,6 @@ const Section = styled.section`
   }
 
   @media ${device.mobile} {
-    padding: 4.5rem 0;
-
     .title {
       text-align: center;
       font-size: 2rem;

@@ -92,13 +92,18 @@ body {
   position: absolute;
   right: 5px;
   font-size: 18px;
-  text-align: right;
+  text-align: center;
   text-decoration: none;
   transition: 500ms opacity ease;
   width: 100%;
 }
 .sidebar-nav .email:hover {
   opacity: 0.6;
+}
+@media (min-width: 768px) {
+  .sidebar-nav .email {
+    text-align: right;
+  }
 }
 /* HEADER */
 .header {
@@ -344,48 +349,111 @@ body[data-page='how-it-works'] main {
 .section-block.text-purple {
   color: #9999ff;
 }
-.section-block .shift-left,
-.section-block .shift-right {
+.section-block .title-and-description-block {
+  padding: 32px;
+  width: 100vw;
+}
+@media (min-width: 768px) {
+  .section-block .title-and-description-block {
+    padding: 60px 32px;
+  }
+}
+.section-block .title-and-description-block.shift-left,
+.section-block .title-and-description-block.shift-right {
   box-sizing: border-box;
-  display: flex;
+  display: block;
   flex-direction: column;
   height: 100%;
-  justify-content: center;
-  padding: 0 32px;
+  justify-content: flex-start;
 }
-.section-block .shift-left {
-  padding-right: 58vw;
+@media (min-width: 768px) {
+  .section-block .title-and-description-block.shift-left,
+  .section-block .title-and-description-block.shift-right {
+    display: flex;
+  }
+}
+.section-block .title-and-description-block.shift-left {
   text-align: left;
 }
-.section-block .shift-right {
-  padding-left: 58vw;
+@media (min-width: 768px) {
+  .section-block .title-and-description-block.shift-left {
+    padding-right: 33vw;
+  }
+}
+@media (min-width: 1200px) {
+  .section-block .title-and-description-block.shift-left {
+    padding-right: 54vw;
+  }
+}
+.section-block .title-and-description-block.shift-right {
   text-align: right;
+}
+@media (min-width: 768px) {
+  .section-block .title-and-description-block.shift-right {
+    padding-left: 33vw;
+  }
+}
+@media (min-width: 1200px) {
+  .section-block .title-and-description-block.shift-right {
+    padding-left: 54vw;
+  }
 }
 .section-block p {
   margin: 0;
-}
-.section-block .title-and-description-block {
-  width: 100vw;
 }
 .section-block .title-and-description-block .title-1,
 .section-block .title-and-description-block .title-2 {
   margin-bottom: 20px;
 }
 .section-block .title-and-description-block .title-1 {
-  font-size: 50px;
+  font-size: 32px;
   font-weight: bold;
+  line-height: normal;
+}
+@media (min-width: 768px) {
+  .section-block .title-and-description-block .title-1 {
+    font-size: 40px;
+  }
 }
 .section-block .title-and-description-block .title-2 {
-  font-size: 140px;
+  font-size: 150px;
   line-height: 120px;
 }
-.section-block .title-and-description-block .description {
-  font-size: 20px;
-  line-height: 26px;
+@media (min-width: 768px) {
+  .section-block .title-and-description-block .title-2 {
+    font-size: 200px;
+    line-height: 170px;
+  }
 }
+.section-block .title-and-description-block .description {
+  font-size: 16px;
+  line-height: 20px;
+}
+@media (min-width: 768px) {
+  .section-block .title-and-description-block .description {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+/* .section-block.text-white .title-and-description-block .title-1,
+.section-block.text-white .title-and-description-block .title-2,
+.section-block.text-white .title-and-description-block .description {
+    text-shadow: 0 0 5px #000;
+}
+.section-block.text-black .title-and-description-block .title-1,
+.section-block.text-black .title-and-description-block .title-2,
+.section-block.text-black .title-and-description-block .description {
+    text-shadow: 0 0 5px #FFF;
+} */
 .section-block .title-and-description-block .bottomline {
+  display: none;
   position: absolute;
   z-index: 1;
+}
+@media (min-width: 768px) {
+  .section-block .title-and-description-block .bottomline {
+    display: block;
+  }
 }
 /* FREE SESSION MODAL */
 .free-session-modal .title {
@@ -417,6 +485,11 @@ body[data-page='how-it-works'] main {
   position: relative;
   text-align: center;
   z-index: 1;
+}
+@media (min-width: 768px) {
+  .make-sport-your-lifestyle .title-and-buttons-block {
+    padding: 60px 32px;
+  }
 }
 .make-sport-your-lifestyle .title-and-buttons-block .title {
   font-size: 30px;
@@ -503,6 +576,7 @@ body[data-page='how-it-works'] main {
   background-image: url('screens/homepage/images/the-fundamentals.png');
   background-position: -100px 100px;
   background-attachment: fixed;
+  display: block;
 }
 .why-we-exist .title-and-description-block .bottomline {
   bottom: -40px;
@@ -534,24 +608,50 @@ body[data-page='how-it-works'] main {
 .what-we-do .title-and-description-block .bottomline {
   background-image: url('screens/homepage/images/no-bullshit.png');
   background-size: cover;
-  bottom: -122px;
-  height: 280px;
+  bottom: -105px;
+  height: 230px;
   right: 35px;
-  width: 280px;
+  width: 230px;
 }
 .keys-to-crosscourt {
   display: block;
+  padding: 32px;
+}
+@media (min-width: 768px) {
+  .keys-to-crosscourt {
+    padding: 60px 32px;
+  }
 }
 .keys-to-crosscourt .title-block {
+  font-size: 30px;
+  line-height: normal;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .keys-to-crosscourt .title-block {
+    text-align: left;
+  }
 }
 .keys-to-crosscourt .title-block .title-1 {
-  font-size: 50px;
+  font-size: 32px;
   font-weight: bold;
+  line-height: normal;
   margin: 0;
 }
+@media (min-width: 768px) {
+  .keys-to-crosscourt .title-block .title-1 {
+    font-size: 40px;
+  }
+}
 .keys-to-crosscourt .title-block .title-2 {
-  font-size: 35px;
+  font-size: 22px;
+  line-height: normal;
   margin-bottom: 40px;
+}
+@media (min-width: 768px) {
+  .keys-to-crosscourt .title-block .title-2 {
+    font-size: 27.5px;
+  }
 }
 .keys-to-crosscourt .boxes {
   margin-bottom: 120px;
@@ -568,12 +668,21 @@ body[data-page='how-it-works'] main {
   width: 100%;
 }
 .follow-us-on-instagram {
-  height: 600px;
+}
+@media (min-width: 768px) {
+  .follow-us-on-instagram {
+    height: 700px;
+  }
 }
 .follow-us-on-instagram .title-block {
   padding: 0 32px;
   position: relative;
   z-index: 1;
+}
+@media (min-width: 768px) {
+  .follow-us-on-instagram .title-block {
+    padding: 60px 32px;
+  }
 }
 .follow-us-on-instagram .title-block .title-1 {
   font-size: 30px;
