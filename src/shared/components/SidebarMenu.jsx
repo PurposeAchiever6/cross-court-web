@@ -96,6 +96,11 @@ const SidebarMenu = ({ menuToggler }) => {
             SCHEDULE/LOCATIONS
           </NavLink>
         </li>
+        <li className="list-item">
+          <NavLink exact to={ROUTES.SERIES} onClick={menuToggler}>
+            SERIES
+          </NavLink>
+        </li>
         {!isAuthenticated && (
           <li className="list-item">
             <NavLink exact to={ROUTES.LOGIN} onClick={menuToggler}>

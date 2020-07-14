@@ -47,46 +47,46 @@ body {
 }
 
 /* SIDEBAR NAV */
-.sidebar-nav {
+#root .sidebar-nav {
   padding: 0 4px 0 0;
 }
-.sidebar-nav ul.list {
+#root .sidebar-nav ul.list {
   margin: 0 0 150px 0;
 }
-.sidebar-nav ul.list li.list-item a,
-.sidebar-nav ul.list li.list-item button {
+#root .sidebar-nav ul.list li.list-item a,
+#root .sidebar-nav ul.list li.list-item button {
   cursor: pointer;
   font-family: 'shapiro95_super_wide';
   font-size: 24px;
   line-height: 30px;
   transition: 500ms opacity ease;
 }
-.sidebar-nav ul.list li.list-item a:hover,
-.sidebar-nav ul.list li.list-item button:hover {
+#root .sidebar-nav ul.list li.list-item a:hover,
+#root .sidebar-nav ul.list li.list-item button:hover {
   opacity: 0.6;
 }
-.sidebar-nav ul.list li.list-item a.active {
+#root .sidebar-nav ul.list li.list-item a.active {
   color: #000;
 }
-.sidebar-nav ul.list li.list-item a.active::before {
+#root .sidebar-nav ul.list li.list-item a.active::before {
   content: '';
 }
-.sidebar-nav .join-the-team {
+#root .sidebar-nav .join-the-team {
   transition: 500ms opacity ease;
 }
-.sidebar-nav .join-the-team:hover {
+#root .sidebar-nav .join-the-team:hover {
   opacity: 0.6;
 }
-.sidebar-nav .join-the-team button {
+#root .sidebar-nav .join-the-team button {
   border: none;
   font-family: 'shapiro95_super_wide';
   font-size: 44px;
   padding: 0;
 }
-.sidebar-nav .join-the-team button:hover {
+#root .sidebar-nav .join-the-team button:hover {
   background-color: transparent;
 }
-.sidebar-nav .email {
+#root .sidebar-nav .email {
   bottom: 25px;
   color: #fff;
   position: absolute;
@@ -97,54 +97,54 @@ body {
   transition: 500ms opacity ease;
   width: 100%;
 }
-.sidebar-nav .email:hover {
+#root .sidebar-nav .email:hover {
   opacity: 0.6;
 }
 @media (min-width: 768px) {
-  .sidebar-nav .email {
+  #root .sidebar-nav .email {
     text-align: right;
   }
 }
 /* HEADER */
-.header {
+#root .header {
   background-color: transparent;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   height: 4rem;
   transition: 500ms background-color ease, 500ms box-shadow ease;
 }
-.header.scrolled {
+#root .header.scrolled {
   background-color: #fff;
   box-shadow: 0px 4px 4px #9999ff;
 }
-.header .menu-button {
+#root .header .menu-button {
   cursor: pointer;
   position: relative;
   z-index: 10002;
 }
-.header .menu-button:hover {
+#root .header .menu-button:hover {
   opacity: 0.6;
 }
-.header .menu-button .menu-bars,
-.header .menu-button .menu-bars-alt {
+#root .header .menu-button .menu-bars,
+#root .header .menu-button .menu-bars-alt {
   left: 16px;
   position: fixed;
   top: 20px;
   transition: 500ms opacity ease;
 }
-.header .menu-button .menu-bars {
+#root .header .menu-button .menu-bars {
   opacity: 1;
 }
-.header .menu-button .menu-bars-alt {
+#root .header .menu-button .menu-bars-alt {
   opacity: 0;
 }
-.header.scrolled .menu-button .menu-bars {
+#root .header.scrolled .menu-button .menu-bars {
   opacity: 0;
 }
-.header.scrolled .menu-button .menu-bars-alt {
+#root .header.scrolled .menu-button .menu-bars-alt {
   opacity: 1;
 }
-.header .logo-icon,
-.header .logo-icon-alt {
+#root .header .logo-icon,
+#root .header .logo-icon-alt {
   background-color: transparent;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   height: 25px;
@@ -157,75 +157,75 @@ body {
   z-index: 10;
 }
 @media (min-width: 768px) {
-  .header .logo-icon,
-  .header .logo-icon-alt {
+  #root .header .logo-icon,
+  #root .header .logo-icon-alt {
     left: 60px;
     width: 205px;
   }
 }
-.header .logo-icon:hover,
-.header .logo-icon-alt:hover {
+#root .header .logo-icon:hover,
+#root .header .logo-icon-alt:hover {
   opacity: 0.6;
 }
-.header .logo-icon {
+#root .header .logo-icon {
   opacity: 1;
 }
-.header.scrolled .logo-icon {
+#root .header.scrolled .logo-icon {
   opacity: 0;
 }
-.header .logo-icon-alt {
+#root .header .logo-icon-alt {
   opacity: 0;
 }
-.header.scrolled .logo-icon-alt {
+#root .header.scrolled .logo-icon-alt {
   opacity: 1;
 }
 
 /* MAIN */
-main {
+#root main {
   padding-top: 4rem;
 }
-body[data-page='home'] main,
-body[data-page='how-it-works'] main {
+body[data-page='home'] #root main,
+body[data-page='how-it-works'] #root main {
   padding-top: 0;
 }
 /* FOOTER */
-.footer {
+#root .footer {
   padding: 0 32px;
 }
-.footer .left-side,
-.footer .right-side {
+#root .footer .left-side,
+#root .footer .right-side {
   display: inline-block;
   height: 100;
   vertical-align: middle;
   width: 50%;
 }
-.footer .left-side {
+#root .footer .left-side {
 }
-.footer .left-side .copyright {
+#root .footer .left-side .copyright {
   line-height: 90px;
   margin: 0;
 }
-.footer .right-side {
+#root .footer .right-side {
   text-align: right;
 }
-.footer .right-side .ar-button {
+#root .footer .right-side .ar-button {
   margin: 5px 70px 0 0;
   vertical-align: top;
 }
-.footer .right-side .social {
+#root .footer .right-side .social {
   margin: 20px 20px 0 0;
   transition: 500ms opacity ease;
 }
-.footer .right-side .social:hover {
+#root .footer .right-side .social:hover {
   opacity: 0.6;
 }
-.footer .right-side .social svg {
+#root .footer .right-side .social svg {
   height: 60px;
   width: auto;
 }
 
 /* COMPONENTS */
-.ar-button {
+#root .ar-button {
   background-color: transparent;
   display: inline-block;
   font-size: 16px;
@@ -237,23 +237,23 @@ body[data-page='how-it-works'] main {
   text-align: center;
   text-decoration: none;
 }
-.ar-button.mobile-compact {
+#root .ar-button.mobile-compact {
   font-size: 14px;
   transition: 500ms font-size ease;
 }
 @media (min-width: 768px) {
-  .ar-button.mobile-compact {
+  #root .ar-button.mobile-compact {
     font-size: 16px;
   }
 }
-.ar-button.disabled {
+#root .ar-button.disabled {
   opacity: 0.3;
   pointer-events: none;
 }
-.ar-button:hover {
+#root .ar-button:hover {
   background-color: transparent;
 }
-.ar-button .ar-button-inner {
+#root .ar-button .ar-button-inner {
   background-color: #9999ff;
   border: 3px solid #fff;
   color: #fff;
@@ -262,31 +262,31 @@ body[data-page='how-it-works'] main {
   transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
   z-index: 1;
 }
-.ar-button.mobile-compact .ar-button-inner {
+#root .ar-button.mobile-compact .ar-button-inner {
   padding: 4px 10px;
   transition: 500ms padding ease;
 }
 @media (min-width: 768px) {
-  .ar-button.mobile-compact .ar-button-inner {
+  #root .ar-button.mobile-compact .ar-button-inner {
     padding: 8px 15px;
   }
 }
-.ar-button:hover .ar-button-inner {
+#root .ar-button:hover .ar-button-inner {
   background-color: #fff;
   border-color: #9999ff;
   color: #9999ff;
 }
-.ar-button.inverted .ar-button-inner {
+#root .ar-button.inverted .ar-button-inner {
   background-color: #ffffff;
   border-color: #9999ff;
   color: #9999ff;
 }
-.ar-button.inverted:hover .ar-button-inner {
+#root .ar-button.inverted:hover .ar-button-inner {
   background-color: #9999ff;
   border-color: #ffffff;
   color: #fff;
 }
-.ar-button.double .double-drop {
+#root .ar-button.double .double-drop {
   background-color: #9999ff;
   border: 3px solid #ffffff;
   height: 100%;
@@ -296,46 +296,46 @@ body[data-page='how-it-works'] main {
   width: 100%;
   z-index: 0;
 }
-.dharma_gothic_cexbold {
+#root .dharma_gothic_cexbold {
   font-family: 'dharma_gothic_cexbold';
 }
-.dharma_gothic_cheavy {
+#root .dharma_gothic_cheavy {
   font-family: 'dharma_gothic_cheavy';
 }
-.dharma_gothic_cheavy_italic {
+#root .dharma_gothic_cheavy_italic {
   font-family: 'dharma_gothic_cheavy_italic';
 }
-.shapiro45_welter_wide {
+#root .shapiro45_welter_wide {
   font-family: 'shapiro45_welter_wide';
 }
-.shapiro75_heavy {
+#root .shapiro75_heavy {
   font-family: 'shapiro75_heavy';
 }
-.shapiro95_super {
+#root .shapiro95_super {
   font-family: 'shapiro95_super';
 }
-.shapiro95_super_ext {
+#root .shapiro95_super_ext {
   font-family: 'shapiro95_super_ext';
 }
-.shapiro95_super_wide {
+#root .shapiro95_super_wide {
   font-family: 'shapiro95_super_wide';
 }
-.shapiro96_inclined_wide {
+#root .shapiro96_inclined_wide {
   font-family: 'shapiro96_inclined_wide';
 }
-.shapiro97_air_extd {
+#root .shapiro97_air_extd {
   font-family: 'shapiro97_air_extd';
 }
 
 /* BANNER CONTAINER (FIRST SESSION FREE) */
-.banner-container .ar-button {
+#root .banner-container .ar-button {
   border: none;
   padding: 0;
 }
 
 /* PAGES */
 /* GLOBAL */
-.section-block {
+#root .section-block {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -346,26 +346,26 @@ body[data-page='how-it-works'] main {
   position: relative;
   width: 100vw;
 }
-.section-block.text-white {
+#root .section-block.text-white {
   color: #fff;
 }
-.section-block.text-black {
+#root .section-block.text-black {
   color: #000;
 }
-.section-block.text-purple {
+#root .section-block.text-purple {
   color: #9999ff;
 }
-.section-block .title-and-description-block {
+#root .section-block .title-and-description-block {
   padding: 32px;
   width: 100vw;
 }
 @media (min-width: 768px) {
-  .section-block .title-and-description-block {
+  #root .section-block .title-and-description-block {
     padding: 60px 32px;
   }
 }
-.section-block .title-and-description-block.shift-left,
-.section-block .title-and-description-block.shift-right {
+#root .section-block .title-and-description-block.shift-left,
+#root .section-block .title-and-description-block.shift-right {
   box-sizing: border-box;
   display: block;
   flex-direction: column;
@@ -373,70 +373,70 @@ body[data-page='how-it-works'] main {
   justify-content: flex-start;
 }
 @media (min-width: 768px) {
-  .section-block .title-and-description-block.shift-left,
-  .section-block .title-and-description-block.shift-right {
+  #root .section-block .title-and-description-block.shift-left,
+  #root .section-block .title-and-description-block.shift-right {
     display: flex;
   }
 }
-.section-block .title-and-description-block.shift-left {
+#root .section-block .title-and-description-block.shift-left {
   text-align: left;
 }
 @media (min-width: 768px) {
-  .section-block .title-and-description-block.shift-left {
+  #root .section-block .title-and-description-block.shift-left {
     padding-right: 33vw;
   }
 }
 @media (min-width: 1200px) {
-  .section-block .title-and-description-block.shift-left {
+  #root .section-block .title-and-description-block.shift-left {
     padding-right: 54vw;
   }
 }
-.section-block .title-and-description-block.shift-right {
+#root .section-block .title-and-description-block.shift-right {
   text-align: right;
 }
 @media (min-width: 768px) {
-  .section-block .title-and-description-block.shift-right {
+  #root .section-block .title-and-description-block.shift-right {
     padding-left: 33vw;
   }
 }
 @media (min-width: 1200px) {
-  .section-block .title-and-description-block.shift-right {
+  #root .section-block .title-and-description-block.shift-right {
     padding-left: 54vw;
   }
 }
-.section-block p {
+#root .section-block p {
   margin: 0;
 }
-.section-block .title-and-description-block .title-1,
-.section-block .title-and-description-block .title-2 {
+#root .section-block .title-and-description-block .title-1,
+#root .section-block .title-and-description-block .title-2 {
   margin-bottom: 20px;
 }
-.section-block .title-and-description-block .title-1 {
+#root .section-block .title-and-description-block .title-1 {
   font-size: 32px;
   font-weight: bold;
   line-height: normal;
 }
 @media (min-width: 768px) {
-  .section-block .title-and-description-block .title-1 {
+  #root .section-block .title-and-description-block .title-1 {
     font-size: 40px;
   }
 }
-.section-block .title-and-description-block .title-2 {
+#root .section-block .title-and-description-block .title-2 {
   font-size: 150px;
   line-height: 120px;
 }
 @media (min-width: 768px) {
-  .section-block .title-and-description-block .title-2 {
+  #root .section-block .title-and-description-block .title-2 {
     font-size: 200px;
     line-height: 170px;
   }
 }
-.section-block .title-and-description-block .description {
+#root .section-block .title-and-description-block .description {
   font-size: 16px;
   line-height: 20px;
 }
 @media (min-width: 768px) {
-  .section-block .title-and-description-block .description {
+  #root .section-block .title-and-description-block .description {
     font-size: 18px;
     line-height: 22px;
   }
@@ -451,31 +451,31 @@ body[data-page='how-it-works'] main {
 .section-block.text-black .title-and-description-block .description {
     text-shadow: 0 0 5px #FFF;
 } */
-.section-block .title-and-description-block .bottomline {
+#root .section-block .title-and-description-block .bottomline {
   display: none;
   position: absolute;
   z-index: 1;
 }
 @media (min-width: 768px) {
-  .section-block .title-and-description-block .bottomline {
+  #root .section-block .title-and-description-block .bottomline {
     display: block;
   }
 }
 /* FREE SESSION MODAL */
-.free-session-modal {
+#root .free-session-modal {
 }
-.free-session-modal .title {
+#root .free-session-modal .title {
   font-family: 'shapiro95_super_wide';
   font-size: 24px;
   text-align: center;
 }
 
 /* HOMEPAGE */
-.make-sport-your-lifestyle {
+#root .make-sport-your-lifestyle {
   background-image: url('screens/homepage/images/make-sport-your-lifestyle.jpg');
   background-attachment: fixed;
 }
-.make-sport-your-lifestyle::after {
+#root .make-sport-your-lifestyle::after {
   content: '';
   background: rgba(0, 0, 0, 0.4);
   display: block;
@@ -488,45 +488,45 @@ body[data-page='how-it-works'] main {
   bottom: 0;
   z-index: 0;
 }
-.make-sport-your-lifestyle .title-and-buttons-block {
+#root .make-sport-your-lifestyle .title-and-buttons-block {
   padding: 0 32px;
   position: relative;
   text-align: center;
   z-index: 1;
 }
 @media (min-width: 768px) {
-  .make-sport-your-lifestyle .title-and-buttons-block {
+  #root .make-sport-your-lifestyle .title-and-buttons-block {
     padding: 60px 32px;
   }
 }
-.make-sport-your-lifestyle .title-and-buttons-block .title {
+#root .make-sport-your-lifestyle .title-and-buttons-block .title {
   font-size: 30px;
   line-height: 36px;
   margin-bottom: 80px;
 }
 @media (min-width: 768px) {
-  .make-sport-your-lifestyle .title-and-buttons-block .title {
+  #root .make-sport-your-lifestyle .title-and-buttons-block .title {
     font-size: 50px;
     line-height: 56px;
     margin-bottom: 50px;
   }
 }
-.make-sport-your-lifestyle .title-and-buttons-block .ar-button {
+#root .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
   display: block;
   margin: 0 auto 40px;
   max-width: 220px;
 }
 @media (min-width: 768px) {
-  .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
+  #root .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
     display: inline-block;
     margin: 0 35px;
     max-width: none;
   }
 }
-.make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
+#root .make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
   font-family: 'shapiro96_inclined_wide';
 }
-.make-sport-your-lifestyle .crosscourt-big-title {
+#root .make-sport-your-lifestyle .crosscourt-big-title {
   bottom: -19.6vw;
   font-size: 45vw;
   left: -0.7vw;
@@ -539,18 +539,18 @@ body[data-page='how-it-works'] main {
   width: 100vw;
   z-index: 1;
 }
-.make-sport-your-lifestyle .crosscourt-big-title.scrolling {
+#root .make-sport-your-lifestyle .crosscourt-big-title.scrolling {
   opacity: 0.5;
 }
-.make-sport-your-lifestyle .crosscourt-big-title.scrolled {
+#root .make-sport-your-lifestyle .crosscourt-big-title.scrolled {
   opacity: 1;
 }
-.crosscourt-is-a-high-intensity {
+#root .crosscourt-is-a-high-intensity {
   background-image: url('screens/homepage/images/crosscourt-is-a-high-intensity.jpg');
   background-attachment: fixed;
   height: 150vh;
 }
-.crosscourt-is-a-high-intensity::after {
+#root .crosscourt-is-a-high-intensity::after {
   content: '';
   background: rgba(0, 0, 0, 0.4);
   display: block;
@@ -563,30 +563,30 @@ body[data-page='how-it-works'] main {
   bottom: 0;
   z-index: 0;
 }
-.crosscourt-is-a-high-intensity .title-block {
+#root .crosscourt-is-a-high-intensity .title-block {
   padding: 0 32px;
   position: relative;
   text-align: center;
   z-index: 1;
 }
-.crosscourt-is-a-high-intensity .title-block .title {
+#root .crosscourt-is-a-high-intensity .title-block .title {
   font-size: 30px;
   line-height: 36px;
 }
 @media (min-width: 768px) {
-  .crosscourt-is-a-high-intensity .title-block .title {
+  #root .crosscourt-is-a-high-intensity .title-block .title {
     font-size: 50px;
     line-height: 56px;
   }
 }
-.why-we-exist {
+#root .why-we-exist {
   background-color: #000;
   background-image: url('screens/homepage/images/the-fundamentals.png');
   background-position: -100px 100px;
   background-attachment: fixed;
   display: block;
 }
-.why-we-exist .title-and-description-block .bottomline {
+#root .why-we-exist .title-and-description-block .bottomline {
   bottom: -40px;
   color: #9999ff;
   font-size: 50px;
@@ -594,26 +594,26 @@ body[data-page='how-it-works'] main {
   line-height: 37px;
   right: 32px;
 }
-.who-we-are {
+#root .who-we-are {
   background-color: #fff;
   background-image: url('screens/homepage/images/who-we-are.png');
   background-position: top right;
   background-attachment: fixed;
 }
-.who-we-are .title-and-description-block .bottomline {
+#root .who-we-are .title-and-description-block .bottomline {
   bottom: -11px;
   color: #9999ff;
   font-size: 50px;
   font-weight: bold;
   left: 32px;
 }
-.what-we-do {
+#root .what-we-do {
   background-color: #9999ff;
   background-image: url('screens/homepage/images/xs-and-os.png');
   background-position: 0 0;
   background-attachment: fixed;
 }
-.what-we-do .title-and-description-block .bottomline {
+#root .what-we-do .title-and-description-block .bottomline {
   background-image: url('screens/homepage/images/no-bullshit.png');
   background-size: cover;
   bottom: -105px;
@@ -621,106 +621,106 @@ body[data-page='how-it-works'] main {
   right: 35px;
   width: 230px;
 }
-.keys-to-crosscourt {
+#root .keys-to-crosscourt {
   display: block;
   padding: 32px;
 }
 @media (min-width: 768px) {
-  .keys-to-crosscourt {
+  #root .keys-to-crosscourt {
     padding: 60px 32px;
   }
 }
-.keys-to-crosscourt .title-block {
+#root .keys-to-crosscourt .title-block {
   font-size: 30px;
   line-height: normal;
   text-align: center;
 }
 @media (min-width: 768px) {
-  .keys-to-crosscourt .title-block {
+  #root .keys-to-crosscourt .title-block {
     text-align: left;
   }
 }
-.keys-to-crosscourt .title-block .title-1 {
+#root .keys-to-crosscourt .title-block .title-1 {
   font-size: 32px;
   font-weight: bold;
   line-height: normal;
   margin: 0;
 }
 @media (min-width: 768px) {
-  .keys-to-crosscourt .title-block .title-1 {
+  #root .keys-to-crosscourt .title-block .title-1 {
     font-size: 40px;
   }
 }
-.keys-to-crosscourt .title-block .title-2 {
+#root .keys-to-crosscourt .title-block .title-2 {
   font-size: 22px;
   line-height: normal;
   margin-bottom: 40px;
 }
 @media (min-width: 768px) {
-  .keys-to-crosscourt .title-block .title-2 {
+  #root .keys-to-crosscourt .title-block .title-2 {
     font-size: 27.5px;
   }
 }
-.keys-to-crosscourt .boxes {
+#root .keys-to-crosscourt .boxes {
   margin-bottom: 120px;
 }
 /* .keys-to-crosscourt .vimeo-player {
   display: block;
   margin: 0 auto;
 } */
-.keys-to-crosscourt .video-player {
+#root .keys-to-crosscourt .video-player {
   display: block;
   height: auto;
   margin: 0 auto;
   max-width: 800px;
   width: 100%;
 }
-.follow-us-on-instagram {
+#root .follow-us-on-instagram {
 }
 @media (min-width: 768px) {
-  .follow-us-on-instagram {
+  #root .follow-us-on-instagram {
     height: 700px;
   }
 }
-.follow-us-on-instagram .title-block {
+#root .follow-us-on-instagram .title-block {
   padding: 0 32px;
   position: relative;
   z-index: 1;
 }
 @media (min-width: 768px) {
-  .follow-us-on-instagram .title-block {
+  #root .follow-us-on-instagram .title-block {
     padding: 60px 32px;
   }
 }
-.follow-us-on-instagram .title-block .title-1 {
+#root .follow-us-on-instagram .title-block .title-1 {
   font-size: 30px;
   margin: 0 0 5px;
 }
-.follow-us-on-instagram .title-block .title-2 {
+#root .follow-us-on-instagram .title-block .title-2 {
   font-size: 44px;
   margin-bottom: 40px;
 }
-.follow-us-on-instagram .instafeed {
+#root .follow-us-on-instagram .instafeed {
   margin-bottom: 20px;
   text-align: center;
 }
-.follow-us-on-instagram .instafeed img {
+#root .follow-us-on-instagram .instafeed img {
   display: inline-block;
   object-fit: cover;
   height: 300px;
   width: 300px;
 }
-.follow-us-on-instagram .load-more {
+#root .follow-us-on-instagram .load-more {
   margin: 0 auto;
 }
-.ready {
+#root .ready {
   background-image: url('screens/homepage/images/ready.jpg');
   background-size: cover;
   background-position: top center;
   height: 530px;
   position: relative;
 }
-.ready::after {
+#root .ready::after {
   content: '';
   background: rgba(0, 0, 0, 0.4);
   display: block;
@@ -733,13 +733,13 @@ body[data-page='how-it-works'] main {
   bottom: 0;
   z-index: 0;
 }
-.ready .buttons-block {
+#root .ready .buttons-block {
   padding: 0 32px;
   position: relative;
   text-align: center;
   z-index: 1;
 }
-.ready .title {
+#root .ready .title {
   bottom: 0;
   color: #fff;
   font-size: 250px;
@@ -748,231 +748,231 @@ body[data-page='how-it-works'] main {
   position: absolute;
   z-index: 1;
 }
-.ready .buttons-block .ar-button {
+#root .ready .buttons-block .ar-button {
   margin: 0 35px;
 }
 
 /* HOW IT WORKS */
-.new-to-crosscourt {
+#root .new-to-crosscourt {
   background: #9999ff url('screens/how-it-works/images/new-to-crosscourt.png') no-repeat 0 0;
   background-position: top center;
   background-size: cover;
   display: block;
   padding: 200px 0 0 15px;
 }
-.new-to-crosscourt .title-block {
+#root .new-to-crosscourt .title-block {
 }
-.new-to-crosscourt .title-block .title-1 {
+#root .new-to-crosscourt .title-block .title-1 {
   font-size: 80px;
   font-weight: bold;
   margin: 0;
 }
-.new-to-crosscourt .title-block .title-2 {
+#root .new-to-crosscourt .title-block .title-2 {
   font-size: 45px;
   margin-bottom: 40px;
 }
-.new-to-crosscourt .check-it-out svg {
+#root .new-to-crosscourt .check-it-out svg {
   margin-right: 10px;
 }
-.new-to-crosscourt .check-it-out .text {
+#root .new-to-crosscourt .check-it-out .text {
   line-height: 36px;
   vertical-align: top;
 }
-.sign-up {
+#root .sign-up {
   display: block;
   height: 100vh;
 }
-.sign-up .left-section,
-.sign-up .right-section {
+#root .sign-up .left-section,
+#root .sign-up .right-section {
   display: inline-block;
   height: 100vh;
   width: 50vw;
 }
-.sign-up .left-section {
+#root .sign-up .left-section {
   background: transparent url('screens/how-it-works/images/sign-up.gif') no-repeat 0 0;
   background-size: cover;
 }
-.sign-up .right-section {
+#root .sign-up .right-section {
   vertical-align: top;
 }
-.sign-up .right-section .title {
+#root .sign-up .right-section .title {
   color: #000;
   font-size: 140px;
   font-weight: normal;
   line-height: 120px;
   margin: 50px 0 80px;
 }
-.sign-up .right-section .icons {
+#root .sign-up .right-section .icons {
   margin-bottom: 60px;
 }
-.sign-up .right-section .reserve-one {
+#root .sign-up .right-section .reserve-one {
   margin-bottom: 80px;
 }
-.show-up {
+#root .show-up {
   display: block;
   height: 100vh;
 }
-.show-up .left-section,
-.show-up .right-section {
+#root .show-up .left-section,
+#root .show-up .right-section {
   display: inline-block;
   height: 100vh;
   width: 50vw;
 }
-.show-up .left-section {
+#root .show-up .left-section {
   background-color: #9999ff;
   vertical-align: top;
 }
-.show-up .left-section .title {
+#root .show-up .left-section .title {
   color: #fff;
   font-size: 140px;
   font-weight: normal;
   line-height: 120px;
   margin: 50px 0 80px;
 }
-.show-up .left-section .icons {
+#root .show-up .left-section .icons {
   margin-bottom: 60px;
 }
-.show-up .left-section .each-hour {
+#root .show-up .left-section .each-hour {
 }
-.show-up .left-section .our-session {
+#root .show-up .left-section .our-session {
 }
-.show-up .right-section {
+#root .show-up .right-section {
   background: transparent url('screens/how-it-works/images/show-up.gif') no-repeat 0 0;
   background-size: cover;
 }
-.sweat {
+#root .sweat {
   display: block;
   height: 100vh;
 }
-.sweat .left-section,
-.sweat .right-section {
+#root .sweat .left-section,
+#root .sweat .right-section {
   display: inline-block;
   height: 100vh;
   width: 50vw;
 }
-.sweat .left-section {
+#root .sweat .left-section {
   background: transparent url('screens/how-it-works/images/sweat.gif') no-repeat 0 0;
   background-size: cover;
 }
-.sweat .right-section {
+#root .sweat .right-section {
   background-color: #000;
   vertical-align: top;
 }
-.sweat .right-section .title {
+#root .sweat .right-section .title {
   color: #fff;
   font-size: 140px;
   font-weight: normal;
   line-height: 120px;
   margin: 50px 0 80px;
 }
-.the-session .button-wrapper {
+#root .the-session .button-wrapper {
   margin: 80px auto 0;
   text-align: center;
 }
 
 /* SEM (JOIN THE TEAM) */
-.join-the-cc-team {
+#root .join-the-cc-team {
   background-image: url('screens/sem/images/join.jpg');
   background-attachment: fixed;
 }
-.join-the-cc-team .title-and-description-block {
+#root .join-the-cc-team .title-and-description-block {
   text-align: center;
   padding: 0 32px;
 }
-.join-the-cc-team .title-and-description-block .title-1 {
+#root .join-the-cc-team .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
   font-size: 100px;
   line-height: 94px;
   margin-bottom: 0;
 }
-.join-the-cc-team .title-and-description-block .title-2 {
+#root .join-the-cc-team .title-and-description-block .title-2 {
   font-family: 'shapiro95_super_wide';
   font-size: 114px;
   line-height: 100px;
   margin-bottom: 120px;
 }
-.join-the-cc-team .title-and-description-block .description {
+#root .join-the-cc-team .title-and-description-block .description {
   font-family: 'shapiro95_super_wide';
   font-size: 38px;
   line-height: 42px;
 }
-.the-session-experience-manager {
+#root .the-session-experience-manager {
   background-color: #fff;
   background-image: url('screens/sem/images/the-session-experience-manager.png');
   background-position: top right;
   background-attachment: fixed;
 }
-.the-session-experience-manager .title-and-description-block {
+#root .the-session-experience-manager .title-and-description-block {
 }
-.the-session-experience-manager .title-and-description-block .title-1 {
+#root .the-session-experience-manager .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
   margin-bottom: 0;
 }
-.the-session-experience-manager .title-and-description-block .title-2 {
+#root .the-session-experience-manager .title-and-description-block .title-2 {
   font-family: 'shapiro95_super_wide';
   font-size: 33px;
   line-height: 30px;
   margin-bottom: 60px;
 }
-.the-session-experience-manager .title-and-description-block .description {
+#root .the-session-experience-manager .title-and-description-block .description {
   font-family: 'shapiro45_welter_wide';
   margin-bottom: 80px;
 }
-.the-session-experience-manager .title-and-description-block .button-wrapper {
+#root .the-session-experience-manager .title-and-description-block .button-wrapper {
 }
-.the-session-experience-manager .title-and-description-block .button-wrapper .apply-button {
+#root .the-session-experience-manager .title-and-description-block .button-wrapper .apply-button {
   margin-right: 50px;
 }
-.the-session-official {
+#root .the-session-official {
   background-color: #9999ff;
   background-image: url('screens/sem/images/the-session-official.png');
   background-position: top left;
   background-attachment: fixed;
 }
-.the-session-official .title-and-description-block {
+#root .the-session-official .title-and-description-block {
 }
-.the-session-official .title-and-description-block .title-1 {
+#root .the-session-official .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
   margin-bottom: 0;
 }
-.the-session-official .title-and-description-block .title-2 {
+#root .the-session-official .title-and-description-block .title-2 {
   font-family: 'shapiro95_super_wide';
   font-size: 33px;
   line-height: 30px;
   margin-bottom: 60px;
 }
-.the-session-official .title-and-description-block .description {
+#root .the-session-official .title-and-description-block .description {
   font-family: 'shapiro45_welter_wide';
   margin-bottom: 80px;
 }
-.the-session-official .title-and-description-block .button-wrapper {
+#root .the-session-official .title-and-description-block .button-wrapper {
 }
-.the-session-official .title-and-description-block .button-wrapper .apply-button {
+#root .the-session-official .title-and-description-block .button-wrapper .apply-button {
   margin-right: 50px;
 }
-.cc-team-perks {
+#root .cc-team-perks {
   display: block;
   height: 300px;
 }
-.cc-team-perks .title-block {
+#root .cc-team-perks .title-block {
 }
-.cc-team-perks .title-block .title-1 {
+#root .cc-team-perks .title-block .title-1 {
   font-size: 50px;
   font-weight: bold;
   margin: 0;
 }
-.cc-team-perks .title-block .title-2 {
+#root .cc-team-perks .title-block .title-2 {
   font-size: 74px;
   margin-bottom: 40px;
 }
-.cc-team-perks .boxes {
+#root .cc-team-perks .boxes {
   margin-bottom: 120px;
 }
-.any-questions {
+#root .any-questions {
   background-image: url('screens/sem/images/any-questions.jpg');
   background-attachment: fixed;
 }
-.any-questions::after {
+#root .any-questions::after {
   content: '';
   background: rgba(0, 0, 0, 0.4);
   display: block;
@@ -985,20 +985,20 @@ body[data-page='how-it-works'] main {
   bottom: 0;
   z-index: 0;
 }
-.any-questions .title-and-button-block {
+#root .any-questions .title-and-button-block {
   padding: 0 32px;
   position: relative;
   text-align: center;
   z-index: 1;
 }
-.any-questions .title-and-button-block .title-1 {
+#root .any-questions .title-and-button-block .title-1 {
   font-family: 'shapiro97_air_extd';
   font-size: 69px;
   font-weight: bold;
   line-height: 60px;
   margin-bottom: 0;
 }
-.any-questions .title-and-button-block .title-2 {
+#root .any-questions .title-and-button-block .title-2 {
   color: #fff;
   display: inline-block;
   font-family: 'shapiro95_super_wide';
@@ -1007,82 +1007,98 @@ body[data-page='how-it-works'] main {
   margin-bottom: 50px;
   text-decoration: none;
 }
-.any-questions .title-and-button-block .title-2:hover {
+#root .any-questions .title-and-button-block .title-2:hover {
   opacity: 0.6;
 }
-.any-questions .title-and-button-block .button-wrapper {
+#root .any-questions .title-and-button-block .button-wrapper {
 }
 
 /* LOCATIONS */
-.locations {
+#root .locations {
   /* padding-top: 4rem; */
 }
-.locations .sessions-container .address-container {
+#root .locations .sessions-container .address-container {
   background-color: #9999ff;
 }
-.locations .sessions-container .week-handler .weektitle-container {
+#root .locations .sessions-container .week-handler .weektitle-container {
   font-family: 'shapiro45_welter_extd';
   font-size: 16px;
 }
-.locations .sessions-container .session-list-item-container .text-container .time {
+#root .locations .sessions-container .session-list-item-container .text-container .time {
   font-family: 'shapiro45_welter_extd';
 }
-.locations .sessions-container .session-list-item-container .text-container .location {
+#root .locations .sessions-container .session-list-item-container .text-container .location {
   font-family: 'shapiro96_inclined_wide';
 }
-.locations .location-picker__control {
+#root .locations .location-picker__control {
   font-family: 'shapiro95_super_wide';
 }
-.locations .day-container {
+#root .locations .day-container {
   font-family: 'shapiro45_welter_extd';
   font-size: 16px;
 }
 
 /* SESSIONS */
-.sessions {
+#root .sessions {
   /* padding-top: 4rem; */
 }
-.sessions .title-container {
+#root .sessions .title-container {
   padding: 40px 0;
 }
-.sessions .title-container .go-back {
+#root .sessions .title-container .go-back {
   font-family: 'shapiro95_super_wide';
   font-size: 14px;
 }
-.sessions .title-container h2 {
+#root .sessions .title-container h2 {
   font-family: 'shapiro95_super_wide';
   font-size: 24px;
   text-align: center;
 }
-.sessions .session-details-container .details-container {
+#root .sessions .session-details-container .details-container {
   background-color: #9999ff;
 }
-.sessions .session-details-container .details-container .session-data-container {
+#root .sessions .session-details-container .details-container .session-data-container {
   padding: 10px;
 }
-.sessions .session-details-container .details-container .session-data-container .date-container,
-.sessions .session-details-container .details-container .session-data-container .time-container,
-.sessions .session-details-container .details-container .session-data-container .address-container {
+#root
+  .sessions
+  .session-details-container
+  .details-container
+  .session-data-container
+  .date-container,
+#root
+  .sessions
+  .session-details-container
+  .details-container
+  .session-data-container
+  .time-container,
+#root
+  .sessions
+  .session-details-container
+  .details-container
+  .session-data-container
+  .address-container {
   margin-bottom: 18px;
 }
-.sessions .session-details-container .details-container .session-data-container .title,
-.sessions .session-details-container .details-container .session-data-container .text,
-.sessions .session-details-container .details-container .session-data-container .location {
+#root .sessions .session-details-container .details-container .session-data-container .title,
+#root .sessions .session-details-container .details-container .session-data-container .text,
+#root .sessions .session-details-container .details-container .session-data-container .location {
   color: #fff;
 }
-.sessions .session-details-container .details-container .session-data-container .title {
+#root .sessions .session-details-container .details-container .session-data-container .title {
   font-family: 'shapiro95_super_wide';
   font-weight: normal;
   letter-spacing: 0;
   margin-bottom: 5px;
 }
-.sessions .session-details-container .details-container .session-data-container .text,
-.sessions .session-details-container .details-container .session-data-container .location {
+#root .sessions .session-details-container .details-container .session-data-container .text,
+#root .sessions .session-details-container .details-container .session-data-container .location {
   font-family: 'shapiro45_welter_wide';
   font-size: 14px;
   text-transform: uppercase;
 }
-.sessions
+#root
+  .sessions
   .session-details-container
   .details-container
   .side-container
@@ -1094,7 +1110,8 @@ body[data-page='how-it-works'] main {
   font-size: 16px;
   letter-spacing: 0;
 }
-.sessions
+#root
+  .sessions
   .session-details-container
   .details-container
   .side-container
@@ -1103,7 +1120,8 @@ body[data-page='how-it-works'] main {
   .name {
   font-family: 'shapiro95_super_wide';
 }
-.sessions
+#root
+  .sessions
   .session-details-container
   .details-container
   .side-container
@@ -1115,7 +1133,8 @@ body[data-page='how-it-works'] main {
   font-size: 16px;
   letter-spacing: 0;
 }
-.sessions
+#root
+  .sessions
   .session-details-container
   .details-container
   .side-container
@@ -1124,17 +1143,25 @@ body[data-page='how-it-works'] main {
   .name {
   font-family: 'shapiro95_super_wide';
 }
-.sessions .session-details-container .details-container .side-container .button-container {
+#root .sessions .session-details-container .details-container .side-container .button-container {
   font-family: 'shapiro95_super_wide';
 }
-.sessions
+#root
+  .sessions
   .session-details-container
   .details-container
   .side-container
   .button-container
   .reserve-btn,
-.sessions .session-details-container .details-container .side-container .button-container .buy-btn,
-.sessions
+#root
+  .sessions
+  .session-details-container
+  .details-container
+  .side-container
+  .button-container
+  .buy-btn,
+#root
+  .sessions
   .session-details-container
   .details-container
   .side-container
@@ -1142,97 +1169,120 @@ body[data-page='how-it-works'] main {
   .cancel-btn {
   margin-bottom: 5px;
 }
-.sessions .session-details-container .details-container .side-container .button-container .buy-btn {
+#root
+  .sessions
+  .session-details-container
+  .details-container
+  .side-container
+  .button-container
+  .buy-btn {
   font-family: 'shapiro96_inclined_wide';
   width: auto;
 }
-.sessions .session-details-container .details-container .sessions-available-container {
+#root .sessions .session-details-container .details-container .sessions-available-container {
   color: #fff;
   font-family: 'shapiro95_super_wide';
   font-size: 12px;
 }
-.cancel-modal h2 {
+#root .cancel-modal h2 {
   font-family: 'shapiro95_super_wide';
   text-align: center;
 }
 
 /* PAYMENTS */
-.payments {
+#root .payments {
 }
-.payments h2 {
+#root .payments h2 {
   font-family: 'shapiro95_super_wide';
   text-align: center;
 }
-.payments .payment-methods-container {
+#root .payments .payment-methods-container {
   border: 3px solid #9999ff;
 }
-.payments .payment-methods-container .credit-card-container {
+#root .payments .payment-methods-container .credit-card-container {
   padding: 16px 0;
 }
-.payments .payment-methods-container .credit-card-container .select-container .selector.selected {
+#root
+  .payments
+  .payment-methods-container
+  .credit-card-container
+  .select-container
+  .selector.selected {
   background-color: #9999ff;
 }
-.payments .payment-methods-container .credit-card-container .cc-info .ccnumber-container {
+#root .payments .payment-methods-container .credit-card-container .cc-info .ccnumber-container {
   font-family: 'shapiro95_super_wide';
 }
-.payments .payment-methods-container .credit-card-container .cc-info .expire-container {
+#root .payments .payment-methods-container .credit-card-container .cc-info .expire-container {
   font-family: 'shapiro95_super_wide';
   font-size: 12px;
   font-style: normal;
 }
 
 /* ADD CARD */
-.add-card h2 {
+#root .add-card h2 {
   font-family: 'shapiro95_super_wide';
   text-align: center;
 }
-.add-card .card-container .label {
+#root .add-card .card-container .label {
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
   letter-spacing: 0;
 }
 
 /* CHECKOUT */
-.checkout h1 {
+#root .checkout h1 {
   font-family: 'shapiro95_super_wide';
 }
-.checkout .purchase-details-box {
+#root .checkout .purchase-details-box {
   border: 3px solid #000;
 }
-.checkout .purchase-details-box .date {
+#root .checkout .purchase-details-box .date {
   font-family: 'shapiro95_super_wide';
 }
-.checkout .purchase-details-box .purchase-details-container {
+#root .checkout .purchase-details-box .purchase-details-container {
 }
-.checkout .purchase-details-box .purchase-details-container .title {
+#root .checkout .purchase-details-box .purchase-details-container .title {
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
   letter-spacing: 0;
 }
-.checkout .purchase-details-box .purchase-details-container .plan-name {
+#root .checkout .purchase-details-box .purchase-details-container .plan-name {
   letter-spacing: 0;
 }
-.checkout .purchase-details-box .payment-method-container {
+#root .checkout .purchase-details-box .payment-method-container {
 }
-.checkout .purchase-details-box .payment-method-container .title {
+#root .checkout .purchase-details-box .payment-method-container .title {
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
   letter-spacing: 0;
 }
-.checkout .purchase-details-box .payment-method-container .card-data .card-info .card-numbers {
+#root
+  .checkout
+  .purchase-details-box
+  .payment-method-container
+  .card-data
+  .card-info
+  .card-numbers {
   font-family: 'shapiro95_super_wide';
 }
-.checkout .purchase-details-box .payment-method-container .card-data .card-info .expire-container {
+#root
+  .checkout
+  .purchase-details-box
+  .payment-method-container
+  .card-data
+  .card-info
+  .expire-container {
   font-family: 'shapiro95_super_wide';
   font-size: 12px;
   font-style: normal;
 }
-.checkout .promo-code .form .input-container label {
+#root .checkout .promo-code .form .input-container label {
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
   letter-spacing: 0;
 }
-.checkout .promo-code .form .use-code-button {
+#root .checkout .promo-code .form .use-code-button {
   font-family: 'shapiro95_super_wide';
   margin: 5px;
   padding: 0;
@@ -1240,249 +1290,249 @@ body[data-page='how-it-works'] main {
 }
 
 /* CHECKOUT CONFIRM */
-.checkout-confirm h1 {
+#root .checkout-confirm h1 {
   /* font-family: 'shapiro95_super_wide'; */
 }
-.checkout-confirm .go-to-session-button,
-.checkout-confirm .see-schedule-button {
+#root .checkout-confirm .go-to-session-button,
+#root .checkout-confirm .see-schedule-button {
   margin-bottom: 30px;
 }
 
 /* LOGIN */
-.login {
+#root .login {
   /* padding-top: 4rem; */
 }
-.login h1 {
+#root .login h1 {
   font-family: 'shapiro95_super_wide';
 }
-.login .form .form-group label {
+#root .login .form .form-group label {
   color: #9999ff;
   letter-spacing: 0;
 }
 
 /* FORGOT PASSWORD */
-.forgotpassword {
+#root .forgotpassword {
   margin: 80px 0;
 }
-.forgotpassword h1 {
+#root .forgotpassword h1 {
   font-family: 'shapiro95_super_wide';
   text-align: center;
 }
-.forgotpassword .form .form-group label {
+#root .forgotpassword .form .form-group label {
   color: #9999ff;
   letter-spacing: 0;
 }
 
 /* FORGOT PASSWORD SUCCESS */
-.forgot-pass-success {
+#root .forgot-pass-success {
   margin: 80px 0;
 }
-.forgot-pass-success h1 {
+#root .forgot-pass-success h1 {
   font-family: 'shapiro95_super_wide';
   margin-top: 0;
   text-align: center;
 }
 
 /* SIGNUP */
-.signup {
+#root .signup {
   /* padding-top: 4rem; */
 }
-.signup .form h1 {
+#root .signup .form h1 {
   font-family: 'shapiro95_super_wide';
   text-align: center;
 }
-.signup .form .form-group label {
+#root .signup .form .form-group label {
   color: #9999ff;
   letter-spacing: 0;
 }
 
 /* SESSION RESERVED */
-.session-reserved .sport-character-image {
+#root .session-reserved .sport-character-image {
   height: auto;
   margin-bottom: 0;
   width: 200px;
 }
-.session-reserved h1 {
+#root .session-reserved h1 {
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
   font-size: 30px;
   margin: 0;
   width: auto;
 }
-.session-reserved h2 {
+#root .session-reserved h2 {
   color: #9999ff;
   font-family: 'shapiro97_air_extd';
   font-size: 29px;
   margin: 0 0 80px;
 }
-.session-reserved .invite-a-friend-button {
+#root .session-reserved .invite-a-friend-button {
   font-family: 'shapiro96_inclined_wide';
   margin-bottom: 90px;
   width: auto;
 }
-.session-reserved .done-button {
+#root .session-reserved .done-button {
   font-size: 20px;
   margin-bottom: 10px;
 }
-.session-reserved .done-button .ar-button-inner {
+#root .session-reserved .done-button .ar-button-inner {
   border: none;
 }
-.session-reserved .done-button:hover {
+#root .session-reserved .done-button:hover {
   opacity: 0.6;
 }
-.session-reserved .done-button:hover .ar-button-inner {
+#root .session-reserved .done-button:hover .ar-button-inner {
   background-color: transparent;
   color: #9999ff;
 }
 
 /* SESSION CONFIRMED */
-.session-confirmed .sport-character-image {
+#root .session-confirmed .sport-character-image {
   height: auto;
   margin-bottom: 0;
   width: 200px;
 }
-.session-confirmed h1 {
+#root .session-confirmed h1 {
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
   font-size: 30px;
   margin: 0;
   width: auto;
 }
-.session-confirmed h2 {
+#root .session-confirmed h2 {
   color: #9999ff;
   font-family: 'shapiro97_air_extd';
   font-size: 29px;
   margin: 0 0 80px;
 }
-.session-confirmed .invite-a-friend-button {
+#root .session-confirmed .invite-a-friend-button {
   font-family: 'shapiro96_inclined_wide';
   margin-bottom: 90px;
   width: auto;
 }
-.session-confirmed .done-button {
+#root .session-confirmed .done-button {
   font-size: 20px;
   margin-bottom: 10px;
 }
-.session-confirmed .done-button .ar-button-inner {
+#root .session-confirmed .done-button .ar-button-inner {
   border: none;
 }
-.session-confirmed .done-button:hover {
+#root .session-confirmed .done-button:hover {
   opacity: 0.6;
 }
-.session-confirmed .done-button:hover .ar-button-inner {
+#root .session-confirmed .done-button:hover .ar-button-inner {
   background-color: transparent;
   color: #9999ff;
 }
 
 /* SERIES */
-.series-plans-container {
+#root .series-plans-container {
   margin-bottom: 130px;
   /* padding-top: 4rem; */
 }
-.series-plans-container .sticker .price {
+#root .series-plans-container .sticker .price {
   font-family: 'dharma_gothic_cexbold';
   font-size: 130px;
   font-weight: normal;
   line-height: 105px;
 }
-.series-plans-container .sticker .text {
+#root .series-plans-container .sticker .text {
   font-family: 'dharma_gothic_cexbold';
   font-size: 40px;
   line-height: 40px;
 }
-.series-plans-container .title .first-word {
+#root .series-plans-container .title .first-word {
   font-family: 'shapiro95_super_wide';
 }
-.series-plans-container .title .second-word {
+#root .series-plans-container .title .second-word {
   font-family: 'shapiro96_inclined_wide';
 }
-.series-plans-container .button-container {
+#root .series-plans-container .button-container {
   width: 100%;
 }
-.series-series-container {
+#root .series-series-container {
   padding: 0;
 }
-.series-series-container h2 {
+#root .series-series-container h2 {
   font-family: 'shapiro96_inclined_wide';
   margin-bottom: 40px;
   text-align: center;
 }
-.series-series-container .content {
+#root .series-series-container .content {
   margin-bottom: 100px;
 }
 
 /* MY ACCOUNT */
-.my-profile {
+#root .my-profile {
   border-bottom: none;
 }
-.my-profile .edit-btn {
+#root .my-profile .edit-btn {
   top: 32px;
 }
-.my-profile h3 {
+#root .my-profile h3 {
   font-family: 'shapiro95_super_wide';
 }
-.my-profile .detail-row .title,
-.my-profile form label {
+#root .my-profile .detail-row .title,
+#root .my-profile form label {
   color: #000;
   font-family: 'shapiro95_super_wide';
   font-weight: normal;
   letter-spacing: 0;
 }
-.my-profile form .save-button {
+#root .my-profile form .save-button {
   font-family: 'shapiro95_super_wide';
 }
-.my-credits h3 {
+#root .my-credits h3 {
   font-family: 'shapiro95_super_wide';
 }
-.my-credits .sessions-number-container {
+#root .my-credits .sessions-number-container {
   border: none;
   display: flex;
   flex-direction: row;
   padding: 0;
 }
-.my-credits .sessions-number-container .session-number {
+#root .my-credits .sessions-number-container .session-number {
   font-family: 'shapiro105_max_extd';
   font-size: 62px;
   line-height: 56px;
   margin-bottom: 0;
 }
-.my-credits .sessions-number-container .session-title-block {
+#root .my-credits .sessions-number-container .session-title-block {
 }
-.my-credits .sessions-number-container .session-title-block .session-title-1 {
+#root .my-credits .sessions-number-container .session-title-block .session-title-1 {
   display: block;
   font-family: 'shapiro105_max_extd';
   margin-bottom: 3px;
 }
-.my-credits .sessions-number-container .session-title-block .session-title-2 {
+#root .my-credits .sessions-number-container .session-title-block .session-title-2 {
   display: block;
   font-family: 'shapiro97_air_extd';
   font-size: 40px;
 }
-.my-credits .buy-series-button {
+#root .my-credits .buy-series-button {
   margin-bottom: 5px;
 }
-.upcoming-sessions h3,
-.past-sessions h3 {
+#root .upcoming-sessions h3,
+#root .past-sessions h3 {
   font-family: 'shapiro95_super_wide';
 }
-.upcoming-sessions .empty-container,
-.past-sessions .empty-container {
+#root .upcoming-sessions .empty-container,
+#root .past-sessions .empty-container {
   background-color: transparent;
   height: auto;
 }
-.upcoming-sessions .empty-container .container-empty-message h3,
-.past-sessions .empty-container .container-empty-message h3 {
+#root .upcoming-sessions .empty-container .container-empty-message h3,
+#root .past-sessions .empty-container .container-empty-message h3 {
   color: #000;
   letter-spacing: 0;
   margin: 0 0 10px;
 }
-.upcoming-sessions .sessions-container .session-container,
-.past-sessions .sessions-container .session-container {
+#root .upcoming-sessions .sessions-container .session-container,
+#root .past-sessions .sessions-container .session-container {
   border: 3px solid #9999ff;
 }
-.upcoming-sessions .sessions-container .session-container .image {
+#root .upcoming-sessions .sessions-container .session-container .image {
 }
-.upcoming-sessions .sessions-container .session-container .details .date {
+#root .upcoming-sessions .sessions-container .session-container .details .date {
   background-color: #fff;
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
@@ -1490,7 +1540,7 @@ body[data-page='how-it-works'] main {
   position: relative;
   text-transform: uppercase;
 }
-.past-sessions .sessions-container .session-container .details .date {
+#root .past-sessions .sessions-container .session-container .details .date {
   background-color: #000;
   color: #fff;
   font-family: 'shapiro95_super_wide';
@@ -1498,8 +1548,8 @@ body[data-page='how-it-works'] main {
   position: relative;
   text-transform: uppercase;
 }
-.upcoming-sessions .sessions-container .session-container .details .date .reserved-check,
-.past-sessions .sessions-container .session-container .details .date .reserved-check {
+#root .upcoming-sessions .sessions-container .session-container .details .date .reserved-check,
+#root .past-sessions .sessions-container .session-container .details .date .reserved-check {
   background-color: transparent;
   margin-left: 0;
   height: 35px;
@@ -1507,11 +1557,12 @@ body[data-page='how-it-works'] main {
   right: 10px;
   width: 35px;
 }
-.upcoming-sessions .sessions-container .session-container .details .date .reserved-check svg,
-.past-sessions .sessions-container .session-container .details .date .reserved-check svg {
+#root .upcoming-sessions .sessions-container .session-container .details .date .reserved-check svg,
+#root .past-sessions .sessions-container .session-container .details .date .reserved-check svg {
   font-size: 35px;
 }
-.upcoming-sessions
+#root
+  .upcoming-sessions
   .sessions-container
   .session-container
   .details
@@ -1520,18 +1571,25 @@ body[data-page='how-it-works'] main {
   color: #fff;
   padding: 10px;
 }
-.past-sessions .sessions-container .session-container .details .time-location-buttons-container {
+#root
+  .past-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container {
   background-color: #fff;
   color: #000;
   padding: 10px;
 }
-.upcoming-sessions
+#root
+  .upcoming-sessions
   .sessions-container
   .session-container
   .details
   .time-location-buttons-container
   .time,
-.past-sessions
+#root
+  .past-sessions
   .sessions-container
   .session-container
   .details
@@ -1540,13 +1598,15 @@ body[data-page='how-it-works'] main {
   margin: 0;
   padding: 0;
 }
-.upcoming-sessions
+#root
+  .upcoming-sessions
   .sessions-container
   .session-container
   .details
   .time-location-buttons-container
   .location,
-.past-sessions
+#root
+  .past-sessions
   .sessions-container
   .session-container
   .details
@@ -1557,13 +1617,15 @@ body[data-page='how-it-works'] main {
   padding: 0;
   text-transform: uppercase;
 }
-.upcoming-sessions
+#root
+  .upcoming-sessions
   .sessions-container
   .session-container
   .details
   .time-location-buttons-container
   .buttons-container,
-.past-sessions
+#root
+  .past-sessions
   .sessions-container
   .session-container
   .details
@@ -1572,21 +1634,24 @@ body[data-page='how-it-works'] main {
   margin: 0;
   padding: 0;
 }
-.upcoming-sessions
+#root
+  .upcoming-sessions
   .sessions-container
   .session-container
   .details
   .time-location-buttons-container
   .buttons-container
   .confirm-button,
-.upcoming-sessions
+#root
+  .upcoming-sessions
   .sessions-container
   .session-container
   .details
   .time-location-buttons-container
   .buttons-container
   .see-details-button,
-.past-sessions
+#root
+  .past-sessions
   .sessions-container
   .session-container
   .details
@@ -1598,11 +1663,11 @@ body[data-page='how-it-works'] main {
 }
 
 /* PURCHASE HISTORY */
-.purchase-history h2 {
+#root .purchase-history h2 {
   font-family: 'shapiro95_super_wide';
   text-align: center;
 }
-.purchase-history-table {
+#root .purchase-history-table {
   margin-bottom: 30px;
   padding: 0;
 }
