@@ -43,7 +43,7 @@ body {
   box-sizing: border-box;
 }
 body {
-  font-family: 'shapiro45_welter';
+  font-family: 'shapiro45_welter_extd';
 }
 
 /* SIDEBAR NAV */
@@ -327,6 +327,12 @@ body[data-page='how-it-works'] main {
   font-family: 'shapiro97_air_extd';
 }
 
+/* BANNER CONTAINER (FIRST SESSION FREE) */
+.banner-container .ar-button {
+  border: none;
+  padding: 0;
+}
+
 /* PAGES */
 /* GLOBAL */
 .section-block {
@@ -456,6 +462,8 @@ body[data-page='how-it-works'] main {
   }
 }
 /* FREE SESSION MODAL */
+.free-session-modal {
+}
 .free-session-modal .title {
   font-family: 'shapiro95_super_wide';
   font-size: 24px;
@@ -1156,7 +1164,7 @@ body[data-page='how-it-works'] main {
   text-align: center;
 }
 .payments .payment-methods-container {
-  border: 3px solid #000;
+  border: 3px solid #9999ff;
 }
 .payments .payment-methods-container .credit-card-container {
   padding: 16px 0;
@@ -1307,8 +1315,14 @@ body[data-page='how-it-works'] main {
   font-size: 29px;
   margin: 0 0 80px;
 }
+.session-reserved .invite-a-friend-button {
+  font-family: 'shapiro96_inclined_wide';
+  margin-bottom: 90px;
+  width: auto;
+}
 .session-reserved .done-button {
-  margin-bottom: 30px;
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 .session-reserved .done-button .ar-button-inner {
   border: none;
@@ -1322,11 +1336,42 @@ body[data-page='how-it-works'] main {
 }
 
 /* SESSION CONFIRMED */
+.session-confirmed .sport-character-image {
+  height: auto;
+  margin-bottom: 0;
+  width: 200px;
+}
 .session-confirmed h1 {
+  color: #9999ff;
   font-family: 'shapiro95_super_wide';
+  font-size: 30px;
+  margin: 0;
+  width: auto;
+}
+.session-confirmed h2 {
+  color: #9999ff;
+  font-family: 'shapiro97_air_extd';
+  font-size: 29px;
+  margin: 0 0 80px;
+}
+.session-confirmed .invite-a-friend-button {
+  font-family: 'shapiro96_inclined_wide';
+  margin-bottom: 90px;
+  width: auto;
 }
 .session-confirmed .done-button {
-  margin-bottom: 30px;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.session-confirmed .done-button .ar-button-inner {
+  border: none;
+}
+.session-confirmed .done-button:hover {
+  opacity: 0.6;
+}
+.session-confirmed .done-button:hover .ar-button-inner {
+  background-color: transparent;
+  color: #9999ff;
 }
 
 /* SERIES */
@@ -1335,13 +1380,13 @@ body[data-page='how-it-works'] main {
   /* padding-top: 4rem; */
 }
 .series-plans-container .sticker .price {
-  font-family: 'dharma_gothic_cheavy_italic';
+  font-family: 'dharma_gothic_cexbold';
   font-size: 130px;
   font-weight: normal;
   line-height: 105px;
 }
 .series-plans-container .sticker .text {
-  font-family: 'dharma_gothic_cheavy_italic';
+  font-family: 'dharma_gothic_cexbold';
   font-size: 40px;
   line-height: 40px;
 }
@@ -1352,7 +1397,7 @@ body[data-page='how-it-works'] main {
   font-family: 'shapiro96_inclined_wide';
 }
 .series-plans-container .button-container {
-  width: auto;
+  width: 100%;
 }
 .series-series-container {
   padding: 0;
@@ -1420,14 +1465,20 @@ body[data-page='how-it-works'] main {
 .past-sessions h3 {
   font-family: 'shapiro95_super_wide';
 }
-.upcoming-sessions .empty-container .container-empty-message p,
-.past-sessions .empty-container .container-empty-message p {
+.upcoming-sessions .empty-container,
+.past-sessions .empty-container {
+  background-color: transparent;
+  height: auto;
+}
+.upcoming-sessions .empty-container .container-empty-message h3,
+.past-sessions .empty-container .container-empty-message h3 {
   color: #000;
   letter-spacing: 0;
+  margin: 0 0 10px;
 }
 .upcoming-sessions .sessions-container .session-container,
 .past-sessions .sessions-container .session-container {
-  border: 3px solid #000;
+  border: 3px solid #9999ff;
 }
 .upcoming-sessions .sessions-container .session-container .image {
 }
@@ -1455,6 +1506,10 @@ body[data-page='how-it-works'] main {
   position: absolute;
   right: 10px;
   width: 35px;
+}
+.upcoming-sessions .sessions-container .session-container .details .date .reserved-check svg,
+.past-sessions .sessions-container .session-container .details .date .reserved-check svg {
+  font-size: 35px;
 }
 .upcoming-sessions
   .sessions-container
@@ -1539,6 +1594,7 @@ body[data-page='how-it-works'] main {
   .buttons-container
   .see-details-button {
   padding: 0 0 5px;
+  width: 100%;
 }
 
 /* PURCHASE HISTORY */

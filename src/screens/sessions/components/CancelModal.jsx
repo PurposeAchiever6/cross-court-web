@@ -9,7 +9,6 @@ const CancelModalContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // font-family: 'Untitled Sans';
 
   h2 {
     font-weight: bold;
@@ -36,8 +35,6 @@ const CancelModalContainer = styled.div`
   }
 
   button {
-    // background-color: ${colors.errorRed};
-    // color: ${colors.white};
     margin-bottom: 2rem;
   }
 

@@ -35,12 +35,10 @@ const AddCardContainer = styled.div`
       display: flex;
     }
     .label {
-      font-family: Untitled Sans;
       font-style: normal;
       font-weight: bold;
       font-size: 14px;
       line-height: 17px;
-      letter-spacing: 0.2em;
       text-transform: uppercase;
       /* Polar Plum */
       color: #aaaff3;

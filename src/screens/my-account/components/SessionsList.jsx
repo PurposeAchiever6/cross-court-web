@@ -71,8 +71,7 @@ const SessionsList = ({ title, sessions, past, isSem }) => {
       {isEmpty(sesionsToShow) ? (
         <div className="empty-container">
           <div className="container-empty-message">
-            <p>YOU HAVE NO</p>
-            <p className="title">{title}</p>
+            <h3>YOU HAVE NO {title}</h3>
             {!past && !isSem && (
               <ArButton link={ROUTES.LOCATIONS} inverted={false}>
                 EXPLORE SESSIONS

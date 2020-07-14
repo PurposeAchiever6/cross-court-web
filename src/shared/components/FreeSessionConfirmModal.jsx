@@ -18,7 +18,6 @@ import Button from 'shared/components/Button';
 const FreeSessionModalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: Untitled Sans;
   position: relative;
 
   .title {

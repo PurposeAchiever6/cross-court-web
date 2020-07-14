@@ -13,10 +13,8 @@ const InputTextContainer = styled.div`
   margin-bottom: 1.5rem;
 
   label {
-    // font-family: 'Untitled Sans';
     font-size: 0.75rem;
     line-height: 1rem;
-    letter-spacing: 0.2rem;
     color: ${colors.polarPlum};
     margin: 0 0 0.75rem;
     text-transform: uppercase;

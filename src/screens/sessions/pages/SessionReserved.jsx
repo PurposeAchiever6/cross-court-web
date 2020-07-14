@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { toast } from 'react-toastify';
-import { FacebookShareButton, WhatsappShareButton } from 'react-share';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWhatsapp, faFacebookF } from '@fortawesome/free-brands-svg-icons';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
@@ -112,25 +109,18 @@ const SessionReserved = () => {
   return (
     <SessionReservedContainer className="session-reserved">
       <div className="session-info-container">
-        <img className="sport-character-image" src={SportCharacter} alt="Check Icon" />
+        <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
         <h1>SESSION BOOKED</h1>
         <h2>SUCCESSFULLY!</h2>
-        <span>
-          Invite a friend !<strong>Share your session</strong>
-        </span>
-        <div className="share-buttons-container">
-          <FacebookShareButton className="facebook" url={SHARE_URL}>
-            <FontAwesomeIcon icon={faFacebookF} />
-          </FacebookShareButton>
-          <WhatsappShareButton className="whatsapp" url={SHARE_URL}>
-            <FontAwesomeIcon icon={faWhatsapp} />
-          </WhatsappShareButton>
-          <button className="external-link" type="button">
-            <CopyToClipboard text={SHARE_URL} onCopy={onCopyHandler}>
-              <FontAwesomeIcon icon={faExternalLinkAlt} />
-            </CopyToClipboard>
-          </button>
-        </div>
+        <a
+          className="ar-button double invite-a-friend-button"
+          href={'sms://%20?&body=' + encodeURI(SHARE_URL)}
+        >
+          <div className="ar-button-inner">
+            <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
+          </div>
+          <div className="double-drop"></div>
+        </a>
         <ArButton className="done-button" inverted link={ROUTES.MYACCOUNT}>
           SKIP
         </ArButton>

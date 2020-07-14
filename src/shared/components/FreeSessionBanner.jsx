@@ -51,6 +51,7 @@ const FreeSessionBanner = () => {
         <FreeSessionConfirmModal closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal} />
       </Modal>
       <BannerContainer
+        className="banner-container"
         showBanner={freeSessionNotUsed && freeSessionNotClaimed}
         scrollY={scrollY}
         scrollLimit={scrollLimit}

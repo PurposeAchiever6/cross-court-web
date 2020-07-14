@@ -7,8 +7,7 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import colors from 'shared/styles/constants';
-import { FacebookShareButton, WhatsappShareButton } from 'react-share';
-import CheckIcon from 'shared/images/check-icon.png';
+import SportCharacter from 'shared/images/sport-character.png';
 import ArButton from 'shared/components/ArButton';
 import ROUTES from 'shared/constants/routes';
 import { getSessionId, getSessionDate } from '../reducer';
@@ -105,22 +104,17 @@ const SessionConfirmed = () => {
   return (
     <SessionConfirmedContainer className="session-confirmed">
       <div className="session-info-container">
-        <img src={CheckIcon} alt="Check Icon" />
+        <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
         <h1>The session was re-confirmed successfully!</h1>
-        <span>
-          Invite a friend !<strong>Share your session</strong>
-        </span>
-        <div className="share-buttons-container">
-          <FacebookShareButton className="facebook" url={SHARE_URL}>
-            <FontAwesomeIcon icon={faFacebookF} />
-          </FacebookShareButton>
-          <WhatsappShareButton className="whatsapp" url={SHARE_URL}>
-            <FontAwesomeIcon icon={faWhatsapp} />
-          </WhatsappShareButton>
-          <button className="external-link" type="button">
-            <FontAwesomeIcon icon={faExternalLinkAlt} />
-          </button>
-        </div>
+        <a
+          className="ar-button double invite-a-friend-button"
+          href={'sms://%20?&body=' + encodeURI(SHARE_URL)}
+        >
+          <div className="ar-button-inner">
+            <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
+          </div>
+          <div className="double-drop"></div>
+        </a>
         <ArButton className="done-button" link={ROUTES.MYACCOUNT}>
           DONE
         </ArButton>
