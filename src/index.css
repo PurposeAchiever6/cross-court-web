@@ -1440,28 +1440,58 @@ body .session-confirmed .done-button:hover .ar-button-inner {
 }
 
 /* SERIES */
-body .series-plans-container {
-  margin-bottom: 130px;
-  /* padding-top: 4rem; */
+body .series-plans-container .plans-container {
+  display: inline-block;
+  margin: 0 0 130px;
+  padding: 32px;
+  text-align: center;
 }
-body .series-plans-container .sticker .price {
+body .series-plans-container .plans-container .plan-container {
+  display: inline-block;
+  height: 370px;
+  padding: 16px;
+  margin: 10px;
+  vertical-align: top;
+  width: 370px;
+}
+body .series-plans-container .plans-container .plan-container .sticker {
+  background-image: url('screens/series/images/circle-purple-bg.png');
+  height: 120px;
+  right: 15px;
+  top: 15px;
+  width: 120px;
+}
+body .series-plans-container .plans-container .plan-container .sticker .price {
   font-family: 'dharma_gothic_cexbold';
-  font-size: 130px;
+  font-size: 82px;
   font-weight: normal;
-  line-height: 105px;
+  line-height: 64px;
 }
-body .series-plans-container .sticker .text {
+body .series-plans-container .plans-container .plan-container .sticker .text {
   font-family: 'dharma_gothic_cexbold';
-  font-size: 40px;
-  line-height: 40px;
+  font-size: 31px;
+  line-height: 26px;
 }
-body .series-plans-container .title .first-word {
+body .series-plans-container .plans-container .plan-container .title {
+  margin-bottom: 10px;
+  padding-top: 200px;
+}
+body .series-plans-container .plans-container .plan-container .title .first-word {
   font-family: 'shapiro95_super_wide';
+  font-size: 32px;
+  line-height: 38px;
+  padding: 0 10px;
+  text-align: left;
 }
-body .series-plans-container .title .second-word {
+body .series-plans-container .plans-container .plan-container .title .second-word {
+  display: table;
   font-family: 'shapiro96_inclined_wide';
+  font-size: 30px;
+  line-height: 46px;
+  padding: 0 15px;
+  text-align: left;
 }
-body .series-plans-container .button-container {
+body .series-plans-container .plans-container .plan-container .button-container {
   width: 100%;
 }
 body .series-series-container {

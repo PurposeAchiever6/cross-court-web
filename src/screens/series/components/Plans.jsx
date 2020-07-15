@@ -164,7 +164,7 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
           } FOR $${formatPrice(product.price)}`;
 
           return (
-            <PlanContainer key={product.stripeId} product={product}>
+            <PlanContainer className="plan-container" key={product.stripeId} product={product}>
               <div className="sticker">
                 <span className="price">{`$${formatPrice(product.price / product.credits)}`}</span>
                 <span className="text">/session</span>
