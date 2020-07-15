@@ -30,7 +30,6 @@ const PlanContainer = styled.div`
   margin: 2rem auto 0;
   height: 30vw;
   width: 30vw;
-  background-image: url(${props => props.product.imageUrl});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -103,47 +102,47 @@ const PlanContainer = styled.div`
     }
   }
 
-  @media ${device.mobile} {
-    height: 20rem;
-    width: 100%;
-    margin: 0 0 8rem 0;
-    padding: 0;
-    background-image: url(${props => props.product.imageUrl});
+  // @media ${device.mobile} {
+  //   height: 20rem;
+  //   width: 100%;
+  //   margin: 0 0 8rem 0;
+  //   padding: 0;
+  //   background-image: url(${props => props.product.imageUrl});
 
-    background-repeat: no-repeat;
-    background-position: center;
-    .sticker {
-      height: 8rem;
-      width: 8rem;
-      top: 2rem;
-      right: 1rem;
+  //   background-repeat: no-repeat;
+  //   background-position: center;
+  //   .sticker {
+  //     height: 8rem;
+  //     width: 8rem;
+  //     top: 2rem;
+  //     right: 1rem;
 
-      .price {
-        font-size: 2rem;
-        line-height: 2rem;
-      }
-      .text {
-        font-size: 1rem;
-        line-height: 2rem;
-      }
-    }
+  //     .price {
+  //       font-size: 2rem;
+  //       line-height: 2rem;
+  //     }
+  //     .text {
+  //       font-size: 1rem;
+  //       line-height: 2rem;
+  //     }
+  //   }
 
-    .title {
-      position: absolute;
-      bottom: -2.7rem;
-      left: 1rem;
-    }
+  //   .title {
+  //     position: absolute;
+  //     bottom: -2.7rem;
+  //     left: 1rem;
+  //   }
 
-    .button-container {
-      width: 90%;
-      position: absolute;
-      bottom: -7rem;
-      button {
-        width: 100%;
-        margin-bottom: 1.5rem;
-      }
-    }
-  }
+  //   .button-container {
+  //     width: 90%;
+  //     position: absolute;
+  //     bottom: -7rem;
+  //     button {
+  //       width: 100%;
+  //       margin-bottom: 1.5rem;
+  //     }
+  //   }
+  // }
 `;
 
 const Plans = ({ selectProductHandler, availableProducts }) => {
@@ -156,6 +155,10 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
   const products = availableProducts.filter(product => product.name !== 'Free Session');
   return (
     <PlansContainer className="series-plans-container">
+      <section className="title-block">
+        <h2 className="title-1">THE CC</h2>
+        <p className="title-2">SERIES</p>
+      </section>
       <div className="plans-container">
         {products.map(product => {
           const [firstWord, secondWord] = product.name.split(' ');

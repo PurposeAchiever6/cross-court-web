@@ -45,7 +45,7 @@ body {
 body {
   font-family: 'shapiro45_welter_extd';
   font-size: 18px;
-  line-height: 24px;
+  line-height: normal;
 }
 body ul,
 body ol {
@@ -438,7 +438,7 @@ body .section-block .title-and-description-block .title-1 {
 }
 @media (min-width: 768px) {
   body .section-block .title-and-description-block .title-1 {
-    font-size: 40px;
+    font-size: 50px;
   }
 }
 body .section-block .title-and-description-block .title-2 {
@@ -958,8 +958,8 @@ body .the-session-official .title-and-description-block .title-1 {
 }
 body .the-session-official .title-and-description-block .title-2 {
   font-family: 'shapiro95_super_wide';
-  font-size: 33px;
-  line-height: 30px;
+  font-size: 84px;
+  line-height: normal;
   margin-bottom: 60px;
 }
 body .the-session-official .title-and-description-block .description {
@@ -1233,6 +1233,7 @@ body
 }
 body .payments .payment-methods-container .credit-card-container .cc-info .ccnumber-container {
   font-family: 'shapiro95_super_wide';
+  font-weight: normal;
 }
 body .payments .payment-methods-container .credit-card-container .cc-info .expire-container {
   font-family: 'shapiro95_super_wide';
@@ -1440,6 +1441,20 @@ body .session-confirmed .done-button:hover .ar-button-inner {
 }
 
 /* SERIES */
+body .series-plans-container .title-block {
+  padding: 32px 32px 0;
+}
+body .series-plans-container .title-block .title-1 {
+  font-family: 'shapiro97_air_extd';
+  font-size: 44px;
+  margin-bottom: 0px;
+}
+body .series-plans-container .title-block .title-2 {
+  font-family: 'shapiro95_super_wide';
+  font-size: 52px;
+  line-height: normal;
+  margin-bottom: 0;
+}
 body .series-plans-container .plans-container {
   display: inline-block;
   margin: 0 0 130px;
@@ -1454,12 +1469,44 @@ body .series-plans-container .plans-container .plan-container {
   vertical-align: top;
   width: 370px;
 }
+body .series-plans-container .plans-container .plan-container:nth-child(1) {
+  background-image: url('screens/series/images/drop-in.jpg');
+}
+body .series-plans-container .plans-container .plan-container:nth-child(2) {
+  background-image: url('screens/series/images/rookie.jpg');
+}
+body .series-plans-container .plans-container .plan-container:nth-child(3) {
+  background-image: url('screens/series/images/vet.jpg');
+}
+body .series-plans-container .plans-container .plan-container:nth-child(4) {
+  background-image: url('screens/series/images/mvp.jpg');
+}
+body .series-plans-container .plans-container .plan-container::after {
+  background: rgba(0, 0, 0, 0.4);
+  bottom: 0;
+  content: '';
+  display: block;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
 body .series-plans-container .plans-container .plan-container .sticker {
   background-image: url('screens/series/images/circle-purple-bg.png');
   height: 120px;
   right: 15px;
   top: 15px;
+  transition: 300ms transform ease;
+  transform: scale(1);
   width: 120px;
+  z-index: 1;
+}
+body .series-plans-container .plans-container .plan-container:hover .sticker {
+  transform: scale(1.08);
 }
 body .series-plans-container .plans-container .plan-container .sticker .price {
   font-family: 'dharma_gothic_cexbold';
@@ -1475,6 +1522,8 @@ body .series-plans-container .plans-container .plan-container .sticker .text {
 body .series-plans-container .plans-container .plan-container .title {
   margin-bottom: 10px;
   padding-top: 200px;
+  position: relative;
+  z-index: 1;
 }
 body .series-plans-container .plans-container .plan-container .title .first-word {
   font-family: 'shapiro95_super_wide';
@@ -1761,4 +1810,21 @@ body .terms-and-conditions h1 {
   font-family: 'shapiro95_super_wide';
   margin-bottom: 40px;
   text-align: center;
+}
+
+/* TOAST CONTAINER */
+body .Toastify {
+}
+body .Toastify .Toastify__toast-container {
+  right: 9px;
+  top: 9px;
+}
+body .Toastify .Toastify__toast-container .Toastify__toast {
+  font-family: 'shapiro45_welter_extd';
+  text-align: center;
+}
+body .Toastify .Toastify__toast-container .Toastify__toast.Toastify__toast--error {
+  background-color: #fff;
+  border: 3px solid #9999ff;
+  color: #9999ff;
 }

@@ -48,22 +48,22 @@ const Section = styled.section`
     margin-bottom: 1rem;
   }
 
-  @media ${device.mobile} {
-    padding: 4.5rem 0;
+  // @media ${device.mobile} {
+  //   padding: 4.5rem 0;
 
-    .title {
-      text-align: center;
-      font-size: 2rem;
-    }
+  //   .title {
+  //     text-align: center;
+  //     font-size: 2rem;
+  //   }
 
-    .boxes {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      grid-column-gap: 15px;
-      grid-row-gap: 40px;
-    }
-  }
+  //   .boxes {
+  //     display: grid;
+  //     grid-template-columns: repeat(2, 1fr);
+  //     grid-template-rows: repeat(3, 1fr);
+  //     grid-column-gap: 15px;
+  //     grid-row-gap: 40px;
+  //   }
+  // }
 `;
 
 const CCTeamPerks = props => (
