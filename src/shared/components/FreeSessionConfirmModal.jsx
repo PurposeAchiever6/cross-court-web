@@ -30,8 +30,6 @@ const FreeSessionModalContainer = styled.div`
   }
 
   .text {
-    font-size: 1.25rem;
-    line-height: 1.7rem;
     color: #000000;
     margin-bottom: 3rem;
   }

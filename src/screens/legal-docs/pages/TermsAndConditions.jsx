@@ -4,18 +4,7 @@ import { useSelector } from 'react-redux';
 import Loading from 'shared/components/Loading';
 import { getPageLoading, getTermsAndConditions } from '../reducer';
 
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-
-  h2 {
-    margin-top: 5rem;
-  }
-`;
+const PageContainer = styled.div``;
 
 const TermsAndConditions = () => {
   const isLoading = useSelector(getPageLoading);
@@ -24,8 +13,8 @@ const TermsAndConditions = () => {
   return isLoading ? (
     <Loading />
   ) : (
-    <PageContainer>
-      <h2>Terms And Conditions</h2>
+    <PageContainer className="terms-and-conditions">
+      <h1>TERMS AND CONDITIONS</h1>
       <p>{termsAndConditionsText}</p>
     </PageContainer>
   );
