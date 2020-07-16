@@ -903,19 +903,35 @@ body .new-to-crosscourt {
   background-position: top center;
   background-size: cover;
   display: block;
-  padding: 200px 0 0 15px;
+  padding: 100px 32px 0;
+}
+@media (min-width: 992px) {
+  body .new-to-crosscourt {
+    padding: 200px 32px 0;
+  }
 }
 body .new-to-crosscourt .title-block {
 }
 body .new-to-crosscourt .title-block .title-1 {
-  font-size: 80px;
+  font-size: 56px;
   font-weight: bold;
   line-height: normal;
   margin: 0;
 }
+@media (min-width: 992px) {
+  body .new-to-crosscourt .title-block .title-1 {
+    font-size: 80px;
+  }
+}
 body .new-to-crosscourt .title-block .title-2 {
-  font-size: 45px;
-  margin-bottom: 40px;
+  font-size: 31px;
+  margin-bottom: 20px;
+}
+@media (min-width: 992px) {
+  body .new-to-crosscourt .title-block .title-2 {
+    font-size: 45px;
+    margin-bottom: 40px;
+  }
 }
 body .new-to-crosscourt .check-it-out svg {
   margin-right: 10px;
@@ -2233,6 +2249,10 @@ body .terms-and-conditions h1 {
   font-family: 'shapiro95_super_wide';
   margin-bottom: 40px;
   text-align: center;
+}
+body .terms-and-conditions .term {
+  display: inline-block;
+  text-indent: 50px;
 }
 
 /* TOAST CONTAINER */
