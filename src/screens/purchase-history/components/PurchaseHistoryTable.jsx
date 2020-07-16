@@ -38,7 +38,7 @@ const TableContainer = styled.div`
     }
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     width: 95%;
     table {
       td {

@@ -107,7 +107,7 @@ const PaymentMethodsContainer = styled.div`
     }
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     width: 85%;
 
     .payment-methods-container {

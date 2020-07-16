@@ -11,7 +11,7 @@ const Section = styled.section`
   display: none;
   margin-top: 3rem;
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     display: block;
   }
 `;

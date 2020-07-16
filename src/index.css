@@ -65,10 +65,18 @@ body h3,
 body h4 {
   line-height: normal;
 }
+body .mobile-hide-inline {
+  display: none;
+}
+@media (min-width: 992px) {
+  body .mobile-hide-inline {
+    display: inline;
+  }
+}
 
 /* SIDEBAR NAV */
 body .sidebar-nav {
-  padding: 0 4px 0 0;
+  padding: 0 32px;
 }
 body .sidebar-nav ul.list {
   margin: 0 0 150px 0;
@@ -83,19 +91,31 @@ body .sidebar-nav ul.list li.list-item button {
 }
 body .sidebar-nav ul.list li.list-item a:hover,
 body .sidebar-nav ul.list li.list-item button:hover {
+  font-family: 'shapiro97_air_extd';
+  font-size: 21.3px;
   opacity: 0.6;
 }
 body .sidebar-nav ul.list li.list-item a.active {
   color: #000;
 }
+body .sidebar-nav ul.list li.list-item a.active:hover {
+  font-family: 'shapiro95_super_wide';
+  font-size: 24px;
+}
 body .sidebar-nav ul.list li.list-item a.active::before {
   content: '';
 }
 body .sidebar-nav .join-the-team {
+  margin-bottom: 20px;
   transition: 500ms opacity ease;
 }
 body .sidebar-nav .join-the-team:hover {
   opacity: 0.6;
+}
+@media (min-width: 992px) {
+  body .sidebar-nav .join-the-team {
+    margin-bottom: 0;
+  }
 }
 body .sidebar-nav .join-the-team button {
   border: none;
@@ -103,28 +123,43 @@ body .sidebar-nav .join-the-team button {
   font-size: 44px;
   padding: 0;
 }
+@media (min-width: 992px) {
+  body .sidebar-nav .join-the-team button {
+    text-align: right;
+  }
+}
 body .sidebar-nav .join-the-team button:hover {
   background-color: transparent;
+  font-family: 'shapiro97_air_extd';
+  font-size: 39px;
+  line-height: 44.7px;
 }
 body .sidebar-nav .email {
   bottom: 25px;
   color: #fff;
-  position: absolute;
-  right: 5px;
+  right: 32px;
   font-size: 18px;
   text-align: center;
   text-decoration: none;
   transition: 500ms opacity ease;
   width: 100%;
 }
-body .sidebar-nav .email:hover {
-  opacity: 0.6;
-}
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .sidebar-nav .email {
+    position: absolute;
     text-align: right;
   }
 }
+body .sidebar-nav .email:hover {
+  opacity: 0.6;
+}
+@media (min-width: 992px) {
+  body .sidebar-nav .email:hover {
+    font-family: 'shapiro97_air_extd';
+    font-size: 16.1px;
+  }
+}
+
 /* HEADER */
 body .header {
   background-color: transparent;
@@ -136,31 +171,34 @@ body .header.scrolled {
   background-color: #fff;
   box-shadow: 0px 4px 4px #9999ff;
 }
-body .header .menu-button {
+body .header .menu-button-container {
+  width: 56px;
+}
+body .header .menu-button-container .menu-button {
   cursor: pointer;
   position: relative;
   z-index: 10002;
 }
-body .header .menu-button:hover {
+body .header .menu-button-container .menu-button:hover {
   opacity: 0.6;
 }
-body .header .menu-button .menu-bars,
-body .header .menu-button .menu-bars-alt {
+body .header .menu-button-container .menu-button .menu-bars,
+body .header .menu-button-container .menu-button .menu-bars-alt {
   left: 16px;
   position: fixed;
   top: 20px;
   transition: 500ms opacity ease;
 }
-body .header .menu-button .menu-bars {
+body .header .menu-button-container .menu-button .menu-bars {
   opacity: 1;
 }
-body .header .menu-button .menu-bars-alt {
+body .header .menu-button-container .menu-button .menu-bars-alt {
   opacity: 0;
 }
-body .header.scrolled .menu-button .menu-bars {
+body .header.scrolled .menu-button-container .menu-button .menu-bars {
   opacity: 0;
 }
-body .header.scrolled .menu-button .menu-bars-alt {
+body .header.scrolled .menu-button-container .menu-button .menu-bars-alt {
   opacity: 1;
 }
 body .header .logo-icon,
@@ -176,7 +214,7 @@ body .header .logo-icon-alt {
   width: 150px;
   z-index: 10;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .header .logo-icon,
   body .header .logo-icon-alt {
     left: 60px;
@@ -210,23 +248,56 @@ body[data-page='how-it-works'] main {
 }
 /* FOOTER */
 body .footer {
-  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 32px;
+}
+@media (min-width: 992px) {
+  body .footer {
+    display: block;
+    padding: 0 32px;
+  }
 }
 body .footer .left-side,
 body .footer .right-side {
   display: inline-block;
   height: 100;
   vertical-align: middle;
-  width: 50%;
+}
+@media (min-width: 992px) {
+  body .footer .left-side,
+  body .footer .right-side {
+    width: 50%;
+  }
 }
 body .footer .left-side {
+  order: 2;
+  text-align: center;
+}
+@media (min-width: 992px) {
+  body .footer .left-side {
+    text-align: left;
+  }
 }
 body .footer .left-side .copyright {
-  line-height: 90px;
+  line-height: 22px;
   margin: 0;
 }
+@media (min-width: 992px) {
+  body .footer .left-side .copyright {
+    line-height: 90px;
+  }
+}
 body .footer .right-side {
-  text-align: right;
+  margin-bottom: 20px;
+  order: 1;
+  text-align: center;
+}
+@media (min-width: 992px) {
+  body .footer .right-side {
+    margin-bottom: 0;
+    text-align: right;
+  }
 }
 body .footer .right-side .ar-button {
   margin: 5px 70px 0 0;
@@ -261,12 +332,13 @@ body .ar-button.mobile-compact {
   font-size: 14px;
   transition: 500ms font-size ease;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .ar-button.mobile-compact {
     font-size: 16px;
   }
 }
-body .ar-button.disabled {
+body .ar-button.disabled,
+body .ar-button[disabled] {
   opacity: 0.3;
   pointer-events: none;
 }
@@ -286,7 +358,7 @@ body .ar-button.mobile-compact .ar-button-inner {
   padding: 4px 10px;
   transition: 500ms padding ease;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .ar-button.mobile-compact .ar-button-inner {
     padding: 8px 15px;
   }
@@ -379,7 +451,7 @@ body .section-block .title-and-description-block {
   padding: 32px;
   width: 100vw;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .section-block .title-and-description-block {
     padding: 60px 32px;
   }
@@ -392,7 +464,7 @@ body .section-block .title-and-description-block.shift-right {
   height: 100%;
   justify-content: flex-start;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .section-block .title-and-description-block.shift-left,
   body .section-block .title-and-description-block.shift-right {
     display: flex;
@@ -401,7 +473,7 @@ body .section-block .title-and-description-block.shift-right {
 body .section-block .title-and-description-block.shift-left {
   text-align: left;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .section-block .title-and-description-block.shift-left {
     padding-right: 33vw;
   }
@@ -414,7 +486,7 @@ body .section-block .title-and-description-block.shift-left {
 body .section-block .title-and-description-block.shift-right {
   text-align: right;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .section-block .title-and-description-block.shift-right {
     padding-left: 33vw;
   }
@@ -436,7 +508,7 @@ body .section-block .title-and-description-block .title-1 {
   font-weight: bold;
   line-height: normal;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .section-block .title-and-description-block .title-1 {
     font-size: 50px;
   }
@@ -445,7 +517,7 @@ body .section-block .title-and-description-block .title-2 {
   font-size: 150px;
   line-height: 120px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .section-block .title-and-description-block .title-2 {
     font-size: 200px;
     line-height: 170px;
@@ -455,7 +527,7 @@ body .section-block .title-and-description-block .description {
   font-size: 16px;
   line-height: 20px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .section-block .title-and-description-block .description {
     font-size: 18px;
     line-height: 22px;
@@ -476,7 +548,7 @@ body .section-block .title-and-description-block .bottomline {
   position: absolute;
   z-index: 1;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .section-block .title-and-description-block .bottomline {
     display: block;
   }
@@ -514,7 +586,7 @@ body .make-sport-your-lifestyle .title-and-buttons-block {
   text-align: center;
   z-index: 1;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .make-sport-your-lifestyle .title-and-buttons-block {
     padding: 60px 32px;
   }
@@ -524,7 +596,7 @@ body .make-sport-your-lifestyle .title-and-buttons-block .title {
   line-height: 36px;
   margin-bottom: 80px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .make-sport-your-lifestyle .title-and-buttons-block .title {
     font-size: 50px;
     line-height: 56px;
@@ -536,7 +608,7 @@ body .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
   margin: 0 auto 40px;
   max-width: 220px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
     display: inline-block;
     margin: 0 35px;
@@ -593,7 +665,7 @@ body .crosscourt-is-a-high-intensity .title-block .title {
   font-size: 30px;
   line-height: 36px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .crosscourt-is-a-high-intensity .title-block .title {
     font-size: 50px;
     line-height: 56px;
@@ -645,7 +717,7 @@ body .keys-to-crosscourt {
   display: block;
   padding: 32px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .keys-to-crosscourt {
     padding: 60px 32px;
   }
@@ -655,7 +727,7 @@ body .keys-to-crosscourt .title-block {
   line-height: normal;
   text-align: center;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .keys-to-crosscourt .title-block {
     text-align: left;
   }
@@ -666,7 +738,7 @@ body .keys-to-crosscourt .title-block .title-1 {
   line-height: normal;
   margin: 0;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .keys-to-crosscourt .title-block .title-1 {
     font-size: 40px;
   }
@@ -676,7 +748,7 @@ body .keys-to-crosscourt .title-block .title-2 {
   line-height: normal;
   margin-bottom: 40px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .keys-to-crosscourt .title-block .title-2 {
     font-size: 27.5px;
   }
@@ -697,7 +769,7 @@ body .keys-to-crosscourt .video-player {
 }
 body .follow-us-on-instagram {
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .follow-us-on-instagram {
     height: 700px;
   }
@@ -707,7 +779,7 @@ body .follow-us-on-instagram .title-block {
   position: relative;
   z-index: 1;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   body .follow-us-on-instagram .title-block {
     padding: 60px 32px;
   }
@@ -764,7 +836,7 @@ body .ready .title {
   color: #fff;
   font-size: 250px;
   left: 10px;
-  line-height: 160px;
+  line-height: 159px;
   position: absolute;
   z-index: 1;
 }
@@ -814,6 +886,7 @@ body .sign-up .left-section {
   background-size: cover;
 }
 body .sign-up .right-section {
+  padding: 32px;
   vertical-align: top;
 }
 body .sign-up .right-section .title {
@@ -826,8 +899,10 @@ body .sign-up .right-section .title {
 body .sign-up .right-section .icons {
   margin-bottom: 60px;
 }
-body .sign-up .right-section .reserve-one {
-  margin-bottom: 80px;
+body .sign-up .right-section .description {
+  margin-bottom: 70px;
+}
+body .sign-up .right-section .buttons-container {
 }
 body .show-up {
   display: block;
@@ -841,6 +916,7 @@ body .show-up .right-section {
 }
 body .show-up .left-section {
   background-color: #9999ff;
+  padding: 32px;
   vertical-align: top;
 }
 body .show-up .left-section .title {
@@ -853,9 +929,16 @@ body .show-up .left-section .title {
 body .show-up .left-section .icons {
   margin-bottom: 60px;
 }
-body .show-up .left-section .each-hour {
+body .show-up .left-section .description {
+  margin-bottom: 70px;
+  text-align: right;
 }
-body .show-up .left-section .our-session {
+body .show-up .left-section .buttons-container {
+  display: flex;
+  justify-content: right;
+}
+body .show-up .left-section .buttons-container .ar-button:nth-child(1) {
+  margin-right: 80px;
 }
 body .show-up .right-section {
   background: transparent url('screens/how-it-works/images/show-up.gif') no-repeat 0 0;
@@ -877,6 +960,7 @@ body .sweat .left-section {
 }
 body .sweat .right-section {
   background-color: #000;
+  padding: 32px;
   vertical-align: top;
 }
 body .sweat .right-section .title {
@@ -885,6 +969,14 @@ body .sweat .right-section .title {
   font-weight: normal;
   line-height: 120px;
   margin: 50px 0 80px;
+}
+body .sweat .left-section .icons {
+  margin-bottom: 60px;
+}
+body .sweat .right-section .description {
+  margin-bottom: 70px;
+}
+body .sweat .left-section .buttons-container {
 }
 body .the-session .button-wrapper {
   margin: 80px auto 0;
@@ -1188,7 +1280,7 @@ body
   .side-container
   .button-container
   .cancel-btn {
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 body
   .sessions
@@ -1388,7 +1480,7 @@ body .session-reserved .invite-a-friend-button {
 }
 body .session-reserved .done-button {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 body .session-reserved .done-button .ar-button-inner {
   border: none;
@@ -1427,7 +1519,7 @@ body .session-confirmed .invite-a-friend-button {
 }
 body .session-confirmed .done-button {
   font-size: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 body .session-confirmed .done-button .ar-button-inner {
   border: none;
@@ -1556,77 +1648,120 @@ body .series-series-container .content {
 }
 
 /* MY ACCOUNT */
-body .my-profile {
+body .my-account-desktop .my-profile,
+body .my-account-mobile .my-profile {
   border-bottom: none;
 }
-body .my-profile .edit-btn {
+body .my-account-desktop .my-profile .edit-btn,
+body .my-account-mobile .my-profile .edit-btn {
   top: 32px;
 }
-body .my-profile h3 {
+body .my-account-desktop .my-profile h3,
+body .my-account-mobile .my-profile h3 {
   font-family: 'shapiro95_super_wide';
 }
-body .my-profile .detail-row .title,
-body .my-profile form label {
+body .my-account-desktop .my-profile .detail-row .title,
+body .my-account-desktop .my-profile form label,
+body .my-account-mobile .my-profile .detail-row .title,
+body .my-account-mobile .my-profile form label {
   color: #000;
   font-family: 'shapiro95_super_wide';
   font-weight: normal;
   letter-spacing: 0;
 }
-body .my-profile form .save-button {
+body .my-account-desktop .my-profile form .save-button,
+body .my-account-mobile .my-profile form .save-button {
   font-family: 'shapiro95_super_wide';
 }
-body .my-credits h3 {
+body .my-account-desktop .my-credits h3,
+body .my-account-mobile .my-credits h3 {
   font-family: 'shapiro95_super_wide';
 }
-body .my-credits .sessions-number-container {
+body .my-account-desktop .my-credits .sessions-number-container,
+body .my-account-mobile .my-credits .sessions-number-container {
   border: none;
   display: flex;
   flex-direction: row;
   padding: 0;
 }
-body .my-credits .sessions-number-container .session-number {
+body .my-account-desktop .my-credits .sessions-number-container .session-number,
+body .my-account-mobile .my-credits .sessions-number-container .session-number {
   font-family: 'shapiro105_max_extd';
   font-size: 62px;
   line-height: 56px;
   margin-bottom: 0;
 }
-body .my-credits .sessions-number-container .session-title-block {
+body .my-account-desktop .my-credits .sessions-number-container .session-title-block {
 }
-body .my-credits .sessions-number-container .session-title-block .session-title-1 {
+body
+  .my-account-desktop
+  .my-credits
+  .sessions-number-container
+  .session-title-block
+  .session-title-1,
+body
+  .my-account-mobile
+  .my-credits
+  .sessions-number-container
+  .session-title-block
+  .session-title-1 {
   display: block;
   font-family: 'shapiro105_max_extd';
   margin-bottom: 3px;
 }
-body .my-credits .sessions-number-container .session-title-block .session-title-2 {
+body
+  .my-account-desktop
+  .my-credits
+  .sessions-number-container
+  .session-title-block
+  .session-title-2,
+body
+  .my-account-mobile
+  .my-credits
+  .sessions-number-container
+  .session-title-block
+  .session-title-2 {
   display: block;
   font-family: 'shapiro97_air_extd';
   font-size: 40px;
 }
-body .my-credits .buy-series-button {
-  margin-bottom: 5px;
+body .my-account-desktop .my-credits .buy-series-button,
+body .my-account-mobile .my-credits .buy-series-button {
+  margin-bottom: 15px;
 }
-body .upcoming-sessions h3,
-body .past-sessions h3 {
+body .my-account-desktop .upcoming-sessions,
+body .my-account-mobile .upcoming-sessions {
+  margin-bottom: 60px;
+}
+body .my-account-desktop .upcoming-sessions h3,
+body .my-account-desktop .past-sessions h3,
+body .my-account-mobile .upcoming-sessions h3,
+body .my-account-mobile .past-sessions h3 {
   font-family: 'shapiro95_super_wide';
 }
-body .upcoming-sessions .empty-container,
-body .past-sessions .empty-container {
+body .my-account-desktop .upcoming-sessions .empty-container,
+body .my-account-desktop .past-sessions .empty-container {
   background-color: transparent;
   height: auto;
 }
-body .upcoming-sessions .empty-container .container-empty-message h3,
-body .past-sessions .empty-container .container-empty-message h3 {
+body .my-account-desktop .upcoming-sessions .empty-container .container-empty-message h3,
+body .my-account-desktop .past-sessions .empty-container .container-empty-message h3,
+body .my-account-mobile .upcoming-sessions .empty-container .container-empty-message h3,
+body .my-account-mobile .past-sessions .empty-container .container-empty-message h3 {
   color: #000;
   letter-spacing: 0;
   margin: 0 0 10px;
 }
-body .upcoming-sessions .sessions-container .session-container,
-body .past-sessions .sessions-container .session-container {
+body .my-account-desktop .upcoming-sessions .sessions-container .session-container,
+body .my-account-desktop .past-sessions .sessions-container .session-container,
+body .my-account-mobile .upcoming-sessions .sessions-container .session-container,
+body .my-account-mobile .past-sessions .sessions-container .session-container {
   border: 3px solid #9999ff;
 }
-body .upcoming-sessions .sessions-container .session-container .image {
+body .my-account-desktop .upcoming-sessions .sessions-container .session-container .image {
 }
-body .upcoming-sessions .sessions-container .session-container .details .date {
+body .my-account-desktop .upcoming-sessions .sessions-container .session-container .details .date,
+body .my-account-mobile .upcoming-sessions .sessions-container .session-container .details .date {
   background-color: #fff;
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
@@ -1634,7 +1769,8 @@ body .upcoming-sessions .sessions-container .session-container .details .date {
   position: relative;
   text-transform: uppercase;
 }
-body .past-sessions .sessions-container .session-container .details .date {
+body .my-account-desktop .past-sessions .sessions-container .session-container .details .date,
+body .my-account-mobile .past-sessions .sessions-container .session-container .details .date {
   background-color: #000;
   color: #fff;
   font-family: 'shapiro95_super_wide';
@@ -1642,8 +1778,38 @@ body .past-sessions .sessions-container .session-container .details .date {
   position: relative;
   text-transform: uppercase;
 }
-body .upcoming-sessions .sessions-container .session-container .details .date .reserved-check,
-body .past-sessions .sessions-container .session-container .details .date .reserved-check {
+body
+  .my-account-desktop
+  .upcoming-sessions
+  .sessions-container
+  .session-container
+  .details
+  .date
+  .reserved-check,
+body
+  .my-account-desktop
+  .past-sessions
+  .sessions-container
+  .session-container
+  .details
+  .date
+  .reserved-check,
+body
+  .my-account-mobile
+  .upcoming-sessions
+  .sessions-container
+  .session-container
+  .details
+  .date
+  .reserved-check,
+body
+  .my-account-mobile
+  .past-sessions
+  .sessions-container
+  .session-container
+  .details
+  .date
+  .reserved-check {
   background-color: transparent;
   margin-left: 0;
   height: 35px;
@@ -1651,11 +1817,53 @@ body .past-sessions .sessions-container .session-container .details .date .reser
   right: 10px;
   width: 35px;
 }
-body .upcoming-sessions .sessions-container .session-container .details .date .reserved-check svg,
-body .past-sessions .sessions-container .session-container .details .date .reserved-check svg {
+body
+  .my-account-desktop
+  .upcoming-sessions
+  .sessions-container
+  .session-container
+  .details
+  .date
+  .reserved-check
+  svg,
+body
+  .my-account-desktop
+  .past-sessions
+  .sessions-container
+  .session-container
+  .details
+  .date
+  .reserved-check
+  svg,
+body
+  .my-account-mobile
+  .upcoming-sessions
+  .sessions-container
+  .session-container
+  .details
+  .date
+  .reserved-check
+  svg,
+body
+  .my-account-mobile
+  .past-sessions
+  .sessions-container
+  .session-container
+  .details
+  .date
+  .reserved-check
+  svg {
   font-size: 35px;
 }
 body
+  .my-account-desktop
+  .upcoming-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container,
+body
+  .my-account-mobile
   .upcoming-sessions
   .sessions-container
   .session-container
@@ -1666,6 +1874,14 @@ body
   padding: 10px;
 }
 body
+  .my-account-desktop
+  .past-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container,
+body
+  .my-account-mobile
   .past-sessions
   .sessions-container
   .session-container
@@ -1676,6 +1892,7 @@ body
   padding: 10px;
 }
 body
+  .my-account-desktop
   .upcoming-sessions
   .sessions-container
   .session-container
@@ -1683,6 +1900,23 @@ body
   .time-location-buttons-container
   .time,
 body
+  .my-account-desktop
+  .past-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container
+  .time,
+body
+  .my-account-mobile
+  .upcoming-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container
+  .time,
+body
+  .my-account-mobile
   .past-sessions
   .sessions-container
   .session-container
@@ -1693,6 +1927,7 @@ body
   padding: 0;
 }
 body
+  .my-account-desktop
   .upcoming-sessions
   .sessions-container
   .session-container
@@ -1700,6 +1935,23 @@ body
   .time-location-buttons-container
   .location,
 body
+  .my-account-desktop
+  .past-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container
+  .location,
+body
+  .my-account-mobile
+  .upcoming-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container
+  .location,
+body
+  .my-account-mobile
   .past-sessions
   .sessions-container
   .session-container
@@ -1712,6 +1964,7 @@ body
   text-transform: uppercase;
 }
 body
+  .my-account-desktop
   .upcoming-sessions
   .sessions-container
   .session-container
@@ -1719,6 +1972,23 @@ body
   .time-location-buttons-container
   .buttons-container,
 body
+  .my-account-desktop
+  .past-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container
+  .buttons-container,
+body
+  .my-account-mobile
+  .upcoming-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container
+  .buttons-container,
+body
+  .my-account-mobile
   .past-sessions
   .sessions-container
   .session-container
@@ -1729,6 +1999,7 @@ body
   padding: 0;
 }
 body
+  .my-account-desktop
   .upcoming-sessions
   .sessions-container
   .session-container
@@ -1737,6 +2008,7 @@ body
   .buttons-container
   .confirm-button,
 body
+  .my-account-desktop
   .upcoming-sessions
   .sessions-container
   .session-container
@@ -1745,6 +2017,34 @@ body
   .buttons-container
   .see-details-button,
 body
+  .my-account-desktop
+  .past-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container
+  .buttons-container
+  .see-details-button,
+body
+  .my-account-mobile
+  .upcoming-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container
+  .buttons-container
+  .confirm-button,
+body
+  .my-account-mobile
+  .upcoming-sessions
+  .sessions-container
+  .session-container
+  .details
+  .time-location-buttons-container
+  .buttons-container
+  .see-details-button,
+body
+  .my-account-mobile
   .past-sessions
   .sessions-container
   .session-container
@@ -1754,6 +2054,18 @@ body
   .see-details-button {
   padding: 0 0 5px;
   width: 100%;
+}
+body .my-account-mobile .tabs {
+  padding: 32px;
+}
+body .my-account-mobile .tabs span {
+  font-family: 'shapiro97_air_extd';
+}
+body .my-account-mobile .tabs span.selected {
+  font-family: 'shapiro95_super_wide';
+}
+body .my-account-mobile .tab-content {
+  margin-bottom: 50px;
 }
 
 /* PURCHASE HISTORY */

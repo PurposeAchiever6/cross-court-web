@@ -13,7 +13,7 @@ const Button = styled.button`
   top: 3rem;
   right: 2rem;
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     display: block;
   }
 `;

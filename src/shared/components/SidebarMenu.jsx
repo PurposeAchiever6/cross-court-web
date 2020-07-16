@@ -55,7 +55,7 @@ const Nav = styled.nav`
     }
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     height: 100%;
     align-items: center;
 

@@ -25,13 +25,15 @@ function Signup() {
             <Text>AT A LOCATION NEAR YOU</Text>
           </Icon>
         </Icons>
-        <p className="reserve-one">
+        <p className="description">
           Reserve one of the 15 available spots in a session at a location near you. Come solo or
           with friends. Bring your shoes, some water, a towel, and a ball if you have em.
         </p>
-        <ArButton link={ROUTES.LOCATIONS} double inverted>
-          FIND A SESSION
-        </ArButton>
+        <div className="buttons-container">
+          <ArButton link={ROUTES.LOCATIONS} double inverted>
+            FIND A SESSION
+          </ArButton>
+        </div>
       </section>
     </section>
   );

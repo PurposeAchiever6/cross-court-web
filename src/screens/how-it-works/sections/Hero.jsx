@@ -70,7 +70,7 @@ const HeroSection = styled.section`
     }
   }
 
-  @media ${device.desktop} {
+  @media (min-width: 992px) {
     background-image: url(${HeroDesktop});
     align-items: flex-start;
     padding-left: 10.875rem;

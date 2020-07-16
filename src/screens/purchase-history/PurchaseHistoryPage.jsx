@@ -22,7 +22,7 @@ const PurchaseHistoryPageContainer = styled.div`
     margin-bottom: 2rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
   }
 `;
 

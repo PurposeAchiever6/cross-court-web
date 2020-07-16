@@ -12,7 +12,6 @@ const MyCreditsContainer = styled.div`
   display: flex;
   margin-top: 1.5rem;
   justify-content: space-between;
-  border-bottom: 1px solid ${colors.grey};
 
   * {
     flex: 1;

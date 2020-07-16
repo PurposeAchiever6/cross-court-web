@@ -24,18 +24,22 @@ function Showup() {
             <Text>GUIDED EXPERIENCE</Text>
           </Icon>
         </Icons>
-        <p className="each-hour">Each hour-long session is run by our trained Experience Team.</p>
-        <p className="our-session">
+        <p className="description">
+          Each hour-long session is run by our trained Experience Team.
+          <br />
+          <br />
           Our Session Experience Managers will check you in, DJ, keep score, and make sure you leave
           dripping in sweat, while our Session Officials enforce the rules and maintain order on the
           court.
         </p>
-        <ArButton link={ROUTES.SEM} double inverted>
-          JOIN THE TEAM
-        </ArButton>
-        <ArButton link={ROUTES.LOCATIONS} double>
-          RESERVE NOW
-        </ArButton>
+        <div className="buttons-container">
+          <ArButton link={ROUTES.SEM} double inverted>
+            JOIN THE TEAM
+          </ArButton>
+          <ArButton link={ROUTES.LOCATIONS} double>
+            RESERVE NOW
+          </ArButton>
+        </div>
       </section>
       <section className="right-section"></section>
     </section>

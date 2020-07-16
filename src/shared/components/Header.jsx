@@ -54,7 +54,7 @@ const Container = styled.div`
     }
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     .cheeseburger-menu {
       display: none;
     }
@@ -66,7 +66,7 @@ const Container = styled.div`
     }
   }
 
-  @media ${device.desktop} {
+  @media (min-width: 992px) {
     .header-left {
       // .menu-button-container[data-active='true'] {
       //   background: rgba(0, 0, 0, 0.7);
@@ -113,7 +113,7 @@ function Header() {
           </Link>
         </div>
         <ArButton className="mobile-compact" link={ROUTES.LOCATIONS} font="shapiro96_inclined_wide">
-          RESERVE SESSION
+          RESERVE<span className="mobile-hide-inline"> SESSION</span>
         </ArButton>
       </div>
     </Container>

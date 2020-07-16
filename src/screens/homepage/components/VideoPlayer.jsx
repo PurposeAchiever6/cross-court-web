@@ -10,7 +10,7 @@ const Container = styled.div`
   padding-top: 39.375%;
   position: relative;
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     margin: 0;
     width: 100%;
     padding-top: 56.25%;

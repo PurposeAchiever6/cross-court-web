@@ -54,7 +54,7 @@ const PromoCodeContainer = styled.div`
       display: none;
     }
   }
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     form {
       flex-direction: row;
       button {

@@ -16,7 +16,7 @@ const Link = styled(RRLink)`
   justify-content: space-between;
   width: 11rem;
 
-  @media ${device.desktop} {
+  @media (min-width: 992px) {
     margin: 0;
     font-size: 0.95rem;
     width: 13rem;

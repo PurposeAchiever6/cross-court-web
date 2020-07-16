@@ -40,7 +40,7 @@ const PageContainer = styled.div`
     flex-direction: column;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     flex-direction: column-reverse;
 
     .map-container,

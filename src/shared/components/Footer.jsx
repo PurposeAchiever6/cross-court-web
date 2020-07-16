@@ -64,7 +64,7 @@ const FooterContainer = styled.footer`
     }
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     padding: 1rem;
     height: auto;
 

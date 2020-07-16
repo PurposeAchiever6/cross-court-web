@@ -33,7 +33,7 @@ const Container = styled.div`
     font-size: 2rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     height: 70vh;
 
     * {

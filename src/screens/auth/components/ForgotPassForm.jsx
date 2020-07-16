@@ -43,7 +43,7 @@ const ForgotPassFormContainer = styled.div`
     line-height: 1.5rem;
     margin-bottom: 3rem;
 
-    @media ${device.desktop} {
+    @media (min-width: 992px) {
       text-align: center;
     }
   }
@@ -78,7 +78,7 @@ const ForgotPassFormContainer = styled.div`
     font-size: 0.8rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     form {
       width: 100%;
     }

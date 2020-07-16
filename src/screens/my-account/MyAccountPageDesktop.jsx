@@ -15,6 +15,7 @@ const MyAccountPageContainer = styled.div`
   padding: 2rem;
 
   .sidebar-container {
+    min-width: 365px;
     width: 25%;
     background: ${colors.white};
     box-shadow: 0px 2px 20px rgba(black, 0.15);
@@ -25,7 +26,7 @@ const MyAccountPageContainer = styled.div`
     flex: 1;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     display: none;
   }
 `;
@@ -36,7 +37,7 @@ export const MyAccountPageDesktop = ({
   upcomingSessions,
   semUpcomingSessions,
 }) => (
-  <MyAccountPageContainer>
+  <MyAccountPageContainer className="my-account-desktop">
     <div className="sidebar-container">
       <MyProfile profile={userProfile} />
       <MyCredits credits={userProfile.credits} />

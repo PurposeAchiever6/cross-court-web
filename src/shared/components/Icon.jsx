@@ -8,7 +8,7 @@ const Icon = styled.div`
   align-items: center;
   flex: 0 0 50%;
 
-  @media ${device.desktop} {
+  @media (min-width: 992px) {
     flex: 1;
   }
 `;

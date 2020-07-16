@@ -50,7 +50,7 @@ const Section = styled.section`
     margin-bottom: 1rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     padding: 4.5rem 0;
 
     .title {

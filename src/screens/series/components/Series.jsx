@@ -48,7 +48,7 @@ const SeriesContainer = styled.div`
       }
     }
   }
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     padding: 2rem 0;
 
     h2 {

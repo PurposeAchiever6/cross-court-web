@@ -38,7 +38,7 @@ const TextWrapper = styled.div`
     font-size: 3.5rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     .text-container {
       font-size: 0.8rem;
       padding: 0 2rem;
@@ -63,7 +63,7 @@ const Buttons = styled.div`
     padding: 1rem 2.5rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     .buttons-container {
       flex-direction: column-reverse;
 

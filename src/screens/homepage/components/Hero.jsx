@@ -21,7 +21,7 @@ const HeroSection = styled.section`
   flex-direction: column;
   background-position-y: initial;
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     background-image: url(${HeroMobile});
   }
 `;

@@ -21,7 +21,7 @@ const CheckoutPageContainer = styled.div`
     width: 100%;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     h1 {
       font-size: 1.5rem;
       margin-top: 2rem;

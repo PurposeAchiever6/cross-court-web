@@ -18,7 +18,7 @@ const MobileMenuContainer = styled.div`
   top: 0;
   left: 0;
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     display: ${({ open }) => (open ? 'block' : 'none')};
   }
 `;

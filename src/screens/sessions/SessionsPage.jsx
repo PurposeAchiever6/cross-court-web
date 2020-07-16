@@ -168,7 +168,7 @@ const SessionsPageContainer = styled.div`
     }
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     .title-container {
       padding: 1rem 0;
 

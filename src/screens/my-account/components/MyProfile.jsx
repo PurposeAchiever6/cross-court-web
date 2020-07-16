@@ -12,7 +12,6 @@ import EditProfileForm from './EditProfileForm';
 const MyProfileContainer = styled.div`
   position: relative;
   padding: 2rem;
-  border-bottom: 1px solid #bbbecd;
   h3 {
     font-size: 1.75rem;
     font-weight: 500;

@@ -9,7 +9,7 @@ const Par = styled.div`
   margin: 0 2rem;
   font-size: 0.875rem;
 
-  @media ${device.desktop} {
+  @media (min-width: 992px) {
     margin: 0;
     width: 80%;
     align-items: flex-start;

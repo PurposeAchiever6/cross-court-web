@@ -7,7 +7,7 @@ import SessionExperienceManager from './mobile/SessionExperienceManager';
 import SessionOfficial from './mobile/SessionOfficial';
 
 const Container = styled.div`
-  @media ${device.desktop} {
+  @media (min-width: 992px) {
     display: none;
   }
 `;

@@ -22,7 +22,7 @@ const SessionsListContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    @media ${device.desktop} {
+    @media (min-width: 992px) {
       height: 25rem;
     }
 
@@ -57,7 +57,7 @@ const SessionsListContainer = styled.div`
     }
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     margin: 0 0 1rem;
   }
 `;

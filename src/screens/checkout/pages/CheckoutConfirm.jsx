@@ -35,7 +35,7 @@ const PageContainer = styled.div`
     padding: 1rem 5rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     h1 {
       width: 80%;
     }

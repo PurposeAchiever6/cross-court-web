@@ -13,7 +13,7 @@ const MyAccountPageContainer = styled.div`
   flex-direction: column;
   width: 100%;
 
-  @media ${device.desktop} {
+  @media (min-width: 992px) {
     display: none;
   }
 `;
@@ -24,12 +24,12 @@ export const MyAccountPageMobile = ({
   upcomingSessions,
   semUpcomingSessions,
 }) => (
-  <MyAccountPageContainer>
+  <MyAccountPageContainer className="my-account-mobile">
     <Tabs>
-      <div label="My Account">
+      <div label="MY ACCOUNT">
         <MyProfile profile={userProfile} showTitle={false} />
       </div>
-      <div label="My Credits">
+      <div label="MY CREDITS">
         <MyCredits credits={userProfile.credits} />
       </div>
     </Tabs>

@@ -22,7 +22,7 @@ const BackButtonContainer = styled.button`
     margin-right: 1rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     margin-left: 1rem;
     margin-top: 2rem;
     font-size: 1.3rem;

@@ -16,9 +16,8 @@ const SessionContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  //box-shadow: 0px 2px 5px ${colors.blackOverlay};
 
-  @media ${device.desktop} {
+  @media (min-width: 992px) {
     min-width: 18rem;
     max-width: 30%;
     margin-right: 3%;
@@ -131,7 +130,7 @@ const SessionContainer = styled.div`
     }
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     flex-direction: row;
 
     img {

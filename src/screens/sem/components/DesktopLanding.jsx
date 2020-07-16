@@ -8,11 +8,7 @@ import TheSessionOfficial from './desktop/TheSessionOfficial';
 import CCTeamPerks from './desktop/CCTeamPerks';
 import AnyQuestions from './desktop/AnyQuestions';
 
-const Container = styled.div`
-  @media ${device.mobile} {
-    display: none;
-  }
-`;
+const Container = styled.div``;
 
 const DesktopLanding = () => (
   <Container>

@@ -54,7 +54,7 @@ const PasswordResetFormContainer = styled.div`
     margin: 3rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     form {
       width: 100%;
     }

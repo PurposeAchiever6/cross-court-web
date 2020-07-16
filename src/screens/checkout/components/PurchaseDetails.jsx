@@ -132,7 +132,7 @@ const PurchaseDetailsContainer = styled.div`
     }
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     .purchase-details-box {
       border: none;
       margin-top: 0;

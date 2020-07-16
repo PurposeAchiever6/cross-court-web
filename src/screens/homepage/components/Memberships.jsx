@@ -24,7 +24,7 @@ const Section = styled.section`
   padding-top: 7rem;
   box-sizing: border-box;
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     background-image: url(${MembershipMobileBg});
   }
 

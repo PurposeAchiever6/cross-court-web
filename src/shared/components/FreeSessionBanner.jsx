@@ -25,7 +25,7 @@ const BannerContainer = styled.div`
   z-index: 100;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     right: 1rem;
     bottom: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 165 ? '2rem' : '12rem')};
     position: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 165 ? 'fixed' : 'absolute')};

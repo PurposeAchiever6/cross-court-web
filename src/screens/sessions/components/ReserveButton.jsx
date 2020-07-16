@@ -49,11 +49,12 @@ const ReserveButton = ({
     if (equals(session.userSession.state, 'reserved')) {
       return (
         <Button
-          className="reserve-btn"
+          className="ar-button double reserve-btn"
           onClick={confirmSessionAction}
           disabled={not(session.userSession.inConfirmationTime)}
         >
-          CONFIRM SESSION
+          <div className="ar-button-inner">CONFIRM SESSION</div>
+          <div className="double-drop"></div>
         </Button>
       );
     }
@@ -61,6 +62,7 @@ const ReserveButton = ({
       return (
         <Button className="ar-button double disabled reserve-btn" disabled>
           <div className="ar-button-inner">SESSION CONFIRMED</div>
+          <div className="double-drop"></div>
         </Button>
       );
     }

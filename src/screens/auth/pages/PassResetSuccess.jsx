@@ -35,7 +35,7 @@ const PageContainer = styled.div`
     width: 16.5rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     img {
       margin-bottom: 5.25rem;
       margin-top: 7.7rem;

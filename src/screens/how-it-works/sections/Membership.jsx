@@ -52,7 +52,7 @@ const MembershipSection = styled.section`
     }
   }
 
-  @media ${device.desktop} {
+  @media (min-width: 992px) {
     background-image: url(${MembershipDesktop});
 
     .membership-title {

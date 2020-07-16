@@ -17,7 +17,7 @@ const EditProfileFormContainer = styled.div`
     flex-direction: column;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     margin-top: 1rem;
     form {
       width: 100%;

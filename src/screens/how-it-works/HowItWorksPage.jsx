@@ -14,67 +14,12 @@ import SignupDesktop from './sections/SignupDesktop';
 import NewToCrosscourt from './sections/NewToCrosscourt';
 import TheSession from './sections/TheSession';
 
-const Mobile = styled.div`
-  @media ${device.desktop} {
-    display: none;
-  }
-`;
-
-const Desktop = styled.div`
-  display: none;
-
-  .desktop-container {
-    height: 56.625rem;
-    flex: 0 0 50%;
-
-    &--small {
-      height: 38.625rem;
-    }
-  }
-
-  .image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .title {
-    letter-spacing: 0.64px;
-    font-weight: bold;
-    font-size: 3.56rem;
-    text-transform: uppercase;
-    color: ${colors.polarPlum};
-    margin-top: 0;
-
-    &--black {
-      color: ${colors.black};
-    }
-  }
-
-  .info {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: space-around;
-    width: 90%;
-    margin-left: auto;
-  }
-
-  @media ${device.desktop} {
-    display: flex;
-    flex-wrap: wrap;
-  }
-`;
+const Desktop = styled.div``;
 
 function HowItWorksPage() {
   return (
     <>
       <FreeSessionBanner />
-      <Mobile>
-        <Signup />
-        <Showup />
-        <Sweat />
-      </Mobile>
       <Desktop>
         <NewToCrosscourt />
         <SignupDesktop />

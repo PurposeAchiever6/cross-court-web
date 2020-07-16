@@ -16,7 +16,7 @@ const PlansContainer = styled.div`
     flex-wrap: wrap;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     .plans-container {
       margin: 0;
       flex-direction: column;
@@ -102,7 +102,7 @@ const PlanContainer = styled.div`
     }
   }
 
-  // @media ${device.mobile} {
+  // @media (max-width: 991px) {
   //   height: 20rem;
   //   width: 100%;
   //   margin: 0 0 8rem 0;

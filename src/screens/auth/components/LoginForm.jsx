@@ -20,7 +20,7 @@ const LoginFormContainer = styled.div`
   justify-content: center;
   margin: 5rem 0;
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     width: 80%;
   }
 
@@ -81,7 +81,7 @@ const LoginFormContainer = styled.div`
     font-size: 0.8rem;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     margin-top: 1rem;
     form {
       width: 100%;

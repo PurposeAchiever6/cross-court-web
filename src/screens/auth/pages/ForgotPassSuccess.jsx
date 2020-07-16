@@ -43,7 +43,7 @@ const PageContainer = styled.div`
     }
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     p {
       width: 80%;
     }

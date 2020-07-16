@@ -73,7 +73,7 @@ const AddCardContainer = styled.div`
     justify-content: center;
   }
 
-  @media ${device.mobile} {
+  @media (max-width: 991px) {
     .card-container {
       flex-direction: column;
     }

@@ -10,7 +10,7 @@ const Icons = styled.div`
   margin-top: 5rem;
   text-align: baseline;
 
-  @media ${device.desktop} {
+  @media (min-width: 992px) {
     margin: 0;
     justify-content: flex-start;
   }
