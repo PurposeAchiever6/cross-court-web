@@ -8,6 +8,7 @@ import MenuSvg from 'shared/components/svg/MenuSvg';
 import MenuSvgAlt from 'shared/components/svg/MenuSvgAlt';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 import LogoSvgAlt from 'shared/components/svg/LogoSvgAlt';
+import LogoSvgNavOpen from 'shared/components/svg/LogoSvgNavOpen';
 import device from 'shared/styles/mediaQueries';
 import SidebarMenu from './SidebarMenu';
 import MobileMenu from './MobileMenu';
@@ -110,6 +111,7 @@ function Header() {
           <Link to={ROUTES.HOME}>
             <LogoSvg className="logo-icon" />
             <LogoSvgAlt className="logo-icon-alt" />
+            <LogoSvgNavOpen className="logo-icon-nav-open" />
           </Link>
         </div>
         <ArButton className="mobile-compact" link={ROUTES.LOCATIONS} font="shapiro96_inclined_wide">

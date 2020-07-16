@@ -108,7 +108,7 @@ const SessionConfirmed = () => {
         <h1>The session was re-confirmed successfully!</h1>
         <a
           className="ar-button double invite-a-friend-button"
-          href={'sms://%20?&body=' + encodeURI(SHARE_URL)}
+          href={'sms:?&body=' + encodeURI(SHARE_URL)}
         >
           <div className="ar-button-inner">
             <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND

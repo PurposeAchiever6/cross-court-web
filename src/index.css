@@ -42,6 +42,9 @@ body {
 ::before {
   box-sizing: border-box;
 }
+*:focus {
+  outline: none;
+}
 body {
   font-family: 'shapiro45_welter_extd';
   font-size: 18px;
@@ -76,7 +79,7 @@ body .mobile-hide-inline {
 
 /* SIDEBAR NAV */
 body .sidebar-nav {
-  padding: 0 32px;
+  padding: 0 20px;
 }
 body .sidebar-nav ul.list {
   margin: 0 0 150px 0;
@@ -128,16 +131,10 @@ body .sidebar-nav .join-the-team button {
     text-align: right;
   }
 }
-body .sidebar-nav .join-the-team button:hover {
-  background-color: transparent;
-  font-family: 'shapiro97_air_extd';
-  font-size: 39px;
-  line-height: 44.7px;
-}
 body .sidebar-nav .email {
   bottom: 25px;
   color: #fff;
-  right: 32px;
+  right: 20px;
   font-size: 18px;
   text-align: center;
   text-decoration: none;
@@ -152,12 +149,6 @@ body .sidebar-nav .email {
 }
 body .sidebar-nav .email:hover {
   opacity: 0.6;
-}
-@media (min-width: 992px) {
-  body .sidebar-nav .email:hover {
-    font-family: 'shapiro97_air_extd';
-    font-size: 16.1px;
-  }
 }
 
 /* HEADER */
@@ -202,7 +193,8 @@ body .header.scrolled .menu-button-container .menu-button .menu-bars-alt {
   opacity: 1;
 }
 body .header .logo-icon,
-body .header .logo-icon-alt {
+body .header .logo-icon-alt,
+body .header .logo-icon-nav-open {
   background-color: transparent;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   height: 25px;
@@ -216,13 +208,15 @@ body .header .logo-icon-alt {
 }
 @media (min-width: 992px) {
   body .header .logo-icon,
-  body .header .logo-icon-alt {
+  body .header .logo-icon-alt,
+  body .header .logo-icon-nav-open {
     left: 60px;
     width: 205px;
   }
 }
 body .header .logo-icon:hover,
-body .header .logo-icon-alt:hover {
+body .header .logo-icon-alt:hover,
+body .header .logo-icon-nav-open:hover {
   opacity: 0.6;
 }
 body .header .logo-icon {
@@ -236,6 +230,14 @@ body .header .logo-icon-alt {
 }
 body .header.scrolled .logo-icon-alt {
   opacity: 1;
+}
+body .header .logo-icon-nav-open {
+  opacity: 0;
+  z-index: 0;
+}
+body .header .cheeseburger-menu.open + .header-content .logo-icon-nav-open {
+  opacity: 1;
+  z-index: 1002;
 }
 
 /* MAIN */
@@ -661,14 +663,19 @@ body .crosscourt-is-a-high-intensity .title-block {
   text-align: center;
   z-index: 1;
 }
+@media (min-width: 992px) {
+  body .crosscourt-is-a-high-intensity .title-block {
+    padding: 0 10%;
+  }
+}
 body .crosscourt-is-a-high-intensity .title-block .title {
-  font-size: 30px;
-  line-height: 36px;
+  font-size: 24px;
+  line-height: 32px;
 }
 @media (min-width: 992px) {
   body .crosscourt-is-a-high-intensity .title-block .title {
-    font-size: 50px;
-    line-height: 56px;
+    font-size: 40px;
+    line-height: 46px;
   }
 }
 body .why-we-exist {
@@ -715,10 +722,12 @@ body .what-we-do .title-and-description-block .bottomline {
 }
 body .keys-to-crosscourt {
   display: block;
+  height: auto;
   padding: 32px;
 }
 @media (min-width: 992px) {
   body .keys-to-crosscourt {
+    height: 100vh;
     padding: 60px 32px;
   }
 }
@@ -768,6 +777,7 @@ body .keys-to-crosscourt .video-player {
   width: 100%;
 }
 body .follow-us-on-instagram {
+  height: auto;
 }
 @media (min-width: 992px) {
   body .follow-us-on-instagram {
@@ -803,14 +813,19 @@ body .follow-us-on-instagram .instafeed img {
   width: 300px;
 }
 body .follow-us-on-instagram .load-more {
-  margin: 0 auto;
+  margin: 0 auto 40px;
 }
 body .ready {
   background-image: url('screens/homepage/images/ready.jpg');
   background-size: cover;
   background-position: top center;
-  height: 530px;
+  height: 500px;
   position: relative;
+}
+@media (min-width: 992px) {
+  body .ready {
+    height: 530px;
+  }
 }
 body .ready::after {
   content: '';
@@ -826,22 +841,45 @@ body .ready::after {
   z-index: 0;
 }
 body .ready .buttons-block {
+  margin-top: 100px;
   padding: 0 32px;
   position: relative;
   text-align: center;
   z-index: 1;
 }
+@media (min-width: 992px) {
+  body .ready .buttons-block {
+    margin-top: 0;
+  }
+}
 body .ready .title {
-  bottom: 0;
   color: #fff;
-  font-size: 250px;
+  font-size: 200px;
   left: 10px;
   line-height: 159px;
   position: absolute;
+  text-align: center;
+  top: 20px;
+  width: 100%;
   z-index: 1;
 }
+@media (min-width: 992px) {
+  body .ready .title {
+    bottom: 0;
+    font-size: 250px;
+    text-align: left;
+    top: auto;
+    width: auto;
+  }
+}
 body .ready .buttons-block .ar-button {
-  margin: 0 35px;
+  display: inline-block;
+  margin: 0 40px 40px;
+}
+@media (min-width: 992px) {
+  body .ready .buttons-block .ar-button {
+    margin: 0 35px;
+  }
 }
 
 /* HOW IT WORKS */
@@ -872,22 +910,36 @@ body .new-to-crosscourt .check-it-out .text {
   vertical-align: top;
 }
 body .sign-up {
-  display: block;
-  height: 100vh;
+  display: flex;
+  height: auto;
+}
+@media (min-width: 992px) {
+  body .sign-up {
+    display: block;
+    height: 100vh;
+  }
 }
 body .sign-up .left-section,
 body .sign-up .right-section {
   display: inline-block;
   height: 100vh;
-  width: 50vw;
+  width: auto;
+}
+@media (min-width: 992px) {
+  body .sign-up .left-section,
+  body .sign-up .right-section {
+    width: 50vw;
+  }
 }
 body .sign-up .left-section {
   background: transparent url('screens/how-it-works/images/sign-up.gif') no-repeat 0 0;
   background-size: cover;
+  order: 2;
 }
 body .sign-up .right-section {
   padding: 32px;
   vertical-align: top;
+  order: 1;
 }
 body .sign-up .right-section .title {
   color: #000;
@@ -895,6 +947,12 @@ body .sign-up .right-section .title {
   font-weight: normal;
   line-height: 120px;
   margin: 50px 0 80px;
+  text-align: right;
+}
+@media (min-width: 992px) {
+  body .sign-up .right-section .title {
+    text-align: left;
+  }
 }
 body .sign-up .right-section .icons {
   margin-bottom: 60px;
@@ -905,14 +963,26 @@ body .sign-up .right-section .description {
 body .sign-up .right-section .buttons-container {
 }
 body .show-up {
-  display: block;
-  height: 100vh;
+  display: flex;
+  height: auto;
+}
+@media (min-width: 992px) {
+  body .show-up {
+    display: block;
+    height: 100vh;
+  }
 }
 body .show-up .left-section,
 body .show-up .right-section {
   display: inline-block;
   height: 100vh;
-  width: 50vw;
+  width: auto;
+}
+@media (min-width: 992px) {
+  body .show-up .left-section,
+  body .show-up .right-section {
+    width: 50vw;
+  }
 }
 body .show-up .left-section {
   background-color: #9999ff;
@@ -925,6 +995,12 @@ body .show-up .left-section .title {
   font-weight: normal;
   line-height: 120px;
   margin: 50px 0 80px;
+  text-align: left;
+}
+@media (min-width: 992px) {
+  body .show-up .left-section .title {
+    text-align: right;
+  }
 }
 body .show-up .left-section .icons {
   margin-bottom: 60px;
@@ -945,23 +1021,37 @@ body .show-up .right-section {
   background-size: cover;
 }
 body .sweat {
-  display: block;
-  height: 100vh;
+  display: flex;
+  height: auto;
+}
+@media (min-width: 992px) {
+  body .sweat {
+    display: block;
+    height: 100vh;
+  }
 }
 body .sweat .left-section,
 body .sweat .right-section {
   display: inline-block;
   height: 100vh;
-  width: 50vw;
+  width: auto;
+}
+@media (min-width: 992px) {
+  body .sweat .left-section,
+  body .sweat .right-section {
+    width: 50vw;
+  }
 }
 body .sweat .left-section {
   background: transparent url('screens/how-it-works/images/sweat.gif') no-repeat 0 0;
   background-size: cover;
+  order: 2;
 }
 body .sweat .right-section {
   background-color: #000;
   padding: 32px;
   vertical-align: top;
+  order: 1;
 }
 body .sweat .right-section .title {
   color: #fff;
@@ -969,6 +1059,12 @@ body .sweat .right-section .title {
   font-weight: normal;
   line-height: 120px;
   margin: 50px 0 80px;
+  text-align: right;
+}
+@media (min-width: 992px) {
+  body .sweat .right-section .title {
+    text-align: left;
+  }
 }
 body .sweat .left-section .icons {
   margin-bottom: 60px;

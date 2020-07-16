@@ -15,10 +15,6 @@ const Button = styled.button`
   font-weight: 500;
   padding: 0.7rem 2rem;
   cursor: pointer;
-
-  &:hover {
-    background-color: ${shade(0.5, `${colors.white}`)};
-  }
 `;
 
 const AlternativeButton = ({ children, className, ...props }) => {

@@ -114,7 +114,7 @@ const SessionReserved = () => {
         <h2>SUCCESSFULLY!</h2>
         <a
           className="ar-button double invite-a-friend-button"
-          href={'sms://%20?&body=' + encodeURI(SHARE_URL)}
+          href={'sms:?&body=' + encodeURI(SHARE_URL)}
         >
           <div className="ar-button-inner">
             <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
@@ -122,7 +122,7 @@ const SessionReserved = () => {
           <div className="double-drop"></div>
         </a>
         <ArButton className="done-button" inverted link={ROUTES.MYACCOUNT}>
-          SKIP
+          DONE
         </ArButton>
       </div>
     </SessionReservedContainer>
