@@ -485,7 +485,6 @@ body .section-block .title-and-description-block {
 }
 @media (min-width: 992px) {
   body .section-block .title-and-description-block {
-    padding: 60px 32px;
   }
 }
 body .section-block .title-and-description-block.shift-left,
@@ -622,7 +621,6 @@ body .make-sport-your-lifestyle .title-and-buttons-block {
 }
 @media (min-width: 992px) {
   body .make-sport-your-lifestyle .title-and-buttons-block {
-    padding: 60px 32px;
   }
 }
 body .make-sport-your-lifestyle .title-and-buttons-block .title {
@@ -832,7 +830,7 @@ body .follow-us-on-instagram .title-block {
 }
 @media (min-width: 992px) {
   body .follow-us-on-instagram .title-block {
-    padding: 60px 32px;
+    padding: 32px;
   }
 }
 body .follow-us-on-instagram .title-block .title-1 {
@@ -1148,6 +1146,11 @@ body .join-the-cc-team .title-and-description-block {
   text-align: center;
   padding: 0 32px;
 }
+@media (min-width: 992px) {
+  body .join-the-cc-team .title-and-description-block {
+    padding: 0 10%;
+  }
+}
 body .join-the-cc-team .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
   font-size: 40px;
@@ -1168,8 +1171,8 @@ body .join-the-cc-team .title-and-description-block .title-2 {
 }
 @media (min-width: 992px) {
   body .join-the-cc-team .title-and-description-block .title-2 {
-    font-size: 114px;
-    line-height: 100px;
+    font-size: 114.5px;
+    line-height: 111px;
   }
 }
 body .join-the-cc-team .title-and-description-block .description {
@@ -1179,8 +1182,8 @@ body .join-the-cc-team .title-and-description-block .description {
 }
 @media (min-width: 992px) {
   body .join-the-cc-team .title-and-description-block .description {
-    font-size: 38px;
-    line-height: 42px;
+    font-size: 40px;
+    line-height: 46px;
   }
 }
 body .the-session-experience-manager {
@@ -1193,18 +1196,27 @@ body .the-session-experience-manager .title-and-description-block {
 }
 body .the-session-experience-manager .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
+  font-size: 28.5px;
+  line-height: 24.5px;
   margin-bottom: 0;
+}
+@media (min-width: 992px) {
+  body .the-session-experience-manager .title-and-description-block .title-1 {
+    font-size: 80px;
+    line-height: 76px;
+  }
 }
 body .the-session-experience-manager .title-and-description-block .title-2 {
   font-family: 'shapiro95_super_wide';
-  font-size: 18.5px;
-  line-height: 14.5px;
-  margin-bottom: 60px;
+  font-size: 18.9px;
+  line-height: 14.9px;
+  margin-bottom: 30px;
 }
 @media (min-width: 992px) {
   body .the-session-experience-manager .title-and-description-block .title-2 {
-    font-size: 33px;
-    line-height: 29px;
+    font-size: 52.8px;
+    line-height: 48.8px;
+    margin-bottom: 60px;
   }
 }
 body .the-session-experience-manager .title-and-description-block .description {
@@ -1240,12 +1252,13 @@ body .the-session-official .title-and-description-block .title-2 {
   font-family: 'shapiro95_super_wide';
   font-size: 46.7px;
   line-height: 42.7px;
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 @media (min-width: 992px) {
   body .the-session-official .title-and-description-block .title-2 {
     font-size: 83.2px;
     line-height: 79.2px;
+    margin-bottom: 60px;
   }
 }
 body .the-session-official .title-and-description-block .description {
