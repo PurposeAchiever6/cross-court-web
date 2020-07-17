@@ -10,7 +10,6 @@ import { ReactComponent as JerseySvg } from 'shared/components/svg/jersey.svg';
 import { ReactComponent as CrosscourtFace } from 'shared/components/svg/crosscourt-face.svg';
 
 const Section = styled.section`
-  padding: 4.5rem 5rem;
   display: flex;
 
   .text {

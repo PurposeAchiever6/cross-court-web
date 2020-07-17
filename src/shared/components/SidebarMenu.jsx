@@ -79,7 +79,7 @@ const SidebarMenu = ({ menuToggler }) => {
 
   return (
     <Nav className="sidebar-nav">
-      <CloseButton onClick={menuToggler} />
+      <CloseButton className={'close-button'} onClick={menuToggler} />
       <ul className="list">
         <li className="list-item">
           <NavLink exact to={ROUTES.HOME} onClick={menuToggler}>
