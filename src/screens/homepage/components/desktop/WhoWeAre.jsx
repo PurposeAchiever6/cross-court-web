@@ -4,7 +4,7 @@ const WhoWeAre = () => (
   <section className="who-we-are section-block text-black">
     <section className="title-and-description-block shift-left">
       <p className="title-1 shapiro97_air_extd">WHO WE ARE</p>
-      <p className="title-2 dharma_gothic_cheavy">THE CC TEAM</p>
+      <p className="title-2 dharma_gothic_cheavy">THE<br />CC TEAM</p>
       <p className="description shapiro45_welter_wide">
         The #ccteam is made up of doers that favor a team based workout enjoy a mid-week get
         together, or shamelessly refuse to give up on their dreams of going pro.

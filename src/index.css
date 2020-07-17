@@ -512,7 +512,7 @@ body .section-block .title-and-description-block.shift-left {
 }
 @media (min-width: 1200px) {
   body .section-block .title-and-description-block.shift-left {
-    padding-right: 54vw;
+    padding-right: 44vw;
   }
 }
 body .section-block .title-and-description-block.shift-right {
@@ -525,35 +525,36 @@ body .section-block .title-and-description-block.shift-right {
 }
 @media (min-width: 1200px) {
   body .section-block .title-and-description-block.shift-right {
-    padding-left: 54vw;
+    padding-left: 44vw;
   }
 }
 body .section-block p {
   margin: 0;
 }
-body .section-block .title-and-description-block .title-1,
-body .section-block .title-and-description-block .title-2 {
-  margin-bottom: 20px;
-}
 body .section-block .title-and-description-block .title-1 {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
-  line-height: 24px;
+  line-height: 20px;
+  margin-bottom: 20px;
 }
 @media (min-width: 992px) {
   body .section-block .title-and-description-block .title-1 {
-    font-size: 50px;
-    line-height: 46px;
+    font-size: 60px;
+    line-height: 56px;
+    margin-bottom: 25px;
   }
 }
 body .section-block .title-and-description-block .title-2 {
-  font-size: 150px;
-  line-height: 120px;
+  font-family: 'shapiro95_super_wide';
+  font-size: 26px;
+  line-height: 22px;
+  margin-bottom: 15px;
 }
 @media (min-width: 992px) {
   body .section-block .title-and-description-block .title-2 {
-    font-size: 200px;
-    line-height: 170px;
+    font-size: 76px;
+    line-height: 72px;
+    margin-bottom: 30px;
   }
 }
 body .section-block .title-and-description-block .description {
@@ -562,8 +563,8 @@ body .section-block .title-and-description-block .description {
 }
 @media (min-width: 992px) {
   body .section-block .title-and-description-block .description {
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 26px;
+    line-height: 32px;
   }
 }
 /* .section-block.text-white .title-and-description-block .title-1,
@@ -716,6 +717,11 @@ body .why-we-exist {
   background-attachment: fixed;
   display: block;
 }
+@media (min-width: 992px) {
+  body .why-we-exist .title-and-description-block .description {
+    padding-left: 190px;
+  }
+}
 body .why-we-exist .title-and-description-block .bottomline {
   bottom: -40px;
   color: #9999ff;
@@ -729,6 +735,11 @@ body .who-we-are {
   background-image: url('screens/homepage/images/who-we-are.png');
   background-position: top right;
   background-attachment: fixed;
+}
+@media (min-width: 992px) {
+  body .who-we-are .title-and-description-block .description {
+    padding-right: 190px;
+  }
 }
 body .who-we-are .title-and-description-block .bottomline {
   bottom: -11px;
@@ -759,38 +770,37 @@ body .keys-to-crosscourt {
 @media (min-width: 992px) {
   body .keys-to-crosscourt {
     height: 100vh;
-    padding: 60px 32px;
   }
 }
 body .keys-to-crosscourt .title-block {
   font-size: 30px;
   line-height: normal;
-  text-align: center;
 }
 @media (min-width: 992px) {
   body .keys-to-crosscourt .title-block {
-    text-align: left;
   }
 }
 body .keys-to-crosscourt .title-block .title-1 {
   font-size: 32px;
   font-weight: bold;
-  line-height: normal;
+  line-height: 28px;
   margin: 0;
 }
 @media (min-width: 992px) {
   body .keys-to-crosscourt .title-block .title-1 {
-    font-size: 40px;
+    font-size: 60px;
+    line-height: 56px;
   }
 }
 body .keys-to-crosscourt .title-block .title-2 {
   font-size: 22px;
-  line-height: normal;
+  line-height: 18px;
   margin-bottom: 40px;
 }
 @media (min-width: 992px) {
   body .keys-to-crosscourt .title-block .title-2 {
-    font-size: 27.5px;
+    font-size: 41.3px;
+    line-height: 37.3px;
   }
 }
 body .keys-to-crosscourt .boxes {
