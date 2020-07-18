@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import device from 'shared/styles/mediaQueries';
-import GymSvg from 'shared/components/svg/GymSvg';
-import { ReactComponent as ClockSvg } from 'shared/components/svg/clock.svg';
-import { ReactComponent as OfficialSvg } from 'shared/components/svg/official.svg';
-import { ReactComponent as PlayerSvg } from 'shared/components/svg/player-min.svg';
-import { ReactComponent as SpeakerSvg } from 'shared/components/svg/speaker.svg';
-import { ReactComponent as JerseySvg } from 'shared/components/svg/jersey.svg';
+import oneHourIcon from 'shared/images/1-hour.png';
+import premiumFacilityIcon from 'shared/images/premium-facility.png';
+import fifteenPlayerLimitIcon from 'shared/images/15-player-limit.png';
+import equipmentProvidedIcon from 'shared/images/equipment-provided.png';
+import sessionOfficialIcon from 'shared/images/session-official.png';
+import hypeSoundtracksIcon from 'shared/images/hype-soundtracks.png';
 
 const Section = styled.section`
   display: flex;
@@ -32,7 +31,6 @@ const Section = styled.section`
 
   .boxes-item {
     display: flex;
-    height: 7rem;
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
@@ -40,27 +38,26 @@ const Section = styled.section`
 
   .boxes-text {
     text-align: center;
-    font-weight: bold;
   }
 
   .boxes-image {
     margin-bottom: 1rem;
   }
 
-  @media (max-width: 991px) {
-    .title {
-      text-align: center;
-      font-size: 2rem;
-    }
+  // @media (max-width: 991px) {
+  //   .title {
+  //     text-align: center;
+  //     font-size: 2rem;
+  //   }
 
-    .boxes {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      grid-column-gap: 15px;
-      grid-row-gap: 40px;
-    }
-  }
+  //   .boxes {
+  //     display: grid;
+  //     grid-template-columns: repeat(2, 1fr);
+  //     grid-template-rows: repeat(3, 1fr);
+  //     grid-column-gap: 15px;
+  //     grid-row-gap: 40px;
+  //   }
+  // }
 `;
 
 const KeysToCrosscourt = props => (
@@ -73,13 +70,13 @@ const KeysToCrosscourt = props => (
       <div className="boxes">
         <div className="boxes-item">
           <div className="boxes-image">
-            <ClockSvg />
+            <img className="one-hour" src={oneHourIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">1 HOUR</span>
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <GymSvg />
+            <img className="premium-facility" src={premiumFacilityIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">
             PREMIUM
@@ -89,7 +86,7 @@ const KeysToCrosscourt = props => (
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <PlayerSvg />
+            <img className="fifteen-player-limit" src={fifteenPlayerLimitIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">
             15 PLAYER
@@ -99,7 +96,7 @@ const KeysToCrosscourt = props => (
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <JerseySvg />
+            <img className="equipment-provided" src={equipmentProvidedIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">
             EQUIPMENT
@@ -109,7 +106,7 @@ const KeysToCrosscourt = props => (
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <OfficialSvg />
+            <img className="session-official" src={sessionOfficialIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">
             SESSION
@@ -119,7 +116,7 @@ const KeysToCrosscourt = props => (
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <SpeakerSvg />
+            <img className="hype-soundtracks" src={hypeSoundtracksIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">
             HYPE

@@ -296,7 +296,7 @@ body .footer .left-side {
 }
 body .footer .left-side .copyright {
   font-size: 12px;
-  line-height: 22px;
+  line-height: 16px;
   margin: 0;
 }
 @media (min-width: 992px) {
@@ -538,22 +538,31 @@ body .section-block .title-and-description-block .title-1 {
 }
 @media (min-width: 992px) {
   body .section-block .title-and-description-block .title-1 {
-    font-size: 60px;
-    line-height: 56px;
-    margin-bottom: 25px;
+    font-size: 52px;
+    line-height: 48px;
+    margin-bottom: 30px;
   }
 }
 body .section-block .title-and-description-block .title-2 {
-  font-family: 'shapiro95_super_wide';
+  /* font-family: 'shapiro95_super_wide';
   font-size: 26px;
-  line-height: 22px;
+  line-height: 22px; */
+  font-size: 120px;
+  line-height: 100px;
   margin-bottom: 15px;
 }
 @media (min-width: 992px) {
   body .section-block .title-and-description-block .title-2 {
-    font-size: 76px;
-    line-height: 72px;
+    /* font-size: 76px;
+    line-height: 72px; */
+    font-size: 250px;
+    line-height: 200px;
     margin-bottom: 30px;
+  }
+}
+@media (min-width: 992px) {
+  body .section-block .title-and-description-block .title-2 .the {
+    opacity: 0.5;
   }
 }
 body .section-block .title-and-description-block .description {
@@ -562,8 +571,8 @@ body .section-block .title-and-description-block .description {
 }
 @media (min-width: 992px) {
   body .section-block .title-and-description-block .description {
-    font-size: 26px;
-    line-height: 32px;
+    font-size: 20px;
+    line-height: 26px;
   }
 }
 /* .section-block.text-white .title-and-description-block .title-1,
@@ -721,11 +730,11 @@ body .why-we-exist {
   }
 }
 body .why-we-exist .title-and-description-block .bottomline {
-  bottom: -40px;
+  bottom: -39px;
   color: #9999ff;
   font-size: 50px;
   font-weight: bold;
-  line-height: 37px;
+  line-height: 36px;
   right: 32px;
 }
 body .who-we-are {
@@ -802,7 +811,57 @@ body .keys-to-crosscourt .title-block .title-2 {
   }
 }
 body .keys-to-crosscourt .boxes {
+  display: grid;
   margin-bottom: 120px;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(3,1fr);
+  grid-column-gap: 0;
+  grid-row-gap: 40px;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt .boxes {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-image {
+  margin-bottom: 10px;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt .boxes .boxes-item .boxes-image {
+    margin-bottom: 15px;
+  }
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-image img {
+  height: auto;
+  position: relative;
+  width: 130px;
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-image img.one-hour {
+  left: 6px;
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-image img.equipment-provided {
+  left: -3px;
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-image img.hype-soundtracks {
+  left: -12px;
+}
+@media (min-width: 1200px) {
+  body .keys-to-crosscourt .boxes .boxes-item .boxes-image img {
+    height: auto;
+    width: 170px;
+  }
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-text {
+  font-size: 14px;
+  line-height: 16px;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt .boxes .boxes-item .boxes-text {
+    font-size: 16px;
+    line-height: 18px;
+  }
 }
 /* .keys-to-crosscourt .vimeo-player {
   display: block;
@@ -824,7 +883,7 @@ body .follow-us-on-instagram {
   }
 }
 body .follow-us-on-instagram .title-block {
-  padding: 0 32px;
+  padding: 32px 32px 20px;
   position: relative;
   z-index: 1;
 }
@@ -834,12 +893,26 @@ body .follow-us-on-instagram .title-block {
   }
 }
 body .follow-us-on-instagram .title-block .title-1 {
-  font-size: 30px;
-  margin: 0 0 5px;
+  font-size: 18.4px;
+  line-height: 14.4px;
+  margin-bottom: 0;
+}
+@media (min-width: 992px) {
+  body .follow-us-on-instagram .title-block .title-1 {
+    font-size: 34.6px;
+    line-height: 30.6px;
+  }
 }
 body .follow-us-on-instagram .title-block .title-2 {
-  font-size: 44px;
-  margin-bottom: 40px;
+  font-size: 26.8px;
+  line-height: 22.8px;
+}
+@media (min-width: 992px) {
+  body .follow-us-on-instagram .title-block .title-2 {
+    font-size: 50.3px;
+    line-height: 46.3px;
+    margin-bottom: 40px;
+  }
 }
 body .follow-us-on-instagram .instafeed {
   margin-bottom: 20px;
@@ -848,8 +921,14 @@ body .follow-us-on-instagram .instafeed {
 body .follow-us-on-instagram .instafeed img {
   display: inline-block;
   object-fit: cover;
-  height: 300px;
-  width: 300px;
+  height: 33.33vw;
+  width: 33.33vw;
+}
+@media (min-width: 992px) {
+  body .follow-us-on-instagram .instafeed img {
+    height: 300px;
+    width: 300px;
+  }
 }
 body .follow-us-on-instagram .load-more {
   margin: 0 auto 40px;
@@ -892,7 +971,7 @@ body .ready .buttons-block {
   }
 }
 body .ready .title {
-  color: #fff;
+  color: #9999ff;
   font-size: 200px;
   left: 10px;
   line-height: 159px;
@@ -913,7 +992,7 @@ body .ready .title {
 }
 body .ready .buttons-block .ar-button {
   display: inline-block;
-  margin: 0 40px 40px;
+  margin: 0 32px 32px;
 }
 @media (min-width: 992px) {
   body .ready .buttons-block .ar-button {
