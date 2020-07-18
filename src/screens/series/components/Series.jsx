@@ -85,14 +85,14 @@ const Series = () => {
         <div className="item">
           <OnYourTimeSvg width={iconSize} height={iconSize} />
           <div className="text-container">
-            <span className="title">Don&apos;t Expire</span>
+            <span className="title">DON&apos;T EXPIRE</span>
             <span className="text">Purchase and use your series at your convenience.</span>
           </div>
         </div>
         <div className="item">
           <GymSvg width={iconSize} height={iconSize} />
           <div className="text-container">
-            <div className="title">Are Location Transferable</div>
+            <div className="title">ARE LOCATION TRANSFERABLE</div>
             <div className="text">Use your series at any of our locations.</div>
           </div>
         </div>

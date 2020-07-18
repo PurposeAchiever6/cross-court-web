@@ -9,6 +9,9 @@ import ArButton from 'shared/components/ArButton';
 import Icons from '../components/Icons';
 import Text from '../components/Text';
 
+import onYourTimeIcon from 'shared/images/on-your-time.png';
+import premiumFacilityIcon from 'shared/images/premium-facility.png';
+
 function Signup() {
   return (
     <section className="sign-up section-block text-black">
@@ -17,12 +20,12 @@ function Signup() {
         <p className="title dharma_gothic_cheavy">SIGN UP</p>
         <Icons className="icons">
           <Icon>
-            <OnYourTimeSvg />
-            <Text>ON YOUR TIME</Text>
+            <img className="on-your-time" src={onYourTimeIcon} />
+            <span className="boxes-text">ON YOUR TIME</span>
           </Icon>
           <Icon>
-            <GymSvg />
-            <Text>AT A LOCATION NEAR YOU</Text>
+            <img className="premium-facility" src={premiumFacilityIcon} />
+            <span className="boxes-text">AT A LOCATION NEAR YOU</span>
           </Icon>
         </Icons>
         <p className="description">

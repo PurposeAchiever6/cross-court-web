@@ -1,19 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-import device from 'shared/styles/mediaQueries';
-import GymSvg from 'shared/components/svg/GymSvg';
-import { ReactComponent as ClockSvg } from 'shared/components/svg/clock.svg';
-import { ReactComponent as OfficialSvg } from 'shared/components/svg/official.svg';
-import { ReactComponent as PlayerSvg } from 'shared/components/svg/player-min.svg';
-import { ReactComponent as SpeakerSvg } from 'shared/components/svg/speaker.svg';
-import { ReactComponent as JerseySvg } from 'shared/components/svg/jersey.svg';
 import ROUTES from 'shared/constants/routes';
 import ArButton from 'shared/components/ArButton';
 
+import oneHourIcon from 'shared/images/1-hour.png';
+import premiumFacilityIcon from 'shared/images/premium-facility.png';
+import fifteenPlayerLimitIcon from 'shared/images/15-player-limit.png';
+import equipmentProvidedIcon from 'shared/images/equipment-provided.png';
+import sessionOfficialIcon from 'shared/images/session-official.png';
+import hypeSoundtracksIcon from 'shared/images/hype-soundtracks.png';
+
 const Section = styled.section`
-  margin: 50px 0;
-  padding: 4.5rem 5rem;
+  // margin: 50px 0;
+  // padding: 4.5rem 5rem;
 
   .text {
     font-weight: bold;
@@ -27,45 +27,45 @@ const Section = styled.section`
     font-weight: 500;
   }
 
-  .boxes {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  // .boxes {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   align-items: center;
+  // }
 
-  .boxes-item {
-    display: flex;
-    height: 7rem;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
+  // .boxes-item {
+  //   display: flex;
+  //   height: 7rem;
+  //   justify-content: space-between;
+  //   flex-direction: column;
+  //   align-items: center;
+  // }
 
-  .boxes-text {
-    width: 99%;
-    text-align: center;
-    font-weight: bold;
-  }
+  // .boxes-text {
+  //   width: 99%;
+  //   text-align: center;
+  //   font-weight: bold;
+  // }
 
-  .boxes-image {
-    margin-bottom: 1rem;
-  }
+  // .boxes-image {
+  //   margin-bottom: 1rem;
+  // }
 
   @media (max-width: 991px) {
-    padding: 4.5rem 0;
+    //padding: 4.5rem 0;
 
     .title {
       text-align: center;
       font-size: 2rem;
     }
 
-    .boxes {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      grid-column-gap: 15px;
-      grid-row-gap: 40px;
-    }
+    // .boxes {
+    //   display: grid;
+    //   grid-template-columns: repeat(2, 1fr);
+    //   grid-template-rows: repeat(3, 1fr);
+    //   grid-column-gap: 15px;
+    //   grid-row-gap: 40px;
+    // }
   }
 `;
 
@@ -74,39 +74,59 @@ const TheSession = props => (
     <div className="boxes">
       <div className="boxes-item">
         <div className="boxes-image">
-          <ClockSvg />
+          <img className="one-hour" src={oneHourIcon} />
         </div>
         <span className="boxes-text">1 HOUR</span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <GymSvg />
+          <img className="premium-facility" src={premiumFacilityIcon} />
         </div>
-        <span className="boxes-text">PREMIUM FACILITY</span>
+        <span className="boxes-text">
+          PREMIUM
+          <br />
+          FACILITY
+        </span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <PlayerSvg />
+          <img className="fifteen-player-limit" src={fifteenPlayerLimitIcon} />
         </div>
-        <span className="boxes-text">15 PLAYER LIMIT</span>
+        <span className="boxes-text">
+          15 PLAYER
+          <br />
+          LIMIT
+        </span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <JerseySvg />
+          <img className="equipment-provided" src={equipmentProvidedIcon} />
         </div>
-        <span className="boxes-text">EQUIPMENT PROVIDED</span>
+        <span className="boxes-text">
+          EQUIPMENT
+          <br />
+          PROVIDED
+        </span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <OfficialSvg />
+          <img className="session-official" src={sessionOfficialIcon} />
         </div>
-        <span className="boxes-text">SESSION OFFICIAL</span>
+        <span className="boxes-text">
+          SESSION
+          <br />
+          OFFICIAL
+        </span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <SpeakerSvg />
+          <img className="hype-soundtracks" src={hypeSoundtracksIcon} />
         </div>
-        <span className="boxes-text">HYPE SOUNDTRACKS</span>
+        <span className="boxes-text">
+          HYPE
+          <br />
+          SOUNDTRACKS
+        </span>
       </div>
     </div>
     <section className="button-wrapper">

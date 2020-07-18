@@ -9,8 +9,6 @@ import sessionOfficialIcon from 'shared/images/session-official.png';
 import hypeSoundtracksIcon from 'shared/images/hype-soundtracks.png';
 
 const Section = styled.section`
-  display: flex;
-
   .text {
     font-weight: bold;
   }
@@ -23,19 +21,6 @@ const Section = styled.section`
     font-weight: 500;
   }
 
-  .boxes {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .boxes-item {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-
   .boxes-text {
     text-align: center;
   }
@@ -43,21 +28,6 @@ const Section = styled.section`
   .boxes-image {
     margin-bottom: 1rem;
   }
-
-  // @media (max-width: 991px) {
-  //   .title {
-  //     text-align: center;
-  //     font-size: 2rem;
-  //   }
-
-  //   .boxes {
-  //     display: grid;
-  //     grid-template-columns: repeat(2, 1fr);
-  //     grid-template-rows: repeat(3, 1fr);
-  //     grid-column-gap: 15px;
-  //     grid-row-gap: 40px;
-  //   }
-  // }
 `;
 
 const KeysToCrosscourt = props => (
@@ -72,13 +42,13 @@ const KeysToCrosscourt = props => (
           <div className="boxes-image">
             <img className="one-hour" src={oneHourIcon} />
           </div>
-          <span className="boxes-text shapiro95_super_wide">1 HOUR</span>
+          <span className="boxes-text">1 HOUR</span>
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
             <img className="premium-facility" src={premiumFacilityIcon} />
           </div>
-          <span className="boxes-text shapiro95_super_wide">
+          <span className="boxes-text">
             PREMIUM
             <br />
             FACILITY
@@ -88,7 +58,7 @@ const KeysToCrosscourt = props => (
           <div className="boxes-image">
             <img className="fifteen-player-limit" src={fifteenPlayerLimitIcon} />
           </div>
-          <span className="boxes-text shapiro95_super_wide">
+          <span className="boxes-text">
             15 PLAYER
             <br />
             LIMIT
@@ -98,7 +68,7 @@ const KeysToCrosscourt = props => (
           <div className="boxes-image">
             <img className="equipment-provided" src={equipmentProvidedIcon} />
           </div>
-          <span className="boxes-text shapiro95_super_wide">
+          <span className="boxes-text">
             EQUIPMENT
             <br />
             PROVIDED
@@ -108,7 +78,7 @@ const KeysToCrosscourt = props => (
           <div className="boxes-image">
             <img className="session-official" src={sessionOfficialIcon} />
           </div>
-          <span className="boxes-text shapiro95_super_wide">
+          <span className="boxes-text">
             SESSION
             <br />
             OFFICIAL
@@ -118,7 +88,7 @@ const KeysToCrosscourt = props => (
           <div className="boxes-image">
             <img className="hype-soundtracks" src={hypeSoundtracksIcon} />
           </div>
-          <span className="boxes-text shapiro95_super_wide">
+          <span className="boxes-text">
             HYPE
             <br />
             SOUNDTRACKS

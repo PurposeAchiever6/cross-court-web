@@ -9,6 +9,9 @@ import ArButton from 'shared/components/ArButton';
 import Icons from '../components/Icons';
 import Text from '../components/Text';
 
+import equipmentProvidedIcon from 'shared/images/equipment-provided.png';
+import guidedExperienceIcon from 'shared/images/guided-experience.png';
+
 function Showup() {
   return (
     <section className="show-up section-block text-white">
@@ -16,12 +19,12 @@ function Showup() {
         <p className="title dharma_gothic_cheavy">SHOW UP</p>
         <Icons className="icons">
           <Icon>
-            <JerseySvg />
-            <Text>EQUIPMENT PROVIDED</Text>
+            <img className="equipment-provided" src={equipmentProvidedIcon} />
+            <span className="boxes-text">EQUIPMENT PROVIDED</span>
           </Icon>
           <Icon>
-            <GuidedExperienceSvg />
-            <Text>GUIDED EXPERIENCE</Text>
+            <img className="guided-experience" src={guidedExperienceIcon} />
+            <span className="boxes-text">GUIDED EXPERIENCE</span>
           </Icon>
         </Icons>
         <p className="description">
