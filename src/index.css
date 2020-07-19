@@ -385,14 +385,13 @@ body .ar-button .ar-button-inner {
   background-color: #9999ff;
   border: 3px solid #fff;
   color: #fff;
-  padding: 4px 10px;
+  padding: 8px 15px;
   position: relative;
   transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
   z-index: 1;
 }
 @media (min-width: 992px) {
   body .ar-button .ar-button-inner {
-    padding: 8px 15px;
   }
 }
 body .ar-button.mobile-compact .ar-button-inner {
@@ -1075,7 +1074,7 @@ body .new-to-crosscourt .check-it-out svg {
 body .new-to-crosscourt .check-it-out .text {
 }
 body .new-to-crosscourt .check-it-out .ar-button-inner {
-  padding-left: 44px;
+  padding-left: 42px;
 }
 body .new-to-crosscourt .check-it-out img {
   height: 22px;
@@ -1517,7 +1516,7 @@ body .the-session-experience-manager .title-and-description-block .button-wrappe
   margin-right: 50px;
 }
 body .the-session-experience-manager .title-and-description-block .button-wrapper .learn-more .ar-button-inner {
-  padding-left: 44px;
+  padding-left: 42px;
 }
 body .the-session-experience-manager .title-and-description-block .button-wrapper .learn-more img {
   height: 22px;
@@ -1583,7 +1582,7 @@ body .the-session-official .title-and-description-block .button-wrapper .apply-b
   margin-right: 50px;
 }
 body .the-session-official .title-and-description-block .button-wrapper .learn-more .ar-button-inner {
-  padding-left: 44px;
+  padding-left: 42px;
 }
 body .the-session-official .title-and-description-block .button-wrapper .learn-more img {
   height: 22px;
