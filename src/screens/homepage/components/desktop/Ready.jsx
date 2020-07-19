@@ -4,7 +4,7 @@ import ROUTES from 'shared/constants/routes';
 
 const Ready = () => (
   <section className="ready section-block text-white">
-    <p className="title dharma_gothic_cheavy_italic">READY?</p>
+    <p className="title dharma_gothic_cheavy_italic">READY TO SWEAT?</p>
     <section className="buttons-block">
       <ArButton link={ROUTES.LOCATIONS} double>
         SEE SCHEDULE

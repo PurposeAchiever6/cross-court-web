@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import device, { size } from 'shared/styles/mediaQueries';
-import GymSvg from 'shared/components/svg/GymSvg';
-import OnYourTimeSvg from 'shared/components/svg/OnYourTimeSvg';
+import premiumFacilityIcon from 'shared/images/premium-facility.png';
+import onYourTimeIcon from 'shared/images/on-your-time.png';
 import useWindowSize from 'shared/hooks/useWindowSize';
 
 const SeriesContainer = styled.div`
@@ -83,14 +83,14 @@ const Series = () => {
       <h2>OUR SERIES</h2>
       <div className="content">
         <div className="item">
-          <OnYourTimeSvg width={iconSize} height={iconSize} />
+          <img className="on-your-time" src={onYourTimeIcon} />
           <div className="text-container">
             <span className="title">DON&apos;T EXPIRE</span>
             <span className="text">Purchase and use your series at your convenience.</span>
           </div>
         </div>
         <div className="item">
-          <GymSvg width={iconSize} height={iconSize} />
+          <img className="premium-facility" src={premiumFacilityIcon} />
           <div className="text-container">
             <div className="title">ARE LOCATION TRANSFERABLE</div>
             <div className="text">Use your series at any of our locations.</div>

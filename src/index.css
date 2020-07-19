@@ -263,6 +263,7 @@ body[data-page='how-it-works'] main {
 }
 /* FOOTER */
 body .footer {
+  background-color: #000;
   display: flex;
   flex-direction: column;
   padding: 20px 32px;
@@ -324,6 +325,14 @@ body .footer .right-side .ar-button {
   body .footer .right-side .ar-button {
     margin: 5px 70px 0 0;
   }
+}
+body .footer .right-side .ar-button .ar-button-inner {
+  background-color: #FFF;
+  color: #000;
+}
+body .footer .right-side .ar-button.double .double-drop {
+  background-color: #000;
+  border: 3px solid #FFF;
 }
 body .footer .right-side .social {
   margin: 20px 20px 0 0;
@@ -938,7 +947,7 @@ body .ready {
   background-image: url('screens/homepage/images/ready.jpg');
   background-size: cover;
   background-position: top center;
-  height: 500px;
+  height: 400px;
   position: relative;
 }
 @media (min-width: 992px) {
@@ -948,7 +957,7 @@ body .ready {
 }
 body .ready::after {
   content: '';
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
   display: block;
   height: 100%;
   width: 100vw;
@@ -959,8 +968,13 @@ body .ready::after {
   bottom: 0;
   z-index: 0;
 }
+@media (min-width: 992px) {
+  body .ready::after {
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
 body .ready .buttons-block {
-  margin-top: 100px;
+  margin-top: 228px;
   padding: 0 32px;
   position: relative;
   text-align: center;
@@ -972,20 +986,23 @@ body .ready .buttons-block {
   }
 }
 body .ready .title {
-  color: #9999ff;
-  font-size: 200px;
-  left: 10px;
-  line-height: 159px;
+  color: #FFF;
+  font-size: 94px;
+  left: 0;
+  line-height: 90px;
   position: absolute;
   text-align: center;
-  top: 20px;
+  top: 132px;
   width: 100%;
   z-index: 1;
 }
 @media (min-width: 992px) {
   body .ready .title {
     bottom: 0;
-    font-size: 250px;
+    color: #000;
+    font-size: 200px;
+    left: 25px;
+    line-height: 127px;
     text-align: left;
     top: auto;
     width: auto;
@@ -2075,20 +2092,34 @@ body .series-plans-container .title-block .title-2 {
 }
 body .series-plans-container .plans-container {
   display: inline-block;
-  margin: 0 0 130px;
+  margin: 0;
   padding: 32px;
   text-align: center;
 }
+@media (min-width: 992px) {
+  body .series-plans-container .plans-container {
+    margin: 0 0 20px;
+  }
+}
 body .series-plans-container .plans-container .plan-container {
+  background-position: top;
   display: inline-block;
-  height: 370px;
+  height: 360px;
   padding: 16px;
-  margin: 10px;
+  margin: 0 0 20px;
   vertical-align: top;
-  width: 370px;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  body .series-plans-container .plans-container .plan-container {
+    margin: 10px;
+    height: 370px;
+    width: 370px;
+  }
 }
 body .series-plans-container .plans-container .plan-container:nth-child(1) {
   background-image: url('screens/series/images/drop-in.jpg');
+  background-position: center;
 }
 body .series-plans-container .plans-container .plan-container:nth-child(2) {
   background-image: url('screens/series/images/rookie.jpg');
@@ -2170,11 +2201,43 @@ body .series-series-container h2 {
   text-align: center;
 }
 body .series-series-container .content {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+  max-width: 940px;
+}
+body .series-series-container .content .item {
+  margin-bottom: 32px;
+}
+@media (min-width: 992px) {
+  body .series-series-container .content .item {
+    margin-bottom: 0;
+  }
+}
+body .series-series-container .content .item img.on-your-time {
+  margin: 0 15px 0 -11px;
+  width: 60px;
+}
+@media (min-width: 992px) {
+  body .series-series-container .content .item img.on-your-time {
+    width: 80px;
+  }
+}
+body .series-series-container .content .item img.premium-facility {
+  margin: 0 10px 0 -15px;
+  width: 70px;
+}
+@media (min-width: 992px) {
+  body .series-series-container .content .item img.premium-facility {
+    margin: 0;
+    width: 100px;
+  }
+}
+body .series-series-container .content .item .text-container {
+  margin-left: 0;
 }
 body .series-series-container .content .item .text-container .title {
   font-family: 'shapiro95_super_wide';
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 /* MY ACCOUNT */
