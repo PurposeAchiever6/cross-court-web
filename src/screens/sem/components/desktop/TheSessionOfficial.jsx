@@ -6,7 +6,8 @@ import ReactPlayer from 'react-player';
 import ReactModal from 'react-modal';
 import { size } from 'shared/styles/mediaQueries';
 
-import PlaySvg from 'shared/components/svg/PlaySvg';
+import playButtonPurpleIcon from 'shared/images/play-button-purple.png';
+import playButtonWhiteIcon from 'shared/images/play-button-white.png';
 
 const TheSessionOfficial = () => {
   const env = runtimeEnv();
@@ -61,7 +62,7 @@ const TheSessionOfficial = () => {
             <div class="double-drop"></div>
           </a>
           <a
-            className="ar-button double inverted check-it-out"
+            className="ar-button double inverted learn-more"
             onClick={e => {
               e.preventDefault();
               setShowModal(true);
@@ -69,7 +70,8 @@ const TheSessionOfficial = () => {
             href="#modal"
           >
             <div className="ar-button-inner">
-              <PlaySvg />
+              <img className="play-button-white" src={playButtonWhiteIcon} />
+              <img className="play-button-purple" src={playButtonPurpleIcon} />
               <span className="text">LEARN MORE</span>
             </div>
             <div class="double-drop"></div>

@@ -13,33 +13,6 @@ import StorageUtils from 'shared/utils/storage';
 import { getPurchaseConfirmed } from '../reducer';
 
 const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  img {
-    margin: 3rem 0;
-  }
-
-  h1 {
-    width: 28%;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 900;
-    margin-bottom: 3.75rem;
-  }
-
-  button {
-    padding: 1rem 5rem;
-  }
-
-  @media (max-width: 991px) {
-    h1 {
-      width: 80%;
-    }
-  }
 `;
 
 const CheckoutConfirm = () => {
@@ -54,7 +27,7 @@ const CheckoutConfirm = () => {
   return (
     <PageContainer className="checkout-confirm">
       <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
-      <h1>Thank you for purchasing a Series! Now click below to sign up for a session.</h1>
+      <p>Thank you for purchasing a Series! Now click below to sign up for a session.</p>
       {!isNil(sessionSaved.id) && !isNil(sessionSaved.date) ? (
         <ArButton className="go-to-session-button" link={sessionURL} inverted={false}>
           GO TO SESSION

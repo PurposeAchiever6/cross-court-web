@@ -4,7 +4,8 @@ import ReactModal from 'react-modal';
 
 import useWindowSize from 'shared/hooks/useWindowSize';
 import { size } from 'shared/styles/mediaQueries';
-import PlaySvg from 'shared/components/svg/PlaySvg';
+import playButtonPurpleIcon from 'shared/images/play-button-purple.png';
+import playButtonWhiteIcon from 'shared/images/play-button-white.png';
 
 const NewToCrosscourt = () => {
   const [showModal, setShowModal] = useState(false);
@@ -39,7 +40,7 @@ const NewToCrosscourt = () => {
         <p className="title-2 shapiro95_super_wide">CROSSCOURT?</p>
       </section>
       <a
-        className="ar-button check-it-out"
+        className="ar-button double check-it-out"
         onClick={e => {
           e.preventDefault();
           setShowModal(true);
@@ -47,9 +48,11 @@ const NewToCrosscourt = () => {
         href="#modal"
       >
         <div className="ar-button-inner">
-          <PlaySvg />
+          <img className="play-button-white" src={playButtonWhiteIcon} />
+          <img className="play-button-purple" src={playButtonPurpleIcon} />
           <span className="text">CHECK IT OUT</span>
         </div>
+        <div className="double-drop"></div>
       </a>
       <ReactModal
         shouldCloseOnOverlayClick

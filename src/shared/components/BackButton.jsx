@@ -7,6 +7,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import device from 'shared/styles/mediaQueries';
 
+import backButtonIcon from 'shared/images/back-button.png';
+
 const BackButtonContainer = styled.button`
   font-size: 1.5rem;
   background-color: transparent;
@@ -39,7 +41,7 @@ const BackButton = ({ className, showText = true, color = 'black' }) => {
 
   return (
     <BackButtonContainer type="button" className={`go-back ${className}`} onClick={goBack}>
-      <FontAwesomeIcon icon={faArrowLeft} color={color} /> {showText && 'BACK'}
+      <img className="back-button" src={backButtonIcon} />
     </BackButtonContainer>
   );
 };

@@ -121,6 +121,7 @@ const SessionReserved = () => {
           </div>
           <div className="double-drop"></div>
         </a>
+        <br />
         <ArButton className="done-button" inverted link={ROUTES.MYACCOUNT}>
           DONE
         </ArButton>
