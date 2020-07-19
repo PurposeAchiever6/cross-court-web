@@ -1547,9 +1547,17 @@ body .join-the-cc-team .title-and-description-block .description {
 }
 body .the-session-experience-manager {
   background-color: #fff;
-  background-image: url('screens/sem/images/the-session-experience-manager.png');
+  background-image: none;
   background-position: top right;
   background-attachment: fixed;
+  display: block;
+  height: auto;
+}
+@media (min-width: 992px) {
+  body .the-session-experience-manager {
+    background-image: url('screens/sem/images/the-session-experience-manager.png');
+    height: 100vh;
+  }
 }
 body .the-session-experience-manager .title-and-description-block {
 }
@@ -1611,11 +1619,29 @@ body .the-session-experience-manager .title-and-description-block .button-wrappe
 }
 body .the-session-experience-manager .title-and-description-block .button-wrapper .learn-more .text {
 }
+body .the-session-experience-manager .mobile-image {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  body .the-session-experience-manager .mobile-image {
+    display: none;
+  }
+}
 body .the-session-official {
   background-color: #9999ff;
-  background-image: url('screens/sem/images/the-session-official.png');
+  background-image: none;
   background-position: top left;
   background-attachment: fixed;
+  display: block;
+  height: auto;
+}
+@media (min-width: 992px) {
+  body .the-session-official {
+    background-image: url('screens/sem/images/the-session-official.png');
+    height: 100vh;
+  }
 }
 body .the-session-official .title-and-description-block {
 }
@@ -1676,6 +1702,16 @@ body .the-session-official .title-and-description-block .button-wrapper .learn-m
   display: none
 }
 body .the-session-official .title-and-description-block .button-wrapper .learn-more .text {
+}
+body .the-session-official .mobile-image {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  body .the-session-official .mobile-image {
+    display: none;
+  }
 }
 body .cc-team-perks {
   display: block;

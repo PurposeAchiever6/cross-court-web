@@ -9,6 +9,8 @@ import { size } from 'shared/styles/mediaQueries';
 import playButtonPurpleIcon from 'shared/images/play-button-purple.png';
 import playButtonWhiteIcon from 'shared/images/play-button-white.png';
 
+import theSessionOfficialMobileImg from 'screens/sem/images/the-session-official.png';
+
 const TheSessionOfficial = () => {
   const env = runtimeEnv();
   const SO_LINK = env.REACT_APP_FOUNTAIN_SO_LINK;
@@ -92,6 +94,7 @@ const TheSessionOfficial = () => {
           </ReactModal>
         </div>
       </section>
+      <img className="mobile-image" src={theSessionOfficialMobileImg}></img>
     </section>
   );
 };

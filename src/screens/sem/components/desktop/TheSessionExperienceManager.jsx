@@ -9,6 +9,8 @@ import { size } from 'shared/styles/mediaQueries';
 import playButtonPurpleIcon from 'shared/images/play-button-purple.png';
 import playButtonWhiteIcon from 'shared/images/play-button-white.png';
 
+import theSessionExperienceManagerMobileImg from 'screens/sem/images/the-session-experience-manager.png';
+
 const SessionExperienceManager = () => {
   const env = runtimeEnv();
   const SEM_LINK = env.REACT_APP_FOUNTAIN_SEM_LINK;
@@ -91,6 +93,7 @@ const SessionExperienceManager = () => {
           </ReactModal>
         </div>
       </section>
+      <img className="mobile-image" src={theSessionExperienceManagerMobileImg}></img>
     </section>
   );
 };
