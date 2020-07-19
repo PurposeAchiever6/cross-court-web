@@ -47,10 +47,6 @@ const SignupFormContainer = styled.div`
     }
   }
 
-  button {
-    width: 20rem;
-  }
-
   .login {
     text-align: center;
     margin: 3rem 0;

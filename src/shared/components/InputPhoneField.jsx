@@ -46,7 +46,7 @@ const InputTextContainer = styled.div`
 
     img {
       position: absolute;
-      left: 10%;
+      left: 34px;
       top: 50%;
       height: 70%;
       transform: translate(-50%, -50%);

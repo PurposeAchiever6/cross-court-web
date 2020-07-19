@@ -428,17 +428,28 @@ body .ar-button.double .double-drop {
   width: 100%;
   z-index: 0;
 }
-.go-back {
+body .go-back {
   font-family: 'shapiro95_super_wide';
   font-size: 14px;
 }
-.go-back:hover {
+body .go-back:hover {
   opacity: 0.6;
 }
-.go-back .back-button {
+body .go-back .back-button {
   height: auto;
   margin-top: 2px;
   width: 140px;
+}
+body .form .form-group label {
+  font-size: 16px;
+  font-family: 'shapiro95_super_wide';
+  font-weight: normal;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+body .form .form-group input {
+  background-color: #FBF7F3;
+  border: 1px solid #000;
 }
 body .dharma_gothic_cexbold {
   font-family: 'dharma_gothic_cexbold';
@@ -832,10 +843,10 @@ body .what-we-do {
 body .what-we-do .title-and-description-block .bottomline {
   background-image: url('screens/homepage/images/no-bullshit.png');
   background-size: cover;
-  bottom: -105px;
-  height: 230px;
+  bottom: -92px;
+  height: 194px;
   right: 35px;
-  width: 230px;
+  width: 194px;
 }
 body .what-we-do .mobile-image {
   display: block;
@@ -2206,6 +2217,51 @@ body .signup .form .form-group label {
   letter-spacing: 0;
 }
 
+/* SIGNUP SUCCESS */
+body .signup-success {
+  position: relative;
+}
+body .signup-success .envelope-open {
+  margin: 0 0 70px;
+  width: 70px;
+}
+body .signup-success h1 {
+  color: #9999ff;
+  font-family: 'dharma_gothic_cheavy_italic';
+  font-size: 120px;
+  font-weight: normal;
+  margin-bottom: 100px;
+}
+body .signup-success .send-again-container .didnt-get-email {
+  display: block;
+  margin-bottom: 5px;
+}
+body .signup-success .send-again-container .send-it-again {
+  display: block;
+  font-family: 'shapiro95_super_wide';
+  font-size: 20px;
+  line-height: 20px;
+  margin-bottom: 50px;
+}
+@media (min-width: 992px) {
+  body .signup-success .send-again-container .send-it-again {
+    margin-bottom: 150px;
+  }
+}
+body .signup-success .freddie {
+  display: none;
+}
+@media (min-width: 992px) {
+  body .signup-success .freddie {
+    bottom: 0;
+    display: block;
+    left: 78vw;
+    margin-bottom: 0;
+    position: absolute;
+    z-index: -1;
+  }
+}
+
 /* SESSION RESERVED */
 body .session-reserved {
   padding: 32px;
@@ -2349,8 +2405,8 @@ body .series-plans-container .plans-container .plan-container {
 }
 @media (min-width: 992px) {
   body .series-plans-container .plans-container .plan-container {
-    margin: 10px;
     height: 370px;
+    margin: 10px;
     width: 370px;
   }
 }

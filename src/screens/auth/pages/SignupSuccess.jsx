@@ -4,7 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { getUserEmail } from 'screens/auth/reducer';
 import { sendConfirmationEmailInit } from 'screens/auth/actionCreators';
-import PaperPlaneIcon from 'shared/images/paper-plane-icon.png';
+import envelopeOpenIcon from 'shared/images/envelope-open.png';
+import freddieImg from 'shared/images/freddie.png';
 
 const PageContainer = styled.div`
   display: flex;
@@ -59,19 +60,19 @@ const SignupSuccessPage = () => {
   const sendEmailAction = () => dispatch(sendConfirmationEmailInit());
 
   return (
-    <PageContainer>
-      <img src={PaperPlaneIcon} alt="Sent mail icon" />
-      <h1>You&apos;re almost there!</h1>
+    <PageContainer className="signup-success">
+      <img className="envelope-open" src={envelopeOpenIcon} alt="Sent mail icon" />
+      <h1>SO CLOSE!</h1>
       <p>
-        We&apos;ve sent a confirmation e-mail to <strong>{`${userEmail}`}</strong>.{' '}
-        <span>Please verify your account.</span>
+        WE&apos;VE SENT AN EMAIL TO {`${userEmail}`}.
+        <br />
+        <span>PLEASE VERIFY YOUR ACCOUNT.</span>
       </p>
       <div className="send-again-container">
-        <span>
-          Didn’t get the e-mail?
-          <strong onClick={sendEmailAction}>Send it again</strong>
-        </span>
+        <span className="didnt-get-email">DIDN&apos;T GET THE EMAIL?</span>
+        <span className="send-it-again" onClick={sendEmailAction}>SEND IT AGAIN</span>
       </div>
+      <img className="freddie" src={freddieImg} />
     </PageContainer>
   );
 };
