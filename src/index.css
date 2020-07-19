@@ -2305,14 +2305,27 @@ body .series-plans-container .title-block {
 }
 body .series-plans-container .title-block .title-1 {
   font-family: 'shapiro97_air_extd';
-  font-size: 44px;
+  font-size: 37.5px;
+  line-height: 33.5px;
   margin-bottom: 0px;
+}
+@media (min-width: 992px) {
+  body .series-plans-container .title-block .title-1 {
+    font-size: 44px;
+    line-height: 40px;
+  }
 }
 body .series-plans-container .title-block .title-2 {
   font-family: 'shapiro95_super_wide';
-  font-size: 52px;
-  line-height: normal;
+  font-size: 44px;
+  line-height: 40px;
   margin-bottom: 0;
+}
+@media (min-width: 992px) {
+  body .series-plans-container .title-block .title-2 {
+    font-size: 52px;
+    line-height: 48px;
+  }
 }
 body .series-plans-container .plans-container {
   display: inline-block;
