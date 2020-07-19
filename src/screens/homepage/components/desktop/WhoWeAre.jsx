@@ -1,4 +1,5 @@
 import React from 'react';
+import whoWeAreMobileImg from 'screens/homepage/images/who-we-are.png';
 
 const WhoWeAre = () => (
   <section className="who-we-are section-block text-black">
@@ -16,6 +17,7 @@ const WhoWeAre = () => (
       </p>
       <p className="bottomline shapiro96_inclined_wide">NOTHIN BUT VIBE</p>
     </section>
+    <img className="mobile-image" src={whoWeAreMobileImg}></img>
   </section>
 );
 

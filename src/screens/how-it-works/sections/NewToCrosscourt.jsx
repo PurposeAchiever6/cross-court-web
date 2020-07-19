@@ -6,6 +6,7 @@ import useWindowSize from 'shared/hooks/useWindowSize';
 import { size } from 'shared/styles/mediaQueries';
 import playButtonPurpleIcon from 'shared/images/play-button-purple.png';
 import playButtonWhiteIcon from 'shared/images/play-button-white.png';
+import newToCrosscourtMobileImg from 'screens/how-it-works/images/new-to-crosscourt-mobile.png';
 
 const NewToCrosscourt = () => {
   const [showModal, setShowModal] = useState(false);
@@ -68,6 +69,7 @@ const NewToCrosscourt = () => {
           url="https://player.vimeo.com/video/438000525?title=0&byline=0&portrait=0&playsinline=0&autopause=0&app_id=122963"
         />
       </ReactModal>
+      <img className="mobile-image" src={newToCrosscourtMobileImg}></img>
     </section>
   );
 };

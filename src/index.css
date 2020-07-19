@@ -490,6 +490,11 @@ body .section-block {
   position: relative;
   width: 100vw;
 }
+/* @media (orientation: landscape) {
+  body .section-block {
+    height: auto;
+  }
+} */
 body .section-block.text-white {
   color: #fff;
 }
@@ -739,10 +744,17 @@ body .crosscourt-is-a-high-intensity .title-block .title {
 }
 body .why-we-exist {
   background-color: #000;
-  background-image: url('screens/homepage/images/the-fundamentals.png');
+  background-image: none;
   background-position: -100px 100px;
   background-attachment: fixed;
   display: block;
+  height: auto;
+}
+@media (min-width: 992px) {
+  body .why-we-exist {
+    background-image: url('screens/homepage/images/the-fundamentals.png');
+    height: 100vh;
+  }
 }
 @media (min-width: 992px) {
   body .why-we-exist .title-and-description-block .description {
@@ -757,11 +769,29 @@ body .why-we-exist .title-and-description-block .bottomline {
   line-height: 36px;
   right: 32px;
 }
+body .why-we-exist .mobile-image {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  body .why-we-exist .mobile-image {
+    display: none;
+  }
+}
 body .who-we-are {
   background-color: #fff;
-  background-image: url('screens/homepage/images/who-we-are.png');
+  background-image: none;
   background-position: top right;
   background-attachment: fixed;
+  display: block;
+  height: auto;
+}
+@media (min-width: 992px) {
+  body .who-we-are {
+    background-image: url('screens/homepage/images/who-we-are.png');
+    height: 100vh;
+  }
 }
 @media (min-width: 992px) {
   body .who-we-are .title-and-description-block .description {
@@ -775,11 +805,29 @@ body .who-we-are .title-and-description-block .bottomline {
   font-weight: bold;
   left: 32px;
 }
+body .who-we-are .mobile-image {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  body .who-we-are .mobile-image {
+    display: none;
+  }
+}
 body .what-we-do {
   background-color: #9999ff;
-  background-image: url('screens/homepage/images/xs-and-os.png');
+  background-image: none;
   background-position: 0 0;
   background-attachment: fixed;
+  display: block;
+  height: auto;
+}
+@media (min-width: 992px) {
+  body .what-we-do {
+    background-image: url('screens/homepage/images/xs-and-os.png');
+    height: 100vh;
+  }
 }
 body .what-we-do .title-and-description-block .bottomline {
   background-image: url('screens/homepage/images/no-bullshit.png');
@@ -788,6 +836,16 @@ body .what-we-do .title-and-description-block .bottomline {
   height: 230px;
   right: 35px;
   width: 230px;
+}
+body .what-we-do .mobile-image {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  body .what-we-do .mobile-image {
+    display: none;
+  }
 }
 body .keys-to-crosscourt {
   display: block;
@@ -1031,14 +1089,17 @@ body .ready .buttons-block .ar-button {
 
 /* HOW IT WORKS */
 body .new-to-crosscourt {
-  background: #9999ff url('screens/how-it-works/images/new-to-crosscourt.png') no-repeat 0 0;
+  background-color: #9999ff;
   background-position: top center;
   background-size: cover;
   display: block;
+  height: auto;
   padding: 100px 32px 0;
 }
 @media (min-width: 992px) {
   body .new-to-crosscourt {
+    background-image: url('screens/how-it-works/images/new-to-crosscourt.png');
+    height: 100vh;
     padding: 200px 32px 0;
   }
 }
@@ -1094,6 +1155,17 @@ body .new-to-crosscourt .check-it-out .play-button-purple {
 }
 body .new-to-crosscourt .check-it-out:hover img.play-button-purple {
   display: inline-block;
+}
+body .new-to-crosscourt .mobile-image {
+  display: block;
+  height: auto;
+  margin: -20px 0 0 -32px;
+  width: 100vw;
+}
+@media (min-width: 992px) {
+  body .new-to-crosscourt .mobile-image {
+    display: none;
+  }
 }
 body .sign-up {
   display: flex;

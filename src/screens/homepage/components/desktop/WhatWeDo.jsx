@@ -1,4 +1,5 @@
 import React from 'react';
+import whatWeDoMobileImg from 'screens/homepage/images/xs-and-os.png';
 
 const WhatWeDo = () => (
   <section className="what-we-do section-block text-white">
@@ -19,6 +20,7 @@ const WhatWeDo = () => (
       </p>
       <div className="bottomline"></div>
     </section>
+    <img className="mobile-image" src={whatWeDoMobileImg}></img>
   </section>
 );
 

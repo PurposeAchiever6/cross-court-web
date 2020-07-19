@@ -1,4 +1,5 @@
 import React from 'react';
+import whyWeExistMobileImg from 'screens/homepage/images/the-fundamentals.png';
 
 const WhyWeExist = () => (
   <section className="why-we-exist section-block text-white">
@@ -21,6 +22,7 @@ const WhyWeExist = () => (
         AN ATHLETE
       </p>
     </section>
+    <img className="mobile-image" src={whyWeExistMobileImg}></img>
   </section>
 );
 
