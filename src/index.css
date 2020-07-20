@@ -643,7 +643,11 @@ body .free-session-modal .title {
 /* HOMEPAGE */
 body .make-sport-your-lifestyle {
   background-image: url('screens/homepage/images/make-sport-your-lifestyle.jpg');
-  background-attachment: fixed;
+}
+@media (min-width: 992px) {
+  body .make-sport-your-lifestyle {
+    background-attachment: fixed;
+  }
 }
 body .make-sport-your-lifestyle::after {
   content: '';
@@ -716,8 +720,13 @@ body .make-sport-your-lifestyle .crosscourt-big-title.scrolled {
 }
 body .crosscourt-is-a-high-intensity {
   background-image: url('screens/homepage/images/crosscourt-is-a-high-intensity.jpg');
-  background-attachment: fixed;
-  height: 150vh;
+  height: 100vh;
+}
+@media (min-width: 992px) {
+  body .crosscourt-is-a-high-intensity {
+    background-attachment: fixed;
+    height: 150vh;
+  }
 }
 body .crosscourt-is-a-high-intensity::after {
   content: '';
@@ -757,13 +766,13 @@ body .why-we-exist {
   background-color: #000;
   background-image: none;
   background-position: -100px 100px;
-  background-attachment: fixed;
   display: block;
   height: auto;
 }
 @media (min-width: 992px) {
   body .why-we-exist {
     background-image: url('screens/homepage/images/the-fundamentals.png');
+    background-attachment: fixed;
     height: 100vh;
   }
 }
@@ -794,13 +803,13 @@ body .who-we-are {
   background-color: #fff;
   background-image: none;
   background-position: top right;
-  background-attachment: fixed;
   display: block;
   height: auto;
 }
 @media (min-width: 992px) {
   body .who-we-are {
     background-image: url('screens/homepage/images/who-we-are.png');
+    background-attachment: fixed;
     height: 100vh;
   }
 }
@@ -830,13 +839,13 @@ body .what-we-do {
   background-color: #9999ff;
   background-image: none;
   background-position: 0 0;
-  background-attachment: fixed;
   display: block;
   height: auto;
 }
 @media (min-width: 992px) {
   body .what-we-do {
     background-image: url('screens/homepage/images/xs-and-os.png');
+    background-attachment: fixed;
     height: 100vh;
   }
 }
@@ -1510,7 +1519,11 @@ body .the-session .button-wrapper {
 /* SEM (JOIN THE TEAM) */
 body .join-the-cc-team {
   background-image: url('screens/sem/images/join.jpg');
-  background-attachment: fixed;
+}
+@media (min-width: 992px) {
+  body .join-the-cc-team {
+    background-attachment: fixed;
+  }
 }
 body .join-the-cc-team .title-and-description-block {
   text-align: center;
@@ -1560,13 +1573,13 @@ body .the-session-experience-manager {
   background-color: #fff;
   background-image: none;
   background-position: top right;
-  background-attachment: fixed;
   display: block;
   height: auto;
 }
 @media (min-width: 992px) {
   body .the-session-experience-manager {
     background-image: url('screens/sem/images/the-session-experience-manager.png');
+    background-attachment: fixed;
     height: 100vh;
   }
 }
@@ -1644,13 +1657,13 @@ body .the-session-official {
   background-color: #9999ff;
   background-image: none;
   background-position: top left;
-  background-attachment: fixed;
   display: block;
   height: auto;
 }
 @media (min-width: 992px) {
   body .the-session-official {
     background-image: url('screens/sem/images/the-session-official.png');
+    background-attachment: fixed;
     height: 100vh;
   }
 }
@@ -1812,7 +1825,11 @@ body .cc-team-perks .boxes .boxes-item .boxes-text {
 }
 body .any-questions {
   background-image: url('screens/sem/images/any-questions.jpg');
-  background-attachment: fixed;
+}
+@media (min-width: 992px) {
+  body .any-questions {
+    background-attachment: fixed;
+  }
 }
 body .any-questions::after {
   content: '';
