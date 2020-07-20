@@ -432,13 +432,13 @@ body .go-back {
   font-family: 'shapiro95_super_wide';
   font-size: 14px;
 }
-body .go-back:hover {
-  opacity: 0.6;
-}
 body .go-back .back-button {
   height: auto;
   margin-top: 2px;
   width: 140px;
+}
+body .go-back:hover .back-button {
+  opacity: 0.6;
 }
 body .form .form-group label {
   font-size: 16px;
@@ -2105,6 +2105,7 @@ body .checkout h1 {
 }
 body .checkout .purchase-details-box {
   border: 3px solid #9999ff;
+  padding: 32px;
 }
 body .checkout .purchase-details-box .date {
   font-family: 'shapiro95_super_wide';
@@ -2115,6 +2116,7 @@ body .checkout .purchase-details-box .purchase-details-container .title {
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
   letter-spacing: 0;
+  margin-bottom: 5px;
 }
 body .checkout .purchase-details-box .purchase-details-container .plan-name {
   letter-spacing: 0;
@@ -2125,9 +2127,14 @@ body .checkout .purchase-details-box .payment-method-container .title {
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
   letter-spacing: 0;
+  margin-bottom: 10px;
 }
 body .checkout .purchase-details-box .payment-method-container .card-data .card-info .card-numbers {
   font-family: 'shapiro95_super_wide';
+}
+body .checkout .purchase-details-box .promo-total-container input {
+  background-color: #FBF7F3;
+  border: 1px solid #000;
 }
 body
   .checkout
@@ -2144,6 +2151,7 @@ body .checkout .promo-code .form .input-container label {
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
   letter-spacing: 0;
+  margin-bottom: 10px;
 }
 body .checkout .promo-code .form .use-code-button {
   font-family: 'shapiro95_super_wide';
@@ -2167,6 +2175,21 @@ body .checkout-confirm p {
 body .checkout-confirm .go-to-session-button,
 body .checkout-confirm .see-schedule-button {
   margin-bottom: 30px;
+}
+
+/* PAYMENTS ADD (ADD NEW CARD) */
+body .add-card .card-container .StripeElement {
+  background-color: #FBF7F3;
+  border: 1px solid #000;
+}
+body .add-card .card-container .card-number-element {
+  width: 170px;
+}
+body .add-card .card-container .expiration-date-element {
+  width: 87px;
+}
+body .add-card .card-container .cvc-element {
+  width: 60px;
 }
 
 /* LOGIN */
