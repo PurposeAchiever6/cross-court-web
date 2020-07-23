@@ -1060,7 +1060,7 @@ body .ready {
 }
 @media (min-width: 992px) {
   body .ready {
-    height: 530px;
+    height: 620px;
   }
 }
 body .ready::after {
