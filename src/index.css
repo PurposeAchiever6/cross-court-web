@@ -187,7 +187,8 @@ body .header .menu-button-container .menu-button:hover {
   opacity: 0.6;
 }
 body .header .menu-button-container .menu-button .menu-bars,
-body .header .menu-button-container .menu-button .menu-bars-alt {
+body .header .menu-button-container .menu-button .menu-bars-alt,
+body .header .menu-button-container .menu-button .menu-bars-nav-open {
   left: 16px;
   position: fixed;
   top: 20px;
@@ -199,10 +200,16 @@ body .header .menu-button-container .menu-button .menu-bars {
 body .header .menu-button-container .menu-button .menu-bars-alt {
   opacity: 0;
 }
+body .header .menu-button-container .menu-button .menu-bars-nav-open {
+  opacity: 0;
+}
 body .header.scrolled .menu-button-container .menu-button .menu-bars {
   opacity: 0;
 }
 body .header.scrolled .menu-button-container .menu-button .menu-bars-alt {
+  opacity: 1;
+}
+body .header .cheeseburger-menu.open + .header-content .menu-button-container .menu-button .menu-bars-nav-open {
   opacity: 1;
 }
 body .header .logo-icon,

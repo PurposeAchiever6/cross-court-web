@@ -6,6 +6,7 @@ import ROUTES from 'shared/constants/routes';
 import ArButton from 'shared/components/ArButton';
 import MenuSvg from 'shared/components/svg/MenuSvg';
 import MenuSvgAlt from 'shared/components/svg/MenuSvgAlt';
+import MenuSvgNavOpen from 'shared/components/svg/MenuSvgNavOpen';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 import LogoSvgAlt from 'shared/components/svg/LogoSvgAlt';
 import LogoSvgNavOpen from 'shared/components/svg/LogoSvgNavOpen';
@@ -106,6 +107,7 @@ function Header() {
             >
               <MenuSvg className="menu-bars" color={menuOpen ? '#000000' : '#FFFFFF'} />
               <MenuSvgAlt className="menu-bars-alt" color={menuOpen ? '#000000' : '#9999FF'} />
+              <MenuSvgNavOpen className="menu-bars-nav-open" color={'#FFFFFF'} />
             </button>
           </div>
           <Link to={ROUTES.HOME}>
