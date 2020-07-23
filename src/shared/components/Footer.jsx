@@ -125,7 +125,7 @@ function Footer() {
         </p>
       </section>
       <section className="right-side">
-        <ArButton link={ROUTES.FAQ} double font="shapiro96_inclined_wide">
+        <ArButton className="faq-link" link={ROUTES.FAQ}>
           FAQ
         </ArButton>
         <a className="social" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">

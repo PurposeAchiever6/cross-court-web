@@ -263,7 +263,7 @@ body[data-page='how-it-works'] main {
 }
 /* FOOTER */
 body .footer {
-  background-color: #000;
+  background-color: #FFF;
   display: flex;
   flex-direction: column;
   padding: 20px 32px;
@@ -296,6 +296,7 @@ body .footer .left-side {
   }
 }
 body .footer .left-side .copyright {
+  color: #9999FF;
   font-size: 12px;
   line-height: 16px;
   margin: 0;
@@ -317,22 +318,33 @@ body .footer .right-side {
     text-align: right;
   }
 }
-body .footer .right-side .ar-button {
-  margin: 5px 35px 0 0;
+body .footer .right-side .ar-button.faq-link {
+  background-color: transparent;
+  border: none;
+  font-family: 'shapiro97_air_extd';
+  font-size: 46px;
+  font-weight: bold;
+  line-height: 42px;
+  margin: 0px 10px 0 0;
+  transition: 500ms opacity ease;
   vertical-align: top;
 }
+body .footer .right-side .ar-button.faq-link:hover {
+  background-color: transparent;
+  border: none;
+  color: #9999FF;
+  opacity: 0.6;
+}
+body .footer .right-side .ar-button.faq-link .ar-button-inner {
+  background-color: transparent;
+  border: none;
+  color: #9999FF;
+}
 @media (min-width: 992px) {
-  body .footer .right-side .ar-button {
-    margin: 5px 70px 0 0;
+  body .footer .right-side .ar-button.faq-link {
+    font-size: 50px;
+    line-height: 46px;
   }
-}
-body .footer .right-side .ar-button .ar-button-inner {
-  background-color: #FFF;
-  color: #000;
-}
-body .footer .right-side .ar-button.double .double-drop {
-  background-color: #000;
-  border: 3px solid #FFF;
 }
 body .footer .right-side .social {
   margin: 20px 20px 0 0;
@@ -1088,7 +1100,6 @@ body .ready .title {
 @media (min-width: 992px) {
   body .ready .title {
     bottom: 0;
-    color: #000;
     font-size: 200px;
     left: 25px;
     line-height: 127px;
