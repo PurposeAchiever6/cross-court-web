@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PulseLoader } from 'react-spinners';
 import colors from 'shared/styles/constants';
 
 const LoadingContainer = styled.div`
@@ -13,11 +12,15 @@ const LoadingContainer = styled.div`
 const Loading = () => {
   return (
     <LoadingContainer>
-      <PulseLoader
-        // css={override}
-        size={32} // or 150px
-        color={colors.polarPlum}
-      />
+      <div class="loader-wrapper">
+        <div class="floor"></div>
+        <div class="ball">
+          <div class="ball-line"></div>
+          <div class="ball-line"></div>
+          <div class="ball-line"></div>
+          <div class="ball-line"></div>
+        </div>
+      </div>
     </LoadingContainer>
   );
 };
