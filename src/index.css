@@ -1060,18 +1060,6 @@ body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-instagram
   border: 3px solid #9999ff;
   color: #9999ff;
 }
-body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-widget-toolbar,
-body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-widget-toolbar + a {
-  display: none !important;
-}
-body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-widget-toolbar::after,
-body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-widget-toolbar + a::after {
-  background-color: #fff;
-  content: '';
-  height: 50px;
-  width: 50px;
-  z-index: 999999;
-}
 /* body .follow-us-on-instagram .instafeed img {
   display: inline-block;
   object-fit: cover;
