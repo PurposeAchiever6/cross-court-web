@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import {Helmet} from "react-helmet";
 import styled from 'styled-components';
 import ArButton from 'shared/components/ArButton';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
@@ -8,6 +9,10 @@ import colors from 'shared/styles/constants';
 import device from 'shared/styles/mediaQueries';
 import InstagramSvg from './svg/InstagramSvg';
 import PaperPlaneSvg from './svg/PaperPlaneSvg';
+
+import ReactModal from 'react-modal';
+import useWindowSize from 'shared/hooks/useWindowSize';
+import { size } from 'shared/styles/mediaQueries';
 
 const FooterContainer = styled.footer`
   color: ${colors.white};
@@ -117,6 +122,32 @@ function Footer() {
   const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
   const EMAIL_LINK = env.REACT_APP_EMAIL_LINK;
 
+  const [showModal, setShowModal] = useState(false);
+  const { width: windowSize } = useWindowSize();
+
+  const modalStyle = {
+    overlay: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.75)',
+      zIndex: 100,
+    },
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      border: 'none',
+      borderRadius: '0',
+      transform: 'translate(-50%, -50%)',
+      background: 'none',
+      padding: 0,
+      width: '80%',
+      height: windowSize < size.desktop ? '25%' : '70%',
+    },
+  };
+
   return (
     <FooterContainer className="footer">
       <section className="left-side">
@@ -131,10 +162,25 @@ function Footer() {
         <a className="social" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
           <InstagramSvg />
         </a>
-        <a className="social" href={EMAIL_LINK} rel="noopener noreferrer">
+        <a className="social" href="#modal" rel="noopener noreferrer" onClick={e => {
+          e.preventDefault();
+          document.querySelector('.eapps-form-floating-button').click();
+        }}>
           <PaperPlaneSvg />
         </a>
+        <div class="elfsight-app-9b2b9c0a-9ca9-4062-8b0e-a56917df571d"></div>
       </section>
+      <Helmet>
+        <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+      </Helmet>
+      {/* <ReactModal
+        shouldCloseOnOverlayClick
+        style={modalStyle}
+        onRequestClose={() => setShowModal(false)}
+        isOpen={showModal}
+      >
+        <div class="elfsight-app-9b2b9c0a-9ca9-4062-8b0e-a56917df571d"></div>
+      </ReactModal> */}
     </FooterContainer>
   );
 }
