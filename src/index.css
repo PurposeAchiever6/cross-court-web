@@ -120,27 +120,32 @@ body .sidebar-nav ul.list li.list-item a.active {
 body .sidebar-nav ul.list li.list-item a.active::before {
   content: '';
 }
-body .sidebar-nav .join-the-team {
+body .sidebar-nav .join-the-team,
+body .sidebar-nav .sem-handbook {
   font-size: 20px;
   margin-bottom: 70px;
   transition: 500ms opacity ease;
 }
-body .sidebar-nav .join-the-team:hover {
+body .sidebar-nav .join-the-team:hover,
+body .sidebar-nav .sem-handbook:hover {
   opacity: 0.6;
 }
 @media (min-width: 992px) {
-  body .sidebar-nav .join-the-team {
+  body .sidebar-nav .join-the-team,
+  body .sidebar-nav .sem-handbook {
     margin-bottom: 0;
   }
 }
-body .sidebar-nav .join-the-team button {
+body .sidebar-nav .join-the-team button,
+body .sidebar-nav .sem-handbook button {
   border: none;
   font-family: 'shapiro95_super_wide';
   font-size: 38px;
   padding: 0;
 }
 @media (min-width: 992px) {
-  body .sidebar-nav .join-the-team button {
+  body .sidebar-nav .join-the-team button,
+  body .sidebar-nav .sem-handbook button {
     text-align: right;
   }
 }

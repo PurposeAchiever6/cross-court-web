@@ -131,7 +131,7 @@ const SidebarMenu = ({ menuToggler }) => {
         )}
       </ul>
       {userProfile.isSem ? (
-        <Link to={ROUTES.SEMHANDBOOK}>
+        <Link to={ROUTES.SEMHANDBOOK} className="sem-handbook">
           <AlternativeButton className="button" onClick={menuToggler}>
             SEM HANDBOOK
           </AlternativeButton>
