@@ -1036,7 +1036,43 @@ body .follow-us-on-instagram .instafeed {
   margin-bottom: 20px;
   text-align: center;
 }
-body .follow-us-on-instagram .instafeed img {
+body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-instagram-feed-posts-grid-load-more {
+  background-color: #9999ff;
+  border: 3px solid #fff;
+  border-radius: 0;
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  font-family: 'shapiro95_super_wide';
+  height: auto;
+  line-height: 20px;
+  min-width: 130px;
+  padding: 8px 15px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
+  width: auto;
+}
+body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-instagram-feed-posts-grid-load-more:hover {
+  background-color: #fff;
+  border: 3px solid #9999ff;
+  color: #9999ff;
+}
+body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-widget-toolbar,
+body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-widget-toolbar + a {
+  display: none !important;
+}
+body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-widget-toolbar::after,
+body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-widget-toolbar + a::after {
+  background-color: #fff;
+  content: '';
+  height: 50px;
+  width: 50px;
+  z-index: 999999;
+}
+/* body .follow-us-on-instagram .instafeed img {
   display: inline-block;
   object-fit: cover;
   height: 33.33vw;
@@ -1050,7 +1086,7 @@ body .follow-us-on-instagram .instafeed img {
 }
 body .follow-us-on-instagram .load-more {
   margin: 0 auto 40px;
-}
+} */
 body .ready {
   background-image: url('screens/homepage/images/ready.jpg');
   background-size: cover;

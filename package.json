@@ -14,8 +14,7 @@
     "test": "react-scripts test"
   },
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   },
   "lint-staged": {
     "*.{js,jsx,json,scss,css}": [
@@ -67,6 +66,7 @@
     "react-dom": "^16.13.1",
     "react-ga": "^2.7.0",
     "react-hamburger-menu": "^1.2.1",
+    "react-helmet": "^6.1.0",
     "react-modal": "^3.11.2",
     "react-player": "^1.15.3",
     "react-redux": "^7.2.0",

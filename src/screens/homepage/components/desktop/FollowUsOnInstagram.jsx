@@ -1,4 +1,5 @@
 import React from 'react';
+import {Helmet} from "react-helmet";
 
 const FollowUsOnInstagram = () => (
   <section className="follow-us-on-instagram section-block text-purple">
@@ -7,7 +8,9 @@ const FollowUsOnInstagram = () => (
       <p className="title-2 shapiro95_super_wide">INSTAGRAM</p>
     </section>
     <div className="instafeed">
-      <script src="https://apps.elfsight.com/p/platform.js"></script>
+      <Helmet>
+        <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+      </Helmet>
       <div class="elfsight-app-a2f7cee6-3c03-4924-80fd-3fa237a1cc65"></div>
       {/* <img
         alt="Shared by Crosscourt on June 01, 2020 tagging @blklivesmatter."
