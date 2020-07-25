@@ -335,7 +335,7 @@ body .footer .right-side .ar-button.faq-link {
   background-size: contain;
   border: none;
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 1px;
+  -webkit-text-stroke: 1.5px;
   font-size: 44px;
   font-weight: bold;
   line-height: 38px;
@@ -968,11 +968,11 @@ body .why-we-exist {
   }
 }
 body .why-we-exist .title-and-description-block .bottomline {
-  bottom: -39px;
+  bottom: -41px;
   color: #9999ff;
   font-size: 50px;
   font-weight: bold;
-  line-height: 36px;
+  line-height: 38px;
   right: 32px;
 }
 body .why-we-exist .mobile-image {
@@ -1005,11 +1005,12 @@ body .who-we-are {
   }
 }
 body .who-we-are .title-and-description-block .bottomline {
-  bottom: -11px;
+  bottom: -0;
   color: #9999ff;
   font-size: 50px;
   font-weight: bold;
   left: 32px;
+  line-height: 30px;
 }
 body .who-we-are .mobile-image {
   display: block;
