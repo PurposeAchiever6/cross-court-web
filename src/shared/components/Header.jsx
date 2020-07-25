@@ -21,7 +21,6 @@ const Container = styled.div`
   width: 100%;
   left: 0;
   top: 0;
-  overflow: hidden;
 
   .cheeseburger-menu-inner {
     height: 100vh !important;

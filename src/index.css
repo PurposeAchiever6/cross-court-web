@@ -107,14 +107,15 @@ body .sidebar-nav ul.list li.list-item button:hover,
 body .sidebar-nav ul.list li.list-item a.active {
   color: #FFF;
   font-family: 'shapiro97_air_extd';
-  font-size: 16.1px;
+  -webkit-text-stroke: 1px;
+  font-size: 16px;
   opacity: 0.6;
 }
 @media (min-width: 992px) {
   body .sidebar-nav ul.list li.list-item a:hover,
   body .sidebar-nav ul.list li.list-item button:hover,
   body .sidebar-nav ul.list li.list-item a.active {
-    font-size: 21.3px;
+    font-size: 21.2px;
   }
 }
 body .sidebar-nav ul.list li.list-item a.active::before {
@@ -331,20 +332,18 @@ body .footer .right-side {
   }
 }
 body .footer .right-side .ar-button.faq-link {
-  background-color: transparent;
+  background-size: contain;
   border: none;
   font-family: 'shapiro97_air_extd';
-  font-size: 46px;
+  -webkit-text-stroke: 3px;
+  font-size: 44px;
   font-weight: bold;
-  line-height: 42px;
+  line-height: 38px;
   margin: 0px 10px 0 0;
   transition: 500ms opacity ease;
   vertical-align: top;
 }
 body .footer .right-side .ar-button.faq-link:hover {
-  background-color: transparent;
-  border: none;
-  color: #9999FF;
   opacity: 0.6;
 }
 body .footer .right-side .ar-button.faq-link .ar-button-inner {
@@ -354,8 +353,9 @@ body .footer .right-side .ar-button.faq-link .ar-button-inner {
 }
 @media (min-width: 992px) {
   body .footer .right-side .ar-button.faq-link {
+    -webkit-text-stroke: 3.5px;
     font-size: 50px;
-    line-height: 46px;
+    line-height: 47px;
   }
 }
 body .footer .right-side .social {
@@ -391,6 +391,7 @@ body .footer .right-side .social svg {
 }
 #eapps-form-1 .eapps-form-style-classic .eapps-form-element-container .eapps-form-element-input-text,
 #eapps-form-1 .eapps-form-style-classic .eapps-form-element-container .eapps-form-element-input-textarea {
+  background-color: #FBF7F3;
   border: 1px solid #000 !important;
 }
 #eapps-form-1 .eapps-form-style-classic .eapps-form-button,
@@ -542,6 +543,7 @@ body .shapiro96_inclined_wide {
 }
 body .shapiro97_air_extd {
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 1px;
 }
 
 /* BANNER CONTAINER (FIRST SESSION FREE) */
@@ -1267,7 +1269,7 @@ body .ready::after {
 }
 @media (min-width: 992px) {
   body .ready::after {
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 body .ready .buttons-block {
@@ -1283,25 +1285,28 @@ body .ready .buttons-block {
   }
 }
 body .ready .title {
+  background: transparent url('screens/homepage/images/ready-to-sweat-text.png') no-repeat 0 0;
+  background-size: contain;
   color: #FFF;
-  font-size: 94px;
+  display: block;
+  font-size: 0;
+  height: 83px;
   left: 0;
-  line-height: 90px;
+  margin: 0 auto;
   position: absolute;
-  text-align: center;
-  top: 132px;
-  width: 100%;
+  right: 0;
+  top: 90px;
+  width: 285px;
   z-index: 1;
 }
 @media (min-width: 992px) {
   body .ready .title {
-    bottom: 0;
-    font-size: 200px;
-    left: 25px;
-    line-height: 127px;
-    text-align: left;
+    bottom: -2px;
+    height: 203px;
+    left: 15px;
+    margin: 0;
     top: auto;
-    width: auto;
+    width: 700px;
   }
 }
 body .ready .buttons-block .ar-button {
@@ -1743,6 +1748,7 @@ body .join-the-cc-team .title-and-description-block {
 }
 body .join-the-cc-team .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2px;
   font-size: 40px;
   line-height: 36px;
   margin-bottom: 0;
@@ -1794,6 +1800,7 @@ body .the-session-experience-manager .title-and-description-block {
 }
 body .the-session-experience-manager .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2px;
   font-size: 28.5px;
   line-height: 24.5px;
   margin-bottom: 0;
@@ -1878,6 +1885,7 @@ body .the-session-official .title-and-description-block {
 }
 body .the-session-official .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2px;
   font-size: 28px;
   line-height: 24px;
   margin-bottom: 0;
@@ -2059,6 +2067,7 @@ body .any-questions .title-and-button-block {
 }
 body .any-questions .title-and-button-block .title-1 {
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2px;
   font-size: 21px;
   font-weight: bold;
   line-height: 17px;
@@ -2536,6 +2545,7 @@ body .session-reserved h1 {
 body .session-reserved h2 {
   color: #9999ff;
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2px;
   font-size: 23px;
   line-height: 19px;
   margin: 0 0 40px;
@@ -2579,6 +2589,7 @@ body .session-confirmed .sport-character-image {
 body .session-confirmed h2 {
   color: #9999ff;
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2px;
   font-size: 29px;
   margin: 0 0 80px;
 }
@@ -2608,6 +2619,7 @@ body .series-plans-container .title-block {
 }
 body .series-plans-container .title-block .title-1 {
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2px;
   font-size: 37.5px;
   line-height: 33.5px;
   margin-bottom: 0px;
@@ -2870,6 +2882,7 @@ body
   .session-title-2 {
   display: block;
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2px;
   font-size: 49px;
   line-height: 45px;
 }
@@ -3198,6 +3211,7 @@ body .my-account-mobile .tabs {
 }
 body .my-account-mobile .tabs span {
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2px;
   font-weight: bold;
 }
 body .my-account-mobile .tabs span.selected {
@@ -3246,6 +3260,7 @@ body .faq .section-links a:hover {
 }
 body .faq h2 {
   font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2px;
   font-size: 28px;
   line-height: 24px;
   font-weight: bold;
