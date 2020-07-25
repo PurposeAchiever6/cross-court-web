@@ -335,7 +335,7 @@ body .footer .right-side .ar-button.faq-link {
   background-size: contain;
   border: none;
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 3px;
+  -webkit-text-stroke: 1px;
   font-size: 44px;
   font-weight: bold;
   line-height: 38px;
@@ -1748,7 +1748,7 @@ body .join-the-cc-team .title-and-description-block {
 }
 body .join-the-cc-team .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 2px;
+  -webkit-text-stroke: 1px;
   font-size: 40px;
   line-height: 36px;
   margin-bottom: 0;
@@ -1800,7 +1800,7 @@ body .the-session-experience-manager .title-and-description-block {
 }
 body .the-session-experience-manager .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 2px;
+  -webkit-text-stroke: 1px;
   font-size: 28.5px;
   line-height: 24.5px;
   margin-bottom: 0;
@@ -1885,7 +1885,7 @@ body .the-session-official .title-and-description-block {
 }
 body .the-session-official .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 2px;
+  -webkit-text-stroke: 1px;
   font-size: 28px;
   line-height: 24px;
   margin-bottom: 0;
@@ -2067,7 +2067,7 @@ body .any-questions .title-and-button-block {
 }
 body .any-questions .title-and-button-block .title-1 {
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 2px;
+  -webkit-text-stroke: 1px;
   font-size: 21px;
   font-weight: bold;
   line-height: 17px;
@@ -2545,7 +2545,7 @@ body .session-reserved h1 {
 body .session-reserved h2 {
   color: #9999ff;
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 2px;
+  -webkit-text-stroke: 1px;
   font-size: 23px;
   line-height: 19px;
   margin: 0 0 40px;
@@ -2589,7 +2589,7 @@ body .session-confirmed .sport-character-image {
 body .session-confirmed h2 {
   color: #9999ff;
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 2px;
+  -webkit-text-stroke: 1px;
   font-size: 29px;
   margin: 0 0 80px;
 }
@@ -2619,7 +2619,7 @@ body .series-plans-container .title-block {
 }
 body .series-plans-container .title-block .title-1 {
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 2px;
+  -webkit-text-stroke: 1px;
   font-size: 37.5px;
   line-height: 33.5px;
   margin-bottom: 0px;
@@ -2882,7 +2882,7 @@ body
   .session-title-2 {
   display: block;
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 2px;
+  -webkit-text-stroke: 1px;
   font-size: 49px;
   line-height: 45px;
 }
@@ -3211,7 +3211,7 @@ body .my-account-mobile .tabs {
 }
 body .my-account-mobile .tabs span {
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 2px;
+  -webkit-text-stroke: 1px;
   font-weight: bold;
 }
 body .my-account-mobile .tabs span.selected {
@@ -3260,7 +3260,7 @@ body .faq .section-links a:hover {
 }
 body .faq h2 {
   font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 2px;
+  -webkit-text-stroke: 1px;
   font-size: 28px;
   line-height: 24px;
   font-weight: bold;
