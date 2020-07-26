@@ -30,7 +30,7 @@ function Signup() {
         </Icons>
         <p className="description">
           Reserve one of the 15 available spots in a session at a location near you. Come solo or
-          with friends. Bring your shoes, some water, a towel, and a ball if you have em.
+          with friends. Bring your shoes, some water, a towel, and a ball if you have 'em.
         </p>
         <div className="buttons-container">
           <ArButton link={ROUTES.LOCATIONS} double inverted>

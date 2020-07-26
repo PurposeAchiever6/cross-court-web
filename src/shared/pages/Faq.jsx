@@ -77,7 +77,7 @@ const Faq = () => {
       <div className="question-block">
         <h3>Do you offer membership or can I purchase a single session?</h3>
         <p>
-          We offer three types of series and a drop in option. All credits are non expiring, so you
+          We offer three types of series and a drop in option. All credits are non-expiring, so you
           can use the credits how you want, when you want.
         </p>
       </div>
