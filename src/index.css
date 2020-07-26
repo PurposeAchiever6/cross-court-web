@@ -47,8 +47,8 @@ body {
 }
 body {
   font-family: 'shapiro45_welter_extd';
-  font-size: 18px;
-  line-height: normal;
+  font-size: 16px;
+  line-height: 20px;
 }
 body ul,
 body ol {
@@ -2647,7 +2647,7 @@ body .series-plans-container .title-block .title-2 {
 body .series-plans-container .plans-container {
   display: inline-block;
   margin: 0;
-  padding: 32px;
+  padding: 32px 32px 20px;
   text-align: center;
 }
 @media (min-width: 992px) {
