@@ -12,7 +12,7 @@ const WhatWeDo = () => (
       </p>
       <p className="description shapiro45_welter_wide">
         Our 15 player, hour-long basketball-based sessions are electric and challenging. Built for
-        the modern athlete, we emphasize a seamless and sweat inducing experience.
+        the modern athlete, we emphasize a seamless and sweat inducing fitness experience.
         <br />
         <br />
         Our continuous games to 11 have a 5 minute time limit to keep the session fast-paced, while

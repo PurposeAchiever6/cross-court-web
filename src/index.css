@@ -2304,13 +2304,16 @@ body .payments .payment-methods-container {
 body .payments .payment-methods-container .credit-card-container {
   padding: 16px 0;
 }
-body
-  .payments
-  .payment-methods-container
-  .credit-card-container
-  .select-container
-  .selector.selected {
-  background-color: #9999ff;
+body .payments .payment-methods-container .credit-card-container .select-container {
+  padding: 1px;
+}
+body .payments .payment-methods-container .credit-card-container .select-container .selector {
+  height: 40px;
+  width: 40px;
+}
+body .payments .payment-methods-container .credit-card-container .select-container .selector.selected {
+  background: transparent url('shared/images/new-purple-circular-logo.png') no-repeat 0 0;
+  background-size: contain;
 }
 body .payments .payment-methods-container .credit-card-container .cc-info .ccnumber-container {
   font-family: 'shapiro95_super_wide';
@@ -2657,7 +2660,7 @@ body .series-plans-container .plans-container {
 body .series-plans-container .plans-container .plan-container {
   background-position: top;
   display: inline-block;
-  height: 370px;
+  height: 362px;
   padding: 16px;
   margin: 0 0 20px;
   vertical-align: top;
@@ -2665,7 +2668,6 @@ body .series-plans-container .plans-container .plan-container {
 }
 @media (min-width: 992px) {
   body .series-plans-container .plans-container .plan-container {
-    height: 370px;
     margin: 10px;
     width: 370px;
   }
@@ -2744,6 +2746,9 @@ body .series-plans-container .plans-container .plan-container .title .second-wor
 }
 body .series-plans-container .plans-container .plan-container .button-container {
   width: 100%;
+}
+body .series-plans-container .plans-container .plan-container .button-container .ar-button .ar-button-inner {
+  border: none;
 }
 body .series-series-container {
   padding: 0;
