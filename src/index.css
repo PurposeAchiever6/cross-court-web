@@ -1826,7 +1826,6 @@ body .the-session-experience-manager .title-and-description-block .title-2 {
   }
 }
 body .the-session-experience-manager .title-and-description-block .description {
-  font-family: 'shapiro45_welter_wide';
   margin-bottom: 80px;
 }
 body .the-session-experience-manager .title-and-description-block .button-wrapper {
@@ -1911,7 +1910,6 @@ body .the-session-official .title-and-description-block .title-2 {
   }
 }
 body .the-session-official .title-and-description-block .description {
-  font-family: 'shapiro45_welter_wide';
   margin-bottom: 80px;
 }
 body .the-session-official .title-and-description-block .button-wrapper {
@@ -2195,7 +2193,7 @@ body .sessions .session-details-container .details-container .session-data-conta
 }
 body .sessions .session-details-container .details-container .session-data-container .text,
 body .sessions .session-details-container .details-container .session-data-container .location {
-  font-family: 'shapiro45_welter_wide';
+  font-family: 'shapiro45_welter_extd';
   font-size: 14px;
   text-transform: uppercase;
 }

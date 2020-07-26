@@ -10,7 +10,7 @@ const WhyWeExist = () => (
         <br />
         FUNDAMENTALS
       </p>
-      <p className="description shapiro45_welter_wide">
+      <p className="description">
         We exist to unite and ignite the world through the power of team-sport. To serve as an
         outlet for modern athlete to shed sweat and stress. To redefine group fitness by developing
         a community that knows success is only possible when achieved together. We win when we

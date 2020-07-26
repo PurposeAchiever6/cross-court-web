@@ -10,7 +10,7 @@ const WhatWeDo = () => (
         <br />
         X&apos;S AND O&apos;S
       </p>
-      <p className="description shapiro45_welter_wide">
+      <p className="description">
         Our 15 player, hour-long basketball-based sessions are electric and challenging. Built for
         the modern athlete, we emphasize a seamless and sweat inducing fitness experience.
         <br />
