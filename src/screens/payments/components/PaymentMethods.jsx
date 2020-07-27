@@ -170,9 +170,7 @@ const PaymentMethods = ({ availableCards }) => {
       <h2>CHOOSE A PAYMENT METHOD</h2>
       <div className="payment-methods-container">
         {isEmpty(availableCards) ? (
-          <div className="empty-message">
-            <span>There are no payment methods added yet</span>
-          </div>
+          <div className="empty-message">There are no payment methods added yet.</div>
         ) : (
           availableCards.map(payment => {
             const isCardSelected = selectedCard === payment.id;

@@ -2322,6 +2322,12 @@ body .payments .payment-methods-container .credit-card-container .cc-info .expir
   font-size: 12px;
   font-style: normal;
 }
+body .payments .payment-methods-container .empty-message {
+  color: #000;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 10px;
+}
 
 /* ADD CARD */
 body .add-card h2 {
