@@ -201,7 +201,7 @@ function setScrollClasses() {
     const bottomBanner = document.querySelector('.banner-container');
 
     if (bottomBanner) {
-      if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 300)) {
+      if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 200)) {
         bottomBanner.classList.add('scrolled-down');
       } else {
         bottomBanner.classList.remove('scrolled-down');

@@ -76,6 +76,24 @@ body .mobile-hide-inline {
     display: inline;
   }
 }
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+  100% {
+      opacity: 1;
+  }
+}
+@keyframes topFadeInAndSlideIn {
+  0% {
+      opacity: 0;
+      transform: translateY(-100%);
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
 
 /* SIDEBAR NAV */
 body .sidebar-nav {
@@ -87,6 +105,36 @@ body .sidebar-nav .close-button {
 }
 body .sidebar-nav ul.list {
   margin: 0 0 150px 0;
+}
+body .cheeseburger-menu .sidebar-nav ul.list li.list-item {
+  transition: transform 800ms ease;
+}
+body .cheeseburger-menu .sidebar-nav ul.list li.list-item:nth-of-type(1) {
+  transform: translateX(-50vw);
+  transition-delay: 0ms;
+}
+body .cheeseburger-menu .sidebar-nav ul.list li.list-item:nth-of-type(2) {
+  transform: translateX(-50vw);
+  transition-delay: 50ms;
+}
+body .cheeseburger-menu .sidebar-nav ul.list li.list-item:nth-of-type(3) {
+  transform: translateX(-50vw);
+  transition-delay: 100ms;
+}
+body .cheeseburger-menu .sidebar-nav ul.list li.list-item:nth-of-type(4) {
+  transform: translateX(-50vw);
+  transition-delay: 150ms;
+}
+body .cheeseburger-menu .sidebar-nav ul.list li.list-item:nth-of-type(5) {
+  transform: translateX(-50vw);
+  transition-delay: 200ms;
+}
+body .cheeseburger-menu .sidebar-nav ul.list li.list-item:nth-of-type(6) {
+  transform: translateX(-50vw);
+  transition-delay: 250ms;
+}
+body .cheeseburger-menu.open .sidebar-nav ul.list li.list-item {
+  transform: translateX(0);
 }
 body .sidebar-nav ul.list li.list-item a,
 body .sidebar-nav ul.list li.list-item button {
@@ -877,6 +925,7 @@ body .make-sport-your-lifestyle .title-and-buttons-block {
   }
 }
 body .make-sport-your-lifestyle .title-and-buttons-block .title {
+  animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
   font-size: 30px;
   line-height: 36px;
   margin-bottom: 80px;
@@ -889,6 +938,7 @@ body .make-sport-your-lifestyle .title-and-buttons-block .title {
   }
 }
 body .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
+  animation: 500ms ease-out 2500ms 1 both fadeIn;
   display: block;
   margin: 0 auto 40px;
   max-width: 220px;
@@ -1389,6 +1439,7 @@ body .new-to-crosscourt {
   }
 }
 body .new-to-crosscourt .title-block {
+  animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
 }
 body .new-to-crosscourt .title-block .title-1 {
   font-size: 49px;
@@ -1413,6 +1464,9 @@ body .new-to-crosscourt .title-block .title-2 {
     line-height: 41px;
     margin-bottom: 40px;
   }
+}
+body .new-to-crosscourt .check-it-out {
+  animation: 500ms ease-out 2500ms 1 both fadeIn;
 }
 body .new-to-crosscourt .check-it-out svg {
   margin-right: 10px;
@@ -1800,6 +1854,7 @@ body .join-the-cc-team .title-and-description-block {
   }
 }
 body .join-the-cc-team .title-and-description-block .title-1 {
+  animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
   font-family: 'shapiro97_air_extd';
   -webkit-text-stroke: 1px;
   font-size: 40px;
@@ -1813,6 +1868,7 @@ body .join-the-cc-team .title-and-description-block .title-1 {
   }
 }
 body .join-the-cc-team .title-and-description-block .title-2 {
+  animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
   font-family: 'shapiro95_super_wide';
   font-size: 46px;
   line-height: 42px;
@@ -1825,6 +1881,7 @@ body .join-the-cc-team .title-and-description-block .title-2 {
   }
 }
 body .join-the-cc-team .title-and-description-block .description {
+  animation: 500ms ease-out 2500ms 1 both fadeIn;
   font-family: 'shapiro95_super_wide';
   font-size: 18px;
   line-height: 26px;
@@ -2703,14 +2760,20 @@ body .series-plans-container .title-block .title-2 {
   }
 }
 body .series-plans-container .plans-container {
-  display: inline-block;
+  display: block;
   margin: 0;
   padding: 32px 32px 20px;
   text-align: center;
 }
 @media (min-width: 992px) {
   body .series-plans-container .plans-container {
-    margin: 0 0 20px;
+    margin: 0 auto 20px;
+    max-width: 979px;
+  }
+}
+@media (min-width: 1624px) {
+  body .series-plans-container .plans-container {
+    max-width: none;
   }
 }
 body .series-plans-container .plans-container .plan-container {
@@ -2729,16 +2792,20 @@ body .series-plans-container .plans-container .plan-container {
   }
 }
 body .series-plans-container .plans-container .plan-container:nth-child(1) {
+  animation: 1000ms ease-out 200ms 1 both fadeIn;
   background-image: url('screens/series/images/drop-in.jpg');
   background-position: center;
 }
 body .series-plans-container .plans-container .plan-container:nth-child(2) {
+  animation: 1000ms ease-out 400ms 1 both fadeIn;
   background-image: url('screens/series/images/rookie.jpg');
 }
 body .series-plans-container .plans-container .plan-container:nth-child(3) {
+  animation: 1000ms ease-out 600ms 1 both fadeIn;
   background-image: url('screens/series/images/vet.jpg');
 }
 body .series-plans-container .plans-container .plan-container:nth-child(4) {
+  animation: 1000ms ease-out 800ms 1 both fadeIn;
   background-image: url('screens/series/images/mvp.jpg');
 }
 body .series-plans-container .plans-container .plan-container::after {
@@ -2780,12 +2847,14 @@ body .series-plans-container .plans-container .plan-container .sticker .text {
   line-height: 26px;
 }
 body .series-plans-container .plans-container .plan-container .title {
+  display: table;
   margin-bottom: 10px;
   padding-top: 200px;
   position: relative;
   z-index: 1;
 }
 body .series-plans-container .plans-container .plan-container .title .first-word {
+  display: block;
   font-family: 'shapiro95_super_wide';
   font-size: 32px;
   line-height: 38px;
