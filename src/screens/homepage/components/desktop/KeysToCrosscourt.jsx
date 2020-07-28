@@ -34,8 +34,9 @@ const KeysToCrosscourt = props => (
   <Section {...props}>
     <section className="keys-to-crosscourt section-block text-black">
       <section className="title-block">
-        <h2 className="title-1 shapiro97_air_extd">KEYS TO</h2>
-        <p className="title-2 shapiro95_super_wide">CROSSCOURT</p>
+        <p className="heading-sprite"></p>
+        {/* <h2 className="title-1 shapiro97_air_extd">KEYS TO</h2>
+        <p className="title-2 shapiro95_super_wide">CROSSCOURT</p> */}
       </section>
       <div className="boxes">
         <div className="boxes-item">

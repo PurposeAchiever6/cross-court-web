@@ -44,8 +44,9 @@ const TheSessionOfficial = () => {
   return (
     <section className="the-session-official section-block text-white">
       <section className="title-and-description-block shift-right">
-        <p className="title-1">THE SESSION</p>
-        <p className="title-2">OFFICIAL</p>
+        <p className="heading-sprite"></p>
+        {/* <p className="title-1">THE SESSION</p>
+        <p className="title-2">OFFICIAL</p> */}
         <p className="description">
           As a session official, you will have fun enforcing the Crosscourt rules and maintaining
           order on the court. This isn&apos;t your average referee role. We encourage getting to

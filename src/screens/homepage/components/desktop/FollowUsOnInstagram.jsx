@@ -4,8 +4,9 @@ import {Helmet} from "react-helmet";
 const FollowUsOnInstagram = () => (
   <section className="follow-us-on-instagram section-block text-purple">
     <section className="title-block">
-      <h2 className="title-1 shapiro97_air_extd">FOLLOW US ON</h2>
-      <p className="title-2 shapiro95_super_wide">INSTAGRAM</p>
+      <p className="heading-sprite"></p>
+      {/* <h2 className="title-1 shapiro97_air_extd">FOLLOW US ON</h2>
+      <p className="title-2 shapiro95_super_wide">INSTAGRAM</p> */}
     </section>
     <div className="instafeed">
       <Helmet>

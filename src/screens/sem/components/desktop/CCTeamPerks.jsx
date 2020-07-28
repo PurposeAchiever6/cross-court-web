@@ -26,8 +26,9 @@ const CCTeamPerks = props => (
   <Section {...props}>
     <section className="cc-team-perks section-block text-black">
       <section className="title-block">
-        <h2 className="title-1 shapiro97_air_extd">CCTEAM</h2>
-        <p className="title-2 shapiro95_super_wide">PERKS</p>
+        <p className="heading-sprite"></p>
+        {/* <h2 className="title-1 shapiro97_air_extd">CCTEAM</h2>
+        <p className="title-2 shapiro95_super_wide">PERKS</p> */}
       </section>
       <div className="boxes">
         <div className="boxes-item">

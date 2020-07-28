@@ -740,7 +740,19 @@ body .loader-wrapper .ball-line:nth-child(4) {
     left: -264.159265359px;
   }
 }
-
+body .heading-sprite {
+  background: transparent url('shared/images/HeadingSprite.png') no-repeat 0 0;
+  background-size: cover;
+  margin: 0 0 50px 0 !important;
+  padding: 0;
+  height: auto;
+  width: 230px;
+}
+@media (min-width: 992px) {
+  body .heading-sprite {
+    width: 430px;
+  }
+}
 body .section-block {
   background-repeat: no-repeat;
   background-size: cover;
@@ -1169,6 +1181,16 @@ body .keys-to-crosscourt .title-block {
   body .keys-to-crosscourt .title-block {
   }
 }
+body .keys-to-crosscourt .title-block .heading-sprite {
+  background-position: 0 0;
+  height: 44px;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt .title-block .heading-sprite {
+    background-position: 0 0;
+    height: 83px;
+  }
+}
 body .keys-to-crosscourt .title-block .title-1 {
   font-size: 32px;
   line-height: 28px;
@@ -1273,6 +1295,16 @@ body .follow-us-on-instagram .title-block {
 @media (min-width: 992px) {
   body .follow-us-on-instagram .title-block {
     padding: 32px;
+  }
+}
+body .follow-us-on-instagram .title-block .heading-sprite {
+  background-position: 0px -44px;
+  height: 44px;
+}
+@media (min-width: 992px) {
+  body .follow-us-on-instagram .title-block .heading-sprite {
+    background-position: 0px -83px;
+    height: 70px;
   }
 }
 body .follow-us-on-instagram .title-block .title-1 {
@@ -1435,6 +1467,16 @@ body .new-to-crosscourt {
 }
 body .new-to-crosscourt .title-block {
   animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
+}
+body .new-to-crosscourt .title-block .heading-sprite {
+  background-position: 0px -82px;
+  height: 46px;
+}
+@media (min-width: 992px) {
+  body .new-to-crosscourt .title-block .heading-sprite {
+    background-position: 0px -153px;
+    height: 86px;
+  }
 }
 body .new-to-crosscourt .title-block .title-1 {
   font-size: 49px;
@@ -1847,8 +1889,21 @@ body .join-the-cc-team .title-and-description-block {
     padding: 0 10%;
   }
 }
-body .join-the-cc-team .title-and-description-block .title-1 {
+body .join-the-cc-team .title-and-description-block .heading-sprite {
   animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
+  background-position: 0px -253px;
+  display: inline-block;
+  height: 68px;
+  width: 300px;
+}
+@media (min-width: 992px) {
+  body .join-the-cc-team .title-and-description-block .heading-sprite {
+    background-position: 0px -590px;
+    height: 159px;
+    width: 700px;
+  }
+}
+body .join-the-cc-team .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
   -webkit-text-stroke: 1px;
   font-size: 40px;
@@ -1901,6 +1956,24 @@ body .the-session-experience-manager {
   }
 }
 body .the-session-experience-manager .title-and-description-block {
+}
+@media (min-width: 992px) {
+  body .the-session-experience-manager .title-and-description-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+body .the-session-experience-manager .title-and-description-block .heading-sprite {
+  background-position: 0px -246px;
+  height: 30px;
+}
+@media (min-width: 992px) {
+  body .the-session-experience-manager .title-and-description-block .heading-sprite {
+    background-position: 0px -697px;
+    height: 81px;
+    width: 650px;
+  }
 }
 body .the-session-experience-manager .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
@@ -1986,6 +2059,26 @@ body .the-session-official {
 }
 body .the-session-official .title-and-description-block {
 }
+@media (min-width: 992px) {
+  body .the-session-official .title-and-description-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center !important;
+  }
+}
+body .the-session-official .title-and-description-block .heading-sprite {
+  background-position: 0px -276px;
+  display: inline-block;
+  height: 44px;
+  text-align: right;
+}
+@media (min-width: 992px) {
+  body .the-session-official .title-and-description-block .heading-sprite {
+    background-position: 0px -779px;
+    height: 126px;
+    width: 650px;
+  }
+}
 body .the-session-official .title-and-description-block .title-1 {
   font-family: 'shapiro97_air_extd';
   -webkit-text-stroke: 1px;
@@ -2060,6 +2153,16 @@ body .cc-team-perks {
   padding: 32px;
 }
 body .cc-team-perks .title-block {
+}
+body .cc-team-perks .title-block .heading-sprite {
+  background-position: 0px -321px;
+  height: 64px;
+}
+@media (min-width: 992px) {
+  body .cc-team-perks .title-block .heading-sprite {
+    background-position: 0px -600px;
+    height: 119px;
+  }
 }
 body .cc-team-perks .title-block .title-1 {
   font-size: 32px;
@@ -2725,6 +2828,16 @@ body .session-confirmed .done-button:hover .ar-button-inner {
 /* SERIES */
 body .series-plans-container .title-block {
   padding: 32px 32px 0;
+}
+body .series-plans-container .title-block .heading-sprite {
+  background-position: 0px -128px;
+  height: 66px;
+}
+@media (min-width: 992px) {
+  body .series-plans-container .title-block .heading-sprite {
+    background-position: 0px -239px;
+    height: 123px;
+  }
 }
 body .series-plans-container .title-block .title-1 {
   font-family: 'shapiro97_air_extd';

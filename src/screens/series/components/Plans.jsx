@@ -156,8 +156,9 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
   return (
     <PlansContainer className="series-plans-container">
       <section className="title-block">
-        <h2 className="title-1">THE CC</h2>
-        <p className="title-2">SERIES</p>
+        <p className="heading-sprite"></p>
+        {/* <h2 className="title-1">THE CC</h2>
+        <p className="title-2">SERIES</p> */}
       </section>
       <div className="plans-container">
         {products.map(product => {

@@ -44,8 +44,9 @@ const SessionExperienceManager = () => {
   return (
     <section className="the-session-experience-manager section-block text-black">
       <section className="title-and-description-block shift-left">
-        <p className="title-1">THE SESSION</p>
-        <p className="title-2">EXPERIENCE MANAGER</p>
+        <p className="heading-sprite"></p>
+        {/* <p className="title-1">THE SESSION</p>
+        <p className="title-2">EXPERIENCE MANAGER</p> */}
         <p className="description">
           Crosscourt&apos;s SEMs are the face of Crosscourt at each session. Part host, part DJ, and
           part coordinator, you represent Crosscourt at each session you manage. You bring the
