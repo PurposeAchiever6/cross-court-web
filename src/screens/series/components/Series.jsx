@@ -38,7 +38,6 @@ const SeriesContainer = styled.div`
         width: 50%;
         margin-left: 2.25rem;
         .title {
-          font-weight: bold;
           font-size: 1.25rem;
           margin-bottom: 0.5rem;
         }

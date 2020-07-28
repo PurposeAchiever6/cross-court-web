@@ -385,7 +385,6 @@ body .footer .right-side .ar-button.faq-link {
   font-family: 'shapiro97_air_extd';
   -webkit-text-stroke: 1.5px;
   font-size: 44px;
-  font-weight: bold;
   line-height: 38px;
   margin: 0px 10px 0 0;
   transition: 500ms opacity ease;
@@ -820,7 +819,6 @@ body .section-block p {
 }
 body .section-block .title-and-description-block .title-1 {
   font-size: 24px;
-  font-weight: bold;
   line-height: 20px;
   margin-bottom: 20px;
 }
@@ -1073,7 +1071,6 @@ body .why-we-exist .title-and-description-block .bottomline {
   bottom: -41px;
   color: #9999ff;
   font-size: 50px;
-  font-weight: bold;
   line-height: 38px;
   right: 32px;
 }
@@ -1110,7 +1107,6 @@ body .who-we-are .title-and-description-block .bottomline {
   bottom: -0;
   color: #9999ff;
   font-size: 50px;
-  font-weight: bold;
   left: 32px;
   line-height: 30px;
 }
@@ -1175,7 +1171,6 @@ body .keys-to-crosscourt .title-block {
 }
 body .keys-to-crosscourt .title-block .title-1 {
   font-size: 32px;
-  font-weight: bold;
   line-height: 28px;
   margin: 0;
 }
@@ -1443,7 +1438,6 @@ body .new-to-crosscourt .title-block {
 }
 body .new-to-crosscourt .title-block .title-1 {
   font-size: 49px;
-  font-weight: bold;
   line-height: 45px;
   margin: 0;
 }
@@ -2069,7 +2063,6 @@ body .cc-team-perks .title-block {
 }
 body .cc-team-perks .title-block .title-1 {
   font-size: 32px;
-  font-weight: bold;
   line-height: 28px;
   margin: 0;
 }
@@ -2177,7 +2170,6 @@ body .any-questions .title-and-button-block .title-1 {
   font-family: 'shapiro97_air_extd';
   -webkit-text-stroke: 1px;
   font-size: 21px;
-  font-weight: bold;
   line-height: 17px;
   margin-bottom: 0;
 }
@@ -2919,7 +2911,7 @@ body .series-series-container .content .item .text-container {
 }
 body .series-series-container .content .item .text-container .title {
   font-family: 'shapiro95_super_wide';
-  font-weight: bold;
+  font-weight: normal;
   margin-bottom: 5px;
 }
 
@@ -3343,7 +3335,6 @@ body .my-account-mobile .tabs {
 body .my-account-mobile .tabs span {
   font-family: 'shapiro97_air_extd';
   -webkit-text-stroke: 1px;
-  font-weight: bold;
 }
 body .my-account-mobile .tabs span.selected {
   font-family: 'shapiro95_super_wide';
@@ -3394,7 +3385,6 @@ body .faq h2 {
   -webkit-text-stroke: 1px;
   font-size: 28px;
   line-height: 24px;
-  font-weight: bold;
   text-align: center;
 }
 @media (min-width: 992px) {

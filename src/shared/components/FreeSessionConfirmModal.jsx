@@ -21,7 +21,6 @@ const FreeSessionModalContainer = styled.div`
   position: relative;
 
   .title {
-    font-weight: bold;
     font-size: 1.75rem;
     line-height: 1.9rem;
     color: #000000;
