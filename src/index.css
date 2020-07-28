@@ -894,14 +894,48 @@ body .make-sport-your-lifestyle .crosscourt-big-title {
   opacity: 0;
   position: absolute;
   text-align: center;
-  transition: opacity 300ms ease;
+  transition: opacity 100ms ease;
   width: 100vw;
   z-index: 1;
 }
-body .make-sport-your-lifestyle .crosscourt-big-title.scrolling {
+body .make-sport-your-lifestyle .crosscourt-big-title.anim1,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim20 {
+  opacity: 0.1;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim2,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim19 {
+  opacity: 0.2;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim3,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim18 {
+  opacity: 0.3;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim4,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim17 {
+  opacity: 0.4;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim5,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim16 {
   opacity: 0.5;
 }
-body .make-sport-your-lifestyle .crosscourt-big-title.scrolled {
+body .make-sport-your-lifestyle .crosscourt-big-title.anim6,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim15 {
+  opacity: 0.6;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim7,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim14 {
+  opacity: 0.7;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim8,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim13 {
+  opacity: 0.8;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim9,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim12 {
+  opacity: 0.9;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim10,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim11 {
   opacity: 1;
 }
 body .crosscourt-is-a-high-intensity {

@@ -71,7 +71,7 @@ const Faq = () => {
         <p>
           60 minutes of non stop action gets those competitive juices flowing and makes for a major
           burn. While it depends on the person, you can expect to burn 500 to 1,000+ calories per
-          session. Can&apos;t spell ball out without all out!
+          session. Can&apos;t spell &quot;ball out&quot; without all out!
         </p>
       </div>
       <div className="question-block">
@@ -90,7 +90,7 @@ const Faq = () => {
         </p>
       </div>
       <div className="question-block">
-        <h3>How old do you need to be to join?</h3>
+        <h3>How old do I need to be to join?</h3>
         <p>You must be 18 or older to participate.</p>
       </div>
       <div className="question-block">
@@ -115,7 +115,7 @@ const Faq = () => {
           your session) will result in a charge for the amount of your session credit and will not
           result in a refund. Confirming and no showing will also result in lost session credit. If
           this happens twice, your account will be flagged. The other players in the session are
-          relying on your attendance, so not showing up will affect the entire groups experience.
+          relying on your attendance, so not showing up will affect the entire group&apos;s experience.
         </p>
       </div>
       <div className="question-block">
@@ -128,7 +128,7 @@ const Faq = () => {
       <div className="question-block">
         <h3>What happens when I arrive?</h3>
         <p>
-          After signing up, we&apos;ll send you a “What to Expect” video. When you arrive, find one
+          After signing up, we&apos;ll send you a &quot;What to Expect&quot; video. When you arrive, find one
           of our Experience Managers if you are not greeted at the door. They will check you in and
           hand you a jersey. After finding out what color to wear, we recommend stretching out,
           getting to know your teammates, or snapping a photo for the gram before we tip off.
@@ -140,7 +140,7 @@ const Faq = () => {
           We cannot make specific arrangements. Crosscourt is a social form of exercise, and as such
           we recommend getting to know some of the other players in your session. If you enjoy going
           to the same location at the same time each week, then you will likely see the same players
-          frequently. Also note, teams will be rotated if there is less than 15 players in a
+          frequently. Also note, teams will be rotated if there are less than 15 players in a
           session.
         </p>
       </div>
@@ -148,7 +148,7 @@ const Faq = () => {
         <h3>How do I book a Session?</h3>
         <p>
           Go to the <a href="locations">schedule/locations</a> tab on our website and find a session
-          that works for you. Either filter by location, date, or time and just click "Reserve." If
+          that works for you. Either filter by location, date, or time and just click &quot;Reserve.&quot; If
           you don&apos;t have any session credits, then you&apos;ll be asked to purchase before
           confirming your reservation.
         </p>
@@ -257,7 +257,7 @@ const Faq = () => {
         <ul>
           <li>Paid well</li>
           <li>Free Sessions</li>
-          <li>Performance Bonus</li>
+          <li>Performance Bonus&apos;</li>
           <li>Equity in company</li>
           <li>Exclusive Merch</li>
           <li>To be the face of Crosscourt</li>
