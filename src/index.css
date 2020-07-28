@@ -414,6 +414,24 @@ body .footer .right-side .social svg {
   color: #9999ff;
 }
 
+body .banner-container {
+  bottom: 10px;
+  position: fixed;
+  right: 10px;
+  transition: right 300ms ease, bottom 300ms ease, transform 300ms ease;
+  z-index: 100;
+}
+body .banner-container.scrolled-down {
+  bottom: 300px;
+  right: -90px;
+  transform: rotate(-90deg);
+}
+@media (min-width: 992px) {
+  body .banner-container.scrolled-down {
+    bottom: 50vh;
+  }
+}
+
 /* COMPONENTS */
 body .ar-button {
   background-color: transparent;

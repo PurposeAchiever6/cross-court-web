@@ -15,21 +15,21 @@ import FreeSessionConfirmModal from 'shared/components/FreeSessionConfirmModal';
 import device from 'shared/styles/mediaQueries';
 
 const BannerContainer = styled.div`
-  display: ${({ showBanner }) => (showBanner ? 'flex' : 'none')};
-  flex-direction: column;
-  background: #aaaff3;
-  color: white;
-  position: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 65 ? 'fixed' : 'absolute')};
-  bottom: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 65 ? '2rem' : '6rem')};
-  right: 3rem;
-  z-index: 100;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  // display: ${({ showBanner }) => (showBanner ? 'flex' : 'none')};
+  // flex-direction: column;
+  // background: #aaaff3;
+  // color: white;
+  // position: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 65 ? 'fixed' : 'absolute')};
+  // bottom: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 65 ? '2rem' : '6rem')};
+  // right: 3rem;
+  // z-index: 100;
+  // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 991px) {
-    right: 1rem;
-    bottom: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 165 ? '2rem' : '12rem')};
-    position: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 165 ? 'fixed' : 'absolute')};
-  }
+  // @media (max-width: 991px) {
+  //   right: 1rem;
+  //   bottom: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 165 ? '2rem' : '12rem')};
+  //   position: ${({ scrollY, scrollLimit }) => (scrollLimit - scrollY > 165 ? 'fixed' : 'absolute')};
+  // }
 `;
 
 const FreeSessionBanner = () => {

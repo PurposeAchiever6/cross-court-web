@@ -119,7 +119,7 @@ function setScrollClasses() {
         addClass = 'anim8';
       } else if (window.scrollY >= 330 && window.scrollY < 360) {
         addClass = 'anim9';
-      } else if (window.scrollY >= 360 && window.scrollY < 390) {////////
+      } else if (window.scrollY >= 360 && window.scrollY < 390) {
         addClass = 'anim10';
       } else if (window.scrollY >= 390 && window.scrollY < 420) {
         addClass = 'anim11';
@@ -196,6 +196,18 @@ function setScrollClasses() {
   } else {
     header.classList.add('scrolled');
   }
+
+  window.setTimeout(function() {
+    const bottomBanner = document.querySelector('.banner-container');
+
+    if (bottomBanner) {
+      if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 300)) {
+        bottomBanner.classList.add('scrolled-down');
+      } else {
+        bottomBanner.classList.remove('scrolled-down');
+      }
+    }
+  }, 100);
 }
 
 window.addEventListener('scroll', setScrollClasses);
