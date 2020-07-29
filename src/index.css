@@ -905,6 +905,7 @@ body .free-session-modal .title {
 /* HOMEPAGE */
 body .make-sport-your-lifestyle {
   background-image: url('screens/homepage/images/make-sport-your-lifestyle.jpg');
+  min-height: 850px;
 }
 @media (min-width: 992px) {
   body .make-sport-your-lifestyle {
@@ -916,6 +917,7 @@ body .make-sport-your-lifestyle::after {
   background: rgba(0, 0, 0, 0.4);
   display: block;
   height: 100vh;
+  min-height: 850px;
   width: 100vw;
   position: absolute;
   top: 0;
@@ -1018,6 +1020,7 @@ body .make-sport-your-lifestyle .crosscourt-big-title.anim11 {
 }
 body .crosscourt-is-a-high-intensity {
   background-image: url('screens/homepage/images/crosscourt-is-a-high-intensity.jpg');
+  min-height: 850px;
   height: 100vh;
 }
 @media (min-width: 992px) {
@@ -1031,6 +1034,7 @@ body .crosscourt-is-a-high-intensity::after {
   background: rgba(0, 0, 0, 0.4);
   display: block;
   height: 150vh;
+  min-height: 850px;
   width: 100vw;
   position: absolute;
   top: 0;
@@ -1072,6 +1076,7 @@ body .why-we-exist {
     background-image: url('screens/homepage/images/the-fundamentals.png');
     background-attachment: fixed;
     height: 100vh;
+    min-height: 850px;
   }
 }
 @media (min-width: 992px) {
@@ -1102,6 +1107,7 @@ body .who-we-are {
   background-position: top right;
   display: block;
   height: auto;
+  min-height: 850px;
 }
 @media (min-width: 992px) {
   body .who-we-are {
@@ -1138,6 +1144,7 @@ body .what-we-do {
   background-position: 0 0;
   display: block;
   height: auto;
+  min-height: 850px;
 }
 @media (min-width: 992px) {
   body .what-we-do {
