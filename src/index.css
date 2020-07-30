@@ -3064,8 +3064,8 @@ body .my-account-mobile .sidebar-container .my-profile h3 {
 }
 body .my-account-desktop .sidebar-container .my-profile .detail-row .title,
 body .my-account-desktop .sidebar-container .my-profile form label,
-body .my-account-mobile .sidebar-container .my-profile .detail-row .title,
-body .my-account-mobile .sidebar-container .my-profile form label {
+body .my-account-mobile .tab-content .my-profile .detail-row .title,
+body .my-account-mobile .tab-content .my-profile form label {
   color: #000;
   font-family: 'shapiro95_super_wide';
   font-weight: normal;
@@ -3467,8 +3467,30 @@ body .my-account-mobile .tabs span.selected {
   font-family: 'shapiro95_super_wide';
   font-weight: normal;
 }
+body .my-account-mobile .tabs {
+  font-size: 24px;
+  line-height: 20px;
+}
 body .my-account-mobile .tab-content {
   margin-bottom: 50px;
+}
+body .my-account-mobile .tab-content .sessions-number-container {
+  margin-top: 10px;
+}
+body .my-account-mobile .tab-content .sessions-number-container .session-number {
+  display: block;
+  font-family: 'shapiro105_max_extd';
+  font-size: 58px;
+  line-height: 54px;
+  margin-bottom: 0;
+}
+body .my-account-mobile .tab-content .sessions-number-container .sessions-left {
+  font-family: 'shapiro95_super_wide';
+  font-size: 20px;
+  line-height: 16px;
+}
+body .my-account-mobile .tab-content .links .buy-series-btn {
+  margin-bottom: 10px;
 }
 
 /* PURCHASE HISTORY */
