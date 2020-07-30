@@ -10,7 +10,7 @@ const Container = styled.div`
 
   .title {
     text-transform: uppercase;
-    color: ${colors.polarPlum};
+    color: #9999ff;
     font-size: 1rem;
     margin: 0 2rem;
   }
@@ -40,7 +40,7 @@ const PlayerContainer = styled.div`
   }
 
   .player-number {
-    border-bottom: .25rem solid ${colors.polarPlum};
+    border-bottom: .25rem solid #9999ff;
     font-size: 2rem;
     text-align: center;
     font-family: Space Mono;

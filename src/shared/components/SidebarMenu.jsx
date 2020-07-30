@@ -45,7 +45,7 @@ const Nav = styled.nav`
 
       &.active {
         font-weight: bold;
-        color: ${colors.polarPlum};
+        color: #9999ff;
 
         &::before {
           content: '•';

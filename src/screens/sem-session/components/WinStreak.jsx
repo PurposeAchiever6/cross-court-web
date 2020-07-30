@@ -15,7 +15,7 @@ const Container = styled.div`
 
   .title {
     text-transform: uppercase;
-    color: ${colors.polarPlum};
+    color: #9999ff;
     font-size: 1rem;
     margin: 0 1.2rem;
   }

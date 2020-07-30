@@ -15,7 +15,7 @@ const InputTextContainer = styled.div`
   label {
     font-size: 0.75rem;
     line-height: 1rem;
-    color: ${colors.polarPlum};
+    color: #9999ff;
     margin: 0 0 0.75rem;
     text-transform: uppercase;
     font-weight: bold;

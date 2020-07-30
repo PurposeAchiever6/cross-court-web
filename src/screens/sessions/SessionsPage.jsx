@@ -87,7 +87,7 @@ const SessionsPageContainer = styled.div`
         }
 
         .title {
-          color: ${colors.polarPlum};
+          color: #9999ff;
           font-size: 0.75rem;
           font-weight: 600;
           text-transform: uppercase;

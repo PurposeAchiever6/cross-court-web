@@ -35,14 +35,14 @@ const LocationPickerContainer = styled.div`
         padding: 1rem;
         font-size: 1.75rem;
         &:hover {
-          background-color: ${transparentize(0.5, `${colors.polarPlum}`)};
+          background-color: ${transparentize(0.5, `#9999ff`)};
         }
       }
 
       .location-picker__option--is-selected {
-        background-color: ${colors.polarPlum};
+        background-color: #9999ff;
         &:hover {
-          background-color: ${colors.polarPlum};
+          background-color: #9999ff;
         }
       }
     }
@@ -53,7 +53,7 @@ const LocationPickerContainer = styled.div`
     padding: 0.5rem;
 
     .location-picker__single-value {
-      font-size: 1.75rem;
+      font-size: 1.5rem;
       font-weight: bold;
     }
   }
@@ -67,7 +67,7 @@ const LocationPickerContainer = styled.div`
   }
 
   .address-container {
-    background-color: ${colors.polarPlum};
+    background-color: #9999ff;
     color: ${colors.white};
     text-align: center;
     padding: 1rem;

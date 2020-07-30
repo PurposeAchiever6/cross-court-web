@@ -46,7 +46,7 @@ const PromoCodeContainer = styled.div`
       font-size: 0.9rem;
       line-height: 0.9rem;
       letter-spacing: 0.2em;
-      color: #aaaff3;
+      color: #9999ff;
       margin-bottom: 0.8rem;
       text-transform: capitalize;
     }

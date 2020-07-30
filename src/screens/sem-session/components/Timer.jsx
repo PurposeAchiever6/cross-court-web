@@ -22,7 +22,7 @@ const Container = styled.div`
     width: 100%;
     padding: 1rem;
     &:hover {
-      background-color: ${colors.polarPlum};
+      background-color: #9999ff;
     }
   }
 

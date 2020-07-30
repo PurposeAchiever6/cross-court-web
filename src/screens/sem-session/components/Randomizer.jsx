@@ -23,7 +23,7 @@ const Container = styled.div`
   }
 
   .title {
-    color: ${colors.polarPlum};
+    color: #9999ff;
   }
 
   .subtitle {

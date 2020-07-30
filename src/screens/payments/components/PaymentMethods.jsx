@@ -91,7 +91,7 @@ const PaymentMethodsContainer = styled.div`
         border-radius: 50px;
       }
       .selected {
-        background-color: #aaaff3;
+        background-color: #9999ff;
       }
     }
   }

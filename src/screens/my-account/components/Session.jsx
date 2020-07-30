@@ -44,7 +44,7 @@ const SessionContainer = styled.div`
   .reserved-check {
     height: 2rem;
     width: 2rem;
-    background-color: #aaaff3;
+    background-color: #9999ff;
     border-radius: 20px;
     display: flex;
     align-items: center;
@@ -78,7 +78,7 @@ const SessionContainer = styled.div`
     }
 
     .first {
-      background-color: ${colors.polarPlum};
+      background-color: #9999ff;
     }
 
     .past {

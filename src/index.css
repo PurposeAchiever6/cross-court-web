@@ -753,6 +753,7 @@ body .heading-sprite {
 }
 @media (min-width: 992px) {
   body .heading-sprite {
+    margin: 0 0 50px 0 !important;
     width: 430px;
   }
 }
@@ -1975,8 +1976,9 @@ body .the-session-experience-manager .title-and-description-block {
   }
 }
 body .the-session-experience-manager .title-and-description-block .heading-sprite {
-  background-position: 0px -246px;
-  height: 30px;
+  background-position: 0px -85.8vw;
+  height: 10vw;
+  width: 80vw;
 }
 @media (min-width: 992px) {
   body .the-session-experience-manager .title-and-description-block .heading-sprite {
@@ -2077,10 +2079,11 @@ body .the-session-official .title-and-description-block {
   }
 }
 body .the-session-official .title-and-description-block .heading-sprite {
-  background-position: 0px -276px;
+  background-position: 0px -96vw;
   display: inline-block;
-  height: 44px;
+  height: 15.6vw;
   text-align: right;
+  width: 80vw;
 }
 @media (min-width: 992px) {
   body .the-session-official .title-and-description-block .heading-sprite {
@@ -2327,9 +2330,10 @@ body .locations .sessions-container .week-handler .weektitle-container {
 }
 body .locations .sessions-container .session-list-item-container .text-container .time {
   font-family: 'shapiro45_welter_extd';
+  margin-bottom: 0;
 }
 body .locations .sessions-container .session-list-item-container .text-container .location {
-  font-family: 'shapiro96_inclined_wide';
+  font-family: 'shapiro95_super_wide';
 }
 body .locations .location-picker__control {
   font-family: 'shapiro95_super_wide';

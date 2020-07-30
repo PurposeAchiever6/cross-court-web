@@ -41,7 +41,7 @@ const AddCardContainer = styled.div`
       line-height: 17px;
       text-transform: uppercase;
       /* Polar Plum */
-      color: #aaaff3;
+      color: #9999ff;
       margin-left: 2rem;
     }
     input,

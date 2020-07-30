@@ -28,7 +28,7 @@ const EditProfileFormContainer = styled.div`
     font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.2rem;
-    color: #aaaff3;
+    color: #9999ff;
     text-transform: uppercase;
     margin-bottom: 0.5rem;
   }
