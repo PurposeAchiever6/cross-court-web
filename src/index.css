@@ -3564,7 +3564,7 @@ body[data-page='home'] #root .header,
 body[data-page='home'] #modal-root .sidebar-nav {
   margin-top: 64px;
 }
-.covid-19 {
+body[data-page='home'] #root main .covid-19 {
   background-color: #9999ff;
   border-bottom: 3px solid #FFF;
   color: #FFF;
@@ -3579,12 +3579,16 @@ body[data-page='home'] #modal-root .sidebar-nav {
   top: 0;
   z-index: 2;
 }
-.covid-19 a {
+body[data-page='home'] #root main .covid-19 a {
   color: #FFF;
   font-weight: bold;
+  transition: 300ms opacity ease;
+}
+body[data-page='home'] #root main .covid-19 a:hover {
+  opacity: 0.6;
 }
 @media (min-width: 710px) {
-  .covid-19 {
+  body[data-page='home'] #root main .covid-19 {
     font-size: 16px;
     line-height: 32px;
   }
