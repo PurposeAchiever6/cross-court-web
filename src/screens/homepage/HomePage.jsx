@@ -11,6 +11,7 @@ const PageContainer = styled.div``;
 const HomePage = () => (
   <PageContainer>
     <PWABanner />
+    <section class="covid-19">Click <a href="/documents/COVID_guidelinesv2.pdf" target="_blank">here</a> to see the changes we&apos;re making in response to COVID-19.</section>
     <FreeSessionBanner />
     <DesktopLanding />
   </PageContainer>
