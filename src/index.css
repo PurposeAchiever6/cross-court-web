@@ -100,8 +100,13 @@ body .sidebar-nav {
   padding: 0 20px;
 }
 body .sidebar-nav .close-button {
+  cursor: pointer;
   right: 30px;
   top: 30px;
+  transition: 300ms opacity ease;
+}
+body .sidebar-nav .close-button:hover {
+  opacity: 0.6;
 }
 body .sidebar-nav ul.list {
   margin: 0 0 150px 0;
@@ -873,8 +878,8 @@ body .section-block .title-and-description-block .description {
 }
 @media (min-width: 992px) {
   body .section-block .title-and-description-block .description {
-    font-size: 20px;
-    line-height: 26px;
+    font-size: 18px;
+    line-height: 24px;
   }
 }
 /* .section-block.text-white .title-and-description-block .title-1,
@@ -2337,6 +2342,7 @@ body .locations .sessions-container .session-list-item-container .text-container
 }
 body .locations .location-picker__control {
   font-family: 'shapiro95_super_wide';
+  font-size: 18px;
 }
 body .locations .day-container {
   font-family: 'shapiro45_welter_extd';
@@ -3475,7 +3481,6 @@ body .my-account-mobile .tab-content {
   margin-bottom: 50px;
 }
 body .my-account-mobile .tab-content .sessions-number-container {
-  margin-top: 10px;
 }
 body .my-account-mobile .tab-content .sessions-number-container .session-number {
   display: block;

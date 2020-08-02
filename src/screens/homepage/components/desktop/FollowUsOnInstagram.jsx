@@ -12,7 +12,7 @@ const FollowUsOnInstagram = () => (
       <Helmet>
         <script src="https://apps.elfsight.com/p/platform.js" defer></script>
       </Helmet>
-      <div class="elfsight-app-a2f7cee6-3c03-4924-80fd-3fa237a1cc65"></div>
+      <div class="elfsight-app-65f4b4ad-3836-464b-a390-4922497c4d6d"></div>
       {/* <img
         alt="Shared by Crosscourt on June 01, 2020 tagging @blklivesmatter."
         src="https://scontent-lax3-1.cdninstagram.com/v/t51.2885-15/e35/102418911_888059024993304_111255001136287740_n.jpg?_nc_ht=scontent-lax3-1.cdninstagram.com&amp;_nc_cat=100&amp;_nc_ohc=hJqhiIIDOKEAX_cHP9D&amp;oh=fdb8a37b6168ebeced437edd4ca7db4e&amp;oe=5F300C21"

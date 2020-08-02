@@ -137,7 +137,7 @@ function Footer() {
         }}>
           <PaperPlaneSvg />
         </a>
-        <div class="elfsight-app-9b2b9c0a-9ca9-4062-8b0e-a56917df571d"></div>
+        <div class="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136"></div>
       </section>
       <Helmet>
         <script src="https://apps.elfsight.com/p/platform.js" defer></script>

@@ -60,7 +60,7 @@ const MyCredits = ({ credits }) => (
   <MyCreditsContainer>
     <div className="sessions-number-container">
       <span className="session-number">{credits}</span>
-      <span className="sessions-left">SESSIONS LEFT</span>
+      <span className="sessions-left">SESSIONS<br />LEFT</span>
     </div>
     <div className="links">
       <ArButton className="buy-series-btn" link={ROUTES.SERIES}>

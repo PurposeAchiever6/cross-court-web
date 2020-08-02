@@ -51,11 +51,6 @@ const LocationPickerContainer = styled.div`
   .location-picker__value-container--has-value {
     justify-content: center;
     padding: 0.5rem;
-
-    .location-picker__single-value {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
   }
 
   .location-picker__placeholder {

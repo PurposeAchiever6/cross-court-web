@@ -6,7 +6,7 @@ const WhyWeExist = () => (
     <section className="title-and-description-block shift-right">
       <p className="title-1 shapiro97_air_extd">WHY WE EXIST</p>
       <p className="title-2 dharma_gothic_cheavy">
-        <span className="the">THE</span>
+        THE
         <br />
         FUNDAMENTALS
       </p>
