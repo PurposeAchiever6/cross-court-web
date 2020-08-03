@@ -90,9 +90,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
     return (
       <SessionsListContainer>
         <div className="no-sessions-container">
-          <span>
-            <em>NO SESSIONS SCHEDULED</em> FOR THIS DATE
-          </span>
+          NO SESSIONS SCHEDULED FOR THIS DATE
         </div>
       </SessionsListContainer>
     );

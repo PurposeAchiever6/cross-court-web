@@ -2340,6 +2340,13 @@ body .locations .sessions-container .session-list-item-container .text-container
 body .locations .sessions-container .session-list-item-container .text-container .location {
   font-family: 'shapiro95_super_wide';
 }
+body .locations .sessions-container .no-sessions-container {
+  color: #000;
+  font-family: 'shapiro95_super_wide';
+  font-size: 20px;
+  line-height: 24px;
+  padding: 32px;
+}
 body .locations .location-picker__control {
   font-family: 'shapiro95_super_wide';
   font-size: 18px;
@@ -2354,6 +2361,9 @@ body .locations .day-container {
     font-size: 16px;
     padding: 16px;
   }
+}
+body .locations .day-container .day-name {
+  margin-bottom: 5px;
 }
 
 /* SESSIONS */
@@ -2384,24 +2394,9 @@ body .sessions .session-details-container .details-container .session-data-conta
     width: 50%;
   }
 }
-body
-  .sessions
-  .session-details-container
-  .details-container
-  .session-data-container
-  .date-container,
-body
-  .sessions
-  .session-details-container
-  .details-container
-  .session-data-container
-  .time-container,
-body
-  .sessions
-  .session-details-container
-  .details-container
-  .session-data-container
-  .address-container {
+body .sessions .session-details-container .details-container .session-data-container .date-container,
+body .sessions .session-details-container .details-container .session-data-container .time-container,
+body .sessions .session-details-container .details-container .session-data-container .address-container {
   margin-bottom: 18px;
 }
 body .sessions .session-details-container .details-container .session-data-container .title,
