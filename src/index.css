@@ -2440,14 +2440,19 @@ body .locations .sessions-container .week-handler .weektitle-container {
   font-family: 'shapiro45_welter_extd';
   font-size: 16px;
 }
+body .locations .sessions-container .session-list-item-container {
+  padding: 30px 0;
+}
 body .locations .sessions-container .session-list-item-container .text-container .time {
   font-family: 'shapiro45_welter_extd';
   font-size: 14px;
+  letter-spacing: 0;
   line-height: 18px;
   margin-bottom: 0;
 }
 body .locations .sessions-container .session-list-item-container .text-container .location {
   font-family: 'shapiro95_super_wide';
+  letter-spacing: 0;
 }
 body .locations .sessions-container .no-sessions-container {
   color: #000;
@@ -2480,13 +2485,25 @@ body .sessions {
   /* padding-top: 4rem; */
 }
 body .sessions .title-container {
-  padding: 40px 0;
+  display: block;
+  padding: 30px 0;
+}
+@media (min-width: 992px) {
+  body .sessions .title-container {
+    display: flex;
+    padding: 40px 0;
+  }
 }
 body .sessions .title-container h2 {
   font-family: 'shapiro95_super_wide';
   font-size: 24px;
-  margin-left: 26px;
+  margin: 20px 20px 0;
   text-align: center;
+}
+@media (min-width: 992px) {
+  body .sessions .title-container h2 {
+    margin: 0 0 0 30px;
+  }
 }
 body .sessions .session-details-container img {
   object-fit: cover;
