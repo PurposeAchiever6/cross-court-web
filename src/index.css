@@ -962,9 +962,13 @@ body .make-sport-your-lifestyle .title-and-buttons-block .title {
 }
 body .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
   animation: 500ms ease-out 2500ms 1 both fadeIn;
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
 }
 @media (min-width: 992px) {
   body .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
+    display: inline-block;
     max-width: none;
   }
 }
@@ -972,7 +976,7 @@ body .make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-b
   font-family: 'shapiro96_inclined_wide';
 }
 body .make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
 }
 @media (min-width: 992px) {
   body .make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
@@ -1463,8 +1467,19 @@ body .ready .title {
     width: 700px;
   }
 }
+body .ready .buttons-block .ar-button {
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+}
+@media (min-width: 992px) {
+  body .ready .buttons-block .ar-button {
+    display: inline-block;
+    max-width: none;
+  }
+}
 body .ready .buttons-block .ar-button:nth-child(1) {
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
 }
 @media (min-width: 992px) {
   body .ready .buttons-block .ar-button:nth-child(1) {
@@ -1652,10 +1667,13 @@ body .sign-up .right-section .description {
 }
 body .sign-up .right-section .buttons-container .ar-button {
   display: block;
+  margin: 0 auto;
+  max-width: 200px;
 }
 @media (min-width: 992px) {
   body .sign-up .right-section .buttons-container .ar-button {
     display: inline-block;
+    max-width: none;
   }
 }
 body .show-up {
@@ -1748,14 +1766,18 @@ body .show-up .left-section .description {
 }
 body .show-up .left-section .buttons-container .ar-button {
   display: block;
+  margin: 0 auto;
+  max-width: 200px;
 }
 @media (min-width: 992px) {
   body .show-up .left-section .buttons-container .ar-button {
     display: inline-block;
+    margin: 0;
+    max-width: none;
   }
 }
 body .show-up .left-section .buttons-container .ar-button:nth-child(1) {
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
 }
 @media (min-width: 992px) {
   body .show-up .left-section .buttons-container .ar-button:nth-child(1) {
@@ -1811,7 +1833,7 @@ body .sweat .right-section .title {
   font-style: italic;
   font-weight: normal;
   line-height: 120px;
-  margin: 0 0 80px;
+  margin: 0 26px 80px 0;
   text-align: right;
 }
 @media (min-width: 992px) {
@@ -1852,10 +1874,14 @@ body .sweat .right-section .description {
 }
 body .sweat .right-section .buttons-container .ar-button {
   display: block;
+  margin: 0 auto;
+  max-width: 200px;
 }
 @media (min-width: 992px) {
   body .sweat .right-section .buttons-container .ar-button {
     display: inline-block;
+    margin: 0;
+    max-width: none;
   }
 }
 body .the-session {
@@ -1923,10 +1949,14 @@ body .the-session .button-wrapper {
 }
 body .the-session .button-wrapper .ar-button {
   display: block;
+  margin: 0 auto;
+  max-width: 200px;
 }
 @media (min-width: 992px) {
   body .the-session .button-wrapper .ar-button {
     display: inline-block;
+    margin: 0;
+    max-width: none;
   }
 }
 
@@ -2067,13 +2097,19 @@ body .the-session-experience-manager .title-and-description-block .description {
 body .the-session-experience-manager .title-and-description-block .button-wrapper {
 }
 body .the-session-experience-manager .title-and-description-block .button-wrapper .ar-button {
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
 }
 @media (min-width: 992px) {
   body .the-session-experience-manager .title-and-description-block .button-wrapper .ar-button {
+    display: inline-block;
+    margin: 0;
+    max-width: none;
   }
 }
 body .the-session-experience-manager .title-and-description-block .button-wrapper .apply-button {
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
 }
 @media (min-width: 992px) {
   body .the-session-experience-manager .title-and-description-block .button-wrapper .apply-button {
@@ -2183,13 +2219,19 @@ body .the-session-official .title-and-description-block .description {
 body .the-session-official .title-and-description-block .button-wrapper {
 }
 body .the-session-official .title-and-description-block .button-wrapper .ar-button {
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
 }
 @media (min-width: 992px) {
   body .the-session-official .title-and-description-block .button-wrapper .ar-button {
+    display: inline-block;
+    margin: 0;
+    max-width: none;
   }
 }
 body .the-session-official .title-and-description-block .button-wrapper .apply-button {
-  margin: 0 0 20px 0;
+  margin-bottom: 20px;
 }
 @media (min-width: 992px) {
   body .the-session-official .title-and-description-block .button-wrapper .apply-button {
