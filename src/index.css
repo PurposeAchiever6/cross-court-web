@@ -2911,6 +2911,8 @@ body .session-reserved h2 {
   }
 }
 body .session-reserved .invite-a-friend-button {
+  border: none;
+  cursor: pointer;
   font-family: 'shapiro96_inclined_wide';
   margin-bottom: 90px;
   width: auto;
@@ -2948,6 +2950,8 @@ body .session-confirmed h2 {
   margin: 0 0 80px;
 }
 body .session-confirmed .invite-a-friend-button {
+  border: none;
+  cursor: pointer;
   font-family: 'shapiro96_inclined_wide';
   margin-bottom: 90px;
   width: auto;
@@ -3318,7 +3322,9 @@ body .my-account-mobile .past-sessions .sessions-container .session-container .d
   background-color: #000;
   color: #fff;
   font-family: 'shapiro95_super_wide';
-  padding: 0 10px;
+  font-size: 20px;
+  line-height: 24px;
+  padding: 12px;
   position: relative;
   text-transform: uppercase;
 }
@@ -3403,7 +3409,7 @@ body .my-account-desktop .upcoming-sessions .sessions-container .session-contain
 body .my-account-mobile .upcoming-sessions .sessions-container .session-container .details .time-location-buttons-container {
   background-color: #9999ff;
   color: #fff;
-  min-height: 140px;
+  min-height: 128px;
   padding: 10px;
 }
 @media (min-width: 992px) {
@@ -3416,7 +3422,7 @@ body .my-account-desktop .past-sessions .sessions-container .session-container .
 body .my-account-mobile .past-sessions .sessions-container .session-container .details .time-location-buttons-container {
   background-color: #fff;
   color: #000;
-  min-height: 140px;
+  min-height: 128px;
   padding: 10px;
 }
 @media (min-width: 992px) {
@@ -3457,6 +3463,8 @@ body
   .details
   .time-location-buttons-container
   .time {
+  font-size: 16px;
+  line-height: 20px;
   margin: 0;
   padding: 0;
 }

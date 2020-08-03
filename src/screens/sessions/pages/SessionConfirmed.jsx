@@ -27,15 +27,24 @@ const SessionConfirmed = () => {
       <div className="session-info-container">
         <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
         <p>The session was re-confirmed successfully!</p>
-        <a
+        <button
           className="ar-button double invite-a-friend-button"
-          href={'sms:?&body=' + encodeURI(SHARE_URL)}
+          data-href={'sms:?&body=' + encodeURI(SHARE_URL)}
+          onClick={e => {
+            var input = document.createElement('input');
+            input.setAttribute('value', encodeURI(SHARE_URL));
+            document.body.appendChild(input);
+            input.select();
+            var result = document.execCommand('copy');
+            document.body.removeChild(input);
+            document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML  = 'COPIED!';
+          }}
         >
           <div className="ar-button-inner">
             <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
           </div>
           <div className="double-drop"></div>
-        </a>
+        </button>
         <br />
         <ArButton className="done-button" link={ROUTES.MYACCOUNT}>
           DONE
