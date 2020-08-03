@@ -18,8 +18,8 @@ const SemHandbookPageContainer = styled.div`
 
 const SemHandbookPage = () => {
   return (
-    <SemHandbookPageContainer>
-      <h2>Session Experience Manager Handbook for Dashboard</h2>
+    <SemHandbookPageContainer className="sem-handbook">
+      <h1>SESSION EXPERIENCE MANAGER HANDBOOK FOR DASHBOARD</h1>
 
       <h3>Kit Checklist</h3>
       <ol>
