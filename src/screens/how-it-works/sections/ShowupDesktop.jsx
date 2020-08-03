@@ -9,7 +9,7 @@ import ArButton from 'shared/components/ArButton';
 import Icons from '../components/Icons';
 import Text from '../components/Text';
 
-import equipmentProvidedIcon from 'shared/images/equipment-provided.png';
+import equipmentProvidedIcon from 'shared/images/equipment-provided-2.png';
 import guidedExperienceIcon from 'shared/images/guided-experience.png';
 
 function Showup() {

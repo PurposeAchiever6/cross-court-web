@@ -31,11 +31,12 @@ const LocationPickerContainer = styled.div`
       justify-content: center;
 
       .location-picker__option {
+        cursor: pointer;
         text-align: center;
         padding: 1rem;
-        font-size: 1.75rem;
+        font-size: 1rem;
         &:hover {
-          background-color: ${transparentize(0.5, `#9999ff`)};
+          background-color: ${transparentize(0.9, `#9999ff`)};
         }
       }
 
@@ -56,7 +57,7 @@ const LocationPickerContainer = styled.div`
   .location-picker__placeholder {
     text-align: center;
     padding: 1rem;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
     width: 100%;
     color: ${colors.black};
   }

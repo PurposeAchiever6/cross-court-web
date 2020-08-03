@@ -2376,7 +2376,7 @@ body .sessions .session-details-container .details-container {
   background-color: #9999ff;
 }
 body .sessions .session-details-container .details-container .session-data-container {
-  padding: 10px;
+  padding: 32px;
   width: 100%;
 }
 @media (min-width: 992px) {
@@ -2411,9 +2411,10 @@ body .sessions .session-details-container .details-container .session-data-conta
 }
 body .sessions .session-details-container .details-container .session-data-container .title {
   font-family: 'shapiro95_super_wide';
+  font-size: 16px;
   font-weight: normal;
   letter-spacing: 0;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 body .sessions .session-details-container .details-container .session-data-container .text,
 body .sessions .session-details-container .details-container .session-data-container .location {
@@ -3161,6 +3162,11 @@ body .my-account-desktop .past-sessions .empty-container {
   background-color: transparent;
   height: auto;
 }
+body .my-account-mobile .upcoming-sessions .empty-container,
+body .my-account-mobile .past-sessions .empty-container {
+  background-color: transparent;
+  padding: 0 32px;
+}
 body .my-account-desktop .upcoming-sessions .empty-container .container-empty-message h3,
 body .my-account-desktop .past-sessions .empty-container .container-empty-message h3,
 body .my-account-mobile .upcoming-sessions .empty-container .container-empty-message h3,
@@ -3478,7 +3484,6 @@ body .my-account-mobile .tabs {
   line-height: 20px;
 }
 body .my-account-mobile .tab-content {
-  margin-bottom: 50px;
 }
 body .my-account-mobile .tab-content .sessions-number-container {
 }
