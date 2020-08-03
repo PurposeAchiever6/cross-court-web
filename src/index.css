@@ -2644,12 +2644,15 @@ body .payments h2 {
 }
 body .payments .payment-methods-container {
   border: 3px solid #9999ff;
+  min-height: 0;
 }
 body .payments .payment-methods-container .credit-card-container {
   padding: 16px 0;
 }
 body .payments .payment-methods-container .credit-card-container .select-container {
+  height: auto;
   padding: 1px;
+  width: auto;
 }
 body .payments .payment-methods-container .credit-card-container .select-container .selector {
   height: 40px;
@@ -2674,6 +2677,34 @@ body .payments .payment-methods-container .empty-message {
   line-height: 20px;
   padding: 10px;
 }
+body .payments .buttons-container {
+  display: block;
+}
+@media (min-width: 992px) {
+  body .payments .buttons-container {
+    display: flex;
+  }
+}
+body .payments .buttons-container .ar-button {
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+}
+@media (min-width: 992px) {
+  body .payments .buttons-container .ar-button {
+    display: inline-block;
+    margin: 0;
+  }
+}
+body .payments .buttons-container .ar-button:nth-of-type(1) {
+  margin-bottom: 20px;
+}
+@media (min-width: 992px) {
+  body .payments .buttons-container .ar-button:nth-of-type(1) {
+    margin-bottom: 0;
+  }
+}
+
 
 /* ADD CARD */
 body .add-card h2 {
@@ -3193,6 +3224,7 @@ body .my-account-mobile .sidebar-container .my-profile .edit-btn {
 body .my-account-desktop .sidebar-container .my-profile h3,
 body .my-account-mobile .sidebar-container .my-profile h3 {
   font-family: 'shapiro95_super_wide';
+  margin-bottom: 10px;
 }
 body .my-account-desktop .sidebar-container .my-profile .detail-row .title,
 body .my-account-desktop .sidebar-container .my-profile form label,
@@ -3210,6 +3242,7 @@ body .my-account-mobile .sidebar-container .my-profile form .save-button {
 body .my-account-desktop .sidebar-container .my-credits h3,
 body .my-account-mobile .sidebar-container .my-credits h3 {
   font-family: 'shapiro95_super_wide';
+  margin-bottom: 10px;
 }
 body .my-account-desktop .sidebar-container .my-credits .sessions-number-container,
 body .my-account-mobile .sidebar-container .my-credits .sessions-number-container {
@@ -3281,6 +3314,18 @@ body .my-account-desktop .past-sessions h3,
 body .my-account-mobile .upcoming-sessions h3,
 body .my-account-mobile .past-sessions h3 {
   font-family: 'shapiro95_super_wide';
+  font-size: 20px;
+  line-height: 20px;
+}
+@media (min-width: 992px) {
+  body .my-account-desktop .upcoming-sessions h3,
+  body .my-account-desktop .past-sessions h3,
+  body .my-account-mobile .upcoming-sessions h3,
+  body .my-account-mobile .past-sessions h3 {
+    font-size: 28px;
+    line-height: 28px;
+    margin-bottom: 10px;
+  }
 }
 body .my-account-desktop .upcoming-sessions .empty-container,
 body .my-account-desktop .past-sessions .empty-container {
@@ -3313,6 +3358,8 @@ body .my-account-mobile .upcoming-sessions .sessions-container .session-containe
   background-color: #fff;
   color: #9999ff;
   font-family: 'shapiro95_super_wide';
+  font-size: 18px;
+  line-height: 54px;
   padding: 0 10px;
   position: relative;
   text-transform: uppercase;
@@ -3322,9 +3369,9 @@ body .my-account-mobile .past-sessions .sessions-container .session-container .d
   background-color: #000;
   color: #fff;
   font-family: 'shapiro95_super_wide';
-  font-size: 20px;
-  line-height: 24px;
-  padding: 12px;
+  font-size: 18px;
+  line-height: 54px;
+  padding: 0 10px;
   position: relative;
   text-transform: uppercase;
 }
@@ -3598,14 +3645,21 @@ body
   width: 100%;
 }
 body .my-account-mobile .tabs {
-  padding: 32px;
+  padding: 32px 32px 0;
 }
 body .my-account-mobile .tabs span {
   font-family: 'shapiro97_air_extd';
+  font-size: 18px;
+  line-height: 18px;
   -webkit-text-stroke: 1px;
+}
+body .my-account-mobile .tabs span:nth-of-type(1) {
+  margin-right: 20px;
 }
 body .my-account-mobile .tabs span.selected {
   font-family: 'shapiro95_super_wide';
+  font-size: 20px;
+  line-height: 19px;
   font-weight: normal;
 }
 body .my-account-mobile .tabs {
@@ -3613,8 +3667,10 @@ body .my-account-mobile .tabs {
   line-height: 20px;
 }
 body .my-account-mobile .tab-content {
+  margin-bottom: 20px;
 }
 body .my-account-mobile .tab-content .sessions-number-container {
+  margin-top: 12px;
 }
 body .my-account-mobile .tab-content .sessions-number-container .session-number {
   display: block;

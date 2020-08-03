@@ -50,7 +50,7 @@ const CancelModalContainer = styled.div`
 
 export const CancelModal = ({ closeHandler, cancelSessionAction, inCancellationTime }) => (
   <CancelModalContainer className="cancel-modal">
-    <h2>CANCELLATION</h2>
+    <h2>CANCEL?</h2>
     <span className="text">Are you sure you want to cancel your session?</span>
     <strong>
       {inCancellationTime

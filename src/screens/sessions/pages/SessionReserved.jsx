@@ -117,7 +117,7 @@ const SessionReserved = () => {
           data-href={'sms:?&body=' + encodeURI(SHARE_URL)}
           onClick={e => {
             var input = document.createElement('input');
-            input.setAttribute('value', encodeURI(SHARE_URL));
+            input.setAttribute('value', SHARE_URL);
             document.body.appendChild(input);
             input.select();
             var result = document.execCommand('copy');
