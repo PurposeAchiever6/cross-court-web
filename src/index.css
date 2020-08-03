@@ -952,30 +952,32 @@ body .make-sport-your-lifestyle .title-and-buttons-block .title {
   animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
   font-size: 30px;
   line-height: 36px;
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 @media (min-width: 992px) {
   body .make-sport-your-lifestyle .title-and-buttons-block .title {
     font-size: 50px;
     line-height: 56px;
-    margin-bottom: 50px;
   }
 }
 body .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
   animation: 500ms ease-out 2500ms 1 both fadeIn;
-  display: block;
-  margin: 0 auto 40px;
-  max-width: 220px;
 }
 @media (min-width: 992px) {
   body .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
-    display: inline-block;
-    margin: 0 35px;
     max-width: none;
   }
 }
 body .make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
   font-family: 'shapiro96_inclined_wide';
+}
+body .make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
+  margin: 0 0 20px 0;
+}
+@media (min-width: 992px) {
+  body .make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
+    margin: 0 50px 0 0;
+  }
 }
 body .make-sport-your-lifestyle .crosscourt-big-title {
   bottom: -19.6vw;
@@ -1359,7 +1361,6 @@ body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-instagram
   border: 3px solid #fff;
   border-radius: 0;
   color: #fff;
-  display: inline-block;
   font-size: 14px;
   font-family: 'shapiro95_super_wide';
   height: auto;
@@ -1372,6 +1373,8 @@ body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-instagram
   text-transform: uppercase;
   transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
   width: auto;
+  display: inline-block;
+  margin: 24px 32px;
 }
 body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-instagram-feed-posts-grid-load-more:hover {
   background-color: #fff;
@@ -1460,13 +1463,12 @@ body .ready .title {
     width: 700px;
   }
 }
-body .ready .buttons-block .ar-button {
-  display: inline-block;
-  margin: 0 32px 32px;
+body .ready .buttons-block .ar-button:nth-child(1) {
+  margin: 0 0 20px 0;
 }
 @media (min-width: 992px) {
-  body .ready .buttons-block .ar-button {
-    margin: 0 35px;
+  body .ready .buttons-block .ar-button:nth-child(1) {
+    margin: 0 50px 0 0;
   }
 }
 
@@ -1612,7 +1614,7 @@ body .sign-up .right-section .title {
 }
 @media (min-width: 992px) {
   body .sign-up .right-section .title {
-    margin: 50px 0 80px;
+    margin: 30px 0 80px;
     text-align: left;
   }
 }
@@ -1646,9 +1648,15 @@ body .sign-up .right-section .icons .boxes-text {
 body .sign-up .right-section .description {
   font-size: 16px;
   line-height: 20px;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
-body .sign-up .right-section .buttons-container {
+body .sign-up .right-section .buttons-container .ar-button {
+  display: block;
+}
+@media (min-width: 992px) {
+  body .sign-up .right-section .buttons-container .ar-button {
+    display: inline-block;
+  }
 }
 body .show-up {
   display: flex;
@@ -1697,7 +1705,7 @@ body .show-up .left-section .title {
 }
 @media (min-width: 992px) {
   body .show-up .left-section .title {
-    margin: 50px 0 80px;
+    margin: 30px 0 80px;
     text-align: right;
   }
 }
@@ -1729,15 +1737,30 @@ body .show-up .left-section .icons .boxes-text {
   }
 }
 body .show-up .left-section .description {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   text-align: right;
 }
-body .show-up .left-section .buttons-container {
-  display: flex;
-  justify-content: right;
+@media (min-width: 992px) {
+  body .show-up .left-section .buttons-container {
+    display: flex;
+    justify-content: right;
+  }
+}
+body .show-up .left-section .buttons-container .ar-button {
+  display: block;
+}
+@media (min-width: 992px) {
+  body .show-up .left-section .buttons-container .ar-button {
+    display: inline-block;
+  }
 }
 body .show-up .left-section .buttons-container .ar-button:nth-child(1) {
-  margin-right: 80px;
+  margin: 0 0 20px 0;
+}
+@media (min-width: 992px) {
+  body .show-up .left-section .buttons-container .ar-button:nth-child(1) {
+    margin: 0 50px 0 0;
+  }
 }
 body .show-up .right-section {
   background: transparent url('screens/how-it-works/images/show-up.gif') no-repeat 0 0;
@@ -1793,7 +1816,7 @@ body .sweat .right-section .title {
 }
 @media (min-width: 992px) {
   body .sweat .right-section .title {
-    margin: 50px 0 80px;
+    margin: 30px 0 80px;
     text-align: left;
   }
 }
@@ -1825,9 +1848,15 @@ body .sweat .right-section .icons .boxes-text {
   }
 }
 body .sweat .right-section .description {
-  margin-bottom: 70px;
+  margin-bottom: 50px;
 }
-body .sweat .left-section .buttons-container {
+body .sweat .right-section .buttons-container .ar-button {
+  display: block;
+}
+@media (min-width: 992px) {
+  body .sweat .right-section .buttons-container .ar-button {
+    display: inline-block;
+  }
 }
 body .the-session {
   padding: 32px;
@@ -1891,6 +1920,14 @@ body .the-session .boxes .boxes-item .boxes-text {
 body .the-session .button-wrapper {
   margin: 0 auto;
   text-align: center;
+}
+body .the-session .button-wrapper .ar-button {
+  display: block;
+}
+@media (min-width: 992px) {
+  body .the-session .button-wrapper .ar-button {
+    display: inline-block;
+  }
 }
 
 /* SEM (JOIN THE TEAM) */
@@ -2029,8 +2066,21 @@ body .the-session-experience-manager .title-and-description-block .description {
 }
 body .the-session-experience-manager .title-and-description-block .button-wrapper {
 }
+body .the-session-experience-manager .title-and-description-block .button-wrapper .ar-button {
+  display: block;
+}
+@media (min-width: 992px) {
+  body .the-session-experience-manager .title-and-description-block .button-wrapper .ar-button {
+    display: inline-block;
+  }
+}
 body .the-session-experience-manager .title-and-description-block .button-wrapper .apply-button {
-  margin-right: 50px;
+  margin: 0 0 20px 0;
+}
+@media (min-width: 992px) {
+  body .the-session-experience-manager .title-and-description-block .button-wrapper .apply-button {
+    margin: 0 50px 0 0;
+  }
 }
 body .the-session-experience-manager .title-and-description-block .button-wrapper .learn-more .ar-button-inner {
   padding-left: 42px;
@@ -2130,12 +2180,25 @@ body .the-session-official .title-and-description-block .title-2 {
   }
 }
 body .the-session-official .title-and-description-block .description {
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 body .the-session-official .title-and-description-block .button-wrapper {
 }
+body .the-session-official .title-and-description-block .button-wrapper .ar-button {
+  display: block;
+}
+@media (min-width: 992px) {
+  body .the-session-official .title-and-description-block .button-wrapper .ar-button {
+    display: inline-block;
+  }
+}
 body .the-session-official .title-and-description-block .button-wrapper .apply-button {
-  margin-right: 50px;
+  margin: 0 0 20px 0;
+}
+@media (min-width: 992px) {
+  body .the-session-official .title-and-description-block .button-wrapper .apply-button {
+    margin: 0 50px 0 0;
+  }
 }
 body .the-session-official .title-and-description-block .button-wrapper .learn-more .ar-button-inner {
   padding-left: 42px;
