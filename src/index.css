@@ -807,6 +807,8 @@ body .section-block .title-and-description-block.shift-right {
   body .section-block .title-and-description-block.shift-left,
   body .section-block .title-and-description-block.shift-right {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 body .section-block .title-and-description-block.shift-left {
@@ -827,6 +829,7 @@ body .section-block .title-and-description-block.shift-right {
 }
 @media (min-width: 992px) {
   body .section-block .title-and-description-block.shift-right {
+    align-items: flex-end;
     padding-left: 33vw;
   }
 }
@@ -864,7 +867,7 @@ body .section-block .title-and-description-block .title-2 {
     line-height: 72px; */
     font-size: 250px;
     line-height: 200px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
   }
 }
 @media (min-width: 992px) {
@@ -1029,6 +1032,7 @@ body .make-sport-your-lifestyle .crosscourt-big-title.anim11 {
 }
 body .crosscourt-is-a-high-intensity {
   background-image: url('screens/homepage/images/crosscourt-is-a-high-intensity.jpg');
+  background-position: top;
   min-height: 850px;
   height: 100vh;
 }
@@ -1094,10 +1098,10 @@ body .why-we-exist {
   }
 }
 body .why-we-exist .title-and-description-block .bottomline {
-  bottom: -41px;
+  bottom: -40px;
   color: #9999ff;
   font-size: 50px;
-  line-height: 38px;
+  line-height: 37px;
   right: 32px;
 }
 body .why-we-exist .mobile-image {
@@ -1165,10 +1169,11 @@ body .what-we-do {
 body .what-we-do .title-and-description-block .bottomline {
   background-image: url('screens/homepage/images/no-bullshit.png');
   background-size: cover;
-  bottom: -92px;
-  height: 194px;
+  bottom: -71px;
+  height: 150px;
   right: 35px;
-  width: 194px;
+  transform: rotate(-3deg);
+  width: 150px;
 }
 body .what-we-do .mobile-image {
   display: block;
@@ -1487,6 +1492,7 @@ body .new-to-crosscourt .title-block {
 body .new-to-crosscourt .title-block .heading-sprite {
   background-position: 0px -82px;
   height: 46px;
+  margin-bottom: 20px !important;
 }
 @media (min-width: 992px) {
   body .new-to-crosscourt .title-block .heading-sprite {
@@ -2019,7 +2025,7 @@ body .the-session-experience-manager .title-and-description-block .title-2 {
   }
 }
 body .the-session-experience-manager .title-and-description-block .description {
-  margin-bottom: 80px;
+  margin-bottom: 50px;
 }
 body .the-session-experience-manager .title-and-description-block .button-wrapper {
 }
