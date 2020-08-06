@@ -1625,12 +1625,11 @@ body .sign-up .right-section .title {
   font-weight: normal;
   line-height: 120px;
   margin: 0 0 80px;
-  text-align: right;
+  text-align: left;
 }
 @media (min-width: 992px) {
   body .sign-up .right-section .title {
     margin: 30px 0 80px;
-    text-align: left;
   }
 }
 body .sign-up .right-section .icons {
@@ -1667,7 +1666,6 @@ body .sign-up .right-section .description {
 }
 body .sign-up .right-section .buttons-container .ar-button {
   display: block;
-  margin: 0 auto;
   max-width: 200px;
 }
 @media (min-width: 992px) {
@@ -1719,12 +1717,11 @@ body .show-up .left-section .title {
   font-weight: normal;
   line-height: 120px;
   margin: 0 0 80px;
-  text-align: left;
+  text-align: right;
 }
 @media (min-width: 992px) {
   body .show-up .left-section .title {
-    margin: 30px 0 80px;
-    text-align: right;
+    margin: 30px 0 80px
   }
 }
 body .show-up .left-section .icons {
@@ -1758,9 +1755,13 @@ body .show-up .left-section .description {
   margin-bottom: 50px;
   text-align: right;
 }
+body .show-up .left-section .buttons-container {
+  float: right;
+}
 @media (min-width: 992px) {
   body .show-up .left-section .buttons-container {
     display: flex;
+    float: none;
     justify-content: right;
   }
 }
@@ -1833,13 +1834,12 @@ body .sweat .right-section .title {
   font-style: italic;
   font-weight: normal;
   line-height: 120px;
-  margin: 0 26px 80px 0;
-  text-align: right;
+  margin: 0 0 80px 0;
+  text-align: left;
 }
 @media (min-width: 992px) {
   body .sweat .right-section .title {
     margin: 30px 0 80px;
-    text-align: left;
   }
 }
 body .sweat .right-section .icons {
@@ -1874,13 +1874,11 @@ body .sweat .right-section .description {
 }
 body .sweat .right-section .buttons-container .ar-button {
   display: block;
-  margin: 0 auto;
   max-width: 200px;
 }
 @media (min-width: 992px) {
   body .sweat .right-section .buttons-container .ar-button {
     display: inline-block;
-    margin: 0;
     max-width: none;
   }
 }
@@ -2889,7 +2887,7 @@ body .signup-success .send-again-container .send-it-again {
     margin-bottom: 150px;
   }
 }
-body .signup-success .freddie {
+/* body .signup-success .freddie {
   display: none;
 }
 @media (min-width: 992px) {
@@ -2901,7 +2899,7 @@ body .signup-success .freddie {
     position: absolute;
     z-index: -1;
   }
-}
+} */
 
 /* SESSION RESERVED */
 body .session-reserved {

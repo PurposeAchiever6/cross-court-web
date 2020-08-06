@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserEmail } from 'screens/auth/reducer';
 import { sendConfirmationEmailInit } from 'screens/auth/actionCreators';
 import envelopeOpenIcon from 'shared/images/envelope-open.png';
-import freddieImg from 'shared/images/freddie.png';
+//import freddieImg from 'shared/images/freddie.png';
 
 const PageContainer = styled.div`
   display: flex;
@@ -72,7 +72,7 @@ const SignupSuccessPage = () => {
         <span className="didnt-get-email">DIDN&apos;T GET THE EMAIL?</span>
         <span className="send-it-again" onClick={sendEmailAction}>SEND IT AGAIN</span>
       </div>
-      <img className="freddie" src={freddieImg} />
+      {/* <img className="freddie" src={freddieImg} /> */}
     </PageContainer>
   );
 };
