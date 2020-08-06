@@ -70,7 +70,7 @@ const ReserveButton = ({
 
   return (
     <Button className="ar-button reserve-btn" onClick={signupBookSessionAction}>
-      <div className="ar-button-inner">RESERVE</div>
+      <div className="ar-button-inner">CONFIRM RESERVATION</div>
     </Button>
   );
 };
