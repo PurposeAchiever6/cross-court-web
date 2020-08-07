@@ -200,6 +200,22 @@ function setScrollClasses() {
   window.setTimeout(function() {
     const bottomBanner = document.querySelector('.banner-container');
 
+    if (body.getAttribute('data-page') === 'how-it-works') {
+      const seeScheduleButton = document.querySelector('.see-schedule-button');
+
+      if (!seeScheduleButton.classList.contains('done') && (window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 400)) {
+        seeScheduleButton.classList.add(
+          'animate__animated',
+          'animate__bounce',
+          'animate__slower',
+          //'animate__slow',
+          'animate__bounceInLeft',
+          //'animate__rollIn',
+          'done'
+        );
+      }
+    }
+
     if (bottomBanner) {
       if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 200)) {
         bottomBanner.classList.add('scrolled-down');

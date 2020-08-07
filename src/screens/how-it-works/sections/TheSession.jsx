@@ -130,7 +130,7 @@ const TheSession = props => (
       </div>
     </div>
     <section className="button-wrapper">
-      <ArButton link={ROUTES.LOCATIONS} double={false}>
+      <ArButton className="see-schedule-button" link={ROUTES.LOCATIONS} double={false}>
         SEE SCHEDULE
       </ArButton>
     </section>

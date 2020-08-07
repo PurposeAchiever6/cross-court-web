@@ -57,7 +57,7 @@ const FreeSessionBanner = () => {
         scrollLimit={scrollLimit}
       >
         {isAuthenticated ? (
-          <Button className="ar-button" onClick={showConfirmModalHandler}>
+          <Button className="ar-button animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInRight" onClick={showConfirmModalHandler}>
             <div className="ar-button-inner">FIRST SESSION FREE</div>
           </Button>
         ) : (
