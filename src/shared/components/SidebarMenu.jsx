@@ -96,12 +96,25 @@ const SidebarMenu = ({ menuToggler }) => {
             SCHEDULE/LOCATIONS
           </NavLink>
         </li>
+
+        <li className="list-item">
+          {userProfile.isSem ? (
+            <NavLink exact to={ROUTES.SEMHANDBOOK} onClick={menuToggler}>
+              SEM HANDBOOK
+            </NavLink>
+          ) : (
+            <NavLink exact to={ROUTES.SEM} onClick={menuToggler}>
+              JOIN THE TEAM
+            </NavLink>
+          )}
+        </li>
+
         <li className="list-item">
           <NavLink exact to={ROUTES.SERIES} onClick={menuToggler}>
             SERIES
           </NavLink>
         </li>
-        {!isAuthenticated && (
+        {/* {!isAuthenticated && (
           <li className="list-item">
             <NavLink exact to={ROUTES.LOGIN} onClick={menuToggler}>
               LOG IN
@@ -128,9 +141,9 @@ const SidebarMenu = ({ menuToggler }) => {
               LOGOUT
             </button>
           </li>
-        )}
+        )} */}
       </ul>
-      {userProfile.isSem ? (
+      {/* {userProfile.isSem ? (
         <Link to={ROUTES.SEMHANDBOOK} className="sem-handbook">
           <AlternativeButton className="button" onClick={menuToggler}>
             SEM HANDBOOK
@@ -142,6 +155,38 @@ const SidebarMenu = ({ menuToggler }) => {
             JOIN THE #CCTEAM
           </AlternativeButton>
         </Link>
+      )} */}
+      {!isAuthenticated && (
+        <Link to={ROUTES.LOGIN} className="middle-level-link">
+          <AlternativeButton className="button" onClick={menuToggler}>
+            LOG IN
+          </AlternativeButton>
+        </Link>
+      )}
+      {!isAuthenticated && (
+        <Link to={ROUTES.SIGNUP} className="middle-level-link">
+          <AlternativeButton className="button" onClick={menuToggler}>
+            SIGN UP
+          </AlternativeButton>
+        </Link>
+      )}
+      {isAuthenticated && (
+        <Link to={ROUTES.MYACCOUNT} className="middle-level-link">
+          <AlternativeButton className="button" onClick={menuToggler}>
+            MY ACCOUNT
+          </AlternativeButton>
+        </Link>
+      )}
+      {isAuthenticated && (
+        <a className="middle-level-link" href="#" onClick={(e) => {
+            e.preventDefault();
+            menuToggler();
+            logoutAction();
+          }}>
+          <AlternativeButton className="button">
+            LOGOUT
+          </AlternativeButton>
+        </a>
       )}
       <a className="email shapiro95_super_wide" href="mailto:ccteam@cross-court.com">
         CCTEAM@CROSS-COURT.COM

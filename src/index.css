@@ -187,23 +187,30 @@ body .sidebar-nav ul.list li.list-item a.active {
 body .sidebar-nav ul.list li.list-item a.active::before {
   content: '';
 }
-body .sidebar-nav .join-the-team,
-body .sidebar-nav .sem-handbook {
+/* body .sidebar-nav .join-the-team,
+body .sidebar-nav .sem-handbook { */
+body .sidebar-nav .middle-level-link {
   margin-bottom: 70px;
   transition: 500ms opacity ease;
 }
-body .sidebar-nav .join-the-team:hover,
-body .sidebar-nav .sem-handbook:hover {
+body .sidebar-nav .middle-level-link:nth-of-type(1) {
+  margin-bottom: 5px;
+}
+/* body .sidebar-nav .join-the-team:hover,
+body .sidebar-nav .sem-handbook:hover { */
+body .sidebar-nav .middle-level-link:hover {
   opacity: 0.6;
 }
 @media (min-width: 992px) {
-  body .sidebar-nav .join-the-team,
-  body .sidebar-nav .sem-handbook {
+  /* body .sidebar-nav .join-the-team,
+  body .sidebar-nav .sem-handbook { */
+  body .sidebar-nav .middle-level-link {
     margin-bottom: 0;
   }
 }
-body .sidebar-nav .join-the-team button,
-body .sidebar-nav .sem-handbook button {
+/* body .sidebar-nav .join-the-team button,
+body .sidebar-nav .sem-handbook button { */
+body .sidebar-nav .middle-level-link button {
   border: none;
   font-family: 'shapiro95_super_wide';
   font-size: 34px;
@@ -211,8 +218,9 @@ body .sidebar-nav .sem-handbook button {
   padding: 0;
 }
 @media (min-width: 992px) {
-  body .sidebar-nav .join-the-team button,
-  body .sidebar-nav .sem-handbook button {
+  /* body .sidebar-nav .join-the-team button,
+  body .sidebar-nav .sem-handbook button { */
+  body .sidebar-nav .middle-level-link button {
     text-align: right;
   }
 }
@@ -3856,6 +3864,9 @@ body[data-page='home'] #root,
 body[data-page='home'] #root .header,
 body[data-page='home'] #modal-root .sidebar-nav {
   margin-top: 64px;
+}
+body[data-page='home'] #root .sidebar-nav {
+  height: calc(100vh - 64px);
 }
 body[data-page='home'] #root main .covid-19 {
   background-color: #9999ff;
