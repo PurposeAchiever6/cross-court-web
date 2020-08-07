@@ -13,10 +13,10 @@ import { clearDiscount } from '../actionCreators';
 import PromoCode from './PromoCode';
 
 const PurchaseDetailsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: flex-end;
 
   .purchase-details-box {
     display: flex;

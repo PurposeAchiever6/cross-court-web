@@ -149,6 +149,17 @@ function setScrollClasses() {
       }
       bigTitle.classList.remove(...animClasses.filter(item => item !== addClass));
     }
+  }
+
+  if (
+    body.getAttribute('data-page') === 'home' ||
+    body.getAttribute('data-page') === 'how-it-works'
+  ) {
+    if (window.scrollY > 800) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
 
     window.setTimeout(function() {
       const video = document.querySelector('.video-player');
@@ -180,21 +191,12 @@ function setScrollClasses() {
         window.observer.observe(document.querySelector('.video-player'));
       }
     }, 2000);
-  } else if (window.observer) {
-    window.observer.disconnect();
-  }
-
-  if (
-    body.getAttribute('data-page') === 'home' ||
-    body.getAttribute('data-page') === 'how-it-works'
-  ) {
-    if (window.scrollY > 800) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
   } else {
     header.classList.add('scrolled');
+
+    if (window.observer) {
+      window.observer.disconnect();
+    }
   }
 
   window.setTimeout(function() {

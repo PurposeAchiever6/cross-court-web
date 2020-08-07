@@ -129,6 +129,7 @@ const TheSession = props => (
         </span>
       </div>
     </div>
+    <video className="video-player" src="/how-it-works.mp4" muted playsInline="" webkit-playsInline="" controls={true} loop={true}></video>
     <section className="button-wrapper">
       <ArButton className="see-schedule-button" link={ROUTES.LOCATIONS} double={false}>
         SEE SCHEDULE
