@@ -1666,11 +1666,13 @@ body .sign-up .right-section .description {
 }
 body .sign-up .right-section .buttons-container .ar-button {
   display: block;
+  margin-bottom: 10px;
   max-width: 200px;
 }
 @media (min-width: 992px) {
   body .sign-up .right-section .buttons-container .ar-button {
     display: inline-block;
+    margin-bottom: 0;
     max-width: none;
   }
 }
@@ -1761,30 +1763,30 @@ body .show-up .left-section .buttons-container {
 @media (min-width: 992px) {
   body .show-up .left-section .buttons-container {
     display: flex;
-    float: none;
     justify-content: right;
   }
 }
 body .show-up .left-section .buttons-container .ar-button {
   display: block;
-  margin: 0 auto;
+  margin-bottom: 10px;
+  margin-right: 10px;
   max-width: 200px;
 }
 @media (min-width: 992px) {
   body .show-up .left-section .buttons-container .ar-button {
     display: inline-block;
-    margin: 0;
+    margin-bottom: 0;
     max-width: none;
   }
 }
-body .show-up .left-section .buttons-container .ar-button:nth-child(1) {
+/* body .show-up .left-section .buttons-container .ar-button:nth-child(1) {
   margin-bottom: 20px;
 }
 @media (min-width: 992px) {
   body .show-up .left-section .buttons-container .ar-button:nth-child(1) {
     margin: 0 50px 0 0;
   }
-}
+} */
 body .show-up .right-section {
   background: transparent url('screens/how-it-works/images/show-up.gif') no-repeat 0 0;
   background-size: cover;
@@ -1874,11 +1876,13 @@ body .sweat .right-section .description {
 }
 body .sweat .right-section .buttons-container .ar-button {
   display: block;
+  margin-bottom: 10px;
   max-width: 200px;
 }
 @media (min-width: 992px) {
   body .sweat .right-section .buttons-container .ar-button {
     display: inline-block;
+    margin-bottom: 0;
     max-width: none;
   }
 }

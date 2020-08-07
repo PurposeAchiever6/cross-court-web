@@ -36,9 +36,9 @@ function Showup() {
           court.
         </p>
         <div className="buttons-container">
-          <ArButton link={ROUTES.SEM} double inverted>
+          {/* <ArButton link={ROUTES.SEM} double inverted>
             JOIN THE TEAM
-          </ArButton>
+          </ArButton> */}
           <ArButton link={ROUTES.LOCATIONS} double>
             RESERVE NOW
           </ArButton>
