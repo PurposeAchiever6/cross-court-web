@@ -104,6 +104,14 @@ body .mobile-hide-inline {
       transform: translateX(0);
   }
 }
+@keyframes keepRotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /* SIDEBAR NAV */
 body .sidebar-nav {
@@ -2692,6 +2700,7 @@ body .payments .payment-methods-container .credit-card-container .select-contain
   width: 40px;
 }
 body .payments .payment-methods-container .credit-card-container .select-container .selector.selected {
+  animation: keepRotating infinite 4s;
   background: transparent url('shared/images/new-purple-circular-logo.png') no-repeat 0 0;
   background-size: contain;
 }
@@ -2835,13 +2844,15 @@ body .checkout .promo-code .form .use-code-button {
   width: auto;
 }
 body .checkout .purchase-details-box .promo-total-container .total-container {
-  font-size: 47px;
-  line-height: 47px;
+  font-family: 'shapiro95_super_wide';
+  font-size: 32px;
+  font-weight: normal;
+  line-height: 32px;
 }
 @media (min-width: 992px) {
   body .checkout .purchase-details-box .promo-total-container .total-container {
-    font-size: 57px;
-    line-height: 57px;
+    font-size: 42px;
+    line-height: 42px;
   }
 }
 body .checkout .btn-container {
