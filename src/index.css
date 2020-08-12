@@ -1100,8 +1100,8 @@ body .crosscourt-is-a-high-intensity .title-block {
   }
 }
 body .crosscourt-is-a-high-intensity .title-block .title {
-  font-size: 24px;
-  line-height: 32px;
+  font-size: 18px;
+  line-height: 26px;
 }
 @media (min-width: 992px) {
   body .crosscourt-is-a-high-intensity .title-block .title {
@@ -1139,7 +1139,7 @@ body .why-we-exist .title-and-description-block .bottomline {
 body .why-we-exist .mobile-image {
   display: block;
   height: auto;
-  width: 100%;
+  width: 130%;
 }
 @media (min-width: 992px) {
   body .why-we-exist .mobile-image {
@@ -1176,7 +1176,10 @@ body .who-we-are .title-and-description-block .bottomline {
 body .who-we-are .mobile-image {
   display: block;
   height: auto;
-  width: 100%;
+  margin-top: -20%;
+  position: relative;
+  right: 50%;
+  width: 150%;
 }
 @media (min-width: 992px) {
   body .who-we-are .mobile-image {
@@ -1210,7 +1213,7 @@ body .what-we-do .title-and-description-block .bottomline {
 body .what-we-do .mobile-image {
   display: block;
   height: auto;
-  width: 100%;
+  width: 150%;
 }
 @media (min-width: 992px) {
   body .what-we-do .mobile-image {

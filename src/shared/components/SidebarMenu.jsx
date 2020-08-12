@@ -96,7 +96,11 @@ const SidebarMenu = ({ menuToggler }) => {
             SCHEDULE/LOCATIONS
           </NavLink>
         </li>
-
+        <li className="list-item">
+          <NavLink exact to={ROUTES.SERIES} onClick={menuToggler}>
+            SERIES
+          </NavLink>
+        </li>
         <li className="list-item">
           {userProfile.isSem ? (
             <NavLink exact to={ROUTES.SEMHANDBOOK} onClick={menuToggler}>
@@ -109,11 +113,6 @@ const SidebarMenu = ({ menuToggler }) => {
           )}
         </li>
 
-        <li className="list-item">
-          <NavLink exact to={ROUTES.SERIES} onClick={menuToggler}>
-            SERIES
-          </NavLink>
-        </li>
         {/* {!isAuthenticated && (
           <li className="list-item">
             <NavLink exact to={ROUTES.LOGIN} onClick={menuToggler}>
