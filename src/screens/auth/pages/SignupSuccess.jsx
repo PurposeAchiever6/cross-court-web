@@ -6,6 +6,7 @@ import { getUserEmail } from 'screens/auth/reducer';
 import { sendConfirmationEmailInit } from 'screens/auth/actionCreators';
 import envelopeOpenIcon from 'shared/images/envelope-open.png';
 //import freddieImg from 'shared/images/freddie.png';
+import Button from 'shared/components/Button';
 
 const PageContainer = styled.div`
   display: flex;
@@ -64,13 +65,15 @@ const SignupSuccessPage = () => {
       <img className="envelope-open" src={envelopeOpenIcon} alt="Sent mail icon" />
       <h1>SO CLOSE!</h1>
       <p>
-        WE&apos;VE SENT AN EMAIL TO {`${userEmail}`}.
+        We&apos;ve sent an email to {`${userEmail}`}.
         <br />
-        <span>PLEASE VERIFY YOUR ACCOUNT.</span>
+        <span>Please verify your account.</span>
       </p>
       <div className="send-again-container">
-        <span className="didnt-get-email">DIDN&apos;T GET THE EMAIL?</span>
-        <span className="send-it-again" onClick={sendEmailAction}>SEND IT AGAIN</span>
+        <span className="didnt-get-email">Didn&apos;t get the email?</span>
+        <Button className="ar-button" onClick={sendEmailAction}>
+          <div className="ar-button-inner">SEND IT AGAIN</div>
+        </Button>
       </div>
       {/* <img className="freddie" src={freddieImg} /> */}
     </PageContainer>

@@ -12,7 +12,7 @@ import InputPhoneField from 'shared/components/InputPhoneField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
-import { phoneRegExp } from 'shared/utils/helpers';
+import { phoneRegExp, zipcodeRegExp } from 'shared/utils/helpers';
 
 const SignupFormContainer = styled.div`
   display: flex;
@@ -73,6 +73,7 @@ const initialValues = {
   lastName: '',
   phoneNumber: '',
   confirmPhoneNumber: '',
+  zipcode: '',
   email: '',
   password: '',
   confirmPassword: '',
@@ -84,18 +85,21 @@ const validationSchema = Yup.object().shape({
   lastName: Yup.string().required('Required'),
   phoneNumber: Yup.string()
     .transform(value => value.replace(/\D/g, ''))
-    .matches(phoneRegExp, "That doesn't look like a phone number")
+    .matches(phoneRegExp, 'Please enter a valid phone number')
     .required('Required'),
   confirmPhoneNumber: Yup.string()
     .transform(value => value.replace(/\D/g, ''))
     .oneOf([Yup.ref('phoneNumber'), null], 'Phone numbers must match')
-    .required('Confirm Phone Number is required'),
+    .required('Required'),
+  zipcode: Yup.string()
+    .matches(zipcodeRegExp, 'Please enter a valid zip code')
+    .required('Required'),
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
   terms: Yup.bool().oneOf([true], 'Required'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
-    .required('Confirm Password is required'),
+    .required('Required'),
 });
 
 const SignupForm = ({ signupHandler, isLoading, errors }) => (
@@ -131,6 +135,9 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
               error={errors.confirmPhoneNumber}
               name="confirmPhoneNumber"
             />
+          </div>
+          <div className="form-group">
+            <InputTextField labelText="Zip Code*" error={errors.zipcode} name="zipcode" />
           </div>
           <div className="form-group">
             <InputTextField labelText="Email*" error={errors.email} name="email" />

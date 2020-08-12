@@ -1,4 +1,5 @@
 export const phoneRegExp = /^(1|)?(\d{3})(\d{3})(\d{4})$/;
+export const zipcodeRegExp = /^\d{5}$/;
 
 export const formatPhoneNumber = phoneNumberString => {
   const cleaned = phoneNumberString.replace(/\D/g, '');
