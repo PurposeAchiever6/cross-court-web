@@ -86,10 +86,6 @@ const SessionReservedContainer = styled.div`
     }
   }
 
-  a {
-    width: 59%;
-  }
-
   button {
     width: 100%;
     margin-bottom: 6rem;

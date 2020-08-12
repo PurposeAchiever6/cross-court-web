@@ -3032,7 +3032,7 @@ body .session-reserved .invite-a-friend-button {
   margin-bottom: 90px;
   width: auto;
 }
-body .session-reserved .done-button {
+/* body .session-reserved .done-button {
   font-size: 20px;
   margin-bottom: 15px;
 }
@@ -3045,7 +3045,7 @@ body .session-reserved .done-button:hover {
 body .session-reserved .done-button:hover .ar-button-inner {
   background-color: transparent;
   color: #9999ff;
-}
+} */
 
 /* SESSION CONFIRMED */
 body .session-confirmed {
@@ -3071,7 +3071,7 @@ body .session-confirmed .invite-a-friend-button {
   margin-bottom: 90px;
   width: auto;
 }
-body .session-confirmed .done-button {
+/* body .session-confirmed .done-button {
   font-size: 20px;
   margin-bottom: 15px;
 }
@@ -3084,7 +3084,7 @@ body .session-confirmed .done-button:hover {
 body .session-confirmed .done-button:hover .ar-button-inner {
   background-color: transparent;
   color: #9999ff;
-}
+} */
 
 /* SERIES */
 body .series-plans-container .title-block {
@@ -3333,14 +3333,13 @@ body .my-account-mobile .sidebar-container .my-credits .sessions-number-containe
   border: none;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   padding: 0;
 }
 body .my-account-desktop .sidebar-container .my-credits .sessions-number-container .session-number,
 body .my-account-mobile .sidebar-container .my-credits .sessions-number-container .session-number {
-  font-family: 'shapiro105_max_extd';
-  font-size: 74px;
-  line-height: 60px;
+  font-family: 'shapiro95_super_wide';
+  font-size: 76px;
+  line-height: 63px;
   margin-bottom: 0;
 }
 body .my-account-desktop .sidebar-container .my-credits .sessions-number-container .session-title-block {
@@ -3387,7 +3386,7 @@ body
 }
 body .my-account-desktop .sidebar-container .my-credits .buy-series-button,
 body .my-account-mobile .sidebar-container .my-credits .buy-series-button {
-  margin-bottom: 15px;
+  margin-bottom: 5px;
 }
 body .my-account-desktop .upcoming-sessions,
 body .my-account-mobile .upcoming-sessions {
@@ -3758,7 +3757,7 @@ body .my-account-mobile .tab-content .sessions-number-container {
 }
 body .my-account-mobile .tab-content .sessions-number-container .session-number {
   display: block;
-  font-family: 'shapiro105_max_extd';
+  font-family: 'shapiro95_super_wide';
   font-size: 58px;
   line-height: 54px;
   margin-bottom: 0;
@@ -3769,7 +3768,7 @@ body .my-account-mobile .tab-content .sessions-number-container .sessions-left {
   line-height: 16px;
 }
 body .my-account-mobile .tab-content .links .buy-series-btn {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 /* PURCHASE HISTORY */
