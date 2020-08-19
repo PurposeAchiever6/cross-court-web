@@ -3102,7 +3102,7 @@ body .series-plans-container .title-block::after {
   bottom: 0;
   content: '';
   display: block;
-  height: 100%;
+  height: calc(90vw + 64px);
   left: 0;
   position: absolute;
   top: 0;
@@ -3110,6 +3110,11 @@ body .series-plans-container .title-block::after {
   top: 0;
   width: 100%;
   z-index: 0;
+}
+@media (min-width: 992px) {
+  body .series-plans-container .title-block::after {
+    height: calc(43vw + 64px);
+  }
 }
 @media (min-width: 992px) {
   body .series-plans-container .title-block {
