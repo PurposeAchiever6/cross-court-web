@@ -163,26 +163,44 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
       <div className="plans-container">
         {products.map(product => {
           const [firstWord, secondWord] = product.name.split(' ');
-          const buttonText = `${product.credits} ${
-            product.credits > 1 ? 'SESSIONS' : 'SESSION'
-          } FOR $${formatPrice(product.price)}`;
+          // const buttonText = `${product.credits} ${
+          //   product.credits > 1 ? 'SESSIONS' : 'SESSION'
+          // } FOR $${formatPrice(product.price)}`;
+          const sessionLabel = `${product.credits} ${product.credits > 1 ? 'SESSIONS' : 'SESSION'}`;
+          const sessionPrice = `$${formatPrice(product.price)}`;
+          const sessionPPS = `$${formatPrice(product.price / product.credits)}/SESSION`;
+          const buyLabel = 'BUY';
+          const mostPopular = sessionLabel === '5 SESSIONS';
+          const bestValue = sessionLabel === '10 SESSIONS';
 
           return (
             <PlanContainer className="plan-container" key={product.stripeId} product={product}>
-              <div className="sticker">
-                <span className="price">{`$${formatPrice(product.price / product.credits)}`}</span>
-                <span className="text">/session</span>
-              </div>
-              <div className="title">
-                <span className="first-word">{firstWord}</span>
-                <span className="second-word">{secondWord}</span>
+              {mostPopular ? <span className="most-popular animate__animated animate__bounce animate__delay-1s animate__faster animate__slideInUp">MOST POPULAR</span> : ''}
+              {bestValue ? <span className="best-value animate__animated animate__bounce animate__delay-2s animate__fast animate__jackInTheBox">BEST VALUE</span> : ''}
+              <div className="session-info">
+                <div className="session-label">{sessionLabel}</div>
+                <div className="session-price">{sessionPrice}</div>
+                <div className="session-pps">{sessionPPS}</div>
               </div>
               <div className="button-container">
-                <Button className="ar-button" onClick={() => selectProductHandler(product)}>
+                <Button className="ar-button inverted" onClick={() => selectProductHandler(product)}>
+                  <div className="ar-button-inner">{buyLabel}</div>
+                </Button>
+              </div>
+              {/* <div className="sticker">
+                <span className="price">{`$${formatPrice(product.price / product.credits)}`}</span>
+                <span className="text">/session</span>
+              </div> */}
+              {/* <div className="title">
+                <span className="first-word">{firstWord}</span>
+                <span className="second-word">{secondWord}</span>
+              </div> */}
+              {/* <div className="button-container">
+                <Button className="ar-button inverted" onClick={() => selectProductHandler(product)}>
                   <div className="ar-button-inner">{buttonText}</div>
                 </Button>
                 <hr />
-              </div>
+              </div> */}
             </PlanContainer>
           );
         })}

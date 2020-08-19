@@ -39,7 +39,7 @@ export const MyAccountPageMobile = ({
         <div label="As ETM">
           <SessionsList title="UPCOMING SESSIONS" sessions={semUpcomingSessions} isSem />
         </div>
-        <div label="As player">
+        <div label="As Player">
           <SessionsList title="UPCOMING SESSIONS" sessions={upcomingSessions} />
           <SessionsList title="PAST SESSIONS" sessions={previousSessions} past />
         </div>
