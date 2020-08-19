@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import AlternativeButton from 'shared/components/AlternativeButton';
+import Button from 'shared/components/Button';
 import CloseButton from 'shared/components/CloseButton';
 import colors from 'shared/styles/constants';
 import device from 'shared/styles/mediaQueries';
@@ -101,6 +101,38 @@ const SidebarMenu = ({ menuToggler }) => {
             SERIES
           </NavLink>
         </li>
+        {!isAuthenticated && (
+          <li className="list-item">
+            <NavLink exact to={ROUTES.LOGIN} onClick={menuToggler}>
+              LOG IN
+            </NavLink>
+          </li>
+        )}
+        {!isAuthenticated && (
+          <li className="list-item">
+            <NavLink exact to={ROUTES.SIGNUP} onClick={menuToggler}>
+              SIGN UP
+            </NavLink>
+          </li>
+        )}
+        {isAuthenticated && (
+          <li className="list-item">
+            <NavLink exact to={ROUTES.MYACCOUNT} onClick={menuToggler}>
+              MY ACCOUNT
+            </NavLink>
+          </li>
+        )}
+        {isAuthenticated && (
+          <li className="list-item">
+            <button type="button" href="#" onClick={() => logoutAction()}>
+              LOGOUT
+            </button>
+          </li>
+        )}
+
+
+
+
         <li className="list-item">
           {userProfile.isSem ? (
             <NavLink exact to={ROUTES.SEMHANDBOOK} onClick={menuToggler}>
@@ -155,7 +187,7 @@ const SidebarMenu = ({ menuToggler }) => {
           </AlternativeButton>
         </Link>
       )} */}
-      {!isAuthenticated && (
+      {/* {!isAuthenticated && (
         <Link to={ROUTES.LOGIN} className="middle-level-link">
           <AlternativeButton className="button" onClick={menuToggler}>
             LOG IN
@@ -186,10 +218,15 @@ const SidebarMenu = ({ menuToggler }) => {
             LOGOUT
           </AlternativeButton>
         </a>
-      )}
-      <a className="email shapiro95_super_wide" href="mailto:ccteam@cross-court.com">
+      )} */}
+      {/* <a className="email shapiro95_super_wide" href="mailto:ccteam@cross-court.com">
         CCTEAM@CROSS-COURT.COM
-      </a>
+      </a> */}
+      <Link to={ROUTES.LOCATIONS}>
+        <Button className="ar-button shapiro96_inclined_wide" onClick={menuToggler}>
+          <div className="ar-button-inner">RESERVE SESSION</div>
+        </Button>
+      </Link>
     </Nav>
   );
 };

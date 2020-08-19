@@ -159,6 +159,10 @@ body .cheeseburger-menu .sidebar-nav ul.list li.list-item:nth-of-type(6) {
   transform: translateX(-50vw);
   transition-delay: 250ms;
 }
+body .cheeseburger-menu .sidebar-nav ul.list li.list-item:nth-of-type(7) {
+  transform: translateX(-50vw);
+  transition-delay: 300ms;
+}
 body .cheeseburger-menu.open .sidebar-nav ul.list li.list-item {
   transform: translateX(0);
 }
