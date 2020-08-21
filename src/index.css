@@ -3113,17 +3113,19 @@ body .series-plans-container .title-block::after {
 }
 @media (min-width: 992px) {
   body .series-plans-container .title-block::after {
-    height: calc(43vw + 64px);
+    height: calc(38vw + 64px);
   }
 }
 @media (min-width: 992px) {
   body .series-plans-container .title-block {
-    height: 43vw;
+    height: 38vw;
   }
 }
 body .series-plans-container .title-block .heading-sprite {
   background-position: 0px -128px;
   height: 66px;
+  position: relative;
+  z-index: 1;
 }
 @media (min-width: 992px) {
   body .series-plans-container .title-block .heading-sprite {
