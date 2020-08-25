@@ -127,7 +127,7 @@ body .sidebar-nav .close-button:hover {
   opacity: 0.6;
 }
 body .sidebar-nav ul.list {
-  margin: 0 0 150px 0;
+  margin: 0 0 120px 0;
 }
 body .cheeseburger-menu .cheeseburger-menu-outer {
   transition-duration: 1s !important;
@@ -216,9 +216,9 @@ body .sidebar-nav .middle-level-link:hover {
 @media (min-width: 992px) {
   /* body .sidebar-nav .join-the-team,
   body .sidebar-nav .sem-handbook { */
-  body .sidebar-nav .middle-level-link {
+  /* body .sidebar-nav .middle-level-link {
     margin-bottom: 0;
-  }
+  } */
 }
 /* body .sidebar-nav .join-the-team button,
 body .sidebar-nav .sem-handbook button { */
