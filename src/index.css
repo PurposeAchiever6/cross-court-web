@@ -2538,7 +2538,7 @@ body .locations .day-container .day-name {
 }
 @media (min-width: 992px) {
   body .locations .day-container .day-name {
-    font-size: 14px;
+    font-size: 16px;
   }
 }
 
