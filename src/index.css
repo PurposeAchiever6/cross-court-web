@@ -2491,12 +2491,20 @@ body .locations .sessions-container .week-handler .weektitle-container {
 body .locations .sessions-container .session-list-item-container {
   padding: 30px 0;
 }
+body .locations .sessions-container .session-list-item-container .text-container {
+  overflow: visible;
+}
 body .locations .sessions-container .session-list-item-container .text-container .time {
   font-family: 'shapiro45_welter_extd';
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: 0;
   line-height: 18px;
   margin-bottom: 0;
+}
+@media (min-width: 992px) {
+  body .locations .sessions-container .session-list-item-container .text-container .time {
+    font-size: 16px;
+  }
 }
 body .locations .sessions-container .session-list-item-container .text-container .location {
   font-family: 'shapiro95_super_wide';
@@ -2525,7 +2533,13 @@ body .locations .day-container {
   }
 }
 body .locations .day-container .day-name {
+  font-size: 12px;
   margin-bottom: 5px;
+}
+@media (min-width: 992px) {
+  body .locations .day-container .day-name {
+    font-size: 14px;
+  }
 }
 
 /* SESSIONS */
