@@ -3217,7 +3217,7 @@ body .series-plans-container .plans-container .plan-container {
   height: auto;
   justify-content: center;
   margin: 0;
-  padding: 20px;
+  padding: 20px 15px 20px 39px;
   position: relative;
   vertical-align: top;
   width: 100%;
@@ -3277,9 +3277,9 @@ body .series-plans-container .plans-container .plan-container .click-block {
   }
 }
 body .series-plans-container .plans-container .plan-container .click-block .rotate-wrapper {
-  left: -89px;
+  left: -92px;
   position: absolute;
-  top: 90px;
+  top: 94px;
   width: 218px;
 }
 @media (min-width: 992px) {
@@ -3293,10 +3293,10 @@ body .series-plans-container .plans-container .plan-container .click-block .rota
   background-color: #FFF;
   display: block;
   font-family: 'shapiro95_super_wide';
-  font-size: 16px;
-  height: 40px;
+  font-size: 14px;
+  height: 32px;
   left: 0;
-  line-height: 37px;
+  line-height: 28px;
   position: absolute;
   right: 0;
   transform: rotate(-90deg);
@@ -3333,13 +3333,11 @@ body .series-plans-container .plans-container .plan-container .click-block .rota
 }
 body .series-plans-container .plans-container .plan-container .click-block .session-info {
   height: auto;
-  margin-right: 20px;
   width: 58%;
 }
 @media (min-width: 992px) {
   body .series-plans-container .plans-container .plan-container .click-block .session-info {
     height: 300px;
-    margin-right: 0;
     width: auto;
   }
 }
