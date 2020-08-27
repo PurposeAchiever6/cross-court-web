@@ -175,18 +175,23 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
 
           return (
             <PlanContainer className="plan-container" key={product.stripeId} product={product}>
-              {mostPopular ? <span className="most-popular animate__animated animate__bounce animate__delay-1s animate__faster animate__slideInUp">MOST POPULAR</span> : ''}
-              {bestValue ? <span className="best-value animate__animated animate__bounce animate__delay-2s animate__fast animate__jackInTheBox">BEST VALUE</span> : ''}
-              <div className="session-info">
-                <div className="session-label">{sessionLabel}</div>
-                <div className="session-price">{sessionPrice}</div>
-                <div className="session-pps">{sessionPPS}</div>
-              </div>
-              <div className="button-container">
-                <Button className="ar-button inverted" onClick={() => selectProductHandler(product)}>
-                  <div className="ar-button-inner">{buyLabel}</div>
-                </Button>
-              </div>
+              <a className="click-block" href="#" onClick={(e) => {
+                e.preventDefault();
+                selectProductHandler(product);
+              }}>
+                {mostPopular ? <div className="rotate-wrapper"><span className="most-popular ">MOST POPULAR</span></div> : ''}
+                {bestValue ? <div className="rotate-wrapper"><span className="best-value">BEST VALUE</span></div> : ''}
+                <div className="session-info">
+                  <div className="session-label">{sessionLabel}</div>
+                  <div className="session-price">{sessionPrice}</div>
+                  <div className="session-pps">{sessionPPS}</div>
+                </div>
+                <div className="button-container">
+                  <div className="ar-button inverted">
+                    <div className="ar-button-inner">{buyLabel}</div>
+                  </div>
+                </div>
+              </a>
               {/* <div className="sticker">
                 <span className="price">{`$${formatPrice(product.price / product.credits)}`}</span>
                 <span className="text">/session</span>
