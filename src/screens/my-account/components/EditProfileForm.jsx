@@ -89,6 +89,7 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
               </div>
               <div className="form-group">
                 <InputPhoneField
+                  className="edit-phone"
                   labelText="Phone"
                   error={errors.phoneNumber}
                   name="phoneNumber"
