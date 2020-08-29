@@ -40,7 +40,7 @@ const ReserveButton = ({
           onClick={reserveSessionAction}
           disabled={isPast(sessionDate)}
         >
-          <div className="ar-button-inner">RESERVE SESSION</div>
+          <div className="ar-button-inner">CONFIRM RESERVATION</div>
           <div className="double-drop"></div>
         </Button>
       );
