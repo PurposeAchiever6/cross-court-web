@@ -3558,16 +3558,22 @@ body .my-account-mobile .sidebar-container .my-profile .edit-btn {
 }
 body .my-account-desktop .sidebar-container .my-profile .edit-phone img,
 body .my-account-mobile .tab-content .my-profile .edit-phone img {
-  left: 14px;
-  top: 12px;
+  bottom: auto;
+  height: auto;
+  left: 0;
+  top: -4px;
+  width: 32px;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
 }
 body .my-account-desktop .sidebar-container .my-profile .edit-phone input,
 body .my-account-mobile .tab-content .my-profile .edit-phone input {
   background-color: transparent;
   border: none;
   color: #000;
-  padding-left: 38px;
-  padding-top: 0;
+  height: 23px;
+  padding: 0 0 0 42px;
   pointer-events: none;
 }
 body .my-account-desktop .sidebar-container .my-profile h3,

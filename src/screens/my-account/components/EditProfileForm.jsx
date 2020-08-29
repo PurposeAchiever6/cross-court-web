@@ -94,6 +94,7 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
                   error={errors.phoneNumber}
                   name="phoneNumber"
                   placeholder="(123) 123-4567"
+                  disabled={true}
                 />
               </div>
               <div className="button-container">
