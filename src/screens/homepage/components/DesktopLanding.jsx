@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import device from 'shared/styles/mediaQueries';
 import MakeSportYourLifestyle from './desktop/MakeSportYourLifestyle';
+import HomeVideo from './desktop/HomeVideo';
 import CrosscourtIsAHighIntensity from './desktop/CrosscourtIsAHighIntensity';
 import WhyWeExist from './desktop/WhyWeExist';
 import WhoWeAre from './desktop/WhoWeAre';
@@ -15,6 +16,7 @@ const Section = styled.section``;
 const DesktopLanding = () => (
   <Section>
     <MakeSportYourLifestyle />
+    <HomeVideo />
     <CrosscourtIsAHighIntensity />
     <WhyWeExist />
     <WhoWeAre />

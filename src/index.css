@@ -1086,6 +1086,12 @@ body .make-sport-your-lifestyle .crosscourt-big-title.anim10,
 body .make-sport-your-lifestyle .crosscourt-big-title.anim11 {
   opacity: 1;
 }
+body .home-video .video-player {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  width: 100%;
+}
 body .crosscourt-is-a-high-intensity {
   background-image: url('screens/homepage/images/crosscourt-is-a-high-intensity.jpg');
   background-position: top;
@@ -1353,13 +1359,6 @@ body .keys-to-crosscourt .boxes .boxes-item .boxes-text {
   display: block;
   margin: 0 auto;
 } */
-body .keys-to-crosscourt .video-player {
-  display: block;
-  height: auto;
-  margin: 0 auto;
-  max-width: 800px;
-  width: 100%;
-}
 body .follow-us-on-instagram {
   height: auto;
 }
