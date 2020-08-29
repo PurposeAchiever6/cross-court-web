@@ -32,7 +32,7 @@ const BannerContainer = styled.div`
   // }
 `;
 
-const FreeSessionBanner = () => {
+const FreeSessionBannerAnimated = () => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const showConfirmModalHandler = () => setShowConfirmModal(true);
   const hideConfirmModalHandler = () => setShowConfirmModal(false);
@@ -57,15 +57,15 @@ const FreeSessionBanner = () => {
         scrollLimit={scrollLimit}
       >
         {isAuthenticated ? (
-          <Button className="first-session-free-btn ar-button" onClick={showConfirmModalHandler}>
+          <Button className="first-session-free-btn ar-button animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" onClick={showConfirmModalHandler}>
             <div className="ar-button-inner">FIRST SESSION FREE</div>
           </Button>
         ) : (
-          <ArButton className="first-session-free-btn" link={ROUTES.SIGNUP}>FIRST SESSION FREE</ArButton>
+          <ArButton className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" link={ROUTES.SIGNUP}>FIRST SESSION FREE</ArButton>
         )}
       </BannerContainer>
     </>
   );
 };
 
-export default FreeSessionBanner;
+export default FreeSessionBannerAnimated;

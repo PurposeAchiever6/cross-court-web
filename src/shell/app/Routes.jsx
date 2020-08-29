@@ -84,6 +84,7 @@ history.listen(location => {
 
   setPageNameOnBodyClass(location.pathname);
   setScrollClasses();
+  //startInitialAnimations();
 });
 
 function setScrollClasses() {
@@ -205,7 +206,11 @@ function setScrollClasses() {
     if (body.getAttribute('data-page') === 'how-it-works') {
       const seeScheduleButton = document.querySelector('.see-schedule-button');
 
-      if (!seeScheduleButton.classList.contains('done') && (window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 400)) {
+      if (
+        seeScheduleButton &&
+        !seeScheduleButton.classList.contains('done') &&
+        (window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 400)
+      ) {
         seeScheduleButton.classList.add(
           'animate__animated',
           'animate__bounce',
@@ -228,10 +233,34 @@ function setScrollClasses() {
   }, 100);
 }
 
+// function startInitialAnimations() {
+//   if (document.querySelector('.first-session-free-btn')) {
+//     if (body.getAttribute('data-page') === 'home') {
+//       document.querySelector('.first-session-free-btn').setAttribute('class', 'ar-button first-session-free-btn');
+//       document.querySelector('.first-session-free-btn').classList.add(
+//         'animate__animated',
+//         'animate__bounce',
+//         'animate__delay-3s',
+//         'animate__slower',
+//         'animate__bounceInLeft'
+//       );
+//     } else {
+//       document.querySelector('.first-session-free-btn').classList.remove(
+//         'animate__animated',
+//         'animate__bounce',
+//         'animate__delay-3s',
+//         'animate__slower',
+//         'animate__bounceInLeft'
+//       );
+//     }
+//   }
+// }
+
 window.addEventListener('scroll', setScrollClasses);
 
 setPageNameOnBodyClass(window.location.pathname);
 window.setTimeout(setScrollClasses, 0);
+//window.setTimeout(startInitialAnimations, 0);
 
 const Routes = () => {
   const dispatch = useDispatch();
