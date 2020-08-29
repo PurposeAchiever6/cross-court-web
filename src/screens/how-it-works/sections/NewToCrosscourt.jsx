@@ -42,7 +42,7 @@ const NewToCrosscourt = () => {
         <p className="title-2 shapiro95_super_wide">CROSSCOURT?</p> */}
       </section>
       <a
-        className="ar-button double check-it-out"
+        className="ar-button double check-it-out animate__animated animate__bounce animate__delay-1s animate__slower animate__bounceInLeft"
         onClick={e => {
           e.preventDefault();
           setShowModal(true);
