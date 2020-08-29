@@ -280,7 +280,7 @@ body .sidebar-nav .email:hover {
 body .header {
   background-color: transparent;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-  height: 4rem;
+  height: 64px;
   transition: 500ms background-color ease, 500ms box-shadow ease;
 }
 body .header.scrolled {
@@ -1634,6 +1634,15 @@ body .new-to-crosscourt .mobile-image {
     display: none;
   }
 }
+body .the-session-video {
+  scroll-margin-top: 64px;
+}
+body .the-session-video .video-player {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  width: 100%;
+}
 body .sign-up {
   display: flex;
   height: auto;
@@ -1998,14 +2007,6 @@ body .the-session .boxes .boxes-item .boxes-text {
     font-size: 16px;
     line-height: 18px;
   }
-}
-body .the-session .video-player {
-  display: block;
-  height: auto;
-  margin: 0 auto;
-  max-width: 800px;
-  padding-bottom: 32px;
-  width: 100%;
 }
 body .the-session .button-wrapper {
   margin: 0 auto;

@@ -5,9 +5,10 @@ import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import FreeSessionBanner from 'shared/components/FreeSessionBanner';
 
-import SweatDesktop from './sections/SweatDesktop';
-import ShowupDesktop from './sections/ShowupDesktop';
+import TheSessionVideo from './sections/TheSessionVideo';
 import SignupDesktop from './sections/SignupDesktop';
+import ShowupDesktop from './sections/ShowupDesktop';
+import SweatDesktop from './sections/SweatDesktop';
 import NewToCrosscourt from './sections/NewToCrosscourt';
 import TheSession from './sections/TheSession';
 
@@ -19,6 +20,7 @@ function HowItWorksPage() {
       <FreeSessionBanner />
       <Desktop>
         <NewToCrosscourt />
+        <TheSessionVideo />
         <SignupDesktop />
         <ShowupDesktop />
         <SweatDesktop />

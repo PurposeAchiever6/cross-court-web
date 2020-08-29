@@ -96,7 +96,7 @@ const KeysToCrosscourt = props => (
           </span>
         </div>
       </div>
-      <video className="video-player" src="/home.mp4" muted playsInline="" webkit-playsInline="" controls={true} loop={true}></video>
+      <video className="video-player" src="/home.mp4" muted playsInline="" controls={true} loop={true}></video>
     </section>
   </Section>
 );

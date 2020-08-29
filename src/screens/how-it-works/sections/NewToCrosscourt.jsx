@@ -45,7 +45,9 @@ const NewToCrosscourt = () => {
         className="ar-button double check-it-out animate__animated animate__bounce animate__delay-1s animate__slower animate__bounceInLeft"
         onClick={e => {
           e.preventDefault();
-          setShowModal(true);
+          //setShowModal(true);
+          document.querySelector('.the-session-video').scrollIntoView({behavior: 'smooth'});
+          document.querySelector('.the-session-video video').play();
         }}
         href="#modal"
       >

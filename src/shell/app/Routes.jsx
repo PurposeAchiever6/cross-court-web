@@ -90,6 +90,8 @@ history.listen(location => {
 function setScrollClasses() {
   const { body } = document;
   const header = document.querySelector('.header');
+  const mobile = window.innerWidth < 992;
+  const headerScrollLimit = mobile ? 50 : 50;//800;
 
   if (body.getAttribute('data-page') === 'home') {
     const bigTitle = document.querySelector('.crosscourt-big-title');
@@ -156,7 +158,7 @@ function setScrollClasses() {
     body.getAttribute('data-page') === 'home' ||
     body.getAttribute('data-page') === 'how-it-works'
   ) {
-    if (window.scrollY > 800) {
+    if (window.scrollY > headerScrollLimit) {
       header.classList.add('scrolled');
     } else {
       header.classList.remove('scrolled');
@@ -177,7 +179,7 @@ function setScrollClasses() {
 
         function callback(entries, observer) {
           entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (entry.intersectionRatio > 0) {
               if (!video.classList.contains('data-user-paused')) {
                 video.play();
               }
