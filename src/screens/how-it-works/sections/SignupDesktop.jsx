@@ -21,11 +21,11 @@ function Signup() {
         <Icons className="icons">
           <Icon>
             <img className="on-your-time" src={onYourTimeIcon} />
-            <span className="boxes-text">ON YOUR TIME</span>
+            <span className="boxes-text">ON YOUR<br />TIME</span>
           </Icon>
           <Icon>
             <img className="premium-facility" src={premiumFacilityIcon} />
-            <span className="boxes-text">AT A LOCATION NEAR YOU</span>
+            <span className="boxes-text">AT A LOCATION<br />NEAR YOU</span>
           </Icon>
         </Icons>
         <p className="description">

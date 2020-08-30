@@ -21,11 +21,11 @@ function SweatDesktop() {
         <Icons className="icons">
           <Icon>
             <img className="catch-a-sweat" src={catchASweatIcon} />
-            <span className="boxes-text">CATCH A SWEAT</span>
+            <span className="boxes-text">CATCH A<br />SWEAT</span>
           </Icon>
           <Icon>
             <img className="secure-the-w" src={secureTheWIcon} />
-            <span className="boxes-text">SECURE THE W</span>
+            <span className="boxes-text">SECURE<br />THE W</span>
           </Icon>
         </Icons>
         <p className="description">

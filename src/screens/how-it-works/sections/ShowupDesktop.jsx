@@ -20,11 +20,11 @@ function Showup() {
         <Icons className="icons">
           <Icon>
             <img className="equipment-provided" src={equipmentProvidedIcon} />
-            <span className="boxes-text">EQUIPMENT PROVIDED</span>
+            <span className="boxes-text">EQUIPMENT<br />PROVIDED</span>
           </Icon>
           <Icon>
             <img className="guided-experience" src={guidedExperienceIcon} />
-            <span className="boxes-text">GUIDED EXPERIENCE</span>
+            <span className="boxes-text">GUIDED<br />EXPERIENCE</span>
           </Icon>
         </Icons>
         <p className="description">

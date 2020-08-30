@@ -76,7 +76,11 @@ const TheSession = props => (
         <div className="boxes-image">
           <img className="one-hour" src={oneHourIcon} />
         </div>
-        <span className="boxes-text">1 HOUR</span>
+        <span className="boxes-text">
+          ONE
+          <br />
+          HOUR
+        </span>
       </div>
       <div className="boxes-item">
         <div className="boxes-image">

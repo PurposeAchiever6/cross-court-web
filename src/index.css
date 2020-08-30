@@ -1708,6 +1708,9 @@ body .sign-up .right-section .icons img {
     width: 170px;
   }
 }
+body .sign-up .right-section .icons img.premium-facility {
+  margin-bottom: 9px;
+}
 body .sign-up .right-section .icons .boxes-text {
   font-family: 'shapiro95_super_wide';
   font-size: 14px;
