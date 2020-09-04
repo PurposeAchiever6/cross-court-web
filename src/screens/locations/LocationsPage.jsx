@@ -84,7 +84,7 @@ const LocationsPage = () => {
   };
 
   const userInfo = useSelector(getUserProfile);
-  const freeSessionNotExpired = new Date(userInfo.freeSessionState) > new Date();
+  const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const showFreeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
 
