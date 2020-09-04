@@ -21,7 +21,7 @@ const CheckoutConfirm = () => {
   const sessionURL = `/session/${sessionSaved.id}/${sessionSaved.date}`;
 
   if (!purchaseConfirmed) {
-    return <Redirect to={ROUTES.SERIES} />;
+    return <Redirect to={ROUTES.LOCATIONS} />;
   }
 
   return (

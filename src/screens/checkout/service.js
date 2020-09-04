@@ -11,7 +11,7 @@ export default {
     return response.data;
   },
   createFreeSession: async cardId => {
-    const response = await api.put(`/purchases/claim_free_session`, {
+    const response = await api.put(`/purchases/create_free_session_intent`, {
       paymentMethod: cardId,
     });
 

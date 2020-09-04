@@ -10,6 +10,7 @@ import { add, isPast, getUTCDate } from 'shared/utils/date';
 import LocationPicker from './components/LocationPicker';
 import WeekSelector from './components/WeekSelector';
 import SessionsList from './components/SessionsList';
+import FreeSessionCreditAdded from './components/FreeSessionCreditAdded';
 import {
   getPageLoading,
   getAvailableLocations,
@@ -24,6 +25,7 @@ import {
   getSessionsByDate,
   setSelectedDate,
 } from './actionCreators';
+import { getUserProfile } from 'screens/my-account/reducer';
 
 const PageContainer = styled.div`
   display: flex;
@@ -81,41 +83,53 @@ const LocationsPage = () => {
     }
   };
 
+  const userInfo = useSelector(getUserProfile);
+  const freeSessionNotExpired = new Date(userInfo.freeSessionState) > new Date();
+  const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
+  const showFreeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
+
   useEffect(() => {
     dispatch(initialLoadInit());
+
+    if (showFreeSessionCreditAdded) {
+      document.body.setAttribute('data-page', 'free-session-credit-added');
+    }
   }, [dispatch]);
 
   return isPageLoading ? (
     <Loading />
   ) : (
-    <PageContainer className="locations">
-      <div className="sessions-container">
-        <LocationPicker
-          availableLocations={[{ id: null, name: 'ALL LOCATIONS' }, ...availableLocations]}
-          setLocationHandler={setLocationHandler}
-          selectedLocation={selectedLocation}
-        />
-        <WeekSelector
-          availableSessions={availableSessions}
-          selectedDate={selectedDate}
-          increaseHandler={increaseCurrentWeekHandler}
-          decreaseHandler={decreaseCurrentWeekHandler}
-          setSelectedDateHandler={setSelectedDateHandler}
-        />
-        {isSessionsLoading ? (
-          <Loading />
-        ) : (
-          <SessionsList availableSessions={availableSessions} selectedDate={selectedDate} />
-        )}
-      </div>
-      <div className="map-container">
-        <Map
-          setLocationHandler={setLocationHandler}
-          selectedLocation={selectedLocation}
-          locations={availableLocations}
-        />
-      </div>
-    </PageContainer>
+    <>
+      {showFreeSessionCreditAdded && <FreeSessionCreditAdded /> }
+      <PageContainer className="locations">
+        <div className="sessions-container">
+          <LocationPicker
+            availableLocations={[{ id: null, name: 'ALL LOCATIONS' }, ...availableLocations]}
+            setLocationHandler={setLocationHandler}
+            selectedLocation={selectedLocation}
+          />
+          <WeekSelector
+            availableSessions={availableSessions}
+            selectedDate={selectedDate}
+            increaseHandler={increaseCurrentWeekHandler}
+            decreaseHandler={decreaseCurrentWeekHandler}
+            setSelectedDateHandler={setSelectedDateHandler}
+          />
+          {isSessionsLoading ? (
+            <Loading />
+          ) : (
+            <SessionsList availableSessions={availableSessions} selectedDate={selectedDate} />
+          )}
+        </div>
+        <div className="map-container">
+          <Map
+            setLocationHandler={setLocationHandler}
+            selectedLocation={selectedLocation}
+            locations={availableLocations}
+          />
+        </div>
+      </PageContainer>
+    </>
   );
 };
 

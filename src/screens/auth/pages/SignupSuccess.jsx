@@ -64,10 +64,10 @@ const SignupSuccessPage = () => {
     <PageContainer className="signup-success">
       <img className="envelope-open" src={envelopeOpenIcon} alt="Sent mail icon" />
       <h1>SO CLOSE!</h1>
-      <p>
+      <p className="body">
         We&apos;ve sent an email to {`${userEmail}`}.
         <br />
-        <span>Please verify your account.</span>
+        <span>Please verify your account to complete registration and redeem your free session credit.</span>
       </p>
       <div className="send-again-container">
         <span className="didnt-get-email">Didn&apos;t get the email?</span>

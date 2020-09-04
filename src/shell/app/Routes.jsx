@@ -83,7 +83,7 @@ history.listen(location => {
   ReactGA.pageview(location.pathname); // Record a pageview for the given page
 
   setPageNameOnBodyClass(location.pathname);
-  setScrollClasses();
+  window.setTimeout(setScrollClasses, 0);
   //startInitialAnimations();
 });
 
@@ -156,7 +156,8 @@ function setScrollClasses() {
 
   if (
     body.getAttribute('data-page') === 'home' ||
-    body.getAttribute('data-page') === 'how-it-works'
+    body.getAttribute('data-page') === 'how-it-works' ||
+    body.getAttribute('data-page') === 'free-session-credit-added'
   ) {
     if (window.scrollY > headerScrollLimit) {
       header.classList.add('scrolled');

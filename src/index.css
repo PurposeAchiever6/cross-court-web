@@ -374,10 +374,11 @@ body .header .cheeseburger-menu.open + .header-content .logo-icon-nav-open {
 
 /* MAIN */
 body main {
-  padding-top: 4rem;
+  padding-top: 64px;
 }
 body[data-page='home'] main,
-body[data-page='how-it-works'] main {
+body[data-page='how-it-works'] main,
+body[data-page='free-session-credit-added'] main {
   padding-top: 0;
 }
 /* FOOTER */
@@ -2500,6 +2501,64 @@ body .any-questions .title-and-button-block .title-2:hover {
 body .any-questions .title-and-button-block .button-wrapper {
 }
 
+/* FREE SESSION CREDIT ADDED */
+body .free-session-credit-added {
+  background-color: #9999ff;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  padding: 0 32px;
+  position: relative;
+}
+body .free-session-credit-added .title {
+  background: #9999ff;
+  color: #FFF;
+  display: block;
+  font-family: 'dharma_gothic_cheavy_italic';
+  font-size: 100px;
+  font-weight: normal;
+  line-height: 85px;
+  margin-bottom: 0;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+@media (min-width: 992px) {
+  body .free-session-credit-added .title {
+    font-size: 150px;
+    line-height: 135px;
+  }
+}
+body .free-session-credit-added .bottom {
+  bottom: 30px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+body .free-session-credit-added .bottom .vertical-line {
+  background-color: #FFF;
+  display: block;
+  height: 100px;
+  margin: 0 auto 25px;
+  width: 4px;
+}
+body .free-session-credit-added .bottom .scroll-text {
+  color: #FFF;
+  font-family: 'shapiro95_super_wide';
+  font-size: 16px;
+  line-height: 16px;
+  margin-bottom: 0;
+  padding: 0 32px;
+  text-align: center;
+}
+@media (min-width: 992px) {
+  body .free-session-credit-added .bottom .scroll-text {
+    font-size: 18px;
+    line-height: 18px;
+  }
+}
+
 /* LOCATIONS */
 body .locations {
   /* padding-top: 4rem; */
@@ -2985,6 +3044,7 @@ body .signup .form .form-group label {
 
 /* SIGNUP SUCCESS */
 body .signup-success {
+  padding: 0 32px;
   position: relative;
 }
 body .signup-success .envelope-open {
@@ -2997,6 +3057,9 @@ body .signup-success h1 {
   font-size: 120px;
   font-weight: normal;
   margin-bottom: 100px;
+}
+body .signup-success .body {
+  max-width: 600px;
 }
 body .signup-success .send-again-container .didnt-get-email {
   display: block;

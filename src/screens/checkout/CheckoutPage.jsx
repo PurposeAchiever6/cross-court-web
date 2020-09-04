@@ -39,7 +39,7 @@ const CheckoutPage = () => {
   const isFreeSession = useSelector(getClaimFreeSession);
 
   if (isNil(productDetails) || isNil(paymentDetails)) {
-    return <Redirect to={ROUTES.SERIES} />;
+    return <Redirect to={ROUTES.LOCATIONS} />;
   }
 
   return (

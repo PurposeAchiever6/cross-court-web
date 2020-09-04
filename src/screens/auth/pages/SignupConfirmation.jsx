@@ -45,7 +45,7 @@ const SignupConfirmationPage = () => {
   const savedSession = StorageUtils.getSavedSession();
 
   if (!isNil(savedSession)) {
-    return <Redirect to={ROUTES.SERIES} />;
+    return <Redirect to={ROUTES.LOCATIONS} />;
   }
 
   return (
