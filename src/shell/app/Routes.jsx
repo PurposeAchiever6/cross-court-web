@@ -65,6 +65,7 @@ const AppWrapper = styled.div`
   }
 `;
 const { body } = document;
+let keepScrolling = true;
 
 function setPageNameOnBodyClass(pathname) {
   let pageName = '';
@@ -152,12 +153,82 @@ function setScrollClasses() {
       }
       bigTitle.classList.remove(...animClasses.filter(item => item !== addClass));
     }
+  } else if (body.getAttribute('data-page') === 'free-session-credit-added') {
+    const bigTitle = document.querySelector('.free-session-credit-added .title');
+
+    if (bigTitle && keepScrolling) {
+      let addClass = '';
+      let animClasses = [
+        'anim1', 'anim2', 'anim3', 'anim4', 'anim5', 'anim6', 'anim7', 'anim8', 'anim9', 'anim10',
+        'anim11', 'anim12', 'anim13', 'anim14', 'anim15', 'anim16', 'anim17', 'anim18', 'anim19', 'anim20'
+      ];
+
+      if (window.scrollY < 20) {
+      } else if (window.scrollY >= 20 && window.scrollY < 40) {
+        addClass = 'anim1';
+      } else if (window.scrollY >= 40 && window.scrollY < 60) {
+        addClass = 'anim2';
+      } else if (window.scrollY >= 60 && window.scrollY < 80) {
+        addClass = 'anim3';
+      } else if (window.scrollY >= 80 && window.scrollY < 100) {
+        addClass = 'anim4';
+      } else if (window.scrollY >= 100 && window.scrollY < 120) {
+        addClass = 'anim5';
+      } else if (window.scrollY >= 120 && window.scrollY < 140) {
+        addClass = 'anim6';
+      } else if (window.scrollY >= 140 && window.scrollY < 160) {
+        addClass = 'anim7';
+      } else if (window.scrollY >= 160 && window.scrollY < 180) {
+        addClass = 'anim8';
+      } else if (window.scrollY >= 180 && window.scrollY < 200) {
+        addClass = 'anim9';
+      } else if (window.scrollY >= 200 && window.scrollY < 220) {
+        addClass = 'anim10';
+      } else if (window.scrollY >= 220 && window.scrollY < 240) {
+        addClass = 'anim11';
+      } else if (window.scrollY >= 240 && window.scrollY < 260) {
+        addClass = 'anim12';
+      } else if (window.scrollY >= 260 && window.scrollY < 280) {
+        addClass = 'anim13';
+      } else if (window.scrollY >= 280 && window.scrollY < 300) {
+        addClass = 'anim14';
+      } else if (window.scrollY >= 300 && window.scrollY < 320) {
+        addClass = 'anim15';
+      } else if (window.scrollY >= 320 && window.scrollY < 340) {
+        addClass = 'anim16';
+      } else if (window.scrollY >= 340 && window.scrollY < 360) {
+        addClass = 'anim17';
+      } else if (window.scrollY >= 360 && window.scrollY < 380) {
+        addClass = 'anim18';
+      } else if (window.scrollY >= 380 && window.scrollY < 400) {
+        addClass = 'anim19';
+      } else if (window.scrollY >= 400) {
+        addClass = 'anim20';
+        keepScrolling = false;
+        window.setTimeout(function() {
+          document.querySelector('main').style.paddingTop = '64px';
+          document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
+          window.setTimeout(function() {
+            document.querySelector('.free-session-credit-added').style.display = 'none';
+          }, 1000);
+        }, 1000);
+      }
+      // } else if (window.scrollY >= 420 && window.scrollY < 440) {
+      //   addClass = 'anim21';
+      // } else if (window.scrollY >= 440) {
+      // }
+
+      if (addClass) {
+        bigTitle.classList.add(addClass);
+      }
+      bigTitle.classList.remove(...animClasses.filter(item => item !== addClass));
+    }
   }
 
   if (
     body.getAttribute('data-page') === 'home' ||
     body.getAttribute('data-page') === 'how-it-works' ||
-    body.getAttribute('data-page') === 'free-session-credit-added'
+    (body.getAttribute('data-page') === 'free-session-credit-added' && keepScrolling)
   ) {
     if (window.scrollY > headerScrollLimit) {
       header.classList.add('scrolled');
