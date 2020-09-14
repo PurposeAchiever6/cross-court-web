@@ -153,7 +153,8 @@ function setScrollClasses() {
       }
       bigTitle.classList.remove(...animClasses.filter(item => item !== addClass));
     }
-  } else if (body.getAttribute('data-page') === 'free-session-credit-added') {
+  } else if (body.getAttribute('data-page') === 'free-session-credit-added' ||
+    (body.getAttribute('data-page') === 'locations' && window.location.search === '?testanimation')) {
     const bigTitle = document.querySelector('.free-session-credit-added .title');
 
     if (bigTitle && keepScrolling) {
@@ -228,7 +229,8 @@ function setScrollClasses() {
   if (
     body.getAttribute('data-page') === 'home' ||
     body.getAttribute('data-page') === 'how-it-works' ||
-    (body.getAttribute('data-page') === 'free-session-credit-added' && keepScrolling)
+    (body.getAttribute('data-page') === 'free-session-credit-added' && keepScrolling) ||
+    (body.getAttribute('data-page') === 'locations' && window.location.search === '?testanimation' && keepScrolling)
   ) {
     if (window.scrollY > headerScrollLimit) {
       header.classList.add('scrolled');
