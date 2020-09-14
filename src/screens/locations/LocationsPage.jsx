@@ -100,7 +100,7 @@ const LocationsPage = () => {
     <Loading />
   ) : (
     <>
-      {showFreeSessionCreditAdded && <FreeSessionCreditAdded /> }
+      {(showFreeSessionCreditAdded || window.location.search === '?testanimation') && <FreeSessionCreditAdded /> }
       <PageContainer className="locations">
         <div className="sessions-container">
           <LocationPicker
