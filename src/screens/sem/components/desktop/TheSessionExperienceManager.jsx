@@ -55,7 +55,7 @@ const SessionExperienceManager = () => {
         </p>
         <div className="button-wrapper">
           <a
-            className="ar-button double apply-button"
+            className="ar-button double inverted apply-button"
             href={SEM_LINK}
             target="_blank"
             rel="noopener noreferrer"
