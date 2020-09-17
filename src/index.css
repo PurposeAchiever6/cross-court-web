@@ -2333,16 +2333,16 @@ body .the-session-official .title-and-description-block .button-wrapper .learn-m
   width: 22px;
 }
 body .the-session-official .title-and-description-block .button-wrapper .learn-more img.play-button-white {
-  display: none;
+  display: inline-block;
 }
 body .the-session-official .title-and-description-block .button-wrapper .learn-more:hover img.play-button-white {
-  display: inline-block;
+  display: none;
 }
 body .the-session-official .title-and-description-block .button-wrapper .learn-more .play-button-purple {
-  display: inline-block;
+  display: none;
 }
 body .the-session-official .title-and-description-block .button-wrapper .learn-more:hover img.play-button-purple {
-  display: none
+  display: inline-block;
 }
 body .the-session-official .title-and-description-block .button-wrapper .learn-more .text {
 }

@@ -56,7 +56,7 @@ const TheSessionOfficial = () => {
         </p>
         <div className="button-wrapper">
           <a
-            className="ar-button double inverted apply-button"
+            className="ar-button double apply-button"
             href={SO_LINK}
             target="_blank"
             rel="noopener noreferrer"
@@ -65,7 +65,7 @@ const TheSessionOfficial = () => {
             <div class="double-drop"></div>
           </a>
           <a
-            className="ar-button double inverted learn-more"
+            className="ar-button double learn-more"
             onClick={e => {
               e.preventDefault();
               setShowModal(true);
