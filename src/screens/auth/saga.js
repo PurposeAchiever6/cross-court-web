@@ -98,7 +98,7 @@ export function* autoLoginFlow({ payload }) {
   try {
     yield call(AuthUtils.setTokens, payload.headers);
     yield put({ type: AUTO_LOGIN_SUCCESS });
-    yield put(push(ROUTES.SERIES));
+    yield put(push(ROUTES.LOCATIONS));
   } catch (err) {
     yield put({ type: AUTO_LOGIN_FAILURE, error: err });
   }
