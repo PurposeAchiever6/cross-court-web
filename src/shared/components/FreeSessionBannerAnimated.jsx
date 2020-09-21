@@ -40,28 +40,58 @@ const FreeSessionBannerAnimated = () => {
   const { freeSessionState } = useSelector(getUserProfile);
   const isAuthenticated = useSelector(getIsAuthenticated);
 
-  const freeSessionNotUsed = not(equals(freeSessionState, 'used'));
-  const freeSessionNotClaimed = not(equals(freeSessionState, 'claimed'));
+  // const freeSessionNotUsed = not(equals(freeSessionState, 'used'));
+  // const freeSessionNotClaimed = not(equals(freeSessionState, 'claimed'));
   const scrollY = useScrollPosition();
   const scrollLimit = document.body.offsetHeight - window.innerHeight;
+
+  const userInfo = useSelector(getUserProfile);
+  const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
+  const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
+  const freeSessionExpirationDate = userInfo.freeSessionExpirationDate;
+  const daysFromNow = function(input) {
+    const oneDay = 24 * 60 * 60 * 1000;
+    let parts = input.split('-');
+    const firstDate = new Date();
+    const secondDate = new Date(parts[0], parts[1]-1, parts[2]);
+    let daysLeft = Math.floor(Math.abs((secondDate - firstDate) / oneDay));
+    if (daysLeft === 0) {
+      daysLeft = '< 1 DAY';
+    } else if (daysLeft === 1) {
+      daysLeft = '1 DAY';
+    } else {
+      daysLeft = daysLeft + ' DAYS';
+    }
+    return daysLeft;
+  };
+  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
+  const bannerText = freeSessionCreditAdded && freeSessionExpirationDate ?
+    <span>FIRST FREE SESSION<br />EXPIRES IN {daysFromNow(freeSessionExpirationDate)}</span> :
+    'FIRST SESSION FREE';
 
   return (
     <>
       <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
         <FreeSessionConfirmModal closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal} />
       </Modal>
-      <BannerContainer
+      {/* <BannerContainer
         className="banner-container"
         showBanner={freeSessionNotUsed && freeSessionNotClaimed}
+        scrollY={scrollY}
+        scrollLimit={scrollLimit}
+      > */}
+      <BannerContainer
+        className="banner-container"
+        showBanner={true}
         scrollY={scrollY}
         scrollLimit={scrollLimit}
       >
         {isAuthenticated ? (
           <Button className="first-session-free-btn ar-button animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" onClick={showConfirmModalHandler}>
-            <div className="ar-button-inner">FIRST SESSION FREE</div>
+            <div className="ar-button-inner">{bannerText}</div>
           </Button>
         ) : (
-          <ArButton className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" link={ROUTES.SIGNUP}>FIRST SESSION FREE</ArButton>
+          <ArButton className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" link={ROUTES.SIGNUP}>{bannerText}</ArButton>
         )}
       </BannerContainer>
     </>

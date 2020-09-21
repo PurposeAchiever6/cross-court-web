@@ -67,7 +67,7 @@ const AppWrapper = styled.div`
 const { body } = document;
 let keepScrolling = true;
 
-function setPageNameOnBodyClass(pathname) {
+window.setPageNameOnBodyClass = function(pathname) {
   let pageName = '';
 
   if (pathname === '/') {
@@ -77,19 +77,8 @@ function setPageNameOnBodyClass(pathname) {
   }
 
   body.setAttribute('data-page', pageName);
-}
-
-history.listen(location => {
-  ReactGA.set({ page: location.pathname }); // Update the user's current page
-  ReactGA.pageview(location.pathname); // Record a pageview for the given page
-
-  setPageNameOnBodyClass(location.pathname);
-  window.setTimeout(setScrollClasses, 0);
-  //startInitialAnimations();
-});
-
-function setScrollClasses() {
-  const { body } = document;
+};
+window.setScrollClasses = function() {
   const header = document.querySelector('.header');
   const mobile = window.innerWidth < 992;
   const headerScrollLimit = mobile ? 50 : 50;//800;
@@ -161,10 +150,14 @@ function setScrollClasses() {
       let addClass = '';
       let animClasses = [
         'anim1', 'anim2', 'anim3', 'anim4', 'anim5', 'anim6', 'anim7', 'anim8', 'anim9', 'anim10',
-        'anim11', 'anim12', 'anim13', 'anim14', 'anim15', 'anim16', 'anim17', 'anim18', 'anim19', 'anim20'
+        'anim11', 'anim12', 'anim13', 'anim14', 'anim15', 'anim16', 'anim17', 'anim18', 'anim19', 'anim20',
+        'anim21', 'anim22', 'anim23', 'anim24', 'anim25', 'anim26', 'anim27', 'anim28', 'anim29', 'anim30'
       ];
+      document.querySelector('.locations').classList.add('faded-out');
 
       if (window.scrollY < 20) {
+        console.log('removing...');
+        document.querySelector('main').classList.remove('animation-done');
       } else if (window.scrollY >= 20 && window.scrollY < 40) {
         addClass = 'anim1';
       } else if (window.scrollY >= 40 && window.scrollY < 60) {
@@ -203,15 +196,39 @@ function setScrollClasses() {
         addClass = 'anim18';
       } else if (window.scrollY >= 380 && window.scrollY < 400) {
         addClass = 'anim19';
-      } else if (window.scrollY >= 400) {
+      } else if (window.scrollY >= 400 && window.scrollY < 420) {
         addClass = 'anim20';
+      } else if (window.scrollY >= 420 && window.scrollY < 440) {
+        addClass = 'anim21';
+      } else if (window.scrollY >= 440 && window.scrollY < 460) {
+        addClass = 'anim22';
+      } else if (window.scrollY >= 460 && window.scrollY < 480) {
+        addClass = 'anim23';
+      } else if (window.scrollY >= 480 && window.scrollY < 500) {
+        addClass = 'anim24';
+      } else if (window.scrollY >= 500 && window.scrollY < 520) {
+        addClass = 'anim25';
+      } else if (window.scrollY >= 520 && window.scrollY < 540) {
+        addClass = 'anim26';
+      } else if (window.scrollY >= 540 && window.scrollY < 560) {
+        addClass = 'anim27';
+      } else if (window.scrollY >= 560 && window.scrollY < 580) {
+        addClass = 'anim28';
+      } else if (window.scrollY >= 580 && window.scrollY < 600) {
+        addClass = 'anim29';
+      } else if (window.scrollY >= 600) {
+        addClass = 'anim30';
         keepScrolling = false;
         window.setTimeout(function() {
-          document.querySelector('main').style.paddingTop = '64px';
+          document.querySelector('main').classList.add('animation-done');
           document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
+          document.querySelector('.locations').classList.remove('faded-out');
+          header.classList.add('scrolled');
           window.setTimeout(function() {
-            document.querySelector('.free-session-credit-added').style.display = 'none';
-          }, 1000);
+            if (document.querySelector('.free-session-credit-added')) {
+                document.querySelector('.free-session-credit-added').style.display = 'none';
+            }
+          }, 2000);
         }, 1000);
       }
       // } else if (window.scrollY >= 420 && window.scrollY < 440) {
@@ -228,9 +245,7 @@ function setScrollClasses() {
 
   if (
     body.getAttribute('data-page') === 'home' ||
-    body.getAttribute('data-page') === 'how-it-works' ||
-    (body.getAttribute('data-page') === 'free-session-credit-added' && keepScrolling) ||
-    (body.getAttribute('data-page') === 'locations' && window.location.search === '?testanimation' && keepScrolling)
+    body.getAttribute('data-page') === 'how-it-works'
   ) {
     if (window.scrollY > headerScrollLimit) {
       header.classList.add('scrolled');
@@ -268,6 +283,11 @@ function setScrollClasses() {
         window.observer.observe(document.querySelector('.video-player'));
       }
     }, 2000);
+  } else if (
+    (body.getAttribute('data-page') === 'free-session-credit-added' && keepScrolling) ||
+    (body.getAttribute('data-page') === 'locations' && window.location.search === '?testanimation' && keepScrolling)
+  ) {
+    header.classList.remove('scrolled');
   } else {
     header.classList.add('scrolled');
 
@@ -307,36 +327,21 @@ function setScrollClasses() {
       }
     }
   }, 100);
-}
+};
 
-// function startInitialAnimations() {
-//   if (document.querySelector('.first-session-free-btn')) {
-//     if (body.getAttribute('data-page') === 'home') {
-//       document.querySelector('.first-session-free-btn').setAttribute('class', 'ar-button first-session-free-btn');
-//       document.querySelector('.first-session-free-btn').classList.add(
-//         'animate__animated',
-//         'animate__bounce',
-//         'animate__delay-3s',
-//         'animate__slower',
-//         'animate__bounceInLeft'
-//       );
-//     } else {
-//       document.querySelector('.first-session-free-btn').classList.remove(
-//         'animate__animated',
-//         'animate__bounce',
-//         'animate__delay-3s',
-//         'animate__slower',
-//         'animate__bounceInLeft'
-//       );
-//     }
-//   }
-// }
+history.listen(location => {
+  ReactGA.set({ page: location.pathname }); // Update the user's current page
+  ReactGA.pageview(location.pathname); // Record a pageview for the given page
 
-window.addEventListener('scroll', setScrollClasses);
+  window.setPageNameOnBodyClass(window.location.pathname);
+  keepScrolling = true;
+  window.addEventListener('scroll', window.setScrollClasses);
+  window.setTimeout(window.setScrollClasses, 800);
+});
 
-setPageNameOnBodyClass(window.location.pathname);
-window.setTimeout(setScrollClasses, 0);
-//window.setTimeout(startInitialAnimations, 0);
+window.setPageNameOnBodyClass(window.location.pathname);
+window.addEventListener('scroll', window.setScrollClasses);
+window.setTimeout(window.setScrollClasses, 800);
 
 const Routes = () => {
   const dispatch = useDispatch();

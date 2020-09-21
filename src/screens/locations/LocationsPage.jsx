@@ -86,12 +86,12 @@ const LocationsPage = () => {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const showFreeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
+  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
 
   useEffect(() => {
     dispatch(initialLoadInit());
 
-    if (showFreeSessionCreditAdded) {
+    if (freeSessionCreditAdded) {
       document.body.setAttribute('data-page', 'free-session-credit-added');
     }
   }, [dispatch]);
@@ -100,7 +100,7 @@ const LocationsPage = () => {
     <Loading />
   ) : (
     <>
-      {(showFreeSessionCreditAdded || window.location.search === '?testanimation') && <FreeSessionCreditAdded /> }
+      {(freeSessionCreditAdded || window.location.search === '?testanimation') && <FreeSessionCreditAdded /> }
       <PageContainer className="locations">
         <div className="sessions-container">
           <LocationPicker
