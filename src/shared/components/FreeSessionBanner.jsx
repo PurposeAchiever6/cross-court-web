@@ -55,17 +55,19 @@ const FreeSessionBanner = () => {
     const firstDate = new Date();
     const secondDate = new Date(parts[0], parts[1]-1, parts[2]);
     let daysLeft = Math.floor(Math.abs((secondDate - firstDate) / oneDay));
+
     if (daysLeft === 0) {
-      daysLeft = '< 1 DAY';
+      daysLeft = <><span className="days">&lt; 1</span> DAY</>;
     } else if (daysLeft === 1) {
-      daysLeft = '1 DAY';
+      daysLeft = <><span className="days">1</span> DAY</>;
     } else {
-      daysLeft = daysLeft + ' DAYS';
+      daysLeft = <><span className="days">{daysLeft}</span> DAYS</>;
     }
     return daysLeft;
   };
-  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const bannerText = freeSessionCreditAdded && freeSessionExpirationDate ?
+  const isFSFFlow = freeSessionNotExpired && freeSessionNotClaimed;
+  const bannerButtonTarget = isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP;
+  const bannerText = isFSFFlow ?
     <span>FIRST FREE SESSION<br />EXPIRES IN {daysFromNow(freeSessionExpirationDate)}</span> :
     'FIRST SESSION FREE';
 
@@ -74,7 +76,6 @@ const FreeSessionBanner = () => {
       <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
         <FreeSessionConfirmModal closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal} />
       </Modal>
-      
       {/* <BannerContainer
         className="banner-container"
         showBanner={freeSessionNotUsed && freeSessionNotClaimed}
@@ -87,13 +88,14 @@ const FreeSessionBanner = () => {
         scrollY={scrollY}
         scrollLimit={scrollLimit}
       >
-        {isAuthenticated ? (
+        <ArButton className="first-session-free-btn" link={bannerButtonTarget}>{bannerText}</ArButton>
+        {/* {isAuthenticated ? (
           <Button className="first-session-free-btn ar-button" onClick={showConfirmModalHandler}>
             <div className="ar-button-inner">{bannerText}</div>
           </Button>
         ) : (
           <ArButton className="first-session-free-btn" link={ROUTES.SIGNUP}>{bannerText}</ArButton>
-        )}
+        )} */}
       </BannerContainer>
     </>
   );

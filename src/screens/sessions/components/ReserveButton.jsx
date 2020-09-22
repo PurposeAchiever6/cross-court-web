@@ -46,18 +46,18 @@ const ReserveButton = ({
       );
     }
 
-    if (equals(session.userSession.state, 'reserved')) {
-      return (
-        <Button
-          className="ar-button double reserve-btn"
-          onClick={confirmSessionAction}
-          disabled={not(session.userSession.inConfirmationTime)}
-        >
-          <div className="ar-button-inner">CONFIRM SESSION</div>
-          <div className="double-drop"></div>
-        </Button>
-      );
-    }
+    // if (equals(session.userSession.state, 'reserved')) {
+    //   return (
+    //     <Button
+    //       className="ar-button double reserve-btn"
+    //       onClick={confirmSessionAction}
+    //       disabled={not(session.userSession.inConfirmationTime)}
+    //     >
+    //       <div className="ar-button-inner">CONFIRM SESSION</div>
+    //       <div className="double-drop"></div>
+    //     </Button>
+    //   );
+    // }
     if (equals(session.userSession.state, 'confirmed')) {
       return (
         <Button className="ar-button double disabled reserve-btn" disabled>

@@ -336,12 +336,12 @@ history.listen(location => {
   window.setPageNameOnBodyClass(window.location.pathname);
   keepScrolling = true;
   window.addEventListener('scroll', window.setScrollClasses);
-  window.setTimeout(window.setScrollClasses, 800);
+  window.setTimeout(window.setScrollClasses, 1000);
 });
 
 window.setPageNameOnBodyClass(window.location.pathname);
 window.addEventListener('scroll', window.setScrollClasses);
-window.setTimeout(window.setScrollClasses, 800);
+window.setTimeout(window.setScrollClasses, 1000);
 
 const Routes = () => {
   const dispatch = useDispatch();

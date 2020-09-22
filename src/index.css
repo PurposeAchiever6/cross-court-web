@@ -554,6 +554,9 @@ body .banner-container.scrolled-down {
     bottom: 50vh;
   }
 }
+body .banner-container .days {
+  color: #000;
+}
 
 /* COMPONENTS */
 body .ar-button {
