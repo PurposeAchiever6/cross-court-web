@@ -1671,11 +1671,13 @@ body .sign-up {
   body .sign-up {
     display: block;
     height: 100vh;
+    min-height: 850px;
   }
 }
 body .sign-up .left-section,
 body .sign-up .right-section {
   display: inline-block;
+  min-height: 850px;
   width: auto;
 }
 @media (min-width: 992px) {
@@ -1769,11 +1771,13 @@ body .show-up {
   body .show-up {
     display: block;
     height: 100vh;
+    min-height: 850px;
   }
 }
 body .show-up .left-section,
 body .show-up .right-section {
   display: inline-block;
+  min-height: 850px;
   width: auto;
 }
 @media (min-width: 992px) {
@@ -1884,6 +1888,7 @@ body .sweat {
   body .sweat {
     display: block;
     height: 100vh;
+    min-height: 850px;
   }
 }
 body .sweat .left-section,
@@ -1894,6 +1899,7 @@ body .sweat .right-section {
 @media (min-width: 992px) {
   body .sweat .left-section,
   body .sweat .right-section {
+    min-height: 850px;
     width: 50vw;
   }
 }
