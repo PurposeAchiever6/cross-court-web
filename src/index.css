@@ -391,13 +391,14 @@ body main {
 body[data-page='home'] main,
 body[data-page='how-it-works'] main,
 body[data-page='free-session-credit-added'] main,
-body[data-page='locations'] main {
+body[data-page='locations'] main,
+body main.animation-done {
   padding-top: 0;
 }
-body[data-page='free-session-credit-added'] main.animation-done,
+/* body[data-page='free-session-credit-added'] main.animation-done,
 body[data-page='locations'] main.animation-done {
   padding-top: 64px;
-}
+} */
 /* FOOTER */
 body .footer {
   background-color: #FFF;
@@ -2863,6 +2864,11 @@ body .locations {
 }
 body .locations.faded-out {
   opacity: 0;
+}
+@media (min-width: 992px) {
+  body .locations .sessions-container {
+    padding-top: 64px;
+  }
 }
 body .locations .sessions-container .address-container {
   background-color: #9999ff;

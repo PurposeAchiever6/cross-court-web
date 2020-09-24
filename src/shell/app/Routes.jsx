@@ -222,13 +222,17 @@ window.setScrollClasses = function() {
         window.setTimeout(function() {
           document.querySelector('main').classList.add('animation-done');
           document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
+          // window.scrollTo({
+          //   top: document.querySelector('.locations').getBoundingClientRect().top - 64,
+          //   behavior: 'smooth'
+          // });
           document.querySelector('.locations').classList.remove('faded-out');
           header.classList.add('scrolled');
           window.setTimeout(function() {
             if (document.querySelector('.free-session-credit-added')) {
                 document.querySelector('.free-session-credit-added').style.display = 'none';
             }
-          }, 2000);
+          }, 800);
         }, 1000);
       }
       // } else if (window.scrollY >= 420 && window.scrollY < 440) {
