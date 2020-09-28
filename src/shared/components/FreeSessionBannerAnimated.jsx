@@ -33,9 +33,9 @@ const BannerContainer = styled.div`
 `;
 
 const FreeSessionBannerAnimated = () => {
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const showConfirmModalHandler = () => setShowConfirmModal(true);
-  const hideConfirmModalHandler = () => setShowConfirmModal(false);
+  // const [showConfirmModal, setShowConfirmModal] = useState(false);
+  // const showConfirmModalHandler = () => setShowConfirmModal(true);
+  // const hideConfirmModalHandler = () => setShowConfirmModal(false);
 
   const { freeSessionState } = useSelector(getUserProfile);
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -49,9 +49,9 @@ const FreeSessionBannerAnimated = () => {
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const freeSessionExpirationDate = userInfo.freeSessionExpirationDate;
-  const daysFromNow = function(input) {
+  const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
-    let parts = input.split('-');
+    let parts = (input || '').split('-');
     const firstDate = new Date();
     const secondDate = new Date(parts[0], parts[1]-1, parts[2]);
     let daysLeft = Math.floor(Math.abs((secondDate - firstDate) / oneDay));
@@ -73,32 +73,14 @@ const FreeSessionBannerAnimated = () => {
     'FIRST SESSION FREE';
 
   return (
-    <>
-      {/* <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
-        <FreeSessionConfirmModal closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal} />
-      </Modal> */}
-      {/* <BannerContainer
-        className="banner-container"
-        showBanner={freeSessionNotUsed && freeSessionNotClaimed}
-        scrollY={scrollY}
-        scrollLimit={scrollLimit}
-      > */}
-      <BannerContainer
-        className="banner-container"
-        showBanner={true}
-        scrollY={scrollY}
-        scrollLimit={scrollLimit}
-      >
-        <ArButton className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" link={bannerButtonTarget}>{bannerText}</ArButton>
-        {/* {isAuthenticated ? (
-          <Button className="first-session-free-btn ar-button animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" onClick={showConfirmModalHandler}>
-            <div className="ar-button-inner">{bannerText}</div>
-          </Button>
-        ) : (
-          <ArButton className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" link={ROUTES.SIGNUP}>{bannerText}</ArButton>
-        )} */}
-      </BannerContainer>
-    </>
+    <BannerContainer
+      className="banner-container"
+      showBanner={true}
+      scrollY={scrollY}
+      scrollLimit={scrollLimit}
+    >
+      <ArButton className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" link={bannerButtonTarget}>{bannerText}</ArButton>
+    </BannerContainer>
   );
 };
 
