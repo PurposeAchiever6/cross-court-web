@@ -88,7 +88,7 @@ const LocationsPage = () => {
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = true;//(freeSessionCreditAdded || window.location.search === '?testanimation');
+  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
   /* END FSF FLOW LOGIC */
 
   useEffect(() => {

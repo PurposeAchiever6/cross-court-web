@@ -66,21 +66,26 @@ const FreeSessionBanner = () => {
     return daysLeft;
   };
   const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = true;//(freeSessionCreditAdded || window.location.search === '?testanimation');
+  const freeSessionCreditClaimed = !freeSessionNotClaimed;
+  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
   const bannerButtonTarget = isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP;
   const bannerText = isFSFFlow ?
     <span>FIRST FREE SESSION<br />EXPIRES IN {daysFromNow(freeSessionExpirationDate)}</span> :
     'FIRST SESSION FREE';
 
   return (
-    <BannerContainer
-      className="banner-container"
-      showBanner={true}
-      scrollY={scrollY}
-      scrollLimit={scrollLimit}
-    >
-      <ArButton className="first-session-free-btn" link={bannerButtonTarget}>{bannerText}</ArButton>
-    </BannerContainer>
+    <>
+      {!freeSessionCreditClaimed &&
+        <BannerContainer
+          className="banner-container"
+          showBanner={true}
+          scrollY={scrollY}
+          scrollLimit={scrollLimit}
+        >
+          <ArButton className="first-session-free-btn" link={bannerButtonTarget}>{bannerText}</ArButton>
+        </BannerContainer>
+      }
+    </>
   );
 };
 

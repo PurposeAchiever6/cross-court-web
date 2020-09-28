@@ -9,7 +9,7 @@ import { getSelectedProduct } from 'screens/series/reducer';
 import { getSelectedCard, getClaimFreeSession } from 'screens/payments/reducer';
 import BackButton from 'shared/components/BackButton';
 import device from 'shared/styles/mediaQueries';
-import { createPurchase, createFreeSessionInit } from './actionCreators';
+import { createPurchase, /*createFreeSessionInit*/ } from './actionCreators';
 import ProductDetails from './components/PurchaseDetails';
 
 const CheckoutPageContainer = styled.div`
@@ -33,7 +33,7 @@ const CheckoutPage = () => {
   const dispatch = useDispatch();
 
   const createPurchaseHandler = () => dispatch(createPurchase());
-  const createFreeSessionHandler = () => dispatch(createFreeSessionInit());
+  //const createFreeSessionHandler = () => dispatch(createFreeSessionInit());
   const productDetails = useSelector(getSelectedProduct);
   const paymentDetails = useSelector(getSelectedCard);
   const isFreeSession = useSelector(getClaimFreeSession);
@@ -52,7 +52,7 @@ const CheckoutPage = () => {
         productDetails={productDetails}
         paymentDetails={paymentDetails}
         createPurchaseHandler={createPurchaseHandler}
-        createFreeSessionHandler={createFreeSessionHandler}
+        //createFreeSessionHandler={createFreeSessionHandler}
         isFreeSession={isFreeSession}
       />
     </CheckoutPageContainer>

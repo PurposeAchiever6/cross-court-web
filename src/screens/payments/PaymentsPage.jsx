@@ -33,7 +33,7 @@ const PaymentsPage = () => {
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = true;//(freeSessionCreditAdded || window.location.search === '?testanimation');
+  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
   const redirectUrl = window.sessionStorage.getItem('redirect');
   /* END FSF FLOW LOGIC */
   const shouldShowFSFModal = () => !!(isFSFFlow && !availableCards.length && redirectUrl);
