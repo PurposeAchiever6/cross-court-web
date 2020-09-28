@@ -385,14 +385,14 @@ body .header .cheeseburger-menu.open + .header-content .logo-icon-nav-open {
 }
 
 /* MAIN */
-body main {
+body main,
+body main.animation-done {
   padding-top: 64px;
 }
 body[data-page='home'] main,
 body[data-page='how-it-works'] main,
 body[data-page='free-session-credit-added'] main,
-body[data-page='locations'] main,
-body main.animation-done {
+body[data-page='locations'] main {
   padding-top: 0;
 }
 /* body[data-page='free-session-credit-added'] main.animation-done,
@@ -2859,7 +2859,7 @@ body .locations {
   /* padding-top: 4rem; */
   opacity: 1;
   position: relative;
-  transition: 2000ms opacity ease;
+  transition: 3000ms opacity ease;
   z-index: 0;
 }
 body .locations.faded-out {
@@ -4543,7 +4543,7 @@ body[data-page='home'] #root main .covid-19 {
   right: 0;
   text-align: center;
   top: 0;
-  z-index: 3;
+  z-index: 10;
 }
 body[data-page='home'] #root main .covid-19 a {
   color: #FFF;

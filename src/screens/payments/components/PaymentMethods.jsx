@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { isEmpty } from 'ramda';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from 'shared/components/Button';
 import CCIcon from 'shared/components/CCIcon';
 import { useHistory } from 'react-router-dom';
@@ -12,6 +12,8 @@ import ROUTES from 'shared/constants/routes';
 import device from 'shared/styles/mediaQueries';
 import ArButton from 'shared/components/ArButton';
 import { deleteCard, setSelectedCard } from '../actionCreators';
+
+import { getUserProfile } from 'screens/my-account/reducer';
 
 const PaymentMethodsContainer = styled.div`
   width: 35%;
@@ -161,8 +163,23 @@ const PaymentMethods = ({ availableCards }) => {
     setSelectedCard2(paymentMethod.id);
   };
 
+  /* START FSF FLOW LOGIC */
+  const userInfo = useSelector(getUserProfile);
+  const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
+  const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
+  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
+  const isFSFFlow = true;//(freeSessionCreditAdded || window.location.search === '?testanimation');
+  const redirectUrl = window.sessionStorage.getItem('redirect');
+  /* END FSF FLOW LOGIC */
+  const shouldReturnFSFDetailsPage = () => !!(isFSFFlow && availableCards.length && redirectUrl);
+
   const nextHandler = () => {
-    history.push('/checkout');
+    if (shouldReturnFSFDetailsPage()) {
+      window.sessionStorage.removeItem('redirect');
+      history.push(redirectUrl);
+    } else {
+      history.push('/checkout');
+    }
   };
 
   return (

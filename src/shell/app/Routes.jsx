@@ -157,7 +157,6 @@ window.setScrollClasses = function() {
 
       if (window.scrollY < 20) {
         console.log('removing...');
-        document.querySelector('main').classList.remove('animation-done');
       } else if (window.scrollY >= 20 && window.scrollY < 40) {
         addClass = 'anim1';
       } else if (window.scrollY >= 40 && window.scrollY < 60) {
@@ -219,9 +218,9 @@ window.setScrollClasses = function() {
       } else if (window.scrollY >= 600) {
         addClass = 'anim30';
         keepScrolling = false;
+        document.querySelector('main').classList.add('animation-done');
+        document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
         window.setTimeout(function() {
-          document.querySelector('main').classList.add('animation-done');
-          document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
           // window.scrollTo({
           //   top: document.querySelector('.locations').getBoundingClientRect().top - 64,
           //   behavior: 'smooth'

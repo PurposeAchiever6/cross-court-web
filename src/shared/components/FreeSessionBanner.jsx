@@ -65,7 +65,8 @@ const FreeSessionBanner = () => {
     }
     return daysLeft;
   };
-  const isFSFFlow = freeSessionNotExpired && freeSessionNotClaimed;
+  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
+  const isFSFFlow = true;//(freeSessionCreditAdded || window.location.search === '?testanimation');
   const bannerButtonTarget = isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP;
   const bannerText = isFSFFlow ?
     <span>FIRST FREE SESSION<br />EXPIRES IN {daysFromNow(freeSessionExpirationDate)}</span> :
@@ -73,9 +74,9 @@ const FreeSessionBanner = () => {
 
   return (
     <>
-      <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
+      {/* <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
         <FreeSessionConfirmModal closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal} />
-      </Modal>
+      </Modal> */}
       {/* <BannerContainer
         className="banner-container"
         showBanner={freeSessionNotUsed && freeSessionNotClaimed}

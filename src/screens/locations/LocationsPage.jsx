@@ -83,15 +83,18 @@ const LocationsPage = () => {
     }
   };
 
+  /* START FSF FLOW LOGIC */
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
+  const isFSFFlow = true;//(freeSessionCreditAdded || window.location.search === '?testanimation');
+  /* END FSF FLOW LOGIC */
 
   useEffect(() => {
     dispatch(initialLoadInit());
 
-    if (freeSessionCreditAdded) {
+    if (isFSFFlow) {
       document.body.setAttribute('data-page', 'free-session-credit-added');
     }
   }, [dispatch]);
@@ -100,7 +103,7 @@ const LocationsPage = () => {
     <Loading />
   ) : (
     <>
-      {(freeSessionCreditAdded || window.location.search === '?testanimation') && <FreeSessionCreditAdded /> }
+      {isFSFFlow && <FreeSessionCreditAdded /> }
       <PageContainer className="locations">
         <div className="sessions-container">
           <LocationPicker
