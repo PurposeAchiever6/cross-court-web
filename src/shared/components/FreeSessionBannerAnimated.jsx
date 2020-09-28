@@ -75,16 +75,14 @@ const FreeSessionBannerAnimated = () => {
 
   return (
     <>
-      {!freeSessionCreditClaimed &&
-        <BannerContainer
-          className="banner-container"
-          showBanner={true}
-          scrollY={scrollY}
-          scrollLimit={scrollLimit}
-        >
-          <ArButton className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" link={bannerButtonTarget}>{bannerText}</ArButton>
-        </BannerContainer>
-      }
+      <BannerContainer
+        className="banner-container"
+        showBanner={true}
+        scrollY={scrollY}
+        scrollLimit={scrollLimit}
+      >
+        <ArButton className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" link={bannerButtonTarget}>{bannerText}</ArButton>
+      </BannerContainer>
     </>
   );
 };

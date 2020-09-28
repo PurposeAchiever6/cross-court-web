@@ -75,16 +75,14 @@ const FreeSessionBanner = () => {
 
   return (
     <>
-      {!freeSessionCreditClaimed &&
-        <BannerContainer
-          className="banner-container"
-          showBanner={true}
-          scrollY={scrollY}
-          scrollLimit={scrollLimit}
-        >
-          <ArButton className="first-session-free-btn" link={bannerButtonTarget}>{bannerText}</ArButton>
-        </BannerContainer>
-      }
+      <BannerContainer
+        className="banner-container"
+        showBanner={true}
+        scrollY={scrollY}
+        scrollLimit={scrollLimit}
+      >
+        <ArButton className="first-session-free-btn" link={bannerButtonTarget}>{bannerText}</ArButton>
+      </BannerContainer>
     </>
   );
 };
