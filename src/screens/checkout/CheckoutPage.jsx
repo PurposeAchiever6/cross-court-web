@@ -6,7 +6,7 @@ import { isNil } from 'ramda';
 
 import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/series/reducer';
-import { getSelectedCard, getClaimFreeSession } from 'screens/payments/reducer';
+import { getSelectedCard, /*getClaimFreeSession*/ } from 'screens/payments/reducer';
 import BackButton from 'shared/components/BackButton';
 import device from 'shared/styles/mediaQueries';
 import { createPurchase, /*createFreeSessionInit*/ } from './actionCreators';
@@ -36,7 +36,7 @@ const CheckoutPage = () => {
   //const createFreeSessionHandler = () => dispatch(createFreeSessionInit());
   const productDetails = useSelector(getSelectedProduct);
   const paymentDetails = useSelector(getSelectedCard);
-  const isFreeSession = useSelector(getClaimFreeSession);
+  //const isFreeSession = useSelector(getClaimFreeSession);
 
   if (isNil(productDetails) || isNil(paymentDetails)) {
     return <Redirect to={ROUTES.LOCATIONS} />;
@@ -53,7 +53,7 @@ const CheckoutPage = () => {
         paymentDetails={paymentDetails}
         createPurchaseHandler={createPurchaseHandler}
         //createFreeSessionHandler={createFreeSessionHandler}
-        isFreeSession={isFreeSession}
+        //isFreeSession={isFreeSession}
       />
     </CheckoutPageContainer>
   );

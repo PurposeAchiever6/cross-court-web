@@ -1108,6 +1108,9 @@ body .make-sport-your-lifestyle .crosscourt-big-title.anim10,
 body .make-sport-your-lifestyle .crosscourt-big-title.anim11 {
   opacity: 1;
 }
+body .home-video {
+  background-color: #9999ff;
+}
 body .home-video .video-player {
   display: block;
   height: auto;
@@ -1656,6 +1659,7 @@ body .new-to-crosscourt .mobile-image {
   }
 }
 body .the-session-video {
+  background-color: #000;
   scroll-margin-top: 64px;
 }
 body .the-session-video .video-player {
@@ -2879,6 +2883,10 @@ body .locations .sessions-container .week-handler .weektitle-container {
 }
 body .locations .sessions-container .session-list-item-container {
   padding: 30px 0;
+}
+body .locations .sessions-container .session-list-item-container.past {
+  opacity: 0.3;
+  pointer-events: none;
 }
 body .locations .sessions-container .session-list-item-container .text-container {
   overflow: visible;

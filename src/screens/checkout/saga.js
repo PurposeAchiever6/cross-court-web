@@ -82,7 +82,7 @@ export function* checkPromoCodeFlow({ payload }) {
 export default function* checkoutSaga() {
   yield all([
     takeLatest(CREATE_PURCHASE_INIT, createPurchaseFlow),
-    takeLatest(CREATE_FREE_SESSION_INIT, createFreeSessionFlow),
+    //takeLatest(CREATE_FREE_SESSION_INIT, createFreeSessionFlow),
     takeLatest(CHECK_PROMO_CODE_INIT, checkPromoCodeFlow),
   ]);
 }

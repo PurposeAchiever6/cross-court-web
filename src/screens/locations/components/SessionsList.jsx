@@ -117,7 +117,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
             button = <ArButton link={`/session/${id}/${URLdate}`}>RESERVE</ArButton>;
           }
           return (
-            <div className="session-list-item-container" key={id}>
+            <div className={'session-list-item-container' + (past ? ' past' : '')} key={id}>
               <div className="text-container">
                 <div className="time">{hourRange(time)}</div>
                 <div className="location">{location.name}</div>

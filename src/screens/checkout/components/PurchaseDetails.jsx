@@ -181,12 +181,12 @@ const PurchaseDetails = ({
   productDetails,
   paymentDetails,
   createPurchaseHandler,
-  isFreeSession,
-  createFreeSessionHandler,
+  //isFreeSession,
+  //createFreeSessionHandler,
 }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getCheckoutLoading);
-  const checkoutHandler = isFreeSession ? createFreeSessionHandler : createPurchaseHandler;
+  const checkoutHandler = /*isFreeSession ? createFreeSessionHandler :*/createPurchaseHandler;
   const purchaseDate = purchaseFormattedDate();
 
   useEffect(() => {
@@ -220,7 +220,7 @@ const PurchaseDetails = ({
         <div className="promo-total-container">
           <PromoCode />
           <div className="total-container">
-            {isFreeSession ? (
+            {false/*isFreeSession*/ ? (
               <span>FREE</span>
             ) : (
               <span>{`$ ${currency(productDetails.price, {
@@ -243,9 +243,9 @@ const PurchaseDetails = ({
 PurchaseDetails.propTypes = {
   paymentDetails: PropTypes.object.isRequired,
   productDetails: PropTypes.object.isRequired,
-  isFreeSession: PropTypes.bool.isRequired,
+  //isFreeSession: PropTypes.bool.isRequired,
   createPurchaseHandler: PropTypes.func,
-  createFreeSessionHandler: PropTypes.func,
+  //createFreeSessionHandler: PropTypes.func,
 };
 
 export default PurchaseDetails;

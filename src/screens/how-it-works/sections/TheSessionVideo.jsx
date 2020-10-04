@@ -63,9 +63,18 @@ const Section = styled.section`
 `;
 
 const TheSessionVideo = props => (
-  <Section className="the-session-video" {...props}>
-    <video className="video-player" src="/how-it-works.mp4" muted playsInline="" controls={true} loop={true}></video>
-  </Section>
+  <Section className="the-session-video" {...props} dangerouslySetInnerHTML={{ __html: `
+    <video
+      class="video-player"
+      src="/how-it-works.mp4"
+      muted=""
+      playsinline=""
+      webkit-playsinline=""
+      controls=""
+      loop=""
+      type="video/mp4"
+    ></video>
+  ` }}></Section>
 );
 
 export default TheSessionVideo;

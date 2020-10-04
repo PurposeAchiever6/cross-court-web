@@ -207,11 +207,11 @@ const Session = ({
             </div>
           ) : (
             <div className="buttons-container">
-              {isReserved && inConfirmationTime ? (
+              {false ?/*isReserved && inConfirmationTime ? (
                 <Button className="ar-button confirm-button" onClick={confirmSessionAction}>
                   <div className="ar-button-inner">CONFIRM</div>
                 </Button>
-              ) : (
+              )*/false : (
                 <ArButton
                   className="see-details-button"
                   link={`/session/${sessionId}/${urlFormattedDate(date)}`}

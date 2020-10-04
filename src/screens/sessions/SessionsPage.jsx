@@ -339,7 +339,7 @@ const SessionsPage = () => {
               </div>
             </div>
             <div className="button-container">
-              {!sessionInfo.past && (
+              {sessionInfo && !sessionInfo.past && (
                 <SessionButtons
                   session={sessionInfo}
                   reserveSessionAction={reserveSessionAction}
@@ -349,12 +349,13 @@ const SessionsPage = () => {
                   signupBookSessionAction={signupBookSessionAction}
                 />
               )}
-              {userProfile.credits === 0 && (
+              {(userProfile.credits === 0 ||
+              (sessionInfo && sessionInfo.userSession && ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)) && (
                 <AlternativeButton
                   className="buy-btn ar-button double"
                   onClick={buyCreditsAndBookSessionAction}
                 >
-                  <div className="ar-button-inner">CONFIRM RESERVATION</div>
+                  <div className="ar-button-inner">BUY CREDITS</div>
                   <div className="double-drop"></div>
                 </AlternativeButton>
               )}
