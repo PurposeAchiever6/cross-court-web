@@ -349,8 +349,12 @@ const SessionsPage = () => {
                   signupBookSessionAction={signupBookSessionAction}
                 />
               )}
-              {(userProfile.credits === 0 ||
-              (sessionInfo && sessionInfo.userSession && ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)) && (
+              {(userProfile.credits === 0 &&
+                (
+                  !sessionInfo.userSession ||
+                  (sessionInfo.userSession && ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)
+                )
+              ) && (
                 <AlternativeButton
                   className="buy-btn ar-button double"
                   onClick={buyCreditsAndBookSessionAction}

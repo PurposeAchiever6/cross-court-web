@@ -97,6 +97,13 @@ const ReserveButton = ({
         </Button>
       );
     }
+  } else {
+    return (
+      <Button className="ar-button reserve-btn inverted double" onClick={signupBookSessionAction}>
+        <div className="ar-button-inner">SIGN UP TO BOOK</div>
+        <div class="double-drop"></div>
+      </Button>
+    );
   }
 
   return (

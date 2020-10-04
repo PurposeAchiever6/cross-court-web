@@ -48,6 +48,7 @@ const FreeSessionBannerAnimated = () => {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
+  const freeSessionUsed = userInfo.freeSessionState === 'used';
   const freeSessionExpirationDate = userInfo.freeSessionExpirationDate;
   const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
@@ -75,14 +76,16 @@ const FreeSessionBannerAnimated = () => {
 
   return (
     <>
-      <BannerContainer
-        className="banner-container"
-        showBanner={true}
-        scrollY={scrollY}
-        scrollLimit={scrollLimit}
-      >
-        <ArButton className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" link={bannerButtonTarget}>{bannerText}</ArButton>
-      </BannerContainer>
+      {!freeSessionUsed &&
+        <BannerContainer
+          className="banner-container"
+          showBanner={true}
+          scrollY={scrollY}
+          scrollLimit={scrollLimit}
+        >
+          <ArButton className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft" link={bannerButtonTarget}>{bannerText}</ArButton>
+        </BannerContainer>
+      }
     </>
   );
 };

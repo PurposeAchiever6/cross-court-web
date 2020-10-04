@@ -1437,8 +1437,8 @@ body .follow-us-on-instagram .instafeed {
   margin-bottom: 20px;
   text-align: center;
 }
-body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-instagram-feed-posts-grid-load-more {
-  background-color: #9999ff;
+body .follow-us-on-instagram .instafeed .eapps-instagram-feed-posts-grid-load-more {
+  background-color: #9999ff !important;
   border: 3px solid #fff;
   border-radius: 0;
   color: #fff;
@@ -1457,8 +1457,8 @@ body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-instagram
   display: inline-block;
   margin: 24px 32px;
 }
-body .follow-us-on-instagram .instafeed #eapps-instagram-feed-1 .eapps-instagram-feed-posts-grid-load-more:hover {
-  background-color: #fff;
+body .follow-us-on-instagram .instafeed .eapps-instagram-feed-posts-grid-load-more:hover {
+  background-color: #fff !important;
   border: 3px solid #9999ff;
   color: #9999ff;
 }
