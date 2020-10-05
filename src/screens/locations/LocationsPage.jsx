@@ -103,7 +103,7 @@ const LocationsPage = () => {
     <Loading />
   ) : (
     <>
-      {isFSFFlow && <FreeSessionCreditAdded /> }
+      {isFSFFlow && <FreeSessionCreditAdded />}
       <PageContainer className="locations">
         <div className="sessions-container">
           <LocationPicker

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import freeSessionImg from 'screens/locations/images/FreeSession.svg';
+import freeSessionImg from 'screens/locations/images/FreeSessionCreditAddedToAccount.png';
 
 const FreeSessionCreditAddedContainer = styled.div`
 `;

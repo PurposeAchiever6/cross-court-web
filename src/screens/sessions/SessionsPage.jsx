@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useParams, useHistory } from 'react-router-dom';
 import { isNil } from 'ramda';
 import styled from 'styled-components';
 
@@ -17,6 +17,8 @@ import { getUserProfile } from 'screens/my-account/reducer';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import SessionLevel from 'shared/components/SessionLevel';
 import LEVELS from 'shared/constants/levels';
+
+import ROUTES from 'shared/constants/routes';
 
 import { removeSessionFromStorage } from 'shared/actions/actionCreators';
 import {
@@ -232,6 +234,7 @@ const SessionsPageContainer = styled.div`
 const SessionsPage = () => {
   const { id, date } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const isPageLoading = useSelector(getPageLoading);
   const sessionInfo = useSelector(getSessionInfo);
@@ -349,15 +352,19 @@ const SessionsPage = () => {
                   signupBookSessionAction={signupBookSessionAction}
                 />
               )}
-              {(userProfile.credits === 0 &&
+              {(userProfile.credits === 0 /*&&
                 (
                   !sessionInfo.userSession ||
                   (sessionInfo.userSession && ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)
                 )
-              ) && (
+              */) && (
                 <AlternativeButton
                   className="buy-btn ar-button double"
-                  onClick={buyCreditsAndBookSessionAction}
+                  onClick={() => {
+                    //window.sessionStorage.setItem('seriesAnimation', 'true');
+                    //console.log('seriesAnimationSet');
+                    history.push(ROUTES.SERIES);
+                  }}
                 >
                   <div className="ar-button-inner">BUY CREDITS</div>
                   <div className="double-drop"></div>

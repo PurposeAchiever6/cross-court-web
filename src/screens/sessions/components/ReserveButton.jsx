@@ -16,6 +16,8 @@ import { initialLoadInit } from 'screens/payments/actionCreators';
 import { getAvailableCards } from 'screens/payments/reducer';
 import ROUTES from 'shared/constants/routes';
 
+import { createFreeSessionInit } from 'screens/checkout/actionCreators';
+
 const ReserveButton = ({
   reserveSessionAction,
   session,
@@ -44,6 +46,8 @@ const ReserveButton = ({
   const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
   /* END FSF FLOW LOGIC */
 
+  const createFreeSessionHandler = () => dispatch(createFreeSessionInit());
+
   useEffect(() => {
     dispatch(initialLoadInit());
   }, [dispatch]);
@@ -65,6 +69,10 @@ const ReserveButton = ({
               window.sessionStorage.setItem('redirect', window.location.pathname);
               history.push(ROUTES.PAYMENTS);
             } else {
+              if (isFSFFlow) {
+                createFreeSessionHandler();
+              }
+
               reserveSessionAction();
             }
           }}
@@ -99,8 +107,11 @@ const ReserveButton = ({
     }
   } else {
     return (
-      <Button className="ar-button reserve-btn inverted double" onClick={signupBookSessionAction}>
-        <div className="ar-button-inner">SIGN UP TO BOOK</div>
+      <Button className="ar-button reserve-btn inverted double" onClick={() => {
+        window.sessionStorage.setItem('redirect', window.location.pathname);
+        signupBookSessionAction();
+      }}>
+        <div className="ar-button-inner">LOG IN / SIGN UP<br />TO BOOK</div>
         <div class="double-drop"></div>
       </Button>
     );

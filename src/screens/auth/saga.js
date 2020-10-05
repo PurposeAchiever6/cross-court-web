@@ -35,7 +35,7 @@ export function* loginFlow({ payload }) {
     const loginPayload = yield call(authService.login, payload);
     yield call(AuthUtils.setTokens, loginPayload);
     yield put({ type: LOGIN_SUCCESS, payload: loginPayload.user });
-    yield put(push(ROUTES.MYACCOUNT));
+    yield put(push(ROUTES.HOME));
   } catch (err) {
     yield put({ type: LOGIN_FAILURE, error: err.response.data.error });
   }
