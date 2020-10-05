@@ -458,12 +458,14 @@ history.listen(location => {
   keepScrolling = true;
   window.addEventListener('scroll', window.setScrollClasses);
   window.setTimeout(window.setScrollClasses, 1000);
+  console.log('history listen event');
 });
 
 //document.querySelector('main').classList.remove('animation-done');
 window.setPageNameOnBodyClass(window.location.pathname);
 window.addEventListener('scroll', window.setScrollClasses);
 window.setTimeout(window.setScrollClasses, 1000);
+console.log('routes file');
 
 const Routes = () => {
   const dispatch = useDispatch();
