@@ -71,6 +71,7 @@ const ReserveButton = ({
             } else {
               if (isFSFFlow) {
                 createFreeSessionHandler();
+                
               }
 
               reserveSessionAction();
