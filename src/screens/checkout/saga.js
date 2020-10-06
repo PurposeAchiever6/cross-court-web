@@ -50,7 +50,7 @@ export function* createFreeSessionFlow() {
     yield put({
       type: CREATE_FREE_SESSION_SUCCESS,
     });
-    yield put(push(ROUTES.SESSIONCONFIRMED));
+    yield put(push(ROUTES.SESSIONRESERVED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({ type: CREATE_FREE_SESSION_FAILURE, error: err.response.data.error });
