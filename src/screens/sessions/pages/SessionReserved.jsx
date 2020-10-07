@@ -20,7 +20,6 @@ const SessionReservedContainer = styled.div`
   align-items: center;
 
   .session-info-container {
-    width: 30rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -126,6 +125,7 @@ const SessionReserved = () => {
           </div>
           <div className="double-drop"></div>
         </button>
+        <p class="refer-a-new-friend-message">REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!</p>
         <br />
         <ArButton className="done-button" inverted link={ROUTES.MYACCOUNT}>
           DONE

@@ -2503,7 +2503,7 @@ body .any-questions .title-and-button-block .title-1 {
   font-family: 'shapiro97_air_extd';
   -webkit-text-stroke: 1px;
   font-size: 21.5px;
-  line-height: 6.5px;
+  line-height: 10.5px;
   margin-bottom: 0;
 }
 @media (min-width: 992px) {
@@ -2516,8 +2516,8 @@ body .any-questions .title-and-button-block .title-2 {
   color: #fff;
   display: inline-block;
   font-family: 'shapiro95_super_wide';
-  font-size: 11.7px;
-  line-height: 7.7px;
+  font-size: 11.4px;
+  line-height: 11.4px;
   margin-bottom: 30px;
   text-decoration: none;
 }
@@ -3456,8 +3456,12 @@ body .session-reserved .invite-a-friend-button {
   border: none;
   cursor: pointer;
   font-family: 'shapiro96_inclined_wide';
-  margin-bottom: 90px;
+  margin-bottom: 40px;
   width: auto;
+}
+body .session-reserved .refer-a-new-friend-message {
+  color: #9999ff;
+  margin-bottom: 90px;
 }
 /* body .session-reserved .done-button {
   font-size: 20px;
