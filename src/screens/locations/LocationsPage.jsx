@@ -27,6 +27,8 @@ import {
 } from './actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
 
+import { useHistory } from 'react-router-dom';
+
 const PageContainer = styled.div`
   display: flex;
   flex-direction: row-reverse;
@@ -65,6 +67,8 @@ const LocationsPage = () => {
   const getSessionsByDateHandler = date => dispatch(getSessionsByDate(date));
   const setSelectedDateHandler = date => dispatch(setSelectedDate(date));
 
+  const history = useHistory();
+
   const increaseCurrentWeekHandler = () => {
     const nextWeekDate = add(selectedDate, 1, 'weeks');
     setSelectedDateHandler(nextWeekDate);
@@ -93,7 +97,7 @@ const LocationsPage = () => {
 
   if (window.sessionStorage.getItem('previousPage') === 'signup-confirmation') {
     window.sessionStorage.setItem('previousPage', 'null');
-    window.location.reload();
+    history.push('/locations');
   }
   useEffect(() => {
     dispatch(initialLoadInit());
