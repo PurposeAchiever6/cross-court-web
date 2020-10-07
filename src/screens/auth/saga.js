@@ -5,7 +5,7 @@ import { head } from 'ramda';
 import ROUTES from 'shared/constants/routes';
 import AuthUtils from 'shared/utils/auth';
 
-import { browserHistory } from "react-router";
+import { history } from 'shared/history';
 
 import {
   LOGIN_INIT,
@@ -101,7 +101,7 @@ export function* autoLoginFlow({ payload }) {
     yield call(AuthUtils.setTokens, payload.headers);
     yield put({ type: AUTO_LOGIN_SUCCESS });
     //yield put(push(ROUTES.LOCATIONS));
-    yield browserHistory.push(ROUTES.LOCATIONS);
+    yield history.push(ROUTES.LOCATIONS);
   } catch (err) {
     yield put({ type: AUTO_LOGIN_FAILURE, error: err });
   }
