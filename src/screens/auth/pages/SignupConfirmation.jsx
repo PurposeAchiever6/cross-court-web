@@ -12,6 +12,8 @@ import StorageUtils from 'shared/utils/storage';
 
 import { autoLogin } from '../actionCreators';
 
+import { useHistory } from 'react-router-dom';
+
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,6 +35,7 @@ const PageContainer = styled.div`
 
 const SignupConfirmationPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const query = useQuery();
   const client = query.get('client');
   const accessToken = query.get('access-token');
@@ -45,7 +48,8 @@ const SignupConfirmationPage = () => {
   const savedSession = StorageUtils.getSavedSession();
 
   if (!isNil(savedSession)) {
-    return <Redirect to={ROUTES.LOCATIONS} />;
+    //return <Redirect to={ROUTES.LOCATIONS} />;
+    history.push(ROUTES.LOCATIONS);
   }
 
   return (
