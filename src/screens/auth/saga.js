@@ -5,8 +5,6 @@ import { head } from 'ramda';
 import ROUTES from 'shared/constants/routes';
 import AuthUtils from 'shared/utils/auth';
 
-import { history } from 'shared/history';
-
 import {
   LOGIN_INIT,
   LOGIN_SUCCESS,
@@ -100,8 +98,7 @@ export function* autoLoginFlow({ payload }) {
   try {
     yield call(AuthUtils.setTokens, payload.headers);
     yield put({ type: AUTO_LOGIN_SUCCESS });
-    //yield put(push(ROUTES.LOCATIONS));
-    yield history.push(ROUTES.LOCATIONS);
+    yield put(push(ROUTES.LOCATIONS));
   } catch (err) {
     yield put({ type: AUTO_LOGIN_FAILURE, error: err });
   }

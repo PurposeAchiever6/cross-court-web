@@ -91,6 +91,10 @@ const LocationsPage = () => {
   const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
   /* END FSF FLOW LOGIC */
 
+  if (window.sessionStorage.getItem('previousPage') === 'signup-confirmation') {
+    window.sessionStorage.setItem('previousPage', 'null');
+    window.location.reload();
+  }
   useEffect(() => {
     dispatch(initialLoadInit());
 
