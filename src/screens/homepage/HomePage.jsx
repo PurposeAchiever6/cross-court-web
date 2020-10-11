@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import colors from 'shared/styles/constants';
@@ -13,12 +13,15 @@ const PageContainer = styled.div``;
 const HomePage = () => {
   // Handle post-login redirects:
   const history = useHistory();
-  const redirectUrl = window.sessionStorage.getItem('redirect');
 
-  if (redirectUrl) {
-    window.sessionStorage.removeItem('redirect');
-    history.push(redirectUrl);
-  }
+  useEffect(() => {
+    const redirectUrl = window.sessionStorage.getItem('redirect');
+
+    if (redirectUrl) {
+      window.sessionStorage.removeItem('redirect');
+      history.push(redirectUrl);
+    }
+  }, []);
 
   return (
     <PageContainer>

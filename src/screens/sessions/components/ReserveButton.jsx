@@ -71,7 +71,7 @@ const ReserveButton = ({
             } else {
               if (isFSFFlow) {
                 createFreeSessionHandler();
-                
+
               }
 
               reserveSessionAction();
@@ -110,9 +110,10 @@ const ReserveButton = ({
     return (
       <Button className="ar-button reserve-btn inverted double" onClick={() => {
         window.sessionStorage.setItem('redirect', window.location.pathname);
-        signupBookSessionAction();
+        //signupBookSessionAction();
+        history.push(ROUTES.LOGIN);
       }}>
-        <div className="ar-button-inner">LOG IN / SIGN UP<br />TO BOOK</div>
+        <div className="ar-button-inner">LOG IN TO BOOK</div>
         <div class="double-drop"></div>
       </Button>
     );

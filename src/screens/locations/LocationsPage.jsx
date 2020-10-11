@@ -95,17 +95,18 @@ const LocationsPage = () => {
   const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
   /* END FSF FLOW LOGIC */
 
-  if (window.sessionStorage.getItem('previousPage') === 'signup-confirmation') {
-    window.sessionStorage.setItem('previousPage', 'null');
-    history.push('/locations');
-  }
+  // if (window.sessionStorage.getItem('previousPage') === 'signup-confirmation') {
+  //   window.sessionStorage.setItem('previousPage', 'null');
+  //   history.push('/locations');
+  // }
   useEffect(() => {
     dispatch(initialLoadInit());
 
     if (isFSFFlow) {
+      console.log('FSF debug!');
       document.body.setAttribute('data-page', 'free-session-credit-added');
     }
-  }, [dispatch]);
+  }, [/*dispatch*/]);
 
   return isPageLoading ? (
     <Loading />
