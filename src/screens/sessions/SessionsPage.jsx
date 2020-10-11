@@ -366,7 +366,7 @@ const SessionsPage = () => {
                     history.push(ROUTES.SERIES);
                   }}
                 >
-                  <div className="ar-button-inner">BUY CREDITS</div>
+                  <div className="ar-button-inner">CONFIRM RESERVATION</div>
                   <div className="double-drop"></div>
                 </AlternativeButton>
               )}

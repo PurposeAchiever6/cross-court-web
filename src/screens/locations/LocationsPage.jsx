@@ -106,7 +106,7 @@ const LocationsPage = () => {
       console.log('FSF debug!');
       document.body.setAttribute('data-page', 'free-session-credit-added');
     }
-  }, [/*dispatch*/]);
+  }, [dispatch, history]);
 
   return isPageLoading ? (
     <Loading />
