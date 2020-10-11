@@ -87,13 +87,20 @@ const LocationsPage = () => {
     }
   };
 
-  /* START FSF FLOW LOGIC */
   const userInfo = useSelector(getUserProfile);
-  const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
-  const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
-  /* END FSF FLOW LOGIC */
+
+  const _isFSFFlow = () => {
+    /* START FSF FLOW LOGIC */
+    const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
+    const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
+    const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
+    const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
+    /* END FSF FLOW LOGIC */
+    console.log('isFSFFlow', isFSFFlow);
+    return isFSFFlow;
+  };
+
+  
 
   // if (window.sessionStorage.getItem('previousPage') === 'signup-confirmation') {
   //   window.sessionStorage.setItem('previousPage', 'null');
@@ -102,17 +109,17 @@ const LocationsPage = () => {
   useEffect(() => {
     dispatch(initialLoadInit());
 
-    if (isFSFFlow) {
+    if (_isFSFFlow()) {
       console.log('FSF debug!');
       document.body.setAttribute('data-page', 'free-session-credit-added');
     }
-  }, [dispatch, history]);
+  }, [dispatch]);
 
   return isPageLoading ? (
     <Loading />
   ) : (
     <>
-      {isFSFFlow && <FreeSessionCreditAdded />}
+      {_isFSFFlow() && <FreeSessionCreditAdded />}
       <PageContainer className="locations">
         <div className="sessions-container">
           <LocationPicker

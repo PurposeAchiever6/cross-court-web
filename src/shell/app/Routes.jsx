@@ -478,7 +478,6 @@ const Routes = () => {
       dispatch(getLegalDocs());
     } else {
       console.log('CASE B');
-      dispatch(initialAppLoad());
       dispatch(getLegalDocs());
     }
   }, [dispatch, isAuthenticated]);
