@@ -96,7 +96,7 @@ const LocationsPage = () => {
     const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
     const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
     /* END FSF FLOW LOGIC */
-    console.log('isFSFFlow', isFSFFlow);
+    console.log('isFSFFlow2', isFSFFlow);
     return isFSFFlow;
   };
 
@@ -113,7 +113,7 @@ const LocationsPage = () => {
       console.log('FSF debug!');
       document.body.setAttribute('data-page', 'free-session-credit-added');
     }
-  }, [dispatch]);
+  }, [dispatch, history]);
 
   return isPageLoading ? (
     <Loading />
