@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 
 import React, { useEffect, Suspense, lazy } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import styled from 'styled-components';
 import { ToastContainer, Zoom } from 'react-toastify';
@@ -471,8 +471,6 @@ const Routes = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(getIsAuthenticated);
 
-  const history = useHistory();
-
   useEffect(() => {
     if (isAuthenticated) {
       console.log('CASE A');
@@ -482,7 +480,7 @@ const Routes = () => {
       console.log('CASE B');
       dispatch(getLegalDocs());
     }
-  }, [dispatch, isAuthenticated, history]);
+  }, [dispatch, isAuthenticated]);
 
   const RoutesWithoutFooter = () => (
     <Switch>
