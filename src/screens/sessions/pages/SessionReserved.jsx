@@ -11,6 +11,8 @@ import colors from 'shared/styles/constants';
 import SportCharacter from 'shared/images/sport-character.png';
 import ArButton from 'shared/components/ArButton';
 
+import { getUserProfile } from 'screens/my-account/reducer.js';
+
 import { getSessionId, getSessionDate } from '../reducer';
 
 const SessionReservedContainer = styled.div`
@@ -95,9 +97,11 @@ const SessionReserved = () => {
   const sessionId = useSelector(getSessionId);
   const sessionDate = useSelector(getSessionDate);
 
+  const userProfile = useSelector(getUserProfile);
+
   const env = runtimeEnv();
   const APP_URL = env.REACT_APP_URL;
-  const SHARE_URL = `${APP_URL}/session/${sessionId}/${sessionDate}`;
+  const SHARE_URL = `${APP_URL}/session/${sessionId}/${sessionDate}?referralCode=${userProfile.referralCode}`;
 
   const onCopyHandler = () => toast.success('Link Copied!');
 

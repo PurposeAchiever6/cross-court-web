@@ -18,6 +18,10 @@ body {
   height: 100%;
 }
 
+.hide {
+  display: none !important;
+}
+
 .fade-enter {
   opacity: 0.01;
 }
@@ -986,6 +990,166 @@ body .free-session-modal .title {
   font-family: 'shapiro95_super_wide';
   font-size: 24px;
   text-align: center;
+}
+/* SURVEY MODAL */
+body[data-page='home'] .ReactModal__Overlay .ReactModal__Content {
+  /* background-color: #9999ff !important; */
+  border: none !important;
+  border-radius: 0 !important;
+  max-width: 550px !important;
+  padding: 0 !important;
+  width: 100vw !important;
+}
+body .survey-modal {
+  background-color: #9999FF;
+}
+body .survey-modal .close-btn {
+  color: #FFF;
+  height: 30px;
+  left: 7px;
+  opacity: 1;
+  top: 7px;
+  transition: 500ms opacity ease;
+  width: 30px;
+}
+body .survey-modal .close-btn:hover {
+  opacity: 0.6;
+}
+/* body .survey-modal .thanks-title {
+  background-color: #9999FF;
+  color: #FFF;
+  font-family: 'shapiro95_super_wide';
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+  padding: 12px 48px 8px;
+  text-align: center;
+} */
+body .survey-modal .body1 {
+  padding: 30px;
+  text-align: center;
+}
+body .survey-modal .body1 .thanks-for-coming-out {
+  margin-bottom: 20px;
+  max-width: 320px;
+  width: 100%;
+}
+/* body .survey-modal .body .rate-title {
+  color: #9999FF;
+  font-family: 'shapiro95_super_wide';
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 10px;
+}
+body .survey-modal .body .session-info-container {
+  display: flex;
+  flex-direction: row;
+}
+body .survey-modal .body .session-info-container .session-info {
+  width: 33.33%;
+}
+body .survey-modal .body .session-info-container .session-info .label {
+  font-family: 'shapiro95_super_wide';
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+body .survey-modal .body .session-info-container .session-info .value {
+  font-size: 11px;
+  line-height: 14px;
+  margin-bottom: 0;
+} */
+body .survey-modal .body1 .stars {
+  margin-bottom: 20px;
+  transition: 500ms opacity ease;
+}
+/* body .survey-modal .body .stars.done {
+  opacity: 0.7;
+  pointer-events: none;
+} */
+body .survey-modal .body1 .stars .star-pair {
+  animation: 500ms ease-out 500ms 1 both topFadeInAndSlideIn;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 1px;
+  position: relative;
+}
+body .survey-modal .body1 .stars .star-pair:nth-of-type(1) {
+  animation-delay: 200ms;
+}
+body .survey-modal .body1 .stars .star-pair:nth-of-type(2) {
+  animation-delay: 400ms;
+}
+body .survey-modal .body1 .stars .star-pair:nth-of-type(3) {
+  animation-delay: 600ms;
+}
+body .survey-modal .body1 .stars .star-pair:nth-of-type(4) {
+  animation-delay: 800ms;
+}
+body .survey-modal .body1 .stars .star-pair:nth-of-type(5) {
+  animation-delay: 1000ms;
+}
+body .survey-modal .body1 .stars .star-pair .star-full,
+body .survey-modal .body1 .stars .star-pair .star-empty {
+  display: inline-block;
+  height: 50px;
+  width: 50px;
+}
+body .survey-modal .body1 .stars .star-pair .star-empty {
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+body .survey-modal .body1 .stars .star-pair .star-full {
+  opacity: 0;
+  position: relative;
+  transition: 300ms opacity ease;
+  z-index: 0;
+}
+body .survey-modal .body1 .stars .star-pair.hover .star-full,
+body .survey-modal .body1 .stars .star-pair.selected .star-full {
+  opacity: 1;
+}
+/* body .survey-modal .body .feedback-title {
+  color: #9999FF;
+  font-family: 'shapiro95_super_wide';
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 0;
+} */
+body .survey-modal .body1 .feedback {
+  border: 2px solid #9999FF;
+  font-family: 'shapiro45_welter_extd';
+  font-size: 12px;
+  height: 80px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+}
+body .survey-modal .body1 .feedback::placeholder,
+body .survey-modal .body1 .feedback::-webkit-input-placeholder,
+body .survey-modal .body1 .feedback::-moz-placeholder {
+  color: #000;
+  font-weight: bold;
+  opacity: 1;
+}
+body .survey-modal .body1 .submit-btn {
+  margin: 0 auto;
+  width: 200px;
+}
+body .survey-modal .body2 {
+  padding: 180px 30px 110px;
+  text-align: center;
+}
+body .survey-modal .body2 .thanks-for-your-feedback {
+  margin-bottom: 40px;
+  max-width: 440px;
+  width: 100%;
+}
+body .survey-modal .body2 .book-next-session-btn {
+  margin: 0 auto;
+  width: 280px;
 }
 
 /* HOMEPAGE */
@@ -4321,6 +4485,18 @@ body .my-account-mobile .tab-content .my-profile form label {
   font-family: 'shapiro95_super_wide';
   font-weight: normal;
   letter-spacing: 0;
+}
+body .my-account-desktop .my-profile .detail-row .referral-code,
+body .my-account-mobile .my-profile .detail-row .referral-code {
+  border: 1px solid #000;
+  font-size: 14px;
+  line-height: 30px;
+  margin-bottom: 5px;
+  padding: 4px 10px;
+}
+body .my-account-desktop .my-profile .detail-row .invite-a-friend-button,
+body .my-account-mobile .my-profile .detail-row .invite-a-friend-button {
+  border: none;
 }
 body .my-account-desktop .sidebar-container .my-profile form .save-button,
 body .my-account-mobile .sidebar-container .my-profile form .save-button {

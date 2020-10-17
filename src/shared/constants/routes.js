@@ -28,4 +28,5 @@ export default {
   FAQSEM: '/faq#sem',
   CANCELATIONPOLICY: '/cancelation-policy',
   TERMS: '/terms-and-conditions',
+  SURVEY: '/survey',
 };

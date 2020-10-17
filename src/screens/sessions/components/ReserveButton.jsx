@@ -50,6 +50,7 @@ const ReserveButton = ({
 
   useEffect(() => {
     dispatch(initialLoadInit());
+    console.log('userInfo', userInfo);
   }, [dispatch]);
 
   if (isAuthenticated) {
@@ -71,7 +72,6 @@ const ReserveButton = ({
             } else {
               if (isFSFFlow) {
                 createFreeSessionHandler();
-
               }
 
               reserveSessionAction();

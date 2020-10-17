@@ -47,6 +47,7 @@ const SemHandbook = lazy(() => import('shared/pages/SemHandbook'));
 const FAQ = lazy(() => import('shared/pages/Faq'));
 const CancelationPolicy = lazy(() => import('screens/legal-docs/pages/CancelationPolicy'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
+//const Survey = lazy(() => import('screens/survey/SurveyPage'));
 
 const AppWrapper = styled.div`
   display: flex;
@@ -449,6 +450,23 @@ window.setScrollClasses = function() {
   }, 100);
 };
 
+window.cookieAndSessionStorageHandler = function() {
+  let search = window.location.search;
+  let params = new URLSearchParams(search);
+  let referralCode = params.get('referralCode');
+
+  if (referralCode) {
+    window.sessionStorage.setItem('referralCode', referralCode)
+  }
+
+  if (
+    window.sessionStorage.getItem('surveyLock') &&
+    window.location.pathname !== '/'
+  ) {
+    window.location.href = '/';
+  }
+}
+
 history.listen(location => {
   ReactGA.set({ page: location.pathname }); // Update the user's current page
   ReactGA.pageview(location.pathname); // Record a pageview for the given page
@@ -459,12 +477,15 @@ history.listen(location => {
   window.addEventListener('scroll', window.setScrollClasses);
   window.setTimeout(window.setScrollClasses, 1000);
   console.log('history listen event');
+
+  //window.cookieAndSessionStorageHandler();
 });
 
 //document.querySelector('main').classList.remove('animation-done');
 window.setPageNameOnBodyClass(window.location.pathname);
 window.addEventListener('scroll', window.setScrollClasses);
 window.setTimeout(window.setScrollClasses, 1000);
+//window.cookieAndSessionStorageHandler();
 console.log('routes file');
 
 const Routes = () => {
@@ -473,11 +494,11 @@ const Routes = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      console.log('CASE A');
       dispatch(initialAppLoad());
       dispatch(getLegalDocs());
+      window.cookieAndSessionStorageHandler();
+      console.log('YEEEE');
     } else {
-      console.log('CASE B');
       dispatch(getLegalDocs());
     }
   }, [dispatch, isAuthenticated]);
@@ -541,6 +562,9 @@ const Routes = () => {
         <Route path={ROUTES.CANCELATIONPOLICY}>
           <CancelationPolicy />
         </Route>
+        {/* <Route path={ROUTES.SURVEY}>
+          <Survey />
+        </Route> */}
         <PrivateRoute path={ROUTES.PURCHASEHISTORY}>
           <PurchaseHistory />
         </PrivateRoute>

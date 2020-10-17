@@ -12,10 +12,15 @@ export default {
 
     return response.data.session;
   },
-  reserveSession: async (sessionId, date) => {
+  reserveSession: async (sessionId, date, referralCode) => {
     const response = await api.post(`/sessions/${sessionId}/user_sessions`, {
       date: requestFormattedDate(date),
+      referralCode
     });
+
+    if (referralCode) {
+      window.sessionStorage.removeItem('referralCode');
+    }
 
     return response.data.session;
   },

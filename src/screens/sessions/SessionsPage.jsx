@@ -233,6 +233,9 @@ const SessionsPageContainer = styled.div`
 
 const SessionsPage = () => {
   const { id, date } = useParams();
+  const referralCode = window.sessionStorage.getItem('referralCode') ?
+      window.sessionStorage.getItem('referralCode') :
+      false;
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -242,7 +245,7 @@ const SessionsPage = () => {
   const userProfile = useSelector(getUserProfile);
   const shouldShowCancelModal = useSelector(getShowCancelModal);
 
-  const reserveSessionAction = () => dispatch(reserveSessionInit(sessionInfo.id, date));
+  const reserveSessionAction = () => dispatch(reserveSessionInit(sessionInfo.id, date, referralCode));
   const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
   const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
   const showCancelModalAction = () => dispatch(showCancelModal());
@@ -352,12 +355,12 @@ const SessionsPage = () => {
                   signupBookSessionAction={signupBookSessionAction}
                 />
               )}
-              {(userProfile.credits === 0 /*&&
+              {(isAuthenticated && userProfile.credits === 0 &&
                 (
                   !sessionInfo.userSession ||
                   (sessionInfo.userSession && ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)
                 )
-              */) && (
+              ) && (
                 <AlternativeButton
                   className="buy-btn ar-button double"
                   onClick={() => {

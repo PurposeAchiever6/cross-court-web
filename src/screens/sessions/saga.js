@@ -65,7 +65,7 @@ export function* initialLoadAuthFlow({ payload }) {
 
 export function* reserveSessionFlow({ payload }) {
   try {
-    yield call(sessionService.reserveSession, payload.sessionId, payload.date);
+    yield call(sessionService.reserveSession, payload.sessionId, payload.date, payload.referralCode);
     yield put({
       type: RESERVE_SESSION_SUCCESS,
     });

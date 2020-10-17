@@ -7,6 +7,9 @@ import { formatPhoneNumber } from 'shared/utils/helpers';
 import { editProfileInit, showEditProfile } from '../actionCreators';
 import { getEditProfileLoading, getShowEditProfile } from '../reducer';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+
 import EditProfileForm from './EditProfileForm';
 
 const MyProfileContainer = styled.div`
@@ -82,6 +85,29 @@ const MyProfile = ({ profile, showTitle = true }) => {
             <span className="text">
               {profile.phoneNumber ? formatPhoneNumber(profile.phoneNumber) : 'No phone'}
             </span>
+          </div>
+          <div className="detail-row">
+            <span className="title">REFER A FRIEND</span>
+            <input
+              readonly={true}
+              className="referral-code"
+              value={window.location.origin + '/?referralCode=' + profile.referralCode}
+              onClick={() => {}}
+            />
+            <button
+              className="ar-button invite-a-friend-button"
+              onClick={e => {
+                let selector = window.innerWidth < 992 ? 'mobile' : 'desktop';
+                document.querySelector('.my-account-' + selector + ' .referral-code').select();
+                document.execCommand('copy');
+                document.querySelector('.my-account-' + selector + ' .invite-a-friend-button .ar-button-inner').innerHTML  = 'COPIED!';
+              }}
+            >
+              <div className="ar-button-inner">
+                <FontAwesomeIcon icon={faExternalLinkAlt} /> COPY CODE
+              </div>
+              <div className="double-drop"></div>
+            </button>
           </div>
         </>
       )}

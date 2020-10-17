@@ -101,7 +101,7 @@ const LocationsPage = () => {
   }
   useEffect(() => {
     dispatch(initialLoadInit());
-console.log('isFSFFlow', isFSFFlow);
+
     if (isFSFFlow) {
       document.body.setAttribute('data-page', 'free-session-credit-added');
     }
