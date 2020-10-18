@@ -4488,8 +4488,10 @@ body .my-account-mobile .tab-content .my-profile form label {
 }
 body .my-account-desktop .my-profile .detail-row .referral-code,
 body .my-account-mobile .my-profile .detail-row .referral-code {
-  border: 1px solid #000;
+  border: 3px solid #9999FF;
+  color: #9999FF;
   font-size: 14px;
+  font-weight: bold;
   line-height: 30px;
   margin-bottom: 5px;
   padding: 4px 10px;
