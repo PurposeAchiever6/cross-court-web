@@ -80,4 +80,4 @@ export const sortSessionsByDate = sessions =>
   sort((a, b) => (dayjs(new Date(a.time)).isAfter(dayjs(new Date(b.time))) ? 1 : -1), sessions);
 
 export const formatSessionTime = time => getUTCDate(time).format(FORMAT_HOUR);
-export const formatSessionDate = time => getUTCDate(time).format(FORMAT_DATE_PURCHASE);
+export const formatSessionDate = time => getUTCDate(time).format(FORMAT_DATE_PURCHASE)

@@ -13,7 +13,12 @@ import ArButton from 'shared/components/ArButton';
 
 import { getUserProfile } from 'screens/my-account/reducer.js';
 
-import { getSessionId, getSessionDate } from '../reducer';
+import { getSessionInfo, getSessionId, getSessionDate } from '../reducer';
+
+import {
+  formatSessionTime,
+  purchaseFormattedDate,
+} from 'shared/utils/date';
 
 const SessionReservedContainer = styled.div`
   display: flex;
@@ -94,14 +99,18 @@ const SessionReservedContainer = styled.div`
 `;
 
 const SessionReserved = () => {
+  const sessionInfo = useSelector(getSessionInfo);
   const sessionId = useSelector(getSessionId);
   const sessionDate = useSelector(getSessionDate);
+  const sessionDateHumanFriendly = purchaseFormattedDate(sessionDate);
+  const sessionTime = formatSessionTime(sessionDate);
 
   const userProfile = useSelector(getUserProfile);
 
   const env = runtimeEnv();
   const APP_URL = env.REACT_APP_URL;
   const SHARE_URL = `${window.location.origin}/session/${sessionId}/${sessionDate}?referralCode=${userProfile.referralCode}`;
+  const SHARE_MSG = `I just signed up for the Crosscourt ${sessionInfo.location.name}, ${sessionInfo.location.city} session at ${sessionTime} on ${sessionDateHumanFriendly}. Your first session's free. Sign up here: ${SHARE_URL}`;
 
   const onCopyHandler = () => toast.success('Link Copied!');
 
@@ -116,7 +125,7 @@ const SessionReserved = () => {
           data-href={'sms:?&body=' + encodeURI(SHARE_URL)}
           onClick={e => {
             var input = document.createElement('input');
-            input.setAttribute('value', SHARE_URL);
+            input.setAttribute('value', SHARE_MSG);
             document.body.appendChild(input);
             input.select();
             var result = document.execCommand('copy');

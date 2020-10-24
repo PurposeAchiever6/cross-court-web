@@ -297,7 +297,7 @@ body .header {
   background-color: transparent;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
   height: 64px;
-  transition: 500ms background-color ease, 500ms box-shadow ease;
+  transition: 500ms background-color ease, 500ms box-shadow ease, 500ms opacity ease;
 }
 body .header.scrolled {
   background-color: #fff;
@@ -1030,8 +1030,7 @@ body .survey-modal .body1 {
   text-align: center;
 }
 body .survey-modal .body1 .thanks-for-coming-out {
-  margin-bottom: 20px;
-  max-width: 320px;
+  margin: 70px 0 40px;
   width: 100%;
 }
 /* body .survey-modal .body .rate-title {
@@ -3517,6 +3516,11 @@ body .forgot-pass-success h1 {
 }
 
 /* SIGNUP */
+body[data-page='signup'] .header,
+body[data-page='signup'] .footer {
+  opacity: 0;
+  pointer-events: none;
+}
 body .signup {
   /* padding-top: 4rem; */
 }
@@ -3530,6 +3534,11 @@ body .signup .form .form-group label {
 }
 
 /* SIGNUP SUCCESS */
+body[data-page='signup-success'] .header,
+body[data-page='signup-success'] .footer {
+  opacity: 0;
+  pointer-events: none;
+}
 body .signup-success {
   padding: 0 32px;
   position: relative;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import ThanksForComingOutImg from 'shared/images/thanks-for-coming-out.png';
+import ThanksForComingOutImg from 'shared/images/thanks-for-coming-out-2.png';
 import ThanksForYourFeedbackImg from 'shared/images/thanks-for-your-feedback.png';
 import StarEmptyIcon from 'shared/images/star-empty2.png';
 import StarFullIcon from 'shared/images/star-full2.png';
