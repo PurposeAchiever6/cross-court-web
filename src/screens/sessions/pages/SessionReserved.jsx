@@ -110,7 +110,7 @@ const SessionReserved = () => {
   const env = runtimeEnv();
   const APP_URL = env.REACT_APP_URL;
   const SHARE_URL = `${window.location.origin}/session/${sessionId}/${sessionDate}?referralCode=${userProfile.referralCode}`;
-  const SHARE_MSG = `I just signed up for the Crosscourt ${sessionInfo.location.name}, ${sessionInfo.location.city} session at ${sessionTime} on ${sessionDateHumanFriendly}. Your first session's free. Sign up here: ${SHARE_URL}`;
+  const SHARE_MSG = `I just signed up for the Crosscourt ${sessionInfo.location.name} session at ${sessionTime} on ${sessionDateHumanFriendly}. Your first session's free. Sign up here: ${SHARE_URL}`;
 
   const onCopyHandler = () => toast.success('Link Copied!');
 

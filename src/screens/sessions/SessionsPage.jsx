@@ -84,10 +84,6 @@ const SessionsPageContainer = styled.div`
           margin-bottom: 2rem;
         }
 
-        .sessions-available-container {
-          text-align: center;
-        }
-
         .title {
           color: #9999ff;
           font-size: 0.75rem;
@@ -253,6 +249,24 @@ const SessionsPage = () => {
   const buyCreditsAndBookSessionAction = () => dispatch(buyCreditsAndBookSession(id, date));
   const removeSessionFromStorageAction = () => dispatch(removeSessionFromStorage());
 
+  const isSessionComplete = sessionInfo.past;
+  const isSessionFull = sessionInfo.spotsLeft === 0;
+  const getSessionsMessageContainerText = () => {
+    let text = '';
+
+    if (isSessionComplete) {
+      text = `SESSION COMPLETE`;
+    } else if (isSessionFull) {
+      text = `SESSION FULL`;
+    } else {
+      if (isAuthenticated && userProfile.credits) {
+        text = `YOU HAVE ${userProfile.credits} SESSION${userProfile.credits === 1 ? '' : 'S'} AVAILABLE`;
+      }
+    }
+
+    return text;
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(removeSessionFromStorageAction());
@@ -260,8 +274,9 @@ const SessionsPage = () => {
     } else {
       dispatch(initialLoadInit(id, date));
     }
+    console.log(sessionInfo);
     // eslint-disable-next-line
-  }, [isAuthenticated]);
+  }, [isAuthenticated/*, isSessionComplete, isSessionFull*/]);
 
   if (isNil(id)) {
     return <Redirect to="/" />;
@@ -309,10 +324,7 @@ const SessionsPage = () => {
                 <SessionLevel showInfo level={sessionInfo.level} />
               </div>
             )}
-
-            {isAuthenticated && (
-              <span className="sessions-available-container">{`YOU HAVE ${userProfile.credits} SESSIONS AVAILABLE`}</span>
-            )}
+            <span className="sessions-message-container">{getSessionsMessageContainerText()}</span>
           </div>
           <div className="side-container">
             <div className="sem-referee-container">
@@ -355,7 +367,7 @@ const SessionsPage = () => {
                   signupBookSessionAction={signupBookSessionAction}
                 />
               )}
-              {(isAuthenticated && userProfile.credits === 0 &&
+              {(isAuthenticated && userProfile.credits === 0 && !isSessionComplete && !isSessionFull &&
                 (
                   !sessionInfo.userSession ||
                   (sessionInfo.userSession && ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)
@@ -364,14 +376,23 @@ const SessionsPage = () => {
                 <AlternativeButton
                   className="buy-btn ar-button double"
                   onClick={() => {
-                    //window.sessionStorage.setItem('seriesAnimation', 'true');
-                    //console.log('seriesAnimationSet');
                     history.push(ROUTES.SERIES);
                   }}
                 >
                   <div className="ar-button-inner">CONFIRM RESERVATION</div>
                   <div className="double-drop"></div>
                 </AlternativeButton>
+              )}
+              {(sessionInfo && (isSessionComplete || isSessionFull)) && (
+                <AlternativeButton
+                  className="buy-btn ar-button double"
+                  onClick={() => {
+                    history.push(ROUTES.LOCATIONS);
+                  }}
+              >
+                <div className="ar-button-inner">FIND NEW SESSION</div>
+                <div className="double-drop"></div>
+              </AlternativeButton>
               )}
             </div>
           </div>

@@ -3051,7 +3051,8 @@ body .locations .sessions-container .week-handler .weektitle-container {
 body .locations .sessions-container .session-list-item-container {
   padding: 30px 0;
 }
-body .locations .sessions-container .session-list-item-container.past {
+body .locations .sessions-container .session-list-item-container.past,
+body .locations .sessions-container .session-list-item-container.full {
   opacity: 0.3;
   pointer-events: none;
 }
@@ -3256,10 +3257,11 @@ body
   font-family: 'shapiro96_inclined_wide';
   width: auto;
 }
-body .sessions .session-details-container .details-container .sessions-available-container {
+body .sessions .session-details-container .details-container .sessions-message-container {
   color: #fff;
   font-family: 'shapiro95_super_wide';
   font-size: 12px;
+  text-align: center;
 }
 body .cancel-modal h2 {
   font-family: 'shapiro95_super_wide';
