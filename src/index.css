@@ -2230,11 +2230,12 @@ body .the-session .button-wrapper .see-schedule-button.done {
 
 /* SEM (JOIN THE TEAM) */
 body .join-the-cc-team {
-  background-image: url('screens/sem/images/join.jpg');
+  background-image: url('screens/sem/images/join-2.jpg');
 }
 @media (min-width: 992px) {
   body .join-the-cc-team {
     background-attachment: fixed;
+    background-image: url('screens/sem/images/join.jpg');
   }
 }
 body .join-the-cc-team .title-and-description-block {
