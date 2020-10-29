@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import FreeSessionBanner from 'shared/components/FreeSessionBanner';
+//import FreeSessionBanner from 'shared/components/FreeSessionBanner';
 import Loading from 'shared/components/Loading';
 import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
@@ -64,7 +64,7 @@ const SeriesPage = () => {
 
   return (
     <div>
-      <FreeSessionBanner />
+      {/* <FreeSessionBanner /> */}
       {showAnimation() && <NoSessionCredits />}
       <Plans selectProductHandler={selectProductHandler} availableProducts={availableProducts} />
       <Series />

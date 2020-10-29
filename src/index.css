@@ -544,7 +544,7 @@ body .footer .right-side .social svg {
   color: #9999ff;
 }
 
-body .banner-container {
+/* body .banner-container {
   bottom: 10px;
   position: fixed;
   right: 10px;
@@ -563,7 +563,7 @@ body .banner-container.scrolled-down {
 }
 body .banner-container .days {
   color: #000;
-}
+} */
 
 /* COMPONENTS */
 body .ar-button {
@@ -1274,7 +1274,7 @@ body .make-sport-your-lifestyle .crosscourt-big-title.anim11 {
   opacity: 1;
 }
 body .home-video {
-  background-color: #9999ff;
+  background-color: #000;
 }
 body .home-video .video-player {
   display: block;
@@ -5105,4 +5105,12 @@ body[data-page='home'] #root main .covid-19 a:hover {
 }
 body[data-page='home'] #root .header .cheeseburger-menu .cheeseburger-menu-outer {
   top: 64px !important;
+}
+
+/* GLOBAL FSF BUTTON (IN HEADER) */
+body .header .header-content .fsf-button {
+  font-style: italic;
+}
+body .header .header-content .fsf-button .days {
+  color: #000;
 }

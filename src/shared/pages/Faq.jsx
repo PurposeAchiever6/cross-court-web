@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
-import FreeSessionBanner from 'shared/components/FreeSessionBanner';
+//import FreeSessionBanner from 'shared/components/FreeSessionBanner';
 
 const FaqContainer = styled.div``;
 
 const Faq = () => {
   return (
     <FaqContainer className="faq">
-      <FreeSessionBanner />
+      {/* <FreeSessionBanner /> */}
       <h1>CROSSCOURT FAQ</h1>
       <div className="section-links">
         <a href="#players">PLAYERS</a> |{' '}
