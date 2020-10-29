@@ -102,8 +102,8 @@ const SessionReserved = () => {
   const sessionInfo = useSelector(getSessionInfo);
   const sessionId = useSelector(getSessionId);
   const sessionDate = useSelector(getSessionDate);
-  const sessionDateHumanFriendly = purchaseFormattedDate(sessionDate);
-  const sessionTime = formatSessionTime(sessionDate);
+  const sessionDateHumanFriendly = purchaseFormattedDate(sessionDate).slice(0, -3);
+  const sessionTime = formatSessionTime(sessionDate).replace(':00', '');
 
   const userProfile = useSelector(getUserProfile);
 
