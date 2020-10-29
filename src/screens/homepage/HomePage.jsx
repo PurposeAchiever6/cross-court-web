@@ -60,6 +60,8 @@ const HomePage = () => {
     if (shouldShowSurveyModal) {
       window.sessionStorage.setItem('surveyLock', 'true');
     } else {
+      //TODO: might need something like this if stuck in survey lock mode
+      //window.sessionStorage.removeItem('surveyLock', 'true');
       maybeGoBackToSessionToBook();
     }
   }, [dispatch, shouldShowSurveyModal]);
