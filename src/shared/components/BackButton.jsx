@@ -9,6 +9,8 @@ import device from 'shared/styles/mediaQueries';
 
 import backButtonIcon from 'shared/images/back-button.png';
 
+import ROUTES from 'shared/constants/routes';
+
 const BackButtonContainer = styled.button`
   font-size: 1.5rem;
   background-color: transparent;
@@ -38,9 +40,17 @@ const BackButtonContainer = styled.button`
 
 const BackButton = ({ className, showText = true, color = 'black' }) => {
   const { goBack } = useHistory();
+  const history = useHistory();
+  const goBackHandler = () => {
+    if (window.location.pathname.indexOf('/session/') === 0) {
+      history.push(ROUTES.LOCATIONS);
+    } else {
+      goBack();
+    }
+  };
 
   return (
-    <BackButtonContainer type="button" className={`go-back ${className}`} onClick={goBack}>
+    <BackButtonContainer type="button" className={`go-back ${className}`} onClick={goBackHandler}>
       <img className="back-button" src={backButtonIcon} />
     </BackButtonContainer>
   );
