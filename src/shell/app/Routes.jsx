@@ -69,7 +69,6 @@ const { body } = document;
 let keepScrolling = true;
 
 window.setPageNameOnBodyClass = function(pathname) {
-  console.log('DEBUG: global');
   let pageName = '';
 
   if (pathname === '/') {
@@ -163,7 +162,6 @@ window.setScrollClasses = function() {
       document.querySelector('.locations').classList.add('faded-out');
 
       if (window.scrollY < 20) {
-        console.log('removing...');
       } else if (window.scrollY >= 20 && window.scrollY < 40) {
         addClass = 'anim1';
       } else if (window.scrollY >= 40 && window.scrollY < 60) {
@@ -228,10 +226,6 @@ window.setScrollClasses = function() {
         document.querySelector('main').classList.add('animation-done');
         document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
         window.setTimeout(function() {
-          // window.scrollTo({
-          //   top: document.querySelector('.locations').getBoundingClientRect().top - 64,
-          //   behavior: 'smooth'
-          // });
           document.querySelector('.locations').classList.remove('faded-out');
           header.classList.add('scrolled');
           window.setTimeout(function() {
@@ -241,10 +235,6 @@ window.setScrollClasses = function() {
           }, 800);
         }, 1000);
       }
-      // } else if (window.scrollY >= 420 && window.scrollY < 440) {
-      //   addClass = 'anim21';
-      // } else if (window.scrollY >= 440) {
-      // }
 
       if (addClass) {
         bigTitle.classList.add(addClass);
@@ -266,7 +256,6 @@ window.setScrollClasses = function() {
       document.querySelector('.series-series-container').classList.add('faded-out');
 
       if (window.scrollY < 20) {
-        console.log('removing...');
       } else if (window.scrollY >= 20 && window.scrollY < 40) {
         addClass = 'anim1';
       } else if (window.scrollY >= 40 && window.scrollY < 60) {
@@ -330,12 +319,8 @@ window.setScrollClasses = function() {
         keepScrolling = false;
         document.querySelector('main').classList.add('animation-done');
         document.querySelector('.series-plans-container').scrollIntoView({behavior: 'smooth'});
-        //window.sessionStorage.removeItem('seriesAnimation');
+
         window.setTimeout(function() {
-          // window.scrollTo({
-          //   top: document.querySelector('.locations').getBoundingClientRect().top - 64,
-          //   behavior: 'smooth'
-          // });
           document.querySelector('.series-plans-container').classList.remove('faded-out');
           document.querySelector('.series-series-container').classList.remove('faded-out');
           header.classList.add('scrolled');
@@ -346,10 +331,6 @@ window.setScrollClasses = function() {
           }, 800);
         }, 1000);
       }
-      // } else if (window.scrollY >= 420 && window.scrollY < 440) {
-      //   addClass = 'anim21';
-      // } else if (window.scrollY >= 440) {
-      // }
 
       if (addClass) {
         bigTitle.classList.add(addClass);
@@ -432,9 +413,7 @@ window.setScrollClasses = function() {
           'animate__animated',
           'animate__bounce',
           'animate__slower',
-          //'animate__slow',
           'animate__bounceInLeft',
-          //'animate__rollIn',
           'done'
         );
       }
@@ -476,17 +455,11 @@ history.listen(location => {
   keepScrolling = true;
   window.addEventListener('scroll', window.setScrollClasses);
   window.setTimeout(window.setScrollClasses, 1000);
-  console.log('history listen event');
-
-  //window.cookieAndSessionStorageHandler();
 });
 
-//document.querySelector('main').classList.remove('animation-done');
 window.setPageNameOnBodyClass(window.location.pathname);
 window.addEventListener('scroll', window.setScrollClasses);
 window.setTimeout(window.setScrollClasses, 1000);
-//window.cookieAndSessionStorageHandler();
-console.log('routes file');
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -497,7 +470,6 @@ const Routes = () => {
       dispatch(initialAppLoad());
       dispatch(getLegalDocs());
       window.cookieAndSessionStorageHandler();
-      console.log('YEEEE');
     } else {
       dispatch(getLegalDocs());
     }

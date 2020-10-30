@@ -33,10 +33,8 @@ const CheckoutPage = () => {
   const dispatch = useDispatch();
 
   const createPurchaseHandler = () => dispatch(createPurchase());
-  //const createFreeSessionHandler = () => dispatch(createFreeSessionInit());
   const productDetails = useSelector(getSelectedProduct);
   const paymentDetails = useSelector(getSelectedCard);
-  //const isFreeSession = useSelector(getClaimFreeSession);
 
   if (isNil(productDetails) || isNil(paymentDetails)) {
     return <Redirect to={ROUTES.LOCATIONS} />;
@@ -52,8 +50,6 @@ const CheckoutPage = () => {
         productDetails={productDetails}
         paymentDetails={paymentDetails}
         createPurchaseHandler={createPurchaseHandler}
-        //createFreeSessionHandler={createFreeSessionHandler}
-        //isFreeSession={isFreeSession}
       />
     </CheckoutPageContainer>
   );

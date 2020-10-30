@@ -96,7 +96,6 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
     .catch(err => console.log(err));
   };
   const surveySubmitAction = () => {
-    let feedback = 
     fetch('https://cross-court-testing.herokuapp.com/api/v1/session_surveys/answers', {
       method: 'POST',
       headers: {

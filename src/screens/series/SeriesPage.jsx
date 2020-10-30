@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-//import FreeSessionBanner from 'shared/components/FreeSessionBanner';
 import Loading from 'shared/components/Loading';
 import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
@@ -38,23 +37,13 @@ const SeriesPage = () => {
 
   const showAnimation = function() {
     return userProfile.credits === 0 && window.sessionStorage.getItem('previousPage').indexOf('session-') !== -1;
-    // let  result = (userProfile.credits === 0 &&
-    //   (
-    //     (sessionInfo.userSession && ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)
-    //   )
-    // ) || window.location.search === '?testanimation';
-    // console.log('RESULT', result, userProfile.credits, sessionInfo);
-    // return result;
-    /*window.sessionStorage.getItem('seriesAnimation') === 'true'*/
   };
 
   useEffect(() => {
     dispatch(initialLoad());
 
     if (showAnimation()) {
-      //window.sessionStorage.removeItem('seriesAnimation');
       document.body.setAttribute('data-page', 'no-session-credits');
-      //console.log('DEBUG: series');
     }
   }, [dispatch]);
 
@@ -64,7 +53,6 @@ const SeriesPage = () => {
 
   return (
     <div>
-      {/* <FreeSessionBanner /> */}
       {showAnimation() && <NoSessionCredits />}
       <Plans selectProductHandler={selectProductHandler} availableProducts={availableProducts} />
       <Series />

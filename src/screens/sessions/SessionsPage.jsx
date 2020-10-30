@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import Loading from 'shared/components/Loading';
 import Modal from 'shared/components/Modal';
 import BackButton from 'shared/components/BackButton';
-import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import UserSvg from 'shared/components/svg/UserSvg';
 import { longSessionDate, hourRange } from 'shared/utils/date';
@@ -274,9 +273,8 @@ const SessionsPage = () => {
     } else {
       dispatch(initialLoadInit(id, date));
     }
-    console.log(sessionInfo);
     // eslint-disable-next-line
-  }, [isAuthenticated/*, isSessionComplete, isSessionFull*/]);
+  }, [isAuthenticated]);
 
   if (isNil(id)) {
     return <Redirect to="/" />;

@@ -12,7 +12,6 @@ import SportCharacter from 'shared/images/sport-character.png';
 import ArButton from 'shared/components/ArButton';
 
 import { getUserProfile } from 'screens/my-account/reducer.js';
-
 import { getSessionInfo, getSessionId, getSessionDate } from '../reducer';
 
 import {

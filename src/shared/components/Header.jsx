@@ -75,11 +75,6 @@ const Container = styled.div`
 
   @media (min-width: 992px) {
     .header-left {
-      // .menu-button-container[data-active='true'] {
-      //   background: rgba(0, 0, 0, 0.7);
-      //   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-      // }
-
       .logo-icon {
         width: 205px;
         height: 25px;
@@ -116,7 +111,6 @@ function Header() {
     return daysLeft;
   };
   const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const freeSessionCreditClaimed = !freeSessionNotClaimed;
   const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
   const bannerButtonTarget = isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP;
   const bannerText = () => {

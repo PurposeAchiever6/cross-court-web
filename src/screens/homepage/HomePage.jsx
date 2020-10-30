@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-//import FreeSessionBannerAnimated from 'shared/components/FreeSessionBannerAnimated';
 import PWABanner from 'shared/components/PWABanner';
 import DesktopLanding from './components/DesktopLanding';
 
@@ -55,7 +54,6 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(initialLoadInit());
-    console.log('DEBUG previousSessions', previousSessions);
 
     if (shouldShowSurveyModal) {
       window.sessionStorage.setItem('surveyLock', 'true');
@@ -70,7 +68,6 @@ const HomePage = () => {
     <PageContainer>
       <PWABanner />
       <section class="covid-19">Click <a href="/documents/COVID_guidelinesv2.pdf" target="_blank">here</a> to see the changes we&apos;re making in response to COVID-19.</section>
-      {/* {!shouldShowSurveyModal && <FreeSessionBannerAnimated />} */}
       {shouldShowSurveyModal ? (
         <Modal shouldClose closeHandler={() => {}} isOpen={showConfirmModal}>
           <SurveyModal closeHandler={() => {}} isOpen={showConfirmModal} />

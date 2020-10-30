@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector,  useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { isNil, equals, not } from 'ramda';
+import { isNil, equals } from 'ramda';
 import PropTypes from 'prop-types';
 
 import Button from 'shared/components/Button';
@@ -50,7 +50,6 @@ const ReserveButton = ({
 
   useEffect(() => {
     dispatch(initialLoadInit());
-    console.log('userInfo', userInfo);
   }, [dispatch]);
 
   if (isAuthenticated) {
@@ -87,16 +86,6 @@ const ReserveButton = ({
 
     if (equals(session.userSession.state, 'reserved')) {
         return <></>;
-    //   return (
-    //     <Button
-    //       className="ar-button double reserve-btn"
-    //       onClick={confirmSessionAction}
-    //       disabled={not(session.userSession.inConfirmationTime)}
-    //     >
-    //       <div className="ar-button-inner">CONFIRM SESSION</div>
-    //       <div className="double-drop"></div>
-    //     </Button>
-    //   );
     }
     if (equals(session.userSession.state, 'confirmed')) {
       return (
@@ -110,7 +99,6 @@ const ReserveButton = ({
     return (
       <Button className="ar-button reserve-btn inverted double" onClick={() => {
         window.sessionStorage.setItem('redirect', window.location.pathname);
-        //signupBookSessionAction();
         history.push(ROUTES.LOGIN);
       }}>
         <div className="ar-button-inner">LOG IN TO BOOK</div>

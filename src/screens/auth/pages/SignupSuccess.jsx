@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserEmail } from 'screens/auth/reducer';
 import { sendConfirmationEmailInit } from 'screens/auth/actionCreators';
 import envelopeOpenIcon from 'shared/images/envelope-open.png';
-//import freddieImg from 'shared/images/freddie.png';
 import Button from 'shared/components/Button';
 
 const PageContainer = styled.div`
@@ -75,7 +74,6 @@ const SignupSuccessPage = () => {
           <div className="ar-button-inner">SEND IT AGAIN</div>
         </Button>
       </div>
-      {/* <img className="freddie" src={freddieImg} /> */}
     </PageContainer>
   );
 };

@@ -28,7 +28,6 @@ const Nav = styled.nav`
   .list {
     display: flex;
     flex-direction: column;
-    // height: 40%;
     justify-content: space-around;
     padding: 0;
     list-style-type: none;

@@ -9,7 +9,6 @@ import PaperPlaneIcon from 'shared/images/paper-plane-icon.png';
 import device from 'shared/styles/mediaQueries';
 
 const PageContainer = styled.div`
-  // height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

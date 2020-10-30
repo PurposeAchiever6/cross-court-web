@@ -38,14 +38,11 @@ const NewToCrosscourt = () => {
     <section className="new-to-crosscourt section-block text-white">
       <section className="title-block">
         <p className="heading-sprite"></p>
-        {/* <h2 className="title-1 shapiro97_air_extd">NEW TO</h2>
-        <p className="title-2 shapiro95_super_wide">CROSSCOURT?</p> */}
       </section>
       <a
         className="ar-button double check-it-out animate__animated animate__bounce animate__delay-1s animate__slower animate__bounceInRight"
         onClick={e => {
           e.preventDefault();
-          //setShowModal(true);
           document.querySelector('.the-session-video').scrollIntoView({behavior: 'smooth'});
           document.querySelector('.the-session-video video').play();
         }}

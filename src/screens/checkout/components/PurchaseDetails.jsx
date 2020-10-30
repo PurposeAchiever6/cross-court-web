@@ -13,11 +13,6 @@ import { clearDiscount } from '../actionCreators';
 import PromoCode from './PromoCode';
 
 const PurchaseDetailsContainer = styled.div`
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: flex-end;
-
   .purchase-details-box {
     display: flex;
     flex-direction: column;
@@ -181,12 +176,10 @@ const PurchaseDetails = ({
   productDetails,
   paymentDetails,
   createPurchaseHandler,
-  //isFreeSession,
-  //createFreeSessionHandler,
 }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getCheckoutLoading);
-  const checkoutHandler = /*isFreeSession ? createFreeSessionHandler :*/createPurchaseHandler;
+  const checkoutHandler = createPurchaseHandler;
   const purchaseDate = purchaseFormattedDate();
 
   useEffect(() => {
@@ -243,9 +236,7 @@ const PurchaseDetails = ({
 PurchaseDetails.propTypes = {
   paymentDetails: PropTypes.object.isRequired,
   productDetails: PropTypes.object.isRequired,
-  //isFreeSession: PropTypes.bool.isRequired,
   createPurchaseHandler: PropTypes.func,
-  //createFreeSessionHandler: PropTypes.func,
 };
 
 export default PurchaseDetails;

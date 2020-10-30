@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import currency from 'currency.js';
 
-import Button from 'shared/components/Button';
-import device from 'shared/styles/mediaQueries';
-
 import PurpleBg from '../images/circle-purple-bg.png';
 
 const PlansContainer = styled.div`
@@ -102,47 +99,6 @@ const PlanContainer = styled.div`
     }
   }
 
-  // @media (max-width: 991px) {
-  //   height: 20rem;
-  //   width: 100%;
-  //   margin: 0 0 8rem 0;
-  //   padding: 0;
-  //   background-image: url(${props => props.product.imageUrl});
-
-  //   background-repeat: no-repeat;
-  //   background-position: center;
-  //   .sticker {
-  //     height: 8rem;
-  //     width: 8rem;
-  //     top: 2rem;
-  //     right: 1rem;
-
-  //     .price {
-  //       font-size: 2rem;
-  //       line-height: 2rem;
-  //     }
-  //     .text {
-  //       font-size: 1rem;
-  //       line-height: 2rem;
-  //     }
-  //   }
-
-  //   .title {
-  //     position: absolute;
-  //     bottom: -2.7rem;
-  //     left: 1rem;
-  //   }
-
-  //   .button-container {
-  //     width: 90%;
-  //     position: absolute;
-  //     bottom: -7rem;
-  //     button {
-  //       width: 100%;
-  //       margin-bottom: 1.5rem;
-  //     }
-  //   }
-  // }
 `;
 
 const Plans = ({ selectProductHandler, availableProducts }) => {
@@ -157,15 +113,10 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
     <PlansContainer className="series-plans-container">
       <section className="title-block">
         <p className="heading-sprite"></p>
-        {/* <h2 className="title-1">THE CC</h2>
-        <p className="title-2">SERIES</p> */}
       </section>
       <div className="plans-container">
         {products.map(product => {
           const [firstWord, secondWord] = product.name.split(' ');
-          // const buttonText = `${product.credits} ${
-          //   product.credits > 1 ? 'SESSIONS' : 'SESSION'
-          // } FOR $${formatPrice(product.price)}`;
           const sessionLabel = `${product.credits} ${product.credits > 1 ? 'SESSIONS' : 'SESSION'}`;
           const sessionPrice = `$${formatPrice(product.price)}`;
           const sessionPPS = `$${formatPrice(product.price / product.credits)}/SESSION`;
@@ -192,20 +143,6 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
                   </div>
                 </div>
               </a>
-              {/* <div className="sticker">
-                <span className="price">{`$${formatPrice(product.price / product.credits)}`}</span>
-                <span className="text">/session</span>
-              </div> */}
-              {/* <div className="title">
-                <span className="first-word">{firstWord}</span>
-                <span className="second-word">{secondWord}</span>
-              </div> */}
-              {/* <div className="button-container">
-                <Button className="ar-button inverted" onClick={() => selectProductHandler(product)}>
-                  <div className="ar-button-inner">{buttonText}</div>
-                </Button>
-                <hr />
-              </div> */}
             </PlanContainer>
           );
         })}
