@@ -1,9 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import device from 'shared/styles/mediaQueries';
-import colors from 'shared/styles/constants';
-
 import TheSessionVideo from './sections/TheSessionVideo';
 import SignupDesktop from './sections/SignupDesktop';
 import ShowupDesktop from './sections/ShowupDesktop';
