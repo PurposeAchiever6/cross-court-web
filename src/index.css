@@ -5111,6 +5111,25 @@ body[data-page='home'] #root .header .cheeseburger-menu .cheeseburger-menu-outer
 /* GLOBAL FSF BUTTON (IN HEADER) */
 body .header .header-content .fsf-button {
   font-style: italic;
+  font-size: 14px;
+  line-height: 17px;
+  max-width: 130px;
+  min-width: 0;
+}
+@media (min-width: 420px) {
+  body .header .header-content .fsf-button {
+    line-height: 19px;
+    max-width: none;
+    min-width: 130px;
+  }
+}
+body .header .header-content .fsf-button .ar-button-inner {
+  padding: 6px 12px;
+}
+@media (min-width: 420px) {
+  body .header .header-content .fsf-button .ar-button-inner {
+    padding: 8px 15px;
+  }
 }
 body .header .header-content .fsf-button .days {
   color: #000;

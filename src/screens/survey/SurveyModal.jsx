@@ -89,7 +89,6 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
     })
     .then(data => {
       console.log('Rating saved successfully!', data);
-      document.querySelector('.close-btn').classList.remove('hide');
       document.querySelector('.submit-btn').classList.remove('disabled');
       window.sessionStorage.removeItem('surveyLock');
     })
@@ -113,6 +112,7 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
     })
     .then(data => {
       console.log('Feedback saved successfully!', data);
+      document.querySelector('.close-btn').classList.remove('hide');
       document.querySelector('.survey-modal .body1').classList.add('hide');
       document.querySelector('.survey-modal .body2').classList.remove('hide');
     })

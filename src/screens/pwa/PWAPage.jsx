@@ -26,7 +26,7 @@ const PWAPage = () => {
     if (isInstalled || (!isIOS && !isAndroid)) {
       history.push(ROUTES.HOME);
     }
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="pwa">
