@@ -398,7 +398,8 @@ body[data-page='home'] main,
 body[data-page='how-it-works'] main,
 body[data-page='free-session-credit-added'] main,
 body[data-page='locations'] main,
-body[data-page='no-session-credits'] main {
+body[data-page='no-session-credits'] main,
+body[data-page='app'] main {
   padding-top: 0;
 }
 /* body[data-page='free-session-credit-added'] main.animation-done,
@@ -5110,7 +5111,106 @@ body[data-page='home'] #root .header .cheeseburger-menu .cheeseburger-menu-outer
 /* GLOBAL FSF BUTTON (IN HEADER) */
 body .header .header-content .fsf-button {
   font-style: italic;
+  font-size: 14px;
+  line-height: 17px;
+  max-width: 130px;
+  min-width: 0;
+}
+@media (min-width: 420px) {
+  body .header .header-content .fsf-button {
+    line-height: 19px;
+    max-width: none;
+    min-width: 130px;
+  }
+}
+body .header .header-content .fsf-button .ar-button-inner {
+  padding: 6px 12px;
+}
+@media (min-width: 420px) {
+  body .header .header-content .fsf-button .ar-button-inner {
+    padding: 8px 15px;
+  }
 }
 body .header .header-content .fsf-button .days {
   color: #000;
+}
+
+/* PWA */
+body[data-page='app'] {
+  overflow: hidden;
+}
+body[data-page='app'] .header,
+body[data-page='app'] .footer {
+  opacity: 0;
+  pointer-events: none;
+}
+body .pwa {
+  animation: 2000ms introGlow both 0ms;
+  background-color: #9999ff;
+  height: 100vh;
+  opacity: 0;
+  padding: 20px;
+  position: fixed;
+  text-align: center;
+  width: 100vw;
+}
+body .pwa .close-btn {
+  color: #FFF;
+  cursor: pointer;
+  height: 30px;
+  left: 7px;
+  opacity: 1;
+  position: absolute;
+  top: 7px;
+  transition: 500ms opacity ease;
+  width: 30px;
+}
+body .pwa .close-btn:hover {
+  opacity: 0.6;
+}
+body .pwa .install-wrapper {
+  animation: 2000ms introGlow both 1000ms;
+  margin-top: 100px;
+  opacity: 0;
+}
+body .pwa .install-wrapper .install {
+  color: #FFF;
+  font-family: 'shapiro97_air_extd';
+  -webkit-text-stroke: 2.5px;
+  font-size: 48px;
+  line-height: 42px;
+  margin-bottom: 0;
+}
+body .pwa .install-wrapper .application {
+  color: #FFF;
+  font-family: 'shapiro95_super_wide';
+  font-size: 34px;
+  line-height: 34px;
+  margin-bottom: 0;
+}
+body .pwa .message {
+  animation: 2000ms introGlow both 2000ms;
+  bottom: 0;
+  color: #FFF;
+  font-family: 'shapiro95_super_wide';
+  font-size: 10px;
+  left: 0;
+  line-height: 14px;
+  margin-bottom: 0;
+  opacity: 0;
+  padding: 0 20px 25px;
+  right: 0;
+  position: fixed;
+  text-align: center;
+  width: 100vw;
+}
+body .pwa .message .home-icon {
+  background: transparent url('screens/pwa/images/ios-share-icon.png') no-repeat 0 0;
+  background-size: contain;
+  display: inline-block;
+  height: 23px;
+  margin: 0 5px;
+  position: relative;
+  top: 4px;
+  width: 17px;
 }

@@ -99,9 +99,9 @@ const ReserveButton = ({
     return (
       <Button className="ar-button reserve-btn inverted double" onClick={() => {
         window.sessionStorage.setItem('redirect', window.location.pathname);
-        history.push(ROUTES.LOGIN);
+        history.push(ROUTES.SIGNUP);
       }}>
-        <div className="ar-button-inner">LOG IN TO BOOK</div>
+        <div className="ar-button-inner">SIGN UP</div>
         <div class="double-drop"></div>
       </Button>
     );

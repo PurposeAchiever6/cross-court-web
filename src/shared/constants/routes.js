@@ -29,4 +29,5 @@ export default {
   CANCELATIONPOLICY: '/cancelation-policy',
   TERMS: '/terms-and-conditions',
   SURVEY: '/survey',
+  PWA: '/app',
 };
