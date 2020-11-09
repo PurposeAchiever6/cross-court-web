@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import PWABanner from 'shared/components/PWABanner';
 import DesktopLanding from './components/DesktopLanding';
 
 import Modal from 'shared/components/Modal';
@@ -66,7 +65,6 @@ const HomePage = () => {
 
   return (
     <PageContainer>
-      <PWABanner />
       <section class="covid-19">Click <a href="/documents/COVID_guidelinesv2.pdf" target="_blank">here</a> to see the changes we&apos;re making in response to COVID-19.</section>
       {shouldShowSurveyModal ? (
         <Modal shouldClose closeHandler={() => {}} isOpen={showConfirmModal}>

@@ -48,6 +48,7 @@ const FAQ = lazy(() => import('shared/pages/Faq'));
 const CancelationPolicy = lazy(() => import('screens/legal-docs/pages/CancelationPolicy'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
 const Survey = lazy(() => import('screens/survey/SurveyPage'));
+const PWA = lazy(() => import('screens/pwa/PWAPage'));
 
 const AppWrapper = styled.div`
   display: flex;
@@ -563,6 +564,9 @@ const Routes = () => {
         </Route>
         <Route path={ROUTES.SEM} exact>
           <SemHomePage />
+        </Route>
+        <Route path={ROUTES.PWA} exact>
+          <PWA />
         </Route>
         <PrivateRoute path={ROUTES.SEMHANDBOOK}>
           <SemHandbook />
