@@ -63,6 +63,8 @@ body {
   font-family: 'shapiro45_welter_extd';
   font-size: 16px;
   line-height: 20px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 body ul,
 body ol {
