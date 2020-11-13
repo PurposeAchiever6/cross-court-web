@@ -99,6 +99,7 @@ const LocationsPage = () => {
     window.sessionStorage.setItem('previousPage', 'null');
     history.push('/locations')
   }
+
   useEffect(() => {
     dispatch(initialLoadInit());
 

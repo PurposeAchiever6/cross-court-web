@@ -227,13 +227,19 @@ window.setScrollClasses = function() {
         document.querySelector('main').classList.add('animation-done');
         document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
         window.setTimeout(function() {
-          document.querySelector('.locations').classList.remove('faded-out');
-          header.classList.add('scrolled');
-          window.setTimeout(function() {
-            if (document.querySelector('.free-session-credit-added')) {
-                document.querySelector('.free-session-credit-added').style.display = 'none';
-            }
-          }, 800);
+          const redirectToSpecificSession = window.sessionStorage.getItem('redirectUrl');
+
+          if (redirectToSpecificSession) {
+            history.push(redirectToSpecificSession);
+          } else {
+            document.querySelector('.locations').classList.remove('faded-out');
+            header.classList.add('scrolled');
+            window.setTimeout(function() {
+              if (document.querySelector('.free-session-credit-added')) {
+                  document.querySelector('.free-session-credit-added').style.display = 'none';
+              }
+            }, 800);
+          }
         }, 1000);
       }
 
