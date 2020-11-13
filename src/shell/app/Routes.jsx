@@ -227,9 +227,10 @@ window.setScrollClasses = function() {
         document.querySelector('main').classList.add('animation-done');
         document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
         window.setTimeout(function() {
-          const redirectToSpecificSession = window.sessionStorage.getItem('redirectUrl');
+          const redirectToSpecificSession = window.sessionStorage.getItem('redirect');
 
           if (redirectToSpecificSession) {
+            window.sessionStorage.removeItem('redirect');
             history.push(redirectToSpecificSession);
           } else {
             document.querySelector('.locations').classList.remove('faded-out');
