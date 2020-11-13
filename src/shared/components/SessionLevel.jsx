@@ -26,8 +26,7 @@ const SessionLevel = ({ level, showInfo = false }) => {
             backgroundColor="#9999FF"
             place="right"
             effect="solid"
-            delayHide={3000}
-            clickable
+            delayHide={10000}
             html
           />
         </>
