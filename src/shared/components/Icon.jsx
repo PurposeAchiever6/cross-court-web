@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import device from 'shared/styles/mediaQueries';
-
 const Icon = styled.div`
   display: flex;
   flex-direction: column;

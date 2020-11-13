@@ -7,7 +7,6 @@ import {
   CardCvcElement,
 } from 'react-stripe-elements';
 import styled from 'styled-components';
-import device from 'shared/styles/mediaQueries';
 import Button from 'shared/components/Button';
 import { getAddCardLoading } from '../reducer';
 

@@ -9,7 +9,6 @@ import Button from 'shared/components/Button';
 import CCIcon from 'shared/components/CCIcon';
 import { useHistory } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
-import device from 'shared/styles/mediaQueries';
 import ArButton from 'shared/components/ArButton';
 import { deleteCard, setSelectedCard } from '../actionCreators';
 
@@ -167,8 +166,7 @@ const PaymentMethods = ({ availableCards }) => {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
+  const isFSFFlow = freeSessionNotExpired && freeSessionNotClaimed;
   const redirectUrl = window.sessionStorage.getItem('redirect');
   /* END FSF FLOW LOGIC */
   const shouldReturnFSFDetailsPage = () => !!(isFSFFlow && availableCards.length && redirectUrl);

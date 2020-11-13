@@ -6,8 +6,6 @@ import styled from 'styled-components';
 import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import CloseButton from 'shared/components/CloseButton';
-import colors from 'shared/styles/constants';
-import device from 'shared/styles/mediaQueries';
 import ROUTES from 'shared/constants/routes';
 import { logoutInit } from 'screens/auth/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
@@ -130,9 +128,6 @@ const SidebarMenu = ({ menuToggler }) => {
           </li>
         )}
 
-
-
-
         <li className="list-item">
           {userProfile.isSem ? (
             <NavLink exact to={ROUTES.SEMHANDBOOK} onClick={menuToggler}>
@@ -201,7 +196,7 @@ const SidebarMenu = ({ menuToggler }) => {
           </AlternativeButton>
         </Link>
       )}
-      {/* 
+      {/*
       {isAuthenticated && (
         <Link to={ROUTES.MYACCOUNT} className="middle-level-link">
           <AlternativeButton className="button" onClick={menuToggler}>

@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import device from 'shared/styles/mediaQueries';
 import MakeSportYourLifestyle from './desktop/MakeSportYourLifestyle';
 import HomeVideo from './desktop/HomeVideo';
 import CrosscourtIsAHighIntensity from './desktop/CrosscourtIsAHighIntensity';
@@ -11,10 +9,8 @@ import KeysToCrosscourt from './desktop/KeysToCrosscourt';
 import FollowUsOnInstagram from './desktop/FollowUsOnInstagram';
 import Ready from './desktop/Ready';
 
-const Section = styled.section``;
-
 const DesktopLanding = () => (
-  <Section>
+  <section>
     <MakeSportYourLifestyle />
     <HomeVideo />
     <CrosscourtIsAHighIntensity />
@@ -24,7 +20,7 @@ const DesktopLanding = () => (
     <KeysToCrosscourt />
     <FollowUsOnInstagram />
     <Ready />
-  </Section>
+  </section>
 );
 
 export default DesktopLanding;

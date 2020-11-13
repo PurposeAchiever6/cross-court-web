@@ -7,13 +7,11 @@ import { isNil } from 'ramda';
 import SportCharacter from 'shared/images/sport-character.png';
 import ArButton from 'shared/components/ArButton';
 import ROUTES from 'shared/constants/routes';
-import device from 'shared/styles/mediaQueries';
 import StorageUtils from 'shared/utils/storage';
 
 import { getPurchaseConfirmed } from '../reducer';
 
-const PageContainer = styled.div`
-`;
+const PageContainer = styled.div``;
 
 const CheckoutConfirm = () => {
   const purchaseConfirmed = useSelector(getPurchaseConfirmed);

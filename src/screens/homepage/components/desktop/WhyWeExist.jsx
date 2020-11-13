@@ -22,7 +22,7 @@ const WhyWeExist = () => (
         AN ATHLETE
       </p>
     </section>
-    <img className="mobile-image" src={whyWeExistMobileImg}></img>
+    <img alt="Why We Exist?" className="mobile-image" src={whyWeExistMobileImg}></img>
   </section>
 );
 

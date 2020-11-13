@@ -10,7 +10,6 @@ import ROUTES from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
-import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 
 const ForgotPassFormContainer = styled.div`

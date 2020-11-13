@@ -20,7 +20,7 @@ const WhatWeDo = () => (
       </p>
       <div className="bottomline"></div>
     </section>
-    <img className="mobile-image" src={whatWeDoMobileImg}></img>
+    <img alt="What We Do?" className="mobile-image" src={whatWeDoMobileImg}></img>
   </section>
 );
 

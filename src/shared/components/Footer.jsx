@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {Helmet} from "react-helmet";
+import React from 'react';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import ArButton from 'shared/components/ArButton';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
@@ -115,7 +115,6 @@ function Footer() {
   const env = runtimeEnv();
 
   const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
-  const EMAIL_LINK = env.REACT_APP_EMAIL_LINK;
 
   return (
     <FooterContainer className="footer">
@@ -131,13 +130,18 @@ function Footer() {
         <a className="social" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
           <InstagramSvg />
         </a>
-        <a className="social" href="#modal" rel="noopener noreferrer" onClick={e => {
-          e.preventDefault();
-          document.querySelector('.eapps-form-floating-button').click();
-        }}>
+        <a
+          className="social"
+          href="#modal"
+          rel="noopener noreferrer"
+          onClick={e => {
+            e.preventDefault();
+            document.querySelector('.eapps-form-floating-button').click();
+          }}
+        >
           <PaperPlaneSvg />
         </a>
-        <div class="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136"></div>
+        <div className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136"></div>
       </section>
       <Helmet>
         <script src="https://apps.elfsight.com/p/platform.js" defer></script>

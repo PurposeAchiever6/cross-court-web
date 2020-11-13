@@ -14,13 +14,9 @@ const SurveyPage = () => {
     dispatch(initialLoadInit());
 
     history.push(isAuthenticated ? ROUTES.HOME : ROUTES.LOGIN);
-  }, [dispatch]);
+  }, [dispatch, isAuthenticated, history]);
 
-  return (
-    <>
-    </>
-  );
-}
+  return <></>;
+};
 
 export default SurveyPage;
-  

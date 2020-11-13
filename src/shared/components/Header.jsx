@@ -10,7 +10,6 @@ import MenuSvgNavOpen from 'shared/components/svg/MenuSvgNavOpen';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 import LogoSvgAlt from 'shared/components/svg/LogoSvgAlt';
 import LogoSvgNavOpen from 'shared/components/svg/LogoSvgNavOpen';
-import device from 'shared/styles/mediaQueries';
 import SidebarMenu from './SidebarMenu';
 import MobileMenu from './MobileMenu';
 
@@ -30,6 +29,7 @@ const Container = styled.div`
 
   .cheeseburger-menu-inner {
     height: 100vh !important;
+    width: 50vw;
   }
 
   .header-content {
@@ -92,44 +92,57 @@ function Header() {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const freeSessionUsed = userInfo.freeSessionState === 'used'  || userInfo.freeSessionState === 'claimed';
+  const freeSessionUsed =
+    userInfo.freeSessionState === 'used' || userInfo.freeSessionState === 'claimed';
   const freeSessionExpirationDate = userInfo.freeSessionExpirationDate;
-  const daysFromNow = (input) => {
+  const daysFromNow = input => {
     const oneDay = 24 * 60 * 60 * 1000;
     let parts = (input || '').split('-');
     const firstDate = new Date();
-    const secondDate = new Date(parts[0], parts[1]-1, parts[2]);
+    const secondDate = new Date(parts[0], parts[1] - 1, parts[2]);
     let daysLeft = Math.floor(Math.abs((secondDate - firstDate) / oneDay));
 
     if (daysLeft === 0) {
-      daysLeft = <><span className="days">&lt; 1</span> DAY</>;
+      daysLeft = (
+        <>
+          <span className="days">&lt; 1</span> DAY
+        </>
+      );
     } else if (daysLeft === 1) {
-      daysLeft = <><span className="days">1</span> DAY</>;
+      daysLeft = (
+        <>
+          <span className="days">1</span> DAY
+        </>
+      );
     } else {
-      daysLeft = <><span className="days">{daysLeft}</span> DAYS</>;
+      daysLeft = (
+        <>
+          <span className="days">{daysLeft}</span> DAYS
+        </>
+      );
     }
     return daysLeft;
   };
-  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
+
+  const isFSFFlow = freeSessionNotExpired && freeSessionNotClaimed;
   const bannerButtonTarget = isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP;
   const bannerText = () => {
     let text = '';
 
     if (isAuthenticated) {
       if (isFSFFlow) {
-        text = <span>EXPIRES {daysFromNow(freeSessionExpirationDate)}</span>
+        text = <span>EXPIRES {daysFromNow(freeSessionExpirationDate)}</span>;
       } else if (freeSessionUsed) {
-        text = <span>RESERVE</span>
+        text = <span>RESERVE</span>;
       } else {
-        text = <span>RESERVE</span>
+        text = <span>RESERVE</span>;
       }
     } else {
       text = 'FIRST FREE';
     }
 
     return text;
-  }
+  };
 
   function toggleMenu() {
     setMenuOpen(!menuOpen);
@@ -165,10 +178,9 @@ function Header() {
             <LogoSvgNavOpen className="logo-icon-nav-open" />
           </Link>
         </div>
-        {/* <ArButton className="mobile-compact" link={ROUTES.LOCATIONS} font="shapiro96_inclined_wide">
-          RESERVE<span className="mobile-hide-inline"> SESSION</span>
-        </ArButton> */}
-        <ArButton className="fsf-button" link={bannerButtonTarget}>{bannerText()}</ArButton>
+        <ArButton className="fsf-button" link={bannerButtonTarget}>
+          {bannerText()}
+        </ArButton>
       </div>
     </Container>
   );

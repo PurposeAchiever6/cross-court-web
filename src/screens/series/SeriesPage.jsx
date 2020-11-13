@@ -8,7 +8,6 @@ import { getUserProfile } from 'screens/my-account/reducer';
 import { identify, startedCheckout } from 'shared/utils/klaviyo';
 import { initialLoad, setSelectedProduct } from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
-import { getSessionInfo } from 'screens/sessions/reducer';
 
 import Plans from './components/Plans';
 import Series from './components/Series';
@@ -24,7 +23,6 @@ const SeriesPage = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const { email } = useSelector(getUserProfile);
   const userProfile = useSelector(getUserProfile);
-  const sessionInfo = useSelector(getSessionInfo);
 
   const selectProductHandler = product => {
     dispatch(setSelectedProduct(product));
@@ -36,7 +34,10 @@ const SeriesPage = () => {
   };
 
   const showAnimation = function() {
-    return userProfile.credits === 0 && window.sessionStorage.getItem('previousPage').indexOf('session-') !== -1;
+    return (
+      userProfile.credits === 0 &&
+      window.sessionStorage.getItem('previousPage').indexOf('session-') !== -1
+    );
   };
 
   useEffect(() => {

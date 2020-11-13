@@ -28,7 +28,6 @@ import {
   showCancelModal,
   initialLoadAuthInit,
   signupBookSession,
-  buyCreditsAndBookSession,
 } from './actionCreators';
 import { getPageLoading, getSessionInfo, getShowCancelModal } from './reducer';
 import CancelModal from './components/CancelModal';
@@ -238,9 +237,9 @@ const SessionsPageContainer = styled.div`
 
 const SessionsPage = () => {
   const { id, date } = useParams();
-  const referralCode = window.sessionStorage.getItem('referralCode') ?
-      window.sessionStorage.getItem('referralCode') :
-      false;
+  const referralCode = window.sessionStorage.getItem('referralCode')
+    ? window.sessionStorage.getItem('referralCode')
+    : false;
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -251,12 +250,12 @@ const SessionsPage = () => {
   const shouldShowCancelModal = useSelector(getShowCancelModal);
   const sessionDate = useSelector(getSessionDate);
 
-  const reserveSessionAction = () => dispatch(reserveSessionInit(sessionInfo.id, date, referralCode));
+  const reserveSessionAction = () =>
+    dispatch(reserveSessionInit(sessionInfo.id, date, referralCode));
   const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
   const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
   const showCancelModalAction = () => dispatch(showCancelModal());
   const signupBookSessionAction = () => dispatch(signupBookSession(id, date));
-  const buyCreditsAndBookSessionAction = () => dispatch(buyCreditsAndBookSession(id, date));
   const removeSessionFromStorageAction = () => dispatch(removeSessionFromStorage());
 
   const isSessionComplete = sessionInfo.past;
@@ -270,7 +269,9 @@ const SessionsPage = () => {
       text = `SESSION FULL`;
     } else {
       if (isAuthenticated && userProfile.credits) {
-        text = `YOU HAVE ${userProfile.credits} SESSION${userProfile.credits === 1 ? '' : 'S'} AVAILABLE`;
+        text = `YOU HAVE ${userProfile.credits} SESSION${
+          userProfile.credits === 1 ? '' : 'S'
+        } AVAILABLE`;
       }
     }
 
@@ -406,32 +407,33 @@ const SessionsPage = () => {
                   signupBookSessionAction={signupBookSessionAction}
                 />
               )}
-              {(isAuthenticated && userProfile.credits === 0 && !isSessionComplete && !isSessionFull &&
-                (
-                  !sessionInfo.userSession ||
-                  (sessionInfo.userSession && ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)
-                )
-              ) && (
-                <AlternativeButton
-                  className="buy-btn ar-button double"
-                  onClick={() => {
-                    history.push(ROUTES.SERIES);
-                  }}
-                >
-                  <div className="ar-button-inner">CONFIRM RESERVATION</div>
-                  <div className="double-drop"></div>
-                </AlternativeButton>
-              )}
-              {(sessionInfo && (isSessionComplete || isSessionFull)) && (
+              {isAuthenticated &&
+                userProfile.credits === 0 &&
+                !isSessionComplete &&
+                !isSessionFull &&
+                (!sessionInfo.userSession ||
+                  (sessionInfo.userSession &&
+                    ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)) && (
+                  <AlternativeButton
+                    className="buy-btn ar-button double"
+                    onClick={() => {
+                      history.push(ROUTES.SERIES);
+                    }}
+                  >
+                    <div className="ar-button-inner">CONFIRM RESERVATION</div>
+                    <div className="double-drop"></div>
+                  </AlternativeButton>
+                )}
+              {sessionInfo && (isSessionComplete || isSessionFull) && (
                 <AlternativeButton
                   className="buy-btn ar-button double"
                   onClick={() => {
                     history.push(ROUTES.LOCATIONS);
                   }}
-              >
-                <div className="ar-button-inner">FIND NEW SESSION</div>
-                <div className="double-drop"></div>
-              </AlternativeButton>
+                >
+                  <div className="ar-button-inner">FIND NEW SESSION</div>
+                  <div className="double-drop"></div>
+                </AlternativeButton>
               )}
             </div>
           </div>
