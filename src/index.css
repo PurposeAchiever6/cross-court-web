@@ -3078,6 +3078,20 @@ body .locations .sessions-container .session-list-item-container .text-container
   font-family: 'shapiro95_super_wide';
   letter-spacing: 0;
 }
+body .locations .sessions-container .session-list-item-container .text-container .level {
+  background-color: #62656B;
+  border-radius: 25px;
+  color: #FFF;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 22px;
+  text-align: center;
+  width: 94px;
+}
+body .locations .sessions-container .session-list-item-container .text-container .level .level-number {
+  display: inline-block;
+  margin-left: 5px;
+}
 body .locations .sessions-container .no-sessions-container {
   color: #000;
   font-family: 'shapiro95_super_wide';

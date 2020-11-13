@@ -14,6 +14,7 @@ import ArButton from 'shared/components/ArButton';
 import { deleteCard, setSelectedCard } from '../actionCreators';
 
 import { getUserProfile } from 'screens/my-account/reducer';
+import { getIsAuthenticated } from 'screens/auth/reducer';
 
 const PaymentMethodsContainer = styled.div`
   width: 35%;
@@ -154,6 +155,7 @@ const PaymentMethodsContainer = styled.div`
 const PaymentMethods = ({ availableCards }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const isAuthenticated = useSelector(getIsAuthenticated);
 
   const [selectedCard, setSelectedCard2] = useState('');
 
@@ -168,7 +170,7 @@ const PaymentMethods = ({ availableCards }) => {
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
+  const isFSFFlow = isAuthenticated && (freeSessionCreditAdded || window.location.search === '?testanimation');
   const redirectUrl = window.sessionStorage.getItem('redirect');
   /* END FSF FLOW LOGIC */
   const shouldReturnFSFDetailsPage = () => !!(isFSFFlow && availableCards.length && redirectUrl);

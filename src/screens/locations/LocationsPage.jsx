@@ -11,6 +11,7 @@ import LocationPicker from './components/LocationPicker';
 import WeekSelector from './components/WeekSelector';
 import SessionsList from './components/SessionsList';
 import FreeSessionCreditAdded from './components/FreeSessionCreditAdded';
+import { getIsAuthenticated } from 'screens/auth/reducer';
 import {
   getPageLoading,
   getAvailableLocations,
@@ -61,6 +62,7 @@ const LocationsPage = () => {
   const availableSessions = useSelector(getAvailableSessions);
   const selectedLocation = useSelector(getSelectedLocation);
   const selectedDate = useSelector(getSelectedDate);
+  const isAuthenticated = useSelector(getIsAuthenticated);
 
   const dispatch = useDispatch();
   const setLocationHandler = locationId => dispatch(getSessionsByLocation(locationId));
@@ -92,7 +94,7 @@ const LocationsPage = () => {
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
+  const isFSFFlow = isAuthenticated && (freeSessionCreditAdded || window.location.search === '?testanimation');
   /* END FSF FLOW LOGIC */
 
   if (window.sessionStorage.getItem('previousPage') === 'signup-confirmation') {
