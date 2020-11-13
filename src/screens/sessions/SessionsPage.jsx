@@ -293,6 +293,19 @@ const SessionsPage = () => {
   const inCancellationTime =
     sessionInfo && sessionInfo.userSession && sessionInfo.userSession.inCancellationTime;
 
+  const copyShareInfoToClipboard = e => {
+    const input = document.createElement('input');
+    const referralCode = isAuthenticated && userProfile.referralCode ? '?referralCode=' + userProfile.referralCode : '';
+    const SHARE_URL = `${window.location.origin}/session/${sessionInfo.id}/${sessionDate}${referralCode}`;
+    const SHARE_MSG = `I just signed up for the Crosscourt ${sessionInfo.location.name} session at ${formatShareSessionTime(sessionInfo.time)} on ${formatShareSessionDate(sessionDate)}. Your first Crosscourt session's free! Use my link to sign up. ${SHARE_URL}`;
+    input.setAttribute('value', SHARE_MSG);
+    document.body.appendChild(input);
+    input.select();
+    const result = document.execCommand('copy');
+    document.body.removeChild(input);
+    document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML  = 'COPIED!';
+  };
+
   return isPageLoading ? (
     <Loading />
   ) : (
@@ -372,18 +385,7 @@ const SessionsPage = () => {
                 <p class="refer-a-new-friend-message">REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!</p>
                 <button
                   className="ar-button double invite-a-friend-button"
-                  onClick={e => {
-                    const input = document.createElement('input');
-                    const referralCode = isAuthenticated && userProfile.referralCode ? '?referralCode=' + userProfile.referralCode : '';
-                    const SHARE_URL = `${window.location.origin}/session/${sessionInfo.id}/${sessionDate}${referralCode}`;
-                    const SHARE_MSG = `I just signed up for the Crosscourt ${sessionInfo.location.name} session at ${formatShareSessionTime(sessionInfo.time)} on ${formatShareSessionDate(sessionDate)}. Your first Crosscourt session's free! Use my link to sign up. ${SHARE_URL}`;
-                    input.setAttribute('value', SHARE_MSG);
-                    document.body.appendChild(input);
-                    input.select();
-                    const result = document.execCommand('copy');
-                    document.body.removeChild(input);
-                    document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML  = 'COPIED!';
-                  }}
+                  onClick={copyShareInfoToClipboard}
                 >
                   <div className="ar-button-inner">
                     <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND

@@ -106,11 +106,6 @@ const SessionReserved = () => {
 
   const userProfile = useSelector(getUserProfile);
 
-  // const env = runtimeEnv();
-  // const APP_URL = env.REACT_APP_URL;
-  // const SHARE_URL = `${window.location.origin}/session/${sessionId}/${sessionDate}?referralCode=${userProfile.referralCode}`;
-  // const SHARE_MSG = `I just signed up for the Crosscourt ${sessionInfo.location.name} session at ${sessionTime} on ${sessionDateHumanFriendly}. Your first session's free. Sign up here: ${SHARE_URL}`;
-
   const onCopyHandler = () => toast.success('Link Copied!');
 
   return (
@@ -119,25 +114,6 @@ const SessionReserved = () => {
         <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
         <h1>SESSION BOOKED</h1>
         <h2>SUCCESSFULLY!</h2>
-        {/* <button
-          className="ar-button double invite-a-friend-button"
-          onClick={e => {
-            var input = document.createElement('input');
-            input.setAttribute('value', SHARE_MSG);
-            document.body.appendChild(input);
-            input.select();
-            var result = document.execCommand('copy');
-            document.body.removeChild(input);
-            document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML  = 'COPIED!';
-          }}
-        >
-          <div className="ar-button-inner">
-            <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
-          </div>
-          <div className="double-drop"></div>
-        </button>
-        <p class="refer-a-new-friend-message">REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!</p>
-        <br /> */}
         <ArButton className="done-button" inverted link={ROUTES.MYACCOUNT}>
           DONE
         </ArButton>
