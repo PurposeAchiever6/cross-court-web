@@ -383,7 +383,7 @@ const SessionsPage = () => {
             {isAuthenticated && (
               <div className="refer-section">
                 <p class="refer-a-new-friend-message">REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!</p>
-                <button
+                <div
                   className="ar-button double invite-a-friend-button"
                   onClick={copyShareInfoToClipboard}
                 >
@@ -391,7 +391,7 @@ const SessionsPage = () => {
                     <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
                   </div>
                   <div className="double-drop"></div>
-                </button>
+                </div>
               </div>
             )}
 
