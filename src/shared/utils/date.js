@@ -14,6 +14,8 @@ import {
   FORMAT_DAY_SHORT,
   FORMAT_DAY_NUMBER,
   FORMAT_MONTH,
+  FORMAT_SHARE_SESSION_DATE,
+  FORMAT_SHARE_SESSION_TIME,
 } from 'shared/constants/date';
 
 dayjs.extend(utc);
@@ -80,4 +82,7 @@ export const sortSessionsByDate = sessions =>
   sort((a, b) => (dayjs(new Date(a.time)).isAfter(dayjs(new Date(b.time))) ? 1 : -1), sessions);
 
 export const formatSessionTime = time => getUTCDate(time).format(FORMAT_HOUR);
-export const formatSessionDate = time => getUTCDate(time).format(FORMAT_DATE_PURCHASE)
+export const formatSessionDate = time => getUTCDate(time).format(FORMAT_DATE_PURCHASE);
+
+export const formatShareSessionDate = date => getUTCDate(date).format(FORMAT_SHARE_SESSION_DATE);
+export const formatShareSessionTime = date => getUTCDate(date).format(FORMAT_SHARE_SESSION_TIME);
