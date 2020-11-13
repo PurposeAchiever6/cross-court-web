@@ -7,3 +7,5 @@ export const FORMAT_DATE_REQUEST = 'DD/MM/YYYY';
 export const FORMAT_DAY_SHORT = 'ddd';
 export const FORMAT_DAY_NUMBER = 'D';
 export const FORMAT_MONTH = 'MMMM';
+export const FORMAT_SHARE_SESSION_DATE = 'MM/DD';
+export const FORMAT_SHARE_SESSION_TIME = 'h A';

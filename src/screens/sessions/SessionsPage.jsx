@@ -34,6 +34,16 @@ import { getPageLoading, getSessionInfo, getShowCancelModal } from './reducer';
 import CancelModal from './components/CancelModal';
 import SessionButtons from './components/SessionButtons';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { getSessionDate } from 'screens/sessions/reducer';
+import {
+  formatSessionTime,
+  purchaseFormattedDate,
+  formatShareSessionDate,
+  formatShareSessionTime,
+} from 'shared/utils/date';
+
 const SessionsPageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -239,6 +249,7 @@ const SessionsPage = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const userProfile = useSelector(getUserProfile);
   const shouldShowCancelModal = useSelector(getShowCancelModal);
+  const sessionDate = useSelector(getSessionDate);
 
   const reserveSessionAction = () => dispatch(reserveSessionInit(sessionInfo.id, date, referralCode));
   const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
@@ -322,7 +333,9 @@ const SessionsPage = () => {
                 <SessionLevel showInfo level={sessionInfo.level} />
               </div>
             )}
-            <span className="sessions-message-container">{getSessionsMessageContainerText()}</span>
+            {getSessionsMessageContainerText() && (
+              <span className="sessions-message-container">{getSessionsMessageContainerText()}</span>
+            )}
           </div>
           <div className="side-container">
             <div className="sem-referee-container">
@@ -354,6 +367,32 @@ const SessionsPage = () => {
                 </span>
               </div>
             </div>
+            {isAuthenticated && (
+              <div className="refer-section">
+                <p class="refer-a-new-friend-message">REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!</p>
+                <button
+                  className="ar-button double invite-a-friend-button"
+                  onClick={e => {
+                    const input = document.createElement('input');
+                    const referralCode = isAuthenticated && userProfile.referralCode ? '?referralCode=' + userProfile.referralCode : '';
+                    const SHARE_URL = `${window.location.origin}/session/${sessionInfo.id}/${sessionDate}${referralCode}`;
+                    const SHARE_MSG = `I just signed up for the Crosscourt ${sessionInfo.location.name} session at ${formatShareSessionTime(sessionInfo.time)} on ${formatShareSessionDate(sessionDate)}. Your first Crosscourt session's free! Use my link to sign up. ${SHARE_URL}`;
+                    input.setAttribute('value', SHARE_MSG);
+                    document.body.appendChild(input);
+                    input.select();
+                    const result = document.execCommand('copy');
+                    document.body.removeChild(input);
+                    document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML  = 'COPIED!';
+                  }}
+                >
+                  <div className="ar-button-inner">
+                    <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
+                  </div>
+                  <div className="double-drop"></div>
+                </button>
+              </div>
+            )}
+
             <div className="button-container">
               {sessionInfo && !sessionInfo.past && (
                 <SessionButtons

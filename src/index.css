@@ -3260,10 +3260,35 @@ body
   font-family: 'shapiro96_inclined_wide';
   width: auto;
 }
+body .sessions .session-details-container .details-container .side-container .refer-section {
+  background-color: #EEE;
+  margin-bottom: 20px;
+  padding: 20px 20px 30px;
+}
+body .sessions .session-details-container .details-container .side-container .refer-section .refer-a-new-friend-message {
+  color: #9999ff;
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 5px;
+  padding: 0 32px;
+}
+@media (min-width: 992px) {
+  body .sessions .session-details-container .details-container .side-container .refer-section .refer-a-new-friend-message {
+    padding: 0;
+  }
+}
+body .sessions .session-details-container .details-container .side-container .refer-section .invite-a-friend-button {
+  border: none;
+  cursor: pointer;
+  font-family: 'shapiro96_inclined_wide';
+  width: auto;
+}
 body .sessions .session-details-container .details-container .sessions-message-container {
-  color: #fff;
+  border-top: 1px solid #FFF;
+  color: #FFF;
   font-family: 'shapiro95_super_wide';
   font-size: 12px;
+  padding-top: 20px;
   text-align: center;
 }
 body .cancel-modal h2 {
@@ -3631,7 +3656,7 @@ body .session-reserved h2 {
     line-height: 24.8px;
   }
 }
-body .session-reserved .invite-a-friend-button {
+/* body .session-reserved .invite-a-friend-button {
   border: none;
   cursor: pointer;
   font-family: 'shapiro96_inclined_wide';
@@ -3641,7 +3666,7 @@ body .session-reserved .invite-a-friend-button {
 body .session-reserved .refer-a-new-friend-message {
   color: #9999ff;
   margin-bottom: 90px;
-}
+} */
 /* body .session-reserved .done-button {
   font-size: 20px;
   margin-bottom: 15px;
@@ -3658,7 +3683,7 @@ body .session-reserved .done-button:hover .ar-button-inner {
 } */
 
 /* SESSION CONFIRMED */
-body .session-confirmed {
+/* body .session-confirmed {
   padding: 32px;
   text-align: center;
 }
@@ -3680,7 +3705,7 @@ body .session-confirmed .invite-a-friend-button {
   font-family: 'shapiro96_inclined_wide';
   margin-bottom: 90px;
   width: auto;
-}
+} */
 /* body .session-confirmed .done-button {
   font-size: 20px;
   margin-bottom: 15px;
@@ -4514,6 +4539,7 @@ body .my-account-mobile .my-profile .detail-row .referral-code {
 body .my-account-desktop .my-profile .detail-row .invite-a-friend-button,
 body .my-account-mobile .my-profile .detail-row .invite-a-friend-button {
   border: none;
+  cursor: pointer;
 }
 body .my-account-desktop .sidebar-container .my-profile form .save-button,
 body .my-account-mobile .sidebar-container .my-profile form .save-button {
