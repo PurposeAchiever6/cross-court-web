@@ -8,44 +8,31 @@ import InfoSvg from 'shared/components/svg/InfoSvg';
 import LEVELS from 'shared/constants/levels';
 import TEXT from 'shared/constants/text';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  p {
-    margin: 0.2rem 0;
-  }
-
-  span {
-    text-align: center;
-    padding: 0.3rem 1rem;
-    background-color: ${colors.darkGrey};
-    border-radius: 5rem;
-    width: 6rem;
-    color: ${colors.white};
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    margin-right: 1rem;
-    line-height: 1rem;
-  }
-`;
-
 const SessionLevel = ({ level, showInfo = false }) => {
   if (level === LEVELS.BASIC) {
     return null;
   }
 
   return (
-    <Container>
-      <span>LEVEL 2</span>
+    <>
+      <span className="level">
+        LEVEL
+        <span className="level-number">2</span>
+      </span>
       {showInfo && (
         <>
           <InfoSvg dataTip={TEXT.ADVANCED_TOOLTIP} />
-          <ReactTooltip place="right" html />
+          <ReactTooltip
+            backgroundColor="#9999FF"
+            place="right"
+            effect="solid"
+            delayHide={3000}
+            clickable
+            html
+          />
         </>
       )}
-    </Container>
+    </>
   );
 };
 

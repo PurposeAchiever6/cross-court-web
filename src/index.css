@@ -3160,6 +3160,49 @@ body .sessions .session-details-container .details-container .session-data-conta
 body .sessions .session-details-container .details-container .session-data-container .address-container {
   margin-bottom: 18px;
 }
+body .sessions .session-details-container .details-container .session-data-container .level-container {
+  display: block;
+  margin-bottom: 20px;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container .level {
+  background-color: #62656B;
+  border-radius: 25px;
+  color: #FFF;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 25px;
+  text-align: center;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container .level .level-number {
+  color: #FFF;
+  display: block;
+  margin-top: 0;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container svg {
+  height: 20px;
+  margin-bottom: 7px;
+  width: 20px;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container .__react_component_tooltip {
+  border: none;
+  color: #FFF;
+  display: none;
+  font-family: 'shapiro45_welter_extd';
+  font-size: 12px;
+  line-height: 16px;
+  margin: 20px 0 0;
+  opacity: 1;
+  padding: 0;
+  position: static;
+  visibility: visible;
+  width: 100%;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container .__react_component_tooltip.show {
+  display: block;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container .__react_component_tooltip p {
+  margin-bottom: 0;
+}
 body .sessions .session-details-container .details-container .session-data-container .title,
 body .sessions .session-details-container .details-container .session-data-container .text,
 body .sessions .session-details-container .details-container .session-data-container .location {
