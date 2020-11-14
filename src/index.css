@@ -3078,6 +3078,20 @@ body .locations .sessions-container .session-list-item-container .text-container
   font-family: 'shapiro95_super_wide';
   letter-spacing: 0;
 }
+body .locations .sessions-container .session-list-item-container .text-container .level {
+  background-color: #62656B;
+  border-radius: 25px;
+  color: #FFF;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 22px;
+  text-align: center;
+  width: 94px;
+}
+body .locations .sessions-container .session-list-item-container .text-container .level .level-number {
+  display: inline-block;
+  margin-left: 5px;
+}
 body .locations .sessions-container .no-sessions-container {
   color: #000;
   font-family: 'shapiro95_super_wide';
@@ -3159,6 +3173,50 @@ body .sessions .session-details-container .details-container .session-data-conta
 body .sessions .session-details-container .details-container .session-data-container .time-container,
 body .sessions .session-details-container .details-container .session-data-container .address-container {
   margin-bottom: 18px;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container {
+  display: block;
+  margin-bottom: 20px;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container .level {
+  background-color: #62656B;
+  border-radius: 25px;
+  color: #FFF;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 25px;
+  text-align: center;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container .level .level-number {
+  color: #FFF;
+  display: block;
+  margin-top: 0;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container svg {
+  cursor: pointer;
+  height: 20px;
+  margin-bottom: 7px;
+  width: 20px;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container .__react_component_tooltip {
+  border: none;
+  color: #FFF;
+  display: none;
+  font-family: 'shapiro45_welter_extd';
+  font-size: 12px;
+  line-height: 16px;
+  margin: 20px 0 0;
+  opacity: 1;
+  padding: 0;
+  position: static;
+  visibility: visible;
+  width: 100%;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container .__react_component_tooltip.show {
+  display: block;
+}
+body .sessions .session-details-container .details-container .session-data-container .level-container .__react_component_tooltip p {
+  margin-bottom: 0;
 }
 body .sessions .session-details-container .details-container .session-data-container .title,
 body .sessions .session-details-container .details-container .session-data-container .text,

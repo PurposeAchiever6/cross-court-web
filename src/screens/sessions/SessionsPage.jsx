@@ -343,7 +343,6 @@ const SessionsPage = () => {
             </div>
             {sessionInfo.level === LEVELS.ADVANCED && (
               <div className="level-container shapiro95_super_wide">
-                <span className="title">Level</span>
                 <SessionLevel showInfo level={sessionInfo.level} />
               </div>
             )}

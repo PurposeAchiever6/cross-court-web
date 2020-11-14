@@ -1,7 +1,12 @@
+// NOTE: THIS FILE IS NOT BEING USED
+// TODO: MATTEO POSSIBLY TO REVISIT THIS LATER IF HE HAS TIME; LEAVING HERE FOR NOW
 import { history } from 'shared/history';
 import ReactGA from 'react-ga';
 
-const setScrollClasses = () => {
+const { body } = document;
+let keepScrolling = true;
+
+window.setScrollClasses = () => {
   const header = document.querySelector('.header');
   const mobile = window.innerWidth < 992;
   const headerScrollLimit = mobile ? 50 : 50; //800;
@@ -187,13 +192,20 @@ const setScrollClasses = () => {
         document.querySelector('main').classList.add('animation-done');
         document.querySelector('.locations').scrollIntoView({ behavior: 'smooth' });
         window.setTimeout(function() {
-          document.querySelector('.locations').classList.remove('faded-out');
-          header.classList.add('scrolled');
-          window.setTimeout(function() {
-            if (document.querySelector('.free-session-credit-added')) {
-              document.querySelector('.free-session-credit-added').style.display = 'none';
-            }
-          }, 800);
+          const redirectToSpecificSession = window.sessionStorage.getItem('redirect');
+
+          if (redirectToSpecificSession) {
+            window.sessionStorage.removeItem('redirect');
+            history.push(redirectToSpecificSession);
+          } else {
+            document.querySelector('.locations').classList.remove('faded-out');
+            header.classList.add('scrolled');
+            window.setTimeout(function() {
+              if (document.querySelector('.free-session-credit-added')) {
+                document.querySelector('.free-session-credit-added').style.display = 'none';
+              }
+            }, 800);
+          }
         }, 1000);
       }
 
@@ -373,7 +385,6 @@ const setScrollClasses = () => {
     header.classList.remove('scrolled');
   } else if (
     (body.getAttribute('data-page') === 'no-session-credits' && keepScrolling) ||
-    (body.getAttribute('data-page') === 'no-session-credits' && keepScrolling) ||
     (body.getAttribute('data-page') === 'series' && keepScrolling)
   ) {
     header.classList.remove('scrolled');
@@ -416,10 +427,7 @@ const setScrollClasses = () => {
   }, 100);
 };
 
-const { body } = document;
-let keepScrolling = true;
-
-window.setPageNameOnBodyClass = function(pathname) {
+window.setPageNameOnBodyClass = pathname => {
   let pageName = '';
 
   if (pathname === '/') {
@@ -443,10 +451,6 @@ history.listen(location => {
   document.querySelector('main').classList.remove('animation-done');
   window.setPageNameOnBodyClass(window.location.pathname);
   keepScrolling = true;
-  window.addEventListener('scroll', setScrollClasses);
-  window.setTimeout(setScrollClasses, 1000);
+  window.addEventListener('scroll', window.setScrollClasses);
+  window.setTimeout(window.setScrollClasses, 1000);
 });
-
-window.setPageNameOnBodyClass(window.location.pathname);
-window.addEventListener('scroll', setScrollClasses);
-window.setTimeout(setScrollClasses, 1000);
