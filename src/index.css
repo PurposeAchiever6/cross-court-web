@@ -3193,6 +3193,7 @@ body .sessions .session-details-container .details-container .session-data-conta
   margin-top: 0;
 }
 body .sessions .session-details-container .details-container .session-data-container .level-container svg {
+  cursor: pointer;
   height: 20px;
   margin-bottom: 7px;
   width: 20px;
