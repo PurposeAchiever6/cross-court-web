@@ -8,7 +8,6 @@ import InputTextField from 'shared/components/InputTextField';
 import InputPhoneField from 'shared/components/InputPhoneField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
-import device from 'shared/styles/mediaQueries';
 import { formatPhoneNumber, phoneRegExp } from 'shared/utils/helpers';
 
 const EditProfileFormContainer = styled.div`

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector,  useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { isNil, equals } from 'ramda';
 import PropTypes from 'prop-types';
@@ -42,8 +42,7 @@ const ReserveButton = ({
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
+  const isFSFFlow = freeSessionNotExpired && freeSessionNotClaimed;
   /* END FSF FLOW LOGIC */
 
   const createFreeSessionHandler = () => dispatch(createFreeSessionInit());
@@ -85,7 +84,7 @@ const ReserveButton = ({
     }
 
     if (equals(session.userSession.state, 'reserved')) {
-        return <></>;
+      return <></>;
     }
     if (equals(session.userSession.state, 'confirmed')) {
       return (
@@ -97,10 +96,13 @@ const ReserveButton = ({
     }
   } else {
     return (
-      <Button className="ar-button reserve-btn inverted double" onClick={() => {
-        window.sessionStorage.setItem('redirect', window.location.pathname);
-        history.push(ROUTES.SIGNUP);
-      }}>
+      <Button
+        className="ar-button reserve-btn inverted double"
+        onClick={() => {
+          window.sessionStorage.setItem('redirect', window.location.pathname);
+          history.push(ROUTES.SIGNUP);
+        }}
+      >
         <div className="ar-button-inner">SIGN UP</div>
         <div class="double-drop"></div>
       </Button>

@@ -98,7 +98,6 @@ const PlanContainer = styled.div`
       width: 100%;
     }
   }
-
 `;
 
 const Plans = ({ selectProductHandler, availableProducts }) => {
@@ -116,7 +115,6 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
       </section>
       <div className="plans-container">
         {products.map(product => {
-          const [firstWord, secondWord] = product.name.split(' ');
           const sessionLabel = `${product.credits} ${product.credits > 1 ? 'SESSIONS' : 'SESSION'}`;
           const sessionPrice = `$${formatPrice(product.price)}`;
           const sessionPPS = `$${formatPrice(product.price / product.credits)}/SESSION`;
@@ -126,12 +124,27 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
 
           return (
             <PlanContainer className="plan-container" key={product.stripeId} product={product}>
-              <a className="click-block" href="#" onClick={(e) => {
-                e.preventDefault();
-                selectProductHandler(product);
-              }}>
-                {mostPopular ? <div className="rotate-wrapper"><span className="most-popular ">MOST POPULAR</span></div> : ''}
-                {bestValue ? <div className="rotate-wrapper"><span className="best-value">BEST VALUE</span></div> : ''}
+              <div
+                className="click-block"
+                onClick={e => {
+                  e.preventDefault();
+                  selectProductHandler(product);
+                }}
+              >
+                {mostPopular ? (
+                  <div className="rotate-wrapper">
+                    <span className="most-popular ">MOST POPULAR</span>
+                  </div>
+                ) : (
+                  ''
+                )}
+                {bestValue ? (
+                  <div className="rotate-wrapper">
+                    <span className="best-value">BEST VALUE</span>
+                  </div>
+                ) : (
+                  ''
+                )}
                 <div className="session-info">
                   <div className="session-label">{sessionLabel}</div>
                   <div className="session-price">{sessionPrice}</div>
@@ -142,7 +155,7 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
                     <div className="ar-button-inner">{buyLabel}</div>
                   </div>
                 </div>
-              </a>
+              </div>
             </PlanContainer>
           );
         })}

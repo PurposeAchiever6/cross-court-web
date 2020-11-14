@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
 import ArButton from 'shared/components/ArButton';
@@ -37,7 +37,7 @@ const TheSession = props => (
     <div className="boxes">
       <div className="boxes-item">
         <div className="boxes-image">
-          <img className="one-hour" src={oneHourIcon} />
+          <img alt="" className="one-hour" src={oneHourIcon} />
         </div>
         <span className="boxes-text">
           ONE
@@ -47,7 +47,7 @@ const TheSession = props => (
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <img className="premium-facility" src={premiumFacilityIcon} />
+          <img alt="" className="premium-facility" src={premiumFacilityIcon} />
         </div>
         <span className="boxes-text">
           PREMIUM
@@ -57,7 +57,7 @@ const TheSession = props => (
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <img className="fifteen-player-limit" src={fifteenPlayerLimitIcon} />
+          <img alt="" className="fifteen-player-limit" src={fifteenPlayerLimitIcon} />
         </div>
         <span className="boxes-text">
           15 PLAYER
@@ -67,7 +67,7 @@ const TheSession = props => (
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <img className="equipment-provided" src={equipmentProvidedIcon} />
+          <img alt="" className="equipment-provided" src={equipmentProvidedIcon} />
         </div>
         <span className="boxes-text">
           EQUIPMENT
@@ -77,7 +77,7 @@ const TheSession = props => (
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <img className="session-official" src={sessionOfficialIcon} />
+          <img alt="" className="session-official" src={sessionOfficialIcon} />
         </div>
         <span className="boxes-text">
           SESSION
@@ -87,7 +87,7 @@ const TheSession = props => (
       </div>
       <div className="boxes-item">
         <div className="boxes-image">
-          <img className="hype-soundtracks" src={hypeSoundtracksIcon} />
+          <img alt="" className="hype-soundtracks" src={hypeSoundtracksIcon} />
         </div>
         <span className="boxes-text">
           HYPE

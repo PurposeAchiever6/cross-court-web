@@ -93,13 +93,12 @@ const LocationsPage = () => {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = isAuthenticated && (freeSessionCreditAdded || window.location.search === '?testanimation');
+  const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed;
   /* END FSF FLOW LOGIC */
 
   if (window.sessionStorage.getItem('previousPage') === 'signup-confirmation') {
     window.sessionStorage.setItem('previousPage', 'null');
-    history.push('/locations')
+    history.push('/locations');
   }
 
   useEffect(() => {

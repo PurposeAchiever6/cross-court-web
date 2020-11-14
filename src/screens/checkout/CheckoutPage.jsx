@@ -6,10 +6,9 @@ import { isNil } from 'ramda';
 
 import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/series/reducer';
-import { getSelectedCard, /*getClaimFreeSession*/ } from 'screens/payments/reducer';
+import { getSelectedCard } from 'screens/payments/reducer';
 import BackButton from 'shared/components/BackButton';
-import device from 'shared/styles/mediaQueries';
-import { createPurchase, /*createFreeSessionInit*/ } from './actionCreators';
+import { createPurchase } from './actionCreators';
 import ProductDetails from './components/PurchaseDetails';
 
 const CheckoutPageContainer = styled.div`

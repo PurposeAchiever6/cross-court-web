@@ -34,13 +34,12 @@ const PaymentsPage = () => {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = isAuthenticated && (freeSessionCreditAdded || window.location.search === '?testanimation');
+  const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed;
   const redirectUrl = window.sessionStorage.getItem('redirect');
   /* END FSF FLOW LOGIC */
+  
   const shouldShowFSFModal = () => !!(isFSFFlow && !availableCards.length && redirectUrl);
   const [showConfirmModal, setShowConfirmModal] = useState(true);
-  const showConfirmModalHandler = () => setShowConfirmModal(true);
   const hideConfirmModalHandler = () => setShowConfirmModal(false);
 
   useEffect(() => {
@@ -54,14 +53,17 @@ const PaymentsPage = () => {
   if (isLoading) {
     return <Loading />;
   }
-  
+
   return (
     <PaymentsPageContainer>
-      {shouldShowFSFModal() &&
+      {shouldShowFSFModal() && (
         <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
-          <FreeSessionConfirmModal closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal} />
+          <FreeSessionConfirmModal
+            closeHandler={hideConfirmModalHandler}
+            isOpen={showConfirmModal}
+          />
         </Modal>
-      }
+      )}
       <PaymentMethods availableCards={availableCards} />
     </PaymentsPageContainer>
   );

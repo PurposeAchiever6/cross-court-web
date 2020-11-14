@@ -27,43 +27,41 @@ const CCTeamPerks = props => (
     <section className="cc-team-perks section-block text-black">
       <section className="title-block">
         <p className="heading-sprite"></p>
-        {/* <h2 className="title-1 shapiro97_air_extd">CCTEAM</h2>
-        <p className="title-2 shapiro95_super_wide">PERKS</p> */}
       </section>
       <div className="boxes">
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="competitive-wage" src={competitiveWageIcon} />
+            <img alt="" className="competitive-wage" src={competitiveWageIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">COMPETITIVE WAGE</span>
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="free-session" src={freeSessionsIcon} />
+            <img alt="" className="free-session" src={freeSessionsIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">FREE SESSIONS</span>
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="equity" src={equityIcon} />
+            <img alt="" className="equity" src={equityIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">EQUITY</span>
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="rewards" src={rewardsIcon} />
+            <img alt="" className="rewards" src={rewardsIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">REWARDS</span>
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="cc-fit" src={ccFitIcon} />
+            <img alt="" className="cc-fit" src={ccFitIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">CC FIT</span>
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="glory" src={gloryIcon} />
+            <img alt="" className="glory" src={gloryIcon} />
           </div>
           <span className="boxes-text shapiro95_super_wide">GLORY</span>
         </div>

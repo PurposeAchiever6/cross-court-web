@@ -1,13 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import ROUTES from 'shared/constants/routes';
-
-const FaqContainer = styled.div``;
 
 const Faq = () => {
   return (
-    <FaqContainer className="faq">
+    <div className="faq">
       <h1>CROSSCOURT FAQ</h1>
       <div className="section-links">
         <a href="#players">PLAYERS</a> |{' '}
@@ -113,7 +108,8 @@ const Faq = () => {
           your session) will result in a charge for the amount of your session credit and will not
           result in a refund. Confirming and no showing will also result in lost session credit. If
           this happens twice, your account will be flagged. The other players in the session are
-          relying on your attendance, so not showing up will affect the entire group&apos;s experience.
+          relying on your attendance, so not showing up will affect the entire group&apos;s
+          experience.
         </p>
       </div>
       <div className="question-block">
@@ -126,10 +122,11 @@ const Faq = () => {
       <div className="question-block">
         <h3>What happens when I arrive?</h3>
         <p>
-          After signing up, we&apos;ll send you a &quot;What to Expect&quot; video. When you arrive, find one
-          of our Experience Managers if you are not greeted at the door. They will check you in and
-          hand you a jersey. After finding out what color to wear, we recommend stretching out,
-          getting to know your teammates, or snapping a photo for the gram before we tip off.
+          After signing up, we&apos;ll send you a &quot;What to Expect&quot; video. When you arrive,
+          find one of our Experience Managers if you are not greeted at the door. They will check
+          you in and hand you a jersey. After finding out what color to wear, we recommend
+          stretching out, getting to know your teammates, or snapping a photo for the gram before we
+          tip off.
         </p>
       </div>
       <div className="question-block">
@@ -146,9 +143,9 @@ const Faq = () => {
         <h3>How do I book a Session?</h3>
         <p>
           Go to the <a href="locations">schedule/locations</a> tab on our website and find a session
-          that works for you. Either filter by location, date, or time and just click &quot;Reserve.&quot; If
-          you don&apos;t have any session credits, then you&apos;ll be asked to purchase before
-          confirming your reservation.
+          that works for you. Either filter by location, date, or time and just click
+          &quot;Reserve.&quot; If you don&apos;t have any session credits, then you&apos;ll be asked
+          to purchase before confirming your reservation.
         </p>
       </div>
       <div className="question-block">
@@ -268,7 +265,7 @@ const Faq = () => {
           your full time jobs! If not, you will be able to officiate more sessions!
         </p>
       </div>
-    </FaqContainer>
+    </div>
   );
 };
 

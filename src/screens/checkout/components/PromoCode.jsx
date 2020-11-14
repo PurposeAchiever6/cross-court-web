@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import InputTextField from 'shared/components/InputTextField';
 import Spinner from 'shared/components/Spinner';
 import Button from 'shared/components/Button';
-import device from 'shared/styles/mediaQueries';
 
 import { checkPromoCode } from '../actionCreators';
 import { getPromoCodeLoading, getPromoCodeValid } from '../reducer';

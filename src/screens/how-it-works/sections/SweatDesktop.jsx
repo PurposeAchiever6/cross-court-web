@@ -1,13 +1,10 @@
 import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
-import { ReactComponent as CatchASweatSvg } from 'shared/components/svg/catch-a-sweat.svg';
-import { ReactComponent as SecureTheWSvg } from 'shared/components/svg/secure-the-w.svg';
 import Icon from 'shared/components/Icon';
 
 import ArButton from 'shared/components/ArButton';
 import Icons from '../components/Icons';
-import Text from '../components/Text';
 
 import catchASweatIcon from 'shared/images/catch-a-sweat-2.png';
 import secureTheWIcon from 'shared/images/secure-the-w-2.png';
@@ -20,12 +17,19 @@ function SweatDesktop() {
         <p className="title dharma_gothic_cheavy">SWEAT</p>
         <Icons className="icons">
           <Icon>
-            <img className="catch-a-sweat" src={catchASweatIcon} />
-            <span className="boxes-text">CATCH A<br />SWEAT</span>
+            <img alt="" className="catch-a-sweat" src={catchASweatIcon} />
+            <span className="boxes-text">
+              CATCH A<br />
+              SWEAT
+            </span>
           </Icon>
           <Icon>
-            <img className="secure-the-w" src={secureTheWIcon} />
-            <span className="boxes-text">SECURE<br />THE W</span>
+            <img alt="" className="secure-the-w" src={secureTheWIcon} />
+            <span className="boxes-text">
+              SECURE
+              <br />
+              THE W
+            </span>
           </Icon>
         </Icons>
         <p className="description">
