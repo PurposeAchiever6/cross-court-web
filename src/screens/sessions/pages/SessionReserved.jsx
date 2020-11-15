@@ -1,18 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SportCharacter from 'shared/images/sport-character.png';
 import ArButton from 'shared/components/ArButton';
-
-import { getUserProfile } from 'screens/my-account/reducer.js';
-import { getSessionInfo, getSessionId, getSessionDate } from '../reducer';
-
-import { formatSessionTime, purchaseFormattedDate } from 'shared/utils/date';
 
 const SessionReservedContainer = styled.div`
   display: flex;
@@ -93,46 +85,12 @@ const SessionReservedContainer = styled.div`
 `;
 
 const SessionReserved = () => {
-  const sessionInfo = useSelector(getSessionInfo);
-  const sessionId = useSelector(getSessionId);
-  const sessionDate = useSelector(getSessionDate);
-  const sessionDateHumanFriendly = purchaseFormattedDate(sessionDate).slice(0, -3);
-  const sessionTime = formatSessionTime(sessionDate).replace(':00', '');
-
-  const userProfile = useSelector(getUserProfile);
-
-  const SHARE_URL = `${window.location.origin}/session/${sessionId}/${sessionDate}?referralCode=${userProfile.referralCode}`;
-  const SHARE_MSG = `I just signed up for the Crosscourt ${sessionInfo.location.name} session at ${sessionTime} on ${sessionDateHumanFriendly}. Your first session's free. Sign up here: ${SHARE_URL}`;
-
-  const handleClick = () => {
-    var input = document.createElement('input');
-    input.setAttribute('value', SHARE_MSG);
-    document.body.appendChild(input);
-    input.select();
-    document.body.removeChild(input);
-    document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML = 'COPIED!';
-  };
-
   return (
     <SessionReservedContainer className="session-reserved">
       <div className="session-info-container">
         <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
         <h1>SESSION BOOKED</h1>
         <h2>SUCCESSFULLY!</h2>
-        <button
-          className="ar-button double invite-a-friend-button"
-          data-href={'sms:?&body=' + encodeURI(SHARE_URL)}
-          onClick={handleClick}
-        >
-          <div className="ar-button-inner">
-            <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
-          </div>
-          <div className="double-drop"></div>
-        </button>
-        <p class="refer-a-new-friend-message">
-          REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!
-        </p>
-        <br />
         <ArButton className="done-button" inverted link={ROUTES.MYACCOUNT}>
           DONE
         </ArButton>
