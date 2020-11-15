@@ -11,6 +11,7 @@ import ScrollLock from 'react-scrolllock';
 import Button from 'shared/components/Button';
 import ROUTES from 'shared/constants/routes';
 import { useHistory } from 'react-router-dom';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 const SurveyModalContainer = styled.div`
   display: flex;
@@ -42,6 +43,7 @@ const SurveyModalContainer = styled.div`
 `;
 
 const SurveyModal = ({ closeHandler, isOpen }) => {
+  const env = runtimeEnv();
   const history = useHistory();
   const redirectUrl = window.sessionStorage.getItem('redirect');
 
@@ -69,7 +71,7 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
     document.querySelector('.stars').setAttribute('data-value', rating);
     document.querySelectorAll('.star-pair')[i].classList.add('selected');
 
-    fetch('https://cross-court-testing.herokuapp.com/api/v1/session_surveys/answers', {
+    fetch(`${env.REACT_APP_API_URL}/session_surveys/answers`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -92,7 +94,7 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
       .catch(err => console.log(err));
   };
   const surveySubmitAction = () => {
-    fetch('https://cross-court-testing.herokuapp.com/api/v1/session_surveys/answers', {
+    fetch(`${env.REACT_APP_API_URL}/session_surveys/answers`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
