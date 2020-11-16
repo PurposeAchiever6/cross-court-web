@@ -17,6 +17,7 @@ import {
   CHECK_PROMO_CODE_SUCCESS,
   CHECK_PROMO_CODE_FAILURE,
 } from './actionTypes';
+import { RESERVE_SESSION_INIT } from '../sessions/actionTypes';
 import checkoutService from './service';
 
 export function* createPurchaseFlow() {
@@ -42,7 +43,7 @@ export function* createPurchaseFlow() {
   }
 }
 
-export function* createFreeSessionFlow() {
+export function* createFreeSessionFlow({ payload }) {
   try {
     const selectedCard = yield select(getSelectedCard);
 
@@ -50,7 +51,10 @@ export function* createFreeSessionFlow() {
     yield put({
       type: CREATE_FREE_SESSION_SUCCESS,
     });
-    yield put(push(ROUTES.SESSIONRESERVED));
+    yield put({
+      type: RESERVE_SESSION_INIT,
+      payload,
+    });
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({ type: CREATE_FREE_SESSION_FAILURE, error: err.response.data.error });

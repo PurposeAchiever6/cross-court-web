@@ -14,6 +14,7 @@ const SessionButtons = ({
   showCancelModalAction,
   userProfile,
   signupBookSessionAction,
+  createAndReserveFreeSessionHandler,
 }) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
 
@@ -25,6 +26,7 @@ const SessionButtons = ({
           confirmSessionAction={confirmSessionAction}
           signupBookSessionAction={signupBookSessionAction}
           session={session}
+          createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
         />
       )}
       {isAuthenticated && !isNil(session.userSession) && (

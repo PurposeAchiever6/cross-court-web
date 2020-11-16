@@ -16,13 +16,11 @@ import { initialLoadInit } from 'screens/payments/actionCreators';
 import { getAvailableCards } from 'screens/payments/reducer';
 import ROUTES from 'shared/constants/routes';
 
-import { createFreeSessionInit } from 'screens/checkout/actionCreators';
-
 const ReserveButton = ({
   reserveSessionAction,
   session,
-  confirmSessionAction,
   signupBookSessionAction,
+  createAndReserveFreeSessionHandler,
 }) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const sessionDate = useSelector(getSessionDate);
@@ -44,8 +42,6 @@ const ReserveButton = ({
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const isFSFFlow = freeSessionNotExpired && freeSessionNotClaimed;
   /* END FSF FLOW LOGIC */
-
-  const createFreeSessionHandler = () => dispatch(createFreeSessionInit());
 
   useEffect(() => {
     dispatch(initialLoadInit());
@@ -69,10 +65,10 @@ const ReserveButton = ({
               history.push(ROUTES.PAYMENTS);
             } else {
               if (isFSFFlow) {
-                createFreeSessionHandler();
+                createAndReserveFreeSessionHandler();
+              } else {
+                reserveSessionAction();
               }
-
-              reserveSessionAction();
             }
           }}
           disabled={isPast(sessionDate)}
@@ -120,7 +116,6 @@ const ReserveButton = ({
 ReserveButton.propTypes = {
   reserveSessionAction: PropTypes.func.isRequired,
   session: PropTypes.object.isRequired,
-  confirmSessionAction: PropTypes.func.isRequired,
   signupBookSessionAction: PropTypes.func.isRequired,
 };
 

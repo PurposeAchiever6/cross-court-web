@@ -13,8 +13,13 @@ export const createPurchase = () => ({
   type: CREATE_PURCHASE_INIT,
 });
 
-export const createFreeSessionInit = () => ({
+export const createAndReserveFreeSessionInit = (sessionId, date, referralCode) => ({
   type: CREATE_FREE_SESSION_INIT,
+  payload: {
+    sessionId,
+    date,
+    referralCode,
+  },
 });
 
 export const checkPromoCode = (promoCode, price) => ({

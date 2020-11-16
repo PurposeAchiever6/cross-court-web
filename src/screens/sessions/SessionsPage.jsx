@@ -20,6 +20,7 @@ import LEVELS from 'shared/constants/levels';
 import ROUTES from 'shared/constants/routes';
 
 import { removeSessionFromStorage } from 'shared/actions/actionCreators';
+import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
 import {
   initialLoadInit,
   reserveSessionInit,
@@ -36,12 +37,7 @@ import SessionButtons from './components/SessionButtons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { getSessionDate } from 'screens/sessions/reducer';
-import {
-  formatSessionTime,
-  purchaseFormattedDate,
-  formatShareSessionDate,
-  formatShareSessionTime,
-} from 'shared/utils/date';
+import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
 
 const SessionsPageContainer = styled.div`
   display: flex;
@@ -237,9 +233,7 @@ const SessionsPageContainer = styled.div`
 
 const SessionsPage = () => {
   const { id, date } = useParams();
-  const referralCode = window.sessionStorage.getItem('referralCode')
-    ? window.sessionStorage.getItem('referralCode')
-    : false;
+  const referralCode = window.sessionStorage.getItem('referralCode');
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -252,6 +246,8 @@ const SessionsPage = () => {
 
   const reserveSessionAction = () =>
     dispatch(reserveSessionInit(sessionInfo.id, date, referralCode));
+  const createAndReserveFreeSessionHandler = () =>
+    dispatch(createAndReserveFreeSessionInit(sessionInfo.id, date, referralCode));
   const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
   const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
   const showCancelModalAction = () => dispatch(showCancelModal());
@@ -294,17 +290,23 @@ const SessionsPage = () => {
   const inCancellationTime =
     sessionInfo && sessionInfo.userSession && sessionInfo.userSession.inCancellationTime;
 
-  const copyShareInfoToClipboard = e => {
+  const copyShareInfoToClipboard = () => {
     const input = document.createElement('input');
-    const referralCode = isAuthenticated && userProfile.referralCode ? '?referralCode=' + userProfile.referralCode : '';
+    const referralCode =
+      isAuthenticated && userProfile.referralCode
+        ? '?referralCode=' + userProfile.referralCode
+        : '';
     const SHARE_URL = `${window.location.origin}/session/${sessionInfo.id}/${sessionDate}${referralCode}`;
-    const SHARE_MSG = `I just signed up for the Crosscourt ${sessionInfo.location.name} session at ${formatShareSessionTime(sessionInfo.time)} on ${formatShareSessionDate(sessionDate)}. Your first Crosscourt session's free! Use my link to sign up. ${SHARE_URL}`;
+    const SHARE_MSG = `I just signed up for the Crosscourt ${
+      sessionInfo.location.name
+    } session at ${formatShareSessionTime(sessionInfo.time)} on ${formatShareSessionDate(
+      sessionDate
+    )}. Your first Crosscourt session's free! Use my link to sign up. ${SHARE_URL}`;
     input.setAttribute('value', SHARE_MSG);
     document.body.appendChild(input);
     input.select();
-    const result = document.execCommand('copy');
     document.body.removeChild(input);
-    document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML  = 'COPIED!';
+    document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML = 'COPIED!';
   };
 
   return isPageLoading ? (
@@ -347,7 +349,9 @@ const SessionsPage = () => {
               </div>
             )}
             {getSessionsMessageContainerText() && (
-              <span className="sessions-message-container">{getSessionsMessageContainerText()}</span>
+              <span className="sessions-message-container">
+                {getSessionsMessageContainerText()}
+              </span>
             )}
           </div>
           <div className="side-container">
@@ -382,7 +386,9 @@ const SessionsPage = () => {
             </div>
             {isAuthenticated && (
               <div className="refer-section">
-                <p class="refer-a-new-friend-message">REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!</p>
+                <p class="refer-a-new-friend-message">
+                  REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!
+                </p>
                 <div
                   className="ar-button double invite-a-friend-button"
                   onClick={copyShareInfoToClipboard}
@@ -404,6 +410,7 @@ const SessionsPage = () => {
                   showCancelModalAction={showCancelModalAction}
                   userProfile={userProfile}
                   signupBookSessionAction={signupBookSessionAction}
+                  createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
                 />
               )}
               {isAuthenticated &&

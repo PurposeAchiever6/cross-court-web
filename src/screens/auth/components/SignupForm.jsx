@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
-import device from 'shared/styles/mediaQueries';
 import InputTextField from 'shared/components/InputTextField';
 import InputPhoneField from 'shared/components/InputPhoneField';
 import Spinner from 'shared/components/Spinner';
@@ -84,11 +83,11 @@ const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('Required'),
   lastName: Yup.string().required('Required'),
   phoneNumber: Yup.string()
-    .transform(value => value.replace(/\D/g, ''))
+    .transform((value) => value.replace(/\D/g, ''))
     .matches(phoneRegExp, 'Please enter a valid phone number')
     .required('Required'),
   confirmPhoneNumber: Yup.string()
-    .transform(value => value.replace(/\D/g, ''))
+    .transform((value) => value.replace(/\D/g, ''))
     .oneOf([Yup.ref('phoneNumber'), null], 'Phone numbers must match')
     .required('Required'),
   zipcode: Yup.string()
@@ -108,7 +107,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
       validateOnChange={false}
       validateOnBlur={false}
       initialValues={initialValues}
-      onSubmit={values => {
+      onSubmit={(values) => {
         signupHandler({ ...values });
       }}
       validationSchema={validationSchema}
