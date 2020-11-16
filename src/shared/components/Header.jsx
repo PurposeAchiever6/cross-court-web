@@ -125,7 +125,7 @@ function Header() {
   };
 
   const isFSFFlow = freeSessionNotExpired && freeSessionNotClaimed;
-  const bannerButtonTarget = isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP;
+  const bannerButtonTarget = ROUTES.LOCATIONS;
   const bannerText = () => {
     let text = '';
 
