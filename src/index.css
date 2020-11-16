@@ -3052,6 +3052,7 @@ body .locations .sessions-container .week-handler .weektitle-container {
   font-size: 16px;
 }
 body .locations .sessions-container .session-list-item-container {
+  align-items: center;
   padding: 30px 0;
 }
 body .locations .sessions-container .session-list-item-container.past,
@@ -3069,7 +3070,7 @@ body .locations .sessions-container .session-list-item-container .text-container
   line-height: 18px;
   margin-bottom: 0;
 }
-@media (min-width: 992px) {
+@media (min-width: 992px) { 
   body .locations .sessions-container .session-list-item-container .text-container .time {
     font-size: 16px;
   }
@@ -3091,6 +3092,25 @@ body .locations .sessions-container .session-list-item-container .text-container
 body .locations .sessions-container .session-list-item-container .text-container .level .level-number {
   display: inline-block;
   margin-left: 5px;
+}
+body .locations .sessions-container .session-list-item-container .status-container {
+  align-self: center;
+  display: none;
+  font-family: 'shapiro95_super_wide';
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+@media (min-width: 568px) {
+  body .locations .sessions-container .session-list-item-container .status-container {
+    display: flex;
+  }
+}
+@media (min-width: 1200px) {
+  body .locations .sessions-container .session-list-item-container .status-container {
+    margin-left: 190px;
+  }
 }
 body .locations .sessions-container .no-sessions-container {
   color: #000;

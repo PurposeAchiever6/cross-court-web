@@ -104,6 +104,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           const URLdate = urlFormattedDate(startTime);
           const emailSessionDate = formatSessionDate(startTime);
           const mailInfo = `mailto:ccteam@cross-court.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${location.name}. Please notify me if a spot opens up. You can reach me at ${phoneNumber}.`;
+          const fewSpotsLeftText = 'JUST A FEW SPOTS LEFT';
           let button;
           if (reserved || past) {
             button = (
@@ -124,6 +125,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 <SessionLevel level={level} />
                 <SpotsLeft spotsLeft={spotsLeft} />
               </div>
+              <div className="status-container">{spotsLeft <= 5 && fewSpotsLeftText}</div>
               {button}
             </div>
           );
