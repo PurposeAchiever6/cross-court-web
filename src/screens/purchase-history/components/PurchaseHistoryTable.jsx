@@ -4,7 +4,6 @@ import { useTable } from 'react-table';
 import currency from 'currency.js';
 
 import { purchaseFormattedDate } from 'shared/utils/date';
-import device from 'shared/styles/mediaQueries';
 
 const TableContainer = styled.div`
   width: 50%;
@@ -72,7 +71,7 @@ const columns = [
 ];
 
 const PurchaseHistoryTable = ({ purchaseHistory }) => {
-  const data = purchaseHistory.map(purchase => ({
+  const data = purchaseHistory.map((purchase) => ({
     ...purchase,
     date: purchaseFormattedDate(purchase.date),
     credits: purchase.credits > 1 ? `${purchase.credits} Sessions` : `${purchase.credits} Session`,

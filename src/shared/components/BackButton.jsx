@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 import styled from 'styled-components';
-import device from 'shared/styles/mediaQueries';
 
 import backButtonIcon from 'shared/images/back-button.png';
 
@@ -51,7 +49,7 @@ const BackButton = ({ className, showText = true, color = 'black' }) => {
 
   return (
     <BackButtonContainer type="button" className={`go-back ${className}`} onClick={goBackHandler}>
-      <img className="back-button" src={backButtonIcon} />
+      <img alt="Back" className="back-button" src={backButtonIcon} />
     </BackButtonContainer>
   );
 };

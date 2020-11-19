@@ -3,15 +3,16 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Loading from 'shared/components/Loading';
-import device from 'shared/styles/mediaQueries';
 import Map from 'shared/components/Map/Map';
 import { add, isPast, getUTCDate } from 'shared/utils/date';
 
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
+import { useHistory } from 'react-router-dom';
 import LocationPicker from './components/LocationPicker';
 import WeekSelector from './components/WeekSelector';
 import SessionsList from './components/SessionsList';
 import FreeSessionCreditAdded from './components/FreeSessionCreditAdded';
-import { getIsAuthenticated } from 'screens/auth/reducer';
 import {
   getPageLoading,
   getAvailableLocations,
@@ -26,9 +27,6 @@ import {
   getSessionsByDate,
   setSelectedDate,
 } from './actionCreators';
-import { getUserProfile } from 'screens/my-account/reducer';
-
-import { useHistory } from 'react-router-dom';
 
 const PageContainer = styled.div`
   display: flex;
@@ -65,9 +63,9 @@ const LocationsPage = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
 
   const dispatch = useDispatch();
-  const setLocationHandler = locationId => dispatch(getSessionsByLocation(locationId));
-  const getSessionsByDateHandler = date => dispatch(getSessionsByDate(date));
-  const setSelectedDateHandler = date => dispatch(setSelectedDate(date));
+  const setLocationHandler = (locationId) => dispatch(getSessionsByLocation(locationId));
+  const getSessionsByDateHandler = (date) => dispatch(getSessionsByDate(date));
+  const setSelectedDateHandler = (date) => dispatch(setSelectedDate(date));
 
   const history = useHistory();
 

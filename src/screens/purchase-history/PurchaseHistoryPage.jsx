@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import Loading from 'shared/components/Loading';
 import BackButton from 'shared/components/BackButton';
-import device from 'shared/styles/mediaQueries';
 
 import { initialLoadInit } from './actionCreators';
 import { getPageLoading, getPurchaseHistory } from './reducer';

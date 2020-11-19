@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import currency from 'currency.js';
 import { useSelector, useDispatch } from 'react-redux';
 
-import device from 'shared/styles/mediaQueries';
 import { purchaseFormattedDate } from 'shared/utils/date';
 import Button from 'shared/components/Button';
 import CCIcon from 'shared/components/CCIcon';
@@ -172,11 +171,7 @@ const PurchaseDetailsContainer = styled.div`
   }
 `;
 
-const PurchaseDetails = ({
-  productDetails,
-  paymentDetails,
-  createPurchaseHandler,
-}) => {
+const PurchaseDetails = ({ productDetails, paymentDetails, createPurchaseHandler }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getCheckoutLoading);
   const checkoutHandler = createPurchaseHandler;
@@ -213,7 +208,7 @@ const PurchaseDetails = ({
         <div className="promo-total-container">
           <PromoCode />
           <div className="total-container">
-            {false/*isFreeSession*/ ? (
+            {false /* isFreeSession */ ? (
               <span>FREE</span>
             ) : (
               <span>{`$ ${currency(productDetails.price, {

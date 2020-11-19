@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import device from 'shared/styles/mediaQueries';
 import CrossSvg from './svg/CrossSvg';
 
 const Button = styled.button`

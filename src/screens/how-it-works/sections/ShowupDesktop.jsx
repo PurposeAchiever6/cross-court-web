@@ -1,16 +1,13 @@
 import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
-import { ReactComponent as JerseySvg } from 'shared/components/svg/jersey.svg';
-import { ReactComponent as GuidedExperienceSvg } from 'shared/components/svg/guided-experience.svg';
 import Icon from 'shared/components/Icon';
 
 import ArButton from 'shared/components/ArButton';
-import Icons from '../components/Icons';
-import Text from '../components/Text';
 
 import equipmentProvidedIcon from 'shared/images/equipment-provided-2.png';
 import guidedExperienceIcon from 'shared/images/guided-experience.png';
+import Icons from '../components/Icons';
 
 function Showup() {
   return (
@@ -19,12 +16,20 @@ function Showup() {
         <p className="title dharma_gothic_cheavy">SHOW UP</p>
         <Icons className="icons">
           <Icon>
-            <img className="equipment-provided" src={equipmentProvidedIcon} />
-            <span className="boxes-text">EQUIPMENT<br />PROVIDED</span>
+            <img alt="" className="equipment-provided" src={equipmentProvidedIcon} />
+            <span className="boxes-text">
+              EQUIPMENT
+              <br />
+              PROVIDED
+            </span>
           </Icon>
           <Icon>
-            <img className="guided-experience" src={guidedExperienceIcon} />
-            <span className="boxes-text">GUIDED<br />EXPERIENCE</span>
+            <img alt="" className="guided-experience" src={guidedExperienceIcon} />
+            <span className="boxes-text">
+              GUIDED
+              <br />
+              EXPERIENCE
+            </span>
           </Icon>
         </Icons>
         <p className="description">
@@ -36,15 +41,12 @@ function Showup() {
           court.
         </p>
         <div className="buttons-container">
-          {/* <ArButton link={ROUTES.SEM} double inverted>
-            JOIN THE TEAM
-          </ArButton> */}
           <ArButton link={ROUTES.LOCATIONS} double>
             RESERVE NOW
           </ArButton>
         </div>
       </section>
-      <section className="right-section"></section>
+      <section className="right-section" />
     </section>
   );
 }

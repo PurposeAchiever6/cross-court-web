@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { object, arrayOf } from 'prop-types';
 
-import device from 'shared/styles/mediaQueries';
 import Tabs from 'shared/components/Tabs';
 import MyProfile from './components/MyProfile';
 import SessionsList from './components/SessionsList';

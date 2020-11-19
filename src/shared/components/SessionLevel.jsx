@@ -1,9 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 
-import colors from 'shared/styles/constants';
 import InfoSvg from 'shared/components/svg/InfoSvg';
 import LEVELS from 'shared/constants/levels';
 import TEXT from 'shared/constants/text';

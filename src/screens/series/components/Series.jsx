@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import device, { size } from 'shared/styles/mediaQueries';
 import premiumFacilityIcon from 'shared/images/premium-facility.png';
 import onYourTimeIcon from 'shared/images/on-your-time.png';
-import useWindowSize from 'shared/hooks/useWindowSize';
 
 const SeriesContainer = styled.div`
   display: flex;
@@ -74,22 +72,19 @@ const SeriesContainer = styled.div`
 `;
 
 const Series = () => {
-  const { width: windowSize } = useWindowSize();
-  const iconSize = windowSize < size.desktop ? '4rem' : '7rem';
-
   return (
     <SeriesContainer className="series-series-container">
       <h2>OUR SERIES</h2>
       <div className="content">
         <div className="item">
-          <img className="on-your-time" src={onYourTimeIcon} />
+          <img alt="" className="on-your-time" src={onYourTimeIcon} />
           <div className="text-container">
             <span className="title">DON&apos;T EXPIRE</span>
             <span className="text">Purchase and use your series at your convenience.</span>
           </div>
         </div>
         <div className="item">
-          <img className="premium-facility" src={premiumFacilityIcon} />
+          <img alt="" className="premium-facility" src={premiumFacilityIcon} />
           <div className="text-container">
             <div className="title">ARE LOCATION TRANSFERABLE</div>
             <div className="text">Use your series at any of our locations.</div>

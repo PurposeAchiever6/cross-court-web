@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import ROUTES from 'shared/constants/routes';
 import { getUserEmail } from 'screens/auth/reducer';
 import PaperPlaneIcon from 'shared/images/paper-plane-icon.png';
-import device from 'shared/styles/mediaQueries';
 
 const PageContainer = styled.div`
   display: flex;

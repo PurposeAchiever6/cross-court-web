@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from 'shared/components/Button';
-import colors from 'shared/styles/constants';
 import PropTypes from 'prop-types';
 
 const CancelModalContainer = styled.div`

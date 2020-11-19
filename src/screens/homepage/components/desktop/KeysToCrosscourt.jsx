@@ -30,24 +30,22 @@ const Section = styled.section`
   }
 `;
 
-const KeysToCrosscourt = props => (
+const KeysToCrosscourt = (props) => (
   <Section {...props}>
     <section className="keys-to-crosscourt section-block text-black">
       <section className="title-block">
-        <p className="heading-sprite"></p>
-        {/* <h2 className="title-1 shapiro97_air_extd">KEYS TO</h2>
-        <p className="title-2 shapiro95_super_wide">CROSSCOURT</p> */}
+        <p className="heading-sprite" />
       </section>
       <div className="boxes">
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="one-hour" src={oneHourIcon} />
+            <img alt="" className="one-hour" src={oneHourIcon} />
           </div>
           <span className="boxes-text">1 HOUR</span>
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="premium-facility" src={premiumFacilityIcon} />
+            <img alt="" className="premium-facility" src={premiumFacilityIcon} />
           </div>
           <span className="boxes-text">
             PREMIUM
@@ -57,7 +55,7 @@ const KeysToCrosscourt = props => (
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="fifteen-player-limit" src={fifteenPlayerLimitIcon} />
+            <img alt="" className="fifteen-player-limit" src={fifteenPlayerLimitIcon} />
           </div>
           <span className="boxes-text">
             15 PLAYER
@@ -67,7 +65,7 @@ const KeysToCrosscourt = props => (
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="equipment-provided" src={equipmentProvidedIcon} />
+            <img alt="" className="equipment-provided" src={equipmentProvidedIcon} />
           </div>
           <span className="boxes-text">
             EQUIPMENT
@@ -77,7 +75,7 @@ const KeysToCrosscourt = props => (
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="session-official" src={sessionOfficialIcon} />
+            <img alt="" className="session-official" src={sessionOfficialIcon} />
           </div>
           <span className="boxes-text">
             SESSION
@@ -87,7 +85,7 @@ const KeysToCrosscourt = props => (
         </div>
         <div className="boxes-item">
           <div className="boxes-image">
-            <img className="hype-soundtracks" src={hypeSoundtracksIcon} />
+            <img alt="" className="hype-soundtracks" src={hypeSoundtracksIcon} />
           </div>
           <span className="boxes-text">
             HYPE

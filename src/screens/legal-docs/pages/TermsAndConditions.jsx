@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import Loading from 'shared/components/Loading';
-import { getPageLoading, getTermsAndConditions } from '../reducer';
+import { getPageLoading } from '../reducer';
 
 const PageContainer = styled.div``;
 

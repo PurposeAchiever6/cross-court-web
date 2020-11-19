@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { equals } from 'ramda';
 
-import Button from 'shared/components/Button';
 import ArButton from 'shared/components/ArButton';
-import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import { urlFormattedDate, shortSessionDate, hourRange } from 'shared/utils/date';
 import CheckCircle from 'shared/components/svg/CheckCircleSvg';
-import { confirmSessionInit } from 'screens/sessions/actionCreators';
 
 const SessionContainer = styled.div`
   display: flex;
@@ -155,11 +151,9 @@ const Session = ({
   past,
   isSem,
   sessionInfo: {
-    id,
     inStartTime,
     state,
     date,
-    inConfirmationTime,
     session: {
       id: sessionId,
       time,
@@ -173,11 +167,6 @@ const Session = ({
   } else if (isSem && inStartTime) {
     dateClassName += ' first';
   }
-  const dispatch = useDispatch();
-
-  const confirmSessionAction = () => dispatch(confirmSessionInit(id));
-
-  const isReserved = equals(state, 'reserved');
   const isConfirmed = equals(state, 'confirmed');
 
   return (
@@ -187,9 +176,7 @@ const Session = ({
       </div>
       <div className="details">
         <span className={dateClassName}>
-          {shortSessionDate(date)
-            .replace('.', '')
-            .replace('/', '.')}
+          {shortSessionDate(date).replace('.', '').replace('/', '.')}
           {isConfirmed && !past && (
             <span className="reserved-check">
               <CheckCircle />
@@ -207,19 +194,13 @@ const Session = ({
             </div>
           ) : (
             <div className="buttons-container">
-              {false ?/*isReserved && inConfirmationTime ? (
-                <Button className="ar-button confirm-button" onClick={confirmSessionAction}>
-                  <div className="ar-button-inner">CONFIRM</div>
-                </Button>
-              )*/false : (
-                <ArButton
-                  className="see-details-button"
-                  link={`/session/${sessionId}/${urlFormattedDate(date)}`}
-                  inverted={past}
-                >
-                  SEE DETAILS
-                </ArButton>
-              )}
+              <ArButton
+                className="see-details-button"
+                link={`/session/${sessionId}/${urlFormattedDate(date)}`}
+                inverted={past}
+              >
+                SEE DETAILS
+              </ArButton>
             </div>
           )}
         </div>
