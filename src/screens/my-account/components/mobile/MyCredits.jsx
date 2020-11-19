@@ -1,11 +1,8 @@
 import React from 'react';
 import { number } from 'prop-types';
 import styled from 'styled-components';
-import Button from 'shared/components/Button';
 import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
-import AlternativeButton from 'shared/components/AlternativeButton';
-import { Link } from 'react-router-dom';
 import ArButton from 'shared/components/ArButton';
 
 const MyCreditsContainer = styled.div`
@@ -60,15 +57,17 @@ const MyCredits = ({ credits }) => (
   <MyCreditsContainer>
     <div className="sessions-number-container">
       <span className="session-number">{credits}</span>
-      <span className="sessions-left">SESSIONS<br />LEFT</span>
+      <span className="sessions-left">
+        SESSIONS
+        <br />
+        LEFT
+      </span>
     </div>
     <div className="links">
       <ArButton className="buy-series-btn" link={ROUTES.SERIES}>
         BUY SERIES
       </ArButton>
-      <ArButton link={ROUTES.PURCHASEHISTORY}>
-        PURCHASE HISTORY
-      </ArButton>
+      <ArButton link={ROUTES.PURCHASEHISTORY}>PURCHASE HISTORY</ArButton>
     </div>
   </MyCreditsContainer>
 );

@@ -44,9 +44,7 @@ const SessionExperienceManager = () => {
   return (
     <section className="the-session-experience-manager section-block text-black">
       <section className="title-and-description-block shift-left">
-        <p className="heading-sprite"></p>
-        {/* <p className="title-1">THE SESSION</p>
-        <p className="title-2">EXPERIENCE MANAGER</p> */}
+        <p className="heading-sprite" />
         <p className="description">
           Crosscourt&apos;s SEMs are the face of Crosscourt at each session. Part host, part DJ, and
           part coordinator, you represent Crosscourt at each session you manage. You bring the
@@ -60,23 +58,23 @@ const SessionExperienceManager = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div class="ar-button-inner">APPLY</div>
-            <div class="double-drop"></div>
+            <div className="ar-button-inner">APPLY</div>
+            <div className="double-drop" />
           </a>
           <a
             className="ar-button double inverted learn-more"
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               setShowModal(true);
             }}
             href="#modal"
           >
             <div className="ar-button-inner">
-              <img className="play-button-white" src={playButtonWhiteIcon} />
-              <img className="play-button-purple" src={playButtonPurpleIcon} />
+              <img alt="" className="play-button-white" src={playButtonWhiteIcon} />
+              <img alt="" className="play-button-purple" src={playButtonPurpleIcon} />
               <span className="text">LEARN MORE</span>
             </div>
-            <div class="double-drop"></div>
+            <div className="double-drop" />
           </a>
           <ReactModal
             shouldCloseOnOverlayClick
@@ -94,7 +92,7 @@ const SessionExperienceManager = () => {
           </ReactModal>
         </div>
       </section>
-      <img className="mobile-image" src={theSessionExperienceManagerMobileImg}></img>
+      <img alt="" className="mobile-image" src={theSessionExperienceManagerMobileImg} />
     </section>
   );
 };

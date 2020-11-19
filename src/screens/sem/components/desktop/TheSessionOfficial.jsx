@@ -44,9 +44,7 @@ const TheSessionOfficial = () => {
   return (
     <section className="the-session-official section-block text-white">
       <section className="title-and-description-block shift-right">
-        <p className="heading-sprite"></p>
-        {/* <p className="title-1">THE SESSION</p>
-        <p className="title-2">OFFICIAL</p> */}
+        <p className="heading-sprite" />
         <p className="description">
           As a session official, you will have fun enforcing the Crosscourt rules and maintaining
           order on the court. This isn&apos;t your average referee role. We encourage getting to
@@ -61,23 +59,23 @@ const TheSessionOfficial = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <div class="ar-button-inner">APPLY</div>
-            <div class="double-drop"></div>
+            <div className="ar-button-inner">APPLY</div>
+            <div className="double-drop" />
           </a>
           <a
             className="ar-button double learn-more"
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               setShowModal(true);
             }}
             href="#modal"
           >
             <div className="ar-button-inner">
-              <img className="play-button-white" src={playButtonWhiteIcon} />
-              <img className="play-button-purple" src={playButtonPurpleIcon} />
+              <img alt="" className="play-button-white" src={playButtonWhiteIcon} />
+              <img alt="" className="play-button-purple" src={playButtonPurpleIcon} />
               <span className="text">LEARN MORE</span>
             </div>
-            <div class="double-drop"></div>
+            <div className="double-drop" />
           </a>
           <ReactModal
             shouldCloseOnOverlayClick
@@ -95,7 +93,7 @@ const TheSessionOfficial = () => {
           </ReactModal>
         </div>
       </section>
-      <img className="mobile-image" src={theSessionOfficialMobileImg}></img>
+      <img alt="" className="mobile-image" src={theSessionOfficialMobileImg} />
     </section>
   );
 };

@@ -37,23 +37,23 @@ const NewToCrosscourt = () => {
   return (
     <section className="new-to-crosscourt section-block text-white">
       <section className="title-block">
-        <p className="heading-sprite"></p>
+        <p className="heading-sprite" />
       </section>
       <a
         className="ar-button double check-it-out animate__animated animate__bounce animate__delay-1s animate__slower animate__bounceInRight"
-        onClick={e => {
+        onClick={(e) => {
           e.preventDefault();
-          document.querySelector('.the-session-video').scrollIntoView({behavior: 'smooth'});
+          document.querySelector('.the-session-video').scrollIntoView({ behavior: 'smooth' });
           document.querySelector('.the-session-video video').play();
         }}
         href="#modal"
       >
         <div className="ar-button-inner">
-          <img className="play-button-white" src={playButtonWhiteIcon} />
-          <img className="play-button-purple" src={playButtonPurpleIcon} />
+          <img alt="" className="play-button-white" src={playButtonWhiteIcon} />
+          <img alt="" className="play-button-purple" src={playButtonPurpleIcon} />
           <span className="text">CHECK IT OUT</span>
         </div>
-        <div className="double-drop"></div>
+        <div className="double-drop" />
       </a>
       <ReactModal
         shouldCloseOnOverlayClick
@@ -69,7 +69,7 @@ const NewToCrosscourt = () => {
           url="https://player.vimeo.com/video/438000525?title=0&byline=0&portrait=0&playsinline=0&autopause=0&app_id=122963"
         />
       </ReactModal>
-      <img className="mobile-image" src={newToCrosscourtMobileImg}></img>
+      <img alt="" className="mobile-image" src={newToCrosscourtMobileImg} />
     </section>
   );
 };
