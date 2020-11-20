@@ -80,9 +80,9 @@ const setPageNameOnBodyClass = pathname => {
 
   body.setAttribute('data-page', pageName);
 
-  if (window.sessionStorage.getItem('currentPage') !== pageName) {
-    window.sessionStorage.setItem('previousPage', window.sessionStorage.getItem('currentPage'));
-    window.sessionStorage.setItem('currentPage', pageName);
+  if (window.localStorage.getItem('currentPage') !== pageName) {
+    window.localStorage.setItem('previousPage', window.localStorage.getItem('currentPage'));
+    window.localStorage.setItem('currentPage', pageName);
   }
 };
 const setScrollClasses = () => {
@@ -227,10 +227,10 @@ const setScrollClasses = () => {
         document.querySelector('main').classList.add('animation-done');
         document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
         window.setTimeout(function() {
-          const redirectToSpecificSession = window.sessionStorage.getItem('redirect');
+          const redirectToSpecificSession = window.localStorage.getItem('redirect');
 
           if (redirectToSpecificSession) {
-            window.sessionStorage.removeItem('redirect');
+            window.localStorage.removeItem('redirect');
             history.push(redirectToSpecificSession);
           } else {
             document.querySelector('.locations').classList.remove('faded-out');
@@ -437,17 +437,18 @@ const setScrollClasses = () => {
   }, 100);
 };
 
-window.cookieAndSessionStorageHandler = function() {
+window.cookieAndSessionStorageHandler = function(isAuthenticated) {
   let search = window.location.search;
   let params = new URLSearchParams(search);
   let referralCode = params.get('referralCode');
 
   if (referralCode) {
-    window.sessionStorage.setItem('referralCode', referralCode)
+    window.localStorage.setItem('referralCode', referralCode)
   }
 
   if (
-    window.sessionStorage.getItem('surveyLock') &&
+    isAuthenticated &&
+    window.localStorage.getItem('surveyLock') &&
     window.location.pathname !== '/'
   ) {
     window.location.href = '/';
@@ -477,10 +478,11 @@ const Routes = () => {
     if (isAuthenticated) {
       dispatch(initialAppLoad());
       dispatch(getLegalDocs());
-      window.cookieAndSessionStorageHandler();
     } else {
       dispatch(getLegalDocs());
     }
+
+    window.cookieAndSessionStorageHandler(isAuthenticated);
   }, [dispatch, isAuthenticated]);
 
   const RoutesWithoutFooter = () => (

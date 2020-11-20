@@ -233,7 +233,7 @@ const SessionsPageContainer = styled.div`
 
 const SessionsPage = () => {
   const { id, date } = useParams();
-  const referralCode = window.sessionStorage.getItem('referralCode');
+  const referralCode = window.localStorage.getItem('referralCode');
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -305,6 +305,7 @@ const SessionsPage = () => {
     input.setAttribute('value', SHARE_MSG);
     document.body.appendChild(input);
     input.select();
+    document.execCommand('copy');
     document.body.removeChild(input);
     document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML = 'COPIED!';
   };
@@ -384,9 +385,12 @@ const SessionsPage = () => {
                 </span>
               </div>
             </div>
-            {isAuthenticated && (
+            {isAuthenticated &&
+            !isSessionComplete &&
+            !isSessionFull &&
+            (
               <div className="refer-section">
-                <p class="refer-a-new-friend-message">
+                <p className="refer-a-new-friend-message">
                   REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!
                 </p>
                 <div
@@ -423,6 +427,7 @@ const SessionsPage = () => {
                   <AlternativeButton
                     className="buy-btn ar-button double"
                     onClick={() => {
+                      window.localStorage.setItem('redirect', window.location.pathname);
                       history.push(ROUTES.SERIES);
                     }}
                   >

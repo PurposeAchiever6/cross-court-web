@@ -35,7 +35,7 @@ const PaymentsPage = () => {
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed;
-  const redirectUrl = window.sessionStorage.getItem('redirect');
+  const redirectUrl = window.localStorage.getItem('redirect');
   /* END FSF FLOW LOGIC */
   
   const shouldShowFSFModal = () => !!(isFSFFlow && !availableCards.length && redirectUrl);

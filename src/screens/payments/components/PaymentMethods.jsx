@@ -169,14 +169,14 @@ const PaymentMethods = ({ availableCards }) => {
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed;
-  const redirectUrl = window.sessionStorage.getItem('redirect');
+  const redirectUrl = window.localStorage.getItem('redirect');
   /* END FSF FLOW LOGIC */
 
   const shouldReturnFSFDetailsPage = () => !!(isFSFFlow && availableCards.length && redirectUrl);
 
   const nextHandler = () => {
     if (shouldReturnFSFDetailsPage()) {
-      window.sessionStorage.removeItem('redirect');
+      window.localStorage.removeItem('redirect');
       history.push(redirectUrl);
     } else {
       history.push('/checkout');

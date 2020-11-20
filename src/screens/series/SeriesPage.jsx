@@ -36,7 +36,7 @@ const SeriesPage = () => {
   const showAnimation = function() {
     return (
       userProfile.credits === 0 &&
-      window.sessionStorage.getItem('previousPage').indexOf('session-') !== -1
+      window.localStorage.getItem('previousPage').indexOf('session-') !== -1
     );
   };
 

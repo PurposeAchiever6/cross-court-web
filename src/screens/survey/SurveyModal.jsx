@@ -45,7 +45,7 @@ const SurveyModalContainer = styled.div`
 const SurveyModal = ({ closeHandler, isOpen }) => {
   const env = runtimeEnv();
   const history = useHistory();
-  const redirectUrl = window.sessionStorage.getItem('redirect');
+  const redirectUrl = window.localStorage.getItem('redirect');
 
   const starRatingMouseOverHandler = i => {
     for (let r = 0; r <= i; r++) {
@@ -89,7 +89,7 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
       .then(data => {
         console.log('Rating saved successfully!', data);
         document.querySelector('.submit-btn').classList.remove('disabled');
-        window.sessionStorage.removeItem('surveyLock');
+        window.localStorage.removeItem('surveyLock');
       })
       .catch(err => console.log(err));
   };
@@ -161,7 +161,7 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
             inverted={false}
             onClick={() => {
               if (redirectUrl) {
-                window.sessionStorage.removeItem('redirect');
+                window.localStorage.removeItem('redirect');
                 history.push(redirectUrl);
               } else {
                 history.push(ROUTES.LOCATIONS);

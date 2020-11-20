@@ -125,8 +125,12 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 <SessionLevel level={level} />
                 <SpotsLeft spotsLeft={spotsLeft} />
               </div>
-              <div className="status-container">{spotsLeft <= 5 && fewSpotsLeftText}</div>
-              {button}
+              <div className="status-container">
+                {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && (
+                  <div className="spots-left">{fewSpotsLeftText}</div>
+                )}
+                {button}
+              </div>
             </div>
           );
         }

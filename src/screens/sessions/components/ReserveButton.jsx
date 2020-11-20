@@ -61,7 +61,7 @@ const ReserveButton = ({
           className="ar-button double reserve-btn"
           onClick={() => {
             if (!availableCards.length && isFSFFlow) {
-              window.sessionStorage.setItem('redirect', window.location.pathname);
+              window.localStorage.setItem('redirect', window.location.pathname);
               history.push(ROUTES.PAYMENTS);
             } else {
               if (isFSFFlow) {
@@ -95,12 +95,12 @@ const ReserveButton = ({
       <Button
         className="ar-button reserve-btn inverted double"
         onClick={() => {
-          window.sessionStorage.setItem('redirect', window.location.pathname);
+          window.localStorage.setItem('redirect', window.location.pathname);
           history.push(ROUTES.SIGNUP);
         }}
       >
         <div className="ar-button-inner">SIGN UP</div>
-        <div class="double-drop"></div>
+        <div className="double-drop"></div>
       </Button>
     );
   }
@@ -108,7 +108,7 @@ const ReserveButton = ({
   return (
     <Button className="ar-button reserve-btn inverted double" onClick={signupBookSessionAction}>
       <div className="ar-button-inner">CONFIRM RESERVATION</div>
-      <div class="double-drop"></div>
+      <div className="double-drop"></div>
     </Button>
   );
 };

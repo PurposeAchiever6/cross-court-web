@@ -22,7 +22,7 @@ const HomePage = () => {
   previousSessions.sort((a, b) => b.id - a.id);
   const isAuthenticated = useSelector(getIsAuthenticated);
 
-  const redirectUrl = window.sessionStorage.getItem('redirect');
+  const redirectUrl = window.localStorage.getItem('redirect');
   const shouldShowSurveyModal =
     isAuthenticated &&
     userInfo &&
@@ -33,8 +33,11 @@ const HomePage = () => {
     previousSessions[0].inCancellationTime === false &&
     previousSessions[0].inConfirmationTime === false;
   const maybeGoBackToSessionToBook = () => {
-    if (redirectUrl) {
-      window.sessionStorage.removeItem('redirect');
+    if (
+      isAuthenticated &&
+      redirectUrl
+    ) {
+      window.localStorage.removeItem('redirect');
       history.push(redirectUrl);
     }
   };
@@ -43,10 +46,10 @@ const HomePage = () => {
     dispatch(initialLoadInit());
 
     if (shouldShowSurveyModal) {
-      window.sessionStorage.setItem('surveyLock', 'true');
+      window.localStorage.setItem('surveyLock', 'true');
     } else {
       //TODO: might need something like this if stuck in survey lock mode
-      //window.sessionStorage.removeItem('surveyLock', 'true');
+      //window.localStorage.removeItem('surveyLock', 'true');
       maybeGoBackToSessionToBook();
     }
   }, [dispatch, shouldShowSurveyModal]);

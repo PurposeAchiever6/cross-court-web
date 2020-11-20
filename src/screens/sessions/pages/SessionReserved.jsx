@@ -1,10 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SportCharacter from 'shared/images/sport-character.png';
 import ArButton from 'shared/components/ArButton';
+
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer.js';
+import { getSessionInfo, getSessionDate } from '../reducer';
+import {
+  formatShareSessionDate,
+  formatShareSessionTime,
+} from 'shared/utils/date';
 
 const SessionReservedContainer = styled.div`
   display: flex;
@@ -85,12 +96,48 @@ const SessionReservedContainer = styled.div`
 `;
 
 const SessionReserved = () => {
+  const sessionInfo = useSelector(getSessionInfo);
+  const isAuthenticated = useSelector(getIsAuthenticated);
+  const sessionDate = useSelector(getSessionDate);
+
+  const userProfile = useSelector(getUserProfile);
+
+  const copyShareInfoToClipboard = () => {
+    const input = document.createElement('input');
+    const referralCode =
+      isAuthenticated && userProfile.referralCode
+        ? '?referralCode=' + userProfile.referralCode
+        : '';
+    const SHARE_URL = `${window.location.origin}/session/${sessionInfo.id}/${sessionDate}${referralCode}`;
+    const SHARE_MSG = `I just signed up for the Crosscourt ${
+      sessionInfo.location.name
+    } session at ${formatShareSessionTime(sessionInfo.time)} on ${formatShareSessionDate(
+      sessionDate
+    )}. Your first Crosscourt session's free! Use my link to sign up. ${SHARE_URL}`;
+    input.setAttribute('value', SHARE_MSG);
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML = 'COPIED!';
+  };
+
   return (
     <SessionReservedContainer className="session-reserved">
       <div className="session-info-container">
         <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
         <h1>SESSION BOOKED</h1>
         <h2>SUCCESSFULLY!</h2>
+        <button
+          className="ar-button double invite-a-friend-button"
+          onClick={copyShareInfoToClipboard}
+        >
+          <div className="ar-button-inner">
+            <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
+          </div>
+          <div className="double-drop"></div>
+        </button>
+        <p className="refer-a-new-friend-message">REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!</p>
         <ArButton className="done-button" inverted link={ROUTES.MYACCOUNT}>
           DONE
         </ArButton>

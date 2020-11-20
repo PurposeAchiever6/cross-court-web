@@ -94,11 +94,6 @@ const LocationsPage = () => {
   const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed;
   /* END FSF FLOW LOGIC */
 
-  if (window.sessionStorage.getItem('previousPage') === 'signup-confirmation') {
-    window.sessionStorage.setItem('previousPage', 'null');
-    history.push('/locations');
-  }
-
   useEffect(() => {
     dispatch(initialLoadInit());
 

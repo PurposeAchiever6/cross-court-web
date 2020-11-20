@@ -3085,30 +3085,32 @@ body .locations .sessions-container .session-list-item-container .text-container
   color: #FFF;
   display: inline-block;
   font-size: 12px;
-  line-height: 22px;
+  font-weight: bold;
+  line-height: 27px;
+  margin-right: 10px;
   text-align: center;
-  width: 94px;
+  width: 98px;
 }
 body .locations .sessions-container .session-list-item-container .text-container .level .level-number {
   display: inline-block;
   margin-left: 5px;
 }
 body .locations .sessions-container .session-list-item-container .status-container {
-  align-self: center;
-  display: none;
-  font-family: 'shapiro95_super_wide';
+  align-items: center;
+  display: flex;
   margin-left: 10px;
   margin-right: 10px;
   text-align: center;
 }
-@media (min-width: 568px) {
-  body .locations .sessions-container .session-list-item-container .status-container {
-    display: flex;
-  }
+body .locations .sessions-container .session-list-item-container .status-container .spots-left {
+  display: none;
+  font-family: 'shapiro95_super_wide';
+  font-size: 14px;
+  margin: 0 8px;
 }
-@media (min-width: 1200px) {
-  body .locations .sessions-container .session-list-item-container .status-container {
-    margin-left: 190px;
+@media (min-width: 568px) {
+  body .locations .sessions-container .session-list-item-container .status-container .spots-left {
+    display: flex;
   }
 }
 body .locations .sessions-container .no-sessions-container {
@@ -3202,19 +3204,23 @@ body .sessions .session-details-container .details-container .session-data-conta
   border-radius: 25px;
   color: #FFF;
   display: inline-block;
+  font-family: 'shapiro45_welter_extd';
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 27px;
   margin-right: 10px;
-  padding: 5px 25px;
   text-align: center;
+  width: 98px;
 }
 body .sessions .session-details-container .details-container .session-data-container .level-container .level .level-number {
-  color: #FFF;
-  display: block;
-  margin-top: 0;
+  display: inline-block;
+  margin-left: 5px;
 }
 body .sessions .session-details-container .details-container .session-data-container .level-container svg {
   cursor: pointer;
   height: 20px;
-  margin-bottom: 7px;
+  position: relative;
+  top: 6px;
   width: 20px;
 }
 body .sessions .session-details-container .details-container .session-data-container .level-container .__react_component_tooltip {
@@ -3338,9 +3344,7 @@ body
   width: auto;
 }
 body .sessions .session-details-container .details-container .side-container .refer-section {
-  background-color: #EEE;
   margin-bottom: 20px;
-  padding: 20px 20px 30px;
 }
 body .sessions .session-details-container .details-container .side-container .refer-section .refer-a-new-friend-message {
   color: #9999ff;
@@ -3733,6 +3737,17 @@ body .session-reserved h2 {
     line-height: 24.8px;
   }
 }
+body .session-reserved .invite-a-friend-button {
+  border: none;
+  cursor: pointer;
+  font-family: 'shapiro96_inclined_wide';
+  margin-bottom: 40px;
+  width: auto;
+}
+body .session-reserved .refer-a-new-friend-message {
+  color: #9999ff;
+  margin-bottom: 90px;
+}
 
 /* SERIES */
 body .series-plans-container {
@@ -4034,6 +4049,7 @@ body .series-plans-container .plans-container .plan-container .click-block .butt
   }
 }
 body .series-plans-container .plans-container .plan-container .click-block .button-container .ar-button {
+  cursor: pointer;
   min-width: 0;
   width: 100px;
 }

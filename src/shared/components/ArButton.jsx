@@ -4,10 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const ArButton = ({ children, loading, ...props }) => {
-  const { link, inverted, double, font, className } = props;
+  const { link, inverted, double, font, className, onClick } = props;
   return (
     <Link
       to={link}
+      onClick={onClick}
       className={`ar-button${inverted ? ' inverted' : ''}${double ? ' double' : ''}${
         font ? ` ${font}` : ''
       }${className ? ` ${className}` : ''}`}

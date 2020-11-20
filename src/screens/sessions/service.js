@@ -19,7 +19,7 @@ export default {
     });
 
     if (referralCode) {
-      window.sessionStorage.removeItem('referralCode');
+      window.localStorage.removeItem('referralCode');
     }
 
     return response.data.session;
