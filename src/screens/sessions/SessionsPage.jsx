@@ -388,6 +388,9 @@ const SessionsPage = () => {
             {isAuthenticated &&
             !isSessionComplete &&
             !isSessionFull &&
+            sessionInfo &&
+            sessionInfo.userSession &&
+            ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) !== -1 &&
             (
               <div className="refer-section">
                 <p className="refer-a-new-friend-message">

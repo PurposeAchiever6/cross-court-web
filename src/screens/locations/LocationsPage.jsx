@@ -91,7 +91,8 @@ const LocationsPage = () => {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed;
+  const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed &&
+    window.localStorage.getItem('previousPage').indexOf('session-') === -1;
   /* END FSF FLOW LOGIC */
 
   useEffect(() => {
