@@ -86,12 +86,12 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
         },
       }),
     })
-      .then(data => {
-        console.log('Rating saved successfully!', data);
-        document.querySelector('.submit-btn').classList.remove('disabled');
-        window.localStorage.removeItem('surveyLock');
-      })
-      .catch(err => console.log(err));
+    .then(data => {
+      console.log('Rating saved successfully!', data);
+      document.querySelector('.submit-btn').classList.remove('disabled');
+      window.localStorage.removeItem('surveyLock');
+    })
+    .catch(err => window.alert('Rating error: ' + err));
   };
   const surveySubmitAction = () => {
     fetch(`${env.REACT_APP_API_URL}/session_surveys/answers`, {
@@ -109,13 +109,13 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
         },
       }),
     })
-      .then(data => {
-        console.log('Feedback saved successfully!', data);
-        document.querySelector('.close-btn').classList.remove('hide');
-        document.querySelector('.survey-modal .body1').classList.add('hide');
-        document.querySelector('.survey-modal .body2').classList.remove('hide');
-      })
-      .catch(err => console.log(err));
+    .then(data => {
+      console.log('Feedback saved successfully!', data);
+      document.querySelector('.close-btn').classList.remove('hide');
+      document.querySelector('.survey-modal .body1').classList.add('hide');
+      document.querySelector('.survey-modal .body2').classList.remove('hide');
+    })
+    .catch(err => window.alert('Feedback error: ' + err));
   };
   const conditionalCloseHandler = () => {
     if (document.querySelector('.stars').hasAttribute('data-value')) {
