@@ -341,7 +341,7 @@ const SessionsPage = () => {
             </div>
             <div className="address-container shapiro95_super_wide">
               <span className="title">LOCATION</span>
-              <span className="text">{sessionInfo.location.direction}</span>
+              <span className="text">{sessionInfo.location.address}</span>
               <span className="location">{`${sessionInfo.location.city}, CA ${sessionInfo.location.zipcode}`}</span>
             </div>
             {sessionInfo.level === LEVELS.ADVANCED && (
@@ -386,27 +386,26 @@ const SessionsPage = () => {
               </div>
             </div>
             {isAuthenticated &&
-            !isSessionComplete &&
-            !isSessionFull &&
-            sessionInfo &&
-            sessionInfo.userSession &&
-            ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) !== -1 &&
-            (
-              <div className="refer-section">
-                <p className="refer-a-new-friend-message">
-                  REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!
-                </p>
-                <div
-                  className="ar-button double invite-a-friend-button"
-                  onClick={copyShareInfoToClipboard}
-                >
-                  <div className="ar-button-inner">
-                    <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
+              !isSessionComplete &&
+              !isSessionFull &&
+              sessionInfo &&
+              sessionInfo.userSession &&
+              ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) !== -1 && (
+                <div className="refer-section">
+                  <p className="refer-a-new-friend-message">
+                    REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!
+                  </p>
+                  <div
+                    className="ar-button double invite-a-friend-button"
+                    onClick={copyShareInfoToClipboard}
+                  >
+                    <div className="ar-button-inner">
+                      <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
+                    </div>
+                    <div className="double-drop"></div>
                   </div>
-                  <div className="double-drop"></div>
                 </div>
-              </div>
-            )}
+              )}
 
             <div className="button-container">
               {sessionInfo && !sessionInfo.past && (

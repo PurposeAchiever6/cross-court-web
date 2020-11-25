@@ -71,22 +71,22 @@ const LocationPickerContainer = styled.div`
 `;
 
 const LocationPicker = ({ availableLocations, selectedLocation, setLocationHandler }) => {
-  const selectedValue = availableLocations.find(location => location.id === selectedLocation);
+  const selectedValue = availableLocations.find((location) => location.id === selectedLocation);
 
   return (
     <LocationPickerContainer>
       <Select
         options={availableLocations}
         classNamePrefix="location-picker"
-        getOptionLabel={option => option.name}
-        getOptionValue={option => option.id}
-        onChange={option => setLocationHandler(option.id)}
+        getOptionLabel={(option) => option.name}
+        getOptionValue={(option) => option.id}
+        onChange={(option) => setLocationHandler(option.id)}
         value={selectedValue}
         isSearchable={false}
       />
-      {isNil(selectedValue.direction) ? null : (
+      {isNil(selectedValue.address) ? null : (
         <div className="address-container shapiro95_super_wide">
-          <span>{selectedValue.direction}</span>
+          <span>{selectedValue.address}</span>
         </div>
       )}
     </LocationPickerContainer>
