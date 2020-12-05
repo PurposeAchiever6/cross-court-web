@@ -14,7 +14,7 @@ const BarMalik = () => (
         "Crosscourt's team-sport based workout engages the entire body through significant cardiovascular strain, constant plyometric movement, and natural high intensity-interval training. Mentally, our socially charged experience can boost mood, reduce anxiety, improve sleep quality, and contribute to longevity."
       </p>
       <p className="author">
-        <a href="https://twitter.com/barbell82" target="_blank">BAR MALIK</a>
+        <a href="https://www.instagram.com/mubarakmalik/" target="_blank">BAR MALIK</a>
       </p>
       <p className="role">
         Former Director of Performance for the NY Knicks<br />

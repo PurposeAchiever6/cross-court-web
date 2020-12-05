@@ -392,14 +392,14 @@ const setScrollClasses = () => {
                   barMalik.querySelector('.bar-malik-image').classList.add(
                     'animate__animated',
                     'animate__bounce',
-                    'animate__slower',
-                    'animate__bounceInLeft'
+                    'animate__slow',
+                    'animate__slideInLeft'
                   );
                   barMalik.querySelector('.info-box').classList.add(
                     'animate__animated',
                     'animate__bounce',
                     'animate__slow',
-                    'animate__lightSpeedInRight'
+                    'animate__slideInRight'
                   );
                   barMalik.classList.add('animated');
                   window.observer.observe(document.querySelector('.bar-malik'));
