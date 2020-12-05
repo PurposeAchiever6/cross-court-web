@@ -6,7 +6,6 @@ import { isEmpty } from 'ramda';
 
 import colors from 'shared/styles/constants';
 import SessionLevel from 'shared/components/SessionLevel';
-import SpotsLeft from 'shared/components/SpotsLeft';
 import FewSessionsLeftTriangle from 'screens/locations/images/few-sessions-left-triangle.png';
 import {
   hourRange,
@@ -124,7 +123,6 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 <div className="time">{hourRange(time)}</div>
                 <div className="location">{location.name}</div>
                 <SessionLevel level={level} />
-                <SpotsLeft spotsLeft={spotsLeft} />
               </div>
               <div className="status-container">
                 {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && (
