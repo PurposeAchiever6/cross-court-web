@@ -1369,6 +1369,7 @@ body .bar-malik .bar-malik-image {
   border-bottom: 3px solid #FFF;
   display: block;
   height: auto;
+  visibility: hidden;
   width: 100%;
 }
 @media (min-width: 992px) {
@@ -1376,6 +1377,9 @@ body .bar-malik .bar-malik-image {
     border: 3px solid #FFF;
     width: 41vw;
   }
+}
+body .bar-malik .bar-malik-image.animate__animated {
+  visibility: visible;
 }
 body .bar-malik .info-box {
   background-color: #9999FF;
