@@ -7,6 +7,7 @@ import { isEmpty } from 'ramda';
 import colors from 'shared/styles/constants';
 import SessionLevel from 'shared/components/SessionLevel';
 import SpotsLeft from 'shared/components/SpotsLeft';
+import FewSessionsLeftTriangle from 'screens/locations/images/few-sessions-left-triangle.png';
 import {
   hourRange,
   urlFormattedDate,
@@ -36,7 +37,7 @@ const SessionsListContainer = styled.div`
     .text-container {
       display: flex;
       flex-direction: column;
-      max-width: 50%;
+      max-width: 48%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -127,7 +128,10 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
               </div>
               <div className="status-container">
                 {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && (
-                  <div className="spots-left">{fewSpotsLeftText}</div>
+                  <div className="spots-left-container">
+                    <img className="triangle" src={FewSessionsLeftTriangle} />
+                    <div className="spots-left">{fewSpotsLeftText}</div>
+                  </div>
                 )}
                 {button}
               </div>

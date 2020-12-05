@@ -82,14 +82,6 @@ const ReserveButton = ({
     if (equals(session.userSession.state, 'reserved')) {
       return <></>;
     }
-    if (equals(session.userSession.state, 'confirmed')) {
-      return (
-        <Button className="ar-button double disabled reserve-btn" disabled>
-          <div className="ar-button-inner">SESSION CONFIRMED</div>
-          <div className="double-drop"></div>
-        </Button>
-      );
-    }
   } else {
     return (
       <Button

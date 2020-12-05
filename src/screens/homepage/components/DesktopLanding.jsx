@@ -2,6 +2,7 @@ import React from 'react';
 import MakeSportYourLifestyle from './desktop/MakeSportYourLifestyle';
 import HomeVideo from './desktop/HomeVideo';
 import CrosscourtIsAHighIntensity from './desktop/CrosscourtIsAHighIntensity';
+import BarMalik from './desktop/BarMalik';
 import WhyWeExist from './desktop/WhyWeExist';
 import WhoWeAre from './desktop/WhoWeAre';
 import WhatWeDo from './desktop/WhatWeDo';
@@ -14,6 +15,7 @@ const DesktopLanding = () => (
     <MakeSportYourLifestyle />
     <HomeVideo />
     <CrosscourtIsAHighIntensity />
+    <BarMalik />
     <WhyWeExist />
     <WhoWeAre />
     <WhatWeDo />

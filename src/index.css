@@ -319,9 +319,10 @@ body .header .menu-button-container .menu-button:hover {
 body .header .menu-button-container .menu-button .menu-bars,
 body .header .menu-button-container .menu-button .menu-bars-alt,
 body .header .menu-button-container .menu-button .menu-bars-nav-open {
+  height: 100%;
   left: 16px;
   position: absolute;
-  top: 20px;
+  top: -2px;
   transition: 500ms opacity ease;
 }
 body .header .menu-button-container .menu-button .menu-bars {
@@ -353,15 +354,28 @@ body .header .logo-icon-nav-open {
   position: absolute;
   top: 18px;
   transition: 500ms opacity ease, 500ms width ease;
-  width: 150px;
+  width: 130px;
   z-index: 10;
+}
+@media (min-width: 420px) {
+  body .header .logo-icon,
+  body .header .logo-icon-alt,
+  body .header .logo-icon-nav-open {
+    width: 150px;
+  }
+}
+@media (min-width: 568px) {
+  body .header .logo-icon,
+  body .header .logo-icon-alt,
+  body .header .logo-icon-nav-open {
+    width: 205px;
+  }
 }
 @media (min-width: 992px) {
   body .header .logo-icon,
   body .header .logo-icon-alt,
   body .header .logo-icon-nav-open {
     left: 60px;
-    width: 205px;
   }
 }
 body .header .logo-icon:hover,
@@ -1157,6 +1171,7 @@ body .survey-modal .body2 .book-next-session-btn {
 /* HOMEPAGE */
 body .make-sport-your-lifestyle {
   background-image: url('screens/homepage/images/make-sport-your-lifestyle.jpg');
+  background-position: top;
   min-height: 850px;
 }
 @media (min-width: 992px) {
@@ -1301,7 +1316,6 @@ body .crosscourt-is-a-high-intensity::after {
   content: '';
   background: rgba(0, 0, 0, 0.4);
   display: block;
-  height: 150vh;
   min-height: 850px;
   width: 100vw;
   position: absolute;
@@ -1310,6 +1324,11 @@ body .crosscourt-is-a-high-intensity::after {
   right: 0;
   bottom: 0;
   z-index: 0;
+}
+@media (min-width: 992px) {
+  body .crosscourt-is-a-high-intensity::after {
+    height: 150vh;
+  }
 }
 body .crosscourt-is-a-high-intensity .title-block {
   padding: 0 32px;
@@ -1330,6 +1349,113 @@ body .crosscourt-is-a-high-intensity .title-block .title {
   body .crosscourt-is-a-high-intensity .title-block .title {
     font-size: 40px;
     line-height: 46px;
+  }
+}
+body .bar-malik {
+  background-color: #FAF7F3;
+  display: block;
+  
+}
+@media (min-width: 992px) {
+  body .bar-malik {
+    background-color: #9999FF;
+    display: flex;
+    flex-direction: row;
+    height: 50vw;
+    padding: 7.5vw 9.8vw 7.5vw 11.4vw;
+  }
+}
+body .bar-malik .bar-malik-image {
+  border-bottom: 3px solid #FFF;
+  display: block;
+  height: auto;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  body .bar-malik .bar-malik-image {
+    border: 3px solid #FFF;
+    width: auto;
+  }
+}
+body .bar-malik .info-box {
+  background-color: #9999FF;
+  padding: 50px 30px;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box {
+    border: 3px solid #FFF;
+    margin: 1.9vw 0 1.9vw -3.1vw;
+    padding: 1.5vw;
+    width: 100%;
+  }
+}
+body .bar-malik .info-box .title {
+  color: #FFF;
+  font-family: 'shapiro95_super_wide';
+  font-size: 32px;
+  line-height: 38px;
+  margin-bottom: 20px;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box .title {
+    font-size: 2vw;
+    line-height: 2.5vw;
+    margin-bottom: 2vw;
+  }
+}
+body .bar-malik .info-box .description {
+  color: #FFF;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 28px;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box .description {
+    font-size: 1.3vw;
+    line-height: 1.6vw;
+    margin-bottom: 2.8vw;
+    max-width: 36vw;
+  }
+}
+body .bar-malik .info-box .author {
+  color: #FFF;
+  margin-bottom: 4px;
+  text-align: right;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box .author {
+    line-height: 1.8vw;
+    margin-bottom: 0.3vw;
+  }
+}
+body .bar-malik .info-box .author a {
+  color: #FFF;
+  font-family: 'shapiro95_super_wide';
+  font-size: 28px;
+  line-height: 32px;
+  text-decoration: none;
+  transition: 300ms color ease;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box .author a {
+    font-size: 2.4vw;
+    line-height: 1.8vw;
+  }
+}
+body .bar-malik .info-box .author a:hover {
+  color: #000;
+}
+body .bar-malik .info-box .role {
+  color: #FFF;
+  font-size: 10px;
+  line-height: 14px;
+  margin-bottom: 0;
+  text-align: right;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box .role {
+    font-size: 0.8vw;
+    line-height: 1vw;
   }
 }
 body .why-we-exist {
@@ -3029,7 +3155,6 @@ body .free-session-credit-added .bottom .scroll-text {
 
 /* LOCATIONS */
 body .locations {
-  /* padding-top: 4rem; */
   opacity: 1;
   position: relative;
   scroll-margin-top: 64px;
@@ -3102,15 +3227,51 @@ body .locations .sessions-container .session-list-item-container .status-contain
   margin-right: 10px;
   text-align: center;
 }
-body .locations .sessions-container .session-list-item-container .status-container .spots-left {
-  display: none;
-  font-family: 'shapiro95_super_wide';
-  font-size: 14px;
-  margin: 0 8px;
+body .locations .sessions-container .session-list-item-container .status-container .spots-left-container {
+  position: relative;
 }
-@media (min-width: 568px) {
-  body .locations .sessions-container .session-list-item-container .status-container .spots-left {
-    display: flex;
+body .locations .sessions-container .session-list-item-container .status-container .spots-left-container .triangle {
+  height: auto;
+  margin-right: 6px;
+  vertical-align: middle;
+  width: 28px;
+}
+@media (min-width: 420px) {
+  body .locations .sessions-container .session-list-item-container .status-container .spots-left-container .triangle {
+    margin-right: 8px;
+    width: 36px;
+  }
+}
+@media (min-width: 992px) {
+  body .locations .sessions-container .session-list-item-container .status-container .spots-left-container .triangle {
+    margin-right: 20px;
+  }
+}
+body .locations .sessions-container .session-list-item-container .status-container .spots-left-container .triangle:hover + .spots-left {
+  opacity: 1;
+}
+body .locations .sessions-container .session-list-item-container .status-container .spots-left-container .spots-left {
+  display: block;
+  font-family: 'shapiro95_super_wide';
+  font-size: 10px;
+  left: -38px;
+  margin: 0 8px;
+  opacity: 0;
+  position: absolute;
+  top: 38px;
+  transition: 300ms opacity ease;
+  white-space: nowrap;
+  width: 205px;
+}
+@media (min-width: 420px) {
+  body .locations .sessions-container .session-list-item-container .status-container .spots-left-container .spots-left {
+    left: -92px;
+    top: 42px;
+  }
+}
+@media (min-width: 992px) {
+  body .locations .sessions-container .session-list-item-container .status-container .spots-left-container .spots-left {
+    font-size: 11px;
   }
 }
 body .locations .sessions-container .no-sessions-container {
@@ -4917,7 +5078,7 @@ body[data-page='home'] #root main .covid-19 {
   font-size: 14px;
   left: 0;
   line-height: 18px;
-  height: 64px;
+  height: 67px;
   padding: 14px;
   position: fixed;
   right: 0;
@@ -4936,7 +5097,7 @@ body[data-page='home'] #root main .covid-19 a:hover {
 @media (min-width: 710px) {
   body[data-page='home'] #root main .covid-19 {
     font-size: 16px;
-    line-height: 32px;
+    line-height: 36px;
   }
 }
 body[data-page='home'] #root .header .cheeseburger-menu .cheeseburger-menu-outer {
@@ -4946,22 +5107,22 @@ body[data-page='home'] #root .header .cheeseburger-menu .cheeseburger-menu-outer
 /* GLOBAL FSF BUTTON (IN HEADER) */
 body .header .header-content .fsf-button {
   font-style: italic;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 17px;
-  max-width: 130px;
   min-width: 0;
 }
 @media (min-width: 420px) {
   body .header .header-content .fsf-button {
+    font-size: 14px;
     line-height: 19px;
     max-width: none;
     min-width: 130px;
   }
 }
 body .header .header-content .fsf-button .ar-button-inner {
-  padding: 6px 12px;
+  padding: 8px 10px;
 }
-@media (min-width: 420px) {
+@media (min-width: 568px) {
   body .header .header-content .fsf-button .ar-button-inner {
     padding: 8px 15px;
   }

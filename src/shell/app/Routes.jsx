@@ -225,10 +225,14 @@ const setScrollClasses = () => {
         addClass = 'anim30';
         keepScrolling = false;
         document.querySelector('main').classList.add('animation-done');
-        document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
-        window.setTimeout(function() {
-          const redirectToSpecificSession = window.localStorage.getItem('redirect');
 
+        const redirectToSpecificSession = window.localStorage.getItem('redirect');
+
+        if (!redirectToSpecificSession)  {
+            document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
+        }
+
+        window.setTimeout(function() {
           if (redirectToSpecificSession) {
             window.localStorage.removeItem('redirect');
             history.push(redirectToSpecificSession);
@@ -359,8 +363,9 @@ const setScrollClasses = () => {
 
     window.setTimeout(function() {
       const video = document.querySelector('.video-player');
+      const barMalik = document.querySelector('.bar-malik');
 
-      if (video) {
+      if (video && barMalik) {
         video.addEventListener('pause', function() {
           video.classList.add('data-user-paused');
         });
@@ -372,19 +377,41 @@ const setScrollClasses = () => {
 
         function callback(entries, observer) {
           entries.forEach(entry => {
-            if (entry.intersectionRatio > 0) {
-              if (!video.classList.contains('data-user-paused')) {
-                video.play();
+            if (entry.target.className.indexOf('video-player') !== -1) {
+              if (entry.intersectionRatio > 0) {
+                if (!video.classList.contains('data-user-paused')) {
+                  video.play();
+                }
+              } else {
+                video.pause();
+                video.classList.remove('data-user-paused');
               }
-            } else {
-              video.pause();
-              video.classList.remove('data-user-paused');
+            } else if (entry.target.className.indexOf('bar-malik') !== -1) {
+              if (entry.intersectionRatio > 0) {
+                if (!barMalik.classList.contains('animated')) {
+                  barMalik.querySelector('.bar-malik-image').classList.add(
+                    'animate__animated',
+                    'animate__bounce',
+                    'animate__slower',
+                    'animate__bounceInLeft'
+                  );
+                  barMalik.querySelector('.info-box').classList.add(
+                    'animate__animated',
+                    'animate__bounce',
+                    'animate__slow',
+                    'animate__lightSpeedInRight'
+                  );
+                  barMalik.classList.add('animated');
+                  window.observer.observe(document.querySelector('.bar-malik'));
+                }
+              }
             }
           });
         }
 
         window.observer = new IntersectionObserver(callback, options);
         window.observer.observe(document.querySelector('.video-player'));
+        window.observer.observe(document.querySelector('.bar-malik'));
       }
     }, 2000);
   } else if (
