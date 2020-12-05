@@ -1374,7 +1374,7 @@ body .bar-malik .bar-malik-image {
 @media (min-width: 992px) {
   body .bar-malik .bar-malik-image {
     border: 3px solid #FFF;
-    width: auto;
+    width: 41vw;
   }
 }
 body .bar-malik .info-box {
