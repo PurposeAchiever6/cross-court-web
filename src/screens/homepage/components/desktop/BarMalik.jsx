@@ -8,18 +8,19 @@ const BarMalik = () => (
       <p className="title">
         THE POWER OF
         <br />
-        TEAM SPORT
+        TEAM-SPORT
       </p>
       <p className="description">
-        "Crosscourt's team-sport based workout engages the entire body through significant cardiovascular strain, constant plyometric movement, and natural high intensity-interval training. Mentally, our socially charged experience can boost mood, reduce anxiety, improve sleep quality, and contribute to longevity."
+        "Crosscourt's team-sport based workout engages the entire body through significant cardiovascular strain, constant plyometric movement, and natural high-intensity interval training. Mentally, our socially charged experience can boost mood, reduce anxiety, improve sleep quality, and contribute to longevity."
       </p>
       <p className="author">
         <a href="https://www.instagram.com/mubarakmalik/" target="_blank">BAR MALIK</a>
       </p>
       <p className="role">
-        Former Director of Performance for the NY Knicks<br />
-        Men's Health Partner<br />
-        Crosscourt Advisor
+        Crosscourt Performance Advisor<br />
+        NY Knicks Performance Director<br />
+        Ladder Sports Advisor<br />
+        Men's Health Partner
       </p>
     </div>
   </section>
