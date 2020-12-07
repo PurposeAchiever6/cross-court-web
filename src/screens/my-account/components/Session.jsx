@@ -157,7 +157,7 @@ const Session = ({
     session: {
       id: sessionId,
       time,
-      location: { name: locationName, imageUrl },
+      location: { name: locationName, imageUrls },
     },
   },
 }) => {
@@ -172,7 +172,7 @@ const Session = ({
   return (
     <SessionContainer className="session-container">
       <div className="image">
-        <img src={imageUrl} alt="Session" />
+        <img src={imageUrls[0]} alt="Session" />
       </div>
       <div className="details">
         <span className={dateClassName}>

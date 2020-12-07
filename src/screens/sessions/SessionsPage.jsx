@@ -328,7 +328,7 @@ const SessionsPage = () => {
         </h2>
       </div>
       <div className="session-details-container">
-        <img src={sessionInfo.location.imageUrl} alt="Location" />
+        <img src={sessionInfo.location.imageUrls[0]} alt="Location" />
         <div className="details-container">
           <div className="session-data-container">
             <div className="date-container shapiro95_super_wide">
