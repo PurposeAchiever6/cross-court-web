@@ -4508,6 +4508,12 @@ body .my-account-mobile .my-profile .detail-row .referral-code {
   margin-bottom: 5px;
   padding: 4px 10px;
 }
+body .my-account-desktop .my-profile .detail-row .referral-code-long,
+body .my-account-mobile .my-profile .detail-row .referral-code-long {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
 body .my-account-desktop .my-profile .detail-row .invite-a-friend-button,
 body .my-account-mobile .my-profile .detail-row .invite-a-friend-button {
   border: none;

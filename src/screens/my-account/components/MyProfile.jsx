@@ -56,6 +56,9 @@ const MyProfile = ({ profile, showTitle = true }) => {
   const showEditProfileAction = () => dispatch(showEditProfile());
   const editProfileLoading = useSelector(getEditProfileLoading);
   const showEditProfileForm = useSelector(getShowEditProfile);
+  const shareText = 'Your first Crosscourt session\'s free! Use my link to sign up.';
+  const shareUrl = `${window.location.origin}/?referralCode=${profile.referralCode}`;
+  const shareTextAndUrl = `${shareText} ${shareUrl}`;
 
   return (
     <MyProfileContainer className="my-profile">
@@ -91,14 +94,18 @@ const MyProfile = ({ profile, showTitle = true }) => {
             <input
               readonly={true}
               className="referral-code"
-              value={window.location.origin + '/?referralCode=' + profile.referralCode}
-              onClick={() => {}}
+              value={shareUrl}
+            />
+            <input
+              readonly={true}
+              className="referral-code-long"
+              value={shareTextAndUrl}
             />
             <button
               className="ar-button invite-a-friend-button"
               onClick={e => {
                 let selector = window.innerWidth < 992 ? 'mobile' : 'desktop';
-                document.querySelector('.my-account-' + selector + ' .referral-code').select();
+                document.querySelector('.my-account-' + selector + ' .referral-code-long').select();
                 document.execCommand('copy');
                 document.querySelector('.my-account-' + selector + ' .invite-a-friend-button .ar-button-inner').innerHTML  = 'COPIED!';
               }}
