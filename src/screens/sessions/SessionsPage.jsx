@@ -39,6 +39,9 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { getSessionDate } from 'screens/sessions/reducer';
 import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
 
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
 const SessionsPageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -328,7 +331,17 @@ const SessionsPage = () => {
         </h2>
       </div>
       <div className="session-details-container">
-        <img src={sessionInfo.location.imageUrls[0]} alt="Location" />
+        <Carousel
+          showArrows={false}
+          showStatus={false}
+          showThumbs={false}
+        >
+          {sessionInfo.location.imageUrls.map((image, index) => (
+            <div>
+              <img src={image} alt={`Image ${index + 1}`} />
+            </div>
+          ))}
+        </Carousel>
         <div className="details-container">
           <div className="session-data-container">
             <div className="date-container shapiro95_super_wide">
