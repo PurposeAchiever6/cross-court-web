@@ -332,7 +332,8 @@ const SessionsPage = () => {
       </div>
       <div className="session-details-container">
         <Carousel
-          showArrows={false}
+          infiniteLoop={true}
+          showArrows={true}
           showStatus={false}
           showThumbs={false}
         >
