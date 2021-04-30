@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker';
 
 import 'shared/styles/fonts.css';
 import 'shared/styles/bootstrap.scss';
-import './index.css';
+import 'shared/styles/index.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 const env = runtimeEnv();

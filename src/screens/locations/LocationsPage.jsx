@@ -8,7 +8,6 @@ import { add, isPast, getUTCDate } from 'shared/utils/date';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import { useHistory } from 'react-router-dom';
 import LocationPicker from './components/LocationPicker';
 import WeekSelector from './components/WeekSelector';
 import SessionsList from './components/SessionsList';
@@ -67,8 +66,6 @@ const LocationsPage = () => {
   const getSessionsByDateHandler = (date) => dispatch(getSessionsByDate(date));
   const setSelectedDateHandler = (date) => dispatch(setSelectedDate(date));
 
-  const history = useHistory();
-
   const increaseCurrentWeekHandler = () => {
     const nextWeekDate = add(selectedDate, 1, 'weeks');
     setSelectedDateHandler(nextWeekDate);
@@ -91,7 +88,10 @@ const LocationsPage = () => {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed &&
+  const isFSFFlow =
+    isAuthenticated &&
+    freeSessionNotExpired &&
+    freeSessionNotClaimed &&
     window.localStorage.getItem('previousPage').indexOf('session-') === -1;
   /* END FSF FLOW LOGIC */
 

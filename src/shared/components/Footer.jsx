@@ -1,113 +1,41 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import ArButton from 'shared/components/ArButton';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import InstagramSvg from './svg/InstagramSvg';
-import PaperPlaneSvg from './svg/PaperPlaneSvg';
+import { Link } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
-  color: ${colors.white};
-  background-color: #9999ff;
-  font-family: var(--main-font-family);
+  display: flex;
+  background-color: ${colors.brandBlack};
+  font-family: var(--shapiro95_super_wide);
   font-size: 0.875rem;
-  padding: 1rem 0.5rem 0.5rem;
+  flex-direction: column;
+  padding: 20px 32px;
+  align-items: center;
 
-  .footer-content {
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    flex-direction: row-reverse;
-    justify-content: center;
-    .first-row {
-      display: flex;
-      width: 70%;
-
-      justify-content: flex-end;
-
-      .social-icons {
-        display: flex;
-        justify-content: space-around;
-        padding-left: 2rem;
-        width: 20rem;
-
-        .icon-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: ${colors.white};
-          color: ${colors.polarPlum};
-          border-radius: 3rem;
-          height: 3rem;
-          width: 3rem;
-          a {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-          }
-          .faq-button {
-            padding: 0.7rem 5rem;
-          }
-          svg {
-            height: 1.5rem;
-            width: 1.5rem;
-            color: ${colors.polarPlum};
-          }
-        }
-      }
+  @media (min-width: 992px) {
+    flex-direction: row;
+    justify-content: flex-end;
+    * {
+      margin: 0;
+      margin-left: 10px;
     }
   }
 
-  @media (max-width: 991px) {
-    padding: 1rem;
-    height: auto;
+  * {
+    cursor: pointer;
+    color: ${colors.white};
+  }
 
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      margin: 0;
-      width: 100%;
-      padding: 0;
-      .first-row {
-        width: 100%;
-        flex-direction: column;
-        a {
-          text-align: center;
-          button {
-            width: 100%;
-          }
-        }
-        .social-icons {
-          width: 100%;
-          padding: 0;
-          margin: 1rem 0;
-          order: 3;
-          .icon-container {
-            margin: 0;
-            justify-content: space-between;
-          }
-        }
-      }
-      & > a {
-        margin: 1rem 0 2rem;
-        order: 2;
-        width: 84%;
-        button {
-          width: 100%;
-        }
-      }
+  a {
+    text-decoration: none;
+  }
 
-      .copyright {
-        margin: 0;
-        order: 1;
-      }
-    }
+  .instagram {
+    max-width: 20px;
   }
 `;
 
@@ -117,36 +45,28 @@ function Footer() {
   const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
 
   return (
-    <FooterContainer className="footer">
-      <section className="left-side">
-        <p className="copyright title shapiro95_super_wide">
-          &copy;2020 CROSSCOURT ALL RIGHTS RESERVED
-        </p>
-      </section>
-      <section className="right-side">
-        <ArButton className="faq-link" link={ROUTES.FAQ}>
-          FAQ
-        </ArButton>
-        <a className="social" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
-          <InstagramSvg />
-        </a>
-        <a
-          className="social"
-          href="#modal"
-          rel="noopener noreferrer"
-          onClick={e => {
+    <>
+      <FooterContainer>
+        <Link to={ROUTES.SEM}>
+          <p>JOIN THE TEAM</p>
+        </Link>
+        <Link to={ROUTES.FAQ}>
+          <p>FAQ</p>
+        </Link>
+        <p
+          onClick={(e) => {
             e.preventDefault();
             document.querySelector('.eapps-form-floating-button').click();
           }}
         >
-          <PaperPlaneSvg />
+          CONTACT
+        </p>
+        <a className="instagram" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
+          <InstagramSvg width="100%" />
         </a>
-        <div className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136"></div>
-      </section>
-      <Helmet>
-        <script src="https://apps.elfsight.com/p/platform.js" defer></script>
-      </Helmet>
-    </FooterContainer>
+      </FooterContainer>
+      <div className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136" />
+    </>
   );
 }
 

@@ -11,6 +11,8 @@ const white = '#FFF';
 const errorRed = '#FF4444';
 const red = '#FF0000';
 const offWhite = '#F8F8F8';
+const brandBlack = '#231F20';
+const brandBlue = '#9999FF';
 
 export default {
   polarPlum,
@@ -26,4 +28,6 @@ export default {
   red,
   grey,
   darkGrey,
+  brandBlack,
+  brandBlue,
 };

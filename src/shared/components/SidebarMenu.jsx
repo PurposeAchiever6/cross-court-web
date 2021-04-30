@@ -10,13 +10,14 @@ import ROUTES from 'shared/constants/routes';
 import { logoutInit } from 'screens/auth/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
+import colors from 'shared/styles/constants';
 
 const Nav = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: 100vh;
-  background-color: #9999ff;
+  background-color: ${colors.brandBlack};
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(20px);
   padding: 0 3rem;
@@ -91,7 +92,7 @@ const SidebarMenu = ({ menuToggler }) => {
         </li>
         <li className="list-item">
           <NavLink exact to={ROUTES.LOCATIONS} onClick={menuToggler}>
-            SCHEDULE/LOCATIONS
+            SCHEDULE
           </NavLink>
         </li>
         <li className="list-item">
@@ -99,20 +100,6 @@ const SidebarMenu = ({ menuToggler }) => {
             SERIES
           </NavLink>
         </li>
-        {/* {!isAuthenticated && (
-          <li className="list-item">
-            <NavLink exact to={ROUTES.LOGIN} onClick={menuToggler}>
-              LOG IN
-            </NavLink>
-          </li>
-        )}
-        {!isAuthenticated && (
-          <li className="list-item">
-            <NavLink exact to={ROUTES.SIGNUP} onClick={menuToggler}>
-              SIGN UP
-            </NavLink>
-          </li>
-        )} */}
         {isAuthenticated && (
           <li className="list-item">
             <NavLink exact to={ROUTES.MYACCOUNT} onClick={menuToggler}>
@@ -129,59 +116,13 @@ const SidebarMenu = ({ menuToggler }) => {
         )}
 
         <li className="list-item">
-          {userProfile.isSem ? (
+          {userProfile.isSem && (
             <NavLink exact to={ROUTES.SEMHANDBOOK} onClick={menuToggler}>
               SEM HANDBOOK
             </NavLink>
-          ) : (
-            <NavLink exact to={ROUTES.SEM} onClick={menuToggler}>
-              JOIN THE TEAM
-            </NavLink>
           )}
         </li>
-
-        {/* {!isAuthenticated && (
-          <li className="list-item">
-            <NavLink exact to={ROUTES.LOGIN} onClick={menuToggler}>
-              LOG IN
-            </NavLink>
-          </li>
-        )}
-        {!isAuthenticated && (
-          <li className="list-item">
-            <NavLink exact to={ROUTES.SIGNUP} onClick={menuToggler}>
-              SIGN UP
-            </NavLink>
-          </li>
-        )}
-        {isAuthenticated && (
-          <li className="list-item">
-            <NavLink exact to={ROUTES.MYACCOUNT} onClick={menuToggler}>
-              MY ACCOUNT
-            </NavLink>
-          </li>
-        )}
-        {isAuthenticated && (
-          <li className="list-item">
-            <button type="button" href="#" onClick={() => logoutAction()}>
-              LOGOUT
-            </button>
-          </li>
-        )} */}
       </ul>
-      {/* {userProfile.isSem ? (
-        <Link to={ROUTES.SEMHANDBOOK} className="sem-handbook">
-          <AlternativeButton className="button" onClick={menuToggler}>
-            SEM HANDBOOK
-          </AlternativeButton>
-        </Link>
-      ) : (
-        <Link to={ROUTES.SEM} className="join-the-team">
-          <AlternativeButton className="button" onClick={menuToggler}>
-            JOIN THE #CCTEAM
-          </AlternativeButton>
-        </Link>
-      )} */}
       {!isAuthenticated && (
         <Link to={ROUTES.LOGIN} className="middle-level-link">
           <AlternativeButton className="button" onClick={menuToggler}>
@@ -196,31 +137,9 @@ const SidebarMenu = ({ menuToggler }) => {
           </AlternativeButton>
         </Link>
       )}
-      {/*
-      {isAuthenticated && (
-        <Link to={ROUTES.MYACCOUNT} className="middle-level-link">
-          <AlternativeButton className="button" onClick={menuToggler}>
-            MY ACCOUNT
-          </AlternativeButton>
-        </Link>
-      )}
-      {isAuthenticated && (
-        <a className="middle-level-link" href="#" onClick={(e) => {
-            e.preventDefault();
-            menuToggler();
-            logoutAction();
-          }}>
-          <AlternativeButton className="button">
-            LOGOUT
-          </AlternativeButton>
-        </a>
-      )} */}
-      {/* <a className="email shapiro95_super_wide" href="mailto:ccteam@cross-court.com">
-        CCTEAM@CROSS-COURT.COM
-      </a> */}
       <Link to={ROUTES.LOCATIONS}>
         <Button className="ar-button shapiro96_inclined_wide" onClick={menuToggler}>
-          <div className="ar-button-inner">RESERVE SESSION</div>
+          <div className="ar-button-inner">BOOK SESSION</div>
         </Button>
       </Link>
     </Nav>
