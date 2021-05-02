@@ -4,7 +4,6 @@ import whoWeAreMobileImg from 'screens/homepage/images/who-we-are.png';
 const WhoWeAre = () => (
   <section className="who-we-are section-block text-black">
     <section className="title-and-description-block shift-left">
-      <p className="title-1 shapiro97_air_extd">WHO WE ARE</p>
       <p className="title-2 dharma_gothic_cheavy">
         THE
         <br />

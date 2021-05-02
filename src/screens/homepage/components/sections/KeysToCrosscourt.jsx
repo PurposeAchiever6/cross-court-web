@@ -32,10 +32,7 @@ const Section = styled.section`
 
 const KeysToCrosscourt = (props) => (
   <Section {...props}>
-    <section className="keys-to-crosscourt section-block text-black">
-      <section className="title-block">
-        <p className="heading-sprite" />
-      </section>
+    <section className="keys-to-crosscourt text-black">
       <div className="boxes">
         <div className="boxes-item">
           <div className="boxes-image">

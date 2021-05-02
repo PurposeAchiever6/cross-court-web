@@ -4,7 +4,6 @@ import whatWeDoMobileImg from 'screens/homepage/images/xs-and-os.png';
 const WhatWeDo = () => (
   <section className="what-we-do section-block text-white">
     <section className="title-and-description-block shift-right">
-      <p className="title-1 shapiro97_air_extd">WHAT WE DO</p>
       <p className="title-2 dharma_gothic_cheavy">
         THE
         <br />

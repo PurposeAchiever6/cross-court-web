@@ -292,7 +292,7 @@ body .bar-malik .info-box .role {
   }
 }
 body .why-we-exist {
-  background-color: #000;
+  background-color: #231f20;
   background-image: none;
   background-position: -100px 100px;
   display: block;
@@ -357,7 +357,7 @@ body .who-we-are .mobile-image {
   }
 }
 body .what-we-do {
-  background-color: #9999ff;
+  background-color: #231f20;
   background-image: none;
   background-position: 0 0;
   display: block;
@@ -383,9 +383,10 @@ body .what-we-do .mobile-image {
   }
 }
 body .keys-to-crosscourt {
+  margin-top: 100px;
+  margin-bottom: 300px;
   display: block;
   height: auto;
-  padding: 32px;
 }
 @media (min-width: 992px) {
   body .keys-to-crosscourt {
@@ -567,89 +568,116 @@ body .follow-us-on-instagram .instafeed .eapps-instagram-feed-posts-grid-load-mo
   color: #9999ff;
 }
 
-body .ready {
-  background-image: url('../../screens/homepage/images/ready.jpg');
+body .section-block {
+  background-repeat: no-repeat;
   background-size: cover;
-  background-position: top center;
-  height: 400px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
   position: relative;
-}
-@media (min-width: 992px) {
-  body .ready {
-    height: 620px;
-  }
-}
-body .ready::after {
-  content: '';
-  background: rgba(0, 0, 0, 0.6);
-  display: block;
-  height: 100%;
   width: 100vw;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
 }
-@media (min-width: 992px) {
-  body .ready::after {
-    background: rgba(0, 0, 0, 0.5);
-  }
-}
-body .ready .buttons-block {
-  margin-top: 228px;
-  padding: 0 32px;
-  position: relative;
-  text-align: center;
-  z-index: 1;
-}
-@media (min-width: 992px) {
-  body .ready .buttons-block {
-    margin-top: 0;
-  }
-}
-body .ready .title {
-  background: transparent url('../../screens/homepage/images/ready-to-sweat-text.png') no-repeat 0 0;
-  background-size: contain;
+
+body .section-block.text-white {
   color: #fff;
-  display: block;
-  font-size: 0;
-  height: 83px;
-  left: 0;
-  margin: 0 auto;
-  position: absolute;
-  right: 0;
-  top: 90px;
-  width: 285px;
-  z-index: 1;
+}
+body .section-block.text-black {
+  color: #000;
+}
+body .section-block.text-purple {
+  color: #9999ff;
+}
+body .section-block .title-and-description-block {
+  padding: 32px;
+  width: 100vw;
 }
 @media (min-width: 992px) {
-  body .ready .title {
-    bottom: -2px;
-    height: 203px;
-    left: 15px;
-    margin: 0;
-    top: auto;
-    width: 700px;
+  body .section-block .title-and-description-block {
   }
 }
-body .ready .buttons-block .ar-button {
+body .section-block .title-and-description-block.shift-left,
+body .section-block .title-and-description-block.shift-right {
+  box-sizing: border-box;
   display: block;
-  margin: 0 auto;
-  max-width: 200px;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-start;
 }
 @media (min-width: 992px) {
-  body .ready .buttons-block .ar-button {
-    display: inline-block;
-    max-width: none;
+  body .section-block .title-and-description-block.shift-left,
+  body .section-block .title-and-description-block.shift-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
-body .ready .buttons-block .ar-button:nth-child(1) {
+body .section-block .title-and-description-block.shift-left {
+  text-align: left;
+}
+@media (min-width: 992px) {
+  body .section-block .title-and-description-block.shift-left {
+    padding-right: 33vw;
+  }
+}
+@media (min-width: 1200px) {
+  body .section-block .title-and-description-block.shift-left {
+    padding-right: 44vw;
+  }
+}
+body .section-block .title-and-description-block.shift-right {
+  text-align: right;
+}
+@media (min-width: 992px) {
+  body .section-block .title-and-description-block.shift-right {
+    align-items: flex-end;
+    padding-left: 33vw;
+  }
+}
+@media (min-width: 1200px) {
+  body .section-block .title-and-description-block.shift-right {
+    padding-left: 44vw;
+  }
+}
+body .section-block p {
+  margin: 0;
+}
+body .section-block .title-and-description-block .title-1 {
+  font-size: 24px;
+  line-height: 20px;
   margin-bottom: 20px;
 }
 @media (min-width: 992px) {
-  body .ready .buttons-block .ar-button:nth-child(1) {
-    margin: 0 50px 0 0;
+  body .section-block .title-and-description-block .title-1 {
+    font-size: 52px;
+    line-height: 48px;
+    margin-bottom: 30px;
+  }
+}
+body .section-block .title-and-description-block .title-2 {
+  font-size: 120px;
+  line-height: 100px;
+  margin-bottom: 15px;
+}
+@media (min-width: 992px) {
+  body .section-block .title-and-description-block .title-2 {
+    font-size: 250px;
+    line-height: 200px;
+    margin-bottom: 20px;
+  }
+}
+@media (min-width: 992px) {
+  body .section-block .title-and-description-block .title-2 .the {
+    opacity: 0.5;
+  }
+}
+body .section-block .title-and-description-block .description {
+  font-size: 16px;
+  line-height: 20px;
+}
+@media (min-width: 992px) {
+  body .section-block .title-and-description-block .description {
+    font-size: 18px;
+    line-height: 24px;
   }
 }
