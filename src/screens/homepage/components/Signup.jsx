@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ArButton from 'shared/components/ArButton';
-import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
 

@@ -19,7 +19,6 @@ const WhoWeAre = () => (
         professionals, former varsity standouts, and everyone else in between, to shed sweat and
         stress as equals.
       </p>
-      <p className="bottomline shapiro96_inclined_wide">NOTHIN BUT VIBE</p>
     </section>
     <img alt="Who We Are?" className="mobile-image" src={whoWeAreMobileImg}></img>
   </section>

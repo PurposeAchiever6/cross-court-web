@@ -16,11 +16,6 @@ const WhyWeExist = () => (
         a community that knows success is only possible when achieved together. We win when we
         elevate those around us and know that a shot at greatness is always on the line.
       </p>
-      <p className="bottomline shapiro97_air_extd">
-        EVERYONE&apos;S
-        <br />
-        AN ATHLETE
-      </p>
     </section>
     <img alt="Why We Exist?" className="mobile-image" src={whyWeExistMobileImg}></img>
   </section>

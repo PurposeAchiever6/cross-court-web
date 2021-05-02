@@ -1,0 +1,655 @@
+/* HOMEPAGE */
+body .make-sport-your-lifestyle {
+  background-image: url('../../screens/homepage/images/make-sport-your-lifestyle.jpg');
+  background-position: top;
+  min-height: 850px;
+}
+@media (min-width: 992px) {
+  body .make-sport-your-lifestyle {
+    background-attachment: fixed;
+  }
+}
+body .make-sport-your-lifestyle::after {
+  content: '';
+  background: rgba(0, 0, 0, 0.4);
+  display: block;
+  height: 100vh;
+  min-height: 850px;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+body .make-sport-your-lifestyle .title-and-buttons-block {
+  padding: 0 32px;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+@media (min-width: 992px) {
+  body .make-sport-your-lifestyle .title-and-buttons-block {
+  }
+}
+body .make-sport-your-lifestyle .title-and-buttons-block .title {
+  animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
+  font-size: 30px;
+  line-height: 36px;
+  margin-bottom: 50px;
+}
+@media (min-width: 992px) {
+  body .make-sport-your-lifestyle .title-and-buttons-block .title {
+    font-size: 50px;
+    line-height: 56px;
+  }
+}
+body .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
+  animation: 500ms ease-out 2500ms 1 both fadeIn;
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+}
+@media (min-width: 992px) {
+  body .make-sport-your-lifestyle .title-and-buttons-block .ar-button {
+    display: inline-block;
+    max-width: none;
+  }
+}
+body .make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
+  font-family: 'shapiro96_inclined_wide';
+}
+body .make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
+  margin-bottom: 20px;
+}
+@media (min-width: 992px) {
+  body .make-sport-your-lifestyle .title-and-buttons-block .ar-button.first-time-button {
+    margin: 0 50px 0 0;
+  }
+}
+body .make-sport-your-lifestyle .crosscourt-big-title {
+  bottom: -19.6vw;
+  font-size: 45vw;
+  left: -0.7vw;
+  line-height: 36vw;
+  margin: 0;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  transition: opacity 100ms ease;
+  width: 100vw;
+  z-index: 1;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim1,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim20 {
+  opacity: 0.1;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim2,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim19 {
+  opacity: 0.2;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim3,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim18 {
+  opacity: 0.3;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim4,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim17 {
+  opacity: 0.4;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim5,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim16 {
+  opacity: 0.5;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim6,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim15 {
+  opacity: 0.6;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim7,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim14 {
+  opacity: 0.7;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim8,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim13 {
+  opacity: 0.8;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim9,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim12 {
+  opacity: 0.9;
+}
+body .make-sport-your-lifestyle .crosscourt-big-title.anim10,
+body .make-sport-your-lifestyle .crosscourt-big-title.anim11 {
+  opacity: 1;
+}
+body .home-video {
+  background-color: #000;
+}
+body .home-video .video-player {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  width: 100%;
+}
+body .crosscourt-is-a-high-intensity {
+  background-image: url('../../screens/homepage/images/crosscourt-is-a-high-intensity.jpg');
+  background-position: top;
+  min-height: 850px;
+  height: 100vh;
+}
+@media (min-width: 992px) {
+  body .crosscourt-is-a-high-intensity {
+    background-attachment: fixed;
+    height: 150vh;
+  }
+}
+body .crosscourt-is-a-high-intensity::after {
+  content: '';
+  background: rgba(0, 0, 0, 0.4);
+  display: block;
+  min-height: 850px;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+@media (min-width: 992px) {
+  body .crosscourt-is-a-high-intensity::after {
+    height: 150vh;
+  }
+}
+body .crosscourt-is-a-high-intensity .title-block {
+  padding: 0 32px;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+@media (min-width: 992px) {
+  body .crosscourt-is-a-high-intensity .title-block {
+    padding: 0 10%;
+  }
+}
+body .crosscourt-is-a-high-intensity .title-block .title {
+  font-size: 18px;
+  line-height: 26px;
+}
+@media (min-width: 992px) {
+  body .crosscourt-is-a-high-intensity .title-block .title {
+    font-size: 40px;
+    line-height: 46px;
+  }
+}
+body .bar-malik {
+  background-color: #faf7f3;
+  display: block;
+}
+@media (min-width: 992px) {
+  body .bar-malik {
+    background-color: #9999ff;
+    display: flex;
+    flex-direction: row;
+    height: 50vw;
+    padding: 7.5vw 9.8vw 7.5vw 11.4vw;
+  }
+}
+body .bar-malik .bar-malik-image {
+  border-bottom: 3px solid #fff;
+  display: block;
+  height: auto;
+  visibility: hidden;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  body .bar-malik .bar-malik-image {
+    border: 3px solid #fff;
+    width: 41vw;
+  }
+}
+body .bar-malik .bar-malik-image.animate__animated {
+  visibility: visible;
+}
+body .bar-malik .info-box {
+  background-color: #9999ff;
+  padding: 50px 30px;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box {
+    border: 3px solid #fff;
+    margin: 1.9vw 0 1.9vw -3.1vw;
+    padding: 1.5vw;
+    width: 100%;
+  }
+}
+body .bar-malik .info-box .title {
+  color: #fff;
+  font-family: 'shapiro95_super_wide';
+  font-size: 32px;
+  line-height: 38px;
+  margin-bottom: 20px;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box .title {
+    font-size: 2vw;
+    line-height: 2.5vw;
+    margin-bottom: 2vw;
+  }
+}
+body .bar-malik .info-box .description {
+  color: #fff;
+  font-size: 16px;
+  line-height: 20px;
+  margin-bottom: 28px;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box .description {
+    font-size: 1.3vw;
+    line-height: 1.6vw;
+    margin-bottom: 1.6vw;
+    max-width: 36vw;
+  }
+}
+body .bar-malik .info-box .author {
+  color: #fff;
+  margin-bottom: 4px;
+  text-align: right;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box .author {
+    line-height: 1.8vw;
+    margin-bottom: 0.3vw;
+  }
+}
+body .bar-malik .info-box .author a {
+  color: #fff;
+  font-family: 'shapiro95_super_wide';
+  font-size: 28px;
+  line-height: 32px;
+  text-decoration: none;
+  transition: 300ms color ease;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box .author a {
+    font-size: 2.4vw;
+    line-height: 1.8vw;
+  }
+}
+body .bar-malik .info-box .author a:hover {
+  color: #000;
+}
+body .bar-malik .info-box .role {
+  color: #fff;
+  font-size: 10px;
+  line-height: 14px;
+  margin-bottom: 0;
+  text-align: right;
+}
+@media (min-width: 992px) {
+  body .bar-malik .info-box .role {
+    font-size: 0.8vw;
+    line-height: 1vw;
+  }
+}
+body .why-we-exist {
+  background-color: #000;
+  background-image: none;
+  background-position: -100px 100px;
+  display: block;
+  height: auto;
+}
+@media (min-width: 992px) {
+  body .why-we-exist {
+    background-image: url('../../screens/homepage/images/the-fundamentals.png');
+    background-attachment: fixed;
+    height: 100vh;
+    min-height: 850px;
+  }
+}
+@media (min-width: 992px) {
+  body .why-we-exist .title-and-description-block .description {
+    padding-left: 190px;
+  }
+}
+
+body .why-we-exist .mobile-image {
+  display: block;
+  height: auto;
+  width: 130%;
+}
+@media (min-width: 992px) {
+  body .why-we-exist .mobile-image {
+    display: none;
+  }
+}
+body .who-we-are {
+  background-color: #fff;
+  background-image: none;
+  background-position: top right;
+  display: block;
+  height: auto;
+  min-height: 850px;
+}
+@media (min-width: 992px) {
+  body .who-we-are {
+    background-image: url('../../screens/homepage/images/who-we-are.png');
+    background-attachment: fixed;
+    height: 100vh;
+  }
+}
+@media (min-width: 992px) {
+  body .who-we-are .title-and-description-block .description {
+    padding-right: 190px;
+  }
+}
+
+body .who-we-are .mobile-image {
+  display: block;
+  height: auto;
+  margin-top: -20%;
+  position: relative;
+  right: 50%;
+  width: 150%;
+}
+@media (min-width: 992px) {
+  body .who-we-are .mobile-image {
+    display: none;
+  }
+}
+body .what-we-do {
+  background-color: #9999ff;
+  background-image: none;
+  background-position: 0 0;
+  display: block;
+  height: auto;
+  min-height: 850px;
+}
+@media (min-width: 992px) {
+  body .what-we-do {
+    background-image: url('../../screens/homepage/images/xs-and-os.png');
+    background-attachment: fixed;
+    height: 100vh;
+  }
+}
+
+body .what-we-do .mobile-image {
+  display: block;
+  height: auto;
+  width: 150%;
+}
+@media (min-width: 992px) {
+  body .what-we-do .mobile-image {
+    display: none;
+  }
+}
+body .keys-to-crosscourt {
+  display: block;
+  height: auto;
+  padding: 32px;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt {
+  }
+}
+body .keys-to-crosscourt .title-block {
+  font-size: 30px;
+  line-height: normal;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt .title-block {
+  }
+}
+body .keys-to-crosscourt .title-block .heading-sprite {
+  background-position: 0 0;
+  height: 44px;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt .title-block .heading-sprite {
+    background-position: 0 0;
+    height: 83px;
+  }
+}
+body .keys-to-crosscourt .title-block .title-1 {
+  font-size: 32px;
+  line-height: 28px;
+  margin: 0;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt .title-block .title-1 {
+    font-size: 60px;
+    line-height: 56px;
+  }
+}
+body .keys-to-crosscourt .title-block .title-2 {
+  font-size: 22px;
+  line-height: 18px;
+  margin-bottom: 40px;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt .title-block .title-2 {
+    font-size: 41.3px;
+    line-height: 37.3px;
+  }
+}
+body .keys-to-crosscourt .boxes {
+  align-items: center;
+  display: grid;
+  margin-bottom: 50px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0;
+  grid-row-gap: 40px;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt .boxes {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+body .keys-to-crosscourt .boxes .boxes-item {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-image {
+  margin-bottom: 10px;
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-image img {
+  height: auto;
+  position: relative;
+  width: 130px;
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-image img.one-hour {
+  left: 6px;
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-image img.equipment-provided {
+  left: -3px;
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-image img.hype-soundtracks {
+  left: -12px;
+}
+@media (min-width: 1200px) {
+  body .keys-to-crosscourt .boxes .boxes-item .boxes-image img {
+    height: auto;
+    width: 170px;
+  }
+}
+body .keys-to-crosscourt .boxes .boxes-item .boxes-text {
+  font-family: 'shapiro95_super_wide';
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+}
+@media (min-width: 992px) {
+  body .keys-to-crosscourt .boxes .boxes-item .boxes-text {
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
+
+body .follow-us-on-instagram {
+  height: auto;
+}
+@media (min-width: 992px) {
+  body .follow-us-on-instagram {
+  }
+}
+body .follow-us-on-instagram .title-block {
+  padding: 32px 32px 20px;
+  position: relative;
+  z-index: 1;
+}
+@media (min-width: 992px) {
+  body .follow-us-on-instagram .title-block {
+    padding: 32px;
+  }
+}
+body .follow-us-on-instagram .title-block .heading-sprite {
+  background-position: 0px -44px;
+  height: 44px;
+}
+@media (min-width: 992px) {
+  body .follow-us-on-instagram .title-block .heading-sprite {
+    background-position: 0px -83px;
+    height: 70px;
+  }
+}
+body .follow-us-on-instagram .title-block .title-1 {
+  font-size: 18.4px;
+  line-height: 14.4px;
+  margin-bottom: 0;
+}
+@media (min-width: 992px) {
+  body .follow-us-on-instagram .title-block .title-1 {
+    font-size: 34.6px;
+    line-height: 30.6px;
+  }
+}
+body .follow-us-on-instagram .title-block .title-2 {
+  font-size: 26.8px;
+  line-height: 22.8px;
+}
+@media (min-width: 992px) {
+  body .follow-us-on-instagram .title-block .title-2 {
+    font-size: 50.3px;
+    line-height: 46.3px;
+    margin-bottom: 40px;
+  }
+}
+body .follow-us-on-instagram .instafeed {
+  margin-bottom: 20px;
+  text-align: center;
+}
+body .follow-us-on-instagram .instafeed .eapps-instagram-feed-posts-grid-load-more {
+  background-color: #9999ff !important;
+  border: 3px solid #fff;
+  border-radius: 0;
+  color: #fff;
+  font-size: 14px;
+  font-family: 'shapiro95_super_wide';
+  height: auto;
+  line-height: 19px;
+  min-width: 130px;
+  padding: 8px 15px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
+  width: auto;
+  display: inline-block;
+  margin: 24px 32px;
+}
+body .follow-us-on-instagram .instafeed .eapps-instagram-feed-posts-grid-load-more:hover {
+  background-color: #fff !important;
+  border: 3px solid #9999ff;
+  color: #9999ff;
+}
+
+body .ready {
+  background-image: url('../../screens/homepage/images/ready.jpg');
+  background-size: cover;
+  background-position: top center;
+  height: 400px;
+  position: relative;
+}
+@media (min-width: 992px) {
+  body .ready {
+    height: 620px;
+  }
+}
+body .ready::after {
+  content: '';
+  background: rgba(0, 0, 0, 0.6);
+  display: block;
+  height: 100%;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+@media (min-width: 992px) {
+  body .ready::after {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+body .ready .buttons-block {
+  margin-top: 228px;
+  padding: 0 32px;
+  position: relative;
+  text-align: center;
+  z-index: 1;
+}
+@media (min-width: 992px) {
+  body .ready .buttons-block {
+    margin-top: 0;
+  }
+}
+body .ready .title {
+  background: transparent url('../../screens/homepage/images/ready-to-sweat-text.png') no-repeat 0 0;
+  background-size: contain;
+  color: #fff;
+  display: block;
+  font-size: 0;
+  height: 83px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 90px;
+  width: 285px;
+  z-index: 1;
+}
+@media (min-width: 992px) {
+  body .ready .title {
+    bottom: -2px;
+    height: 203px;
+    left: 15px;
+    margin: 0;
+    top: auto;
+    width: 700px;
+  }
+}
+body .ready .buttons-block .ar-button {
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+}
+@media (min-width: 992px) {
+  body .ready .buttons-block .ar-button {
+    display: inline-block;
+    max-width: none;
+  }
+}
+body .ready .buttons-block .ar-button:nth-child(1) {
+  margin-bottom: 20px;
+}
+@media (min-width: 992px) {
+  body .ready .buttons-block .ar-button:nth-child(1) {
+    margin: 0 50px 0 0;
+  }
+}

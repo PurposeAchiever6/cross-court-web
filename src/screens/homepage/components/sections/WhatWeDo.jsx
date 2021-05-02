@@ -18,7 +18,6 @@ const WhatWeDo = () => (
         Our continuous games to 11 have a 5 minute time limit to keep the session fast-paced, while
         the presence of our Experience Team ensures the vibes are always on point.
       </p>
-      <div className="bottomline"></div>
     </section>
     <img alt="What We Do?" className="mobile-image" src={whatWeDoMobileImg}></img>
   </section>
