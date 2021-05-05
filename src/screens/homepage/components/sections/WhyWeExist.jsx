@@ -7,9 +7,10 @@ const Section = styled.section`
   background-image: none;
   background-position: -100px 100px;
   display: block;
-  height: auto;
+  height: auto !important;
 
   @media (min-width: 992px) {
+    height: 100vh !important;
     background-image: url(${whyWeExistMobileImg});
     background-attachment: fixed;
     min-height: 850px;
@@ -40,6 +41,8 @@ const Section = styled.section`
   .mobile-image {
     display: block;
     height: auto;
+    width: 400px;
+    position: relative;
     @media (min-width: 992px) {
       display: none;
     }

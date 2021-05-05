@@ -365,6 +365,7 @@ body .section-block {
   justify-content: center;
   position: relative;
   width: 100vw;
+  height: 100vh;
 }
 
 body .section-block.text-white {

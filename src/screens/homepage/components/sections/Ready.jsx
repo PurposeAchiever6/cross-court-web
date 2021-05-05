@@ -8,6 +8,8 @@ const Section = styled.section`
   font-size: 120px;
   line-height: 100px;
   margin-top: 50px;
+  height: auto !important;
+
   .title {
     color: black;
     -webkit-text-fill-color: white;
