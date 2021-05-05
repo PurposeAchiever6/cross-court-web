@@ -1,10 +1,55 @@
 import React from 'react';
 import whyWeExistMobileImg from 'screens/homepage/images/the-fundamentals.png';
+import styled from 'styled-components';
+
+const Section = styled.section`
+  background-color: #231f20;
+  background-image: none;
+  background-position: -100px 100px;
+  display: block;
+  height: auto;
+
+  @media (min-width: 992px) {
+    background-image: url(${whyWeExistMobileImg});
+    background-attachment: fixed;
+    min-height: 850px;
+  }
+
+  .description {
+    color: white;
+    @media (min-width: 992px) {
+      padding-left: 190px;
+    }
+  }
+
+  .title {
+    color: white;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #9999ff;
+    font-size: 120px;
+    line-height: 100px;
+    margin-bottom: 15px;
+
+    @media (min-width: 992px) {
+      font-size: 250px;
+      line-height: 200px;
+    }
+  }
+
+  .mobile-image {
+    display: block;
+    height: auto;
+    @media (min-width: 992px) {
+      display: none;
+    }
+  }
+`;
 
 const WhyWeExist = () => (
-  <section className="why-we-exist section-block text-white">
+  <Section className="section-block">
     <section className="title-and-description-block shift-right">
-      <p className="title-2 dharma_gothic_cheavy">
+      <p className="title dharma_gothic_cheavy">
         THE
         <br />
         FUNDAMENTALS
@@ -21,7 +66,7 @@ const WhyWeExist = () => (
       </p>
     </section>
     <img alt="Why We Exist?" className="mobile-image" src={whyWeExistMobileImg}></img>
-  </section>
+  </Section>
 );
 
 export default WhyWeExist;

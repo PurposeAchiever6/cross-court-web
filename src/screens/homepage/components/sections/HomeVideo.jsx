@@ -1,9 +1,22 @@
 import React from 'react';
-//import poster from 'screens/homepage/images/home-poster.png';
+import styled from 'styled-components';
 
-const HomeVideo = props => (
-  <section className="home-video" dangerouslySetInnerHTML={{ __html: `
+const Section = styled.section`
+  background-color: #000;
+  .video-player {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+    width: 100%;
+  }
+`;
+
+const HomeVideo = (props) => (
+  <Section
+    dangerouslySetInnerHTML={{
+      __html: `
     <video
+      autoplay
       class="video-player"
       src="/home.mp4"
       muted=""
@@ -13,7 +26,9 @@ const HomeVideo = props => (
       loop=""
       type="video/mp4"
     ></video>
-  ` }}></section>
+  `,
+    }}
+  ></Section>
 );
 
 export default HomeVideo;

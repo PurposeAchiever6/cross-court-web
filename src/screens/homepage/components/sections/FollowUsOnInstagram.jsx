@@ -6,7 +6,9 @@ const Section = styled.section`
 
   .title {
     text-align: left;
-    font-size: 100px;
+    font-size: 120px;
+    line-height: 45px;
+    margin-bottom: 20px;
     font-family: 'dharma_gothic_cexbold';
     color: black;
     width: fit-content;
@@ -14,15 +16,13 @@ const Section = styled.section`
 
     @media (min-width: 992px) {
       font-size: 200px;
-      margin: 0 50px 0 0;
+      line-height: 75px;
+      margin-top: 100px;
+      margin-bottom: 50px;
       text-align: right;
     }
 
     p {
-      margin: 20px 0px;
-      @media (min-width: 992px) {
-        margin: 60px 0px;
-      }
       :first-child {
         -webkit-text-fill-color: white;
         -webkit-text-stroke-width: 2px;
@@ -32,7 +32,7 @@ const Section = styled.section`
   }
 
   .instafeed .eapps-instagram-feed-posts-grid-load-more {
-    background-color: #9999ff !important;
+    background-color: #231f20 !important;
     border: 3px solid #fff;
     border-radius: 0;
     color: #fff;

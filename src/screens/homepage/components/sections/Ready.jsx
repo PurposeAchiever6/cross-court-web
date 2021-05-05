@@ -5,15 +5,18 @@ import styled from 'styled-components';
 
 const Section = styled.section`
   text-align: center;
-  font-size: 100px;
+  font-size: 120px;
+  line-height: 100px;
+  margin-top: 50px;
   .title {
-    margin-top: 150px;
     color: black;
     -webkit-text-fill-color: white;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
     @media (min-width: 992px) {
+      margin-top: 150px;
       font-size: 250px;
+      line-height: 200px;
     }
   }
 
@@ -34,6 +37,7 @@ const Section = styled.section`
     display: block;
     margin: 0 auto;
     max-width: 200px;
+    margin-bottom: 100px;
     @media (min-width: 992px) {
       display: inline-block;
       max-width: none;
