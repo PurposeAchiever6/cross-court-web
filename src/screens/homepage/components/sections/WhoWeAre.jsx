@@ -17,7 +17,7 @@ const Section = styled.section`
 
   .description {
     @media (min-width: 992px) {
-      padding-right: 190px;
+      max-width: 620px;
     }
   }
 

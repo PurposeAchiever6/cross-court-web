@@ -19,7 +19,7 @@ const Section = styled.section`
   .description {
     color: white;
     @media (min-width: 992px) {
-      padding-left: 190px;
+      max-width: 620px;
     }
   }
 

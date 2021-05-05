@@ -16,6 +16,13 @@ const Section = styled.section`
     background-attachment: fixed;
   }
 
+  .description {
+    color: white;
+    @media (min-width: 992px) {
+      max-width: 620px;
+    }
+  }
+
   .title {
     color: white;
     -webkit-text-fill-color: transparent;
