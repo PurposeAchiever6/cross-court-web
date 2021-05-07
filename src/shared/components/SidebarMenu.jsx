@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import CloseButton from 'shared/components/CloseButton';
 import ROUTES from 'shared/constants/routes';
@@ -11,6 +10,7 @@ import { logoutInit } from 'screens/auth/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import colors from 'shared/styles/constants';
+import SecondaryButton from 'shared/components/buttons/SecondaryButton';
 
 const Nav = styled.nav`
   display: flex;
@@ -137,10 +137,8 @@ const SidebarMenu = ({ menuToggler }) => {
           </AlternativeButton>
         </Link>
       )}
-      <Link to={ROUTES.LOCATIONS}>
-        <Button className="ar-button shapiro96_inclined_wide" onClick={menuToggler}>
-          <div className="ar-button-inner">BOOK SESSION</div>
-        </Button>
+      <Link to={ROUTES.LOCATIONS} onClick={menuToggler}>
+        <SecondaryButton>BOOK SESSION</SecondaryButton>
       </Link>
     </Nav>
   );

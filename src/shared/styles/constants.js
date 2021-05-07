@@ -11,6 +11,7 @@ const white = '#FFF';
 const errorRed = '#FF4444';
 const red = '#FF0000';
 const offWhite = '#F8F8F8';
+// brand
 const brandBlack = '#231F20';
 const brandBlue = '#9999FF';
 
