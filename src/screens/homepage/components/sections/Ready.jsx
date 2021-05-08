@@ -1,7 +1,7 @@
 import React from 'react';
-import ArButton from 'shared/components/ArButton';
 import ROUTES from 'shared/constants/routes';
 import styled from 'styled-components';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const Section = styled.section`
   text-align: center;
@@ -27,7 +27,7 @@ const Section = styled.section`
     padding: 0 32px;
     text-align: center;
     z-index: 1;
-    .ar-button:nth-child(1) {
+    .primary-button:nth-child(1) {
       margin-bottom: 20px;
       @media (min-width: 992px) {
         margin: 0 50px 0 0;
@@ -35,7 +35,7 @@ const Section = styled.section`
     }
   }
 
-  .buttons-block .ar-button {
+  .buttons-block .primary-button {
     display: block;
     margin: 0 auto;
     max-width: 200px;
@@ -51,12 +51,12 @@ const Ready = () => (
   <Section className="ready section-block text-white">
     <p className="title dharma_gothic_cexbold">READY TO SWEAT?</p>
     <section className="buttons-block">
-      <ArButton link={ROUTES.HOWITWORKS} double inverted>
+      <PrimaryButton to={ROUTES.HOWITWORKS} double inverted>
         LEARN MORE
-      </ArButton>
-      <ArButton link={ROUTES.LOCATIONS} double>
+      </PrimaryButton>
+      <PrimaryButton to={ROUTES.LOCATIONS} double>
         SEE SCHEDULE
-      </ArButton>
+      </PrimaryButton>
     </section>
   </Section>
 );

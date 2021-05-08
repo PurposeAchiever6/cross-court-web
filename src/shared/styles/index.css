@@ -1,3 +1,4 @@
+@import './animations.css';
 @import './homepage.css';
 @import './sidebar.css';
 @import './header.css';
@@ -208,71 +209,7 @@ body[data-page='app'] main {
 }
 
 /* COMPONENTS */
-body .ar-button {
-  background-color: transparent;
-  display: inline-block;
-  font-size: 14px;
-  font-family: 'shapiro95_super_wide';
-  line-height: 19px;
-  min-width: 130px;
-  padding: 0;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-}
 
-body .ar-button.disabled,
-body .ar-button[disabled] {
-  opacity: 0.3;
-  pointer-events: none;
-}
-body .ar-button:hover {
-  background-color: transparent;
-}
-body .ar-button .ar-button-inner {
-  background-color: #9999ff;
-  border: 3px solid #fff;
-  color: #fff;
-  padding: 8px 15px;
-  position: relative;
-  transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
-  z-index: 1;
-}
-
-body .ar-button.mobile-compact .ar-button-inner {
-  padding: 4px 10px;
-  transition: 500ms padding ease;
-}
-@media (min-width: 992px) {
-  body .ar-button.mobile-compact .ar-button-inner {
-    padding: 8px 15px;
-  }
-}
-body .ar-button:hover .ar-button-inner {
-  background-color: #fff;
-  border-color: #9999ff;
-  color: #9999ff;
-}
-body .ar-button.inverted .ar-button-inner {
-  background-color: #ffffff;
-  border-color: #9999ff;
-  color: #9999ff;
-}
-body .ar-button.inverted:hover .ar-button-inner {
-  background-color: #9999ff;
-  border-color: #ffffff;
-  color: #fff;
-}
-body .ar-button.double .double-drop {
-  background-color: #9999ff;
-  border: 3px solid #ffffff;
-  height: 100%;
-  left: 9px;
-  position: absolute;
-  top: 9px;
-  width: 100%;
-  z-index: 0;
-}
 body .go-back {
   font-family: 'shapiro95_super_wide';
   font-size: 14px;
@@ -329,7 +266,7 @@ body .shapiro97_air_extd {
 }
 
 /* BANNER CONTAINER (FIRST SESSION FREE) */
-body .banner-container .ar-button {
+body .banner-container .primary-button {
   border: none;
   padding: 0;
 }
@@ -600,100 +537,6 @@ body .survey-modal .body2 .book-next-session-btn {
   width: 280px;
 }
 
-/* HOW IT WORKS */
-body .new-to-crosscourt {
-  background-color: #9999ff;
-  background-position: top center;
-  background-size: cover;
-  display: block;
-  height: auto;
-  padding: 100px 32px 0;
-}
-@media (min-width: 992px) {
-  body .new-to-crosscourt {
-    background-image: url('../../screens/how-it-works/images/new-to-crosscourt.png');
-    height: 100vh;
-    padding: 200px 32px 0;
-  }
-}
-body .new-to-crosscourt .title-block {
-  animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
-}
-body .new-to-crosscourt .title-block .heading-sprite {
-  background-position: 0px -82px;
-  height: 46px;
-  margin-bottom: 20px !important;
-}
-@media (min-width: 992px) {
-  body .new-to-crosscourt .title-block .heading-sprite {
-    background-position: 0px -153px;
-    height: 86px;
-  }
-}
-body .new-to-crosscourt .title-block .title-1 {
-  font-size: 49px;
-  line-height: 45px;
-  margin: 0;
-}
-@media (min-width: 992px) {
-  body .new-to-crosscourt .title-block .title-1 {
-    font-size: 80px;
-    line-height: 76px;
-  }
-}
-body .new-to-crosscourt .title-block .title-2 {
-  font-size: 27.5px;
-  line-height: 23.5px;
-  margin-bottom: 20px;
-}
-@media (min-width: 992px) {
-  body .new-to-crosscourt .title-block .title-2 {
-    font-size: 45px;
-    line-height: 41px;
-    margin-bottom: 40px;
-  }
-}
-/* body .new-to-crosscourt .check-it-out {
-  animation: 500ms ease-out 2500ms 1 both fadeIn;
-} */
-body .new-to-crosscourt .check-it-out svg {
-  margin-right: 10px;
-}
-body .new-to-crosscourt .check-it-out .text {
-}
-body .new-to-crosscourt .check-it-out .ar-button-inner {
-  padding-left: 42px;
-}
-body .new-to-crosscourt .check-it-out img {
-  height: 22px;
-  left: 12px;
-  position: absolute;
-  top: 6px;
-  width: 22px;
-}
-body .new-to-crosscourt .check-it-out img.play-button-white {
-  display: inline-block;
-}
-body .new-to-crosscourt .check-it-out:hover img.play-button-white {
-  display: none;
-}
-body .new-to-crosscourt .check-it-out .play-button-purple {
-  display: none;
-}
-body .new-to-crosscourt .check-it-out:hover img.play-button-purple {
-  display: inline-block;
-}
-body .new-to-crosscourt .mobile-image {
-  display: block;
-  height: auto;
-  margin: -20px 0 0 -32px;
-  width: 100vw;
-}
-@media (min-width: 992px) {
-  body .new-to-crosscourt .mobile-image {
-    display: none;
-  }
-}
 body .the-session-video {
   background-color: #000;
   scroll-margin-top: 64px;
@@ -792,13 +635,13 @@ body .sign-up .right-section .description {
   line-height: 20px;
   margin-bottom: 50px;
 }
-body .sign-up .right-section .buttons-container .ar-button {
+body .sign-up .right-section .buttons-container .primary-button {
   display: block;
   margin-bottom: 10px;
   max-width: 200px;
 }
 @media (min-width: 992px) {
-  body .sign-up .right-section .buttons-container .ar-button {
+  body .sign-up .right-section .buttons-container .primary-button {
     display: inline-block;
     margin-bottom: 0;
     max-width: none;
@@ -896,27 +739,20 @@ body .show-up .left-section .buttons-container {
     justify-content: right;
   }
 }
-body .show-up .left-section .buttons-container .ar-button {
+body .show-up .left-section .buttons-container .primary-button {
   display: block;
   margin-bottom: 10px;
   margin-right: 10px;
   max-width: 200px;
 }
 @media (min-width: 992px) {
-  body .show-up .left-section .buttons-container .ar-button {
+  body .show-up .left-section .buttons-container .primary-button {
     display: inline-block;
     margin-bottom: 0;
     max-width: none;
   }
 }
-/* body .show-up .left-section .buttons-container .ar-button:nth-child(1) {
-  margin-bottom: 20px;
-}
-@media (min-width: 992px) {
-  body .show-up .left-section .buttons-container .ar-button:nth-child(1) {
-    margin: 0 50px 0 0;
-  }
-} */
+
 body .show-up .right-section {
   background: transparent url('../../screens/how-it-works/images/show-up.gif') no-repeat 0 0;
   background-size: cover;
@@ -1006,13 +842,13 @@ body .sweat .right-section .icons .boxes-text {
 body .sweat .right-section .description {
   margin-bottom: 50px;
 }
-body .sweat .right-section .buttons-container .ar-button {
+body .sweat .right-section .buttons-container .primary-button {
   display: block;
   margin-bottom: 10px;
   max-width: 200px;
 }
 @media (min-width: 992px) {
-  body .sweat .right-section .buttons-container .ar-button {
+  body .sweat .right-section .buttons-container .primary-button {
     display: inline-block;
     margin-bottom: 0;
     max-width: none;
@@ -1170,310 +1006,13 @@ body .join-the-cc-team .title-and-description-block .description {
     line-height: 46px;
   }
 }
-body .the-session-experience-manager {
-  background-color: #fff;
-  background-image: none;
-  background-position: top right;
-  display: block;
-  height: auto;
-}
-@media (min-width: 992px) {
-  body .the-session-experience-manager {
-    background-image: url('../../screens/sem/images/the-session-experience-manager.png');
-    background-attachment: fixed;
-    height: 100vh;
-  }
-}
-body .the-session-experience-manager .title-and-description-block {
-}
-@media (min-width: 992px) {
-  body .the-session-experience-manager .title-and-description-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
-body .the-session-experience-manager .title-and-description-block .heading-sprite {
-  background-position: 0px -85.8vw;
-  height: 10vw;
-  width: 80vw;
-}
-@media (min-width: 992px) {
-  body .the-session-experience-manager .title-and-description-block .heading-sprite {
-    background-position: 0px -697px;
-    height: 81px;
-    width: 650px;
-  }
-}
-body .the-session-experience-manager .title-and-description-block .title-1 {
-  font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 1px;
-  font-size: 28.5px;
-  line-height: 24.5px;
-  margin-bottom: 0;
-}
-@media (min-width: 992px) {
-  body .the-session-experience-manager .title-and-description-block .title-1 {
-    font-size: 80px;
-    line-height: 76px;
-  }
-}
-body .the-session-experience-manager .title-and-description-block .title-2 {
-  font-family: 'shapiro95_super_wide';
-  font-size: 18.9px;
-  line-height: 14.9px;
-  margin-bottom: 30px;
-}
-@media (min-width: 992px) {
-  body .the-session-experience-manager .title-and-description-block .title-2 {
-    font-size: 52.8px;
-    line-height: 48.8px;
-    margin-bottom: 60px;
-  }
-}
-body .the-session-experience-manager .title-and-description-block .description {
-  margin-bottom: 50px;
-}
-body .the-session-experience-manager .title-and-description-block .button-wrapper {
-}
-body .the-session-experience-manager .title-and-description-block .button-wrapper .ar-button {
-  display: block;
-  margin: 0 auto;
-  max-width: 200px;
-}
-@media (min-width: 992px) {
-  body .the-session-experience-manager .title-and-description-block .button-wrapper .ar-button {
-    display: inline-block;
-    margin: 0;
-    max-width: none;
-  }
-}
-body .the-session-experience-manager .title-and-description-block .button-wrapper .apply-button {
-  margin-bottom: 20px;
-}
-@media (min-width: 992px) {
-  body .the-session-experience-manager .title-and-description-block .button-wrapper .apply-button {
-    margin: 0 50px 0 0;
-  }
-}
-body
-  .the-session-experience-manager
-  .title-and-description-block
-  .button-wrapper
-  .learn-more
-  .ar-button-inner {
-  padding-left: 42px;
-}
-body .the-session-experience-manager .title-and-description-block .button-wrapper .learn-more img {
-  height: 22px;
-  left: 12px;
-  position: absolute;
-  top: 6px;
-  width: 22px;
-}
-body
-  .the-session-experience-manager
-  .title-and-description-block
-  .button-wrapper
-  .learn-more
-  img.play-button-white {
-  display: none;
-}
-body
-  .the-session-experience-manager
-  .title-and-description-block
-  .button-wrapper
-  .learn-more:hover
-  img.play-button-white {
-  display: inline-block;
-}
-body
-  .the-session-experience-manager
-  .title-and-description-block
-  .button-wrapper
-  .learn-more
-  .play-button-purple {
-  display: inline-block;
-}
-body
-  .the-session-experience-manager
-  .title-and-description-block
-  .button-wrapper
-  .learn-more:hover
-  img.play-button-purple {
-  display: none;
-}
-body
-  .the-session-experience-manager
-  .title-and-description-block
-  .button-wrapper
-  .learn-more
-  .text {
-}
-body .the-session-experience-manager .mobile-image {
-  display: block;
-  height: auto;
-  width: 100%;
-}
-@media (min-width: 992px) {
-  body .the-session-experience-manager .mobile-image {
-    display: none;
-  }
-}
-body .the-session-official {
-  background-color: #9999ff;
-  background-image: none;
-  background-position: top left;
-  display: block;
-  height: auto;
-}
-@media (min-width: 992px) {
-  body .the-session-official {
-    background-image: url('../../screens/sem/images/the-session-official.png');
-    background-attachment: fixed;
-    height: 100vh;
-  }
-}
-body .the-session-official .title-and-description-block {
-}
-@media (min-width: 992px) {
-  body .the-session-official .title-and-description-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center !important;
-  }
-}
-body .the-session-official .title-and-description-block .heading-sprite {
-  background-position: 0px -96vw;
-  display: inline-block;
-  height: 15.6vw;
-  text-align: right;
-  width: 80vw;
-}
-@media (min-width: 992px) {
-  body .the-session-official .title-and-description-block .heading-sprite {
-    background-position: 0px -779px;
-    height: 126px;
-    width: 650px;
-  }
-}
-body .the-session-official .title-and-description-block .title-1 {
-  font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 1px;
-  font-size: 28px;
-  line-height: 24px;
-  margin-bottom: 0;
-}
-@media (min-width: 992px) {
-  body .the-session-official .title-and-description-block .title-1 {
-    font-size: 50px;
-    line-height: 46px;
-  }
-}
-body .the-session-official .title-and-description-block .title-2 {
-  font-family: 'shapiro95_super_wide';
-  font-size: 46.7px;
-  line-height: 42.7px;
-  margin-bottom: 30px;
-}
-@media (min-width: 992px) {
-  body .the-session-official .title-and-description-block .title-2 {
-    font-size: 83.2px;
-    line-height: 79.2px;
-    margin-bottom: 60px;
-  }
-}
-body .the-session-official .title-and-description-block .description {
-  margin-bottom: 50px;
-}
-body .the-session-official .title-and-description-block .button-wrapper {
-}
-body .the-session-official .title-and-description-block .button-wrapper .ar-button {
-  display: block;
-  margin: 0 auto;
-  max-width: 200px;
-}
-@media (min-width: 992px) {
-  body .the-session-official .title-and-description-block .button-wrapper .ar-button {
-    display: inline-block;
-    margin: 0;
-    max-width: none;
-  }
-}
-body .the-session-official .title-and-description-block .button-wrapper .apply-button {
-  margin-bottom: 20px;
-}
-@media (min-width: 992px) {
-  body .the-session-official .title-and-description-block .button-wrapper .apply-button {
-    margin: 0 50px 0 0;
-  }
-}
-body
-  .the-session-official
-  .title-and-description-block
-  .button-wrapper
-  .learn-more
-  .ar-button-inner {
-  padding-left: 42px;
-}
-body .the-session-official .title-and-description-block .button-wrapper .learn-more img {
-  height: 22px;
-  left: 12px;
-  position: absolute;
-  top: 6px;
-  width: 22px;
-}
-body
-  .the-session-official
-  .title-and-description-block
-  .button-wrapper
-  .learn-more
-  img.play-button-white {
-  display: inline-block;
-}
-body
-  .the-session-official
-  .title-and-description-block
-  .button-wrapper
-  .learn-more:hover
-  img.play-button-white {
-  display: none;
-}
-body
-  .the-session-official
-  .title-and-description-block
-  .button-wrapper
-  .learn-more
-  .play-button-purple {
-  display: none;
-}
-body
-  .the-session-official
-  .title-and-description-block
-  .button-wrapper
-  .learn-more:hover
-  img.play-button-purple {
-  display: inline-block;
-}
-body .the-session-official .title-and-description-block .button-wrapper .learn-more .text {
-}
-body .the-session-official .mobile-image {
-  display: block;
-  height: auto;
-  width: 100%;
-}
-@media (min-width: 992px) {
-  body .the-session-official .mobile-image {
-    display: none;
-  }
-}
+
 body .cc-team-perks {
   display: block;
   height: auto;
   padding: 32px;
 }
-body .cc-team-perks .title-block {
-}
+
 body .cc-team-perks .title-block .heading-sprite {
   background-position: 0px -321px;
   height: 64px;
@@ -2452,22 +1991,22 @@ body .payments .buttons-container {
     display: flex;
   }
 }
-body .payments .buttons-container .ar-button {
+body .payments .buttons-container .primary-button {
   display: block;
   margin: 0 auto;
   max-width: 200px;
 }
 @media (min-width: 992px) {
-  body .payments .buttons-container .ar-button {
+  body .payments .buttons-container .primary-button {
     display: inline-block;
     margin: 0;
   }
 }
-body .payments .buttons-container .ar-button:nth-of-type(1) {
+body .payments .buttons-container .primary-button:nth-of-type(1) {
   margin-bottom: 20px;
 }
 @media (min-width: 992px) {
-  body .payments .buttons-container .ar-button:nth-of-type(1) {
+  body .payments .buttons-container .primary-button:nth-of-type(1) {
     margin-bottom: 0;
   }
 }
@@ -3171,7 +2710,7 @@ body
   .plan-container
   .click-block
   .button-container
-  .ar-button {
+  .primary-button {
   cursor: pointer;
   min-width: 0;
   width: 100px;
@@ -3183,7 +2722,7 @@ body
     .plan-container
     .click-block
     .button-container
-    .ar-button {
+    .primary-button {
     min-width: 130px;
     width: 100%;
   }
@@ -3477,12 +3016,7 @@ body .my-account-mobile .my-profile .detail-row .referral-code {
   margin-bottom: 5px;
   padding: 4px 10px;
 }
-body .my-account-desktop .my-profile .detail-row .referral-code-long,
-body .my-account-mobile .my-profile .detail-row .referral-code-long {
-  opacity: 0;
-  position: absolute;
-  z-index: -1;
-}
+
 body .my-account-desktop .my-profile .detail-row .invite-a-friend-button,
 body .my-account-mobile .my-profile .detail-row .invite-a-friend-button {
   border: none;
@@ -4123,11 +3657,11 @@ body .header .header-content .fsf-button {
     min-width: 130px;
   }
 }
-body .header .header-content .fsf-button .ar-button-inner {
+body .header .header-content .fsf-button .primary-button-inner {
   padding: 8px 10px;
 }
 @media (min-width: 568px) {
-  body .header .header-content .fsf-button .ar-button-inner {
+  body .header .header-content .fsf-button .primary-button-inner {
     padding: 8px 15px;
   }
 }

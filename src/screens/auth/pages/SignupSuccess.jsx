@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUserEmail } from 'screens/auth/reducer';
 import { sendConfirmationEmailInit } from 'screens/auth/actionCreators';
 import envelopeOpenIcon from 'shared/images/envelope-open.png';
-import Button from 'shared/components/Button';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const PageContainer = styled.div`
   display: flex;
@@ -66,13 +66,15 @@ const SignupSuccessPage = () => {
       <p className="body">
         We&apos;ve sent an email to {`${userEmail}`}.
         <br />
-        <span>Please verify your account to complete registration and redeem your free session credit.</span>
+        <span>
+          Please verify your account to complete registration and redeem your free session credit.
+        </span>
       </p>
       <div className="send-again-container">
         <span className="didnt-get-email">Didn&apos;t get the email?</span>
-        <Button className="ar-button" onClick={sendEmailAction}>
-          <div className="ar-button-inner">SEND IT AGAIN</div>
-        </Button>
+        <PrimaryButton onClick={sendEmailAction} w="100%">
+          SEND IT AGAIN
+        </PrimaryButton>
       </div>
     </PageContainer>
   );

@@ -1,16 +1,16 @@
 import React from 'react';
-import MakeSportYourLifestyle from './sections/MakeSportYourLifestyle';
-import HomeVideo from './sections/HomeVideo';
 import CrosscourtIsAHighIntensity from './sections/CrosscourtIsAHighIntensity';
-import WhyWeExist from './sections/WhyWeExist';
-import WhoWeAre from './sections/WhoWeAre';
-import WhatWeDo from './sections/WhatWeDo';
-import KeysToCrosscourt from './sections/KeysToCrosscourt';
 import FollowUsOnInstagram from './sections/FollowUsOnInstagram';
+import HomeVideo from './sections/HomeVideo';
+import KeysToCrosscourt from './sections/KeysToCrosscourt';
+import MakeSportYourLifestyle from './sections/MakeSportYourLifestyle';
 import Ready from './sections/Ready';
+import WhatWeDo from './sections/WhatWeDo';
+import WhoWeAre from './sections/WhoWeAre';
+import WhyWeExist from './sections/WhyWeExist';
 
 const Landing = () => (
-  <section>
+  <>
     <MakeSportYourLifestyle />
     <HomeVideo />
     <CrosscourtIsAHighIntensity />
@@ -20,7 +20,7 @@ const Landing = () => (
     <KeysToCrosscourt />
     <FollowUsOnInstagram />
     <Ready />
-  </section>
+  </>
 );
 
 export default Landing;

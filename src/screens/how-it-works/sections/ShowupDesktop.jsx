@@ -3,11 +3,10 @@ import React from 'react';
 import ROUTES from 'shared/constants/routes';
 import Icon from 'shared/components/Icon';
 
-import ArButton from 'shared/components/ArButton';
-
 import equipmentProvidedIcon from 'shared/images/equipment-provided-2.png';
 import guidedExperienceIcon from 'shared/images/guided-experience.png';
 import Icons from '../components/Icons';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 function Showup() {
   return (
@@ -41,9 +40,9 @@ function Showup() {
           court.
         </p>
         <div className="buttons-container">
-          <ArButton link={ROUTES.LOCATIONS} double>
+          <PrimaryButton to={ROUTES.LOCATIONS} double>
             RESERVE NOW
-          </ArButton>
+          </PrimaryButton>
         </div>
       </section>
       <section className="right-section" />

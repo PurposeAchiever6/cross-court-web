@@ -24,10 +24,7 @@
     "no-shadow": 0,
     "global-require": 0,
     "eqeqeq": 0,
-    "no-unused-expressions": [
-      1,
-      { "allowShortCircuit": true, "allowTernary": true }
-    ],
+    "no-unused-expressions": [1, { "allowShortCircuit": true, "allowTernary": true }],
     "array-callback-return": 0,
     "no-console": [1, { "allow": ["warn", "error"] }],
     "no-debugger": 1,
@@ -58,7 +55,7 @@
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/label-has-for": 0,
     "jsx-a11y/no-static-element-interactions": 0,
-    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/control-has-associated-label": 0,
     "react/display-name": [1, { "ignoreTranspilerName": false }],
     "react/forbid-prop-types": [1, { "forbid": ["any", "array"] }],

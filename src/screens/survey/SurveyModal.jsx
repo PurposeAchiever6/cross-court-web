@@ -8,10 +8,10 @@ import ThanksForYourFeedbackImg from 'shared/images/thanks-for-your-feedback.png
 import StarEmptyIcon from 'shared/images/star-empty2.png';
 import StarFullIcon from 'shared/images/star-full2.png';
 import ScrollLock from 'react-scrolllock';
-import Button from 'shared/components/Button';
 import ROUTES from 'shared/constants/routes';
 import { useHistory } from 'react-router-dom';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const SurveyModalContainer = styled.div`
   display: flex;
@@ -47,17 +47,17 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
   const history = useHistory();
   const redirectUrl = window.localStorage.getItem('redirect');
 
-  const starRatingMouseOverHandler = i => {
+  const starRatingMouseOverHandler = (i) => {
     for (let r = 0; r <= i; r++) {
       document.querySelectorAll('.star-pair')[r].classList.add('hover');
     }
   };
-  const starRatingMouseOutHandler = i => {
+  const starRatingMouseOutHandler = (i) => {
     for (let r = 0; r <= 4; r++) {
       document.querySelectorAll('.star-pair')[r].classList.remove('hover');
     }
   };
-  const starRatingClickHandler = i => {
+  const starRatingClickHandler = (i) => {
     const rating = i + 1;
 
     for (let r = 0; r <= 4; r++) {
@@ -86,12 +86,12 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
         },
       }),
     })
-    .then(data => {
-      console.log('Rating saved successfully!', data);
-      document.querySelector('.submit-btn').classList.remove('disabled');
-      window.localStorage.removeItem('surveyLock');
-    })
-    .catch(err => window.alert('Rating error: ' + err));
+      .then((data) => {
+        console.log('Rating saved successfully!', data);
+        document.querySelector('.submit-btn').classList.remove('disabled');
+        window.localStorage.removeItem('surveyLock');
+      })
+      .catch((err) => window.alert('Rating error: ' + err));
   };
   const surveySubmitAction = () => {
     fetch(`${env.REACT_APP_API_URL}/session_surveys/answers`, {
@@ -109,13 +109,13 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
         },
       }),
     })
-    .then(data => {
-      console.log('Feedback saved successfully!', data);
-      document.querySelector('.close-btn').classList.remove('hide');
-      document.querySelector('.survey-modal .body1').classList.add('hide');
-      document.querySelector('.survey-modal .body2').classList.remove('hide');
-    })
-    .catch(err => window.alert('Feedback error: ' + err));
+      .then((data) => {
+        console.log('Feedback saved successfully!', data);
+        document.querySelector('.close-btn').classList.remove('hide');
+        document.querySelector('.survey-modal .body1').classList.add('hide');
+        document.querySelector('.survey-modal .body2').classList.remove('hide');
+      })
+      .catch((err) => window.alert('Feedback error: ' + err));
   };
   const conditionalCloseHandler = () => {
     if (document.querySelector('.stars').hasAttribute('data-value')) {
@@ -150,15 +150,14 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
             className="feedback"
             placeholder="What is the most important reason for your score? (Optional)"
           ></textarea>
-          <Button className="ar-button submit-btn disabled" onClick={surveySubmitAction}>
-            <div className="ar-button-inner">SUBMIT</div>
-          </Button>
+          <PrimaryButton className="submit-btn" onClick={surveySubmitAction}>
+            SUBMIT
+          </PrimaryButton>
         </div>
         <div className="body2 hide">
           <img alt="" className="thanks-for-your-feedback" src={ThanksForYourFeedbackImg} />
-          <Button
-            className="ar-button book-next-session-btn"
-            inverted={false}
+          <PrimaryButton
+            className="book-next-session-btn"
             onClick={() => {
               if (redirectUrl) {
                 window.localStorage.removeItem('redirect');
@@ -168,8 +167,8 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
               }
             }}
           >
-            <div className="ar-button-inner">BOOK NEXT SESSION</div>
-          </Button>
+            BOOK NEXT SESSION
+          </PrimaryButton>
         </div>
       </SurveyModalContainer>
     </ScrollLock>

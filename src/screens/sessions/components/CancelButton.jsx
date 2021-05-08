@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AlternativeButton from 'shared/components/AlternativeButton';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const CancelButton = ({ modalToggler }) => (
-  <AlternativeButton className="ar-button inverted double cancel-btn" onClick={modalToggler}>
-    <div className="ar-button-inner">CANCEL RESERVATION</div>
-    <div className="double-drop"></div>
-  </AlternativeButton>
+  <PrimaryButton className="cancel-btn" onClick={modalToggler} inverted double>
+    CANCEL RESERVATION
+  </PrimaryButton>
 );
 
 CancelButton.propTypes = {

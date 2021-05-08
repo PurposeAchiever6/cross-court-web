@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,15 +7,12 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SportCharacter from 'shared/images/sport-character.png';
-import ArButton from 'shared/components/ArButton';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer.js';
 import { getSessionInfo, getSessionDate } from '../reducer';
-import {
-  formatShareSessionDate,
-  formatShareSessionTime,
-} from 'shared/utils/date';
+import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const SessionReservedContainer = styled.div`
   display: flex;
@@ -99,8 +96,8 @@ const SessionReserved = () => {
   const sessionInfo = useSelector(getSessionInfo);
   const isAuthenticated = useSelector(getIsAuthenticated);
   const sessionDate = useSelector(getSessionDate);
-
   const userProfile = useSelector(getUserProfile);
+  const [copied, setCopied] = useState(false);
 
   const copyShareInfoToClipboard = () => {
     const input = document.createElement('input');
@@ -119,7 +116,7 @@ const SessionReserved = () => {
     input.select();
     document.execCommand('copy');
     document.body.removeChild(input);
-    document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML = 'COPIED!';
+    setCopied(true);
   };
 
   return (
@@ -128,19 +125,15 @@ const SessionReserved = () => {
         <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
         <h1>SESSION BOOKED</h1>
         <h2>SUCCESSFULLY!</h2>
-        <button
-          className="ar-button double invite-a-friend-button"
-          onClick={copyShareInfoToClipboard}
-        >
-          <div className="ar-button-inner">
-            <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
-          </div>
-          <div className="double-drop"></div>
-        </button>
-        <p className="refer-a-new-friend-message">REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!</p>
-        <ArButton className="done-button" inverted link={ROUTES.MYACCOUNT}>
+        <PrimaryButton className="invite-a-friend-button" onClick={copyShareInfoToClipboard} double>
+          <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
+        </PrimaryButton>
+        <p className="refer-a-new-friend-message">
+          REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!
+        </p>
+        <PrimaryButton className="done-button" inverted to={ROUTES.MYACCOUNT}>
           DONE
-        </ArButton>
+        </PrimaryButton>
       </div>
     </SessionReservedContainer>
   );

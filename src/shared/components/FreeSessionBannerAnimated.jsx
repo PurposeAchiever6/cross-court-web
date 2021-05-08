@@ -1,13 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
 import useScrollPosition from '@react-hook/window-scroll';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 
 import ROUTES from 'shared/constants/routes';
-import ArButton from 'shared/components/ArButton';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const FreeSessionBannerAnimated = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -20,7 +19,7 @@ const FreeSessionBannerAnimated = () => {
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const freeSessionUsed = userInfo.freeSessionState === 'used';
   const freeSessionExpirationDate = userInfo.freeSessionExpirationDate;
-  const daysFromNow = input => {
+  const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
     let parts = (input || '').split('-');
     const firstDate = new Date();
@@ -70,12 +69,12 @@ const FreeSessionBannerAnimated = () => {
           scrollY={scrollY}
           scrollLimit={scrollLimit}
         >
-          <ArButton
+          <PrimaryButton
             className="first-session-free-btn animate__animated animate__bounce animate__delay-3s animate__slower animate__bounceInLeft"
-            link={bannerButtonTarget}
+            to={bannerButtonTarget}
           >
             {bannerText}
-          </ArButton>
+          </PrimaryButton>
         </div>
       )}
     </>

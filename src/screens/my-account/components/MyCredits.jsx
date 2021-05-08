@@ -1,7 +1,7 @@
 import React from 'react';
 import { number } from 'prop-types';
 import styled from 'styled-components';
-import ArButton from 'shared/components/ArButton';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const MyCreditsContainer = styled.div`
   padding: 2.5rem;
@@ -54,12 +54,12 @@ const MyCredits = ({ credits }) => {
           <span className="session-title-2">LEFT</span>
         </span>
       </div>
-      <ArButton className="buy-series-button" link="/series" inverted={false}>
+      <PrimaryButton className="buy-series-button" to="/series" w="100%">
         BUY SERIES
-      </ArButton>
-      <ArButton link="/purchase-history" inverted>
+      </PrimaryButton>
+      <PrimaryButton to="/purchase-history" inverted w="100%">
         PURCHASE HISTORY
-      </ArButton>
+      </PrimaryButton>
     </MyCreditsContainer>
   );
 };

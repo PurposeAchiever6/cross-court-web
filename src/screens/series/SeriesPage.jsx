@@ -24,7 +24,7 @@ const SeriesPage = () => {
   const { email } = useSelector(getUserProfile);
   const userProfile = useSelector(getUserProfile);
 
-  const selectProductHandler = product => {
+  const selectProductHandler = (product) => {
     dispatch(setSelectedProduct(product));
     if (isAuthenticated) {
       identify(email);
@@ -33,7 +33,7 @@ const SeriesPage = () => {
     history.push(ROUTES.PAYMENTS);
   };
 
-  const showAnimation = function() {
+  const showAnimation = function () {
     return (
       userProfile.credits === 0 &&
       window.localStorage.getItem('previousPage').indexOf('session-') !== -1
@@ -46,7 +46,7 @@ const SeriesPage = () => {
     if (showAnimation()) {
       document.body.setAttribute('data-page', 'no-session-credits');
     }
-  }, [dispatch]);
+  });
 
   if (isLoading) {
     return <Loading />;

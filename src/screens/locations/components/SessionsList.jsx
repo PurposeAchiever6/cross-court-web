@@ -16,7 +16,7 @@ import {
   formatSessionDate,
 } from 'shared/utils/date';
 import { getUserProfile } from 'screens/my-account/reducer';
-import ArButton from 'shared/components/ArButton';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const SessionsListContainer = styled.div`
   display: flex;
@@ -89,9 +89,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   if (isEmpty(sortedSessions)) {
     return (
       <SessionsListContainer>
-        <div className="no-sessions-container">
-          NO SESSIONS SCHEDULED FOR THIS DATE
-        </div>
+        <div className="no-sessions-container">NO SESSIONS SCHEDULED FOR THIS DATE</div>
       </SessionsListContainer>
     );
   }
@@ -108,17 +106,22 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           let button;
           if (reserved || past) {
             button = (
-              <ArButton link={`/session/${id}/${URLdate}`} inverted>
+              <PrimaryButton to={`/session/${id}/${URLdate}`} inverted>
                 SEE DETAILS
-              </ArButton>
+              </PrimaryButton>
             );
           } else if (full) {
-            button = <ArButton link={mailInfo}>JOIN WAITLIST</ArButton>;
+            button = <PrimaryButton to={mailInfo}>JOIN WAITLIST</PrimaryButton>;
           } else {
-            button = <ArButton link={`/session/${id}/${URLdate}`}>RESERVE</ArButton>;
+            button = <PrimaryButton to={`/session/${id}/${URLdate}`}>RESERVE</PrimaryButton>;
           }
           return (
-            <div className={'session-list-item-container' + (past ? ' past' : '')  + (full ? ' full' : '')} key={id}>
+            <div
+              className={
+                'session-list-item-container' + (past ? ' past' : '') + (full ? ' full' : '')
+              }
+              key={id}
+            >
               <div className="text-container">
                 <div className="time">{hourRange(time)}</div>
                 <div className="location">{location.name}</div>
@@ -127,7 +130,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
               <div className="status-container">
                 {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && (
                   <div className="spots-left-container">
-                    <img className="triangle" src={FewSessionsLeftTriangle} />
+                    <img alt="" className="triangle" src={FewSessionsLeftTriangle} />
                     <div className="spots-left">{fewSpotsLeftText}</div>
                   </div>
                 )}

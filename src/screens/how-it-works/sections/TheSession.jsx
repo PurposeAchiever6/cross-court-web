@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
-import ArButton from 'shared/components/ArButton';
 
 import oneHourIcon from 'shared/images/1-hour.png';
 import premiumFacilityIcon from 'shared/images/premium-facility.png';
@@ -10,6 +9,7 @@ import fifteenPlayerLimitIcon from 'shared/images/15-player-limit.png';
 import equipmentProvidedIcon from 'shared/images/equipment-provided.png';
 import sessionOfficialIcon from 'shared/images/session-official.png';
 import hypeSoundtracksIcon from 'shared/images/hype-soundtracks.png';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const Section = styled.section`
   .text {
@@ -32,7 +32,7 @@ const Section = styled.section`
   }
 `;
 
-const TheSession = props => (
+const TheSession = (props) => (
   <Section className="the-session" {...props}>
     <div className="boxes">
       <div className="boxes-item">
@@ -97,9 +97,9 @@ const TheSession = props => (
       </div>
     </div>
     <section className="button-wrapper">
-      <ArButton className="see-schedule-button" link={ROUTES.LOCATIONS} double={false}>
+      <PrimaryButton className="see-schedule-button" to={ROUTES.LOCATIONS}>
         SEE SCHEDULE
-      </ArButton>
+      </PrimaryButton>
     </section>
   </Section>
 );

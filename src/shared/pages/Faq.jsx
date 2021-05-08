@@ -1,3 +1,5 @@
+// es-lint-ignore jsx-a11y/anchor-is-valid
+
 import React from 'react';
 
 const Faq = () => {

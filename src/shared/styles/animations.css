@@ -1,0 +1,44 @@
+/* ======= HOMEPAGE ======= */
+
+body .crosscourt-big-title.anim1,
+body .crosscourt-big-title.anim20 {
+  opacity: 0.1;
+}
+body .crosscourt-big-title.anim2,
+body .crosscourt-big-title.anim19 {
+  opacity: 0.2;
+}
+body .crosscourt-big-title.anim3,
+body .crosscourt-big-title.anim18 {
+  opacity: 0.3;
+}
+body .crosscourt-big-title.anim4,
+body .crosscourt-big-title.anim17 {
+  opacity: 0.4;
+}
+body .crosscourt-big-title.anim5,
+body .crosscourt-big-title.anim16 {
+  opacity: 0.5;
+}
+body .crosscourt-big-title.anim6,
+body .crosscourt-big-title.anim15 {
+  opacity: 0.6;
+}
+body .crosscourt-big-title.anim7,
+body .crosscourt-big-title.anim14 {
+  opacity: 0.7;
+}
+body .crosscourt-big-title.anim8,
+body .crosscourt-big-title.anim13 {
+  opacity: 0.8;
+}
+body .crosscourt-big-title.anim9,
+body .crosscourt-big-title.anim12 {
+  opacity: 0.9;
+}
+body .crosscourt-big-title.anim10,
+body .crosscourt-big-title.anim11 {
+  opacity: 1;
+}
+
+/* ======= END HOMEPAGE ======= */

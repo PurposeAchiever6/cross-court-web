@@ -3,7 +3,7 @@ import { number } from 'prop-types';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
-import ArButton from 'shared/components/ArButton';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const MyCreditsContainer = styled.div`
   padding: 1rem;
@@ -64,10 +64,12 @@ const MyCredits = ({ credits }) => (
       </span>
     </div>
     <div className="links">
-      <ArButton className="buy-series-btn" link={ROUTES.SERIES}>
+      <PrimaryButton className="buy-series-btn" to={ROUTES.SERIES} w="100%">
         BUY SERIES
-      </ArButton>
-      <ArButton link={ROUTES.PURCHASEHISTORY}>PURCHASE HISTORY</ArButton>
+      </PrimaryButton>
+      <PrimaryButton to={ROUTES.PURCHASEHISTORY} w="100%">
+        PURCHASE HISTORY
+      </PrimaryButton>
     </div>
   </MyCreditsContainer>
 );

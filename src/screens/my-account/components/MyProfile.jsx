@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { object, bool } from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import EditProfileForm from './EditProfileForm';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const MyProfileContainer = styled.div`
   position: relative;
@@ -33,6 +34,9 @@ const MyProfileContainer = styled.div`
   svg {
     font-size: 1rem;
   }
+  .referral-code-hidden {
+    opacity: 0;
+  }
   .detail-row {
     margin-bottom: 2rem;
     display: flex;
@@ -52,13 +56,20 @@ const MyProfileContainer = styled.div`
 const MyProfile = ({ profile, showTitle = true }) => {
   const dispatch = useDispatch();
 
-  const editProfileAction = values => dispatch(editProfileInit(values));
+  const [copied, setCopied] = useState(false);
+  const editProfileAction = (values) => dispatch(editProfileInit(values));
   const showEditProfileAction = () => dispatch(showEditProfile());
   const editProfileLoading = useSelector(getEditProfileLoading);
   const showEditProfileForm = useSelector(getShowEditProfile);
-  const shareText = 'Your first Crosscourt session\'s free! Use my link to sign up.';
+  const shareText = "Your first Crosscourt session's free! Use my link to sign up.";
   const shareUrl = `${window.location.origin}/?referralCode=${profile.referralCode}`;
   const shareTextAndUrl = `${shareText} ${shareUrl}`;
+
+  const handleCopy = () => {
+    document.querySelector('.referral-code-hidden').select();
+    document.execCommand('copy');
+    setCopied(true);
+  };
 
   return (
     <MyProfileContainer className="my-profile">
@@ -91,30 +102,11 @@ const MyProfile = ({ profile, showTitle = true }) => {
           </div>
           <div className="detail-row">
             <span className="title">REFER A FRIEND</span>
-            <input
-              readonly={true}
-              className="referral-code"
-              value={shareUrl}
-            />
-            <input
-              readonly={true}
-              className="referral-code-long"
-              value={shareTextAndUrl}
-            />
-            <button
-              className="ar-button invite-a-friend-button"
-              onClick={e => {
-                let selector = window.innerWidth < 992 ? 'mobile' : 'desktop';
-                document.querySelector('.my-account-' + selector + ' .referral-code-long').select();
-                document.execCommand('copy');
-                document.querySelector('.my-account-' + selector + ' .invite-a-friend-button .ar-button-inner').innerHTML  = 'COPIED!';
-              }}
-            >
-              <div className="ar-button-inner">
-                <FontAwesomeIcon icon={faExternalLinkAlt} /> COPY CODE
-              </div>
-              <div className="double-drop"></div>
-            </button>
+            <input readOnly className="referral-code" value={shareUrl} />
+            <PrimaryButton className="invite-a-friend-button" onClick={handleCopy} double w="100%">
+              <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'COPY CODE'}
+            </PrimaryButton>
+            <input readOnly className="referral-code-hidden" value={shareTextAndUrl} />
           </div>
         </>
       )}

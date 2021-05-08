@@ -10,7 +10,7 @@ import { logoutInit } from 'screens/auth/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import colors from 'shared/styles/constants';
-import SecondaryButton from 'shared/components/buttons/SecondaryButton';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const Nav = styled.nav`
   display: flex;
@@ -137,9 +137,9 @@ const SidebarMenu = ({ menuToggler }) => {
           </AlternativeButton>
         </Link>
       )}
-      <Link to={ROUTES.LOCATIONS} onClick={menuToggler}>
-        <SecondaryButton>BOOK SESSION</SecondaryButton>
-      </Link>
+      <PrimaryButton inverted bg="transparent" to={ROUTES.LOCATIONS} onClick={menuToggler}>
+        BOOK SESSION
+      </PrimaryButton>
     </Nav>
   );
 };

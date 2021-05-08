@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { isNil, equals } from 'ramda';
 import PropTypes from 'prop-types';
 
-import Button from 'shared/components/Button';
 import AlternativeButton from 'shared/components/AlternativeButton';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { isPast, formatSessionTime, formatSessionDate } from 'shared/utils/date';
@@ -15,6 +14,7 @@ import { getSessionDate } from '../reducer';
 import { initialLoadInit } from 'screens/payments/actionCreators';
 import { getAvailableCards } from 'screens/payments/reducer';
 import ROUTES from 'shared/constants/routes';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const ReserveButton = ({
   reserveSessionAction,
@@ -57,8 +57,9 @@ const ReserveButton = ({
         );
       }
       return (
-        <Button
-          className="ar-button double reserve-btn"
+        <PrimaryButton
+          double
+          className="reserve-btn"
           onClick={() => {
             if (!availableCards.length && isFSFFlow) {
               window.localStorage.setItem('redirect', window.location.pathname);
@@ -73,9 +74,8 @@ const ReserveButton = ({
           }}
           disabled={isPast(sessionDate)}
         >
-          <div className="ar-button-inner">CONFIRM RESERVATION</div>
-          <div className="double-drop"></div>
-        </Button>
+          CONFIRM RESERVATION
+        </PrimaryButton>
       );
     }
 
@@ -84,24 +84,24 @@ const ReserveButton = ({
     }
   } else {
     return (
-      <Button
-        className="ar-button reserve-btn inverted double"
+      <PrimaryButton
+        inverted
+        double
+        className="reserve-btn"
         onClick={() => {
           window.localStorage.setItem('redirect', window.location.pathname);
           history.push(ROUTES.SIGNUP);
         }}
       >
-        <div className="ar-button-inner">SIGN UP</div>
-        <div className="double-drop"></div>
-      </Button>
+        SIGN UP
+      </PrimaryButton>
     );
   }
 
   return (
-    <Button className="ar-button reserve-btn inverted double" onClick={signupBookSessionAction}>
-      <div className="ar-button-inner">CONFIRM RESERVATION</div>
-      <div className="double-drop"></div>
-    </Button>
+    <PrimaryButton inverted double className="reserve-btn" onClick={signupBookSessionAction}>
+      CONFIRM RESERVATION
+    </PrimaryButton>
   );
 };
 

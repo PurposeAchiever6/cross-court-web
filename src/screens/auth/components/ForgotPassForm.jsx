@@ -8,9 +8,8 @@ import { string, func, bool } from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
-import Spinner from 'shared/components/Spinner';
-import Button from 'shared/components/Button';
 import colors from 'shared/styles/constants';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const ForgotPassFormContainer = styled.div`
   display: flex;
@@ -103,7 +102,7 @@ const ForgotPassForm = ({ error, forgotPassHandler, isLoading }) => (
       validateOnChange={false}
       validateOnBlur={false}
       initialValues={initialValues}
-      onSubmit={values => {
+      onSubmit={(values) => {
         forgotPassHandler({ ...values });
       }}
       validationSchema={validationSchema}
@@ -117,9 +116,9 @@ const ForgotPassForm = ({ error, forgotPassHandler, isLoading }) => (
               <InputTextField labelText="Email" name="email" placeholder="example@crosscourt.com" />
             </div>
             {!isEmpty(error) && <div className="error-container"> {error}</div>}
-            <Button className="ar-button" type="submit" disabled={isLoading}>
-              <div className="ar-button-inner">{!isLoading ? 'RESET PASSWORD' : <Spinner />}</div>
-            </Button>
+            <PrimaryButton type="submit" loading={isLoading} w="100%">
+              RESET PASSWORD
+            </PrimaryButton>
             <span className="cancel">
               <Link to={ROUTES.LOGIN}>
                 <strong>Cancel</strong>

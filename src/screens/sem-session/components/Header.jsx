@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
-import Button from 'shared/components/Button';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import BackButton from 'shared/components/BackButton';
 import OutlinedButton from 'shared/components/OutlinedButton';
 import RightArrowSvg from 'shared/components/svg/RightArrowSvg';
@@ -120,9 +120,9 @@ const Header = ({
           <p className="bold">{formatSessionTime(time)}</p>
           <p className="date">{shortSessionDate(date)}</p>
         </div>
-        <Button className="players-list-btn" onClick={showPlayersModal}>
+        <PrimaryButton className="players-list-btn" onClick={showPlayersModal}>
           Players List
-        </Button>
+        </PrimaryButton>
       </ImageContainer>
       <SessionsContainer sessions={todaySessions}>
         <div>

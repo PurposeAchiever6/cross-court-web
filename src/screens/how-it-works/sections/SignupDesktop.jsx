@@ -3,11 +3,10 @@ import React from 'react';
 import ROUTES from 'shared/constants/routes';
 import Icon from 'shared/components/Icon';
 
-import ArButton from 'shared/components/ArButton';
-
 import onYourTimeIcon from 'shared/images/on-your-time.png';
 import premiumFacilityIcon from 'shared/images/premium-facility.png';
 import Icons from '../components/Icons';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 function Signup() {
   return (
@@ -38,9 +37,9 @@ function Signup() {
           with friends. Bring your shoes, some water, a towel, and a ball if you have 'em.
         </p>
         <div className="buttons-container">
-          <ArButton link={ROUTES.LOCATIONS} double inverted>
+          <PrimaryButton to={ROUTES.LOCATIONS} double inverted>
             FIND A SESSION
-          </ArButton>
+          </PrimaryButton>
         </div>
       </section>
     </section>

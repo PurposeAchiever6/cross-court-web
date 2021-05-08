@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import DesktopMenu from 'cheeseburger-menu';
 import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
-import ArButton from 'shared/components/ArButton';
 import MenuSvg from 'shared/components/svg/MenuSvg';
 import MenuSvgAlt from 'shared/components/svg/MenuSvgAlt';
 import MenuSvgNavOpen from 'shared/components/svg/MenuSvgNavOpen';
@@ -18,6 +17,7 @@ import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 
 import { initialLoadInit } from 'screens/my-account/actionCreators';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const Container = styled.div`
   z-index: 10;
@@ -95,7 +95,7 @@ function Header() {
   const freeSessionUsed =
     userInfo.freeSessionState === 'used' || userInfo.freeSessionState === 'claimed';
   const freeSessionExpirationDate = userInfo.freeSessionExpirationDate;
-  const daysFromNow = input => {
+  const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
     let parts = (input || '').split('-');
     const firstDate = new Date();
@@ -178,9 +178,9 @@ function Header() {
             <LogoSvgNavOpen className="logo-icon-nav-open" />
           </Link>
         </div>
-        <ArButton className="fsf-button" link={bannerButtonTarget}>
+        <PrimaryButton className="fsf-button" to={bannerButtonTarget}>
           {bannerText()}
-        </ArButton>
+        </PrimaryButton>
       </div>
     </Container>
   );

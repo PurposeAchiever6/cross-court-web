@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams, useHistory } from 'react-router-dom';
 import { isNil } from 'ramda';
@@ -13,7 +13,6 @@ import { longSessionDate, hourRange } from 'shared/utils/date';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import AlternativeButton from 'shared/components/AlternativeButton';
 import SessionLevel from 'shared/components/SessionLevel';
 import LEVELS from 'shared/constants/levels';
 
@@ -39,8 +38,9 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { getSessionDate } from 'screens/sessions/reducer';
 import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const SessionsPageContainer = styled.div`
   display: flex;
@@ -239,6 +239,7 @@ const SessionsPage = () => {
   const referralCode = window.localStorage.getItem('referralCode');
   const dispatch = useDispatch();
   const history = useHistory();
+  const [copied, setCopied] = useState(false);
 
   const isPageLoading = useSelector(getPageLoading);
   const sessionInfo = useSelector(getSessionInfo);
@@ -310,7 +311,7 @@ const SessionsPage = () => {
     input.select();
     document.execCommand('copy');
     document.body.removeChild(input);
-    document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML = 'COPIED!';
+    setCopied(true);
   };
 
   return isPageLoading ? (
@@ -331,15 +332,10 @@ const SessionsPage = () => {
         </h2>
       </div>
       <div className="session-details-container">
-        <Carousel
-          infiniteLoop={true}
-          showArrows={true}
-          showStatus={false}
-          showThumbs={false}
-        >
+        <Carousel infiniteLoop={true} showArrows={true} showStatus={false} showThumbs={false}>
           {sessionInfo.location.imageUrls.map((image, index) => (
             <div>
-              <img src={image} alt={`Image ${index + 1}`} />
+              <img src={image} alt="" />
             </div>
           ))}
         </Carousel>
@@ -409,15 +405,14 @@ const SessionsPage = () => {
                   <p className="refer-a-new-friend-message">
                     REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!
                   </p>
-                  <div
-                    className="ar-button double invite-a-friend-button"
+                  <PrimaryButton
+                    double
+                    className="invite-a-friend-button"
                     onClick={copyShareInfoToClipboard}
                   >
-                    <div className="ar-button-inner">
-                      <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
-                    </div>
-                    <div className="double-drop"></div>
-                  </div>
+                    <FontAwesomeIcon icon={faExternalLinkAlt} />
+                    {copied ? 'COPIED' : 'INVITE A FRIEND'}
+                  </PrimaryButton>
                 </div>
               )}
 
@@ -440,27 +435,26 @@ const SessionsPage = () => {
                 (!sessionInfo.userSession ||
                   (sessionInfo.userSession &&
                     ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)) && (
-                  <AlternativeButton
-                    className="buy-btn ar-button double"
+                  <PrimaryButton
+                    double
+                    className="buy-btn"
                     onClick={() => {
                       window.localStorage.setItem('redirect', window.location.pathname);
                       history.push(ROUTES.SERIES);
                     }}
                   >
-                    <div className="ar-button-inner">CONFIRM RESERVATION</div>
-                    <div className="double-drop"></div>
-                  </AlternativeButton>
+                    CONFIRM RESERVATION
+                  </PrimaryButton>
                 )}
               {sessionInfo && (isSessionComplete || isSessionFull) && (
-                <AlternativeButton
-                  className="buy-btn ar-button double"
+                <PrimaryButton
+                  className="buy-btn"
                   onClick={() => {
                     history.push(ROUTES.LOCATIONS);
                   }}
                 >
-                  <div className="ar-button-inner">FIND NEW SESSION</div>
-                  <div className="double-drop"></div>
-                </AlternativeButton>
+                  FIND NEW SESSION
+                </PrimaryButton>
               )}
             </div>
           </div>

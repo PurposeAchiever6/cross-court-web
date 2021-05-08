@@ -5,11 +5,11 @@ import currency from 'currency.js';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { purchaseFormattedDate } from 'shared/utils/date';
-import Button from 'shared/components/Button';
 import CCIcon from 'shared/components/CCIcon';
 import { getCheckoutLoading } from '../reducer';
 import { clearDiscount } from '../actionCreators';
 import PromoCode from './PromoCode';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const PurchaseDetailsContainer = styled.div`
   .purchase-details-box {
@@ -220,9 +220,9 @@ const PurchaseDetails = ({ productDetails, paymentDetails, createPurchaseHandler
         </div>
       </div>
       <div className="btn-container">
-        <Button className="ar-button" onClick={checkoutHandler} loading={isLoading}>
-          <div className="ar-button-inner">CHECKOUT</div>
-        </Button>
+        <PrimaryButton onClick={checkoutHandler} loading={isLoading}>
+          CHECKOUT
+        </PrimaryButton>
       </div>
     </PurchaseDetailsContainer>
   );

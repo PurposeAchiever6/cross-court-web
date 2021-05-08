@@ -5,6 +5,8 @@ import currency from 'currency.js';
 
 import PurpleBg from '../images/circle-purple-bg.png';
 
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+
 const PlansContainer = styled.div`
   .plans-container {
     margin: 0 6rem;
@@ -101,20 +103,20 @@ const PlanContainer = styled.div`
 `;
 
 const Plans = ({ selectProductHandler, availableProducts }) => {
-  const formatPrice = price =>
+  const formatPrice = (price) =>
     currency(price, {
       symbol: '$',
       precision: 0,
     });
 
-  const products = availableProducts.filter(product => product.name !== 'Free Session');
+  const products = availableProducts.filter((product) => product.name !== 'Free Session');
   return (
     <PlansContainer className="series-plans-container">
       <section className="title-block">
         <p className="heading-sprite"></p>
       </section>
       <div className="plans-container">
-        {products.map(product => {
+        {products.map((product) => {
           const sessionLabel = `${product.credits} ${product.credits > 1 ? 'SESSIONS' : 'SESSION'}`;
           const sessionPrice = `$${formatPrice(product.price)}`;
           const sessionPPS = `$${formatPrice(product.price / product.credits)}/SESSION`;
@@ -123,10 +125,10 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
           const bestValue = sessionLabel === '10 SESSIONS';
 
           return (
-            <PlanContainer className="plan-container" key={product.stripeId} product={product}>
+            <PlanContainer key={product.id} className="plan-container" product={product}>
               <div
                 className="click-block"
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   selectProductHandler(product);
                 }}
@@ -151,9 +153,9 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
                   <div className="session-pps">{sessionPPS}</div>
                 </div>
                 <div className="button-container">
-                  <div className="ar-button inverted">
-                    <div className="ar-button-inner">{buyLabel}</div>
-                  </div>
+                  <PrimaryButton inverted w="100%">
+                    {buyLabel}
+                  </PrimaryButton>
                 </div>
               </div>
             </PlanContainer>

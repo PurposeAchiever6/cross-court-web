@@ -7,8 +7,8 @@ import {
   CardCvcElement,
 } from 'react-stripe-elements';
 import styled from 'styled-components';
-import Button from 'shared/components/Button';
 import { getAddCardLoading } from '../reducer';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const AddCardContainer = styled.div`
   h2 {
@@ -88,7 +88,7 @@ const AddCardContainer = styled.div`
 
 const AddCard = ({ stripe, elements, addCardHandler }) => {
   const addCardLoading = useSelector(getAddCardLoading);
-  const submitHandler = e => {
+  const submitHandler = (e) => {
     e.preventDefault();
 
     const cardElement = elements.getElement('cardNumber');
@@ -116,14 +116,9 @@ const AddCard = ({ stripe, elements, addCardHandler }) => {
         </div>
       </div>
       <div className="buttons-container">
-        <Button
-          className="ar-button"
-          onClick={submitHandler}
-          loading={addCardLoading}
-          disabled={addCardLoading}
-        >
-          <div className="ar-button-inner">ADD</div>
-        </Button>
+        <PrimaryButton onClick={submitHandler} loading={addCardLoading}>
+          ADD
+        </PrimaryButton>
       </div>
     </AddCardContainer>
   );

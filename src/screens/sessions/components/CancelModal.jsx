@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from 'shared/components/Button';
 import PropTypes from 'prop-types';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const CancelModalContainer = styled.div`
   display: flex;
@@ -56,9 +56,9 @@ export const CancelModal = ({ closeHandler, cancelSessionAction, inCancellationT
         ? '1 credit will be refunded to your account'
         : 'The credit will not be refunded'}
     </strong>
-    <Button className="ar-button inverted" onClick={cancelSessionAction}>
-      <div className="ar-button-inner">CANCEL RESERVATION</div>
-    </Button>
+    <PrimaryButton onClick={cancelSessionAction} inverted>
+      CANCEL RESERVATION
+    </PrimaryButton>
     <span className="link" onClick={closeHandler}>
       Nevermind
     </span>

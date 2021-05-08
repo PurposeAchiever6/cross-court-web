@@ -7,7 +7,7 @@ import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 
 import ROUTES from 'shared/constants/routes';
-import ArButton from 'shared/components/ArButton';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const FreeSessionBanner = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -20,7 +20,7 @@ const FreeSessionBanner = () => {
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const freeSessionUsed = userInfo.freeSessionState === 'used';
   const freeSessionExpirationDate = userInfo.freeSessionExpirationDate;
-  const daysFromNow = input => {
+  const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
     let parts = (input || '').split('-');
     const firstDate = new Date();
@@ -70,9 +70,9 @@ const FreeSessionBanner = () => {
           scrollY={scrollY}
           scrollLimit={scrollLimit}
         >
-          <ArButton className="first-session-free-btn" link={bannerButtonTarget}>
+          <PrimaryButton className="first-session-free-btn" to={bannerButtonTarget}>
             {bannerText}
-          </ArButton>
+          </PrimaryButton>
         </div>
       )}
     </>

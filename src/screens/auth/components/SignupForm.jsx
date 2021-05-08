@@ -8,10 +8,9 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
 import InputPhoneField from 'shared/components/InputPhoneField';
-import Spinner from 'shared/components/Spinner';
-import Button from 'shared/components/Button';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
 import { phoneRegExp, zipcodeRegExp } from 'shared/utils/helpers';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const SignupFormContainer = styled.div`
   display: flex;
@@ -162,9 +161,9 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
               I agree to the <Link to={ROUTES.TERMS}>terms and conditions</Link>
             </InputCheckboxField>
           </div>
-          <Button type="submit" disabled={isLoading} className="ar-button">
-            <div className="ar-button-inner">{!isLoading ? 'SIGN UP' : <Spinner />}</div>
-          </Button>
+          <PrimaryButton loading={isLoading} w="100%">
+            SIGN UP
+          </PrimaryButton>
 
           <div className="login">
             <span>

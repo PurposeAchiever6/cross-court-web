@@ -3,11 +3,11 @@ import React from 'react';
 import ROUTES from 'shared/constants/routes';
 import Icon from 'shared/components/Icon';
 
-import ArButton from 'shared/components/ArButton';
 import Icons from '../components/Icons';
 
 import catchASweatIcon from 'shared/images/catch-a-sweat-2.png';
 import secureTheWIcon from 'shared/images/secure-the-w-2.png';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 function SweatDesktop() {
   return (
@@ -42,9 +42,9 @@ function SweatDesktop() {
           3 games in a row to ensure you leave dripping in sweat.
         </p>
         <div className="buttons-container">
-          <ArButton link={ROUTES.LOCATIONS} double>
+          <PrimaryButton to={ROUTES.LOCATIONS} double>
             LET&apos;S RIDE
-          </ArButton>
+          </PrimaryButton>
         </div>
       </section>
     </section>

@@ -6,9 +6,8 @@ import PropTypes from 'prop-types';
 
 import InputTextField from 'shared/components/InputTextField';
 import InputPhoneField from 'shared/components/InputPhoneField';
-import Spinner from 'shared/components/Spinner';
-import Button from 'shared/components/Button';
 import { formatPhoneNumber, phoneRegExp } from 'shared/utils/helpers';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const EditProfileFormContainer = styled.div`
   form {
@@ -42,7 +41,7 @@ const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('Required'),
   lastName: Yup.string().required('Required'),
   phoneNumber: Yup.string()
-    .transform(value => value.replace(/\D/g, ''))
+    .transform((value) => value.replace(/\D/g, ''))
     .matches(phoneRegExp, "That doesn't look like a phone number")
     .required('Required'),
 });
@@ -61,12 +60,12 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
         validateOnBlur={false}
         initialValues={initialValues}
         enableReinitialize
-        onSubmit={values => {
+        onSubmit={(values) => {
           editProfileAction(values);
         }}
         validationSchema={validationSchema}
       >
-        {props => {
+        {(props) => {
           const { errors } = props;
           return (
             <Form className="form">
@@ -97,15 +96,9 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
                 />
               </div>
               <div className="button-container">
-                <Button
-                  className="ar-button save-button"
-                  type="submit"
-                  disabled={editProfileLoading}
-                >
-                  <div className="ar-button-inner">
-                    {!editProfileLoading ? 'SAVE' : <Spinner />}
-                  </div>
-                </Button>
+                <PrimaryButton className="save-button" type="submit" loading={editProfileLoading}>
+                  SAVE
+                </PrimaryButton>
               </div>
             </Form>
           );

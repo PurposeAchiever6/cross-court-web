@@ -5,15 +5,14 @@ import { isEmpty } from 'ramda';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from 'shared/components/Button';
 import CCIcon from 'shared/components/CCIcon';
 import { useHistory } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
-import ArButton from 'shared/components/ArButton';
 import { deleteCard, setSelectedCard } from '../actionCreators';
 
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const PaymentMethodsContainer = styled.div`
   width: 35%;
@@ -158,8 +157,8 @@ const PaymentMethods = ({ availableCards }) => {
 
   const [selectedCard, setSelectedCard2] = useState('');
 
-  const deleteCardHandler = paymentMethodId => dispatch(deleteCard(paymentMethodId));
-  const selectedCardHandler = paymentMethod => {
+  const deleteCardHandler = (paymentMethodId) => dispatch(deleteCard(paymentMethodId));
+  const selectedCardHandler = (paymentMethod) => {
     dispatch(setSelectedCard(paymentMethod));
     setSelectedCard2(paymentMethod.id);
   };
@@ -190,7 +189,7 @@ const PaymentMethods = ({ availableCards }) => {
         {isEmpty(availableCards) ? (
           <div className="empty-message">There are no payment methods added yet.</div>
         ) : (
-          availableCards.map(payment => {
+          availableCards.map((payment) => {
             const isCardSelected = selectedCard === payment.id;
             return (
               <div className="credit-card-container" key={payment.id}>
@@ -223,12 +222,12 @@ const PaymentMethods = ({ availableCards }) => {
         )}
       </div>
       <div className="buttons-container">
-        <ArButton link={ROUTES.PAYMENTSADDCARD} inverted>
+        <PrimaryButton to={ROUTES.PAYMENTSADDCARD} inverted>
           ADD NEW CARD
-        </ArButton>
-        <Button className="ar-button" disabled={isEmpty(selectedCard)} onClick={nextHandler}>
-          <div className="ar-button-inner">NEXT</div>
-        </Button>
+        </PrimaryButton>
+        <PrimaryButton disabled={isEmpty(selectedCard)} onClick={nextHandler}>
+          NEXT
+        </PrimaryButton>
       </div>
     </PaymentMethodsContainer>
   );

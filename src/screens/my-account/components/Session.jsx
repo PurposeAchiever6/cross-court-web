@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { equals } from 'ramda';
 
-import ArButton from 'shared/components/ArButton';
 import colors from 'shared/styles/constants';
 import { urlFormattedDate, shortSessionDate, hourRange } from 'shared/utils/date';
 import CheckCircle from 'shared/components/svg/CheckCircleSvg';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const SessionContainer = styled.div`
   display: flex;
@@ -188,19 +188,19 @@ const Session = ({
           <p className="location">{locationName}</p>
           {isSem && inStartTime ? (
             <div className="buttons-container">
-              <ArButton link={`/sem/session/${sessionId}/${urlFormattedDate(date)}`}>
+              <PrimaryButton to={`/sem/session/${sessionId}/${urlFormattedDate(date)}`}>
                 START SESSION
-              </ArButton>
+              </PrimaryButton>
             </div>
           ) : (
             <div className="buttons-container">
-              <ArButton
+              <PrimaryButton
                 className="see-details-button"
-                link={`/session/${sessionId}/${urlFormattedDate(date)}`}
+                to={`/session/${sessionId}/${urlFormattedDate(date)}`}
                 inverted={past}
               >
                 SEE DETAILS
-              </ArButton>
+              </PrimaryButton>
             </div>
           )}
         </div>
