@@ -26,12 +26,7 @@ export function* createPurchaseFlow() {
     const selectedCard = yield select(getSelectedCard);
     const promoCode = yield select(getPromoCode);
 
-    yield call(
-      checkoutService.createPurchase,
-      selectedProduct.stripeId,
-      selectedCard.id,
-      promoCode
-    );
+    yield call(checkoutService.createPurchase, selectedProduct.id, selectedCard.id, promoCode);
     yield put({
       type: CREATE_PURCHASE_SUCCESS,
     });
