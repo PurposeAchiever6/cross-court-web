@@ -96,7 +96,6 @@ const HomePage = () => {
       <Modal isOpen={shouldShowSurveyModal}>
         <SurveyModal isOpen={shouldShowSurveyModal} />
       </Modal>
-      )}
     </>
   );
 };

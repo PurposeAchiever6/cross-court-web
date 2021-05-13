@@ -106,7 +106,7 @@ const PromoCode = () => {
             {isPromoCodeValid ? (
               <span className="success-msg">DISCOUNT ADDED!</span>
             ) : (
-              <PrimaryButton type="submit" type="submit" loading={isLoading}>
+              <PrimaryButton type="submit" loading={isLoading}>
                 USE CODE
               </PrimaryButton>
             )}

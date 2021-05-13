@@ -53,6 +53,7 @@ const Section = styled.section`
         margin-top: 50px;
       }
       .first-time-button {
+        margin-top: 50px;
         margin-bottom: 20px;
         width: 100%;
         @media (min-width: 992px) {
