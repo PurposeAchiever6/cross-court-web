@@ -10,9 +10,15 @@ import { initialLoad, setSelectedProduct } from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
 
 import Plans from './components/Plans';
-import Series from './components/Series';
 
 import NoSessionCredits from './components/NoSessionCredits';
+import styled from 'styled-components';
+import colors from 'shared/styles/constants';
+
+const StyledPage = styled.div`
+  min-height: 100vh;
+  background-color: ${colors.brandBlack};
+`;
 
 const SeriesPage = () => {
   const dispatch = useDispatch();
@@ -42,7 +48,6 @@ const SeriesPage = () => {
 
   useEffect(() => {
     dispatch(initialLoad());
-
     if (showAnimation()) {
       document.body.setAttribute('data-page', 'no-session-credits');
     }
@@ -53,11 +58,10 @@ const SeriesPage = () => {
   }
 
   return (
-    <div>
+    <StyledPage>
       {showAnimation() && <NoSessionCredits />}
       <Plans selectProductHandler={selectProductHandler} availableProducts={availableProducts} />
-      <Series />
-    </div>
+    </StyledPage>
   );
 };
 

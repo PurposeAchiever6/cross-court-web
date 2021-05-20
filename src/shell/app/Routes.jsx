@@ -69,7 +69,7 @@ const AppWrapper = styled.div`
 const { body } = document;
 let keepScrolling = true;
 
-const setPageNameOnBodyClass = pathname => {
+const setPageNameOnBodyClass = (pathname) => {
   let pageName = '';
 
   if (pathname === '/') {
@@ -88,7 +88,7 @@ const setPageNameOnBodyClass = pathname => {
 const setScrollClasses = () => {
   const header = document.querySelector('.header');
   const mobile = window.innerWidth < 992;
-  const headerScrollLimit = mobile ? 50 : 50;//800;
+  const headerScrollLimit = mobile ? 50 : 50; //800;
 
   if (body.getAttribute('data-page') === 'home') {
     const bigTitle = document.querySelector('.crosscourt-big-title');
@@ -96,8 +96,26 @@ const setScrollClasses = () => {
     if (bigTitle) {
       let addClass = '';
       let animClasses = [
-        'anim1', 'anim2', 'anim3', 'anim4', 'anim5', 'anim6', 'anim7', 'anim8', 'anim9', 'anim10',
-        'anim11', 'anim12', 'anim13', 'anim14', 'anim15', 'anim16', 'anim17', 'anim18', 'anim19', 'anim20'
+        'anim1',
+        'anim2',
+        'anim3',
+        'anim4',
+        'anim5',
+        'anim6',
+        'anim7',
+        'anim8',
+        'anim9',
+        'anim10',
+        'anim11',
+        'anim12',
+        'anim13',
+        'anim14',
+        'anim15',
+        'anim16',
+        'anim17',
+        'anim18',
+        'anim19',
+        'anim20',
       ];
 
       if (window.scrollY < 100) {
@@ -147,18 +165,47 @@ const setScrollClasses = () => {
       if (addClass) {
         bigTitle.classList.add(addClass);
       }
-      bigTitle.classList.remove(...animClasses.filter(item => item !== addClass));
+      bigTitle.classList.remove(...animClasses.filter((item) => item !== addClass));
     }
-  } else if (body.getAttribute('data-page') === 'free-session-credit-added' ||
-    (body.getAttribute('data-page') === 'locations' && window.location.search === '?testanimation')) {
+  } else if (
+    body.getAttribute('data-page') === 'free-session-credit-added' ||
+    (body.getAttribute('data-page') === 'locations' && window.location.search === '?testanimation')
+  ) {
     const bigTitle = document.querySelector('.free-session-credit-added .title');
 
     if (bigTitle && keepScrolling) {
       let addClass = '';
       let animClasses = [
-        'anim1', 'anim2', 'anim3', 'anim4', 'anim5', 'anim6', 'anim7', 'anim8', 'anim9', 'anim10',
-        'anim11', 'anim12', 'anim13', 'anim14', 'anim15', 'anim16', 'anim17', 'anim18', 'anim19', 'anim20',
-        'anim21', 'anim22', 'anim23', 'anim24', 'anim25', 'anim26', 'anim27', 'anim28', 'anim29', 'anim30'
+        'anim1',
+        'anim2',
+        'anim3',
+        'anim4',
+        'anim5',
+        'anim6',
+        'anim7',
+        'anim8',
+        'anim9',
+        'anim10',
+        'anim11',
+        'anim12',
+        'anim13',
+        'anim14',
+        'anim15',
+        'anim16',
+        'anim17',
+        'anim18',
+        'anim19',
+        'anim20',
+        'anim21',
+        'anim22',
+        'anim23',
+        'anim24',
+        'anim25',
+        'anim26',
+        'anim27',
+        'anim28',
+        'anim29',
+        'anim30',
       ];
       document.querySelector('.locations').classList.add('faded-out');
 
@@ -228,20 +275,20 @@ const setScrollClasses = () => {
 
         const redirectToSpecificSession = window.localStorage.getItem('redirect');
 
-        if (!redirectToSpecificSession)  {
-            document.querySelector('.locations').scrollIntoView({behavior: 'smooth'});
+        if (!redirectToSpecificSession) {
+          document.querySelector('.locations').scrollIntoView({ behavior: 'smooth' });
         }
 
-        window.setTimeout(function() {
+        window.setTimeout(function () {
           if (redirectToSpecificSession) {
             window.localStorage.removeItem('redirect');
             history.push(redirectToSpecificSession);
           } else {
             document.querySelector('.locations').classList.remove('faded-out');
             header.classList.add('scrolled');
-            window.setTimeout(function() {
+            window.setTimeout(function () {
               if (document.querySelector('.free-session-credit-added')) {
-                  document.querySelector('.free-session-credit-added').style.display = 'none';
+                document.querySelector('.free-session-credit-added').style.display = 'none';
               }
             }, 800);
           }
@@ -251,21 +298,48 @@ const setScrollClasses = () => {
       if (addClass) {
         bigTitle.classList.add(addClass);
       }
-      bigTitle.classList.remove(...animClasses.filter(item => item !== addClass));
+      bigTitle.classList.remove(...animClasses.filter((item) => item !== addClass));
     }
-  } else if (body.getAttribute('data-page') === 'no-session-credits' ||
-    (body.getAttribute('data-page') === 'series' && window.location.search === '?testanimation')) {
+  } else if (
+    body.getAttribute('data-page') === 'no-session-credits' ||
+    (body.getAttribute('data-page') === 'series' && window.location.search === '?testanimation')
+  ) {
     const bigTitle = document.querySelector('.no-session-credits .title');
 
     if (bigTitle && keepScrolling) {
       let addClass = '';
       let animClasses = [
-        'anim1', 'anim2', 'anim3', 'anim4', 'anim5', 'anim6', 'anim7', 'anim8', 'anim9', 'anim10',
-        'anim11', 'anim12', 'anim13', 'anim14', 'anim15', 'anim16', 'anim17', 'anim18', 'anim19', 'anim20',
-        'anim21', 'anim22', 'anim23', 'anim24', 'anim25', 'anim26', 'anim27', 'anim28', 'anim29', 'anim30'
+        'anim1',
+        'anim2',
+        'anim3',
+        'anim4',
+        'anim5',
+        'anim6',
+        'anim7',
+        'anim8',
+        'anim9',
+        'anim10',
+        'anim11',
+        'anim12',
+        'anim13',
+        'anim14',
+        'anim15',
+        'anim16',
+        'anim17',
+        'anim18',
+        'anim19',
+        'anim20',
+        'anim21',
+        'anim22',
+        'anim23',
+        'anim24',
+        'anim25',
+        'anim26',
+        'anim27',
+        'anim28',
+        'anim29',
+        'anim30',
       ];
-      document.querySelector('.series-plans-container').classList.add('faded-out');
-      document.querySelector('.series-series-container').classList.add('faded-out');
 
       if (window.scrollY < 20) {
       } else if (window.scrollY >= 20 && window.scrollY < 40) {
@@ -330,15 +404,12 @@ const setScrollClasses = () => {
         addClass = 'anim30';
         keepScrolling = false;
         document.querySelector('main').classList.add('animation-done');
-        document.querySelector('.series-plans-container').scrollIntoView({behavior: 'smooth'});
 
-        window.setTimeout(function() {
-          document.querySelector('.series-plans-container').classList.remove('faded-out');
-          document.querySelector('.series-series-container').classList.remove('faded-out');
+        window.setTimeout(function () {
           header.classList.add('scrolled');
-          window.setTimeout(function() {
+          window.setTimeout(function () {
             if (document.querySelector('.no-session-credits')) {
-                document.querySelector('.no-session-credits').style.display = 'none';
+              document.querySelector('.no-session-credits').style.display = 'none';
             }
           }, 800);
         }, 1000);
@@ -347,7 +418,7 @@ const setScrollClasses = () => {
       if (addClass) {
         bigTitle.classList.add(addClass);
       }
-      bigTitle.classList.remove(...animClasses.filter(item => item !== addClass));
+      bigTitle.classList.remove(...animClasses.filter((item) => item !== addClass));
     }
   }
 
@@ -361,12 +432,12 @@ const setScrollClasses = () => {
       header.classList.remove('scrolled');
     }
 
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       const video = document.querySelector('.video-player');
       const barMalik = document.querySelector('.bar-malik');
 
       if (video && barMalik) {
-        video.addEventListener('pause', function() {
+        video.addEventListener('pause', function () {
           video.classList.add('data-user-paused');
         });
 
@@ -376,7 +447,7 @@ const setScrollClasses = () => {
         };
 
         function callback(entries, observer) {
-          entries.forEach(entry => {
+          entries.forEach((entry) => {
             if (entry.target.className.indexOf('video-player') !== -1) {
               if (entry.intersectionRatio > 0) {
                 if (!video.classList.contains('data-user-paused')) {
@@ -389,18 +460,22 @@ const setScrollClasses = () => {
             } else if (entry.target.className.indexOf('bar-malik') !== -1) {
               if (entry.intersectionRatio > 0) {
                 if (!barMalik.classList.contains('animated')) {
-                  barMalik.querySelector('.bar-malik-image').classList.add(
-                    'animate__animated',
-                    'animate__bounce',
-                    'animate__slow',
-                    'animate__slideInLeft'
-                  );
-                  barMalik.querySelector('.info-box').classList.add(
-                    'animate__animated',
-                    'animate__bounce',
-                    'animate__slow',
-                    'animate__slideInRight'
-                  );
+                  barMalik
+                    .querySelector('.bar-malik-image')
+                    .classList.add(
+                      'animate__animated',
+                      'animate__bounce',
+                      'animate__slow',
+                      'animate__slideInLeft'
+                    );
+                  barMalik
+                    .querySelector('.info-box')
+                    .classList.add(
+                      'animate__animated',
+                      'animate__bounce',
+                      'animate__slow',
+                      'animate__slideInRight'
+                    );
                   barMalik.classList.add('animated');
                   window.observer.observe(document.querySelector('.bar-malik'));
                 }
@@ -416,13 +491,19 @@ const setScrollClasses = () => {
     }, 2000);
   } else if (
     (body.getAttribute('data-page') === 'free-session-credit-added' && keepScrolling) ||
-    (body.getAttribute('data-page') === 'locations' && window.location.search === '?testanimation' && keepScrolling)
+    (body.getAttribute('data-page') === 'locations' &&
+      window.location.search === '?testanimation' &&
+      keepScrolling)
   ) {
     header.classList.remove('scrolled');
   } else if (
     (body.getAttribute('data-page') === 'no-session-credits' && keepScrolling) ||
-    (body.getAttribute('data-page') === 'no-session-credits' && window.location.search === '?testanimation' && keepScrolling) ||
-    (body.getAttribute('data-page') === 'series' && window.location.search === '?testanimation' && keepScrolling)
+    (body.getAttribute('data-page') === 'no-session-credits' &&
+      window.location.search === '?testanimation' &&
+      keepScrolling) ||
+    (body.getAttribute('data-page') === 'series' &&
+      window.location.search === '?testanimation' &&
+      keepScrolling)
   ) {
     header.classList.remove('scrolled');
   } else {
@@ -433,7 +514,7 @@ const setScrollClasses = () => {
     }
   }
 
-  window.setTimeout(function() {
+  window.setTimeout(function () {
     const bottomBanner = document.querySelector('.banner-container');
 
     if (body.getAttribute('data-page') === 'how-it-works') {
@@ -442,7 +523,7 @@ const setScrollClasses = () => {
       if (
         seeScheduleButton &&
         !seeScheduleButton.classList.contains('done') &&
-        (window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 400)
+        window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 400
       ) {
         seeScheduleButton.classList.add(
           'animate__animated',
@@ -455,7 +536,7 @@ const setScrollClasses = () => {
     }
 
     if (bottomBanner) {
-      if ((window.innerHeight + window.pageYOffset) >= (document.body.offsetHeight - 200)) {
+      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 200) {
         bottomBanner.classList.add('scrolled-down');
       } else {
         bottomBanner.classList.remove('scrolled-down');
@@ -464,25 +545,25 @@ const setScrollClasses = () => {
   }, 100);
 };
 
-window.cookieAndSessionStorageHandler = function(isAuthenticated) {
+window.cookieAndSessionStorageHandler = function (isAuthenticated) {
   let search = window.location.search;
   let params = new URLSearchParams(search);
   let referralCode = params.get('referralCode');
 
   if (referralCode) {
-    window.localStorage.setItem('referralCode', referralCode)
+    window.localStorage.setItem('referralCode', referralCode);
   }
 
-  if (
-    isAuthenticated &&
-    window.localStorage.getItem('surveyLock') &&
-    window.location.pathname !== '/'
-  ) {
-    window.location.href = '/';
-  }
-}
+  // if (
+  //   isAuthenticated &&
+  //   window.localStorage.getItem('surveyLock') &&
+  //   window.location.pathname !== '/'
+  // ) {
+  //   window.location.href = '/';
+  // }
+};
 
-history.listen(location => {
+history.listen((location) => {
   ReactGA.set({ page: location.pathname }); // Update the user's current page
   ReactGA.pageview(location.pathname); // Record a pageview for the given page
 

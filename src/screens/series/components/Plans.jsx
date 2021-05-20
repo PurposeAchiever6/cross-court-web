@@ -3,102 +3,132 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import currency from 'currency.js';
 
-import PurpleBg from '../images/circle-purple-bg.png';
-
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import colors from 'shared/styles/constants';
+import Ball from 'shared/images/white-circular-logo.png';
+
+const FREE_SESSION = 'Free Session';
+const ONE_TIME = 'one_time';
+const RECURRING = 'recurring';
 
 const PlansContainer = styled.div`
-  .plans-container {
-    margin: 0 6rem;
-    padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+  margin: 5rem;
+  color: white;
+  .title {
+    font-family: dharma_gothic_cheavy;
+    font-size: 90px;
+    line-height: 90px;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+  .one-time {
+    width: 30%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 
-  @media (max-width: 991px) {
-    .plans-container {
-      margin: 0;
-      flex-direction: column;
-      padding: 0;
+  .memberships {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    .plan-options {
+      justify-content: space-between;
     }
+    .img-and-title {
+      display: flex;
+    }
+    .logo {
+      margin: 0.5rem;
+    }
+  }
+
+  .plan-options {
+    display: flex;
   }
 `;
 
 const PlanContainer = styled.div`
+  p {
+    margin: 0;
+  }
+
   position: relative;
-  margin: 2rem auto 0;
-  height: 30vw;
-  width: 30vw;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  height: 25vw;
+  width: 18vw;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  padding: 2.75rem;
-  justify-content: flex-end;
+  border: 2px solid ${colors.brandBlue};
+  transition: transform 0.2s;
+  .price {
+    margin-top: 60px;
+    font-family: dharma_gothic_cheavy_italic;
+    font-size: 150px;
+    line-height: 100px;
+    text-align: center;
+    .month {
+      font-size: 60px;
+      line-height: 60px;
+    }
+  }
+  .name {
+    font-family: shapiro96_inclined_wide;
+    font-size: 22px;
+    line-height: 22px;
+    text-align: center;
+  }
 
-  .sticker {
+  .pps {
+    font-family: shapiro75_heavy_wide;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+  }
+
+  .note {
+    font-family: shapiro75_heavy_wide;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  :hover {
+    transform: scale(1.05);
+  }
+
+  .label {
+    font-family: shapiro75_heavy_wide;
+    display: flex;
     position: absolute;
-    background-image: url(${PurpleBg});
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 202px;
-    width: 202px;
-    display: flex;
+    top: -32px;
+    width: 18vw;
+    background-color: ${colors.brandBlue};
+    border: 2px solid ${colors.brandBlue};
+    color: ${colors.brandBlack};
     justify-content: center;
-    align-items: center;
-    top: 3rem;
-    right: 2rem;
-    color: #fff;
-    flex-direction: column;
-
-    .price {
-      font-weight: bold;
-      font-size: 4rem;
-      line-height: 5rem;
-      font-family: 'Space Mono';
-    }
-
-    .text {
-      font-weight: 500;
-      font-size: 1.5rem;
-      letter-spacing: 0.04em;
-    }
+    padding: 0.25rem;
   }
+`;
 
-  .title {
-    display: flex;
-    font-size: 3.5rem;
-    line-height: 4rem;
-    letter-spacing: 0.04em;
-    color: #fff;
-    text-transform: uppercase;
-    align-self: flex-start;
-    margin-bottom: 1rem;
-    flex-direction: column;
-
-    .first-word {
-      padding: 0 0.75rem;
-    }
-
-    .second-word {
-      background-color: #000;
-      font-weight: bold;
-      padding: 0 0.75rem;
-    }
-  }
-
-  .button-container {
-    width: 100%;
-    hr {
-      display: none;
-    }
-    button {
-      width: 100%;
-    }
+const StyledCancel = styled.div`
+  display: flex;
+  color: white;
+  font-family: shapiro75_heavy_wide;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: center;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 5rem;
+  p {
+    margin-bottom: 0;
+    margin-left: 1rem;
   }
 `;
 
@@ -109,60 +139,86 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
       precision: 0,
     });
 
-  const products = availableProducts.filter((product) => product.name !== 'Free Session');
-  return (
-    <PlansContainer className="series-plans-container">
-      <section className="title-block">
-        <p className="heading-sprite"></p>
-      </section>
-      <div className="plans-container">
-        {products.map((product) => {
-          const sessionLabel = `${product.credits} ${product.credits > 1 ? 'SESSIONS' : 'SESSION'}`;
-          const sessionPrice = `$${formatPrice(product.price)}`;
-          const sessionPPS = `$${formatPrice(product.price / product.credits)}/SESSION`;
-          const buyLabel = 'BUY';
-          const mostPopular = sessionLabel === '5 SESSIONS';
-          const bestValue = sessionLabel === '10 SESSIONS';
+  const products = availableProducts.filter((product) => product.name !== FREE_SESSION);
 
-          return (
-            <PlanContainer key={product.id} className="plan-container" product={product}>
-              <div
-                className="click-block"
-                onClick={(e) => {
-                  e.preventDefault();
-                  selectProductHandler(product);
-                }}
-              >
-                {mostPopular ? (
-                  <div className="rotate-wrapper">
-                    <span className="most-popular ">MOST POPULAR</span>
+  const oneTimeProducts = products.filter((product) => product.productType === ONE_TIME);
+  const membershipProducts = products.filter((product) => product.productType === RECURRING);
+
+  return (
+    <>
+      <PlansContainer>
+        <div className="one-time">
+          <p className="title">DROP IN</p>
+          <div className="plan-options">
+            {oneTimeProducts.map((product) => {
+              const sessionPrice = `$${formatPrice(product.price)}`;
+
+              return (
+                <PlanContainer key={product.id} product={product}>
+                  <div>
+                    <p className="name">{product.name}*</p>
+                    <p className="price">{sessionPrice}</p>
                   </div>
-                ) : (
-                  ''
-                )}
-                {bestValue ? (
-                  <div className="rotate-wrapper">
-                    <span className="best-value">BEST VALUE</span>
+                  <div>
+                    <PrimaryButton
+                      inverted
+                      bg="transparent"
+                      w="100%"
+                      onClick={() => selectProductHandler(product)}
+                    >
+                      BUY
+                    </PrimaryButton>
+                    <p className="note">*Expires in 30 days</p>
                   </div>
-                ) : (
-                  ''
-                )}
-                <div className="session-info">
-                  <div className="session-label">{sessionLabel}</div>
-                  <div className="session-price">{sessionPrice}</div>
-                  <div className="session-pps">{sessionPPS}</div>
-                </div>
-                <div className="button-container">
-                  <PrimaryButton inverted w="100%">
-                    {buyLabel}
-                  </PrimaryButton>
-                </div>
-              </div>
-            </PlanContainer>
-          );
-        })}
-      </div>
-    </PlansContainer>
+                </PlanContainer>
+              );
+            })}
+          </div>
+        </div>
+        <div className="memberships">
+          <div className="img-and-title">
+            <p className="title">MEMBERSHIP</p>
+            <img className="logo" width="25px" height="25px" src={Ball} alt="Icon" />
+          </div>
+          <div className="plan-options">
+            {membershipProducts.map((product) => {
+              const sessionLabel = product.name;
+              const isUnlimited = product.credits === -1;
+
+              const sessionPrice = `$${formatPrice(product.price)}`;
+              const sessionPPS = `$${formatPrice(product.price / product.credits)}/session`;
+              const mostPopular = sessionLabel === '8 SESSIONS';
+              const bestValue = sessionLabel === 'UNLIMITED';
+
+              return (
+                <PlanContainer key={product.id} product={product}>
+                  {mostPopular && <span className="label">MOST POPULAR</span>}
+                  {bestValue && <span className="label">BEST VALUE</span>}
+                  <div>
+                    <p className="name">{sessionLabel}</p>
+                    <p className="price">
+                      {sessionPrice}
+                      <span className="month">/month</span>
+                    </p>
+                    {!isUnlimited && <p className="pps">{sessionPPS}</p>}
+                  </div>
+                  <div>
+                    <PrimaryButton w="100%" onClick={() => selectProductHandler(product)}>
+                      JOIN
+                    </PrimaryButton>
+                    <p className="note">{isUnlimited ? '' : '*Sessions do not rollover'}</p>
+                  </div>
+                </PlanContainer>
+              );
+            })}
+          </div>
+        </div>
+      </PlansContainer>
+      <StyledCancel>
+        <img className="logo" width="25px" height="25px" src={Ball} alt="Icon" />
+        <p>Cancel Anytime</p>
+      </StyledCancel>
+    </>
   );
 };
 
