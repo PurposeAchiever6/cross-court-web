@@ -46,7 +46,7 @@ const SeriesPage = () => {
     if (showAnimation()) {
       document.body.setAttribute('data-page', 'no-session-credits');
     }
-  });
+  }, []);
 
   if (isLoading) {
     return <Loading />;
