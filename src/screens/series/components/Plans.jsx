@@ -55,9 +55,9 @@ const PlanContainer = styled.div`
   }
 
   position: relative;
-  height: 25vw;
-  width: 18vw;
-  padding: 1rem;
+  height: 24vw;
+  width: 19.5vw;
+  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -65,9 +65,8 @@ const PlanContainer = styled.div`
   border: 2px solid ${colors.brandBlue};
   transition: transform 0.2s;
   .price {
-    margin-top: 60px;
     font-family: dharma_gothic_cheavy_italic;
-    font-size: 150px;
+    font-size: 160px;
     line-height: 100px;
     text-align: center;
     .month {
@@ -82,19 +81,37 @@ const PlanContainer = styled.div`
     text-align: center;
   }
 
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20%;
+  }
+
+  .price-container {
+    height: 50%;
+  }
+
+  .name-container {
+    height: 30%;
+  }
+
   .pps {
-    font-family: shapiro75_heavy_wide;
+    font-family: shapiro95_super_wide;
     font-size: 16px;
     line-height: 16px;
     text-align: center;
   }
 
   .note {
-    font-family: shapiro75_heavy_wide;
+    font-family: shapiro95_super_wide;
     font-size: 10px;
     line-height: 10px;
     text-align: center;
-    margin-top: 1rem;
+  }
+
+  .primary-button {
+    margin-bottom: 1rem;
   }
 
   :hover {
@@ -102,23 +119,29 @@ const PlanContainer = styled.div`
   }
 
   .label {
-    font-family: shapiro75_heavy_wide;
+    font-family: shapiro95_super_wide;
     display: flex;
     position: absolute;
     top: -32px;
-    width: 18vw;
+    width: 19.5vw;
     background-color: ${colors.brandBlue};
     border: 2px solid ${colors.brandBlue};
     color: ${colors.brandBlack};
     justify-content: center;
     padding: 0.25rem;
   }
+
+  .month-sub {
+    font-family: shapiro95_super_wide;
+    font-size: 12px;
+    line-height: 12px;
+  }
 `;
 
 const StyledCancel = styled.div`
   display: flex;
   color: white;
-  font-family: shapiro75_heavy_wide;
+  font-family: shapiro95_super_wide;
   font-size: 16px;
   line-height: 16px;
   text-align: center;
@@ -155,11 +178,13 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
 
               return (
                 <PlanContainer key={product.id} product={product}>
-                  <div>
+                  <div className="name-container">
                     <p className="name">{product.name}*</p>
+                  </div>
+                  <div className="price-container">
                     <p className="price">{sessionPrice}</p>
                   </div>
-                  <div>
+                  <div className="actions">
                     <PrimaryButton
                       inverted
                       bg="transparent"
@@ -175,6 +200,7 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
             })}
           </div>
         </div>
+
         <div className="memberships">
           <div className="img-and-title">
             <p className="title">MEMBERSHIP</p>
@@ -194,19 +220,22 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
                 <PlanContainer key={product.id} product={product}>
                   {mostPopular && <span className="label">MOST POPULAR</span>}
                   {bestValue && <span className="label">BEST VALUE</span>}
-                  <div>
+                  <div className="name-container">
                     <p className="name">{sessionLabel}</p>
+                    {!isUnlimited && <p className="month-sub">/month*</p>}
+                  </div>
+                  <div className="price-container">
                     <p className="price">
                       {sessionPrice}
-                      <span className="month">/month</span>
+                      <span className="month">month</span>
                     </p>
                     {!isUnlimited && <p className="pps">{sessionPPS}</p>}
                   </div>
-                  <div>
+                  <div className="actions">
                     <PrimaryButton w="100%" onClick={() => selectProductHandler(product)}>
                       JOIN
                     </PrimaryButton>
-                    <p className="note">{isUnlimited ? '' : '*Sessions do not rollover'}</p>
+                    {!isUnlimited && <p className="note">*Sessions do not rollover</p>}
                   </div>
                 </PlanContainer>
               );
