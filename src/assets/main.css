@@ -555,6 +555,16 @@ video {
   height: auto;
 }
 
+button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+a {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
 .container {
   width: 100%;
 }

@@ -16,6 +16,9 @@ import {
   CHECK_PROMO_CODE_INIT,
   CHECK_PROMO_CODE_SUCCESS,
   CHECK_PROMO_CODE_FAILURE,
+  CREATE_SUBSCRIPTION_INIT,
+  CREATE_SUBSCRIPTION_SUCCESS,
+  CREATE_SUBSCRIPTION_FAILURE,
 } from './actionTypes';
 import { RESERVE_SESSION_INIT } from '../sessions/actionTypes';
 import checkoutService from './service';
@@ -78,9 +81,28 @@ export function* checkPromoCodeFlow({ payload }) {
   }
 }
 
+export function* createSubscriptionFlow({ payload }) {
+  try {
+    const selectedProduct = yield select(getSelectedProduct);
+    const selectedCard = yield select(getSelectedCard);
+    const promoCode = yield select(getPromoCode);
+
+    yield call(checkoutService.createSubscription, selectedProduct.id, selectedCard.id, promoCode);
+    yield put({
+      type: CREATE_SUBSCRIPTION_SUCCESS,
+    });
+    yield put(push(ROUTES.CHECKOUTCONFIRMED));
+  } catch (err) {
+    yield call(toast.error, err.response.data.error);
+
+    yield put({ type: CREATE_SUBSCRIPTION_FAILURE, error: err.response.data.error });
+  }
+}
+
 export default function* checkoutSaga() {
   yield all([
     takeLatest(CREATE_PURCHASE_INIT, createPurchaseFlow),
+    takeLatest(CREATE_SUBSCRIPTION_INIT, createSubscriptionFlow),
     takeLatest(CREATE_FREE_SESSION_INIT, createFreeSessionFlow),
     takeLatest(CHECK_PROMO_CODE_INIT, checkPromoCodeFlow),
   ]);

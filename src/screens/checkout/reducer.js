@@ -3,6 +3,7 @@ import { SET_SELECTED_PRODUCT } from 'screens/series/actionTypes';
 import {
   CLEAR_DISCOUNT,
   CREATE_PURCHASE_INIT,
+  CREATE_SUBSCRIPTION_INIT,
   CREATE_PURCHASE_SUCCESS,
   CREATE_PURCHASE_FAILURE,
   CREATE_FREE_SESSION_INIT,
@@ -11,6 +12,8 @@ import {
   CHECK_PROMO_CODE_INIT,
   CHECK_PROMO_CODE_SUCCESS,
   CHECK_PROMO_CODE_FAILURE,
+  CREATE_SUBSCRIPTION_FAILURE,
+  CREATE_SUBSCRIPTION_SUCCESS,
 } from './actionTypes';
 
 const initialState = {
@@ -27,6 +30,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case CREATE_PURCHASE_INIT:
     case CREATE_FREE_SESSION_INIT:
+    case CREATE_SUBSCRIPTION_INIT:
       return {
         ...state,
         checkoutLoading: true,
@@ -34,6 +38,7 @@ export default (state = initialState, action) => {
       };
     case CREATE_PURCHASE_SUCCESS:
     case CREATE_FREE_SESSION_SUCCESS:
+    case CREATE_SUBSCRIPTION_SUCCESS:
       return {
         ...state,
         checkoutLoading: false,
@@ -42,6 +47,7 @@ export default (state = initialState, action) => {
       };
     case CREATE_PURCHASE_FAILURE:
     case CREATE_FREE_SESSION_FAILURE:
+    case CREATE_SUBSCRIPTION_FAILURE:
       return { ...state, error: action.error, checkoutLoading: false };
     case CHECK_PROMO_CODE_INIT:
       return {
@@ -80,22 +86,25 @@ export default (state = initialState, action) => {
   }
 };
 
-const getCheckout = state => state.checkout;
+const getCheckout = (state) => state.checkout;
 
-export const getCheckoutLoading = createSelector(getCheckout, checkout => checkout.checkoutLoading);
+export const getCheckoutLoading = createSelector(
+  getCheckout,
+  (checkout) => checkout.checkoutLoading
+);
 
-export const getError = createSelector(getCheckout, checkout => checkout.error);
+export const getError = createSelector(getCheckout, (checkout) => checkout.error);
 
 export const getPurchaseConfirmed = createSelector(
   getCheckout,
-  checkout => checkout.purchaseConfirmed
+  (checkout) => checkout.purchaseConfirmed
 );
 
 export const getPromoCodeLoading = createSelector(
   getCheckout,
-  checkout => checkout.promoCodeLoading
+  (checkout) => checkout.promoCodeLoading
 );
 
-export const getPromoCodeError = createSelector(getCheckout, checkout => checkout.promoCodeError);
-export const getPromoCodeValid = createSelector(getCheckout, checkout => checkout.promoCodeValid);
-export const getPromoCode = createSelector(getCheckout, checkout => checkout.promoCode);
+export const getPromoCodeError = createSelector(getCheckout, (checkout) => checkout.promoCodeError);
+export const getPromoCodeValid = createSelector(getCheckout, (checkout) => checkout.promoCodeValid);
+export const getPromoCode = createSelector(getCheckout, (checkout) => checkout.promoCode);

@@ -8,8 +8,10 @@ import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/series/reducer';
 import { getSelectedCard } from 'screens/payments/reducer';
 import BackButton from 'shared/components/BackButton';
-import { createPurchase } from './actionCreators';
+import { createPurchase, createSubscription } from './actionCreators';
 import ProductDetails from './components/PurchaseDetails';
+
+const RECURRING = 'recurring';
 
 const CheckoutPageContainer = styled.div`
   display: flex;
@@ -30,14 +32,16 @@ const CheckoutPageContainer = styled.div`
 
 const CheckoutPage = () => {
   const dispatch = useDispatch();
-
-  const createPurchaseHandler = () => dispatch(createPurchase());
   const productDetails = useSelector(getSelectedProduct);
   const paymentDetails = useSelector(getSelectedCard);
 
   if (isNil(productDetails) || isNil(paymentDetails)) {
     return <Redirect to={ROUTES.LOCATIONS} />;
   }
+
+  const isSubscription = productDetails.productType === RECURRING;
+  const createPurchaseHandler = () =>
+    dispatch(isSubscription ? createSubscription() : createPurchase());
 
   return (
     <CheckoutPageContainer className="checkout">

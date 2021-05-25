@@ -166,7 +166,6 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
                   <PrimaryButton
                     inverted
                     bg="transparent"
-                    w="50%"
                     onClick={() => selectProductHandler(product)}
                   >
                     BUY
@@ -210,7 +209,7 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
                       </p>
                       {!isUnlimited && <p className="pps">{sessionPPS}</p>}
                     </div>
-                    <PrimaryButton w="50%" onClick={() => selectProductHandler(product)}>
+                    <PrimaryButton onClick={() => selectProductHandler(product)}>
                       JOIN
                     </PrimaryButton>
                   </div>

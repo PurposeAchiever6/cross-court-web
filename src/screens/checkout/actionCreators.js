@@ -3,6 +3,7 @@ import {
   CREATE_PURCHASE_INIT,
   CREATE_FREE_SESSION_INIT,
   CHECK_PROMO_CODE_INIT,
+  CREATE_SUBSCRIPTION_INIT,
 } from './actionTypes';
 
 export const clearDiscount = () => ({
@@ -11,6 +12,10 @@ export const clearDiscount = () => ({
 
 export const createPurchase = () => ({
   type: CREATE_PURCHASE_INIT,
+});
+
+export const createSubscription = () => ({
+  type: CREATE_SUBSCRIPTION_INIT,
 });
 
 export const createAndReserveFreeSessionInit = (sessionId, date, referralCode) => ({
