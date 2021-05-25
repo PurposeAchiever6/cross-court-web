@@ -12,88 +12,75 @@ const ONE_TIME = 'one_time';
 const RECURRING = 'recurring';
 
 const PlansContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 5rem;
-  color: white;
   .title {
     font-family: dharma_gothic_cheavy;
     font-size: 90px;
-    line-height: 90px;
+    line-height: 60px;
     letter-spacing: 1px;
-    margin-bottom: 1rem;
-  }
-  .one-time {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .memberships {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
-    .plan-options {
-      justify-content: space-between;
-    }
-    .img-and-title {
-      display: flex;
-    }
-    .logo {
-      margin: 0.5rem;
-    }
-  }
-
-  .plan-options {
-    display: flex;
+    margin: 1rem 0;
+    color: white;
   }
 `;
 
 const PlanContainer = styled.div`
-  p {
-    margin: 0;
-  }
-
-  position: relative;
-  height: 24vw;
-  width: 19.5vw;
-  padding: 1rem 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   border: 2px solid ${colors.brandBlue};
+  color: white;
+  padding: 1rem;
+  padding-left: 2rem;
+  position: relative;
   transition: transform 0.2s;
+  margin-bottom: 1.5rem;
+  height: 60.5vw;
+  justify-content: center;
+
+  @media (min-width: 992px) {
+    justify-content: space-between;
+    align-items: center;
+    height: 24vw;
+    width: 19.5vw;
+    margin-bottom: 0;
+    padding-left: 1rem;
+  }
+
+  :hover {
+    transform: scale(1.05);
+  }
+
+  .name {
+    font-family: shapiro96_inclined_wide;
+    font-size: 16px;
+    line-height: 16px;
+    @media (min-width: 992px) {
+      font-size: 22px;
+      line-height: 22px;
+    }
+  }
+
   .price {
     font-family: dharma_gothic_cheavy_italic;
-    font-size: 160px;
-    line-height: 100px;
     text-align: center;
+    font-size: 120px;
+    line-height: 120px;
     .month {
       font-size: 60px;
       line-height: 60px;
     }
-  }
-  .name {
-    font-family: shapiro96_inclined_wide;
-    font-size: 22px;
-    line-height: 22px;
-    text-align: center;
+    @media (min-width: 992px) {
+      font-size: 160px;
+      line-height: 160px;
+    }
   }
 
-  .actions {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 20%;
-  }
-
-  .price-container {
-    height: 50%;
-  }
-
-  .name-container {
-    height: 30%;
+  .month-sub {
+    font-family: shapiro95_super_wide;
+    font-size: 10px;
+    line-height: 10px;
+    @media (min-width: 992px) {
+      font-size: 12px;
+      line-height: 12px;
+    }
   }
 
   .pps {
@@ -107,34 +94,30 @@ const PlanContainer = styled.div`
     font-family: shapiro95_super_wide;
     font-size: 10px;
     line-height: 10px;
-    text-align: center;
-  }
-
-  .primary-button {
-    margin-bottom: 1rem;
-  }
-
-  :hover {
-    transform: scale(1.05);
+    margin-top: 0.5rem;
+    @media (min-width: 992px) {
+      text-align: center;
+    }
   }
 
   .label {
-    font-family: shapiro95_super_wide;
-    display: flex;
     position: absolute;
-    top: -32px;
-    width: 19.5vw;
     background-color: ${colors.brandBlue};
     border: 2px solid ${colors.brandBlue};
+    font-family: shapiro95_super_wide;
+    display: flex;
     color: ${colors.brandBlack};
     justify-content: center;
-    padding: 0.25rem;
-  }
-
-  .month-sub {
-    font-family: shapiro95_super_wide;
-    font-size: 12px;
-    line-height: 12px;
+    transform: rotate(270deg);
+    width: 60vw;
+    right: 223px;
+    @media (min-width: 992px) {
+      top: -32px;
+      width: 19.5vw;
+      padding: 0.25rem;
+      right: -2px;
+      transform: rotate(0deg);
+    }
   }
 `;
 
@@ -169,44 +152,38 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
 
   return (
     <>
-      <PlansContainer>
-        <div className="one-time">
+      <PlansContainer className="flex flex-col md:flex-row m-3 md:m-5">
+        <div className="w-full md:w-4/12">
           <p className="title">DROP IN</p>
-          <div className="plan-options">
-            {oneTimeProducts.map((product) => {
-              const sessionPrice = `$${formatPrice(product.price)}`;
+          {oneTimeProducts.map((product) => {
+            const sessionPrice = `$${formatPrice(product.price)}`;
 
-              return (
-                <PlanContainer key={product.id} product={product}>
-                  <div className="name-container">
-                    <p className="name">{product.name}*</p>
-                  </div>
-                  <div className="price-container">
-                    <p className="price">{sessionPrice}</p>
-                  </div>
-                  <div className="actions">
-                    <PrimaryButton
-                      inverted
-                      bg="transparent"
-                      w="100%"
-                      onClick={() => selectProductHandler(product)}
-                    >
-                      BUY
-                    </PrimaryButton>
-                    <p className="note">*Expires in 30 days</p>
-                  </div>
-                </PlanContainer>
-              );
-            })}
-          </div>
+            return (
+              <PlanContainer key={product.id}>
+                <p className="name">{product.name}*</p>
+                <div className="flex flex-row md:flex-col justify-between">
+                  <p className="price">{sessionPrice}</p>
+                  <PrimaryButton
+                    inverted
+                    bg="transparent"
+                    w="50%"
+                    onClick={() => selectProductHandler(product)}
+                  >
+                    BUY
+                  </PrimaryButton>
+                </div>
+                <p className="note">*Expires in 30 days</p>
+              </PlanContainer>
+            );
+          })}
         </div>
 
-        <div className="memberships">
-          <div className="img-and-title">
+        <div className="w-full md:w-8/12">
+          <div className="flex">
             <p className="title">MEMBERSHIP</p>
-            <img className="logo" width="25px" height="25px" src={Ball} alt="Icon" />
+            <img className="w-4 h-4" src={Ball} alt="Icon" />
           </div>
-          <div className="plan-options">
+          <div className="flex flex-col md:flex-row justify-between">
             {membershipProducts.map((product) => {
               const sessionLabel = product.name;
               const isUnlimited = product.credits === -1;
@@ -217,32 +194,35 @@ const Plans = ({ selectProductHandler, availableProducts }) => {
               const bestValue = sessionLabel === 'UNLIMITED';
 
               return (
-                <PlanContainer key={product.id} product={product}>
+                <PlanContainer key={product.id}>
                   {mostPopular && <span className="label">MOST POPULAR</span>}
                   {bestValue && <span className="label">BEST VALUE</span>}
-                  <div className="name-container">
+                  <div className="flex flex-row md:flex-col items-end md:items-start">
                     <p className="name">{sessionLabel}</p>
                     {!isUnlimited && <p className="month-sub">/month*</p>}
                   </div>
-                  <div className="price-container">
-                    <p className="price">
-                      {sessionPrice}
-                      <span className="month">month</span>
-                    </p>
-                    {!isUnlimited && <p className="pps">{sessionPPS}</p>}
-                  </div>
-                  <div className="actions">
-                    <PrimaryButton w="100%" onClick={() => selectProductHandler(product)}>
+
+                  <div className="flex flex-row md:flex-col justify-between">
+                    <div className="flex flex-col">
+                      <p className="price">
+                        {sessionPrice}
+                        <span className="month">/month</span>
+                      </p>
+                      {!isUnlimited && <p className="pps">{sessionPPS}</p>}
+                    </div>
+                    <PrimaryButton w="50%" onClick={() => selectProductHandler(product)}>
                       JOIN
                     </PrimaryButton>
-                    {!isUnlimited && <p className="note">*Sessions do not rollover</p>}
                   </div>
+
+                  {!isUnlimited && <p className="note">*Sessions do not rollover</p>}
                 </PlanContainer>
               );
             })}
           </div>
         </div>
       </PlansContainer>
+
       <StyledCancel>
         <img className="logo" width="25px" height="25px" src={Ball} alt="Icon" />
         <p>Cancel Anytime</p>
