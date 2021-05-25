@@ -6,8 +6,7 @@ body .header {
   transition: 500ms background-color ease, 500ms box-shadow ease, 500ms opacity ease;
 }
 body .header.scrolled {
-  background-color: #fff;
-  box-shadow: 0px 4px 4px #9999ff;
+  background-color: #231f20;
 }
 body .header .menu-button-container {
   width: 56px;
@@ -29,21 +28,7 @@ body .header .menu-button-container .menu-button .menu-bars-nav-open {
   top: -2px;
   transition: 500ms opacity ease;
 }
-body .header .menu-button-container .menu-button .menu-bars {
-  opacity: 1;
-}
-body .header .menu-button-container .menu-button .menu-bars-alt {
-  opacity: 0;
-}
-body .header .menu-button-container .menu-button .menu-bars-nav-open {
-  opacity: 0;
-}
-body .header.scrolled .menu-button-container .menu-button .menu-bars {
-  opacity: 0;
-}
-body .header.scrolled .menu-button-container .menu-button .menu-bars-alt {
-  opacity: 1;
-}
+
 body
   .header
   .cheeseburger-menu.open
@@ -54,7 +39,6 @@ body
   opacity: 1;
 }
 body .header .logo-icon,
-body .header .logo-icon-alt,
 body .header .logo-icon-nav-open {
   background-color: transparent;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
@@ -96,12 +80,7 @@ body .header .logo-icon-nav-open:hover {
 body .header .logo-icon {
   opacity: 1;
 }
-body .header.scrolled .logo-icon {
-  opacity: 0;
-}
-body .header .logo-icon-alt {
-  opacity: 0;
-}
+
 body .header.scrolled .logo-icon-alt {
   opacity: 1;
 }
