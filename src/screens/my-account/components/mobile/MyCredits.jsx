@@ -1,70 +1,49 @@
 import React from 'react';
 import { number } from 'prop-types';
 import styled from 'styled-components';
-import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const MyCreditsContainer = styled.div`
   padding: 1rem;
-  display: flex;
   margin-top: 1.5rem;
-  justify-content: space-between;
 
-  * {
-    flex: 1;
+  .session-number {
+    display: block;
+    font-family: 'shapiro95_super_wide';
+    font-size: 57px;
+    line-height: 63px;
+    margin-right: 0.5rem;
   }
 
-  h3 {
-    font-size: 1.75rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-  }
-  .sessions-number-container {
-    text-align: center;
-    margin-right: 1rem;
-
-    .session-number {
-      font-weight: 500;
-      font-size: 57px;
-      margin-bottom: 0.75rem;
-    }
-  }
-
-  .links {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .btn {
-    background-color: ${colors.black};
-    color: ${colors.white};
-    width: 100%;
-    padding: 1rem 1rem;
-  }
-  .alt-btn {
-    background-color: ${colors.white};
-    color: ${colors.black};
-    border: 1px solid ${colors.black};
-    width: 100%;
-    padding: 0.7rem 1rem;
-    height: 100%;
+  .sessions-left {
+    display: block;
+    font-family: 'shapiro95_super_wide';
+    font-size: 18px;
+    line-height: 16px;
+    max-width: 216px;
+    margin: 0 auto;
   }
 `;
 
-const MyCredits = ({ credits }) => (
+const MyCredits = ({ dropinCredits, subscriptionCredits }) => (
   <MyCreditsContainer>
-    <div className="sessions-number-container">
-      <span className="session-number">{credits}</span>
-      <span className="sessions-left">
-        SESSIONS
-        <br />
-        LEFT
-      </span>
+    <div className="flex justify-between mb-8">
+      <div className="text-center">
+        <span className="session-number">{dropinCredits}</span>
+        <span className="sessions-left">
+          SESSIONS
+          <br />
+          LEFT
+        </span>
+      </div>
+      <div className="text-center">
+        <span className="session-number">{subscriptionCredits}</span>
+        <span className="sessions-left">SESSIONS LEFT PER MONTH</span>
+      </div>
     </div>
-    <div className="links">
-      <PrimaryButton className="buy-series-btn" to={ROUTES.SERIES} w="100%">
+    <div>
+      <PrimaryButton className="mb-1" to={ROUTES.SERIES} w="100%">
         BUY SERIES
       </PrimaryButton>
       <PrimaryButton to={ROUTES.PURCHASEHISTORY} w="100%">
@@ -75,7 +54,8 @@ const MyCredits = ({ credits }) => (
 );
 
 MyCredits.propTypes = {
-  credits: number,
+  dropinCredits: number.isRequired,
+  subscriptionCredits: number.isRequired,
 };
 
 export default MyCredits;

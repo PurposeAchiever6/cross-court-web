@@ -39,7 +39,10 @@ export const MyAccountPageDesktop = ({
   <MyAccountPageContainer className="my-account-desktop">
     <div className="sidebar-container">
       <MyProfile profile={userProfile} />
-      <MyCredits credits={userProfile.credits} />
+      <MyCredits
+        dropinCredits={userProfile.credits}
+        subscriptionCredits={userProfile.subscriptionCredits}
+      />
     </div>
     <div className="content-container">
       {userProfile.isSem || userProfile.isReferee ? (

@@ -2583,70 +2583,6 @@ body .my-account-desktop .sidebar-container .my-profile form .save-button,
 body .my-account-mobile .sidebar-container .my-profile form .save-button {
   font-family: 'shapiro95_super_wide';
 }
-body .my-account-desktop .sidebar-container .my-credits h3,
-body .my-account-mobile .sidebar-container .my-credits h3 {
-  font-family: 'shapiro95_super_wide';
-  margin-bottom: 10px;
-}
-body .my-account-desktop .sidebar-container .my-credits .sessions-number-container,
-body .my-account-mobile .sidebar-container .my-credits .sessions-number-container {
-  border: none;
-  display: flex;
-  flex-direction: row;
-  padding: 0;
-}
-body .my-account-desktop .sidebar-container .my-credits .sessions-number-container .session-number,
-body .my-account-mobile .sidebar-container .my-credits .sessions-number-container .session-number {
-  font-family: 'shapiro95_super_wide';
-  font-size: 76px;
-  line-height: 63px;
-  margin-bottom: 0;
-}
-
-body
-  .my-account-desktop
-  .sidebar-container
-  .my-credits
-  .sessions-number-container
-  .session-title-block
-  .session-title-1,
-body
-  .my-account-mobile
-  .sidebar-container
-  .my-credits
-  .sessions-number-container
-  .session-title-block
-  .session-title-1 {
-  display: block;
-  font-family: 'shapiro105_max_extd';
-  font-size: 22px;
-  line-height: 18px;
-  margin-bottom: 0;
-}
-body
-  .my-account-desktop
-  .sidebar-container
-  .my-credits
-  .sessions-number-container
-  .session-title-block
-  .session-title-2,
-body
-  .my-account-mobile
-  .sidebar-container
-  .my-credits
-  .sessions-number-container
-  .session-title-block
-  .session-title-2 {
-  display: block;
-  font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 1px;
-  font-size: 49px;
-  line-height: 45px;
-}
-body .my-account-desktop .sidebar-container .my-credits .buy-series-button,
-body .my-account-mobile .sidebar-container .my-credits .buy-series-button {
-  margin-bottom: 5px;
-}
 body .my-account-desktop .upcoming-sessions,
 body .my-account-mobile .upcoming-sessions {
   margin-bottom: 60px;
@@ -3057,24 +2993,6 @@ body .my-account-mobile .tabs {
 }
 body .my-account-mobile .tab-content {
   margin-bottom: 20px;
-}
-body .my-account-mobile .tab-content .sessions-number-container {
-  margin-top: 12px;
-}
-body .my-account-mobile .tab-content .sessions-number-container .session-number {
-  display: block;
-  font-family: 'shapiro95_super_wide';
-  font-size: 58px;
-  line-height: 54px;
-  margin-bottom: 0;
-}
-body .my-account-mobile .tab-content .sessions-number-container .sessions-left {
-  font-family: 'shapiro95_super_wide';
-  font-size: 20px;
-  line-height: 16px;
-}
-body .my-account-mobile .tab-content .links .buy-series-btn {
-  margin-bottom: 5px;
 }
 
 /* PURCHASE HISTORY */
