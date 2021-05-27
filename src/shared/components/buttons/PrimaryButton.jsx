@@ -35,8 +35,9 @@ const StyledDiv = styled.div`
   }
 
   .double-drop {
-    background-color: #9999ff;
-    border: 3px solid #ffffff;
+    background-color: ${(props) =>
+      props.bg ? props.bg : props.inverted ? colors.white : colors.brandBlue};
+    border: 3px solid ${(props) => (props.inverted ? colors.brandBlue : colors.white)};
     height: 100%;
     left: 9px;
     position: absolute;
