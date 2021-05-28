@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
+
 import Loading from 'shared/components/Loading';
 import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { identify, startedCheckout } from 'shared/utils/klaviyo';
+import colors from 'shared/styles/constants';
 import { initialLoad, setSelectedProduct } from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
-
 import Plans from './components/Plans';
-
 import NoSessionCredits from './components/NoSessionCredits';
-import styled from 'styled-components';
-import colors from 'shared/styles/constants';
 
 const StyledPage = styled.div`
   min-height: 100vh;
@@ -27,19 +26,23 @@ const SeriesPage = () => {
   const availableProducts = useSelector(getAvailableProducts);
   const isLoading = useSelector(getPageLoading);
   const isAuthenticated = useSelector(getIsAuthenticated);
-  const { email } = useSelector(getUserProfile);
   const userProfile = useSelector(getUserProfile);
 
-  const selectProductHandler = (product) => {
+  const selectProductHandler = product => {
     dispatch(setSelectedProduct(product));
+
     if (isAuthenticated) {
-      identify(email);
+      identify(userProfile.email);
       startedCheckout(product);
     }
     history.push(ROUTES.PAYMENTS);
   };
 
-  const showAnimation = function () {
+  const cancelMembership = product => {
+    alert(`TODO: show confirmation modal and cancel subscription ${product.name} in backend`);
+  };
+
+  const showAnimation = function() {
     return (
       userProfile.credits === 0 &&
       window.localStorage.getItem('previousPage').indexOf('session-') !== -1
@@ -60,7 +63,12 @@ const SeriesPage = () => {
   return (
     <StyledPage>
       {showAnimation() && <NoSessionCredits />}
-      <Plans selectProductHandler={selectProductHandler} availableProducts={availableProducts} />
+      <Plans
+        selectProductHandler={selectProductHandler}
+        cancelMembership={cancelMembership}
+        availableProducts={availableProducts}
+        activeSubscription={userProfile.activeSubscription}
+      />
     </StyledPage>
   );
 };
