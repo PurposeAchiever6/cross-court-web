@@ -7,7 +7,7 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 const RECURRING = 'recurring';
 
 const Plans = ({ product, submitText, submitBtnSecondary, handleSubmit, className }) => {
-  const formatPrice = price =>
+  const formatPrice = (price) =>
     currency(price, {
       formatWithSymbol: true,
       precision: 0,
@@ -57,7 +57,7 @@ const Plans = ({ product, submitText, submitBtnSecondary, handleSubmit, classNam
       </div>
       <div className="lg:h-4">
         {!isUnlimited && (
-          <div className="text-xs shapiro95_super_extd">
+          <div className="text-xs">
             {isRecurring ? '*Sessions do not rollover' : '*Expires in 30 Days'}
           </div>
         )}

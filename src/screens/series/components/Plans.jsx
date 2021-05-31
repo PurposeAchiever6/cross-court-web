@@ -15,16 +15,16 @@ const Plans = ({
   activeSubscription,
 }) => {
   const userHasActiveSubscription = !!activeSubscription;
-  const products = availableProducts.filter(product => product.name !== FREE_SESSION);
-  const oneTimeProducts = products.filter(product => product.productType === ONE_TIME);
-  const membershipProducts = products.filter(product => product.productType === RECURRING);
+  const products = availableProducts.filter((product) => product.name !== FREE_SESSION);
+  const oneTimeProducts = products.filter((product) => product.productType === ONE_TIME);
+  const membershipProducts = products.filter((product) => product.productType === RECURRING);
 
   return (
     <div className="lg:flex p-4 md:p-12 text-white">
       <div className="lg:w-1/4 lg:pr-8">
         <h2 className="dharma_gothic_cheavy text-8xl mb-4">DROP IN</h2>
         <div className="flex flex-wrap mb-12 lg:mb-0">
-          {oneTimeProducts.map(product => (
+          {oneTimeProducts.map((product) => (
             <div key={product.id} className="w-full lg:pr-4 xl:pr-7">
               <ProductPlan
                 product={product}
@@ -42,7 +42,7 @@ const Plans = ({
           <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
         </div>
         <div className="flex flex-wrap justify-between lg:-mx-4 xl:-mx-7">
-          {membershipProducts.map(product => {
+          {membershipProducts.map((product) => {
             const isActiveSubscription = product.id === activeSubscription?.product.id;
             const submitText = isActiveSubscription
               ? 'Cancel'

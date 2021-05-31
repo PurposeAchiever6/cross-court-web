@@ -22,7 +22,7 @@ const MyCreditsContainer = styled.div`
   .dropin-title-1,
   .subscription-title-1 {
     display: block;
-    font-family: 'shapiro105_max_extd';
+    font-family: 'shapiro95_super_wide';
   }
 
   .dropin-title-2,
@@ -61,14 +61,14 @@ const MyCredits = ({ dropinCredits, subscriptionCredits }) => {
       <h3>SERIES</h3>
       <div className="mb-4">
         <div className="flex mb-4">
-          <span className="session-number">{dropinCredits}</span>
+          <span className="session-number">{dropinCredits || 0}</span>
           <span>
             <span className="dropin-title-1">SESSIONS</span>
             <span className="dropin-title-2">LEFT</span>
           </span>
         </div>
         <div className="flex">
-          <span className="session-number">{subscriptionCredits}</span>
+          <span className="session-number">{subscriptionCredits || 0}</span>
           <span>
             <span className="subscription-title-1">SESSIONS LEFT</span>
             <span className="subscription-title-2">PER MONTH</span>

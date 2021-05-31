@@ -3,11 +3,6 @@
 @import './sidebar.css';
 @import './header.css';
 
-:root {
-  --main-font-family: 'Untitled Sans';
-  --shapiro95_super_wide: 'shapiro95_super_wide';
-}
-
 body {
   margin: 0;
 }
@@ -15,7 +10,7 @@ body {
 #modal-root {
   position: relative;
   z-index: 999;
-  font-family: var(--main-font-family);
+  font-family: 'shapiro95_super_wide';
 }
 
 #root {
@@ -241,18 +236,6 @@ body .dharma_gothic_cheavy {
 }
 body .dharma_gothic_cheavy_italic {
   font-family: 'dharma_gothic_cheavy_italic';
-}
-body .shapiro45_welter_wide {
-  font-family: 'shapiro45_welter_wide';
-}
-body .shapiro75_heavy {
-  font-family: 'shapiro75_heavy';
-}
-body .shapiro95_super {
-  font-family: 'shapiro95_super';
-}
-body .shapiro95_super_ext {
-  font-family: 'shapiro95_super_ext';
 }
 body .shapiro95_super_wide {
   font-family: 'shapiro95_super_wide';

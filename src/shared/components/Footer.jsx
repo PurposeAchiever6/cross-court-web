@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const FooterContainer = styled.footer`
   display: flex;
   background-color: ${colors.brandBlack};
-  font-family: var(--shapiro95_super_wide);
+  font-family: shapiro95_super_wide;
   font-size: 0.875rem;
   flex-direction: column;
   padding: 20px 32px;
