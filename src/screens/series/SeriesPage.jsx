@@ -1,23 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 
 import Loading from 'shared/components/Loading';
 import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { identify, startedCheckout } from 'shared/utils/klaviyo';
-import colors from 'shared/styles/constants';
-import { initialLoad, setSelectedProduct } from './actionCreators';
+import { initialLoad, setSelectedProduct, cancelSubscription } from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
 import Plans from './components/Plans';
 import NoSessionCredits from './components/NoSessionCredits';
-
-const StyledPage = styled.div`
-  min-height: 100vh;
-  background-color: ${colors.brandBlack};
-`;
+import CancelMembershipModal from './components/CancelMembershipModal';
 
 const SeriesPage = () => {
   const dispatch = useDispatch();
@@ -28,7 +22,11 @@ const SeriesPage = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const userProfile = useSelector(getUserProfile);
 
-  const selectProductHandler = product => {
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const cancelSubscriptionAction = async () =>
+    dispatch(cancelSubscription(userProfile.activeSubscription));
+
+  const selectProductHandler = (product) => {
     dispatch(setSelectedProduct(product));
 
     if (isAuthenticated) {
@@ -38,11 +36,11 @@ const SeriesPage = () => {
     history.push(ROUTES.PAYMENTS);
   };
 
-  const cancelMembership = product => {
-    alert(`TODO: show confirmation modal and cancel subscription ${product.name} in backend`);
+  const cancelMembership = () => {
+    setShowCancelModal(true);
   };
 
-  const showAnimation = function() {
+  const showAnimation = () => {
     return (
       userProfile.credits === 0 &&
       window.localStorage.getItem('previousPage').indexOf('session-') !== -1
@@ -61,15 +59,24 @@ const SeriesPage = () => {
   }
 
   return (
-    <StyledPage>
-      {showAnimation() && <NoSessionCredits />}
-      <Plans
-        selectProductHandler={selectProductHandler}
-        cancelMembership={cancelMembership}
-        availableProducts={availableProducts}
-        activeSubscription={userProfile.activeSubscription}
+    <>
+      <div className="bg-cc-black min-h-screen">
+        {showAnimation() && <NoSessionCredits />}
+        <Plans
+          selectProductHandler={selectProductHandler}
+          cancelMembership={cancelMembership}
+          availableProducts={availableProducts}
+          activeSubscription={userProfile.activeSubscription}
+        />
+      </div>
+      <CancelMembershipModal
+        cancelSubscriptionAction={cancelSubscriptionAction}
+        shouldClose
+        isOpen={showCancelModal}
+        setShowCancelModal={setShowCancelModal}
+        closeHandler={() => setShowCancelModal(false)}
       />
-    </StyledPage>
+    </>
   );
 };
 

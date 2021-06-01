@@ -87,9 +87,18 @@ export function* createSubscriptionFlow({ payload }) {
     const selectedCard = yield select(getSelectedCard);
     const promoCode = yield select(getPromoCode);
 
-    yield call(checkoutService.createSubscription, selectedProduct.id, selectedCard.id, promoCode);
+    const subscription = yield call(
+      checkoutService.createSubscription,
+      selectedProduct.id,
+      selectedCard.id,
+      promoCode
+    );
+
     yield put({
       type: CREATE_SUBSCRIPTION_SUCCESS,
+      payload: {
+        subscription,
+      },
     });
     yield put(push(ROUTES.CHECKOUTCONFIRMED));
   } catch (err) {

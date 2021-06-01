@@ -44,6 +44,7 @@ const Plans = ({
         <div className="flex flex-wrap justify-between lg:-mx-4 xl:-mx-7">
           {membershipProducts.map((product) => {
             const isActiveSubscription = product.id === activeSubscription?.product.id;
+
             const submitText = isActiveSubscription
               ? 'Cancel'
               : userHasActiveSubscription

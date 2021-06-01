@@ -1,6 +1,13 @@
-import { put, takeLatest, call } from 'redux-saga/effects';
+import { put, takeLatest, call, all } from 'redux-saga/effects';
 
-import { INITIAL_LOAD_INIT, INITIAL_LOAD_SUCCESS, INITIAL_LOAD_FAILURE } from './actionTypes';
+import {
+  INITIAL_LOAD_INIT,
+  INITIAL_LOAD_SUCCESS,
+  INITIAL_LOAD_FAILURE,
+  CANCEL_SUBSCRIPTION_INIT,
+  CANCEL_SUBSCRIPTION_SUCCESS,
+  CANCEL_SUBSCRIPTION_FAILURE,
+} from './actionTypes';
 import seriesService from './service';
 
 export function* initialLoadFlow() {
@@ -15,6 +22,21 @@ export function* initialLoadFlow() {
   }
 }
 
+export function* cancelSubscriptionFlow(action) {
+  try {
+    yield call(seriesService.cancelSubscription, action.payload.subscription.id);
+    yield put({
+      type: CANCEL_SUBSCRIPTION_SUCCESS,
+      payload: {},
+    });
+  } catch (err) {
+    yield put({ type: CANCEL_SUBSCRIPTION_FAILURE, error: err.response.data.error });
+  }
+}
+
 export default function* seriesSaga() {
-  yield takeLatest(INITIAL_LOAD_INIT, initialLoadFlow);
+  yield all([
+    takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
+    takeLatest(CANCEL_SUBSCRIPTION_INIT, cancelSubscriptionFlow),
+  ]);
 }

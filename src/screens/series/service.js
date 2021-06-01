@@ -14,4 +14,12 @@ export default {
 
     return [...response.data.products, freeSession];
   },
+
+  cancelSubscription: async (subscriptionId) => {
+    const response = await api.delete(`/subscriptions/${subscriptionId}`, {
+      data: {},
+    });
+
+    return response.data;
+  },
 };
