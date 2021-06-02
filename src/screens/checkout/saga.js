@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/series/reducer';
 import { getSelectedCard } from 'screens/payments/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
 
 import { getPromoCode } from './reducer';
 import {
@@ -19,6 +20,9 @@ import {
   CREATE_SUBSCRIPTION_INIT,
   CREATE_SUBSCRIPTION_SUCCESS,
   CREATE_SUBSCRIPTION_FAILURE,
+  UPDATE_SUBSCRIPTION_INIT,
+  UPDATE_SUBSCRIPTION_SUCCESS,
+  UPDATE_SUBSCRIPTION_FAILURE,
 } from './actionTypes';
 import { RESERVE_SESSION_INIT } from '../sessions/actionTypes';
 import checkoutService from './service';
@@ -81,7 +85,7 @@ export function* checkPromoCodeFlow({ payload }) {
   }
 }
 
-export function* createSubscriptionFlow({ payload }) {
+export function* createSubscriptionFlow() {
   try {
     const selectedProduct = yield select(getSelectedProduct);
     const selectedCard = yield select(getSelectedCard);
@@ -108,10 +112,41 @@ export function* createSubscriptionFlow({ payload }) {
   }
 }
 
+export function* updateSubscriptionFlow() {
+  try {
+    const selectedProduct = yield select(getSelectedProduct);
+    const selectedCard = yield select(getSelectedCard);
+    const promoCode = yield select(getPromoCode);
+    const userProfile = yield select(getUserProfile);
+    const activeSubscription = userProfile.activeSubscription;
+
+    const subscription = yield call(
+      checkoutService.updateSubscription,
+      activeSubscription.id,
+      selectedProduct.id,
+      selectedCard.id,
+      promoCode
+    );
+
+    yield put({
+      type: UPDATE_SUBSCRIPTION_SUCCESS,
+      payload: {
+        subscription,
+      },
+    });
+    yield put(push(ROUTES.CHECKOUTCONFIRMED));
+  } catch (err) {
+    yield call(toast.error, err.response.data.error);
+
+    yield put({ type: UPDATE_SUBSCRIPTION_FAILURE, error: err.response.data.error });
+  }
+}
+
 export default function* checkoutSaga() {
   yield all([
     takeLatest(CREATE_PURCHASE_INIT, createPurchaseFlow),
     takeLatest(CREATE_SUBSCRIPTION_INIT, createSubscriptionFlow),
+    takeLatest(UPDATE_SUBSCRIPTION_INIT, updateSubscriptionFlow),
     takeLatest(CREATE_FREE_SESSION_INIT, createFreeSessionFlow),
     takeLatest(CHECK_PROMO_CODE_INIT, checkPromoCodeFlow),
   ]);

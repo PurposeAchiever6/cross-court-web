@@ -14,6 +14,9 @@ import {
   CHECK_PROMO_CODE_FAILURE,
   CREATE_SUBSCRIPTION_FAILURE,
   CREATE_SUBSCRIPTION_SUCCESS,
+  UPDATE_SUBSCRIPTION_INIT,
+  UPDATE_SUBSCRIPTION_FAILURE,
+  UPDATE_SUBSCRIPTION_SUCCESS,
 } from './actionTypes';
 
 const initialState = {
@@ -31,6 +34,7 @@ export default (state = initialState, action) => {
     case CREATE_PURCHASE_INIT:
     case CREATE_FREE_SESSION_INIT:
     case CREATE_SUBSCRIPTION_INIT:
+    case UPDATE_SUBSCRIPTION_INIT:
       return {
         ...state,
         checkoutLoading: true,
@@ -39,6 +43,7 @@ export default (state = initialState, action) => {
     case CREATE_PURCHASE_SUCCESS:
     case CREATE_FREE_SESSION_SUCCESS:
     case CREATE_SUBSCRIPTION_SUCCESS:
+    case UPDATE_SUBSCRIPTION_SUCCESS:
       return {
         ...state,
         checkoutLoading: false,
@@ -48,6 +53,7 @@ export default (state = initialState, action) => {
     case CREATE_PURCHASE_FAILURE:
     case CREATE_FREE_SESSION_FAILURE:
     case CREATE_SUBSCRIPTION_FAILURE:
+    case UPDATE_SUBSCRIPTION_FAILURE:
       return { ...state, error: action.error, checkoutLoading: false };
     case CHECK_PROMO_CODE_INIT:
       return {

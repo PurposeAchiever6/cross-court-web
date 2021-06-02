@@ -11,10 +11,20 @@ export default {
     return response.data;
   },
 
-  createSubscription: async (productId, cardId, promoCode) => {
+  createSubscription: async (productId, paymentMethod, promoCode) => {
     const response = await api.post('/subscriptions', {
       productId,
-      paymentMethod: cardId,
+      paymentMethod,
+      promoCode,
+    });
+
+    return response.data;
+  },
+
+  updateSubscription: async (subscriptionId, productId, paymentMethod, promoCode) => {
+    const response = await api.put(`subscriptions/${subscriptionId}`, {
+      productId,
+      paymentMethod,
       promoCode,
     });
 

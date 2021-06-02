@@ -13,7 +13,7 @@ import {
 } from './actionTypes';
 
 import { CANCEL_SUBSCRIPTION_SUCCESS } from '../series/actionTypes';
-import { CREATE_SUBSCRIPTION_SUCCESS } from '../checkout/actionTypes';
+import { CREATE_SUBSCRIPTION_SUCCESS, UPDATE_SUBSCRIPTION_SUCCESS } from '../checkout/actionTypes';
 
 const initialState = {
   error: '',
@@ -85,6 +85,7 @@ export default (state = initialState, action) => {
         userProfile: { activeSubscription: null },
       };
     case CREATE_SUBSCRIPTION_SUCCESS:
+    case UPDATE_SUBSCRIPTION_SUCCESS:
       return {
         ...state,
         userProfile: { activeSubscription: action.payload.subscription },
