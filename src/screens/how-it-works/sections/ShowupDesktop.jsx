@@ -25,7 +25,7 @@ const Section = styled.section`
   }
 
   .title {
-    color: ${colors.brandBlue};
+    color: ${colors.brandPurple};
     font-size: 120px;
     line-height: 100px;
     margin-bottom: 15px;

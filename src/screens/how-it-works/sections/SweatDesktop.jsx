@@ -30,7 +30,7 @@ const Section = styled.section`
     color: white;
     -webkit-text-fill-color: transparent;
     -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: ${colors.brandBlue};
+    -webkit-text-stroke-color: ${colors.brandPurple};
     font-size: 120px;
     line-height: 100px;
     margin-bottom: 15px;

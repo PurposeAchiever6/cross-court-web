@@ -22,7 +22,7 @@ const Plans = ({ product, submitText, submitBtnSecondary, handleSubmit, classNam
 
   return (
     <div
-      className={`relative border-2 border-cc-blue bg-cc-black text-white lg:text-center py-6 px-5 lg:px-8 transform lg:hover:scale-115 transition-transform duration-300 ${className} ${
+      className={`relative border-2 border-cc-purple bg-cc-black text-white lg:text-center py-6 px-5 lg:px-8 transform lg:hover:scale-115 transition-transform duration-300 ${className} ${
         label ? 'pl-14 lg:pl-8' : ''
       }`}
     >
@@ -64,10 +64,10 @@ const Plans = ({ product, submitText, submitBtnSecondary, handleSubmit, classNam
       </div>
       {label && (
         <>
-          <div className="hidden lg:block text-center absolute -inset-x-0.5 -top-8 bg-cc-blue border-2 border-cc-blue shapiro95_super_wide text-black py-1">
+          <div className="hidden lg:block text-center absolute -inset-x-0.5 -top-8 bg-cc-purple border-2 border-cc-purple shapiro95_super_wide text-black py-1">
             {label}
           </div>
-          <div className="lg:hidden absolute inset-y-0 left-0 bg-cc-blue shapiro95_super_wide text-black w-8">
+          <div className="lg:hidden absolute inset-y-0 left-0 bg-cc-purple shapiro95_super_wide text-black w-8">
             <div className="text-center absolute top-1/2 -left-28 transform -translate-y-1/2 -rotate-90 whitespace-nowrap w-64">
               {label}
             </div>
