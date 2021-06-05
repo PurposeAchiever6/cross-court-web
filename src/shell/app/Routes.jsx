@@ -15,7 +15,6 @@ import Footer from 'shared/components/Footer';
 import Loading from 'shared/components/Loading';
 import ScrollToPosition from 'shared/components/ScrollToPosition';
 import { history } from 'shared/history';
-import colors from 'shared/styles/constants';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getLegalDocs } from 'screens/legal-docs/actionCreators';
 import PrivateRoute from './PrivateRoute';
@@ -83,10 +82,6 @@ const setPageNameOnBodyClass = (pathname) => {
   }
 };
 const setScrollClasses = () => {
-  const header = document.querySelector('.header');
-  const mobile = window.innerWidth < 992;
-  const headerScrollLimit = mobile ? 50 : 50; //800;
-
   if (body.getAttribute('data-page') === 'home') {
     const bigTitle = document.querySelector('.crosscourt-big-title');
 
@@ -282,7 +277,6 @@ const setScrollClasses = () => {
             history.push(redirectToSpecificSession);
           } else {
             document.querySelector('.locations').classList.remove('faded-out');
-            header.classList.add('scrolled');
             window.setTimeout(function () {
               if (document.querySelector('.free-session-credit-added')) {
                 document.querySelector('.free-session-credit-added').style.display = 'none';
@@ -403,7 +397,6 @@ const setScrollClasses = () => {
         document.querySelector('main').classList.add('animation-done');
 
         window.setTimeout(function () {
-          header.classList.add('scrolled');
           window.setTimeout(function () {
             if (document.querySelector('.no-session-credits')) {
               document.querySelector('.no-session-credits').style.display = 'none';
@@ -423,12 +416,6 @@ const setScrollClasses = () => {
     body.getAttribute('data-page') === 'home' ||
     body.getAttribute('data-page') === 'how-it-works'
   ) {
-    if (window.scrollY > headerScrollLimit) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-
     window.setTimeout(function () {
       const video = document.querySelector('.video-player');
       const barMalik = document.querySelector('.bar-malik');
@@ -486,26 +473,7 @@ const setScrollClasses = () => {
         window.observer.observe(document.querySelector('.bar-malik'));
       }
     }, 2000);
-  } else if (
-    (body.getAttribute('data-page') === 'free-session-credit-added' && keepScrolling) ||
-    (body.getAttribute('data-page') === 'locations' &&
-      window.location.search === '?testanimation' &&
-      keepScrolling)
-  ) {
-    header.classList.remove('scrolled');
-  } else if (
-    (body.getAttribute('data-page') === 'no-session-credits' && keepScrolling) ||
-    (body.getAttribute('data-page') === 'no-session-credits' &&
-      window.location.search === '?testanimation' &&
-      keepScrolling) ||
-    (body.getAttribute('data-page') === 'series' &&
-      window.location.search === '?testanimation' &&
-      keepScrolling)
-  ) {
-    header.classList.remove('scrolled');
   } else {
-    header.classList.add('scrolled');
-
     if (window.observer) {
       window.observer.disconnect();
     }

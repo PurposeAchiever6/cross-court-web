@@ -14,6 +14,12 @@ module.exports = {
         115: '1.15',
       },
       fontFamily: ['hover'],
+      zIndex: {
+        1005: 1005,
+      },
+      boxShadow: {
+        navbar: '0px 4px 4px #9999FF',
+      },
     },
     fontFamily: {
       dharma_gothic_cexbold: ['dharma_gothic_cexboldf'],

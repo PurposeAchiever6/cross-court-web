@@ -1,9 +1,5 @@
 /* SIDEBAR NAV */
 
-body .cheeseburger-menu .cheeseburger-menu-outer {
-  transition-duration: 1s !important;
-}
-
 .sidebar-nav .list-item {
   transition: transform 800ms ease;
   width: -webkit-max-content;
@@ -11,7 +7,6 @@ body .cheeseburger-menu .cheeseburger-menu-outer {
 }
 
 .sidebar-nav .list-item:hover {
-  color: white;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: white;
@@ -20,41 +15,43 @@ body .cheeseburger-menu .cheeseburger-menu-outer {
 }
 
 .sidebar-nav .list-item.active {
-  color: white;
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: white;
   opacity: 0.6;
 }
 
-.sidebar-nav .list-item:nth-of-type(1) {
-  transform: translateX(-50vw);
-  transition-delay: 0ms;
+@media (min-width: 992px) {
+  .sidebar-nav .list-item:nth-of-type(1) {
+    transform: translateX(-50vw);
+    transition-delay: 0ms;
+  }
+  .sidebar-nav .list-item:nth-of-type(2) {
+    transform: translateX(-50vw);
+    transition-delay: 50ms;
+  }
+  .sidebar-nav .list-item:nth-of-type(3) {
+    transform: translateX(-50vw);
+    transition-delay: 100ms;
+  }
+  .sidebar-nav .list-item:nth-of-type(4) {
+    transform: translateX(-50vw);
+    transition-delay: 150ms;
+  }
+  .sidebar-nav .list-item:nth-of-type(5) {
+    transform: translateX(-50vw);
+    transition-delay: 200ms;
+  }
+  .sidebar-nav .list-item:nth-of-type(6) {
+    transform: translateX(-50vw);
+    transition-delay: 250ms;
+  }
+  .sidebar-nav .list-item:nth-of-type(7) {
+    transform: translateX(-50vw);
+    transition-delay: 300ms;
+  }
 }
-.sidebar-nav .list-item:nth-of-type(2) {
-  transform: translateX(-50vw);
-  transition-delay: 50ms;
-}
-.sidebar-nav .list-item:nth-of-type(3) {
-  transform: translateX(-50vw);
-  transition-delay: 100ms;
-}
-.sidebar-nav .list-item:nth-of-type(4) {
-  transform: translateX(-50vw);
-  transition-delay: 150ms;
-}
-.sidebar-nav .list-item:nth-of-type(5) {
-  transform: translateX(-50vw);
-  transition-delay: 200ms;
-}
-.sidebar-nav .list-item:nth-of-type(6) {
-  transform: translateX(-50vw);
-  transition-delay: 250ms;
-}
-.sidebar-nav .list-item:nth-of-type(7) {
-  transform: translateX(-50vw);
-  transition-delay: 300ms;
-}
+
 body .cheeseburger-menu.open .sidebar-nav .list-item {
   transform: translateX(0);
 }

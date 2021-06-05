@@ -8,13 +8,20 @@ import { logoutInit } from 'screens/auth/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { useHistory } from 'react-router-dom';
 
 const SidebarMenu = ({ menuToggler }) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(getIsAuthenticated);
   const userProfile = useSelector(getUserProfile);
+  const history = useHistory();
 
   const logoutAction = () => dispatch(logoutInit());
+
+  const handleClick = (route) => {
+    menuToggler();
+    history.push(route);
+  };
 
   return (
     <nav className="sidebar-nav flex flex-col h-screen justify-center bg-cc-black shadow-md px-12 relative list-none">
@@ -55,14 +62,14 @@ const SidebarMenu = ({ menuToggler }) => {
         {!isAuthenticated && (
           <>
             <Link
-              to={ROUTES.LOGIN}
+              onClick={() => handleClick(ROUTES.LOGIN)}
               className="font-shapiro95_super_wide text-4xl mt-32 hover:opacity-60 transition-opacity duration-300"
             >
               LOG IN
             </Link>
 
             <Link
-              to={ROUTES.SIGNUP}
+              onClick={() => handleClick(ROUTES.SIGNUP)}
               className="font-shapiro95_super_wide text-4xl mb-16 hover:opacity-60 transition-opacity duration-300"
             >
               SIGN UP
