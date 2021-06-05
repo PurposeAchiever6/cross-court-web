@@ -13,6 +13,16 @@ module.exports = {
       scale: {
         115: '1.15',
       },
+      fontFamily: ['hover'],
+    },
+    fontFamily: {
+      dharma_gothic_cexbold: ['dharma_gothic_cexboldf'],
+      dharma_gothic_cheavy_italic: ['dharma_gothic_cheavy_italic'],
+      dharma_gothic_cheavy: ['dharma_gothic_cheavy'],
+      shapiro45_welter_extd: ['shapiro45_welter_extd'],
+      shapiro95_super_wide: ['shapiro95_super_wide'],
+      shapiro96_inclined_wide: ['shapiro96_inclined_wide'],
+      shapiro97_air_extd: ['shapiro97_air_extd'],
     },
   },
   variants: {

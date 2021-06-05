@@ -59,6 +59,7 @@ const StyledButton = styled.button`
 `;
 
 const PrimaryButton = ({
+  className,
   to,
   children,
   loading,
@@ -81,12 +82,12 @@ const PrimaryButton = ({
     <Link
       style={{ pointerEvents: disabled || loading ? 'none' : '' }}
       to={to}
-      className="primary-button"
+      className={`primary-button ${className}`}
     >
       {content}
     </Link>
   ) : (
-    <StyledButton className="primary-button">{content}</StyledButton>
+    <StyledButton className={`primary-button ${className}`}>{content}</StyledButton>
   );
 };
 
