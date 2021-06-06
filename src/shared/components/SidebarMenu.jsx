@@ -18,13 +18,13 @@ const SidebarMenu = ({ menuToggler }) => {
 
   const logoutAction = () => dispatch(logoutInit());
 
-  const handleClick = (route) => {
+  const handleClick = route => {
     menuToggler();
     history.push(route);
   };
 
   return (
-    <nav className="sidebar-nav flex flex-col h-screen justify-center bg-cc-black shadow-md px-12 relative list-none">
+    <nav className="sidebar-nav flex flex-col h-screen justify-center bg-cc-black shadow-md px-8 relative list-none">
       <CloseButton className="close-button" onClick={menuToggler} />
 
       <div className="flex flex-col text-white text-lg md:text-2xl items-center md:items-end font-shapiro95_super_wide">
@@ -47,9 +47,9 @@ const SidebarMenu = ({ menuToggler }) => {
               MY ACCOUNT
             </NavLink>
 
-            <NavLink className="list-item" type="button" onClick={() => logoutAction()}>
+            <Link className="list-item" type="button" onClick={() => logoutAction()}>
               LOGOUT
-            </NavLink>
+            </Link>
           </>
         )}
 
@@ -70,7 +70,7 @@ const SidebarMenu = ({ menuToggler }) => {
 
             <Link
               onClick={() => handleClick(ROUTES.SIGNUP)}
-              className="font-shapiro95_super_wide text-4xl mb-16 hover:opacity-60 transition-opacity duration-300"
+              className="font-shapiro95_super_wide text-4xl hover:opacity-60 transition-opacity duration-300"
             >
               SIGN UP
             </Link>
@@ -79,7 +79,7 @@ const SidebarMenu = ({ menuToggler }) => {
       </div>
 
       <PrimaryButton
-        className="w-max self-center md:self-end"
+        className="w-max self-center md:self-end mt-16"
         inverted
         bg="transparent"
         to={ROUTES.LOCATIONS}

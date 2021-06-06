@@ -1,5 +1,5 @@
 import React from 'react';
-import { number } from 'prop-types';
+import { number, bool } from 'prop-types';
 import styled from 'styled-components';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
@@ -8,7 +8,6 @@ const MyCreditsContainer = styled.div`
 
   h3 {
     font-size: 1.75rem;
-    margin-bottom: 1.25rem;
     font-family: 'shapiro95_super_wide';
   }
 
@@ -55,31 +54,40 @@ const MyCreditsContainer = styled.div`
   }
 `;
 
-const MyCredits = ({ dropinCredits, subscriptionCredits }) => {
+const MyCredits = ({ dropinCredits, subscriptionCredits, hasActiveSubscription }) => {
+  const isUnlimited = subscriptionCredits < 0;
+  const totalCredits = dropinCredits + subscriptionCredits;
+
   return (
     <MyCreditsContainer className="my-credits">
-      <h3>SERIES</h3>
-      <div className="mb-4">
-        <div className="flex mb-4">
-          <span className="session-number">{dropinCredits || 0}</span>
-          <span>
-            <span className="dropin-title-1">SESSIONS</span>
-            <span className="dropin-title-2">LEFT</span>
-          </span>
-        </div>
-        <div className="flex">
-          <span className="session-number">{subscriptionCredits || 0}</span>
-          <span>
-            <span className="subscription-title-1">SESSIONS LEFT</span>
-            <span className="subscription-title-2">PER MONTH</span>
-          </span>
-        </div>
+      <h3 className="mb-4">{totalCredits > 0 ? 'SESSIONS' : 'SERIES'}</h3>
+      <div className="mb-6">
+        {isUnlimited ? (
+          <span className="-mt-4 dropin-title-2">UNLIMITED</span>
+        ) : (
+          <div className="flex mb-4">
+            <span className="session-number">{totalCredits}</span>
+            <span>
+              {hasActiveSubscription ? (
+                <>
+                  <span className="subscription-title-1">SESSIONS LEFT</span>
+                  <span className="subscription-title-2">THIS MONTH</span>
+                </>
+              ) : (
+                <>
+                  <span className="dropin-title-1">SESSIONS</span>
+                  <span className="dropin-title-2">LEFT</span>
+                </>
+              )}
+            </span>
+          </div>
+        )}
       </div>
       <PrimaryButton className="mb-1" to="/series" w="100%">
-        BUY SERIES
+        Manage Membership
       </PrimaryButton>
       <PrimaryButton to="/purchase-history" inverted w="100%">
-        PURCHASE HISTORY
+        Purchase History
       </PrimaryButton>
     </MyCreditsContainer>
   );
@@ -88,6 +96,7 @@ const MyCredits = ({ dropinCredits, subscriptionCredits }) => {
 MyCredits.propTypes = {
   dropinCredits: number.isRequired,
   subscriptionCredits: number.isRequired,
+  hasActiveSubscription: bool.isRequired,
 };
 
 export default MyCredits;
