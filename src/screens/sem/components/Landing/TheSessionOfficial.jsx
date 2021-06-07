@@ -98,20 +98,10 @@ const TheSessionOfficial = () => {
           </p>
         </div>
         <div className="flex justify-between w-full md:w-96">
-          <PrimaryButton
-            className="apply-button"
-            onClick={() => window.open(SO_LINK, '_blank')}
-            w="100%"
-          >
+          <PrimaryButton onClick={() => window.open(SO_LINK, '_blank')} w="100%">
             APPLY
           </PrimaryButton>
-          <PrimaryButton
-            className="learn-more"
-            onClick={() => setShowModal(true)}
-            inverted
-            w="100%"
-            bg="transparent"
-          >
+          <PrimaryButton onClick={() => setShowModal(true)} inverted w="100%" bg="transparent">
             <span className="text">LEARN MORE</span>
           </PrimaryButton>
         </div>

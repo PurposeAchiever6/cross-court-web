@@ -32,7 +32,7 @@ const JoinTheCCTeam = () => (
   <StyledDiv className="flex flex-col h-screen items-center justify-center text-white bg-cc-black">
     <div className="w-min">
       <p className="title">JOIN THE</p>
-      <p className="subtitle dharma_gothic_cexbold">CCTEAM</p>
+      <p className="subtitle">CCTEAM</p>
       <p className="text-center mt-10 text-xs">
         AS A MEMBER OF THE CC EXPERIENCE TEAM, YOU&apos;LL HELP US UNITE AND IGNITE THE WORLD
         THROUGH THE POWER OF TEAM-SPORT

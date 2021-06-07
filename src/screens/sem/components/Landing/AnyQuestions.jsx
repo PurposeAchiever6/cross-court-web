@@ -1,6 +1,5 @@
 import React from 'react';
 
-import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 import styled from 'styled-components';

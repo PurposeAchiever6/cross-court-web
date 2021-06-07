@@ -64,15 +64,10 @@ const SessionExperienceManager = () => {
         </p>
       </div>
       <div className="flex justify-between w-full md:w-96">
-        <PrimaryButton
-          className="apply-button"
-          onClick={() => window.open(SEM_LINK, '_blank')}
-          w="100%"
-        >
+        <PrimaryButton onClick={() => window.open(SEM_LINK, '_blank')} w="100%">
           APPLY
         </PrimaryButton>
         <PrimaryButton
-          className="learn-more"
           onClick={() => document.querySelector('.eapps-form-floating-button').click()}
           inverted
           w="100%"

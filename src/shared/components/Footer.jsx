@@ -54,11 +54,17 @@ function Footer() {
           <p>FAQ</p>
         </Link>
         <p onClick={() => document.querySelector('.eapps-form-floating-button').click()}>CONTACT</p>
+        <p onClick={() => document.querySelector('.eapps-form-floating-button').click()}>
+          PRIVATE RENTALS
+        </p>
         <a className="instagram" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
           <InstagramSvg width="100%" />
         </a>
       </FooterContainer>
-      <div className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136" />
+      <div
+        className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136"
+        style={{ position: 'fixed' }}
+      />
     </>
   );
 }

@@ -10,6 +10,7 @@ import { identify, startedCheckout } from 'shared/utils/klaviyo';
 import { initialLoad, setSelectedProduct, cancelSubscription } from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
 import Plans from './components/Plans';
+import FacilityRentals from './components/FacilityRentals';
 import NoSessionCredits from './components/NoSessionCredits';
 import CancelMembershipModal from './components/CancelMembershipModal';
 
@@ -60,14 +61,17 @@ const SeriesPage = () => {
 
   return (
     <>
-      <div className="bg-cc-black min-h-screen">
-        {showAnimation() && <NoSessionCredits />}
-        <Plans
-          selectProductHandler={selectProductHandler}
-          cancelMembership={cancelMembership}
-          availableProducts={availableProducts}
-          activeSubscription={userProfile.activeSubscription}
-        />
+      <div className="bg-cc-black">
+        <div className="min-h-screen">
+          {showAnimation() && <NoSessionCredits />}
+          <Plans
+            selectProductHandler={selectProductHandler}
+            cancelMembership={cancelMembership}
+            availableProducts={availableProducts}
+            activeSubscription={userProfile.activeSubscription}
+          />
+        </div>
+        <FacilityRentals />
       </div>
       <CancelMembershipModal
         cancelSubscriptionAction={cancelSubscriptionAction}
