@@ -1,11 +1,7 @@
 import React from 'react';
 
-import DesktopLanding from './components/DesktopLanding';
+import Landing from './components/Landing';
 
-const SemHomePage = () => (
-  <>
-    <DesktopLanding />
-  </>
-);
+const SemHomePage = () => <Landing />;
 
 export default SemHomePage;

@@ -32,7 +32,7 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: { width: ['last'] },
   },
   plugins: [],
 };

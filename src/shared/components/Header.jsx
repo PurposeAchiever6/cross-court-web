@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import DesktopMenu from 'cheeseburger-menu';
 import { Link } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
@@ -18,7 +18,8 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { useLocation } from 'react-router-dom';
 
 const SCROLL_LIMIT = 50;
-const ALWAYS_SCROLLED = ['/locations', '/series', '/my-account', '/login'];
+const ALWAYS_SCROLLED = ['/locations', '/series', '/my-account', '/login', '/sem'];
+const BLACK_BG = ['/sem', '/series'];
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -27,8 +28,15 @@ const Header = () => {
 
   const [scrolled, setScrolled] = useState(false);
 
-  const changeBg = () =>
-    setScrolled(ALWAYS_SCROLLED.includes(pathname) ? true : window.scrollY > SCROLL_LIMIT);
+  const changeBg = useCallback(
+    () =>
+      setScrolled(
+        ALWAYS_SCROLLED.includes(`/${pathname.split(/[/_]/)[1]}`)
+          ? true
+          : window.scrollY > SCROLL_LIMIT
+      ),
+    [pathname]
+  );
 
   document.addEventListener('scroll', () => {
     changeBg();
@@ -36,7 +44,7 @@ const Header = () => {
 
   useEffect(() => {
     changeBg();
-  }, [pathname]);
+  }, [pathname, changeBg]);
 
   useEffect(() => {
     dispatch(initialLoadInit());
@@ -103,15 +111,15 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const bgColor = pathname === '/series' ? 'bg-cc-black' : 'bg-white';
-  const isSeriesPage = pathname === '/series';
+  const isBlackBg = BLACK_BG.includes(pathname);
+  const bgColor = isBlackBg ? 'bg-cc-black' : 'bg-white';
   const logoColor =
-    menuOpen || isSeriesPage ? colors.white : scrolled ? colors.brandPurple : colors.white;
+    menuOpen || isBlackBg ? colors.white : scrolled ? colors.brandPurple : colors.white;
 
   return (
     <div
       className={`header w-full fixed h-16 top-0 z-10 bg-transparent transition duration-500 ${
-        scrolled ? `${!isSeriesPage && 'shadow-navbar'} ${bgColor}` : ''
+        scrolled ? `${!isBlackBg && 'shadow-navbar'} ${bgColor}` : ''
       }`}
     >
       <MobileMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />

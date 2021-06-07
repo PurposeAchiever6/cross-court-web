@@ -13,6 +13,7 @@ const StyledDiv = styled.div`
   line-height: 19px;
   min-width: 130px;
   width: ${(props) => (props.w ? props.w : '')};
+  height: ${(props) => (props.h ? props.h : '')};
   padding: 0;
   position: relative;
   text-align: center;
@@ -22,7 +23,9 @@ const StyledDiv = styled.div`
   .content {
     background-color: ${(props) =>
       props.bg ? props.bg : props.inverted ? colors.white : colors.brandPurple};
-    border: 3px solid ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
+    border: 3px solid
+      ${(props) =>
+        props.double ? (props.inverted ? colors.brandPurple : colors.white) : colors.brandPurple};
     color: ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
     padding: 8px 15px;
     position: relative;
@@ -69,10 +72,20 @@ const PrimaryButton = ({
   font,
   bg,
   w,
+  h,
   ...props
 }) => {
   const content = (
-    <StyledDiv font={font} inverted={inverted} disabled={disabled} bg={bg} w={w} {...props}>
+    <StyledDiv
+      font={font}
+      inverted={inverted}
+      disabled={disabled}
+      bg={bg}
+      w={w}
+      h={h}
+      double={double}
+      {...props}
+    >
       {<div className="content">{loading ? <Spinner /> : children}</div>}
       {double && <div className="double-drop"></div>}
     </StyledDiv>

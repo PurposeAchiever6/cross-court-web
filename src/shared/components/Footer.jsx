@@ -53,14 +53,7 @@ function Footer() {
         <Link to={ROUTES.FAQ}>
           <p>FAQ</p>
         </Link>
-        <p
-          onClick={(e) => {
-            e.preventDefault();
-            document.querySelector('.eapps-form-floating-button').click();
-          }}
-        >
-          CONTACT
-        </p>
+        <p onClick={() => document.querySelector('.eapps-form-floating-button').click()}>CONTACT</p>
         <a className="instagram" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
           <InstagramSvg width="100%" />
         </a>
