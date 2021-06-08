@@ -1564,22 +1564,6 @@ body .checkout .btn-container {
   width: 100%;
 }
 
-/* CHECKOUT CONFIRM */
-body .checkout-confirm {
-  padding: 32px;
-  text-align: center;
-}
-body .checkout-confirm .sport-character-image {
-  height: auto;
-  margin: 20px 0 0;
-  width: 200px;
-}
-
-body .checkout-confirm .go-to-session-button,
-body .checkout-confirm .see-schedule-button {
-  margin-bottom: 30px;
-}
-
 /* PAYMENTS ADD (ADD NEW CARD) */
 body .add-card .card-container .StripeElement {
   background-color: #fbf7f3;

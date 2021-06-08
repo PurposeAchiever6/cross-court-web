@@ -26,49 +26,44 @@ const MyCreditsContainer = styled.div`
   }
 `;
 
-const MyCredits = ({ dropinCredits, subscriptionCredits, hasActiveSubscription }) => {
-  const isUnlimited = subscriptionCredits < 0;
-  const totalCredits = dropinCredits + subscriptionCredits;
-
-  return (
-    <MyCreditsContainer>
-      <div className="text-center mb-8">
-        {isUnlimited ? (
-          <span className="sessions-left">UNLIMITED</span>
-        ) : (
-          <>
-            <span className="session-number">{totalCredits}</span>
-            {hasActiveSubscription ? (
-              <span className="sessions-left">
-                SESSIONS LEFT
-                <br />
-                THIS MONTH
-              </span>
-            ) : (
-              <span className="sessions-left">
-                SESSIONS
-                <br />
-                LEFT
-              </span>
-            )}
-          </>
-        )}
-      </div>
-      <div>
-        <PrimaryButton className="mb-1" to={ROUTES.SERIES} w="100%">
-          Manage Membership
-        </PrimaryButton>
-        <PrimaryButton to={ROUTES.PURCHASEHISTORY} w="100%">
-          PURCHASE HISTORY
-        </PrimaryButton>
-      </div>
-    </MyCreditsContainer>
-  );
-};
+const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => (
+  <MyCreditsContainer>
+    <div className="text-center mb-8">
+      {isUnlimited ? (
+        <span className="sessions-left">UNLIMITED</span>
+      ) : (
+        <>
+          <span className="session-number">{credits}</span>
+          {hasActiveSubscription ? (
+            <span className="sessions-left">
+              SESSIONS LEFT
+              <br />
+              THIS MONTH
+            </span>
+          ) : (
+            <span className="sessions-left">
+              SESSIONS
+              <br />
+              LEFT
+            </span>
+          )}
+        </>
+      )}
+    </div>
+    <div>
+      <PrimaryButton className="mb-1" to={ROUTES.SERIES} w="100%">
+        Manage Membership
+      </PrimaryButton>
+      <PrimaryButton to={ROUTES.PURCHASEHISTORY} w="100%">
+        PURCHASE HISTORY
+      </PrimaryButton>
+    </div>
+  </MyCreditsContainer>
+);
 
 MyCredits.propTypes = {
-  dropinCredits: number.isRequired,
-  subscriptionCredits: number.isRequired,
+  isUnlimited: bool,
+  credits: number,
   hasActiveSubscription: bool.isRequired,
 };
 

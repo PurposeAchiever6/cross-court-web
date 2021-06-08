@@ -268,10 +268,14 @@ const SessionsPage = () => {
     } else if (isSessionFull) {
       text = `SESSION FULL`;
     } else {
-      if (isAuthenticated && userProfile.credits) {
-        text = `YOU HAVE ${userProfile.credits} SESSION${
-          userProfile.credits === 1 ? '' : 'S'
-        } AVAILABLE`;
+      if (isAuthenticated) {
+        if (userProfile.unlimitedCredits) {
+          text = 'YOU HAVE UNLIMITED SESSIONS';
+        } else if (userProfile.totalCredits) {
+          text = `YOU HAVE ${userProfile.totalCredits} SESSION${
+            userProfile.totalCredits === 1 ? '' : 'S'
+          } AVAILABLE`;
+        }
       }
     }
 
@@ -323,6 +327,7 @@ const SessionsPage = () => {
           closeHandler={showCancelModalAction}
           cancelSessionAction={cancelSessionAction}
           inCancellationTime={inCancellationTime}
+          unlimitedCredits={userProfile.unlimitedCredits}
         />
       </Modal>
       <div className="title-container">
@@ -429,7 +434,8 @@ const SessionsPage = () => {
                 />
               )}
               {isAuthenticated &&
-                userProfile.credits === 0 &&
+                !userProfile.unlimitedCredits &&
+                userProfile.totalCredits === 0 &&
                 !isSessionComplete &&
                 !isSessionFull &&
                 (!sessionInfo.userSession ||

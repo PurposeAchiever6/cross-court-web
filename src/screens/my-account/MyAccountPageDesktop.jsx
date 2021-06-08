@@ -40,8 +40,8 @@ export const MyAccountPageDesktop = ({
     <div className="sidebar-container">
       <MyProfile profile={userProfile} />
       <MyCredits
-        dropinCredits={userProfile.credits}
-        subscriptionCredits={userProfile.subscriptionCredits}
+        isUnlimited={userProfile.unlimitedCredits}
+        credits={userProfile.totalCredits}
         hasActiveSubscription={!!userProfile.activeSubscription}
       />
     </div>

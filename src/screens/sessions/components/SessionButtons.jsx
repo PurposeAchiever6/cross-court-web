@@ -20,7 +20,7 @@ const SessionButtons = ({
 
   return (
     <>
-      {(userProfile.credits > 0 || !isAuthenticated) && (
+      {(userProfile.unlimitedCredits || userProfile.totalCredits > 0 || !isAuthenticated) && (
         <ReserveButton
           reserveSessionAction={reserveSessionAction}
           confirmSessionAction={confirmSessionAction}

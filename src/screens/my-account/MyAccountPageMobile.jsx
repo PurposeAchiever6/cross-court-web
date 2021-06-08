@@ -30,8 +30,8 @@ export const MyAccountPageMobile = ({
       </div>
       <div label="MY CREDITS">
         <MyCredits
-          dropinCredits={userProfile.credits}
-          subscriptionCredits={userProfile.subscriptionCredits}
+          isUnlimited={userProfile.unlimitedCredits}
+          credits={userProfile.totalCredits}
           hasActiveSubscription={!!userProfile.activeSubscription}
         />
       </div>

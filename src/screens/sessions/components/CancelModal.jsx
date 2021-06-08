@@ -47,15 +47,22 @@ const CancelModalContainer = styled.div`
   }
 `;
 
-export const CancelModal = ({ closeHandler, cancelSessionAction, inCancellationTime }) => (
+export const CancelModal = ({
+  closeHandler,
+  cancelSessionAction,
+  inCancellationTime,
+  unlimitedCredits,
+}) => (
   <CancelModalContainer className="cancel-modal">
     <h2>CANCEL?</h2>
     <span className="text">Are you sure you want to cancel your session?</span>
-    <strong>
-      {inCancellationTime
-        ? '1 credit will be refunded to your account'
-        : 'The credit will not be refunded'}
-    </strong>
+    {!unlimitedCredits && (
+      <strong>
+        {inCancellationTime
+          ? '1 credit will be refunded to your account'
+          : 'The credit will not be refunded'}
+      </strong>
+    )}
     <PrimaryButton onClick={cancelSessionAction} inverted>
       CANCEL RESERVATION
     </PrimaryButton>
@@ -66,6 +73,7 @@ export const CancelModal = ({ closeHandler, cancelSessionAction, inCancellationT
 );
 
 CancelModal.propTypes = {
+  unlimitedCredits: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
   cancelSessionAction: PropTypes.func.isRequired,
   inCancellationTime: PropTypes.bool.isRequired,
