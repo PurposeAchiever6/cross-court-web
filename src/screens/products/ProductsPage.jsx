@@ -27,7 +27,7 @@ const ProductsPage = () => {
   const cancelSubscriptionAction = async () =>
     dispatch(cancelSubscription(userProfile.activeSubscription));
 
-  const selectProductHandler = (product) => {
+  const selectProductHandler = product => {
     dispatch(setSelectedProduct(product));
 
     if (isAuthenticated) {

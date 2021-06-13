@@ -56,14 +56,8 @@ const HomePage = () => {
 
   const redirectUrl = window.localStorage.getItem('redirect');
   const shouldShowSurveyModal =
-    isAuthenticated &&
-    userInfo &&
-    userInfo.id &&
-    previousSessions &&
-    previousSessions.length &&
-    previousSessions[0].surveyAnswers.length === 0 &&
-    previousSessions[0].inCancellationTime === false &&
-    previousSessions[0].inConfirmationTime === false;
+    isAuthenticated && userInfo?.lastCheckedInUserSession?.surveyAnswers.length === 0;
+
   const maybeGoBackToSessionToBook = () => {
     if (isAuthenticated && redirectUrl) {
       window.localStorage.removeItem('redirect');

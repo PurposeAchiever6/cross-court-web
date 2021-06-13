@@ -409,9 +409,6 @@ body[data-page='home'] .ReactModal__Overlay .ReactModal__Content {
   padding: 0 !important;
   width: 100vw !important;
 }
-body .survey-modal {
-  background-color: #9999ff;
-}
 body .survey-modal .close-btn {
   color: #fff;
   height: 30px;
@@ -485,7 +482,7 @@ body .survey-modal .body1 .stars .star-pair.selected .star-full {
 }
 
 body .survey-modal .body1 .feedback {
-  border: 2px solid #9999ff;
+  border: 2px solid white;
   font-family: 'shapiro45_welter_extd';
   font-size: 12px;
   height: 80px;
