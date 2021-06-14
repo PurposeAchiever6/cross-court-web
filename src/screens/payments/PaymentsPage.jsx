@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Loading from 'shared/components/Loading';
 import { isNil } from 'ramda';
-import { getSelectedProduct } from 'screens/series/reducer';
+import { getSelectedProduct } from 'screens/products/reducer';
 import { initialLoadInit } from './actionCreators';
 import { getPageLoading, getAvailableCards } from './reducer';
 import PaymentMethods from './components/PaymentMethods';
@@ -14,6 +14,7 @@ import FreeSessionConfirmModal from 'shared/components/FreeSessionConfirmModal';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 
 import { getUserProfile } from 'screens/my-account/reducer';
+import ROUTES from 'shared/constants/routes';
 
 const PaymentsPageContainer = styled.div`
   display: flex;
@@ -37,7 +38,7 @@ const PaymentsPage = () => {
   const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed;
   const redirectUrl = window.localStorage.getItem('redirect');
   /* END FSF FLOW LOGIC */
-  
+
   const shouldShowFSFModal = () => !!(isFSFFlow && !availableCards.length && redirectUrl);
   const [showConfirmModal, setShowConfirmModal] = useState(true);
   const hideConfirmModalHandler = () => setShowConfirmModal(false);
@@ -47,7 +48,7 @@ const PaymentsPage = () => {
   }, [dispatch]);
 
   if (isNil(selectedProduct) && !isFSFFlow) {
-    return <Redirect to="/series" />;
+    return <Redirect to={ROUTES.MEMBERSHIPS} />;
   }
 
   if (isLoading) {

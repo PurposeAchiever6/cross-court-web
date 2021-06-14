@@ -17,7 +17,6 @@ export default {
   SESSIONRESERVED: '/session/reserved',
   SESSIONCONFIRMED: '/session/confirmed',
   MEMBERSHIPS: '/memberships',
-  SERIES: '/series',
   MYACCOUNT: '/my-account',
   PURCHASEHISTORY: '/purchase-history',
   CHECKOUT: '/checkout',

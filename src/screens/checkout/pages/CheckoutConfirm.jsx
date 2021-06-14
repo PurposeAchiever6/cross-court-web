@@ -21,7 +21,7 @@ const CheckoutConfirm = () => {
     <div className="text-center pt-4 pb-14">
       <img className="w-56 inline-block mb-2" src={SportCharacter} alt="Sport Icon" />
       <p className="mb-6 max-w-md mx-auto">
-        Thank you for purchasing a Series! Now click below to sign up for a session.
+        Thank you for your purchase! Now click below to sign up for a session.
       </p>
       {redirectUrl ? (
         <PrimaryButton

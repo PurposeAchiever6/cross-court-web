@@ -18,7 +18,7 @@ const SidebarMenu = ({ menuToggler }) => {
 
   const logoutAction = () => dispatch(logoutInit());
 
-  const handleClick = route => {
+  const handleClick = (route) => {
     menuToggler();
     history.push(route);
   };
@@ -37,8 +37,8 @@ const SidebarMenu = ({ menuToggler }) => {
         <NavLink className="list-item" exact to={ROUTES.LOCATIONS} onClick={menuToggler}>
           SCHEDULE
         </NavLink>
-        <NavLink className="list-item" exact to={ROUTES.SERIES} onClick={menuToggler}>
-          SERIES
+        <NavLink className="list-item" exact to={ROUTES.MEMBERSHIPS} onClick={menuToggler}>
+          MEMBERSHIPS
         </NavLink>
 
         {isAuthenticated && (

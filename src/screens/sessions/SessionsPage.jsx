@@ -446,7 +446,7 @@ const SessionsPage = () => {
                     className="buy-btn"
                     onClick={() => {
                       window.localStorage.setItem('redirect', window.location.pathname);
-                      history.push(ROUTES.SERIES);
+                      history.push(ROUTES.MEMBERSHIPS);
                     }}
                   >
                     CONFIRM RESERVATION

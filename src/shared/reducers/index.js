@@ -7,14 +7,14 @@ import authReducer from 'screens/auth/reducer';
 import semSessionReducer from 'screens/sem-session/reducer';
 import locationsReducer from 'screens/locations/reducer';
 import sessionReducer from 'screens/sessions/reducer';
-import seriesReducer from 'screens/series/reducer';
+import productsReducer from 'screens/products/reducer';
 import myAccountReducer from 'screens/my-account/reducer';
 import purchaseHistoryReducer from 'screens/purchase-history/reducer';
 import paymentsReducer from 'screens/payments/reducer';
 import checkoutReducer from 'screens/checkout/reducer';
 import legalDocsReducer from 'screens/legal-docs/reducer';
 
-export default history =>
+export default (history) =>
   combineReducers({
     router: connectRouter(history),
     auth: authReducer,
@@ -27,7 +27,7 @@ export default history =>
     ),
     locations: locationsReducer,
     session: sessionReducer,
-    series: seriesReducer,
+    products: productsReducer,
     myAccount: persistReducer(
       {
         key: 'myAccount',

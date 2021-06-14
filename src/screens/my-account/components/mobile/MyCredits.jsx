@@ -51,7 +51,7 @@ const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => (
       )}
     </div>
     <div>
-      <PrimaryButton className="mb-1" to={ROUTES.SERIES} w="100%">
+      <PrimaryButton className="mb-1" to={ROUTES.MEMBERSHIPS} w="100%">
         Manage Membership
       </PrimaryButton>
       <PrimaryButton to={ROUTES.PURCHASEHISTORY} w="100%">

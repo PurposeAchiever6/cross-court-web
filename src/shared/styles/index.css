@@ -1719,58 +1719,6 @@ body .session-reserved .refer-a-new-friend-message {
   margin-bottom: 90px;
 }
 
-body .series-series-container {
-  padding: 0;
-  transition: 3000ms opacity ease;
-}
-body .series-series-container.faded-out {
-  opacity: 0;
-}
-body .series-series-container h2 {
-  font-family: 'shapiro96_inclined_wide';
-  margin-bottom: 40px;
-  text-align: center;
-}
-body .series-series-container .content {
-  margin-bottom: 50px;
-  max-width: 940px;
-}
-body .series-series-container .content .item {
-  margin-bottom: 32px;
-}
-@media (min-width: 992px) {
-  body .series-series-container .content .item {
-    margin-bottom: 0;
-  }
-}
-body .series-series-container .content .item img.on-your-time {
-  margin: 0 15px 0 -11px;
-  width: 60px;
-}
-@media (min-width: 992px) {
-  body .series-series-container .content .item img.on-your-time {
-    width: 80px;
-  }
-}
-body .series-series-container .content .item img.premium-facility {
-  margin: 0 10px 0 -15px;
-  width: 70px;
-}
-@media (min-width: 992px) {
-  body .series-series-container .content .item img.premium-facility {
-    margin: 0;
-    width: 100px;
-  }
-}
-body .series-series-container .content .item .text-container {
-  margin-left: 0;
-}
-body .series-series-container .content .item .text-container .title {
-  font-family: 'shapiro95_super_wide';
-  font-weight: normal;
-  margin-bottom: 5px;
-}
-
 /* NO SESSION CREDITS */
 body .no-session-credits {
   backface-visibility: hidden;

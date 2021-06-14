@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { SET_SELECTED_PRODUCT } from 'screens/series/actionTypes';
+import { SET_SELECTED_PRODUCT } from 'screens/products/actionTypes';
 import {
   CLEAR_DISCOUNT,
   CREATE_PURCHASE_INIT,

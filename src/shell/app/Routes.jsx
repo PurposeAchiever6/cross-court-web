@@ -36,7 +36,7 @@ const Sessions = lazy(() => import('screens/sessions/SessionsPage'));
 const SessionConfirmed = lazy(() => import('screens/sessions/pages/SessionConfirmed'));
 const SessionReserved = lazy(() => import('screens/sessions/pages/SessionReserved'));
 const Checkout = lazy(() => import('screens/checkout/CheckoutPage'));
-const SeriesPage = lazy(() => import('screens/series/SeriesPage'));
+const ProductsPage = lazy(() => import('screens/products/ProductsPage'));
 const MyAccount = lazy(() => import('screens/my-account/MyAccountPage'));
 const PurchaseHistory = lazy(() => import('screens/purchase-history/PurchaseHistoryPage'));
 const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfirm'));
@@ -293,7 +293,8 @@ const setScrollClasses = () => {
     }
   } else if (
     body.getAttribute('data-page') === 'no-session-credits' ||
-    (body.getAttribute('data-page') === 'series' && window.location.search === '?testanimation')
+    (body.getAttribute('data-page') === 'memberships' &&
+      window.location.search === '?testanimation')
   ) {
     const bigTitle = document.querySelector('.no-session-credits .title');
 
@@ -608,8 +609,8 @@ const Routes = () => {
         <Route path={ROUTES.HOWITWORKS}>
           <HowItWorks />
         </Route>
-        <Route path={ROUTES.SERIES}>
-          <SeriesPage />
+        <Route path={ROUTES.MEMBERSHIPS}>
+          <ProductsPage />
         </Route>
         <Route path={ROUTES.TERMS}>
           <TermsAndConditions />

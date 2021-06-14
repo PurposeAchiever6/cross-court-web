@@ -2,6 +2,7 @@ import React from 'react';
 import { number, bool } from 'prop-types';
 import styled from 'styled-components';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import ROUTES from 'shared/constants/routes';
 
 const MyCreditsContainer = styled.div`
   padding: 2.5rem;
@@ -56,7 +57,7 @@ const MyCreditsContainer = styled.div`
 
 const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => (
   <MyCreditsContainer className="my-credits">
-    <h3 className="mb-4">{credits > 0 ? 'SESSIONS' : 'SERIES'}</h3>
+    <h3 className="mb-4">{credits > 0 ? 'SESSIONS' : 'MEMBERSHIPS'}</h3>
     <div className="mb-6">
       {isUnlimited ? (
         <span className="-mt-4 dropin-title-2">UNLIMITED</span>
@@ -79,7 +80,7 @@ const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => (
         </div>
       )}
     </div>
-    <PrimaryButton className="mb-1" to="/series" w="100%">
+    <PrimaryButton className="mb-1" to={ROUTES.MEMBERSHIPS} w="100%">
       Manage Membership
     </PrimaryButton>
     <PrimaryButton to="/purchase-history" inverted w="100%">

@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 import { isNil } from 'ramda';
 
 import ROUTES from 'shared/constants/routes';
-import { getSelectedProduct } from 'screens/series/reducer';
+import { getSelectedProduct } from 'screens/products/reducer';
 import { getSelectedCard } from 'screens/payments/reducer';
 import BackButton from 'shared/components/BackButton';
 import { createPurchase, createSubscription, updateSubscription } from './actionCreators';

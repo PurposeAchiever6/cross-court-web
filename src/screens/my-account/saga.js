@@ -41,7 +41,7 @@ export function* editProfileFlow(action) {
   }
 }
 
-export default function* seriesSaga() {
+export default function* myAccountSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
     takeLatest(EDIT_PROFILE_INIT, editProfileFlow),

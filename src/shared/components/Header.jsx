@@ -18,8 +18,14 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { useLocation } from 'react-router-dom';
 
 const SCROLL_LIMIT = 50;
-const ALWAYS_SCROLLED = ['/locations', '/series', '/my-account', '/login', '/sem'];
-const BLACK_BG = ['/sem', '/series'];
+const ALWAYS_SCROLLED = [
+  ROUTES.LOCATIONS,
+  ROUTES.MEMBERSHIPS,
+  ROUTES.MYACCOUNT,
+  ROUTES.LOGIN,
+  ROUTES.SEM,
+];
+const BLACK_BG = [ROUTES.SEM, ROUTES.MEMBERSHIPS];
 
 const Header = () => {
   const dispatch = useDispatch();

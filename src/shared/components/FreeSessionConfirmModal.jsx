@@ -10,8 +10,8 @@ import ScrollLock from 'react-scrolllock';
 
 import ROUTES from 'shared/constants/routes';
 import { claimFreeSessionInit } from 'screens/payments/actionCreators';
-import { setSelectedProduct } from 'screens/series/actionCreators';
-import { getAvailableProducts } from 'screens/series/reducer';
+import { setSelectedProduct } from 'screens/products/actionCreators';
+import { getAvailableProducts } from 'screens/products/reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const FreeSessionModalContainer = styled.div`
