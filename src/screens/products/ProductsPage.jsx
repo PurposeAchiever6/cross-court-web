@@ -43,7 +43,7 @@ const ProductsPage = () => {
 
   const showAnimation = () => {
     return (
-      userProfile.credits === 0 &&
+      userProfile.totalCredits === 0 &&
       window.localStorage.getItem('previousPage').indexOf('session-') !== -1
     );
   };

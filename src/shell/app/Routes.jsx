@@ -297,6 +297,7 @@ const setScrollClasses = () => {
       window.location.search === '?testanimation')
   ) {
     const bigTitle = document.querySelector('.no-session-credits .title');
+    const scroll = document.querySelector('.no-session-credits .scroll');
 
     if (bigTitle && keepScrolling) {
       let addClass = '';
@@ -408,8 +409,10 @@ const setScrollClasses = () => {
 
       if (addClass) {
         bigTitle.classList.add(addClass);
+        scroll.classList.add(addClass);
       }
       bigTitle.classList.remove(...animClasses.filter(item => item !== addClass));
+      scroll.classList.remove(...animClasses.filter(item => item !== addClass));
     }
   }
 

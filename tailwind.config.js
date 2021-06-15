@@ -13,12 +13,34 @@ module.exports = {
       scale: {
         115: '1.15',
       },
-      fontFamily: ['hover'],
       zIndex: {
         1005: 1005,
       },
       boxShadow: {
         navbar: '0px 4px 4px #9999FF',
+      },
+      animation: {
+        fade: 'fade 2500ms linear 800ms 1 backwards',
+        'slide-top': 'slide-top 1500ms ease-out 2000ms 1 backwards',
+      },
+      keyframes: {
+        fade: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
+        'slide-top': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(-100%)',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
       },
     },
     fontFamily: {

@@ -71,6 +71,7 @@ const HomePage = () => {
     if (shouldShowSurveyModal) {
       window.localStorage.setItem('surveyLock', 'true');
     } else {
+      window.localStorage.removeItem('surveyLock', 'true');
       maybeGoBackToSessionToBook();
     }
   }, [dispatch, shouldShowSurveyModal]);
