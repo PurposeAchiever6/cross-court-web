@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'cc-black': '#231F20',
+        'cc-black': '#1a1a1a',
         'cc-purple': '#9999FF',
       },
       fontSize: {

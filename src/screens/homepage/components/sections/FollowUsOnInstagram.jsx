@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import colors from 'shared/styles/constants';
+
 const Section = styled.section`
   text-align: center;
   height: auto !important;
@@ -33,7 +35,7 @@ const Section = styled.section`
   }
 
   .instafeed .eapps-instagram-feed-posts-grid-load-more {
-    background-color: #231f20 !important;
+    background-color: ${colors.brandBlack} !important;
     border: 3px solid #fff;
     border-radius: 0;
     color: #fff;

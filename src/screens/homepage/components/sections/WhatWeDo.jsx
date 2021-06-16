@@ -3,7 +3,6 @@ import whatWeDoMobileImg from 'screens/homepage/images/xs-and-os.png';
 import styled from 'styled-components';
 
 const Section = styled.section`
-  background-color: #231f20;
   background-image: none;
   background-position: 0 0;
   display: block;
@@ -50,7 +49,7 @@ const Section = styled.section`
 `;
 
 const WhatWeDo = () => (
-  <Section className="what-we-do section-block text-white">
+  <Section className="what-we-do section-block text-white bg-cc-black">
     <section className="title-and-description-block shift-right">
       <p className="title dharma_gothic_cheavy">
         THE

@@ -1,8 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import colors from 'shared/styles/constants';
 
 const NoSessionsCreditsContainer = styled.div`
-  background: linear-gradient(0deg, #231f20 0%, #3f3738 15%, #312b2c 30%, #231f20 50%);
+  background: linear-gradient(
+    0deg,
+    ${colors.brandBlack} 0%,
+    #3f3738 15%,
+    #312b2c 30%,
+    ${colors.brandBlack} 50%
+  );
   height: 200vh;
 `;
 
