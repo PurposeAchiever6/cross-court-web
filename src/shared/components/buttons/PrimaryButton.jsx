@@ -9,39 +9,40 @@ const StyledDiv = styled.div`
   display: inline-block;
   text-transform: uppercase;
   font-size: 14px;
-  font-family: ${props => (props.font ? props.font : 'shapiro95_super_wide')};
+  font-family: ${(props) => (props.font ? props.font : 'shapiro95_super_wide')};
   line-height: 19px;
   min-width: 130px;
-  width: ${props => (props.w ? props.w : '')};
-  height: ${props => (props.h ? props.h : '')};
+  width: ${(props) => (props.w ? props.w : '')};
+  height: ${(props) => (props.h ? props.h : '')};
   padding: 0;
   position: relative;
   text-align: center;
   text-decoration: none;
-  opacity: ${props => (props.disabled || props.loading ? '0.3' : '1')};
+  opacity: ${(props) => (props.disabled || props.loading ? '0.3' : '1')};
 
   .content {
-    background-color: ${props =>
+    background-color: ${(props) =>
       props.bg ? props.bg : props.inverted ? colors.white : colors.brandPurple};
     border: 3px solid
-      ${props =>
+      ${(props) =>
         props.double ? (props.inverted ? colors.brandPurple : colors.white) : colors.brandPurple};
-    color: ${props => (props.inverted ? colors.brandPurple : colors.white)};
-    padding: 8px 15px;
+    color: ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
+    padding: ${(props) => (props.py ? props.py : '8px')} ${(props) =>
+  props.px ? props.px : '15px'}
     position: relative;
     transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
     z-index: 1;
     :hover {
-      background-color: ${props => (props.inverted ? colors.brandPurple : colors.white)};
-      color: ${props => (props.inverted ? colors.white : colors.brandPurple)};
-      border: 3px solid ${props => (props.inverted ? colors.white : colors.brandPurple)};
+      background-color: ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
+      color: ${(props) => (props.inverted ? colors.white : colors.brandPurple)};
+      border: 3px solid ${(props) => (props.inverted ? colors.white : colors.brandPurple)};
     }
   }
 
   .double-drop {
-    background-color: ${props =>
+    background-color: ${(props) =>
       props.bg ? props.bg : props.inverted ? colors.white : colors.brandPurple};
-    border: 3px solid ${props => (props.inverted ? colors.brandPurple : colors.white)};
+    border: 3px solid ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
     height: 100%;
     left: 9px;
     position: absolute;
@@ -62,7 +63,7 @@ const StyledButton = styled.button`
 `;
 
 const PrimaryButton = ({
-  className,
+  className = '',
   to,
   children,
   loading,
@@ -73,6 +74,8 @@ const PrimaryButton = ({
   bg,
   w,
   h,
+  px,
+  py,
   ...props
 }) => {
   const content = (
@@ -83,6 +86,8 @@ const PrimaryButton = ({
       bg={bg}
       w={w}
       h={h}
+      px={px}
+      py={py}
       double={double}
       {...props}
     >

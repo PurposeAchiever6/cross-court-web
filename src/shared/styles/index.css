@@ -152,6 +152,7 @@ body[data-page='how-it-works'] main,
 body[data-page='free-session-credit-added'] main,
 body[data-page='locations'] main,
 body[data-page='no-session-credits'] main,
+body[data-page='dashboard'] main,
 body[data-page='app'] main {
   padding-top: 0;
 }

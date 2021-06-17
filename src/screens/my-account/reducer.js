@@ -127,8 +127,3 @@ export const getSemUpcomingSessions = createSelector(
   getMyAccount,
   (myAccount) => myAccount.semUpcomingSessions
 );
-
-export const getSemSessionsForToday = createSelector(
-  getMyAccount,
-  (myAccount) => myAccount.todaySemSessions
-);

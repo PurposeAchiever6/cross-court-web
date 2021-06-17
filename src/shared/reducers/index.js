@@ -4,7 +4,6 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import authReducer from 'screens/auth/reducer';
-import semSessionReducer from 'screens/sem-session/reducer';
 import locationsReducer from 'screens/locations/reducer';
 import sessionReducer from 'screens/sessions/reducer';
 import productsReducer from 'screens/products/reducer';
@@ -18,13 +17,6 @@ export default (history) =>
   combineReducers({
     router: connectRouter(history),
     auth: authReducer,
-    semSession: persistReducer(
-      {
-        key: 'semSession',
-        storage,
-      },
-      semSessionReducer
-    ),
     locations: locationsReducer,
     session: sessionReducer,
     products: productsReducer,

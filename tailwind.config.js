@@ -9,6 +9,7 @@ module.exports = {
       },
       fontSize: {
         '10xl': ['10rem', { lineHeight: '1' }],
+        '12xl': ['14rem', { lineHeight: '1' }],
       },
       scale: {
         115: '1.15',

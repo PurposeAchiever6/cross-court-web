@@ -11,7 +11,7 @@ export default {
   HOWITWORKS: '/how-it-works',
   SEM: '/sem',
   SEMHANDBOOK: '/sem/handbook',
-  SEMSESSION: '/sem/session/:id/:date',
+  DASHBOARD: '/dashboard',
   LOCATIONS: '/locations',
   SESSION: '/session/:id/:date',
   SESSIONRESERVED: '/session/reserved',
