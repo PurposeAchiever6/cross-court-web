@@ -19,9 +19,6 @@ import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getLegalDocs } from 'screens/legal-docs/actionCreators';
 import PrivateRoute from './PrivateRoute';
 
-const HIDE_HEADER = [ROUTES.DASHBOARD];
-const HIDE_FOOTER = [ROUTES.DASHBOARD];
-
 const Home = lazy(() => import('screens/homepage/HomePage'));
 const Login = lazy(() => import('screens/auth/pages/LoginPage'));
 const Signup = lazy(() => import('screens/auth/pages/SignupPage'));
@@ -553,7 +550,6 @@ window.setTimeout(setScrollClasses, 1000);
 const Routes = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(getIsAuthenticated);
-  const pathname = window.location.pathname;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -657,7 +653,7 @@ const Routes = () => {
           <Dashboard />
         </PrivateRoute>
       </Switch>
-      {!HIDE_FOOTER.includes(pathname) && <Footer />}
+      <Footer />
     </main>
   );
 
@@ -679,7 +675,7 @@ const Routes = () => {
       />
       <Suspense fallback={<Loading />}>
         <ConnectedRouter history={history}>
-          {!HIDE_HEADER.includes(pathname) && <Header />}
+          <Header />
           <ScrollToPosition />
           <Pages />
         </ConnectedRouter>

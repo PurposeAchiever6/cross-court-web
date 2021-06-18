@@ -123,7 +123,7 @@ const Header = () => {
   const logoColor =
     menuOpen || isBlackBg ? colors.white : scrolled ? colors.brandPurple : colors.white;
 
-  return (
+  return pathname === ROUTES.DASHBOARD ? null : (
     <div
       className={`header w-full fixed h-16 top-0 z-10 bg-transparent transition duration-500 ${
         scrolled ? `${!isBlackBg && 'shadow-navbar'} ${bgColor}` : ''

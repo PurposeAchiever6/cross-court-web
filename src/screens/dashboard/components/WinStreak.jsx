@@ -17,7 +17,7 @@ const WinStreak = ({ setStreak, streak }) => {
         setStreak([]);
       }, 3000);
     }
-  }, [streak, dispatch]);
+  }, [streak, dispatch, setStreak]);
 
   return (
     <div className="flex flex-col w-full mb-8">

@@ -18,7 +18,7 @@ const Dashboard = () => {
   const [streak, setStreak] = useState([]);
   const { isSem, isReferee } = useSelector(getUserProfile);
 
-  if (!isSem || !isReferee) {
+  if (!(isSem || isReferee)) {
     return <Redirect to={ROUTES.HOME} />;
   }
 
@@ -48,15 +48,11 @@ const Dashboard = () => {
 
   return (
     <div className="flex flex-col bg-cc-black min-h-screen">
-      <PrimaryButton
-        inverted
-        bg="transparent"
-        className="m-4 text-right"
-        px="100px"
-        onClick={() => reset()}
-      >
-        reset
-      </PrimaryButton>
+      <div className="flex justify-end">
+        <PrimaryButton inverted bg="transparent" className="m-4" px="100px" onClick={() => reset()}>
+          reset
+        </PrimaryButton>
+      </div>
       <Fouls setFouls={setFouls} darkFouls={darkFouls} lightFouls={lightFouls} />
       <WinStreak setStreak={setStreak} streak={streak} />
       <Randomizer />

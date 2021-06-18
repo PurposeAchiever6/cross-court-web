@@ -6,6 +6,7 @@ import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import InstagramSvg from './svg/InstagramSvg';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -41,10 +42,11 @@ const FooterContainer = styled.footer`
 
 function Footer() {
   const env = runtimeEnv();
+  const { pathname } = useLocation();
 
   const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
 
-  return (
+  return pathname === ROUTES.DASHBOARD ? null : (
     <>
       <FooterContainer>
         <Link to={ROUTES.SEM}>
