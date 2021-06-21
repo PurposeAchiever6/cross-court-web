@@ -12,7 +12,7 @@ import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionDate } from '../reducer';
 
 import { initialLoadInit } from 'screens/payments/actionCreators';
-import { getAvailableCards } from 'screens/payments/reducer';
+import { getSelectedCard } from 'screens/payments/reducer';
 import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
@@ -33,7 +33,7 @@ const ReserveButton = ({
   /* START FSF FLOW VARS */
   const dispatch = useDispatch();
   const history = useHistory();
-  const availableCards = useSelector(getAvailableCards);
+  const selectedCard = useSelector(getSelectedCard);
   /* END FSF FLOW VARS */
 
   /* START FSF FLOW LOGIC */
@@ -61,7 +61,7 @@ const ReserveButton = ({
           double
           className="reserve-btn"
           onClick={() => {
-            if (!availableCards.length && isFSFFlow) {
+            if (!selectedCard && isFSFFlow) {
               window.localStorage.setItem('redirect', window.location.pathname);
               history.push(ROUTES.PAYMENTS);
             } else {
