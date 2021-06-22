@@ -27,7 +27,7 @@ const ProductsPage = () => {
   const cancelSubscriptionAction = async () =>
     dispatch(cancelSubscription(userProfile.activeSubscription));
 
-  const selectProductHandler = product => {
+  const selectProductHandler = (product) => {
     dispatch(setSelectedProduct(product));
 
     if (isAuthenticated) {
@@ -41,19 +41,16 @@ const ProductsPage = () => {
     setShowCancelModal(true);
   };
 
-  const showAnimation = () => {
-    return (
-      userProfile.totalCredits === 0 &&
-      window.localStorage.getItem('previousPage').indexOf('session-') !== -1
-    );
-  };
+  const showAnimation =
+    userProfile.totalCredits === 0 &&
+    window.localStorage.getItem('previousPage').indexOf('session-') !== -1;
 
   useEffect(() => {
     dispatch(initialLoad());
-    if (showAnimation()) {
+    if (showAnimation) {
       document.body.setAttribute('data-page', 'no-session-credits');
     }
-  }, []);
+  }, [dispatch, showAnimation]);
 
   if (isLoading) {
     return <Loading />;
@@ -63,7 +60,7 @@ const ProductsPage = () => {
     <>
       <div className="bg-cc-black">
         <div className="min-h-screen">
-          {showAnimation() && <NoSessionCredits />}
+          {showAnimation && <NoSessionCredits />}
           <Plans
             selectProductHandler={selectProductHandler}
             cancelMembership={cancelMembership}

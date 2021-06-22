@@ -10,7 +10,6 @@ export default {
   RESETPASSWORDSUCCESS: '/resetpassword/success',
   HOWITWORKS: '/how-it-works',
   SEM: '/sem',
-  SEMHANDBOOK: '/sem/handbook',
   DASHBOARD: '/dashboard',
   LOCATIONS: '/locations',
   SESSION: '/session/:id/:date',

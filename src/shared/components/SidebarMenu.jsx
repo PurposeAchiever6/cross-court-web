@@ -6,14 +6,12 @@ import CloseButton from 'shared/components/CloseButton';
 import ROUTES from 'shared/constants/routes';
 import { logoutInit } from 'screens/auth/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
-import { getUserProfile } from 'screens/my-account/reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { useHistory } from 'react-router-dom';
 
 const SidebarMenu = ({ menuToggler }) => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(getIsAuthenticated);
-  const userProfile = useSelector(getUserProfile);
   const history = useHistory();
 
   const logoutAction = () => dispatch(logoutInit());
@@ -51,12 +49,6 @@ const SidebarMenu = ({ menuToggler }) => {
               LOGOUT
             </Link>
           </>
-        )}
-
-        {userProfile.isSem && (
-          <NavLink className="list-item" exact to={ROUTES.SEMHANDBOOK} onClick={menuToggler}>
-            SEM HANDBOOK
-          </NavLink>
         )}
 
         {!isAuthenticated && (

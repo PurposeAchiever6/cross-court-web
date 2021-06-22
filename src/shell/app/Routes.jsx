@@ -42,7 +42,6 @@ const PurchaseHistory = lazy(() => import('screens/purchase-history/PurchaseHist
 const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfirm'));
 const Payments = lazy(() => import('screens/payments/PaymentsPage'));
 const PaymentsAddCard = lazy(() => import('screens/payments/pages/AddCard'));
-const SemHandbook = lazy(() => import('shared/pages/SemHandbook'));
 const FAQ = lazy(() => import('shared/pages/Faq'));
 const CancelationPolicy = lazy(() => import('screens/legal-docs/pages/CancelationPolicy'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
@@ -646,9 +645,6 @@ const Routes = () => {
         <Route path={ROUTES.PWA} exact>
           <PWA />
         </Route>
-        <PrivateRoute path={ROUTES.SEMHANDBOOK}>
-          <SemHandbook />
-        </PrivateRoute>
         <PrivateRoute path={ROUTES.DASHBOARD} exact>
           <Dashboard />
         </PrivateRoute>

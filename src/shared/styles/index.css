@@ -2276,16 +2276,6 @@ body .terms-and-conditions .term {
   text-indent: 50px;
 }
 
-/* SEM HANDBOOK */
-body .sem-handbook {
-  padding: 32px;
-}
-body .sem-handbook h1 {
-  font-family: 'shapiro95_super_wide';
-  margin-bottom: 40px;
-  text-align: center;
-}
-
 /* TOAST CONTAINER */
 
 body .Toastify .Toastify__toast-container {
