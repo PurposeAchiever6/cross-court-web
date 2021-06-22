@@ -20,13 +20,15 @@ const MyCreditsContainer = styled.div`
   }
 
   .dropin-title-1,
-  .subscription-title-1 {
+  .subscription-title-1,
+  .unlimited-title-1 {
     display: block;
     font-family: 'shapiro95_super_wide';
   }
 
   .dropin-title-2,
-  .subscription-title-2 {
+  .subscription-title-2,
+  .unlimited-title-2 {
     display: block;
     font-family: 'shapiro97_air_extd';
     -webkit-text-stroke: 1px;
@@ -53,41 +55,58 @@ const MyCreditsContainer = styled.div`
     line-height: 45px;
     white-space: nowrap;
   }
+
+  .unlimited-title-1 {
+    font-size: 38px;
+    line-height: 35px;
+    letter-spacing: 0.5px;
+  }
+
+  .unlimited-title-2 {
+    font-size: 35px;
+    line-height: 30px;
+  }
 `;
 
-const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => (
-  <MyCreditsContainer className="my-credits">
-    <h3 className="mb-4">{credits > 0 ? 'SESSIONS' : 'MEMBERSHIPS'}</h3>
-    <div className="mb-6">
-      {isUnlimited ? (
-        <span className="-mt-4 dropin-title-2">UNLIMITED</span>
-      ) : (
-        <div className="flex mb-4">
-          <span className="session-number">{credits}</span>
-          <span>
-            {hasActiveSubscription ? (
-              <>
-                <span className="subscription-title-1">SESSIONS LEFT</span>
-                <span className="subscription-title-2">THIS MONTH</span>
-              </>
-            ) : (
-              <>
-                <span className="dropin-title-1">SESSIONS</span>
-                <span className="dropin-title-2">LEFT</span>
-              </>
-            )}
-          </span>
-        </div>
-      )}
-    </div>
-    <PrimaryButton className="mb-1 block" to={ROUTES.MEMBERSHIPS} w="100%">
-      Manage Membership
-    </PrimaryButton>
-    <PrimaryButton to="/purchase-history" inverted w="100%">
-      Purchase History
-    </PrimaryButton>
-  </MyCreditsContainer>
-);
+const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => {
+  const sessionPluralize = credits === 1 ? 'SESSION' : 'SESSIONS';
+
+  return (
+    <MyCreditsContainer className="my-credits">
+      <div className="mb-6">
+        {isUnlimited ? (
+          <div className="-mt-4s">
+            <span className="unlimited-title-1">UNLIMITED</span>
+            <span className="unlimited-title-2">SESSIONS</span>
+          </div>
+        ) : (
+          <div className="flex mb-4">
+            <span className="session-number">{credits}</span>
+            <span>
+              {hasActiveSubscription ? (
+                <>
+                  <span className="subscription-title-1">{`${sessionPluralize} LEFT`}</span>
+                  <span className="subscription-title-2">THIS MONTH</span>
+                </>
+              ) : (
+                <>
+                  <span className="dropin-title-1">{sessionPluralize}</span>
+                  <span className="dropin-title-2">LEFT</span>
+                </>
+              )}
+            </span>
+          </div>
+        )}
+      </div>
+      <PrimaryButton className="mb-1 block" to={ROUTES.MEMBERSHIPS} w="100%">
+        {hasActiveSubscription ? 'Manage Membership' : 'See Memberships'}
+      </PrimaryButton>
+      <PrimaryButton to="/purchase-history" inverted w="100%">
+        Purchase History
+      </PrimaryButton>
+    </MyCreditsContainer>
+  );
+};
 
 MyCredits.propTypes = {
   isUnlimited: bool.isRequired,

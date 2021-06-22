@@ -26,40 +26,48 @@ const MyCreditsContainer = styled.div`
   }
 `;
 
-const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => (
-  <MyCreditsContainer>
-    <div className="text-center mb-8">
-      {isUnlimited ? (
-        <span className="sessions-left">UNLIMITED</span>
-      ) : (
-        <>
-          <span className="session-number">{credits}</span>
-          {hasActiveSubscription ? (
-            <span className="sessions-left">
-              SESSIONS LEFT
-              <br />
-              THIS MONTH
-            </span>
-          ) : (
-            <span className="sessions-left">
-              SESSIONS
-              <br />
-              LEFT
-            </span>
-          )}
-        </>
-      )}
-    </div>
-    <div>
-      <PrimaryButton className="mb-1 block" to={ROUTES.MEMBERSHIPS} w="100%">
-        Manage Membership
-      </PrimaryButton>
-      <PrimaryButton to={ROUTES.PURCHASEHISTORY} w="100%">
-        PURCHASE HISTORY
-      </PrimaryButton>
-    </div>
-  </MyCreditsContainer>
-);
+const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => {
+  const sessionPluralize = credits === 1 ? 'SESSION' : 'SESSIONS';
+
+  return (
+    <MyCreditsContainer>
+      <div className="text-center pt-4 mb-16">
+        {isUnlimited ? (
+          <span className="sessions-left">
+            UNLIMITED
+            <br />
+            SESSIONS
+          </span>
+        ) : (
+          <>
+            <span className="session-number">{credits}</span>
+            {hasActiveSubscription ? (
+              <span className="sessions-left">
+                {`${sessionPluralize} LEFT`}
+                <br />
+                THIS MONTH
+              </span>
+            ) : (
+              <span className="sessions-left">
+                {sessionPluralize}
+                <br />
+                LEFT
+              </span>
+            )}
+          </>
+        )}
+      </div>
+      <div>
+        <PrimaryButton className="mb-1 block" to={ROUTES.MEMBERSHIPS} w="100%">
+          {hasActiveSubscription ? 'Manage Membership' : 'See Memberships'}
+        </PrimaryButton>
+        <PrimaryButton to={ROUTES.PURCHASEHISTORY} w="100%">
+          PURCHASE HISTORY
+        </PrimaryButton>
+      </div>
+    </MyCreditsContainer>
+  );
+};
 
 MyCredits.propTypes = {
   isUnlimited: bool,
