@@ -84,7 +84,6 @@ const SessionsPageContainer = styled.div`
 
         .date-container,
         .address-container,
-        .level-container,
         .time-container {
           display: flex;
           flex-direction: column;
@@ -360,9 +359,7 @@ const SessionsPage = () => {
               <span className="location">{`${sessionInfo.location.city}, CA ${sessionInfo.location.zipcode}`}</span>
             </div>
             {sessionInfo.level === LEVELS.ADVANCED && (
-              <div className="level-container shapiro95_super_wide">
-                <SessionLevel showInfo level={sessionInfo.level} />
-              </div>
+              <SessionLevel showInfo level={sessionInfo.level} />
             )}
             {getSessionsMessageContainerText() && (
               <span className="sessions-message-container">

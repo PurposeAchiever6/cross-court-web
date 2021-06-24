@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
-import { isNil } from 'ramda';
 import PropTypes from 'prop-types';
 import colors from 'shared/styles/constants';
 import { transparentize } from 'polished';
@@ -61,33 +60,35 @@ const LocationPickerContainer = styled.div`
     width: 100%;
     color: ${colors.black};
   }
-
-  .address-container {
-    background-color: #9999ff;
-    color: ${colors.white};
-    text-align: center;
-    padding: 1rem;
-  }
 `;
 
 const LocationPicker = ({ availableLocations, selectedLocation, setLocationHandler }) => {
   const selectedValue = availableLocations.find((location) => location.id === selectedLocation);
+  const locationsWithoutNull = availableLocations.filter((location) => location.id !== null);
+  const oneLocation = locationsWithoutNull.length === 1;
+
+  useEffect(() => {
+    if (oneLocation && !selectedLocation) {
+      setLocationHandler(locationsWithoutNull[0].id);
+    }
+  }, [oneLocation, selectedLocation, locationsWithoutNull, setLocationHandler]);
 
   return (
     <LocationPickerContainer>
-      <Select
-        options={availableLocations}
-        classNamePrefix="location-picker"
-        getOptionLabel={(option) => option.name}
-        getOptionValue={(option) => option.id}
-        onChange={(option) => setLocationHandler(option.id)}
-        value={selectedValue}
-        isSearchable={false}
-      />
-      {isNil(selectedValue.address) ? null : (
-        <div className="address-container shapiro95_super_wide">
-          <span>{selectedValue.address}</span>
-        </div>
+      {oneLocation ? (
+        <p className="text-center text-2xl py-4 font-shapiro95_super_wide uppercase">
+          {selectedValue.name}
+        </p>
+      ) : (
+        <Select
+          options={availableLocations}
+          classNamePrefix="location-picker"
+          getOptionLabel={(option) => option.name}
+          getOptionValue={(option) => option.id}
+          onChange={(option) => setLocationHandler(option.id)}
+          value={selectedValue}
+          isSearchable={false}
+        />
       )}
     </LocationPickerContainer>
   );

@@ -10,10 +10,10 @@ const LA_CENTER = {
   lng: -118.2711009,
 };
 
-const getMapBounds = (map, maps, locations) => {
+const getMapBounds = (maps, locations) => {
   const bounds = new maps.LatLngBounds();
 
-  [...locations, LA_CENTER].forEach(location => {
+  [...locations, LA_CENTER].forEach((location) => {
     bounds.extend(new maps.LatLng(location.lat, location.lng));
   });
 
@@ -32,7 +32,7 @@ const bindResizeListener = (map, maps, bounds) => {
 // Fit map to its bounds after the api is loaded
 const apiIsLoaded = (map, maps, locations) => {
   // Get bounds by our places
-  const bounds = getMapBounds(map, maps, locations);
+  const bounds = getMapBounds(maps, locations);
 
   // Fit map to bounds
   map.fitBounds(bounds);
@@ -44,7 +44,7 @@ const env = runtimeEnv();
 const GOOGLE_MAPS_API_KEY = env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const Map = ({ locations, selectedLocation, setLocationHandler }) => (
-  <div style={{ height: '82.5vh', width: '100%' }}>
+  <div className="w-full h-screen md:min-h-full">
     <GoogleMapReact
       bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
       center={{
@@ -57,7 +57,7 @@ const Map = ({ locations, selectedLocation, setLocationHandler }) => (
       zoom={15}
       options={{ styles }}
     >
-      {locations.map(location => (
+      {locations.map((location) => (
         <MapMarker
           key={location.id}
           lat={location.lat}

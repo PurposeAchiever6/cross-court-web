@@ -8,6 +8,8 @@ module.exports = {
         'cc-purple': '#9999FF',
       },
       fontSize: {
+        '2xs': ['0.5rem', { lineHeight: '1rem' }],
+        '3xs': ['0.625rem', { lineHeight: '1rem' }],
         '10xl': ['10rem', { lineHeight: '1' }],
         '12xl': ['14rem', { lineHeight: '1' }],
       },

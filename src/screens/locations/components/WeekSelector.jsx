@@ -35,7 +35,7 @@ const WeekSelectorContainer = styled.div`
 
   .weektitle-container {
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: bold;
     flex: 1;
     text-align: center;
@@ -58,7 +58,7 @@ const DayContainer = styled.button`
   display: flex;
   flex-direction: column;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: center;
   padding: 1rem;
@@ -90,7 +90,7 @@ const WeekSelector = ({
       </button>
     </div>
     <div className="weekdays-container">
-      {weekRange(startOfWeek(selectedDate)).map(day => (
+      {weekRange(startOfWeek(selectedDate)).map((day) => (
         <DayContainer
           key={day}
           day={day}
