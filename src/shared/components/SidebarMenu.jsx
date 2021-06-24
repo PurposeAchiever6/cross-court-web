@@ -45,7 +45,7 @@ const SidebarMenu = ({ menuToggler }) => {
               MY ACCOUNT
             </NavLink>
 
-            <Link className="list-item" type="button" onClick={() => logoutAction()}>
+            <Link to="#" className="list-item" type="button" onClick={() => logoutAction()}>
               LOGOUT
             </Link>
           </>
@@ -54,6 +54,7 @@ const SidebarMenu = ({ menuToggler }) => {
         {!isAuthenticated && (
           <>
             <Link
+              to="#"
               onClick={() => handleClick(ROUTES.LOGIN)}
               className="font-shapiro95_super_wide text-4xl mt-32 hover:opacity-60 transition-opacity duration-300"
             >
@@ -61,6 +62,7 @@ const SidebarMenu = ({ menuToggler }) => {
             </Link>
 
             <Link
+              to="#"
               onClick={() => handleClick(ROUTES.SIGNUP)}
               className="font-shapiro95_super_wide text-4xl hover:opacity-60 transition-opacity duration-300"
             >

@@ -101,7 +101,7 @@ LocationPicker.propTypes = {
       name: PropTypes.string,
     })
   ),
-  selectedLocation: PropTypes.object,
+  selectedLocation: PropTypes.number,
   setLocationHandler: PropTypes.func.isRequired,
 };
 export default LocationPicker;

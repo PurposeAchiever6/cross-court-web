@@ -40,36 +40,41 @@ const apiIsLoaded = (map, maps, locations) => {
   // Bind the resize listener
   bindResizeListener(map, maps, bounds);
 };
+
 const env = runtimeEnv();
 const GOOGLE_MAPS_API_KEY = env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-const Map = ({ locations, selectedLocation, setLocationHandler }) => (
-  <div className="w-full h-screen md:min-h-full">
-    <GoogleMapReact
-      bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
-      center={{
-        lat: LA_CENTER.lat,
-        lng: LA_CENTER.lng,
-      }}
-      yesIWantToUseGoogleMapApiInternals
-      onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, locations)}
-      defaultZoom={15}
-      zoom={15}
-      options={{ styles }}
-    >
-      {locations.map((location) => (
-        <MapMarker
-          key={location.id}
-          lat={location.lat}
-          lng={location.lng}
-          id={location.id}
-          selected={location.id === selectedLocation}
-          onClickHandler={() => setLocationHandler(location.id)}
-        />
-      ))}
-    </GoogleMapReact>
-  </div>
-);
+const Map = ({ locations, selectedLocation, setLocationHandler }) => {
+  return (
+    <div className="w-full h-screen md:min-h-full">
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
+        center={{
+          lat: LA_CENTER.lat,
+          lng: LA_CENTER.lng,
+        }}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, locations)}
+        defaultZoom={15}
+        zoom={15}
+        options={{ styles }}
+      >
+        {locations.map((location) => (
+          <MapMarker
+            key={location.id}
+            lat={location.lat}
+            lng={location.lng}
+            id={location.id}
+            location={location}
+            selected={location.id === selectedLocation}
+            onClickHandler={() => setLocationHandler(location.id)}
+            hoverDistance={100}
+          />
+        ))}
+      </GoogleMapReact>
+    </div>
+  );
+};
 
 Map.propTypes = {
   locations: PropTypes.arrayOf(
@@ -79,7 +84,7 @@ Map.propTypes = {
       lng: PropTypes.number.isRequired,
     })
   ),
-  selectedLocation: PropTypes.string,
+  selectedLocation: PropTypes.number,
   setLocationHandler: PropTypes.func.isRequired,
 };
 
