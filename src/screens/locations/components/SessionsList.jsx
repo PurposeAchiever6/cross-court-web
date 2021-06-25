@@ -18,65 +18,35 @@ import {
 import { getUserProfile } from 'screens/my-account/reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
-const SessionsListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  flex: 1;
-  padding: 0 1rem;
-
-  .session-list-item-container {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 2rem 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-
-    .text-container {
-      display: flex;
-      flex-direction: column;
-      max-width: 48%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      .time {
-        font-size: 0.9em;
-        font-weight: 600;
-        letter-spacing: 0.1rem;
-        margin-bottom: 0.25rem;
-      }
-
-      .location {
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1rem;
-        margin-bottom: 0.25rem;
-      }
-    }
-
-    .btn-alternative {
-      color: ${colors.black};
-      border-color: ${colors.black};
-      padding: 1rem 2.3rem;
+const NoSessionContainer = styled.div`
+  .title {
+    font-family: shapiro95_super_wide;
+    color: ${colors.brandBlack};
+    font-size: 20px;
+    line-height: 20px;
+    @media (min-width: 992px) {
+      font-size: 33px;
+      line-height: 33px;
     }
   }
 
-  .no-sessions-container {
-    font-size: 3.5rem;
-    color: ${colors.grey};
-    text-align: center;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-
-    em {
-      font-weight: 600;
+  .subtitle {
+    color: ${colors.brandBlack};
+    font-family: dharma_gothic_cexbold;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: ${colors.brandBlack};
+    font-family: shapiro95_super_wide;
+    font-size: 20px;
+    line-height: 20px;
+    @media (min-width: 992px) {
+      font-size: 59px;
+      line-height: 59px;
     }
   }
 `;
+
+const fewSpotsLeftText = 'FEW SPOTS LEFT';
 
 const SessionsList = ({ availableSessions, selectedDate }) => {
   const { phoneNumber } = useSelector(getUserProfile);
@@ -88,21 +58,27 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
   if (isEmpty(sortedSessions)) {
     return (
-      <SessionsListContainer>
-        <div className="no-sessions-container">NO SESSIONS SCHEDULED FOR THIS DATE</div>
-      </SessionsListContainer>
+      <div className="flex flex-col h-full justify-center">
+        <NoSessionContainer className="py-4 text-center">
+          <p className="title">NO SESSIONS SCHEDULED</p>
+          <p className="subtitle">FOR THIS DATE</p>
+        </NoSessionContainer>
+      </div>
     );
   }
 
+  const sendMail = (mailInfo) => {
+    window.location = mailInfo;
+  };
+
   return (
-    <SessionsListContainer>
+    <div className="px-4 font-shapiro45_welter_extd">
       {sortedSessions.map(
         ({ id, startTime, time, full, location, level, spotsLeft, reserved, past }) => {
           const sessionTime = formatSessionTime(time);
           const URLdate = urlFormattedDate(startTime);
           const emailSessionDate = formatSessionDate(startTime);
           const mailInfo = `mailto:ccteam@cross-court.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${location.name}. Please notify me if a spot opens up. You can reach me at ${phoneNumber}.`;
-          const fewSpotsLeftText = 'JUST A FEW SPOTS LEFT';
           let button;
           if (reserved || past) {
             button = (
@@ -111,36 +87,44 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
               </PrimaryButton>
             );
           } else if (full) {
-            button = <PrimaryButton to={mailInfo}>JOIN WAITLIST</PrimaryButton>;
+            button = (
+              <PrimaryButton onClick={() => sendMail(mailInfo)}>JOIN WAITLIST</PrimaryButton>
+            );
           } else {
             button = <PrimaryButton to={`/session/${id}/${URLdate}`}>RESERVE</PrimaryButton>;
           }
+
           return (
             <div
               className={
-                'session-list-item-container' + (past ? ' past' : '') + (full ? ' full' : '')
+                'flex border-b py-6 md:px-5 justify-between w-full items-center' +
+                (past || full ? ' opacity-30' : '')
               }
               key={id}
             >
-              <div className="text-container">
-                <div className="time">{hourRange(time)}</div>
-                <div className="location">{location.name}</div>
+              <div className="flex flex-col w-1/2">
+                <p className="font-bold overflow-hidden overflow-ellipsis whitespace-nowrap">
+                  {hourRange(time)}
+                </p>
+                <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
+                  {location.name}
+                </p>
                 <SessionLevel level={level} />
               </div>
-              <div className="status-container">
+              <div className="flex flex-col">
+                <div>{button}</div>
                 {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && (
-                  <div className="spots-left-container">
-                    <img alt="" className="triangle" src={FewSessionsLeftTriangle} />
-                    <div className="spots-left">{fewSpotsLeftText}</div>
+                  <div className="flex items-center mt-2">
+                    <img alt="" className="w-4 h-4" src={FewSessionsLeftTriangle} />
+                    <p className="text-xs mt-1 ml-1">{fewSpotsLeftText}</p>
                   </div>
                 )}
-                {button}
               </div>
             </div>
           );
         }
       )}
-    </SessionsListContainer>
+    </div>
   );
 };
 

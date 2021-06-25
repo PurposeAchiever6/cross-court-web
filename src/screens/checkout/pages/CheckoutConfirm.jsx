@@ -18,9 +18,11 @@ const CheckoutConfirm = () => {
   }
 
   return (
-    <div className="checkout-confirm">
-      <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
-      <p>Thank you for purchasing a Series! Now click below to sign up for a session.</p>
+    <div className="text-center pt-4 pb-14">
+      <img className="w-56 inline-block mb-2" src={SportCharacter} alt="Sport Icon" />
+      <p className="mb-6 max-w-md mx-auto">
+        Thank you for your purchase! Now click below to sign up for a session.
+      </p>
       {redirectUrl ? (
         <PrimaryButton
           className="go-to-session-button"
@@ -32,9 +34,7 @@ const CheckoutConfirm = () => {
           GO TO SESSION
         </PrimaryButton>
       ) : (
-        <PrimaryButton className="see-schedule-button" to={ROUTES.LOCATIONS}>
-          SEE SCHEDULE
-        </PrimaryButton>
+        <PrimaryButton to={ROUTES.LOCATIONS}>SEE SCHEDULE</PrimaryButton>
       )}
     </div>
   );

@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import PropTypes from 'prop-types';
 import useWindowSize from 'shared/hooks/useWindowSize';
 import { size } from 'shared/styles/mediaQueries';
+import CrossSvg from './svg/CrossSvg';
 
 const modalStyle = {
   overlay: {
@@ -26,11 +27,22 @@ const modalStyle = {
 
 ReactModal.setAppElement('#root');
 
-const Modal = ({ children, shouldClose, closeHandler, isOpen }) => {
+const Modal = ({
+  children,
+  shouldClose,
+  closeHandler,
+  isOpen,
+  style = {},
+  showCloseButton = false,
+}) => {
   const { width: windowSize } = useWindowSize();
   const newModalStyle = {
     ...modalStyle,
-    content: { ...modalStyle.content, width: windowSize < size.desktop ? '80%' : '25rem' },
+    content: {
+      ...modalStyle.content,
+      width: windowSize < size.desktop ? '80%' : '25rem',
+      ...style,
+    },
   };
 
   return (
@@ -40,11 +52,14 @@ const Modal = ({ children, shouldClose, closeHandler, isOpen }) => {
       onRequestClose={closeHandler}
       isOpen={isOpen}
     >
-      {
-        <div className="frame">
-          <div className="scroll">{children}</div>
-        </div>
-      }
+      {showCloseButton && (
+        <button className="h-1/5" onClick={closeHandler}>
+          <CrossSvg color="black" />
+        </button>
+      )}
+      <div className={`flex items-center justify-center ${showCloseButton ? 'h-4/5' : 'h-full'}`}>
+        {children}
+      </div>
     </ReactModal>
   );
 };

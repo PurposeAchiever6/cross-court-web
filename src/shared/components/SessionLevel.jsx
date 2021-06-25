@@ -12,24 +12,25 @@ const SessionLevel = ({ level, showInfo = false }) => {
   }
 
   return (
-    <>
-      <span className="level">
+    <div className="flex items-center font-shapiro45_welter_extd">
+      <span className="rounded-full bg-gray-400 text-xs text-center text-white px-5 py-2 mr-3">
         LEVEL
-        <span className="level-number">2</span>
+        <span className="ml-2">2</span>
       </span>
       {showInfo && (
         <>
-          <InfoSvg dataTip={TEXT.ADVANCED_TOOLTIP} />
+          <InfoSvg className="text-gray-400" dataTip={TEXT.ADVANCED_TOOLTIP} />
           <ReactTooltip
-            backgroundColor="#9999FF"
+            backgroundColor="#D1D5DB"
+            textColor="black"
             place="right"
             effect="solid"
-            delayHide={10000}
+            className="max-w-xs"
             html
           />
         </>
       )}
-    </>
+    </div>
   );
 };
 

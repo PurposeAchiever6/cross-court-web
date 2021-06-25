@@ -6,11 +6,12 @@ import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import InstagramSvg from './svg/InstagramSvg';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
   display: flex;
   background-color: ${colors.brandBlack};
-  font-family: var(--shapiro95_super_wide);
+  font-family: shapiro95_super_wide;
   font-size: 0.875rem;
   flex-direction: column;
   padding: 20px 32px;
@@ -41,10 +42,11 @@ const FooterContainer = styled.footer`
 
 function Footer() {
   const env = runtimeEnv();
+  const { pathname } = useLocation();
 
   const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
 
-  return (
+  return pathname === ROUTES.DASHBOARD ? null : (
     <>
       <FooterContainer>
         <Link to={ROUTES.SEM}>
@@ -53,19 +55,18 @@ function Footer() {
         <Link to={ROUTES.FAQ}>
           <p>FAQ</p>
         </Link>
-        <p
-          onClick={(e) => {
-            e.preventDefault();
-            document.querySelector('.eapps-form-floating-button').click();
-          }}
-        >
-          CONTACT
+        <p onClick={() => document.querySelector('.eapps-form-floating-button').click()}>CONTACT</p>
+        <p onClick={() => document.querySelector('.eapps-form-floating-button').click()}>
+          PRIVATE RENTALS
         </p>
         <a className="instagram" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
           <InstagramSvg width="100%" />
         </a>
       </FooterContainer>
-      <div className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136" />
+      <div
+        className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136"
+        style={{ position: 'fixed' }}
+      />
     </>
   );
 }

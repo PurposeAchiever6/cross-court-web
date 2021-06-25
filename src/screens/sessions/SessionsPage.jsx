@@ -48,14 +48,14 @@ const SessionsPageContainer = styled.div`
   height: 100%;
   .title-container {
     display: flex;
-    padding: 4rem 0;
+    padding: 2rem 0;
 
     h2 {
       margin: 0;
-      margin-left: 6rem;
+      margin-left: 2rem;
       text-transform: uppercase;
       font-weight: 400;
-      font-size: 2.5rem;
+      font-size: 1.5rem;
     }
 
     button {
@@ -71,20 +71,26 @@ const SessionsPageContainer = styled.div`
       width: 50%;
     }
 
+    .carousel-root {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 55%;
+    }
+
     .details-container {
       display: flex;
-      background-color: ${colors.offWhite};
       width: 50%;
 
       .session-data-container {
         width: 50%;
         display: flex;
         flex-direction: column;
-        padding: 3rem;
+        justify-content: space-between;
+        padding: 2rem 2rem 2.5rem 2rem;
 
         .date-container,
         .address-container,
-        .level-container,
         .time-container {
           display: flex;
           flex-direction: column;
@@ -92,13 +98,17 @@ const SessionsPageContainer = styled.div`
         }
 
         .title {
-          color: #9999ff;
-          font-size: 0.75rem;
+          font-family: 'shapiro95_super_wide';
           font-weight: 600;
           text-transform: uppercase;
-          margin-bottom: 1rem;
-          letter-spacing: 0.2rem;
+          letter-spacing: 2px;
           display: block;
+        }
+
+        .text {
+          font-family: 'shapiro45_welter_extd';
+          font-size: 0.875rem;
+          text-transform: uppercase;
         }
       }
 
@@ -108,18 +118,23 @@ const SessionsPageContainer = styled.div`
         flex-direction: column;
         background-color: ${colors.white};
         text-align: center;
-        padding: 2rem;
-        justify-content: center;
+        padding: 2rem 1rem 2.5rem 1rem;
+        justify-content: space-between;
         align-items: center;
 
-        .sem-referee-container {
-          .sem-container,
-          .referee-container {
+        .title-officials {
+          -webkit-text-stroke: 1px;
+          line-height: 1;
+        }
+
+        .sessions-officials-container {
+          .official-container {
             display: flex;
             flex-direction: column;
             margin-bottom: 2rem;
             justify-content: center;
             align-items: center;
+
             img {
               width: 5rem;
               height: 5rem;
@@ -140,14 +155,6 @@ const SessionsPageContainer = styled.div`
               font-size: 2.5rem;
               color: ${colors.polarPlum};
               margin-bottom: 0.5rem;
-            }
-            .title {
-              color: ${colors.polarPlum};
-              font-size: 0.7rem;
-              font-weight: 600;
-              text-transform: uppercase;
-              margin-bottom: 1rem;
-              letter-spacing: 0.2rem;
             }
 
             .name {
@@ -175,18 +182,14 @@ const SessionsPageContainer = styled.div`
 
   @media (max-width: 991px) {
     .title-container {
+      display: block;
       padding: 1rem 0;
 
       h2 {
-        font-size: 1rem;
-        margin-left: 0.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        strong {
-          margin-left: 0.5rem;
-        }
+        font-size: 1.5rem;
+        margin: 1.5rem 0rem 1rem 0rem;
+        padding: 0 2rem;
+        text-align: center;
       }
 
       button {
@@ -208,21 +211,26 @@ const SessionsPageContainer = styled.div`
         width: 100%;
       }
 
+      .carousel-root {
+        width: 100%;
+      }
+
       .details-container {
         flex-direction: column;
         width: 100%;
 
         .session-data-container {
-          width: 91%;
+          text-align: center;
+          width: 100%;
           padding: 3rem 1rem;
         }
 
         .side-container {
           width: 100%;
-          padding: 2rem 0;
+          padding: 3rem 1rem;
           flex-direction: column;
 
-          .sem-referee-container {
+          .sessions-officials-container {
             display: flex;
             flex-direction: row;
             justify-content: space-evenly;
@@ -268,10 +276,14 @@ const SessionsPage = () => {
     } else if (isSessionFull) {
       text = `SESSION FULL`;
     } else {
-      if (isAuthenticated && userProfile.credits) {
-        text = `YOU HAVE ${userProfile.credits} SESSION${
-          userProfile.credits === 1 ? '' : 'S'
-        } AVAILABLE`;
+      if (isAuthenticated) {
+        if (userProfile.unlimitedCredits) {
+          text = 'YOU HAVE UNLIMITED SESSIONS';
+        } else if (userProfile.totalCredits) {
+          text = `YOU HAVE ${userProfile.totalCredits} SESSION${
+            userProfile.totalCredits === 1 ? '' : 'S'
+          } ${userProfile.activeSubscription ? 'LEFT THIS MONTH' : 'AVAILABLE'}`;
+        }
       }
     }
 
@@ -323,52 +335,57 @@ const SessionsPage = () => {
           closeHandler={showCancelModalAction}
           cancelSessionAction={cancelSessionAction}
           inCancellationTime={inCancellationTime}
+          unlimitedCredits={userProfile.unlimitedCredits}
         />
       </Modal>
-      <div className="title-container">
+      <div className="title-container font-shapiro95_super_wide">
         <BackButton />
-        <h2>
-          {sessionInfo.location.name} <strong>SESSION</strong>
-        </h2>
+        <h2>{sessionInfo.location.name} SESSION</h2>
       </div>
-      <div className="session-details-container">
+      <div className="session-details-container bg-cc-black border-b border-gray-600">
         <Carousel infiniteLoop={true} showArrows={true} showStatus={false} showThumbs={false}>
           {sessionInfo.location.imageUrls.map((image, index) => (
-            <div>
-              <img src={image} alt="" />
-            </div>
+            <img src={image} alt="" key={index} />
           ))}
         </Carousel>
         <div className="details-container">
-          <div className="session-data-container">
-            <div className="date-container shapiro95_super_wide">
-              <span className="title">DATE</span>
-              <span className="text">{longSessionDate(date)}</span>
-            </div>
-            <div className="time-container shapiro95_super_wide">
-              <span className="title">TIME</span>
-              <span className="text">{hourRange(sessionInfo.time)}</span>
-            </div>
-            <div className="address-container shapiro95_super_wide">
-              <span className="title">LOCATION</span>
-              <span className="text">{sessionInfo.location.address}</span>
-              <span className="location">{`${sessionInfo.location.city}, CA ${sessionInfo.location.zipcode}`}</span>
-            </div>
-            {sessionInfo.level === LEVELS.ADVANCED && (
-              <div className="level-container shapiro95_super_wide">
-                <SessionLevel showInfo level={sessionInfo.level} />
+          <div className="session-data-container font-shapiro95_super_wide text-white">
+            <div className="mb-8">
+              <div className="date-container">
+                <span className="title">DATE</span>
+                <span className="text">{longSessionDate(date)}</span>
               </div>
-            )}
+              <div className="time-container">
+                <span className="title">TIME</span>
+                <span className="text">{hourRange(sessionInfo.time)}</span>
+              </div>
+              <div className="address-container">
+                <span className="title">LOCATION</span>
+                <span className="text">{sessionInfo.location.address}</span>
+                <span className="text">{`${sessionInfo.location.city}, CA ${sessionInfo.location.zipcode}`}</span>
+              </div>
+              {sessionInfo.level === LEVELS.ADVANCED && (
+                <SessionLevel showInfo level={sessionInfo.level} />
+              )}
+            </div>
             {getSessionsMessageContainerText() && (
-              <span className="sessions-message-container">
+              <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
                 {getSessionsMessageContainerText()}
-              </span>
+              </div>
             )}
           </div>
           <div className="side-container">
-            <div className="sem-referee-container">
-              <div className="sem-container">
-                <span className="title">Your Sem</span>
+            <h3 className="uppercase mb-6">
+              <span className="font-shapiro95_super_wide text-lg xl:text-2xl 2xl:text-3xl">
+                Your Session
+              </span>
+              <br />
+              <span className="title-officials font-shapiro97_air_extd text-2xl xl:text-3xl 2xl:text-4xl">
+                Officials
+              </span>
+            </h3>
+            <div className="sessions-officials-container font-shapiro95_super_wide">
+              <div className="official-container">
                 {isNil(sessionInfo.sem) || isNil(sessionInfo.sem.imageUrl) ? (
                   <div className="not-assigned-container">
                     <UserSvg />
@@ -381,8 +398,7 @@ const SessionsPage = () => {
                   {sessionInfo.sem.name ? sessionInfo.sem.name : 'NOT ASSIGNED'}
                 </span>
               </div>
-              <div className="referee-container">
-                <span className="title">Your SO</span>
+              <div className="official-container">
                 {isNil(sessionInfo.referee) || isNil(sessionInfo.referee.imageUrl) ? (
                   <div className="not-assigned-container">
                     <UserSvg />
@@ -401,8 +417,8 @@ const SessionsPage = () => {
               sessionInfo &&
               sessionInfo.userSession &&
               ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) !== -1 && (
-                <div className="refer-section">
-                  <p className="refer-a-new-friend-message">
+                <div className="refer-section mb-8">
+                  <p className="refer-a-new-friend-message text-xs text-cc-purple mb-2">
                     REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!
                   </p>
                   <PrimaryButton
@@ -429,7 +445,8 @@ const SessionsPage = () => {
                 />
               )}
               {isAuthenticated &&
-                userProfile.credits === 0 &&
+                !userProfile.unlimitedCredits &&
+                userProfile.totalCredits === 0 &&
                 !isSessionComplete &&
                 !isSessionFull &&
                 (!sessionInfo.userSession ||
@@ -440,7 +457,7 @@ const SessionsPage = () => {
                     className="buy-btn"
                     onClick={() => {
                       window.localStorage.setItem('redirect', window.location.pathname);
-                      history.push(ROUTES.SERIES);
+                      history.push(ROUTES.MEMBERSHIPS);
                     }}
                   >
                     CONFIRM RESERVATION

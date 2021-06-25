@@ -12,6 +12,9 @@ import {
   SHOW_EDIT_PROFILE,
 } from './actionTypes';
 
+import { CANCEL_SUBSCRIPTION_SUCCESS } from '../products/actionTypes';
+import { CREATE_SUBSCRIPTION_SUCCESS, UPDATE_SUBSCRIPTION_SUCCESS } from '../checkout/actionTypes';
+
 const initialState = {
   error: '',
   pageLoading: false,
@@ -76,45 +79,51 @@ export default (state = initialState, action) => {
         ...state,
         userProfile: { ...action.payload.userProfile },
       };
+    case CANCEL_SUBSCRIPTION_SUCCESS:
+      return {
+        ...state,
+        userProfile: { ...state.userProfile, activeSubscription: null },
+      };
+    case CREATE_SUBSCRIPTION_SUCCESS:
+    case UPDATE_SUBSCRIPTION_SUCCESS:
+      return {
+        ...state,
+        userProfile: { ...state.userProfile, activeSubscription: action.payload.subscription },
+      };
     default:
       return state;
   }
 };
 
-const getMyAccount = state => state.myAccount;
+const getMyAccount = (state) => state.myAccount;
 
-export const getPageLoading = createSelector(getMyAccount, myAccount => myAccount.pageLoading);
+export const getPageLoading = createSelector(getMyAccount, (myAccount) => myAccount.pageLoading);
 
-export const getError = createSelector(getMyAccount, myAccount => myAccount.error);
+export const getError = createSelector(getMyAccount, (myAccount) => myAccount.error);
 
-export const getUserProfile = createSelector(getMyAccount, myAccount => myAccount.userProfile);
+export const getUserProfile = createSelector(getMyAccount, (myAccount) => myAccount.userProfile);
 
 export const getPreviousSessions = createSelector(
   getMyAccount,
-  myAccount => myAccount.previousSessions
+  (myAccount) => myAccount.previousSessions
 );
 
 export const getUpcomingSessions = createSelector(
   getMyAccount,
-  myAccount => myAccount.upcomingSessions
+  (myAccount) => myAccount.upcomingSessions
 );
 
 export const getEditProfileLoading = createSelector(
   getMyAccount,
-  myAccount => myAccount.editProfileLoading
+  (myAccount) => myAccount.editProfileLoading
 );
 
 export const getShowEditProfile = createSelector(
   getMyAccount,
-  myAccount => myAccount.showEditProfile
+  (myAccount) => myAccount.showEditProfile
 );
 
 export const getSemUpcomingSessions = createSelector(
   getMyAccount,
-  myAccount => myAccount.semUpcomingSessions
-);
-
-export const getSemSessionsForToday = createSelector(
-  getMyAccount,
-  myAccount => myAccount.todaySemSessions
+  (myAccount) => myAccount.semUpcomingSessions
 );

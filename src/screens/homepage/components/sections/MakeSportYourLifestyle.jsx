@@ -47,13 +47,13 @@ const Section = styled.section`
       display: block;
       margin: 0 auto;
       max-width: 200px;
+      margin-top: 50px;
       @media (min-width: 992px) {
         display: inline-block;
         max-width: none;
-        margin-top: 50px;
+        margin-right: 4rem;
       }
       .first-time-button {
-        margin-top: 50px;
         margin-bottom: 20px;
         width: 100%;
         @media (min-width: 992px) {
@@ -91,6 +91,7 @@ const MakeSportYourLifestyle = () => (
         to={ROUTES.HOWITWORKS}
         double
         inverted
+        w="100%"
       >
         FIRST TIME?
       </PrimaryButton>

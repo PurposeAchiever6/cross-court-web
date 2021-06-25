@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 
 import Landing from './components/Landing';
 
@@ -56,20 +56,14 @@ const HomePage = () => {
 
   const redirectUrl = window.localStorage.getItem('redirect');
   const shouldShowSurveyModal =
-    isAuthenticated &&
-    userInfo &&
-    userInfo.id &&
-    previousSessions &&
-    previousSessions.length &&
-    previousSessions[0].surveyAnswers.length === 0 &&
-    previousSessions[0].inCancellationTime === false &&
-    previousSessions[0].inConfirmationTime === false;
-  const maybeGoBackToSessionToBook = () => {
+    isAuthenticated && userInfo?.lastCheckedInUserSession?.surveyAnswers.length === 0;
+
+  const maybeGoBackToSessionToBook = useCallback(() => {
     if (isAuthenticated && redirectUrl) {
       window.localStorage.removeItem('redirect');
       history.push(redirectUrl);
     }
-  };
+  }, [history, isAuthenticated, redirectUrl]);
 
   useEffect(() => {
     dispatch(initialLoadInit());
@@ -77,9 +71,10 @@ const HomePage = () => {
     if (shouldShowSurveyModal) {
       window.localStorage.setItem('surveyLock', 'true');
     } else {
+      window.localStorage.removeItem('surveyLock', 'true');
       maybeGoBackToSessionToBook();
     }
-  }, [dispatch, shouldShowSurveyModal]);
+  }, [dispatch, shouldShowSurveyModal, maybeGoBackToSessionToBook]);
 
   return (
     <>

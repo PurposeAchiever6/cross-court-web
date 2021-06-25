@@ -3,7 +3,6 @@ import whyWeExistMobileImg from 'screens/homepage/images/the-fundamentals.png';
 import styled from 'styled-components';
 
 const Section = styled.section`
-  background-color: #231f20;
   background-image: none;
   background-position: -100px 100px;
   display: block;
@@ -50,7 +49,7 @@ const Section = styled.section`
 `;
 
 const WhyWeExist = () => (
-  <Section className="section-block">
+  <Section className="section-block bg-cc-black">
     <section className="title-and-description-block shift-right">
       <p className="title dharma_gothic_cheavy">
         THE

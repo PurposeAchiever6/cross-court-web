@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Loading from 'shared/components/Loading';
@@ -26,31 +25,6 @@ import {
   getSessionsByDate,
   setSelectedDate,
 } from './actionCreators';
-
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-
-  .map-container,
-  .sessions-container {
-    width: 50%;
-  }
-
-  .sessions-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  @media (max-width: 991px) {
-    flex-direction: column-reverse;
-
-    .map-container,
-    .sessions-container {
-      width: 100%;
-    }
-  }
-`;
 
 const LocationsPage = () => {
   const isPageLoading = useSelector(getPageLoading);
@@ -108,8 +82,8 @@ const LocationsPage = () => {
   ) : (
     <>
       {isFSFFlow && <FreeSessionCreditAdded />}
-      <PageContainer className="locations">
-        <div className="sessions-container">
+      <div className="pt-16 flex flex-col-reverse md:flex-row-reverse justify-center">
+        <div className="w-full md:w-1/2 flex flex-col">
           <LocationPicker
             availableLocations={[{ id: null, name: 'ALL LOCATIONS' }, ...availableLocations]}
             setLocationHandler={setLocationHandler}
@@ -128,14 +102,14 @@ const LocationsPage = () => {
             <SessionsList availableSessions={availableSessions} selectedDate={selectedDate} />
           )}
         </div>
-        <div className="map-container">
+        <div className="w-full md:w-1/2">
           <Map
             setLocationHandler={setLocationHandler}
             selectedLocation={selectedLocation}
             locations={availableLocations}
           />
         </div>
-      </PageContainer>
+      </div>
     </>
   );
 };

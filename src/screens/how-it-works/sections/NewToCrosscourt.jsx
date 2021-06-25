@@ -5,21 +5,20 @@ import newToCrosscourtMobileImg from 'screens/how-it-works/images/new-to-crossco
 import newToCrosscourt from 'screens/how-it-works/images/new-to-crosscourt.png';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import styled from 'styled-components';
+import colors from 'shared/styles/constants';
 
 const Section = styled.section`
-  .new-to-crosscourt {
-    background-color: #9999ff;
-    background-position: top center;
-    background-size: cover;
-    display: block;
-    height: auto;
-    padding: 100px 32px 0;
+  color: white;
+  background-color: ${colors.brandBlack};
+  background-position: top center;
+  background-size: cover;
+  display: block;
+  height: 100vh;
+  padding: 100px 32px 0;
 
-    @media (min-width: 992px) {
-      background-image: url(${newToCrosscourt});
-      height: 100vh;
-      padding: 200px 32px 0;
-    }
+  @media (min-width: 992px) {
+    background-image: url(${newToCrosscourt});
+    padding: 200px 32px 0;
   }
 
   .title-block {
@@ -68,8 +67,8 @@ const Section = styled.section`
   .mobile-image {
     display: block;
     height: auto;
-    margin: -20px 0 0 -32px;
-    width: 100vw;
+    margin: 37px 0 0 -40px;
+    max-width: 50vh;
     @media (min-width: 992px) {
       display: none;
     }
@@ -85,21 +84,15 @@ const NewToCrosscourt = () => {
 
   return (
     <Section>
-      <section className="new-to-crosscourt section-block text-white">
-        <div className="title-block">
-          <p className="heading-sprite" />
-        </div>
-        <PrimaryButton
-          double
-          className="check-it-out animate__animated animate__bounce animate__delay-1s animate__slower animate__bounceInRight"
-          onClick={handleClick}
-        >
-          <img alt="" className="play-button-white" src={playButtonWhiteIcon} />
-          <img alt="" className="play-button-purple" src={playButtonPurpleIcon} />
-          <span className="text">CHECK IT OUT</span>
-        </PrimaryButton>
-        <img alt="" className="mobile-image" src={newToCrosscourtMobileImg} />
-      </section>
+      <div className="title-block">
+        <p className="heading-sprite" />
+      </div>
+      <PrimaryButton inverted bg={colors.brandBlack} className="check-it-out" onClick={handleClick}>
+        <img alt="" className="play-button-white" src={playButtonWhiteIcon} />
+        <img alt="" className="play-button-purple" src={playButtonPurpleIcon} />
+        <span className="text">CHECK IT OUT</span>
+      </PrimaryButton>
+      <img alt="" className="mobile-image" src={newToCrosscourtMobileImg} />
     </Section>
   );
 };

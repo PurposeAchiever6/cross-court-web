@@ -120,7 +120,7 @@ export function* signupBookSessionFlow({ payload }) {
 export function* buyCreditsAndBookSessionFlow({ payload }) {
   try {
     yield put({ type: SAVE_SESSION_TO_STORAGE, payload });
-    yield put(push(ROUTES.SERIES));
+    yield put(push(ROUTES.MEMBERSHIPS));
   } catch (err) {}
 }
 

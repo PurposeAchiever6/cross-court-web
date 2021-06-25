@@ -98,7 +98,7 @@ const TheSession = (props) => (
     </div>
     <section className="button-wrapper">
       <PrimaryButton className="see-schedule-button" to={ROUTES.LOCATIONS}>
-        SEE SCHEDULE
+        BOOK SESSION
       </PrimaryButton>
     </section>
   </Section>

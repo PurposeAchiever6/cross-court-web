@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import ThanksForComingOutImg from 'shared/images/thanks-for-coming-out-2.png';
 import ThanksForYourFeedbackImg from 'shared/images/thanks-for-your-feedback.png';
-import StarEmptyIcon from 'shared/images/star-empty2.png';
+import StarEmptyIcon from 'shared/images/star-empty.png';
 import StarFullIcon from 'shared/images/star-full2.png';
 import ScrollLock from 'react-scrolllock';
 import ROUTES from 'shared/constants/routes';
@@ -14,8 +14,7 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const SurveyModalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: 100%;
   position: relative;
 
   .title {
@@ -47,29 +46,21 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
   const history = useHistory();
   const redirectUrl = window.localStorage.getItem('redirect');
 
-  const starRatingMouseOverHandler = (i) => {
+  const [starsSelected, setStarsSelected] = useState(0);
+  const [feedbackValue, setFeedbackValue] = useState('');
+
+  const starRatingMouseOverHandler = i => {
     for (let r = 0; r <= i; r++) {
       document.querySelectorAll('.star-pair')[r].classList.add('hover');
     }
   };
-  const starRatingMouseOutHandler = (i) => {
+  const starRatingMouseOutHandler = i => {
     for (let r = 0; r <= 4; r++) {
       document.querySelectorAll('.star-pair')[r].classList.remove('hover');
     }
   };
-  const starRatingClickHandler = (i) => {
-    const rating = i + 1;
-
-    for (let r = 0; r <= 4; r++) {
-      document.querySelectorAll('.star-pair')[r].classList.remove('selected');
-    }
-    for (let r = 0; r <= i; r++) {
-      document.querySelectorAll('.star-pair')[r].classList.add('selected');
-    }
-
-    document.querySelector('.stars').classList.add('done');
-    document.querySelector('.stars').setAttribute('data-value', rating);
-    document.querySelectorAll('.star-pair')[i].classList.add('selected');
+  const starRatingClickHandler = i => {
+    setStarsSelected(i);
 
     fetch(`${env.REACT_APP_API_URL}/session_surveys/answers`, {
       method: 'POST',
@@ -81,17 +72,15 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
       },
       body: JSON.stringify({
         session_answer: {
-          answer: rating.toString(),
+          answer: i,
           session_survey_question_id: 1,
         },
       }),
     })
-      .then((data) => {
-        console.log('Rating saved successfully!', data);
-        document.querySelector('.submit-btn').classList.remove('disabled');
+      .then(() => {
         window.localStorage.removeItem('surveyLock');
       })
-      .catch((err) => window.alert('Rating error: ' + err));
+      .catch(err => window.alert('Rating error: ' + err));
   };
   const surveySubmitAction = () => {
     fetch(`${env.REACT_APP_API_URL}/session_surveys/answers`, {
@@ -109,23 +98,23 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
         },
       }),
     })
-      .then((data) => {
+      .then(data => {
         console.log('Feedback saved successfully!', data);
         document.querySelector('.close-btn').classList.remove('hide');
         document.querySelector('.survey-modal .body1').classList.add('hide');
         document.querySelector('.survey-modal .body2').classList.remove('hide');
       })
-      .catch((err) => window.alert('Feedback error: ' + err));
+      .catch(err => window.alert('Feedback error: ' + err));
   };
+
   const conditionalCloseHandler = () => {
-    if (document.querySelector('.stars').hasAttribute('data-value')) {
-      window.location.reload();
-    }
+    window.location.reload();
   };
 
   return (
     <ScrollLock isActive={isOpen}>
-      <SurveyModalContainer className="survey-modal">
+      {/* update color */}
+      <SurveyModalContainer className="survey-modal bg-cc-black">
         <FontAwesomeIcon
           className="close-btn hide"
           icon={faTimes}
@@ -136,8 +125,8 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
           <div className="stars">
             {[1, 2, 3, 4, 5].map((v, i) => (
               <div
-                className="star-pair"
-                onClick={() => starRatingClickHandler(i)}
+                className={`star-pair ${i + 1 <= starsSelected ? 'selected' : ''}`}
+                onClick={() => starRatingClickHandler(i + 1)}
                 onMouseOver={() => starRatingMouseOverHandler(i)}
                 onMouseOut={() => starRatingMouseOutHandler(i)}
               >
@@ -149,13 +138,21 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
           <textarea
             className="feedback"
             placeholder="What is the most important reason for your score? (Optional)"
+            value={feedbackValue}
+            onChange={e => setFeedbackValue(e.target.value)}
           ></textarea>
-          <PrimaryButton className="submit-btn" onClick={surveySubmitAction}>
+          <PrimaryButton
+            className="submit-btn"
+            disabled={starsSelected === 0}
+            onClick={surveySubmitAction}
+            inverted
+            bg="transparent"
+          >
             SUBMIT
           </PrimaryButton>
         </div>
         <div className="body2 hide">
-          <img alt="" className="thanks-for-your-feedback" src={ThanksForYourFeedbackImg} />
+          <img alt="" className="thanks-for-your-feedback inline" src={ThanksForYourFeedbackImg} />
           <PrimaryButton
             className="book-next-session-btn"
             onClick={() => {

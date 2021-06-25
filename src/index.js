@@ -6,6 +6,7 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 import App from 'shell/Root';
 import * as serviceWorker from './serviceWorker';
 
+import './assets/main.css';
 import 'shared/styles/fonts.css';
 import 'shared/styles/bootstrap.scss';
 import 'shared/styles/index.css';

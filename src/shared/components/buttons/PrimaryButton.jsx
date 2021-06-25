@@ -7,11 +7,13 @@ import Spinner from '../Spinner';
 const StyledDiv = styled.div`
   background-color: transparent;
   display: inline-block;
+  text-transform: uppercase;
   font-size: 14px;
   font-family: ${(props) => (props.font ? props.font : 'shapiro95_super_wide')};
   line-height: 19px;
   min-width: 130px;
   width: ${(props) => (props.w ? props.w : '')};
+  height: ${(props) => (props.h ? props.h : '')};
   padding: 0;
   position: relative;
   text-align: center;
@@ -20,23 +22,27 @@ const StyledDiv = styled.div`
 
   .content {
     background-color: ${(props) =>
-      props.bg ? props.bg : props.inverted ? colors.white : colors.brandBlue};
-    border: 3px solid ${(props) => (props.inverted ? colors.brandBlue : colors.white)};
-    color: ${(props) => (props.inverted ? colors.brandBlue : colors.white)};
-    padding: 8px 15px;
+      props.bg ? props.bg : props.inverted ? colors.white : colors.brandPurple};
+    border: 3px solid
+      ${(props) =>
+        props.double ? (props.inverted ? colors.brandPurple : colors.white) : colors.brandPurple};
+    color: ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
+    padding: ${(props) => (props.py ? props.py : '8px')} ${(props) =>
+  props.px ? props.px : '15px'}
     position: relative;
     transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
     z-index: 1;
     :hover {
-      background-color: ${(props) => (props.inverted ? colors.brandBlue : colors.white)};
-      color: ${(props) => (props.inverted ? colors.white : colors.brandBlue)};
-      border: 3px solid ${(props) => (props.inverted ? colors.white : colors.brandBlue)};
+      background-color: ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
+      color: ${(props) => (props.inverted ? colors.white : colors.brandPurple)};
+      border: 3px solid ${(props) => (props.inverted ? colors.white : colors.brandPurple)};
     }
   }
 
   .double-drop {
-    background-color: #9999ff;
-    border: 3px solid #ffffff;
+    background-color: ${(props) =>
+      props.bg ? props.bg : props.inverted ? colors.white : colors.brandPurple};
+    border: 3px solid ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
     height: 100%;
     left: 9px;
     position: absolute;
@@ -57,6 +63,7 @@ const StyledButton = styled.button`
 `;
 
 const PrimaryButton = ({
+  className = '',
   to,
   children,
   loading,
@@ -66,10 +73,24 @@ const PrimaryButton = ({
   font,
   bg,
   w,
+  h,
+  px,
+  py,
   ...props
 }) => {
   const content = (
-    <StyledDiv font={font} inverted={inverted} disabled={disabled} bg={bg} w={w} {...props}>
+    <StyledDiv
+      font={font}
+      inverted={inverted}
+      disabled={disabled}
+      bg={bg}
+      w={w}
+      h={h}
+      px={px}
+      py={py}
+      double={double}
+      {...props}
+    >
       {<div className="content">{loading ? <Spinner /> : children}</div>}
       {double && <div className="double-drop"></div>}
     </StyledDiv>
@@ -79,12 +100,17 @@ const PrimaryButton = ({
     <Link
       style={{ pointerEvents: disabled || loading ? 'none' : '' }}
       to={to}
-      className="primary-button"
+      className={`primary-button ${className}`}
     >
       {content}
     </Link>
   ) : (
-    <StyledButton className="primary-button">{content}</StyledButton>
+    <StyledButton
+      style={{ pointerEvents: disabled || loading ? 'none' : '' }}
+      className={`primary-button ${className}`}
+    >
+      {content}
+    </StyledButton>
   );
 };
 

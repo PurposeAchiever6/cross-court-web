@@ -1,38 +1,55 @@
 import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
-import Icon from 'shared/components/Icon';
 
-import Icons from '../components/Icons';
-
-import catchASweatIcon from 'shared/images/catch-a-sweat-2.png';
-import secureTheWIcon from 'shared/images/secure-the-w-2.png';
+import sweatGif from 'screens/how-it-works/images/sweat.gif';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import styled from 'styled-components';
+import colors from 'shared/styles/constants';
+
+const Section = styled.section`
+  background-color: ${colors.brandBlack};
+
+  .left-section,
+  .right-section {
+    min-height: 850px;
+    width: auto;
+    @media (min-width: 992px) {
+      width: 50vw;
+    }
+  }
+
+  .left-section {
+    background: transparent url(${sweatGif}) no-repeat 0 0;
+    background-size: cover;
+    height: 100vh;
+    order: 2;
+  }
+
+  .title {
+    color: white;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: ${colors.brandPurple};
+    font-size: 120px;
+    line-height: 100px;
+    margin-bottom: 15px;
+    font-family: dharma_gothic_cheavy_italic;
+
+    @media (min-width: 992px) {
+      font-size: 250px;
+      line-height: 200px;
+    }
+  }
+`;
 
 function SweatDesktop() {
   return (
-    <section className="sweat section-block text-white">
-      <section className="left-section"></section>
-      <section className="right-section">
-        <p className="title dharma_gothic_cheavy">SWEAT</p>
-        <Icons className="icons">
-          <Icon>
-            <img alt="" className="catch-a-sweat" src={catchASweatIcon} />
-            <span className="boxes-text">
-              CATCH A<br />
-              SWEAT
-            </span>
-          </Icon>
-          <Icon>
-            <img alt="" className="secure-the-w" src={secureTheWIcon} />
-            <span className="boxes-text">
-              SECURE
-              <br />
-              THE W
-            </span>
-          </Icon>
-        </Icons>
-        <p className="description">
+    <Section className="flex flex-col md:flex-row md:flex-row-reverse text-white">
+      <div className="left-section" />
+      <div className="right-section flex flex-col justify-center px-6 md:px-16">
+        <p className="title">SWEAT</p>
+        <p className="mb-16">
           Whether you&apos;re looking to sweat for 60 minutes or get a little competitive,
           we&apos;ve got you covered.
           <br />
@@ -41,13 +58,11 @@ function SweatDesktop() {
           to 11 by 2&apos;s and 3&apos;s, whichever comes first. Winner stays, but only for a max of
           3 games in a row to ensure you leave dripping in sweat.
         </p>
-        <div className="buttons-container">
-          <PrimaryButton to={ROUTES.LOCATIONS} double>
-            LET&apos;S RIDE
-          </PrimaryButton>
-        </div>
-      </section>
-    </section>
+        <PrimaryButton to={ROUTES.LOCATIONS} inverted bg={colors.brandBlack}>
+          LET&apos;S GO
+        </PrimaryButton>
+      </div>
+    </Section>
   );
 }
 

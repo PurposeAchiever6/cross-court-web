@@ -261,10 +261,6 @@ body .section-block .title-and-description-block {
   padding: 32px;
   width: 100vw;
 }
-@media (min-width: 992px) {
-  body .section-block .title-and-description-block {
-  }
-}
 body .section-block .title-and-description-block.shift-left,
 body .section-block .title-and-description-block.shift-right {
   box-sizing: border-box;

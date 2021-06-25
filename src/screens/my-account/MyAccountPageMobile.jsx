@@ -29,7 +29,11 @@ export const MyAccountPageMobile = ({
         <MyProfile profile={userProfile} showTitle={false} />
       </div>
       <div label="MY CREDITS">
-        <MyCredits credits={userProfile.credits} />
+        <MyCredits
+          isUnlimited={userProfile.unlimitedCredits}
+          credits={userProfile.totalCredits}
+          hasActiveSubscription={!!userProfile.activeSubscription}
+        />
       </div>
     </Tabs>
 
