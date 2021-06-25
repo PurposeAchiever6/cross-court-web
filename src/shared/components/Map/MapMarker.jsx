@@ -5,9 +5,9 @@ import colors from 'shared/styles/constants';
 const MapMarker = ({ onClickHandler, selected, location, $hover }) => {
   const LocationInfo = () => (
     <div className="absolute bottom-20 -left-14 flex flex-col bg-cc-black text-white shadow-lg rounded-sm p-2 w-48 justify-center">
-      <p className="font-shapiro95_super_wide">ADDRESS</p>
-      <p className="font-shapiro45_welter_extd">{location.address}</p>
-      <p className="font-shapiro45_welter_extd">{`${location.city}, ${location.state} ${location.zipcode}`}</p>
+      <p className="font-shapiro95_super_wide truncate">ADDRESS</p>
+      <p className="font-shapiro45_welter_extd truncate">{location.address}</p>
+      <p className="font-shapiro45_welter_extd truncate">{`${location.city}, ${location.state} ${location.zipcode}`}</p>
     </div>
   );
 

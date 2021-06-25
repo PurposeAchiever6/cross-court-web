@@ -5,6 +5,7 @@ import ReactTooltip from 'react-tooltip';
 import InfoSvg from 'shared/components/svg/InfoSvg';
 import LEVELS from 'shared/constants/levels';
 import TEXT from 'shared/constants/text';
+import colors from 'shared/styles/constants';
 
 const SessionLevel = ({ level, showInfo = false }) => {
   if (level === LEVELS.BASIC) {
@@ -12,20 +13,19 @@ const SessionLevel = ({ level, showInfo = false }) => {
   }
 
   return (
-    <div className="flex items-center font-shapiro45_welter_extd">
-      <span className="rounded-full bg-gray-400 text-xs text-center text-white px-5 py-2 mr-3">
-        LEVEL
-        <span className="ml-2">2</span>
+    <div className="flex items-center">
+      <span className="rounded-md bg-cc-black text-2xs text-center text-white px-5 mr-3 my-2 font-shapiro95_super_wide">
+        LEVEL 2
       </span>
       {showInfo && (
         <>
-          <InfoSvg className="text-gray-400" dataTip={TEXT.ADVANCED_TOOLTIP} />
+          <InfoSvg className="text-cc-purple" dataTip={TEXT.ADVANCED_TOOLTIP} />
           <ReactTooltip
-            backgroundColor="#D1D5DB"
-            textColor="black"
+            backgroundColor={colors.brandPurple}
+            textColor="white"
             place="right"
             effect="solid"
-            className="max-w-xs"
+            className="max-w-xs font-shapiro45_welter_extd"
             html
           />
         </>
