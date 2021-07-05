@@ -11,39 +11,6 @@ import { initialLoadInit } from 'screens/my-account/actionCreators';
 
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import styled from 'styled-components';
-
-const HomePageContainer = styled.div`
-  .covid-19 {
-    background-color: #9999ff;
-    border-bottom: 3px solid white;
-    font-size: 14px;
-    left: 0;
-    line-height: 18px;
-    height: 67px;
-    padding: 14px;
-    position: fixed;
-    right: 0;
-    text-align: center;
-    top: 0;
-    z-index: 10;
-    color: white;
-    font-weight: bold;
-    transition: 300ms opacity ease;
-
-    a {
-      margin: 0px 3px;
-      color: white;
-      :hover {
-        opacity: 0.6;
-    }
-
-    @media (min-width: 710px) {
-      font-size: 16px;
-      line-height: 36px;
-    }
-  }
-`;
 
 const HomePage = () => {
   const history = useHistory();
@@ -78,16 +45,7 @@ const HomePage = () => {
 
   return (
     <>
-      <HomePageContainer>
-        <section className="covid-19">
-          Click
-          <a href="/documents/COVID_guidelinesv2.pdf" target="_blank">
-            here
-          </a>
-          to see the changes we&apos;re making in response to COVID-19.
-        </section>
-        <Landing />
-      </HomePageContainer>
+      <Landing />
       <Modal isOpen={shouldShowSurveyModal}>
         <SurveyModal isOpen={shouldShowSurveyModal} />
       </Modal>

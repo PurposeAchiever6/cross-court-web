@@ -1706,20 +1706,6 @@ body .Toastify .Toastify__toast-container .Toastify__toast.Toastify__toast--erro
   color: #9999ff;
 }
 
-/* COVID-19 HOMEPAGE BANNER OVERRIDES */
-body[data-page='home'] #root,
-body[data-page='home'] #root .header,
-body[data-page='home'] #modal-root .sidebar-nav {
-  margin-top: 64px;
-}
-body[data-page='home'] #root .sidebar-nav {
-  height: calc(100vh - 64px);
-}
-
-body[data-page='home'] #root .header .cheeseburger-menu .cheeseburger-menu-outer {
-  top: 64px !important;
-}
-
 /* GLOBAL FSF BUTTON (IN HEADER) */
 body .header .header-content .fsf-button {
   font-style: italic;
