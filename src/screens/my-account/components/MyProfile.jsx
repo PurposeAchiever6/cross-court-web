@@ -14,13 +14,6 @@ import EditProfileForm from './EditProfileForm';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const MyProfileContainer = styled.div`
-  position: relative;
-  padding: 2rem;
-  h3 {
-    font-size: 1.75rem;
-    font-weight: 500;
-    margin: 0 0 2rem 0;
-  }
   > button {
     padding: 0;
     margin: 0;
@@ -31,27 +24,10 @@ const MyProfileContainer = styled.div`
     right: 2rem;
     cursor: pointer;
   }
-  svg {
-    font-size: 1rem;
-  }
-  .referral-code-hidden {
-    opacity: 0;
-  }
-  .detail-row {
-    margin-bottom: 2rem;
-    display: flex;
-    flex-direction: column;
-    font-size: 1.2rem;
-    .title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.2rem;
-      color: #9999ff;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
-  }
 `;
+
+const detailRowClasses = 'flex flex-col mb-8 text-lg';
+const titleClasses = 'font-shapiro95_super_wide';
 
 const MyProfile = ({ profile, showTitle = true }) => {
   const dispatch = useDispatch();
@@ -61,26 +37,30 @@ const MyProfile = ({ profile, showTitle = true }) => {
   const showEditProfileAction = () => dispatch(showEditProfile());
   const editProfileLoading = useSelector(getEditProfileLoading);
   const showEditProfileForm = useSelector(getShowEditProfile);
-  const shareText = "Your first Crosscourt session's free! Use my link to sign up.";
-  const shareUrl = `${window.location.origin}/?referralCode=${profile.referralCode}`;
+  const shareText = 'Use my link to sign up.';
+  const shareUrl = `${window.location.origin}`;
   const shareTextAndUrl = `${shareText} ${shareUrl}`;
 
   const handleCopy = () => {
-    document.querySelector('.referral-code-hidden').select();
+    const input = document.createElement('input');
+    input.setAttribute('value', shareTextAndUrl);
+    document.body.appendChild(input);
+    input.select();
     document.execCommand('copy');
+    document.body.removeChild(input);
     setCopied(true);
   };
 
   return (
-    <MyProfileContainer className="my-profile">
-      <button className="edit-btn" type="button" onClick={showEditProfileAction}>
+    <MyProfileContainer className="relative p-8">
+      <button type="button" onClick={showEditProfileAction}>
         <EditIcon />
       </button>
-      {showTitle && <h3>MY ACCOUNT</h3>}
+      {showTitle && <h3 className="font-shapiro95_super_wide mb-3 text-3xl">MY ACCOUNT</h3>}
 
-      <div className="detail-row">
-        <span className="title">EMAIL</span>
-        <span className="text">{profile.email}</span>
+      <div className={detailRowClasses}>
+        <span className={titleClasses}>EMAIL</span>
+        <span className="truncate">{profile.email}</span>
       </div>
       {showEditProfileForm ? (
         <EditProfileForm
@@ -90,23 +70,20 @@ const MyProfile = ({ profile, showTitle = true }) => {
         />
       ) : (
         <>
-          <div className="detail-row">
-            <span className="title">FULL NAME</span>
-            <span className="text">{`${profile.firstName} ${profile.lastName}`}</span>
+          <div className={detailRowClasses}>
+            <span className={titleClasses}>FULL NAME</span>
+            <span className="truncate">{`${profile.firstName} ${profile.lastName}`}</span>
           </div>
-          <div className="detail-row">
-            <span className="title">PHONE</span>
-            <span className="text">
+          <div className={detailRowClasses}>
+            <span className={titleClasses}>PHONE</span>
+            <span className="truncate">
               {profile.phoneNumber ? formatPhoneNumber(profile.phoneNumber) : 'No phone'}
             </span>
           </div>
-          <div className="detail-row">
-            <span className="title">REFER A FRIEND</span>
-            <input readOnly className="referral-code" value={shareUrl} />
+          <div className={detailRowClasses}>
             <PrimaryButton className="invite-a-friend-button" onClick={handleCopy} double w="100%">
-              <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'COPY CODE'}
+              <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
             </PrimaryButton>
-            <input readOnly className="referral-code-hidden" value={shareTextAndUrl} />
           </div>
         </>
       )}

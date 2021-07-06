@@ -308,16 +308,13 @@ const SessionsPage = () => {
 
   const copyShareInfoToClipboard = () => {
     const input = document.createElement('input');
-    const referralCode =
-      isAuthenticated && userProfile.referralCode
-        ? '?referralCode=' + userProfile.referralCode
-        : '';
-    const SHARE_URL = `${window.location.origin}/session/${sessionInfo.id}/${sessionDate}${referralCode}`;
+
+    const SHARE_URL = `${window.location.origin}/session/${sessionInfo.id}/${sessionDate}`;
     const SHARE_MSG = `I just signed up for the Crosscourt ${
       sessionInfo.location.name
     } session at ${formatShareSessionTime(sessionInfo.time)} on ${formatShareSessionDate(
       sessionDate
-    )}. Your first Crosscourt session's free! Use my link to sign up. ${SHARE_URL}`;
+    )}. Use my link to sign up. ${SHARE_URL}`;
     input.setAttribute('value', SHARE_MSG);
     document.body.appendChild(input);
     input.select();
@@ -417,16 +414,9 @@ const SessionsPage = () => {
               sessionInfo &&
               sessionInfo.userSession &&
               ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) !== -1 && (
-                <div className="refer-section mb-8">
-                  <p className="refer-a-new-friend-message text-xs text-cc-purple mb-2">
-                    REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!
-                  </p>
-                  <PrimaryButton
-                    double
-                    className="invite-a-friend-button"
-                    onClick={copyShareInfoToClipboard}
-                  >
-                    <FontAwesomeIcon icon={faExternalLinkAlt} />
+                <div className="mb-8">
+                  <PrimaryButton double onClick={copyShareInfoToClipboard}>
+                    <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
                     {copied ? 'COPIED' : 'INVITE A FRIEND'}
                   </PrimaryButton>
                 </div>

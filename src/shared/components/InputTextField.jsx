@@ -11,8 +11,8 @@ const InputTextContainer = styled.div`
   margin-bottom: 1.5rem;
 
   label {
-    font-size: 0.75rem;
-    line-height: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
     color: #9999ff;
     margin: 0 0 0.75rem;
     text-transform: uppercase;
@@ -30,6 +30,7 @@ const InputTextContainer = styled.div`
     border-radius: 0;
     font-size: 1.2rem;
     padding: 1rem 0.5rem;
+    background-color: #fbf7f3;
     &:focus {
       border: 1px solid rgba(0, 0, 0, 1);
       color: rgba(0, 0, 0, 1);

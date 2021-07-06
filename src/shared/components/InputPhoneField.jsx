@@ -13,8 +13,8 @@ const InputTextContainer = styled.div`
   margin-bottom: 1.5rem;
 
   label {
-    font-size: 0.75rem;
-    line-height: 1rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
     color: #9999ff;
     margin: 0 0 0.75rem;
     text-transform: uppercase;
@@ -86,7 +86,7 @@ const InputTextField = ({
             value={formatPhoneNumber(value)}
             type="tel"
             maxLength="17"
-            onPaste={e => e.preventDefault() && false}
+            onPaste={(e) => e.preventDefault() && false}
           />
         </div>
         {displayErrorMsg && (
