@@ -7,6 +7,19 @@ body {
   margin: 0;
 }
 
+input,
+textarea {
+  border-radius: 0;
+}
+
+div[type='submit'],
+button[type='submit'],
+input[type='submit'] {
+  -webkit-appearance: none;
+  border-radius: 0;
+  -webkit-border-radius: 0px;
+}
+
 #modal-root {
   position: relative;
   z-index: 999;
@@ -21,24 +34,6 @@ body {
 
 .hide {
   display: none !important;
-}
-
-.fade-enter {
-  opacity: 0.01;
-}
-
-.fade-enter.fade-enter-active {
-  opacity: 1;
-  transition: opacity 900ms ease-in;
-}
-
-.fade-exit {
-  opacity: 1;
-}
-
-.fade-exit.fade-exit-active {
-  opacity: 0.01;
-  transition: opacity 900ms ease-in;
 }
 
 /* GLOBAL STYLES */
@@ -1417,33 +1412,6 @@ body .Toastify .Toastify__toast-container .Toastify__toast.Toastify__toast--erro
   background-color: #fff;
   border: 3px solid #9999ff;
   color: #9999ff;
-}
-
-/* GLOBAL FSF BUTTON (IN HEADER) */
-body .header .header-content .fsf-button {
-  font-style: italic;
-  font-size: 12px;
-  line-height: 17px;
-  min-width: 0;
-}
-@media (min-width: 420px) {
-  body .header .header-content .fsf-button {
-    font-size: 14px;
-    line-height: 19px;
-    max-width: none;
-    min-width: 130px;
-  }
-}
-body .header .header-content .fsf-button .primary-button-inner {
-  padding: 8px 10px;
-}
-@media (min-width: 568px) {
-  body .header .header-content .fsf-button .primary-button-inner {
-    padding: 8px 15px;
-  }
-}
-body .header .header-content .fsf-button .days {
-  color: #000;
 }
 
 /* PWA */

@@ -25,6 +25,9 @@ const ALWAYS_SCROLLED = [
   ROUTES.LOGIN,
   ROUTES.SEM,
   ROUTES.DASHBOARD,
+  ROUTES.FAQ,
+  ROUTES.PAYMENTS,
+  '/session',
 ];
 const BLACK_BG = [ROUTES.SEM, ROUTES.MEMBERSHIPS];
 
@@ -62,8 +65,6 @@ const Header = () => {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const freeSessionUsed =
-    userInfo.freeSessionState === 'used' || userInfo.freeSessionState === 'claimed';
   const freeSessionExpirationDate = userInfo.freeSessionExpirationDate;
   const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
@@ -75,19 +76,19 @@ const Header = () => {
     if (daysLeft === 0) {
       daysLeft = (
         <>
-          <span className="days">&lt; 1</span> DAY
+          <span className="text-black">&lt; 1</span> DAY
         </>
       );
     } else if (daysLeft === 1) {
       daysLeft = (
         <>
-          <span className="days">1</span> DAY
+          <span className="text-black">1</span> DAY
         </>
       );
     } else {
       daysLeft = (
         <>
-          <span className="days">{daysLeft}</span> DAYS
+          <span className="text-black">{daysLeft}</span> DAYS
         </>
       );
     }
@@ -96,23 +97,17 @@ const Header = () => {
 
   const isFSFFlow = freeSessionNotExpired && freeSessionNotClaimed;
   const bannerButtonTarget = ROUTES.LOCATIONS;
-  const bannerText = () => {
-    let text = '';
+  let buttonText;
 
-    if (isAuthenticated) {
-      if (isFSFFlow) {
-        text = <span>EXPIRES {daysFromNow(freeSessionExpirationDate)}</span>;
-      } else if (freeSessionUsed) {
-        text = <span>RESERVE</span>;
-      } else {
-        text = <span>RESERVE</span>;
-      }
+  if (isAuthenticated) {
+    if (isFSFFlow) {
+      buttonText = <span>EXPIRES {daysFromNow(freeSessionExpirationDate)}</span>;
     } else {
-      text = 'FIRST FREE';
+      buttonText = <span>RESERVE</span>;
     }
-
-    return text;
-  };
+  } else {
+    buttonText = 'FIRST FREE';
+  }
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -156,8 +151,8 @@ const Header = () => {
             <LogoSvg className="w-32 md:w-52 h-6" color={logoColor} />
           </Link>
         </div>
-        <PrimaryButton className="fsf-button" to={bannerButtonTarget}>
-          {bannerText()}
+        <PrimaryButton className="italic" px="4px" py="6px" fontSize="12px" to={bannerButtonTarget}>
+          {buttonText}
         </PrimaryButton>
       </div>
     </div>

@@ -198,6 +198,7 @@ const Session = ({
                 className="see-details-button"
                 to={`/session/${sessionId}/${urlFormattedDate(date)}`}
                 inverted={past}
+                style={{ border: '3px solid white' }}
               >
                 SEE DETAILS
               </PrimaryButton>

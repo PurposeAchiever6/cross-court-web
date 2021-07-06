@@ -271,13 +271,13 @@ const setScrollClasses = () => {
           document.querySelector('.locations').scrollIntoView({ behavior: 'smooth' });
         }
 
-        window.setTimeout(function() {
+        window.setTimeout(function () {
           if (redirectToSpecificSession) {
             window.localStorage.removeItem('redirect');
             history.push(redirectToSpecificSession);
           } else {
             document.querySelector('.locations').classList.remove('faded-out');
-            window.setTimeout(function() {
+            window.setTimeout(function () {
               if (document.querySelector('.free-session-credit-added')) {
                 document.querySelector('.free-session-credit-added').style.display = 'none';
               }
@@ -400,8 +400,8 @@ const setScrollClasses = () => {
         keepScrolling = false;
         document.querySelector('main').classList.add('animation-done');
 
-        window.setTimeout(function() {
-          window.setTimeout(function() {
+        window.setTimeout(function () {
+          window.setTimeout(function () {
             if (document.querySelector('.no-session-credits')) {
               document.querySelector('.no-session-credits').style.display = 'none';
             }
@@ -422,12 +422,12 @@ const setScrollClasses = () => {
     body.getAttribute('data-page') === 'home' ||
     body.getAttribute('data-page') === 'how-it-works'
   ) {
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       const video = document.querySelector('.video-player');
       const barMalik = document.querySelector('.bar-malik');
 
       if (video && barMalik) {
-        video.addEventListener('pause', function() {
+        video.addEventListener('pause', function () {
           video.classList.add('data-user-paused');
         });
 
@@ -485,7 +485,7 @@ const setScrollClasses = () => {
     }
   }
 
-  window.setTimeout(function() {
+  window.setTimeout(function () {
     const bottomBanner = document.querySelector('.banner-container');
 
     if (body.getAttribute('data-page') === 'how-it-works') {
@@ -516,7 +516,7 @@ const setScrollClasses = () => {
   }, 100);
 };
 
-window.cookieAndSessionStorageHandler = function(isAuthenticated) {
+window.cookieAndSessionStorageHandler = function (isAuthenticated) {
   let search = window.location.search;
   let params = new URLSearchParams(search);
   let referralCode = params.get('referralCode');
@@ -566,92 +566,94 @@ const Routes = () => {
 
   const Pages = () => (
     <main>
-      <Switch>
-        <Route path={ROUTES.LOGIN}>
-          <Login />
-        </Route>
-        <Route path={ROUTES.SIGNUP} exact>
-          <Signup />
-        </Route>
-        <Route path={ROUTES.SIGNUPSUCCESS}>
-          <SignupSuccess />
-        </Route>
-        <Route path={ROUTES.SIGNUPCONFIRMATION}>
-          <SignupConfirmation />
-        </Route>
-        <Route path={ROUTES.FORGOTPASSWORD} exact>
-          <ForgotPass />
-        </Route>
-        <Route path={ROUTES.FORGOTPASSWORDSUCCESS}>
-          <ForgotPassSuccess />
-        </Route>
-        <Route path={ROUTES.RESETPASSWORD} exact>
-          <PassReset />
-        </Route>
-        <Route path={ROUTES.RESETPASSWORDSUCCESS}>
-          <PassResetSuccess />
-        </Route>
-        <Route path={ROUTES.LOCATIONS}>
-          <Locations />
-        </Route>
-        <Route path={ROUTES.SESSION} exact>
-          <Sessions />
-        </Route>
-        <Route path={ROUTES.SESSIONRESERVED}>
-          <SessionReserved />
-        </Route>
-        <Route path={ROUTES.SESSIONCONFIRMED}>
-          <SessionConfirmed />
-        </Route>
-        <Route path={ROUTES.HOWITWORKS}>
-          <HowItWorks />
-        </Route>
-        <Route path={ROUTES.MEMBERSHIPS}>
-          <ProductsPage />
-        </Route>
-        <Route path={ROUTES.TERMS}>
-          <TermsAndConditions />
-        </Route>
-        <Route path={ROUTES.CANCELATIONPOLICY}>
-          <CancelationPolicy />
-        </Route>
-        <Route path={ROUTES.SURVEY}>
-          <Survey />
-        </Route>
-        <PrivateRoute path={ROUTES.PURCHASEHISTORY}>
-          <PurchaseHistory />
-        </PrivateRoute>
-        <PrivateRoute path={ROUTES.CHECKOUT} exact>
-          <Checkout />
-        </PrivateRoute>
-        <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED}>
-          <CheckoutConfirm />
-        </PrivateRoute>
-        <PrivateRoute path={ROUTES.PAYMENTS} exact>
-          <Payments />
-        </PrivateRoute>
-        <PrivateRoute path={ROUTES.PAYMENTSADDCARD}>
-          <PaymentsAddCard />
-        </PrivateRoute>
-        <PrivateRoute path={ROUTES.MYACCOUNT}>
-          <MyAccount />
-        </PrivateRoute>
-        <Route path={ROUTES.FAQ}>
-          <FAQ />
-        </Route>
-        <Route path={ROUTES.HOME} exact>
-          <Home />
-        </Route>
-        <Route path={ROUTES.SEM} exact>
-          <SemHomePage />
-        </Route>
-        <Route path={ROUTES.PWA} exact>
-          <PWA />
-        </Route>
-        <PrivateRoute path={ROUTES.DASHBOARD} exact>
-          <Dashboard />
-        </PrivateRoute>
-      </Switch>
+      <div className="pb-48 md:pb-16">
+        <Switch>
+          <Route path={ROUTES.LOGIN}>
+            <Login />
+          </Route>
+          <Route path={ROUTES.SIGNUP} exact>
+            <Signup />
+          </Route>
+          <Route path={ROUTES.SIGNUPSUCCESS}>
+            <SignupSuccess />
+          </Route>
+          <Route path={ROUTES.SIGNUPCONFIRMATION}>
+            <SignupConfirmation />
+          </Route>
+          <Route path={ROUTES.FORGOTPASSWORD} exact>
+            <ForgotPass />
+          </Route>
+          <Route path={ROUTES.FORGOTPASSWORDSUCCESS}>
+            <ForgotPassSuccess />
+          </Route>
+          <Route path={ROUTES.RESETPASSWORD} exact>
+            <PassReset />
+          </Route>
+          <Route path={ROUTES.RESETPASSWORDSUCCESS}>
+            <PassResetSuccess />
+          </Route>
+          <Route path={ROUTES.LOCATIONS}>
+            <Locations />
+          </Route>
+          <Route path={ROUTES.SESSION} exact>
+            <Sessions />
+          </Route>
+          <Route path={ROUTES.SESSIONRESERVED}>
+            <SessionReserved />
+          </Route>
+          <Route path={ROUTES.SESSIONCONFIRMED}>
+            <SessionConfirmed />
+          </Route>
+          <Route path={ROUTES.HOWITWORKS}>
+            <HowItWorks />
+          </Route>
+          <Route path={ROUTES.MEMBERSHIPS}>
+            <ProductsPage />
+          </Route>
+          <Route path={ROUTES.TERMS}>
+            <TermsAndConditions />
+          </Route>
+          <Route path={ROUTES.CANCELATIONPOLICY}>
+            <CancelationPolicy />
+          </Route>
+          <Route path={ROUTES.SURVEY}>
+            <Survey />
+          </Route>
+          <PrivateRoute path={ROUTES.PURCHASEHISTORY}>
+            <PurchaseHistory />
+          </PrivateRoute>
+          <PrivateRoute path={ROUTES.CHECKOUT} exact>
+            <Checkout />
+          </PrivateRoute>
+          <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED}>
+            <CheckoutConfirm />
+          </PrivateRoute>
+          <PrivateRoute path={ROUTES.PAYMENTS} exact>
+            <Payments />
+          </PrivateRoute>
+          <PrivateRoute path={ROUTES.PAYMENTSADDCARD}>
+            <PaymentsAddCard />
+          </PrivateRoute>
+          <PrivateRoute path={ROUTES.MYACCOUNT}>
+            <MyAccount />
+          </PrivateRoute>
+          <Route path={ROUTES.FAQ}>
+            <FAQ />
+          </Route>
+          <Route path={ROUTES.HOME} exact>
+            <Home />
+          </Route>
+          <Route path={ROUTES.SEM} exact>
+            <SemHomePage />
+          </Route>
+          <Route path={ROUTES.PWA} exact>
+            <PWA />
+          </Route>
+          <PrivateRoute path={ROUTES.DASHBOARD} exact>
+            <Dashboard />
+          </PrivateRoute>
+        </Switch>
+      </div>
       <Footer />
     </main>
   );

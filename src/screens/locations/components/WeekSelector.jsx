@@ -61,7 +61,7 @@ const DayContainer = styled.button`
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
-  padding: 1rem;
+  padding: 6px;
   border: 0;
   cursor: pointer;
   justify-content: center;
@@ -95,7 +95,7 @@ const WeekSelector = ({
           key={day}
           day={day}
           currentDay={selectedDate}
-          className={`${isPast(day) ? 'day-container disabled' : 'day-container'}`}
+          className={`${isPast(day) ? 'disabled' : ''}`}
           onClick={() => setSelectedDateHandler(day)}
           disabled={isPast(day)}
         >

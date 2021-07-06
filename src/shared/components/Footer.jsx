@@ -16,6 +16,10 @@ const FooterContainer = styled.footer`
   flex-direction: column;
   padding: 20px 32px;
   align-items: center;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  justify-content: space-between;
 
   @media (min-width: 992px) {
     flex-direction: row;
@@ -48,7 +52,7 @@ function Footer() {
 
   return pathname === ROUTES.DASHBOARD ? null : (
     <>
-      <FooterContainer>
+      <FooterContainer className="h-48 md:h-16">
         <Link to={ROUTES.SEM}>
           <p>JOIN THE TEAM</p>
         </Link>

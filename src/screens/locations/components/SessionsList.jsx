@@ -109,7 +109,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
                   {location.name}
                 </p>
-                <SessionLevel level={level} />
+                <SessionLevel showInfo level={level} />
               </div>
               <div className="flex flex-col">
                 <div>{button}</div>

@@ -8,7 +8,7 @@ const StyledDiv = styled.div`
   background-color: transparent;
   display: inline-block;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: ${(props) => (props.fontSize ? props.fontSize : '14px')};
   font-family: ${(props) => (props.font ? props.font : 'shapiro95_super_wide')};
   line-height: 19px;
   min-width: 130px;
@@ -76,6 +76,8 @@ const PrimaryButton = ({
   h,
   px,
   py,
+  type,
+  fontSize,
   ...props
 }) => {
   const content = (
@@ -89,6 +91,7 @@ const PrimaryButton = ({
       px={px}
       py={py}
       double={double}
+      fontSize={fontSize}
       {...props}
     >
       {<div className="content">{loading ? <Spinner /> : children}</div>}
@@ -108,6 +111,7 @@ const PrimaryButton = ({
     <StyledButton
       style={{ pointerEvents: disabled || loading ? 'none' : '' }}
       className={`primary-button ${className}`}
+      type={type}
     >
       {content}
     </StyledButton>
