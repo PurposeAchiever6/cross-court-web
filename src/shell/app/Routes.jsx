@@ -163,6 +163,7 @@ const setScrollClasses = () => {
     (body.getAttribute('data-page') === 'locations' && window.location.search === '?testanimation')
   ) {
     const bigTitle = document.querySelector('.free-session-credit-added .title');
+    const scroll = document.querySelector('.free-session-credit-added .scroll');
 
     if (bigTitle && keepScrolling) {
       let addClass = '';
@@ -270,13 +271,13 @@ const setScrollClasses = () => {
           document.querySelector('.locations').scrollIntoView({ behavior: 'smooth' });
         }
 
-        window.setTimeout(function () {
+        window.setTimeout(function() {
           if (redirectToSpecificSession) {
             window.localStorage.removeItem('redirect');
             history.push(redirectToSpecificSession);
           } else {
             document.querySelector('.locations').classList.remove('faded-out');
-            window.setTimeout(function () {
+            window.setTimeout(function() {
               if (document.querySelector('.free-session-credit-added')) {
                 document.querySelector('.free-session-credit-added').style.display = 'none';
               }
@@ -287,8 +288,10 @@ const setScrollClasses = () => {
 
       if (addClass) {
         bigTitle.classList.add(addClass);
+        scroll.classList.add(addClass);
       }
       bigTitle.classList.remove(...animClasses.filter((item) => item !== addClass));
+      scroll.classList.remove(...animClasses.filter((item) => item !== addClass));
     }
   } else if (
     body.getAttribute('data-page') === 'no-session-credits' ||
@@ -397,8 +400,8 @@ const setScrollClasses = () => {
         keepScrolling = false;
         document.querySelector('main').classList.add('animation-done');
 
-        window.setTimeout(function () {
-          window.setTimeout(function () {
+        window.setTimeout(function() {
+          window.setTimeout(function() {
             if (document.querySelector('.no-session-credits')) {
               document.querySelector('.no-session-credits').style.display = 'none';
             }
@@ -419,12 +422,12 @@ const setScrollClasses = () => {
     body.getAttribute('data-page') === 'home' ||
     body.getAttribute('data-page') === 'how-it-works'
   ) {
-    window.setTimeout(function () {
+    window.setTimeout(function() {
       const video = document.querySelector('.video-player');
       const barMalik = document.querySelector('.bar-malik');
 
       if (video && barMalik) {
-        video.addEventListener('pause', function () {
+        video.addEventListener('pause', function() {
           video.classList.add('data-user-paused');
         });
 
@@ -482,7 +485,7 @@ const setScrollClasses = () => {
     }
   }
 
-  window.setTimeout(function () {
+  window.setTimeout(function() {
     const bottomBanner = document.querySelector('.banner-container');
 
     if (body.getAttribute('data-page') === 'how-it-works') {
@@ -513,7 +516,7 @@ const setScrollClasses = () => {
   }, 100);
 };
 
-window.cookieAndSessionStorageHandler = function (isAuthenticated) {
+window.cookieAndSessionStorageHandler = function(isAuthenticated) {
   let search = window.location.search;
   let params = new URLSearchParams(search);
   let referralCode = params.get('referralCode');
