@@ -1,4 +1,4 @@
-// es-lint-ignore jsx-a11y/anchor-is-valid
+/* eslint-disable jsx-a11y/anchor-is-valid */
 
 import React from 'react';
 

@@ -28,4 +28,5 @@ export default {
   TERMS: '/terms-and-conditions',
   SURVEY: '/survey',
   PWA: '/app',
+  RULES: '/rules',
 };

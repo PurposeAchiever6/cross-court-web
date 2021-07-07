@@ -43,6 +43,7 @@ const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfir
 const Payments = lazy(() => import('screens/payments/PaymentsPage'));
 const PaymentsAddCard = lazy(() => import('screens/payments/pages/AddCard'));
 const FAQ = lazy(() => import('shared/pages/Faq'));
+const Rules = lazy(() => import('shared/pages/Rules'));
 const CancelationPolicy = lazy(() => import('screens/legal-docs/pages/CancelationPolicy'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
 const Survey = lazy(() => import('screens/survey/SurveyPage'));
@@ -639,6 +640,9 @@ const Routes = () => {
           </PrivateRoute>
           <Route path={ROUTES.FAQ}>
             <FAQ />
+          </Route>
+          <Route path={ROUTES.RULES} exact>
+            <Rules />
           </Route>
           <Route path={ROUTES.HOME} exact>
             <Home />
