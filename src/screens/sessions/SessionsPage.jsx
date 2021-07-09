@@ -303,8 +303,6 @@ const SessionsPage = () => {
   if (isNil(id)) {
     return <Redirect to="/" />;
   }
-  const inCancellationTime =
-    sessionInfo && sessionInfo.userSession && sessionInfo.userSession.inCancellationTime;
 
   const copyShareInfoToClipboard = () => {
     const input = document.createElement('input');
@@ -331,7 +329,8 @@ const SessionsPage = () => {
         <CancelModal
           closeHandler={showCancelModalAction}
           cancelSessionAction={cancelSessionAction}
-          inCancellationTime={inCancellationTime}
+          inCancellationTime={sessionInfo?.userSession?.inCancellationTime}
+          isFreeSession={sessionInfo?.userSession?.isFreeSession}
           unlimitedCredits={userProfile.unlimitedCredits}
         />
       </Modal>

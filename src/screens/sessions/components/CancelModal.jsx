@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -52,31 +53,57 @@ export const CancelModal = ({
   cancelSessionAction,
   inCancellationTime,
   unlimitedCredits,
-}) => (
-  <CancelModalContainer className="cancel-modal">
-    <h2>CANCEL?</h2>
-    <span className="text">Are you sure you want to cancel your session?</span>
-    {!unlimitedCredits && (
-      <strong>
-        {inCancellationTime
-          ? '1 credit will be refunded to your account'
-          : 'The credit will not be refunded'}
-      </strong>
-    )}
-    <PrimaryButton onClick={cancelSessionAction} inverted>
-      CANCEL RESERVATION
-    </PrimaryButton>
-    <span className="link" onClick={closeHandler}>
-      Nevermind
-    </span>
-  </CancelModalContainer>
-);
+  isFreeSession,
+}) => {
+  const env = runtimeEnv();
+  const [disableBtn, setDisableBtn] = useState(false);
+
+  const onCancelClick = () => {
+    setDisableBtn(true);
+    cancelSessionAction();
+  };
+
+  const cancellationText = (() => {
+    if (unlimitedCredits) {
+      return inCancellationTime
+        ? null
+        : `You will be charged a $${env.REACT_APP_UNLIMITED_CREDITS_CANCELED_OUT_OF_TIME_PRICE} \
+           late cancellation fee`;
+    } else {
+      if (inCancellationTime) {
+        return 'The credit will be refunded to your account';
+      }
+
+      if (isFreeSession) {
+        return `Your free session credit will remain in your account, but we do charge a \
+                $${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} late cancellation fee`;
+      }
+
+      return 'The credit will not be refunded because of the late cancellation';
+    }
+  })();
+
+  return (
+    <CancelModalContainer className="cancel-modal">
+      <h2>CANCEL?</h2>
+      <span className="text">Are you sure you want to cancel your session?</span>
+      {cancellationText && <strong>{cancellationText}</strong>}
+      <PrimaryButton onClick={onCancelClick} inverted disabled={disableBtn}>
+        CANCEL RESERVATION
+      </PrimaryButton>
+      <span className="link" onClick={closeHandler}>
+        Nevermind
+      </span>
+    </CancelModalContainer>
+  );
+};
 
 CancelModal.propTypes = {
   unlimitedCredits: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
   cancelSessionAction: PropTypes.func.isRequired,
-  inCancellationTime: PropTypes.bool.isRequired,
+  inCancellationTime: PropTypes.bool,
+  isFreeSession: PropTypes.bool,
 };
 
 export default CancelModal;

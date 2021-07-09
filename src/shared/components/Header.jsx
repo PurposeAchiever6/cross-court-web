@@ -65,7 +65,7 @@ const Header = () => {
 
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
-  const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
+  const freeSessionNotUsed = ['not_claimed', 'claimed'].includes(userInfo.freeSessionState);
   const freeSessionExpirationDate = userInfo.freeSessionExpirationDate;
   const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
@@ -96,7 +96,7 @@ const Header = () => {
     return daysLeft;
   };
 
-  const isFSFFlow = freeSessionNotExpired && freeSessionNotClaimed;
+  const isFSFFlow = freeSessionNotExpired && freeSessionNotUsed;
   const bannerButtonTarget = ROUTES.LOCATIONS;
   let buttonText;
 

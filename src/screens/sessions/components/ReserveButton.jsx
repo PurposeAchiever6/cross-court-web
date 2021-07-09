@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { isNil, equals } from 'ramda';
+import { isNil } from 'ramda';
 import PropTypes from 'prop-types';
 
 import AlternativeButton from 'shared/components/AlternativeButton';
@@ -77,9 +77,7 @@ const ReserveButton = ({
           CONFIRM RESERVATION
         </PrimaryButton>
       );
-    }
-
-    if (equals(session.userSession.state, 'reserved')) {
+    } else if (['reserved', 'confirmed'].includes(session.userSession.state)) {
       return <></>;
     }
   } else {
