@@ -12,6 +12,8 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import EditProfileForm from './EditProfileForm';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { useHistory } from 'react-router-dom';
+import ROUTES from 'shared/constants/routes';
 
 const MyProfileContainer = styled.div`
   > button {
@@ -31,6 +33,7 @@ const titleClasses = 'font-shapiro95_super_wide';
 
 const MyProfile = ({ profile, showTitle = true }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [copied, setCopied] = useState(false);
   const editProfileAction = (values) => dispatch(editProfileInit(values));
@@ -79,6 +82,22 @@ const MyProfile = ({ profile, showTitle = true }) => {
             <span className="truncate">
               {profile.phoneNumber ? formatPhoneNumber(profile.phoneNumber) : 'No phone'}
             </span>
+          </div>
+          <div className={detailRowClasses}>
+            <span className={titleClasses}>SKILL RATING</span>
+            <div className="flex justify-between items-center">
+              <span>{profile.skillRating ? profile.skillRating : 'Not set'}</span>
+              <PrimaryButton
+                onClick={() =>
+                  history.push({
+                    pathname: ROUTES.RATING,
+                    state: { isEdit: true, currentValue: profile.skillRating },
+                  })
+                }
+              >
+                Edit
+              </PrimaryButton>
+            </div>
           </div>
           <div className={detailRowClasses}>
             <PrimaryButton className="invite-a-friend-button" onClick={handleCopy} double w="100%">

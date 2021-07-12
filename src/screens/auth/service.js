@@ -7,7 +7,7 @@ const env = runtimeEnv();
 const APP_URL = env.REACT_APP_URL;
 
 export default {
-  login: async credentials => {
+  login: async (credentials) => {
     const response = await api.post(`/users/sign_in`, {
       user: {
         email: credentials.email,
@@ -20,7 +20,7 @@ export default {
 
     return { client, uid, accessToken };
   },
-  signup: async credentials => {
+  signup: async (credentials) => {
     const response = await api.post(`/users`, {
       user: {
         ...credentials,
@@ -29,9 +29,17 @@ export default {
 
     return response.data.user;
   },
-  sendConfirmationEmail: async email => {
+  sendConfirmationEmail: async (email) => {
     const response = await api.post(`/user/resend_confirmation_instructions`, {
       email,
+    });
+
+    return response.data;
+  },
+  updateSkillRating: async ({ email, skillRating }) => {
+    const response = await api.put(`/user/update_skill_rating`, {
+      email,
+      skillRating,
     });
 
     return response.data;

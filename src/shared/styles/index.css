@@ -841,22 +841,6 @@ body .forgot-pass-success h1 {
   text-align: center;
 }
 
-/* SIGNUP */
-body[data-page='signup'] .header,
-body[data-page='signup'] .footer {
-  opacity: 0;
-  pointer-events: none;
-}
-
-body .signup .form h1 {
-  font-family: 'shapiro95_super_wide';
-  text-align: center;
-}
-body .signup .form .form-group label {
-  color: #9999ff;
-  letter-spacing: 0;
-}
-
 /* SIGNUP SUCCESS */
 body[data-page='signup-success'] .header,
 body[data-page='signup-success'] .footer {

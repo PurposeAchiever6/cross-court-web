@@ -26,6 +26,9 @@ import {
   AUTO_LOGIN_INIT,
   AUTO_LOGIN_SUCCESS,
   AUTO_LOGIN_FAILURE,
+  UPDATE_SKILL_RATING_INIT,
+  UPDATE_SKILL_RATING_SUCCESS,
+  UPDATE_SKILL_RATING_FAILURE,
 } from './actionTypes';
 import authService from './service';
 import { getUserEmail } from './reducer';
@@ -53,7 +56,7 @@ export function* signupFlow({ payload }) {
   try {
     const signupPayload = yield call(authService.signup, payload);
     yield put({ type: SIGN_UP_SUCCESS, payload: signupPayload });
-    yield put(push(ROUTES.SIGNUPSUCCESS));
+    yield put(push(ROUTES.RATING));
   } catch (err) {
     yield put({
       type: SIGN_UP_FAILURE,
@@ -71,6 +74,20 @@ export function* sendConfirmationEmailFlow() {
     yield put({ type: SEND_CONFIRMATION_EMAIL_SUCCESS });
   } catch (err) {
     yield put({ type: SEND_CONFIRMATION_EMAIL_FAILURE, error: err.response.data.error });
+  }
+}
+
+export function* updateSkillRatingFlow({ payload }) {
+  try {
+    const { isEdit } = payload;
+    let email = null;
+    if (!isEdit) email = yield select(getUserEmail);
+
+    yield call(authService.updateSkillRating, { email, skillRating: payload.skillRating });
+    yield put({ type: UPDATE_SKILL_RATING_SUCCESS });
+    yield put(push(isEdit ? ROUTES.MYACCOUNT : ROUTES.SIGNUPSUCCESS));
+  } catch (err) {
+    yield put({ type: UPDATE_SKILL_RATING_FAILURE, error: err.response.data.error });
   }
 }
 
@@ -113,5 +130,6 @@ export default function* rootLoginSaga() {
     takeLatest(FORGOT_PASS_INIT, forgotPassFlow),
     takeLatest(PASS_RESET_INIT, passResetFlow),
     takeLatest(AUTO_LOGIN_INIT, autoLoginFlow),
+    takeLatest(UPDATE_SKILL_RATING_INIT, updateSkillRatingFlow),
   ]);
 }

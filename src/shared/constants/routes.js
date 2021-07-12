@@ -29,4 +29,5 @@ export default {
   SURVEY: '/survey',
   PWA: '/app',
   RULES: '/rules',
+  RATING: '/rating',
 };
