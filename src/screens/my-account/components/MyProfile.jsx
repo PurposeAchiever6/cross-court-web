@@ -12,7 +12,7 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import EditProfileForm from './EditProfileForm';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 
 const MyProfileContainer = styled.div`
@@ -34,6 +34,7 @@ const titleClasses = 'font-shapiro95_super_wide';
 const MyProfile = ({ profile, showTitle = true }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
 
   const [copied, setCopied] = useState(false);
   const editProfileAction = (values) => dispatch(editProfileInit(values));
@@ -91,7 +92,11 @@ const MyProfile = ({ profile, showTitle = true }) => {
                 onClick={() =>
                   history.push({
                     pathname: ROUTES.RATING,
-                    state: { isEdit: true, currentValue: profile.skillRating },
+                    state: {
+                      isEdit: true,
+                      currentValue: profile.skillRating,
+                      from: location.pathname,
+                    },
                   })
                 }
               >

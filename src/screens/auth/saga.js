@@ -56,7 +56,7 @@ export function* signupFlow({ payload }) {
   try {
     const signupPayload = yield call(authService.signup, payload);
     yield put({ type: SIGN_UP_SUCCESS, payload: signupPayload });
-    yield put(push(ROUTES.RATING));
+    yield put(push(ROUTES.RATING, { from: ROUTES.SIGNUP }));
   } catch (err) {
     yield put({
       type: SIGN_UP_FAILURE,

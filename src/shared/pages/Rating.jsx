@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { updateSkillRatingInit } from '../../screens/auth/actionCreators';
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import BackButton from 'shared/components/BackButton';
+import ROUTES from 'shared/constants/routes';
 
 const Circle = styled.div`
   border: 2px solid black;
@@ -15,6 +16,8 @@ const Circle = styled.div`
   width: 30px;
   position: absolute;
 }`;
+
+const ALLOWED_PATHS = [ROUTES.MYACCOUNT, ROUTES.SIGNUP];
 
 const RATINGS = [
   {
@@ -88,6 +91,8 @@ const Rating = () => {
   const [isEdit, setIsEdit] = useState(false);
   const dispatch = useDispatch();
   const location = useLocation();
+  const history = useHistory();
+
   const updateSkillRatingAction = () => dispatch(updateSkillRatingInit({ skillRating, isEdit }));
 
   const handleClick = () => {
@@ -95,9 +100,10 @@ const Rating = () => {
   };
 
   useEffect(() => {
+    if (!ALLOWED_PATHS.includes(location?.state?.from)) history.push(ROUTES.HOME);
     setIsEdit(location?.state?.isEdit ?? false);
     setSkillRating(location?.state?.currentValue ?? null);
-  }, [location]);
+  }, [location, history]);
 
   return (
     <div className="flex color-cc-black justify-center p-4 md:p-8">
