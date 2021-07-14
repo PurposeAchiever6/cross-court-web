@@ -10,7 +10,7 @@ const StyledDiv = styled.div`
   text-transform: uppercase;
   font-size: ${(props) => (props.fontSize ? props.fontSize : '14px')};
   font-family: ${(props) => (props.font ? props.font : 'shapiro95_super_wide')};
-  line-height: 19px;
+  line-height: ${(props) => (props.lineHeight ? props.lineHeight : '18px')};
   min-width: 130px;
   width: ${(props) => (props.w ? props.w : '')};
   height: ${(props) => (props.h ? props.h : '')};
@@ -78,6 +78,7 @@ const PrimaryButton = ({
   py,
   type,
   fontSize,
+  lineHeight,
   ...props
 }) => {
   const content = (
@@ -92,6 +93,7 @@ const PrimaryButton = ({
       py={py}
       double={double}
       fontSize={fontSize}
+      lineHeight={lineHeight}
       {...props}
     >
       {<div className="content">{loading ? <Spinner /> : children}</div>}

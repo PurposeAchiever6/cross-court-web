@@ -86,9 +86,11 @@ const MyProfile = ({ profile, showTitle = true }) => {
           </div>
           <div className={detailRowClasses}>
             <span className={titleClasses}>SKILL RATING</span>
-            <div className="flex justify-between items-center">
-              <span>{profile.skillRating ? profile.skillRating : 'Not set'}</span>
+            <div className="flex items-center">
+              <span className="mr-7">{profile.skillRating ? profile.skillRating : 'Not set'}</span>
               <PrimaryButton
+                fontSize="0.75rem"
+                lineHeight="1"
                 onClick={() =>
                   history.push({
                     pathname: ROUTES.RATING,
