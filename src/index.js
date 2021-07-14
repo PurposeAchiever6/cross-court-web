@@ -17,4 +17,4 @@ const GOOGLE_ANALYTICS_CODE = env.REACT_APP_GOOGLE_ANALYTICS_CODE;
 
 ReactGA.initialize(GOOGLE_ANALYTICS_CODE);
 ReactDOM.render(<App />, document.getElementById('root'));
-serviceWorker.register();
+serviceWorker.unregister();
