@@ -111,7 +111,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 </p>
                 <SessionLevel showInfo level={level} />
               </div>
-              <div className="flex flex-col">
+              <div className="flex flex-col items-end">
                 <div>{button}</div>
                 {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && (
                   <div className="flex items-center mt-2">

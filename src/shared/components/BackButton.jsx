@@ -36,7 +36,7 @@ const BackButtonContainer = styled.button`
   }
 `;
 
-const BackButton = ({ className, showText = true, color = 'black' }) => {
+const BackButton = ({ className = '', showText = true, color = 'black' }) => {
   const { goBack } = useHistory();
   const history = useHistory();
   const goBackHandler = () => {
