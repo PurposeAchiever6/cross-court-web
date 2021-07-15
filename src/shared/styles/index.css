@@ -1,5 +1,6 @@
 @import './animations.css';
 @import './carousel.css';
+@import './contact-form.css';
 @import './homepage.css';
 @import './sidebar.css';
 
@@ -151,52 +152,6 @@ body[data-page='no-session-credits'] main,
 body[data-page='dashboard'] main,
 body[data-page='app'] main {
   padding-top: 0;
-}
-
-.eapps-form-floating-button {
-  display: none !important;
-}
-#eapps-form-1 .eapps-form-style-classic .eapps-form-header-title {
-  font-family: 'shapiro95_super_wide';
-}
-#eapps-form-1 .eapps-form-style-classic .eapps-form-element-label {
-  color: #9999ff;
-  font-size: 16px;
-  font-family: 'shapiro95_super_wide';
-  font-weight: normal;
-  line-height: 16px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-#eapps-form-1
-  .eapps-form-style-classic
-  .eapps-form-element-container
-  .eapps-form-element-input-text,
-#eapps-form-1
-  .eapps-form-style-classic
-  .eapps-form-element-container
-  .eapps-form-element-input-textarea {
-  background-color: #fbf7f3;
-  border: 1px solid #000 !important;
-}
-#eapps-form-1 .eapps-form-style-classic .eapps-form-button,
-#eapps-form-1 .eapps-form-style-classic .eapps-form-button.eapps-form-actions-button {
-  background-color: #9999ff;
-  border: 3px solid #fff;
-  border-radius: 0;
-  color: #fff;
-  font-family: 'shapiro95_super_wide';
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 20px;
-  text-transform: uppercase;
-  transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
-}
-#eapps-form-1 .eapps-form-style-classic .eapps-form-button,
-#eapps-form-1 .eapps-form-style-classic .eapps-form-button.eapps-form-actions-button:hover {
-  background-color: #fff;
-  border-color: #9999ff;
-  color: #9999ff;
 }
 
 /* COMPONENTS */

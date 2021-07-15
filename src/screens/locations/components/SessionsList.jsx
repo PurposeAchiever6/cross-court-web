@@ -15,7 +15,9 @@ import {
   formatSessionTime,
   formatSessionDate,
 } from 'shared/utils/date';
+import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
+import { openContactForm, autoCompleteContactForm } from 'shared/utils/contactForm';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const NoSessionContainer = styled.div`
@@ -49,7 +51,8 @@ const NoSessionContainer = styled.div`
 const fewSpotsLeftText = 'FEW SPOTS LEFT';
 
 const SessionsList = ({ availableSessions, selectedDate }) => {
-  const { phoneNumber } = useSelector(getUserProfile);
+  const isAuthenticated = useSelector(getIsAuthenticated);
+  const currentUser = useSelector(getUserProfile);
 
   const sessionList = availableSessions.filter(({ startTime }) =>
     isSameDay(startTime, selectedDate)
@@ -67,10 +70,6 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
     );
   }
 
-  const sendMail = (mailInfo) => {
-    window.location = mailInfo;
-  };
-
   return (
     <div className="px-4 font-shapiro45_welter_extd">
       {sortedSessions.map(
@@ -78,8 +77,25 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           const sessionTime = formatSessionTime(time);
           const URLdate = urlFormattedDate(startTime);
           const emailSessionDate = formatSessionDate(startTime);
-          const mailInfo = `mailto:ccteam@cross-court.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${location.name}. Please notify me if a spot opens up. You can reach me at ${phoneNumber}.`;
           let button;
+
+          const onClickJoinWaitlist = () => {
+            const { firstName, lastName, phoneNumber, email } = currentUser;
+            const message =
+              `I would like to be added to the waitlist for the ${sessionTime} ` +
+              `session on ${emailSessionDate} at ${location.name}. Please notify me ` +
+              `if a spot opens up. You can reach me at ${phoneNumber || '[phone-number]'}.`;
+
+            openContactForm();
+            autoCompleteContactForm({
+              firstName,
+              lastName,
+              phoneNumber,
+              email,
+              message,
+            });
+          };
+
           if (reserved || past) {
             button = (
               <PrimaryButton to={`/session/${id}/${URLdate}`} inverted>
@@ -88,7 +104,9 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
             );
           } else if (full) {
             button = (
-              <PrimaryButton onClick={() => sendMail(mailInfo)}>JOIN WAITLIST</PrimaryButton>
+              <PrimaryButton disabled={!isAuthenticated} onClick={() => onClickJoinWaitlist()}>
+                JOIN WAITLIST
+              </PrimaryButton>
             );
           } else {
             button = <PrimaryButton to={`/session/${id}/${URLdate}`}>RESERVE</PrimaryButton>;
@@ -96,10 +114,9 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
           return (
             <div
-              className={
-                'flex border-b py-6 md:px-5 justify-between w-full items-center' +
-                (past || full ? ' opacity-30' : '')
-              }
+              className={`flex border-b py-6 md:px-5 justify-between w-full items-center ${
+                past ? ' opacity-30' : ''
+              }`}
               key={id}
             >
               <div className="flex flex-col w-1/2">
