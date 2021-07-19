@@ -144,7 +144,7 @@ const SessionsPage = () => {
       </Modal>
       <div className="md:flex py-4 md:py-8 font-shapiro95_super_wide">
         <BackButton className="mt-4 md:my-0 ml-8" />
-        <h2 className="my-4 md:ml-8 text-center uppercase font-normal py-8 md:py-0 text-2xl">
+        <h2 className="mt-8 md:ml-8 text-center uppercase font-normal py-8 md:py-0 text-2xl">
           {sessionInfo.location.name} SESSION
         </h2>
       </div>
