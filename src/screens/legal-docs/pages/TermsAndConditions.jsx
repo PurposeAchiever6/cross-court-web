@@ -1,30 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import Loading from 'shared/components/Loading';
-import { getPageLoading } from '../reducer';
-
-const PageContainer = styled.div``;
 
 const TermsAndConditions = () => {
-  const isLoading = useSelector(getPageLoading);
-
-  return isLoading ? (
-    <Loading />
-  ) : (
-    <PageContainer className="terms-and-conditions">
-      <h1>TERMS AND CONDITIONS</h1>
-      <div>
-        This website is operated by XCourt, Inc. d/b/a Crosscourt, a Delaware corporation (“
-        Crosscourt ”, “ we ”, “ us ”, or “ our ”). These Terms and Conditions (these “ Terms ”)
-        govern your relationship with Crosscourt, including, but not limited to, your use of
-        www.cross-court.com (the “ Website ”) and the Crosscourt Mobile Application (the “ App ”),
-        your registration, purchase and right to cancel Sessions (as defined below), your
-        participation in the Activities (as defined below), your use of the Facilities (as defined
-        below), and your communication with Crosscourt.
+  return (
+    <div className="px-4 md:px-12 py-12">
+      <h1 className="text-center font-shapiro95_super_wide mb-12">TERMS AND CONDITIONS</h1>
+      <div className="text-justify">
+        This website is operated by XCourt, Inc. d/b/a Crosscourt, a Delaware corporation
+        (“Crosscourt”, “we”, “us”, or “our”). These Terms and Conditions (these “Terms”) govern your
+        relationship with Crosscourt, including, but not limited to, your use of www.cross-court.com
+        (the “Website”) and the Crosscourt Mobile Application (the “App”), your registration,
+        purchase and right to cancel Sessions (as defined below), your participation in the
+        Activities (as defined below), your use of the Facilities (as defined below), and your
+        communication with Crosscourt.
         <br />
         <br />
-        <span className="term">A. Must Be 18 Years Old</span>
+        <span className="inline-block py-2 pl-14">A. Must Be 18 Years Old</span>
         <br />
         <br />
         You must be at least 18 years old (i) to use the Website and App and (ii) to sign up,
@@ -33,45 +23,43 @@ const TermsAndConditions = () => {
         purchased a Session and is later revealed to be a minor.
         <br />
         <br />
-        <span className="term">B. Crosscourt Sessions</span>
+        <span className="inline-block py-2 pl-14">B. Crosscourt Sessions</span>
         <br />
         <br />
-        Crosscourt hosts a one-hour, high intensity, team sport based fitness experience (“ Sessions
-        ”) that is made available for registration through the Website and App. You may participate
-        in a Session only if you had purchased and signed up for such Session prior to the start
-        time thereof. You may register for Sessions through the Website or App by purchasing a
-        Series or using your “First Session Free discount”. The First Session Free Discount is
-        specific to a particular place, date and time (as indicated in the description of the
-        Session), after which the Session will have expired. Series have no set expiration date and
-        can be used to reserve any Session available on the Website or App until all purchased
-        Sessions have been used. Once you purchase a Series and reserve a particular Session using
-        one of your purchases, the date, time and place of your scheduled Session is referred to
-        herein as a “ Reservation ”.
+        Crosscourt hosts a one-hour, high intensity, team sport based fitness experience
+        (“Sessions”) that is made available for registration through the Website and App. You may
+        participate in a Session only if you had purchased and signed up for such Session prior to
+        the start time thereof. You may register for Sessions through the Website or App by
+        purchasing a Drop-in Credit, Membership or using your “First Session Free discount”. The
+        First Session Free Discount is specific to a particular place, date and time (as indicated
+        in the description of the Session), after which the Session will have expired. You are
+        charged for a membership each month unless you cancel the membership. Once you purchase a
+        membership and reserve a particular Session using one of your purchases, the date, time and
+        place of your scheduled Session is referred to herein as a “Reservation”.
         <br />
         <br />
         Session prices are subject to change in our sole discretion. We accept MasterCard, Visa,
-        Discover, and American Express. Your credit card will be charged when you purchase a Series
-        through the App or Website. Crosscourt will not process charges that use an incorrect,
-        expired, or over-the-limit credit card. We will try to contact you if this occurs.
+        Discover, and American Express. Your credit card will be charged when you purchase a
+        membership through the App or Website. Crosscourt will not process charges that use an
+        incorrect, expired, or over-the-limit credit card. We will try to contact you if this
+        occurs.
         <br />
         <br />
-        <span className="term">C. Cancellation Policy for Reservations</span>
+        <span className="inline-block py-2 pl-14">C. Cancellation Policy for Reservations</span>
         <br />
         <br />
         In order to cancel a Reservation and return your purchased Session to your account, you must
         cancel your Reservation at least 5 hours prior to the start time of such Reservation. Once
         your Reservation is cancelled, your purchased Session will be returned to your account to be
-        used at a future date. If you
+        used at a future date. If you haven’t cancelled by the deadline listed above, your Session
+        will have been used for the Reservation and will no longer be shown in your account.
         <br />
         <br />
-        haven’t cancelled by the deadline listed above, your Session will have been used for the
-        Reservation and will no longer be shown in your account.
+        <span className="inline-block py-2 pl-14">D. Items to Note</span>
         <br />
         <br />
-        <span className="term">
-          D. Items to NotePlease note, in fairness to all Session participants, WE DO NOT GUARANTEE
-          THE ABILITY TO WARM UP/SHOOT AROUND PRIOR TO THE SESSION.
-        </span>
+        Please note, in fairness to all Session participants, WE DO NOT GUARANTEE THE ABILITY TO
+        WARM UP/SHOOT AROUND PRIOR TO THE SESSION.
         <br />
         <br />
         If you are running late to a Reservation, we ask that you message the Session Experience
@@ -82,35 +70,37 @@ const TermsAndConditions = () => {
         kindly request that you message the Session Experience Manager ahead of time.
         <br />
         <br />
-        <span className="term">E. ASSUMPTION OF RISK</span>
+        <span className="inline-block py-2 pl-14">E. ASSUMPTION OF RISK</span>
         <br />
         <br />
         YOU ACKNOWLEDGE AND UNDERSTAND THAT YOU WILL BE VOLUNTARILY SIGNING UP FOR, PARTICIPATING IN
-        AND/OR ATTENDING SESSIONS (THE “ ACTIVITIES ”) AND USING THE PREMISES, FACILITIES AND
-        EQUIPMENT ASSOCIATED THEREWITH (THE “ FACILITIES ”), WHICH INVOLVE INHERENT RISKS THAT
-        CANNOT BE ELIMINATED REGARDLESS OF THE CARE TAKEN TO AVOID SUCH RISKS, INCLUDING, BUT NOT
-        LIMITED TO, RISKS OF SCRATCHES, CUTS, BRUISES, SPRAINS, EYE INJURY, LOSS OF SIGHT, JOINT OR
-        BACK INJURIES, TORN MUSCLES, LIGAMENTS OR TENDONS, BONE FRACTURES, HEART ATTACKS,
-        RHABDOMYOLYSIS, CONCUSSIONS, PARALYSIS AND DEATH, DUE NOT ONLY TO MY OWN ACTIONS, INACTION
-        OR NEGLIGENCE, BUT ALSO TO THE ACTION, INACTION OR NEGLIGENCE OF OTHERS, OR CONDITIONS OF
-        THE FACILITIES USED IN CONNECTION WITH THE ACTIVITIES. YOU ACKNOWLEDGE THAT YOU ARE
-        KNOWINGLY AND VOLUNTARILY PARTICIPATING IN THE ACTIVITIES AND USING THE FACILITIES WITH AN
-        EXPRESS UNDERSTANDING OF THE DANGER INVOLVED AND HEREBY AGREE TO ACCEPT AND ASSUME ANY AND
-        ALL SUCH RISKS, WHETHER CAUSED BY THE ORDINARY NEGLIGENCE OF CROSSCOURT OR OTHERWISE.
+        AND/OR ATTENDING SESSIONS (THE “ACTIVITIES”) AND USING THE PREMISES, FACILITIES AND
+        EQUIPMENT ASSOCIATED THEREWITH (THE “FACILITIES”), WHICH INVOLVE INHERENT RISKS THAT CANNOT
+        BE ELIMINATED REGARDLESS OF THE CARE TAKEN TO AVOID SUCH RISKS, INCLUDING, BUT NOT LIMITED
+        TO, RISKS OF SCRATCHES, CUTS, BRUISES, SPRAINS, EYE INJURY, LOSS OF SIGHT, JOINT OR BACK
+        INJURIES, TORN MUSCLES, LIGAMENTS OR TENDONS, BONE FRACTURES, HEART ATTACKS, RHABDOMYOLYSIS,
+        CONCUSSIONS, PARALYSIS AND DEATH, DUE NOT ONLY TO MY OWN ACTIONS, INACTION OR NEGLIGENCE,
+        BUT ALSO TO THE ACTION, INACTION OR NEGLIGENCE OF OTHERS, OR CONDITIONS OF THE FACILITIES
+        USED IN CONNECTION WITH THE ACTIVITIES. YOU ACKNOWLEDGE THAT YOU ARE KNOWINGLY AND
+        VOLUNTARILY PARTICIPATING IN THE ACTIVITIES AND USING THE FACILITIES WITH AN EXPRESS
+        UNDERSTANDING OF THE DANGER INVOLVED AND HEREBY AGREE TO ACCEPT AND ASSUME ANY AND ALL SUCH
+        RISKS, WHETHER CAUSED BY THE ORDINARY NEGLIGENCE OF CROSSCOURT OR OTHERWISE.
         <br />
         <br />
-        <span className="term">F. Compliance with Safety Instructions and Rules</span>
+        <span className="inline-block py-2 pl-14">
+          F. Compliance with Safety Instructions and Rules
+        </span>
         <br />
         <br />
         You have read and thoroughly understand the Safety Instructions and Rules that are posted on
         the Website. At all times, you shall comply with the Safety Instructions and Rules and all
-        rules and verbal instructions given to you by the Crosscourt staff. You agree and understand
-        that the Crosscourt staff reserves the right to refuse entry, suspend or cancel the
-        Activities for any participant that fails to follow the Safety Instructions and Rules and
-        other directives of the Crosscourt staff.
+        rules and verbal instructions given to you by the Crosscourt Experience Team. You agree and
+        understand that the Crosscourt staff reserves the right to refuse entry, suspend or cancel
+        the Activities for any participant that fails to follow the Safety Instructions and Rules
+        and other directives of the Crosscourt staff.
         <br />
         <br />
-        <span className="term">G. Ability to Participate in Activities</span>
+        <span className="inline-block py-2 pl-14">G. Ability to Participate in Activities</span>
         <br />
         <br />
         You hereby acknowledge (i) that you are physically, emotionally and mentally able to
@@ -121,33 +111,33 @@ const TermsAndConditions = () => {
         unusual hazard or unsafe condition, or if you feel that you have experienced any
         deterioration in your physical, emotional or mental fitness for continued participation in
         the Activities or use of the Facilities. If in the subjective opinion of the Crosscourt
-        staff you would be at physical risk participating in the Activities and using the
+        Experience Team you would be at physical risk participating in the Activities and using the
         Facilities, you agree and understand that the Crosscourt staff reserves the right to refuse
         entry, suspend or cancel the Activities for any such participant.
         <br />
         <br />
-        <span className="term">H. Waiver and Release</span>
+        <span className="inline-block py-2 pl-14">H. Waiver and Release</span>
         <br />
         <br />
         You hereby (1) agree to assume full responsibility for any and all injuries or damage which
         are sustained or aggravated by you in relation to your participation in the Activities and
         your use of the Facilities, whether sustained while playing or not, and (2) irrevocably
         waive and release any and all actions, claims, or demands that you, your spouse, assigns,
-        heirs, next of kin, guardians, and legal representatives (the “ Releasing Parties” ) may
-        have or may hereafter have, whether known or unknown, including, without limitation, for
-        damage or losses on account of injury, permanent disability and death or damage to property
-        (collectively, “ Activity Claims ”) against Crosscourt, and its direct and indirect parent
-        and subsidiary affiliate entities, and each of their respective officers, directors,
+        heirs, next of kin, guardians, and legal representatives (the “Releasing Parties”) may have
+        or may hereafter have, whether known or unknown, including, without limitation, for damage
+        or losses on account of injury, permanent disability and death or damage to property
+        (collectively, “Activity Claims”) against Crosscourt, and its direct and indirect parent and
+        subsidiary affiliate entities, and each of their respective officers, directors,
         shareholders, employees, representatives and agents, and each of their respective successors
-        and assigns (the “ Released Parties” ), caused or alleged to be caused in whole or in part
-        by the ordinary negligence or other acts of any of the Released Parties arising out of or
+        and assigns (the “Released Parties”), caused or alleged to be caused in whole or in part by
+        the ordinary negligence or other acts of any of the Released Parties arising out of or
         attributable to your participation in the Activities or use of the Facilities. You, for
         yourself and on behalf of the Releasing Parties, covenant not to make or bring any such
         Activity Claim against any Released Party, and forever release and discharge the Released
         Parties from liability under such Activity Claims.
         <br />
         <br />
-        <span className="term">I. Permission to Use Name and Likeness.</span>
+        <span className="inline-block py-2 pl-14">I. Permission to Use Name and Likeness.</span>
         <br />
         <br />
         You hereby irrevocably permit, authorize, grant, and license Crosscourt the rights to
@@ -165,7 +155,9 @@ const TermsAndConditions = () => {
         forth herein.
         <br />
         <br />
-        <span className="term">J. Waiver and Release for Use of Name and Likeness.</span>
+        <span className="inline-block py-2 pl-14">
+          J. Waiver and Release for Use of Name and Likeness.
+        </span>
         <br />
         <br />
         You, for yourself and on behalf of the Releasing Parties, hereby irrevocably waive and
@@ -175,20 +167,22 @@ const TermsAndConditions = () => {
         invasion of any rights of privacy (including intrusion, false light, public disclosure of
         private facts, and misappropriation of name or likeness), violation of rights of publicity,
         physical or emotional injury or distress, or any similar claim or cause of action in tort,
-        contract, or any other legal theory (collectively, “ Name and Likeness Claims ”, and
-        together with Activity Claims, the “ Released Claims ”) against the Released Parties arising
-        out of or attributable to Crosscourt’s exercise of its rights under Section J . You, for
-        yourself and on behalf of the Releasing Parties, covenant not to make or bring any such Name
-        and Likeness Claim against any Released Party, and forever release and discharge the
-        Released Parties from liability under such Name and Likeness Claims.
+        contract, or any other legal theory (collectively, “Name and Likeness Claims”, and together
+        with Activity Claims, the “Released Claims”) against the Released Parties arising out of or
+        attributable to Crosscourt’s exercise of its rights under Section J. You, for yourself and
+        on behalf of the Releasing Parties, covenant not to make or bring any such Name and Likeness
+        Claim against any Released Party, and forever release and discharge the Released Parties
+        from liability under such Name and Likeness Claims.
         <br />
         <br />
-        <span className="term">K. Waiver of California Civil Code Section 1542.</span>
+        <span className="inline-block py-2 pl-14">
+          K. Waiver of California Civil Code Section 1542.
+        </span>
         <br />
         <br />
         You, on behalf of yourself and on behalf of the Releasing Parties, understand and agree that
         the releases set forth in Sections I and K shall include a release of all Released Claims
-        under Section 1542 of the Civil Code of the State of California (“ Section 1542 ”), which
+        under Section 1542 of the Civil Code of the State of California (“Section 1542”), which
         shall be expressly waived by you on behalf of yourself and the Releasing Parties. Section
         1542 reads as follows: “A GENERAL RELEASE DOES NOT EXTEND TO CLAIMS THAT THE CREDITOR OR
         RELEASING PARTY DOES NOT KNOW OR SUSPECT TO EXIST IN HIS OR HER FAVOR AT THE TIME OF
@@ -203,7 +197,7 @@ const TermsAndConditions = () => {
         of all such Released Claims.
         <br />
         <br />
-        <span className="term">L. Links/Third Party Websites</span>
+        <span className="inline-block py-2 pl-14">L. Links/Third Party Websites</span>
         <br />
         <br />
         Crosscourt has not reviewed all the sites linked to the Website and/or App, and is not
@@ -215,7 +209,7 @@ const TermsAndConditions = () => {
         with Crosscourt.
         <br />
         <br />
-        <span className="term">M. Texts and Calls</span>
+        <span className="inline-block py-2 pl-14">M. Texts and Calls</span>
         <br />
         <br />
         We may offer you the ability to receive texts, push notifications, and calls in connection
@@ -234,7 +228,7 @@ const TermsAndConditions = () => {
         as set out in the terms of your opt-in.
         <br />
         <br />
-        <span className="term">N. Intellectual Property Rights</span>
+        <span className="inline-block py-2 pl-14">N. Intellectual Property Rights</span>
         <br />
         <br />
         The trademarks and trade dress of Crosscourt are proprietary to Crosscourt and may not be
@@ -259,7 +253,7 @@ const TermsAndConditions = () => {
         right to use the Website or App, or any portion thereof, at any time.
         <br />
         <br />
-        <span className="term">O. Not Authorized to Perform Data Mining</span>
+        <span className="inline-block py-2 pl-14">O. Not Authorized to Perform Data Mining</span>
         <br />
         <br />
         You are not authorized without the prior written permission of Crosscourt to use any
@@ -273,7 +267,9 @@ const TermsAndConditions = () => {
         from other websites to the Website.
         <br />
         <br />
-        <span className="term">P. Not Authorized to Use the Website for Commercial Purposes</span>
+        <span className="inline-block py-2 pl-14">
+          P. Not Authorized to Use the Website for Commercial Purposes
+        </span>
         <br />
         <br />
         Users are not authorized to sell, reproduce, distribute, modify, display, publicly perform,
@@ -295,7 +291,9 @@ const TermsAndConditions = () => {
         regulations and statutes.
         <br />
         <br />
-        <span className="term">Q. WARRANTY DISCLAIMER AND LIMITATION OF LIABILITY</span>
+        <span className="inline-block py-2 pl-14">
+          Q. WARRANTY DISCLAIMER AND LIMITATION OF LIABILITY
+        </span>
         <br />
         <br />
         IN NO EVENT WILL CROSSCOURT OR ANY OF THE RELEASED PARTIES BE LIABLE UNDER THESE TERMS TO
@@ -317,7 +315,7 @@ const TermsAndConditions = () => {
         NON-INFRINGEMENT.
         <br />
         <br />
-        <span className="term">R. COVID-19 Liabilities Disclaimer</span>
+        <span className="inline-block py-2 pl-14">R. COVID-19 Liabilities Disclaimer</span>
         <br />
         <br />
         The novel coronavirus, COVID-19, has been declared a worldwide pandemic by the World Health
@@ -347,14 +345,12 @@ const TermsAndConditions = () => {
         SHAREHOLDERS, OFFICERS, AGENTS, AND REPRESENTATIVES, OF AND FROM THE CLAIMS, INCLUDING ALL
         LIABILITIES, CLAIMS, ACTIONS, DAMAGES, COSTS OR EXPENSES OF ANY KIND ARISING OUT OF OR
         RELATING THERETO. I UNDERSTAND AND AGREE THAT THIS RELEASE INCLUDES ANY CLAIMS BASED ON THE
-        ACTIONS, OMISSIONS, OR NEGLIGENCE OF CROSSCOURT, ITS EMPLOYEES, DIRECTORS,
+        ACTIONS, OMISSIONS, OR NEGLIGENCE OF CROSSCOURT, ITS EMPLOYEES, DIRECTORS, SHAREHOLDERS,
+        OFFICERS, AGENTS, AND REPRESENTATIVES, WHETHER A COVID-19 INFECTION OCCURS BEFORE, DURING,
+        OR AFTER PARTICIPATION IN ANY SESSIONS.
         <br />
         <br />
-        SHAREHOLDERS, OFFICERS, AGENTS, AND REPRESENTATIVES, WHETHER A COVID-19 INFECTION OCCURS
-        BEFORE, DURING, OR AFTER PARTICIPATION IN ANY SESSIONS.
-        <br />
-        <br />
-        <span className="term">S. Acceptance of Terms</span>
+        <span className="inline-block py-2 pl-14">S. Acceptance of Terms</span>
         <br />
         <br />
         By using the Website or App, purchasing a Session, making a Reservation, participating in
@@ -370,12 +366,12 @@ const TermsAndConditions = () => {
         check this document periodically to stay informed of current guidelines.
         <br />
         <br />
-        <span className="term">
-          T. Contact UsIf you have any questions about these Terms you can reach us at
-          ccteam@cross-court.com
-        </span>
+        <span className="inline-block py-2 pl-14">T. Contact Us</span>
+        <br />
+        <br />
+        If you have any questions about these Terms you can reach us at ccteam@cross-court.com
       </div>
-    </PageContainer>
+    </div>
   );
 };
 

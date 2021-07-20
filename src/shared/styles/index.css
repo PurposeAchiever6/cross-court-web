@@ -1323,20 +1323,6 @@ body .faq .question-block {
   margin-bottom: 40px;
 }
 
-/* TERMS AND CONDITIONS */
-body .terms-and-conditions {
-  padding: 32px;
-}
-body .terms-and-conditions h1 {
-  font-family: 'shapiro95_super_wide';
-  margin-bottom: 40px;
-  text-align: center;
-}
-body .terms-and-conditions .term {
-  display: inline-block;
-  text-indent: 50px;
-}
-
 /* TOAST CONTAINER */
 
 body .Toastify .Toastify__toast-container {
