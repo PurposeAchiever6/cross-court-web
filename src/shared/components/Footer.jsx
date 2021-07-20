@@ -1,12 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
+import { getUserProfile } from 'screens/my-account/reducer';
+import { openContactFormForUser } from 'shared/utils/contactForm';
 import InstagramSvg from './svg/InstagramSvg';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 
 const FooterContainer = styled.footer`
   display: flex;
@@ -47,6 +50,7 @@ const FooterContainer = styled.footer`
 function Footer() {
   const env = runtimeEnv();
   const { pathname } = useLocation();
+  const currentUser = useSelector(getUserProfile) || {};
 
   const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
 
@@ -59,10 +63,8 @@ function Footer() {
         <Link to={ROUTES.FAQ}>
           <p>FAQ</p>
         </Link>
-        <p onClick={() => document.querySelector('.eapps-form-floating-button').click()}>CONTACT</p>
-        <p onClick={() => document.querySelector('.eapps-form-floating-button').click()}>
-          PRIVATE RENTALS
-        </p>
+        <p onClick={() => openContactFormForUser(currentUser)}>CONTACT</p>
+        <p onClick={() => openContactFormForUser(currentUser)}>PRIVATE RENTALS</p>
         <a className="instagram" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
           <InstagramSvg width="100%" />
         </a>

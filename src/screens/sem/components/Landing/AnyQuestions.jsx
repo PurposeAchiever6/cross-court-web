@@ -1,8 +1,10 @@
 import React from 'react';
-
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+
+import { getUserProfile } from 'screens/my-account/reducer';
+import { openContactFormForUser } from 'shared/utils/contactForm';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const Section = styled.section`
   .title {
@@ -20,16 +22,17 @@ const Section = styled.section`
   }
 `;
 
-const AnyQuestions = () => (
-  <Section className="md:h-screen b-white flex flex-col justify-center items-center">
-    <p className="title">ANY QUESTIONS?</p>
-    <PrimaryButton
-      className="my-12"
-      onClick={() => document.querySelector('.eapps-form-floating-button').click()}
-    >
-      EMAIL US
-    </PrimaryButton>
-  </Section>
-);
+const AnyQuestions = () => {
+  const currentUser = useSelector(getUserProfile) || {};
+
+  return (
+    <Section className="md:h-screen b-white flex flex-col justify-center items-center">
+      <p className="title">ANY QUESTIONS?</p>
+      <PrimaryButton className="my-12" onClick={() => openContactFormForUser(currentUser)}>
+        EMAIL US
+      </PrimaryButton>
+    </Section>
+  );
+};
 
 export default AnyQuestions;

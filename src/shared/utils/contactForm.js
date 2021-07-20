@@ -21,3 +21,10 @@ export const autoCompleteContactForm = ({
   if (emailInput) emailInput.value = email;
   if (messageInput) messageInput.value = message;
 };
+
+export const openContactFormForUser = (user, message = '') => {
+  const { firstName, lastName, phoneNumber, email } = user;
+
+  openContactForm();
+  autoCompleteContactForm({ firstName, lastName, phoneNumber, email, message });
+};

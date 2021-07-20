@@ -1,9 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { isEmpty } from 'ramda';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { isEmpty } from 'ramda';
 
+import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SessionLevel from 'shared/components/SessionLevel';
 import FewSessionsLeftTriangle from 'screens/locations/images/few-sessions-left-triangle.png';
@@ -17,7 +19,7 @@ import {
 } from 'shared/utils/date';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import { openContactForm, autoCompleteContactForm } from 'shared/utils/contactForm';
+import { openContactFormForUser } from 'shared/utils/contactForm';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const NoSessionContainer = styled.div`
@@ -51,6 +53,7 @@ const NoSessionContainer = styled.div`
 const fewSpotsLeftText = 'FEW SPOTS LEFT';
 
 const SessionsList = ({ availableSessions, selectedDate }) => {
+  const history = useHistory();
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
 
@@ -58,6 +61,19 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
     isSameDay(startTime, selectedDate)
   );
   const sortedSessions = sortSessionsByDate(sessionList);
+
+  const onClickJoinWaitlist = (sessionTime, sessionDate, locationName) => {
+    if (!isAuthenticated) {
+      return history.push(ROUTES.LOGIN);
+    }
+
+    const message =
+      `I would like to be added to the waitlist for the ${sessionTime} ` +
+      `session on ${sessionDate} at ${locationName}. Please notify me ` +
+      `if a spot opens up. You can reach me at ${currentUser.phoneNumber}.`;
+
+    openContactFormForUser(currentUser, message);
+  };
 
   if (isEmpty(sortedSessions)) {
     return (
@@ -76,25 +92,8 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
         ({ id, startTime, time, full, location, level, spotsLeft, reserved, past }) => {
           const sessionTime = formatSessionTime(time);
           const URLdate = urlFormattedDate(startTime);
-          const emailSessionDate = formatSessionDate(startTime);
+          const sessionDate = formatSessionDate(startTime);
           let button;
-
-          const onClickJoinWaitlist = () => {
-            const { firstName, lastName, phoneNumber, email } = currentUser;
-            const message =
-              `I would like to be added to the waitlist for the ${sessionTime} ` +
-              `session on ${emailSessionDate} at ${location.name}. Please notify me ` +
-              `if a spot opens up. You can reach me at ${phoneNumber || '[phone-number]'}.`;
-
-            openContactForm();
-            autoCompleteContactForm({
-              firstName,
-              lastName,
-              phoneNumber,
-              email,
-              message,
-            });
-          };
 
           if (reserved || past) {
             button = (
@@ -104,7 +103,9 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
             );
           } else if (full) {
             button = (
-              <PrimaryButton disabled={!isAuthenticated} onClick={() => onClickJoinWaitlist()}>
+              <PrimaryButton
+                onClick={() => onClickJoinWaitlist(sessionTime, sessionDate, location.name)}
+              >
                 JOIN WAITLIST
               </PrimaryButton>
             );

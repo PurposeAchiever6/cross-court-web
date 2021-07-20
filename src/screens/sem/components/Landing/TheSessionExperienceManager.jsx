@@ -1,9 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+import styled from 'styled-components';
 
+import { getUserProfile } from 'screens/my-account/reducer';
+import { openContactFormForUser } from 'shared/utils/contactForm';
 import theSessionExperienceManagerImg from 'screens/sem/images/the-session-experience-manager.png';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import styled from 'styled-components';
 
 const Section = styled.section`
   @media (min-width: 992px) {
@@ -50,6 +53,7 @@ const Section = styled.section`
 const SessionExperienceManager = () => {
   const env = runtimeEnv();
   const SEM_LINK = env.REACT_APP_FOUNTAIN_SEM_LINK;
+  const currentUser = useSelector(getUserProfile) || {};
 
   return (
     <Section className="flex flex-col h-sreen bg-no-repeat bg-cover justify-center text-black p-6">
@@ -67,11 +71,7 @@ const SessionExperienceManager = () => {
         <PrimaryButton onClick={() => window.open(SEM_LINK, '_blank')} w="100%">
           APPLY
         </PrimaryButton>
-        <PrimaryButton
-          onClick={() => document.querySelector('.eapps-form-floating-button').click()}
-          inverted
-          w="100%"
-        >
+        <PrimaryButton onClick={() => openContactFormForUser(currentUser)} inverted w="100%">
           <span className="text">LEARN MORE</span>
         </PrimaryButton>
       </div>
