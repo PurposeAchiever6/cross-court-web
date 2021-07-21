@@ -44,7 +44,8 @@ const WeekSelectorContainer = styled.div`
 
   .weekdays-container {
     display: flex;
-    justify-content: space-evenly;
+    overflow-y: scroll;
+    justify-content: space-between;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
@@ -61,7 +62,7 @@ const DayContainer = styled.button`
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
-  padding: 6px;
+  padding: 8px;
   border: 0;
   cursor: pointer;
   justify-content: center;
@@ -89,7 +90,7 @@ const WeekSelector = ({
         <FontAwesomeIcon icon={faAngleRight} />
       </button>
     </div>
-    <div className="weekdays-container">
+    <div className="weekdays-container px-0 md:px-4">
       {weekRange(startOfWeek(selectedDate)).map((day) => (
         <DayContainer
           key={day}

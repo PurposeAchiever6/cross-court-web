@@ -87,7 +87,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   }
 
   return (
-    <div className="px-4 font-shapiro45_welter_extd">
+    <div className="px-3 font-shapiro45_welter_extd">
       {sortedSessions.map(
         ({ id, startTime, time, full, location, level, spotsLeft, reserved, past }) => {
           const sessionTime = formatSessionTime(time);
@@ -115,13 +115,13 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
           return (
             <div
-              className={`flex border-b py-6 md:px-5 justify-between w-full items-center ${
+              className={`flex border-b py-6 md:px-5 justify-between w-full items-center overflow-hidden ${
                 past ? ' opacity-30' : ''
               }`}
               key={id}
             >
-              <div className="flex flex-col w-1/2">
-                <p className="font-bold overflow-hidden overflow-ellipsis whitespace-nowrap">
+              <div className="flex flex-col">
+                <p className="font-bold whitespace-nowrap text-sm sm:text-base">
                   {hourRange(time)}
                 </p>
                 <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
@@ -129,12 +129,12 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 </p>
                 <SessionLevel showInfo level={level} />
               </div>
-              <div className="flex flex-col items-end">
+              <div className="flex flex-col items-end pl-8">
                 <div>{button}</div>
                 {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && (
-                  <div className="flex items-center mt-2">
+                  <div className="flex items-center mt-2 whitespace-nowrap">
                     <img alt="" className="w-4 h-4" src={FewSessionsLeftTriangle} />
-                    <p className="text-xs mt-1 ml-1">{fewSpotsLeftText}</p>
+                    <p className="text-2xs sm:text-xs mt-1 ml-2">{fewSpotsLeftText}</p>
                   </div>
                 )}
               </div>
