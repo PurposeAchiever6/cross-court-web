@@ -58,7 +58,7 @@ const CheckoutPage = () => {
   return (
     <CheckoutPageContainer className="checkout">
       <div className="button-container">
-        <BackButton />
+        <BackButton className="mt-10" />
       </div>
       <h1>PURCHASE DETAILS</h1>
       <ProductDetails

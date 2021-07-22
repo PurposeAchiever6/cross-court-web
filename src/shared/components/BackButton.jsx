@@ -15,7 +15,6 @@ const BackButtonContainer = styled.button`
   border: 0;
   margin-right: 0.5rem;
   margin-left: 3rem;
-  margin-top: 2rem;
   cursor: pointer;
   touch-action: manipulation;
 
@@ -26,7 +25,6 @@ const BackButtonContainer = styled.button`
 
   @media (max-width: 991px) {
     margin-left: 1rem;
-    margin-top: 2rem;
     font-size: 1.3rem;
 
     svg {
@@ -36,7 +34,7 @@ const BackButtonContainer = styled.button`
   }
 `;
 
-const BackButton = ({ className = '', showText = true, color = 'black' }) => {
+const BackButton = ({ className = '' }) => {
   const { goBack } = useHistory();
   const history = useHistory();
   const goBackHandler = () => {

@@ -108,7 +108,7 @@ const Rating = () => {
   return (
     <div className="flex color-cc-black justify-center p-4 md:p-8">
       <div className="flex flex-col">
-        {isEdit && <BackButton />}
+        {isEdit && <BackButton className="my-6 md:mt-0" />}
         <h1 className="font-shapiro95_super_wide text-xl md:text-3xl text-center mt-4">
           SKILL ASSESSMENT SURVEY
         </h1>

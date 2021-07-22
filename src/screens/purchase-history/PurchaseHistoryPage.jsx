@@ -42,7 +42,7 @@ const PurchaseHistoryPage = () => {
   return (
     <PurchaseHistoryPageContainer className="purchase-history">
       <div className="buttons-container">
-        <BackButton />
+        <BackButton className="my-6 md:mt-0" />
       </div>
       <h2>PURCHASE HISTORY</h2>
       <PurchaseHistoryTable purchaseHistory={purchaseHistory} />
