@@ -39,8 +39,10 @@ const SessionsPageContainer = styled.div`
     line-height: 1;
   }
 
-  @media (min-height: 1200px) {
-    height: calc(100vh - 4rem);
+  @media (min-width: 991px) {
+    .full-height {
+      height: calc(100vh - 4rem);
+    }
   }
 
   .carousel-root {
@@ -144,11 +146,11 @@ const SessionsPage = () => {
       </Modal>
       <div className="md:flex py-4 md:py-8 font-shapiro95_super_wide">
         <BackButton className="mt-4 md:my-0 ml-8" />
-        <h2 className="mt-8 md:ml-8 text-center uppercase font-normal py-8 md:py-0 text-2xl">
+        <h2 className="md:ml-8 text-center uppercase font-normal py-8 md:py-0 text-2xl">
           {sessionInfo.location.name} SESSION
         </h2>
       </div>
-      <div className="flex flex-col md:flex-row bg-cc-black border-b border-gray-600">
+      <div className="flex flex-col md:flex-row bg-cc-black border-b border-gray-600 full-height">
         <Carousel infiniteLoop={true} showArrows={true} showStatus={false} showThumbs={false}>
           {sessionInfo.location.imageUrls.map((image, index) => (
             <img className="w-full md:w-1/2" src={image} alt="" key={index} />
