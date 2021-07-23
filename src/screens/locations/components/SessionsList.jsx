@@ -89,7 +89,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   return (
     <div className="px-3 font-shapiro45_welter_extd">
       {sortedSessions.map(
-        ({ id, startTime, time, full, location, level, spotsLeft, reserved, past }) => {
+        ({ id, startTime, time, full, location, skillLevel, spotsLeft, reserved, past }) => {
           const sessionTime = formatSessionTime(time);
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
@@ -127,7 +127,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
                   {location.name}
                 </p>
-                <SessionLevel showInfo level={level} />
+                <SessionLevel showInfo level={skillLevel} />
               </div>
               <div className="flex flex-col items-end pl-8">
                 <div>{button}</div>
@@ -153,7 +153,7 @@ SessionsList.propTypes = {
       startTime: PropTypes.string.isRequired,
       time: PropTypes.string.isRequired,
       location: PropTypes.object.isRequired,
-      level: PropTypes.string.isRequired,
+      level: PropTypes.object,
     })
   ),
   selectedDate: PropTypes.instanceOf(Date).isRequired,

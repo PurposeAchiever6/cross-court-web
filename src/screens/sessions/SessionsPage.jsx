@@ -12,7 +12,6 @@ import { longSessionDate, hourRange } from 'shared/utils/date';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import SessionLevel from 'shared/components/SessionLevel';
-import LEVELS from 'shared/constants/levels';
 
 import { removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
@@ -162,9 +161,7 @@ const SessionsPage = () => {
                   <span className="font-shapiro45_welter_extd text-sm uppercase">{data.value}</span>
                 </div>
               ))}
-              {sessionInfo.level === LEVELS.ADVANCED && (
-                <SessionLevel showInfo level={sessionInfo.level} />
-              )}
+              <SessionLevel showInfo level={sessionInfo.skillLevel} />
             </div>
             {getSessionsMessageContainerText() && (
               <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
