@@ -34,15 +34,12 @@ import { Carousel } from 'react-responsive-carousel';
 import SessionOfficials from './components/SessionOfficials';
 
 const SessionsPageContainer = styled.div`
+  @media (min-width: 991px) {
+    height: calc(100vh - 8rem);
+  }
   .title-officials {
     -webkit-text-stroke: 1px;
     line-height: 1;
-  }
-
-  @media (min-width: 991px) {
-    .full-height {
-      height: calc(100vh - 4rem);
-    }
   }
 
   .carousel-root {
@@ -134,7 +131,7 @@ const SessionsPage = () => {
   return isPageLoading ? (
     <Loading />
   ) : (
-    <SessionsPageContainer className="flex flex-col h-full">
+    <SessionsPageContainer className="flex flex-col">
       <Modal shouldClose closeHandler={showCancelModalAction} isOpen={shouldShowCancelModal}>
         <CancelModal
           closeHandler={showCancelModalAction}
@@ -150,7 +147,7 @@ const SessionsPage = () => {
           {sessionInfo.location.name} SESSION
         </h2>
       </div>
-      <div className="flex flex-col md:flex-row bg-cc-black border-b border-gray-600 full-height">
+      <div className="flex flex-col md:flex-row bg-cc-black border-b border-gray-600 h-full">
         <Carousel infiniteLoop={true} showArrows={true} showStatus={false} showThumbs={false}>
           {sessionInfo.location.imageUrls.map((image, index) => (
             <img className="w-full md:w-1/2" src={image} alt="" key={index} />
