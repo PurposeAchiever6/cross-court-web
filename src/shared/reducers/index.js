@@ -13,7 +13,9 @@ import paymentsReducer from 'screens/payments/reducer';
 import checkoutReducer from 'screens/checkout/reducer';
 import legalDocsReducer from 'screens/legal-docs/reducer';
 
-export default (history) =>
+import { LOGOUT_INIT } from 'screens/auth/actionTypes';
+
+const appReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
     auth: authReducer,
@@ -38,3 +40,11 @@ export default (history) =>
       legalDocsReducer
     ),
   });
+
+export default (history) => (state, action) => {
+  if (action.type === LOGOUT_INIT) {
+    state = undefined;
+  }
+
+  return appReducer(history)(state, action);
+};
