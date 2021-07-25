@@ -11,7 +11,6 @@ import SportCharacter from 'shared/images/sport-character.png';
 import { getSessionInfo, getSessionDate } from '../reducer';
 import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import { Link } from 'react-router-dom';
 
 const SessionBookedContainer = styled.div`
   .title {
@@ -37,6 +36,19 @@ const SessionBookedContainer = styled.div`
     @media (min-width: 992px) {
       font-size: 36px;
       line-height: 36px;
+    }
+  }
+
+  .black-btn {
+    border: 3px solid black;
+    .content {
+      border: 0;
+      color: black;
+      transition: 500ms background-color ease, 500ms color ease;
+      :hover {
+        background-color: black;
+        color: white;
+      }
     }
   }
 `;
@@ -68,12 +80,12 @@ const SessionReserved = () => {
         <img className="w-52" src={SportCharacter} alt="Sport Icon" />
         <p className="title">SESSION BOOKED</p>
         <p className="subtitle">SUCCESSFULLY!</p>
-        <PrimaryButton className="my-10" onClick={copyShareInfoToClipboard} double>
+        <PrimaryButton className="mt-6 mb-4" onClick={copyShareInfoToClipboard} double>
           <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
         </PrimaryButton>
-        <Link className="font-shapiro95_super_wide" to={ROUTES.MYACCOUNT}>
+        <PrimaryButton bg="transparent" className="black-btn" to={ROUTES.MYACCOUNT}>
           DONE
-        </Link>
+        </PrimaryButton>
       </div>
     </SessionBookedContainer>
   );
