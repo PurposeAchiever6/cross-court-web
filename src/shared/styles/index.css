@@ -15,7 +15,8 @@ textarea {
 
 div[type='submit'],
 button[type='submit'],
-input[type='submit'] {
+input[type='submit'],
+a[type='button'] {
   -webkit-appearance: none;
   border-radius: 0;
   -webkit-border-radius: 0px;

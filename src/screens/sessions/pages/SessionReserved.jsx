@@ -63,16 +63,18 @@ const SessionReserved = () => {
   };
 
   return (
-    <SessionBookedContainer className="flex flex-col items-center justify-center">
-      <img className="w-52" src={SportCharacter} alt="Sport Icon" />
-      <p className="title">SESSION BOOKED</p>
-      <p className="subtitle">SUCCESSFULLY!</p>
-      <PrimaryButton className="my-10" onClick={copyShareInfoToClipboard} double>
-        <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
-      </PrimaryButton>
-      <Link className="font-shapiro95_super_wide" to={ROUTES.MYACCOUNT}>
-        DONE
-      </Link>
+    <SessionBookedContainer className="md:absolute left-1/2 top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
+      <div className="flex flex-col items-center py-12">
+        <img className="w-52" src={SportCharacter} alt="Sport Icon" />
+        <p className="title">SESSION BOOKED</p>
+        <p className="subtitle">SUCCESSFULLY!</p>
+        <PrimaryButton className="my-10" onClick={copyShareInfoToClipboard} double>
+          <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
+        </PrimaryButton>
+        <Link className="font-shapiro95_super_wide" to={ROUTES.MYACCOUNT}>
+          DONE
+        </Link>
+      </div>
     </SessionBookedContainer>
   );
 };

@@ -130,7 +130,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 <SessionLevel showInfo level={skillLevel} />
               </div>
               <div className="flex flex-col items-end pl-8">
-                <div>{button}</div>
+                {button}
                 {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && (
                   <div className="flex items-center mt-2 whitespace-nowrap">
                     <img alt="" className="w-4 h-4" src={FewSessionsLeftTriangle} />

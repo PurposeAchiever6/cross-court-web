@@ -29,3 +29,20 @@ body .carousel-root .carousel .control-dots .dot.selected {
   opacity: 1;
   width: 16px;
 }
+
+.carousel-h-full .carousel-slider {
+  height: 100%;
+}
+
+.carousel-h-full .carousel-slider .slider {
+  height: 100%;
+}
+
+.carousel-h-full .carousel-slider .slider img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-h-full .slider-wrapper {
+  height: 100%;
+}

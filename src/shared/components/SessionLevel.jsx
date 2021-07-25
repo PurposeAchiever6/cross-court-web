@@ -5,10 +5,14 @@ import ReactTooltip from 'react-tooltip';
 import InfoSvg from 'shared/components/svg/InfoSvg';
 import colors from 'shared/styles/constants';
 
-const SessionLevel = ({ level, showInfo = false }) => {
+const SessionLevel = ({ level, showInfo, light }) => {
   return (
     <div className="flex items-center">
-      <span className="rounded-md bg-cc-black text-2xs text-center text-white px-5 mr-3 my-2 font-shapiro95_super_wide">
+      <span
+        className={`rounded-md ${
+          light ? 'bg-white text-black' : 'bg-cc-black text-white'
+        }  text-2xs text-center px-5 mr-3 my-2 font-shapiro95_super_wide`}
+      >
         {`${level.min} - ${level.max}`}
       </span>
       {showInfo && (
@@ -28,9 +32,15 @@ const SessionLevel = ({ level, showInfo = false }) => {
   );
 };
 
+SessionLevel.defaultProps = {
+  light: false,
+  showInfo: false,
+};
+
 SessionLevel.propTypes = {
-  level: PropTypes.object,
+  level: PropTypes.object.isRequired,
   showInfo: PropTypes.bool,
+  light: PropTypes.bool,
 };
 
 export default SessionLevel;

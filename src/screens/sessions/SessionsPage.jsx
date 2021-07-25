@@ -33,7 +33,7 @@ import { Carousel } from 'react-responsive-carousel';
 import SessionOfficials from './components/SessionOfficials';
 
 const SessionsPageContainer = styled.div`
-  @media (min-width: 991px) {
+  @media (min-width: 768px) {
     height: calc(100vh - 8rem);
   }
   .title-officials {
@@ -147,7 +147,13 @@ const SessionsPage = () => {
         </h2>
       </div>
       <div className="flex flex-col md:flex-row bg-cc-black border-b border-gray-600 h-full">
-        <Carousel infiniteLoop={true} showArrows={true} showStatus={false} showThumbs={false}>
+        <Carousel
+          className="carousel-h-full"
+          infiniteLoop={true}
+          showArrows={true}
+          showStatus={false}
+          showThumbs={false}
+        >
           {sessionInfo.location.imageUrls.map((image, index) => (
             <img className="w-full md:w-1/2" src={image} alt="" key={index} />
           ))}
@@ -161,7 +167,7 @@ const SessionsPage = () => {
                   <span className="font-shapiro45_welter_extd text-sm uppercase">{data.value}</span>
                 </div>
               ))}
-              <SessionLevel showInfo level={sessionInfo.skillLevel} />
+              <SessionLevel showInfo level={sessionInfo.skillLevel} light />
             </div>
             {getSessionsMessageContainerText() && (
               <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">

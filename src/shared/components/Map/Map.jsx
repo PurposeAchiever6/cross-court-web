@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import MapMarker from './MapMarker';
 import styles from './styles';
+import styled from 'styled-components';
 
 const LA_CENTER = {
   lat: 34.0688791,
@@ -44,9 +45,17 @@ const apiIsLoaded = (map, maps, locations) => {
 const env = runtimeEnv();
 const GOOGLE_MAPS_API_KEY = env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
+const LocationsPageContainer = styled.div`
+  height: 100vh;
+
+  @media (min-width: 768px) {
+    height: calc(100vh - 8rem);
+  }
+`;
+
 const Map = ({ locations, selectedLocation, setLocationHandler }) => {
   return (
-    <div className="w-full h-screen md:min-h-full">
+    <LocationsPageContainer className="w-full md:min-h-full">
       <GoogleMapReact
         bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
         center={{
@@ -72,7 +81,7 @@ const Map = ({ locations, selectedLocation, setLocationHandler }) => {
           />
         ))}
       </GoogleMapReact>
-    </div>
+    </LocationsPageContainer>
   );
 };
 

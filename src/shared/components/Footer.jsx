@@ -24,7 +24,7 @@ const FooterContainer = styled.footer`
   bottom: 0;
   justify-content: space-between;
 
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     flex-direction: row;
     justify-content: flex-end;
     * {
