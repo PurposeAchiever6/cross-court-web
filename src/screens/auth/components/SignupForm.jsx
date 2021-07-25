@@ -113,7 +113,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
           />
           <InputCheckboxField name="terms" className="font-shapiro45_welter_extd">
             I agree to the{' '}
-            <Link className="hover:underline" to={ROUTES.TERMS}>
+            <Link className="text-cc-purple hover:underline" to={ROUTES.TERMS}>
               terms and conditions
             </Link>
           </InputCheckboxField>
@@ -121,7 +121,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
             NEXT
           </PrimaryButton>
           <div className="login font-shapiro45_welter_extd my-2">
-            <span className="flex flex-col mt-2 text-center mt-4 cursor-pointer hover:underline">
+            <span className="flex flex-col text-center mt-4 cursor-pointer hover:underline">
               Already have an account?
               <Link to={ROUTES.LOGIN}>
                 <strong>&nbsp;Log in</strong>
