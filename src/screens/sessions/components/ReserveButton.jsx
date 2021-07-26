@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { isNil } from 'ramda';
 import PropTypes from 'prop-types';
 
-import AlternativeButton from 'shared/components/AlternativeButton';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { isPast, formatSessionTime, formatSessionDate } from 'shared/utils/date';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -52,14 +51,13 @@ const ReserveButton = ({
       if (session.full) {
         return (
           <a href={mailInfo}>
-            <AlternativeButton className="btn-alternative">JOIN WAITLIST</AlternativeButton>
+            <PrimaryButton className="btn-alternative">JOIN WAITLIST</PrimaryButton>
           </a>
         );
       }
       return (
         <PrimaryButton
           double
-          className="reserve-btn"
           onClick={() => {
             if (!selectedCard && isFSFFlow) {
               window.localStorage.setItem('redirect', window.location.pathname);
@@ -83,21 +81,18 @@ const ReserveButton = ({
   } else {
     return (
       <PrimaryButton
-        inverted
-        double
-        className="reserve-btn"
         onClick={() => {
           window.localStorage.setItem('redirect', window.location.pathname);
           history.push(ROUTES.SIGNUP);
         }}
       >
-        SIGN UP
+        CREATE PROFILE
       </PrimaryButton>
     );
   }
 
   return (
-    <PrimaryButton inverted double className="reserve-btn" onClick={signupBookSessionAction}>
+    <PrimaryButton inverted double onClick={signupBookSessionAction}>
       CONFIRM RESERVATION
     </PrimaryButton>
   );
