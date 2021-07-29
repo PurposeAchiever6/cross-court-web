@@ -5,18 +5,22 @@ import Landing from './components/Landing';
 import Modal from 'shared/components/Modal';
 import SurveyModal from 'screens/survey/SurveyModal';
 
-import { getUserProfile, getPreviousSessions } from 'screens/my-account/reducer';
+import { getUserProfile, getPreviousSessions, getPageLoading } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { initialLoadInit } from 'screens/my-account/actionCreators';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import queryString from 'query-string';
+import { openContactForm, openContactFormForUser } from 'shared/utils/contactForm';
 
 const HomePage = () => {
   const history = useHistory();
+  const { search } = useLocation();
 
   const dispatch = useDispatch();
   const userInfo = useSelector(getUserProfile);
+  const loading = useSelector(getPageLoading);
   const previousSessions = useSelector(getPreviousSessions);
   previousSessions.sort((a, b) => b.id - a.id);
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -42,6 +46,17 @@ const HomePage = () => {
       maybeGoBackToSessionToBook();
     }
   }, [dispatch, shouldShowSurveyModal, maybeGoBackToSessionToBook]);
+
+  useEffect(() => {
+    if (!loading) {
+      const { openForm } = queryString.parse(search);
+      setTimeout(() => {
+        if (openForm === 'true') {
+          isAuthenticated ? openContactFormForUser(userInfo) : openContactForm();
+        }
+      }, 3000);
+    }
+  }, [search, userInfo, isAuthenticated, loading]);
 
   return (
     <>
