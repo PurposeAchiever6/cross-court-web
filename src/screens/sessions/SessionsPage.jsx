@@ -33,15 +33,13 @@ import { Carousel } from 'react-responsive-carousel';
 import SessionOfficials from './components/SessionOfficials';
 
 const SessionsPageContainer = styled.div`
-  @media (min-width: 768px) {
-    height: calc(100vh - 8rem);
-  }
   .title-officials {
     -webkit-text-stroke: 1px;
     line-height: 1;
   }
 
   .carousel-root {
+    height: calc(100vh - 14rem);
     display: flex;
     flex-direction: column;
     justify-content: center;
