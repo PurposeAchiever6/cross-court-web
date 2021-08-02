@@ -27,6 +27,7 @@ import {
 import { getPageLoading, getSessionInfo, getShowCancelModal } from './reducer';
 import CancelModal from './components/CancelModal';
 import SessionButtons from './components/SessionButtons';
+import SkillLevelWarning from './components/SkillLevelWarning';
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
@@ -119,7 +120,7 @@ const SessionsPage = () => {
       title: 'LOCATION',
       value: [
         `${sessionInfo?.location?.address}`,
-        <br />,
+        <br key="br" />,
         `${sessionInfo?.location?.city}, CA ${sessionInfo?.location?.zipcode}`,
       ],
     },
@@ -159,8 +160,11 @@ const SessionsPage = () => {
         <div className="flex w-full flex-col md:flex-row md:w-1/2 ">
           <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
             <div className="mb-8 flex flex-col items-center md:items-start">
-              {sessionData.map((data) => (
-                <div className="flex flex-col mb-8">
+              {isAuthenticated && (
+                <SkillLevelWarning userProfile={userProfile} sessionInfo={sessionInfo} />
+              )}
+              {sessionData.map((data, i) => (
+                <div className="flex flex-col mb-8" key={`info-${i}`}>
                   <span className="uppercase block tracking-wider font-semibold">{data.title}</span>
                   <span className="font-shapiro45_welter_extd text-sm uppercase">{data.value}</span>
                 </div>

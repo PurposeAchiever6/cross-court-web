@@ -8,7 +8,8 @@ import styled from 'styled-components';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SessionLevel from 'shared/components/SessionLevel';
-import FewSessionsLeftTriangle from 'screens/locations/images/few-sessions-left-triangle.png';
+import FewSessionsLeftTriangle from 'shared/images/warning-triangle.png';
+
 import {
   hourRange,
   urlFormattedDate,
