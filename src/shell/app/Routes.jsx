@@ -18,6 +18,7 @@ import { history } from 'shared/history';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getLegalDocs } from 'screens/legal-docs/actionCreators';
 import PrivateRoute from './PrivateRoute';
+import HtmlHead from './HtmlHead';
 
 const Home = lazy(() => import('screens/homepage/HomePage'));
 const Login = lazy(() => import('screens/auth/pages/LoginPage'));
@@ -667,29 +668,32 @@ const Routes = () => {
   );
 
   return (
-    <AppWrapper>
-      <ToastContainer
-        transition={Zoom}
-        position="top-right"
-        autoClose={2500}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnVisibilityChange
-        draggable
-        pauseOnHover
-        closeButton={false}
-        bodyClassName="toaster-container"
-      />
-      <Suspense fallback={<Loading />}>
-        <ConnectedRouter history={history}>
-          <Header />
-          <ScrollToPosition />
-          <Pages />
-        </ConnectedRouter>
-      </Suspense>
-    </AppWrapper>
+    <>
+      <HtmlHead />
+      <AppWrapper>
+        <ToastContainer
+          transition={Zoom}
+          position="top-right"
+          autoClose={2500}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+          closeButton={false}
+          bodyClassName="toaster-container"
+        />
+        <Suspense fallback={<Loading />}>
+          <ConnectedRouter history={history}>
+            <Header />
+            <ScrollToPosition />
+            <Pages />
+          </ConnectedRouter>
+        </Suspense>
+      </AppWrapper>
+    </>
   );
 };
 

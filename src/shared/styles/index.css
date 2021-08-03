@@ -1193,56 +1193,6 @@ body .purchase-history-table {
   padding: 0;
 }
 
-/* FAQ */
-body .faq {
-  padding: 32px;
-}
-body .faq h1 {
-  font-family: 'shapiro95_super_wide';
-  font-size: 20px;
-  line-height: 16px;
-  text-align: center;
-}
-@media (min-width: 992px) {
-  body .faq h1 {
-    font-size: 36px;
-    line-height: 32px;
-  }
-}
-body .faq .section-links {
-  text-align: center;
-}
-body .faq .section-links a {
-  color: #9999ff;
-  text-decoration: none;
-}
-body .faq .section-links a:hover {
-  opacity: 0.6;
-}
-body .faq h2 {
-  font-family: 'shapiro97_air_extd';
-  -webkit-text-stroke: 1px;
-  font-size: 28px;
-  line-height: 24px;
-  text-align: center;
-}
-@media (min-width: 992px) {
-  body .faq h2 {
-    font-size: 40px;
-    line-height: 36px;
-  }
-}
-body .faq h3 {
-  color: #9999ff;
-  font-family: 'shapiro95_super_wide';
-  font-weight: normal;
-  margin: 0 0 10px;
-  text-transform: uppercase;
-}
-body .faq .question-block {
-  margin-bottom: 40px;
-}
-
 /* TOAST CONTAINER */
 
 body .Toastify .Toastify__toast-container {

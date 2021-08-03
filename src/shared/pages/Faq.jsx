@@ -2,269 +2,210 @@
 
 import React from 'react';
 
+const LINK_CLASSES = 'text-cc-purple hover:text-opacity-60';
+
 const Faq = () => {
   return (
-    <div className="faq">
-      <h1>CROSSCOURT FAQ</h1>
-      <div className="section-links">
-        <a href="#players">PLAYERS</a> |{' '}
-        <a href="#session-experience-manager">SESSION EXPERIENCE MANAGER</a> |{' '}
-        <a href="#session-official">SESSION OFFICIAL</a>
-      </div>
-      <a name="players">&nbsp;</a>
-      <br />
-      <br />
-      <br />
-      <br />
-      <h2>PLAYERS</h2>
-      <div className="question-block">
-        <h3>What&apos;s Crosscourt?</h3>
+    <div className="p-8">
+      <h1 className="font-shapiro95_super_wide text-center text-xl md:text-3xl mb-4">
+        CROSSCOURT FAQ
+      </h1>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">What is Crosscourt?</h3>
         <p>
-          Crosscourt&apos;s a team-sport based fitness concept. We offer a high-intensity,
-          basketball-based fitness experience. Each session&apos;s one hour, 15 players, and has a
-          dedicated Experience Team. Built for the modern athlete, we emphasize a seamless and
-          sweat-inducing experience. Our continuous games to 11 have a 5-minute time limit to keep
-          the session fast-paced, while the presence of our Experience Team ensures the vibes are
-          always on point.
+          Crosscourt&apos;s a team-sport based fitness company. We offer a high-intensity,
+          basketball-based fitness experience. Each session&apos;s one hour, limited to 15 players,
+          and has a dedicated Experience Team. Built for the modern athlete, we emphasize a seamless
+          and sweat-inducing experience. Our continuous games to 11 have a 5-minute time limit to
+          keep the session fast-paced, while the presence of our Session Officials ensures the vibes
+          are always on point.
         </p>
       </div>
-      <div className="question-block">
-        <h3>What&apos;s the format of a session?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">What is the format of a session?</h3>
         <ul>
           <li>
-            The 60 minute session is made up of games to 5 minutes or 11 points by 2&apos;s and
+            - The 60 minute session is made up of games to 5 minutes or 11 points by 2&apos;s and
             3&apos;s, whichever happens first
           </li>
-          <li>Winner stays on for a max of 3 in a row</li>
-          <li>All fouls are taken out of bounds closest to the foul</li>
-          <li>All And 1&apos;s result in the ball back, taken out of bounds</li>
+          <li>- Winner stays on for a max of 3 games in a row</li>
+          <li>- All fouls are taken out of bounds closest to the foul</li>
+          <li>- All And 1&apos;s result in the basket and ball back, taken out of bounds</li>
           <li>
-            Each team gets 4 fouls/game, then all additional fouls result in a free throw worth 2
-            points
+            - Each team gets 5 fouls/game, then all additional fouls result in a single free throw
+            worth 2 points
           </li>
-          <li>All 1 and 1&apos;s are instead a single free throw that counts as 2 points</li>
-          <li>All fouls under 10 seconds result in a free throw that counts as two points</li>
-          <li>The clock only stops under 10 seconds</li>
+          <li>- All 1 and 1&apos;s are instead a single free throw that counts as 2 points</li>
+          <li>- All fouls under 10 seconds result in a free throw that counts as two points</li>
+          <li>- The clock only stops under 10 seconds</li>
           <li>
-            If a game is tied after 5 minutes, then we tip off for a "next basket wins" scenario
+            - If a game is tied after 5 minutes, then we tip off for a "next basket wins" scenario
           </li>
         </ul>
+        <p className="mt-4">
+          If you&apos;d like to see the Crosscourt Rules and Format in more detail, click{' '}
+          <a className={LINK_CLASSES} href="rules">
+            HERE
+          </a>
+        </p>
       </div>
-      <div className="question-block">
-        <h3>What if I&apos;m not good at basketball?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">
+          What if I&apos;m not good at basketball?
+        </h3>
         <p>
           "Everybody&apos;s an athlete" is one of our core values because we believe everyone
-          deserves space on the court, regardless of ability, identity, or status. The court is
-          where up and coming creatives, overworked professionals, and former varsity standouts come
-          to sweat as equals. Our holistic approach to fitness is physically challenging, socially
-          engaging, and mentally recharging. We also have Level 2 sessions to give those looking for
-          that competitive edge the opportunity to showcase their elite skills.
+          deserves space on the court, regardless of ability, identity, or status. We provide
+          sessions for all skill level ranges. Each session is categorized into a beginner,
+          intermediate, or advanced tier. Use the skill level assessment questionnaire provided
+          during profile creation or find it in the "My Account" section to see which sessions are
+          right for you.
         </p>
       </div>
-      <div className="question-block">
-        <h3>How many calories are burned per session?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">
+          How many calories are burned per session?
+        </h3>
         <p>
-          60 minutes of non stop action gets those competitive juices flowing and makes for a major
+          60 minutes of non stop action gets those competitive juices flowing and makes for quite a
           burn. While it depends on the person, you can expect to burn 500 to 1,000+ calories per
-          session. Can&apos;t spell &quot;ball out&quot; without all out!
+          session. Our team-sport based workout engages the entire body through significant
+          cardiovascular strain, constant plyometric movement, and natural high-intensity interval
+          training. Can&apos;t spell ball out without all out!
         </p>
       </div>
-      <div className="question-block">
-        <h3>Do you offer membership or can I purchase a single session?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">
+          Do you offer membership or can I purchase a single session?
+        </h3>
         <p>
-          We offer three types of series and a drop in option. All credits are non-expiring, so you
-          can use the credits how you want, when you want.
+          While we do offer a drop in option, the Crosscourt community is mostly comprised of
+          members who either purchase our 4 sessions per month package, our 8 sessions per month
+          package, or our Unlimited sessions package. Check out our Memberships page to learn more.
         </p>
       </div>
-      <div className="question-block">
-        <h3>Do I need to be on a team to join or can I sign up by myself?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">
+          Do I need to be on a team to join or can I sign up by myself?
+        </h3>
         <p>
           We exist to remove the barriers that make sports more work than workout. All you have to
           do is find a session that works for your schedule and sign up. When you arrive, we create
-          the teams--first 5 to the gym are in the first game against the next 5 people to arrive.
+          the teams--first 5 members to the gym begin the session against the next 5 members to
+          arrive.
         </p>
       </div>
-      <div className="question-block">
-        <h3>How old do I need to be to join?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">
+          How old do you need to be to sweat with the #ccteam?
+        </h3>
         <p>You must be 18 or older to participate.</p>
       </div>
-      <div className="question-block">
-        <h3>What do I need to wear and bring?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">What do I need to wear and bring?</h3>
         <p>
-          Please bring athletic shoes (preferably basketball shoes), water, a ball, and towel if
-          you&apos;ve got &apos;em. We provide custom jerseys, so all you need is some athletic
-          drip, and you&apos;re good to go!
+          Please bring athletic shoes (preferably basketball shoes), a water bottle (water filler
+          station on site), and towel if you&apos;ve got &apos;em. If you purchased a jersey, bring
+          that as well. If not, you can rent one when you check in, unless it&apos;s your first
+          time, in that case we lend you one for no additional cost. Please leave your basketball at
+          home. We set it up, you lay it up!
         </p>
       </div>
-      <div className="question-block">
-        <h3>What&apos;s the cancellation policy?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">What&apos;s the cancellation policy?</h3>
         <p>
           You can cancel your reservation up to 5 hours before your session begins in order to
-          receive a refund.
+          receive a refund. Cancellations made less than 5 hours before your session will result in
+          a fee or lost session credit.
         </p>
       </div>
-      <div className="question-block">
-        <h3>What happens if I forget to confirm or confirm but don&apos;t show up?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">
+          What happens if I forget to confirm or confirm, but don&apos;t show up?
+        </h3>
         <p>
           Forgetting to confirm or canceling after the cancellation window (less than 5 hours before
-          your session) will result in a charge for the amount of your session credit and will not
-          result in a refund. Confirming and no showing will also result in lost session credit. If
-          this happens twice, your account will be flagged. The other players in the session are
-          relying on your attendance, so not showing up will affect the entire group&apos;s
-          experience.
+          your session) will result in a charge for the amount of your session credit or a fee
+          (depending on what type of membeship you have) and will not result in a refund. Confirming
+          and no showing will also result in lost session credit or no show fee. If this happens
+          twice, your account will be flagged. The other players in the session are relying on your
+          attendance, so not showing up will affect the entire groups experience.
         </p>
       </div>
-      <div className="question-block">
-        <h3>How early should I arrive?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">How early should I arrive?</h3>
         <p>
           We suggest arriving at least 10 minutes early since the first 10 players checked into our
           system will begin the session.
         </p>
       </div>
-      <div className="question-block">
-        <h3>What happens when I arrive?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">What happens when I arrive?</h3>
         <p>
-          After signing up, we&apos;ll send you a &quot;What to Expect&quot; video. When you arrive,
-          find one of our Experience Managers if you are not greeted at the door. They will check
-          you in and hand you a jersey. After finding out what color to wear, we recommend
-          stretching out, getting to know your teammates, or snapping a photo for the gram before we
-          tip off.
+          After signing up, we&apos;ll send you a “What to Expect” video. When you arrive, our
+          Session Experience Manager will check you in and give you the low down. After finding out
+          what color jersey to wear, we recommend putting your stuff in a locker, using the
+          restrooms, stretching out, and getting to know your teammates.
         </p>
       </div>
-      <div className="question-block">
-        <h3>Can I request to be on a specific team?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">
+          Can I request to be on a specific team?
+        </h3>
         <p>
           We cannot make specific arrangements. Crosscourt is a social form of exercise, and as such
           we recommend getting to know some of the other players in your session. If you enjoy going
           to the same location at the same time each week, then you will likely see the same players
           frequently. Also note, teams will be rotated if there are less than 15 players in a
-          session.
+          session. We do offer private rentals if you and your friends want to book the facility.
         </p>
       </div>
-      <div className="question-block">
-        <h3>How do I book a Session?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">How do I book a Session?</h3>
         <p>
-          Go to the <a href="locations">schedule/locations</a> tab on our website and find a session
-          that works for you. Either filter by location, date, or time and just click
-          &quot;Reserve.&quot; If you don&apos;t have any session credits, then you&apos;ll be asked
-          to purchase before confirming your reservation.
+          Go to the <a href="locations">Schedule</a> tab on our website and find a session that
+          works for you. Filter by date/time and just click “Reserve.” If you don&apos;t have any
+          session credits, then you&apos;ll be asked to purchase before confirming your reservation.
         </p>
       </div>
-      <div className="question-block">
-        <h3>How can I become a Session Experience Manager or Session Official?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">
+          How can I become a Session Experience Manager or Session Official?
+        </h3>
         <p>
           We&apos;re always looking for brand advocates to join the Crosscourt Experience Team! Just
-          click the <a href="sem">JOIN THE TEAM</a> button on our website and fill out an
-          application.
+          click the JOIN THE TEAM button on our website and fill out an application.
         </p>
       </div>
-      <div className="question-block">
-        <h3>Do you offer corporate events or private parties?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">
+          Do you offer corporate events or private parties?
+        </h3>
         <p>
-          Yes! Please email <a href="mailto:ccteam@cross-court.com">ccteam@cross-court.com</a> for
-          all private event inquiries.
+          Yes, please email{' '}
+          <a className={LINK_CLASSES} href="mailto:ccteam@cross-court.com">
+            ccteam@cross-court.com
+          </a>{' '}
+          or hit the CONTACT button below for all private event inquiries.
         </p>
       </div>
-      <div className="question-block">
-        <h3>How does the waitlist work?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">How does the waitlist work?</h3>
         <p>
-          Our waitlist is first come, first serve. Join the waitlist for a session you&apos;re
-          interested in, and we&apos;ll notify you if someone cancels.
+          Our waitlist is first come first serve. Join the waitlist for a session you&apos;re
+          interested in, and we&apos;ll notify you if someone cancels!
         </p>
       </div>
-      <div className="question-block">
-        <h3>Want to see our terms &amp; conditions?</h3>
+      <div className="mb-5">
+        <h3 className="font-shapiro95_super_wide text-xl">
+          Want to see our terms &amp; conditions?
+        </h3>
         <p>
-          Link <a href="terms-and-conditions">HERE</a>.
-        </p>
-      </div>
-      <a name="session-experience-manager">&nbsp;</a>
-      <br />
-      <br />
-      <br />
-      <br />
-      <h2>SESSION EXPERIENCE MANAGER</h2>
-      <div className="question-block">
-        <h3>What does the Session Experience Manager do?</h3>
-        <p>
-          Crosscourt&apos;s Session Experience Managers are THE FACE of Crosscourt at each session.
-          Part DJ, part MC, and part hype man/girl, you represent Crosscourt at each session you
-          manage. You bring the energy and maintain it. If you have a fresh and energetic swagger,
-          then you may be a perfect fit for Crosscourt&apos;s Session Experience Manager role!
-        </p>
-      </div>
-      <div className="question-block">
-        <h3>Do I need a car?</h3>
-        <p>Yes! A car is required.</p>
-      </div>
-      <div className="question-block">
-        <h3>What are the benefits?</h3>
-        <p>As a Session Experience Manager, you get:</p>
-        <ul>
-          <li>Paid well</li>
-          <li>Free Sessions</li>
-          <li>Performance Bonus&apos;</li>
-          <li>Equity in company</li>
-          <li>Exclusive Merch</li>
-          <li>To be the face of Crosscourt</li>
-        </ul>
-      </div>
-      <div className="question-block">
-        <h3>Is this a part time role?</h3>
-        <p>
-          Most, if not all, sessions take place after the workday, so being an SEM should complement
-          your full time job.
-        </p>
-      </div>
-      <a name="session-official">&nbsp;</a>
-      <br />
-      <br />
-      <br />
-      <br />
-      <h2>SESSION OFFICIAL</h2>
-      <div className="question-block">
-        <h3>What does the role require?</h3>
-        <p>
-          As a Session Official, you&apos;ll have fun enforcing the Crosscourt rules and maintaining
-          order on the court. This isn&apos;t your average referee role. We encourage getting to
-          know the players, hitting a dance move in between games, or adding some flair to a foul
-          call. You are a leader on the Crosscourt team and will work side by side with the Session
-          Experience Manager to deliver an electric in-session experience, every time.
-        </p>
-      </div>
-      <div className="question-block">
-        <h3>Do I need to be able to play basketball?</h3>
-        <p>
-          You do not have to be good at basketball to be an SO, but you will need to be mobile as
-          this job requires you to run up and down the court. A thorough understanding of basic
-          basketball rules, officiating terms, and essential hand signals is required however.
-        </p>
-      </div>
-      <div className="question-block">
-        <h3>Do I need to be certified or have prior basketball officiating experience?</h3>
-        <p>
-          While we do not require you to be certified, you must have at least one full year of
-          previous basketball officiating experience in order to be eligible for the Session
-          Official role.
-        </p>
-      </div>
-      <div className="question-block">
-        <h3>What are the perks of being a Crosscourt Session Official?</h3>
-        <p>As a Session Official, you will get:</p>
-        <ul>
-          <li>Paid well</li>
-          <li>Free Sessions</li>
-          <li>Performance Bonus&apos;</li>
-          <li>Equity in company</li>
-          <li>Exclusive Merch</li>
-          <li>To be the face of Crosscourt</li>
-        </ul>
-      </div>
-      <div className="question-block">
-        <h3>Is this a part time role?</h3>
-        <p>
-          Most, if not all, sessions take place after the workday, so being an SEM should complement
-          your full time jobs! If not, you will be able to officiate more sessions!
+          Link{' '}
+          <a className={LINK_CLASSES} href="terms-and-conditions">
+            HERE
+          </a>
+          .
         </p>
       </div>
     </div>
