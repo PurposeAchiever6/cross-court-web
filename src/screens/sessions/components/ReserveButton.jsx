@@ -57,7 +57,6 @@ const ReserveButton = ({
       }
       return (
         <PrimaryButton
-          double
           onClick={() => {
             if (!selectedCard && isFSFFlow) {
               window.localStorage.setItem('redirect', window.location.pathname);
@@ -92,7 +91,7 @@ const ReserveButton = ({
   }
 
   return (
-    <PrimaryButton inverted double onClick={signupBookSessionAction}>
+    <PrimaryButton inverted onClick={signupBookSessionAction}>
       CONFIRM RESERVATION
     </PrimaryButton>
   );

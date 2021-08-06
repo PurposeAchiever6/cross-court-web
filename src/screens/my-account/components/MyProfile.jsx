@@ -107,7 +107,7 @@ const MyProfile = ({ profile, showTitle = true }) => {
             </div>
           </div>
           <div className={detailRowClasses}>
-            <PrimaryButton className="invite-a-friend-button" onClick={handleCopy} double w="100%">
+            <PrimaryButton className="invite-a-friend-button" onClick={handleCopy} w="100%">
               <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
             </PrimaryButton>
           </div>

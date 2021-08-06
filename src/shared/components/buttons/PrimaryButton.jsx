@@ -79,6 +79,7 @@ const PrimaryButton = ({
   type,
   fontSize,
   lineHeight,
+  contentClasses = '',
   ...props
 }) => {
   const content = (
@@ -94,6 +95,7 @@ const PrimaryButton = ({
       double={double}
       fontSize={fontSize}
       lineHeight={lineHeight}
+      className={contentClasses}
       {...props}
     >
       {<div className="content">{loading ? <Spinner /> : children}</div>}

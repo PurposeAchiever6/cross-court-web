@@ -80,7 +80,7 @@ const SessionReserved = () => {
         <img className="w-52" src={SportCharacter} alt="Sport Icon" />
         <p className="title">SESSION BOOKED</p>
         <p className="subtitle">SUCCESSFULLY!</p>
-        <PrimaryButton className="mt-6 mb-4" onClick={copyShareInfoToClipboard} double>
+        <PrimaryButton className="mt-6 mb-4" onClick={copyShareInfoToClipboard}>
           <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
         </PrimaryButton>
         <PrimaryButton bg="transparent" className="black-btn" to={ROUTES.MYACCOUNT}>

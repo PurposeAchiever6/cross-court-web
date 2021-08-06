@@ -24,7 +24,6 @@ const SessionConfirmed = () => {
         <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
         <p>The session was re-confirmed successfully!</p>
         <PrimaryButton
-          double
           className="invite-a-friend-button"
           data-href={`sms:?&body=${encodeURI(SHARE_URL)}`}
           onClick={() => {
@@ -37,7 +36,6 @@ const SessionConfirmed = () => {
           }}
         >
           <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
-          <div className="double-drop" />
         </PrimaryButton>
         <br />
         <PrimaryButton className="done-button" to={ROUTES.MYACCOUNT}>

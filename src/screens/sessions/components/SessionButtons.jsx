@@ -54,7 +54,7 @@ const SessionButtons = ({
         session?.userSession &&
         ['reserved', 'confirmed'].indexOf(session.userSession.state) !== -1 && (
           <div className="mb-8">
-            <PrimaryButton double onClick={copyShareInfoToClipboard}>
+            <PrimaryButton onClick={copyShareInfoToClipboard}>
               <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
               {copied ? 'COPIED' : 'INVITE A FRIEND'}
             </PrimaryButton>
@@ -85,7 +85,6 @@ const SessionButtons = ({
           (session.userSession &&
             ['reserved', 'confirmed'].indexOf(session.userSession.state) === -1)) && (
           <PrimaryButton
-            double
             onClick={() => {
               window.localStorage.setItem('redirect', window.location.pathname);
               history.push(ROUTES.MEMBERSHIPS);

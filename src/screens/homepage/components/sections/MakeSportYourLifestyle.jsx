@@ -89,13 +89,12 @@ const MakeSportYourLifestyle = () => (
         className="first-time-button"
         font="shapiro96_inclined_wide"
         to={ROUTES.HOWITWORKS}
-        double
         inverted
         w="100%"
       >
         FIRST TIME?
       </PrimaryButton>
-      <PrimaryButton to={ROUTES.LOCATIONS} double w="100%">
+      <PrimaryButton to={ROUTES.LOCATIONS} w="100%">
         BOOK SESSION
       </PrimaryButton>
     </div>
