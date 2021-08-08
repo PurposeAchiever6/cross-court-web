@@ -1,0 +1,20 @@
+.toast-container {
+  right: 0.5rem !important;
+  top: 0.5rem !important;
+}
+
+.toast-container .toast {
+  font-family: 'shapiro45_welter_extd';
+  text-align: center;
+}
+
+.toast-container .toast.Toastify__toast--success {
+  background-color: #9999ff;
+  color: white;
+}
+
+.toast-container .toast.Toastify__toast--error {
+  background-color: white;
+  border: 3px solid #9999ff;
+  color: #9999ff;
+}
