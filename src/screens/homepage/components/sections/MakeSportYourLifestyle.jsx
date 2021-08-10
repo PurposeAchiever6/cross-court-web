@@ -86,10 +86,9 @@ const MakeSportYourLifestyle = () => (
         MAKE SPORT YOUR <em className="shapiro96_inclined_wide">LIFESTYLE</em>
       </p>
       <PrimaryButton
-        className="first-time-button"
-        font="shapiro96_inclined_wide"
+        className="first-time-button font-shapiro95_super_wide"
         to={ROUTES.HOWITWORKS}
-        inverted
+        bg="transparent"
         w="100%"
       >
         FIRST TIME?
