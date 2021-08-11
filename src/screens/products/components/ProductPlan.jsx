@@ -27,7 +27,7 @@ const Plans = ({ product, submitText, submitBtnSecondary, handleSubmit, classNam
       }`}
     >
       <div className="inline-block mb-5 lg:h-9">
-        <h2 className="inline-block lg:block text-xl lg:text-2xl shapiro96_inclined_wide leading-none">
+        <h2 className="inline-block lg:block text-xl lg:text-2xl shapiro96_inclined_wide leading-none uppercase">
           {product.name}
           {!isRecurring && <span>*</span>}
         </h2>
@@ -64,11 +64,11 @@ const Plans = ({ product, submitText, submitBtnSecondary, handleSubmit, classNam
       </div>
       {label && (
         <>
-          <div className="hidden lg:block text-center absolute -inset-x-0.5 -top-8 bg-cc-purple border-2 border-cc-purple shapiro95_super_wide text-black py-1">
+          <div className="hidden lg:block text-center absolute -inset-x-0.5 -top-8 bg-cc-purple border-2 border-cc-purple shapiro95_super_wide text-black py-1 uppercase">
             {label}
           </div>
           <div className="lg:hidden absolute inset-y-0 left-0 bg-cc-purple shapiro95_super_wide text-black w-8">
-            <div className="text-center absolute top-1/2 -left-28 transform -translate-y-1/2 -rotate-90 whitespace-nowrap w-64">
+            <div className="text-center absolute top-1/2 -left-28 transform -translate-y-1/2 -rotate-90 whitespace-nowrap w-64 uppercase">
               {label}
             </div>
           </div>
