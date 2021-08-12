@@ -47,7 +47,7 @@ const Section = styled.section`
       display: block;
       margin: 0 auto;
       max-width: 200px;
-      margin-top: 50px;
+      margin-top: 1rem;
       @media (min-width: 992px) {
         display: inline-block;
         max-width: none;
