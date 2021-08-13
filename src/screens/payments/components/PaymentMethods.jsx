@@ -16,7 +16,6 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const PaymentMethodsContainer = styled.div`
   width: 35%;
-  margin-top: 5rem;
 
   .payment-methods-container {
     border: 1px solid #bbbecd;
@@ -184,7 +183,7 @@ const PaymentMethods = ({ availableCards }) => {
 
   return (
     <PaymentMethodsContainer className="payments">
-      <h2>CHOOSE A PAYMENT METHOD</h2>
+      <h2 className="mb-8">CHOOSE A PAYMENT METHOD</h2>
       <div className="payment-methods-container">
         {isEmpty(availableCards) ? (
           <div className="empty-message">There are no payment methods added yet.</div>

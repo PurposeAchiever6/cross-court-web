@@ -40,7 +40,7 @@ const SessionsPageContainer = styled.div`
   }
 
   .carousel-root {
-    height: calc(100vh - 14rem);
+    height: calc(100vh - 10rem);
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -49,7 +49,7 @@ const LocationsPageContainer = styled.div`
   height: 100vh;
 
   @media (min-width: 768px) {
-    height: calc(100vh - 8rem);
+    height: calc(100vh - 4rem);
   }
 `;
 

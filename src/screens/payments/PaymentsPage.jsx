@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import Loading from 'shared/components/Loading';
@@ -15,13 +14,6 @@ import { getIsAuthenticated } from 'screens/auth/reducer';
 
 import { getUserProfile } from 'screens/my-account/reducer';
 import ROUTES from 'shared/constants/routes';
-
-const PaymentsPageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
 
 const PaymentsPage = () => {
   const dispatch = useDispatch();
@@ -56,7 +48,7 @@ const PaymentsPage = () => {
   }
 
   return (
-    <PaymentsPageContainer>
+    <div className="min-h-screen flex flex-col items-center justify-center">
       {shouldShowFSFModal() && (
         <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
           <FreeSessionConfirmModal
@@ -66,7 +58,7 @@ const PaymentsPage = () => {
         </Modal>
       )}
       <PaymentMethods availableCards={availableCards} />
-    </PaymentsPageContainer>
+    </div>
   );
 };
 

@@ -66,43 +66,43 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
           <InputTextField
             labelColor={colors.brandBlack}
             labelText="First Name*"
-            error={errors.firstName}
+            error={errors?.firstName}
             name="firstName"
           />
           <InputTextField
             labelColor={colors.brandBlack}
             labelText="Last Name*"
-            error={errors.lastName}
+            error={errors?.lastName}
             name="lastName"
           />
           <InputPhoneField
             labelColor={colors.brandBlack}
             labelText="Phone Number*"
-            error={errors.phoneNumber}
+            error={errors?.phoneNumber}
             name="phoneNumber"
           />
           <InputPhoneField
             labelColor={colors.brandBlack}
             labelText="Confirm Phone Number*"
-            error={errors.confirmPhoneNumber}
+            error={errors?.confirmPhoneNumber}
             name="confirmPhoneNumber"
           />
           <InputTextField
             labelColor={colors.brandBlack}
             labelText="Zip Code*"
-            error={errors.zipcode}
+            error={errors?.zipcode}
             name="zipcode"
           />
           <InputTextField
             labelColor={colors.brandBlack}
             labelText="Email*"
-            error={errors.email}
+            error={errors?.email}
             name="email"
           />
           <InputTextField
             labelColor={colors.brandBlack}
             labelText="Password*"
-            error={errors.password}
+            error={errors?.password}
             name="password"
             type="password"
           />
@@ -110,7 +110,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
           <InputTextField
             labelColor={colors.brandBlack}
             labelText="Confirm Password*"
-            error={errors.password}
+            error={errors?.password}
             name="confirmPassword"
             type="password"
           />

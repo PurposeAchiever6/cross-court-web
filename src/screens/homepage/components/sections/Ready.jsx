@@ -19,7 +19,7 @@ const Title = styled.p`
 `;
 
 const Ready = () => (
-  <section className="ready text-white text-center md:h-screen flex flex-col justify-center">
+  <section className="ready text-white text-center md:min-h-screen flex flex-col justify-center">
     <Title className="mt-10 md:mt-0">READY TO SWEAT?</Title>
     <div className="flex flex-col md:block mt-20 mb-20 md:mb-0 px-20">
       <PrimaryButton

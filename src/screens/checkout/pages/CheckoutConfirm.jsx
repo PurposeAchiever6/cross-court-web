@@ -18,9 +18,9 @@ const CheckoutConfirm = () => {
   }
 
   return (
-    <div className="text-center pt-4 pb-14 md:absolute left-1/2 top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
+    <div className="min-h-screen flex flex-col items-center justify-center">
       <img className="w-52 inline-block mb-2" src={SportCharacter} alt="Sport Icon" />
-      <p className="mb-6 max-w-md mx-auto">
+      <p className="mb-6 max-w-md mx-auto text-center">
         Thank you for your purchase! Now click below to sign up for a session.
       </p>
       {redirectUrl ? (

@@ -18,7 +18,6 @@ const PurchaseDetailsContainer = styled.div`
     flex-direction: column;
     border: 1px solid #bbbecd;
     padding: 1.5rem;
-    margin-top: 2rem;
 
     .date {
       align-self: flex-end;
