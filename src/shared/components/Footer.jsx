@@ -111,16 +111,48 @@ const Footer = () => {
           <Copyright className="hidden md:flex mt-8" />
         </div>
         <div className="flex flex-col justify-between">
-          <Link to={ROUTES.FAQ}>FAQ</Link>
-          <Link to={ROUTES.SEM}>JOIN THE TEAM</Link>
-          <p onClick={() => openContactFormForUser(currentUser)}>CONTACT US</p>
-          <p onClick={() => openContactFormForUser(currentUser)}>PRIVATE SESSIONS / CLUB RENTALS</p>
-          <p onClick={() => openContactFormForUser(currentUser)}>TOUR THE CLUB</p>
-          <Link className="mt-4" to={ROUTES.SIGNUP}>
+          <Link className="w-max hover:opacity-60 transition-opacity duration-300" to={ROUTES.FAQ}>
+            FAQ
+          </Link>
+          <Link className="w-max hover:opacity-60 transition-opacity duration-300" to={ROUTES.SEM}>
+            JOIN THE TEAM
+          </Link>
+          <p
+            className="cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
+            onClick={() => openContactFormForUser(currentUser)}
+          >
+            CONTACT US
+          </p>
+          <p
+            className="cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
+            onClick={() => openContactFormForUser(currentUser)}
+          >
+            PRIVATE SESSIONS / CLUB RENTALS
+          </p>
+          <p
+            className="cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
+            onClick={() => openContactFormForUser(currentUser)}
+          >
+            TOUR THE CLUB
+          </p>
+          <Link
+            className="mt-4 w-max hover:opacity-60 transition-opacity duration-300"
+            to={ROUTES.SIGNUP}
+          >
             SIGN UP
           </Link>
-          <Link to={ROUTES.LOGIN}>LOGIN</Link>
-          <a className="mt-8" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
+          <Link
+            className="w-max hover:opacity-60 transition-opacity duration-300"
+            to={ROUTES.LOGIN}
+          >
+            LOGIN
+          </Link>
+          <a
+            className="mt-8 w-max hover:opacity-60 transition-opacity duration-300"
+            href={INSTAGRAM_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <InstagramSvg className="w-8" />
           </a>
           <Copyright className="md:hidden" />
