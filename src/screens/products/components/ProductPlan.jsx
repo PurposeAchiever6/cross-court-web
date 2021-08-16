@@ -2,18 +2,25 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import currency from 'currency.js';
 
+import { RECURRING } from 'screens/products/constants';
+import { productPrice } from 'screens/products/utils';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
-const RECURRING = 'recurring';
-
-const Plans = ({ product, submitText, submitBtnSecondary, handleSubmit, className }) => {
+const ProductPlan = ({
+  product,
+  submitText,
+  submitBtnSecondary,
+  handleSubmit,
+  userHasActiveSubscription,
+  className,
+}) => {
   const formatPrice = (price) =>
     currency(price, {
       formatWithSymbol: true,
       precision: 0,
     }).format();
 
-  const price = formatPrice(product.price);
+  const price = formatPrice(productPrice(product, userHasActiveSubscription));
   const isUnlimited = product.credits < 0;
   const sessionPricePerMonth = formatPrice(product.price / product.credits);
 
@@ -78,18 +85,20 @@ const Plans = ({ product, submitText, submitBtnSecondary, handleSubmit, classNam
   );
 };
 
-Plans.defaultProps = {
+ProductPlan.defaultProps = {
   className: '',
   submitText: 'Buy',
   submitBtnSecondary: false,
+  userHasActiveSubscription: false,
 };
 
-Plans.propTypes = {
+ProductPlan.propTypes = {
   className: PropTypes.string,
   submitText: PropTypes.string,
   submitBtnSecondary: PropTypes.bool,
   product: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
+  userHasActiveSubscription: PropTypes.bool,
 };
 
-export default Plans;
+export default ProductPlan;

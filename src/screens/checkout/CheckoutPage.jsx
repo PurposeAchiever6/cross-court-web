@@ -9,10 +9,9 @@ import { getSelectedProduct } from 'screens/products/reducer';
 import { getSelectedCard } from 'screens/payments/reducer';
 import BackButton from 'shared/components/BackButton';
 import { createPurchase, createSubscription, updateSubscription } from './actionCreators';
-import ProductDetails from './components/PurchaseDetails';
+import PurchaseDetails from './components/PurchaseDetails';
 import { getUserProfile } from 'screens/my-account/reducer';
-
-const RECURRING = 'recurring';
+import { RECURRING } from 'screens/products/constants';
 
 const CheckoutPageContainer = styled.div`
   display: flex;
@@ -61,10 +60,11 @@ const CheckoutPage = () => {
         <BackButton className="mt-10" />
       </div>
       <h1>PURCHASE DETAILS</h1>
-      <ProductDetails
+      <PurchaseDetails
         productDetails={productDetails}
         paymentDetails={paymentDetails}
         createPurchaseHandler={createPurchaseHandler}
+        userHasActiveSubscription={userHasActiveSubscription}
       />
     </CheckoutPageContainer>
   );

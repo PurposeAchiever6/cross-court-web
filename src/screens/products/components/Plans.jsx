@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ONE_TIME, RECURRING } from 'screens/products/constants';
 import Ball from 'shared/images/white-circular-logo.png';
 import ProductPlan from './ProductPlan';
 
 const FREE_SESSION = 'Free Session';
-const ONE_TIME = 'one_time';
-const RECURRING = 'recurring';
 
 const Plans = ({
   selectProductHandler,
@@ -30,6 +29,7 @@ const Plans = ({
                 product={product}
                 submitBtnSecondary
                 handleSubmit={selectProductHandler}
+                userHasActiveSubscription={userHasActiveSubscription}
               />
             </div>
           ))}

@@ -10,6 +10,7 @@ import { getCheckoutLoading } from '../reducer';
 import { clearDiscount } from '../actionCreators';
 import PromoCode from './PromoCode';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { productPrice } from 'screens/products/utils';
 
 const PurchaseDetailsContainer = styled.div`
   .purchase-details-box {
@@ -171,11 +172,21 @@ const PurchaseDetailsContainer = styled.div`
   }
 `;
 
-const PurchaseDetails = ({ productDetails, paymentDetails, createPurchaseHandler }) => {
+const PurchaseDetails = ({
+  productDetails,
+  paymentDetails,
+  createPurchaseHandler,
+  userHasActiveSubscription,
+}) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getCheckoutLoading);
   const checkoutHandler = createPurchaseHandler;
   const purchaseDate = purchaseFormattedDate();
+
+  const price = currency(productPrice(productDetails, userHasActiveSubscription), {
+    formatWithSymbol: true,
+    precision: 2,
+  }).format();
 
   useEffect(() => {
     dispatch(clearDiscount());
@@ -207,16 +218,7 @@ const PurchaseDetails = ({ productDetails, paymentDetails, createPurchaseHandler
         </div>
         <div className="promo-total-container">
           <PromoCode />
-          <div className="total-container">
-            {false /* isFreeSession */ ? (
-              <span>FREE</span>
-            ) : (
-              <span>{`$ ${currency(productDetails.price, {
-                symbol: '$',
-                precision: 2,
-              })}`}</span>
-            )}
-          </div>
+          <div className="total-container">{price}</div>
         </div>
       </div>
       <div className="btn-container">
@@ -232,6 +234,7 @@ PurchaseDetails.propTypes = {
   paymentDetails: PropTypes.object.isRequired,
   productDetails: PropTypes.object.isRequired,
   createPurchaseHandler: PropTypes.func,
+  userHasActiveSubscription: PropTypes.bool.isRequired,
 };
 
 export default PurchaseDetails;

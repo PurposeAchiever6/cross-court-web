@@ -70,7 +70,7 @@ const SignupSuccessPage = () => {
           Please verify your account to complete registration and redeem your free session credit.
         </span>
       </p>
-      <div className="send-again-container">
+      <div className="send-again-container mb-20">
         <span className="didnt-get-email">Didn&apos;t get the email?</span>
         <PrimaryButton onClick={sendEmailAction} w="100%">
           SEND IT AGAIN
