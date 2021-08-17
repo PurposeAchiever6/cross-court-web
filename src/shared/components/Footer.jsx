@@ -38,7 +38,6 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [showError, setShowError] = useState(false);
   const [success, setSuccess] = useState(false);
-  const inTheLoop = isAuthenticated || success;
 
   const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
 
@@ -64,42 +63,49 @@ const Footer = () => {
       <footer className="flex flex-col md:flex-row md:flex-row-reverse justify-evenly md:justify-between bg-cc-black p-6 text-white h-160 md:h-80">
         <div className="md:w-1/2 flex flex-col h-full justify-evenly md:justify-between">
           <LogoSvg className="w-72" />
-          <p className="font-shapiro95_super_wide">
-            {inTheLoop ? "YOU'RE IN!" : 'STAY IN THE LOOP'}
-          </p>
-          {!isAuthenticated && !success && (
-            <div className="flex border border-white p-2 md:w-4/5 justify-between">
-              <input
-                type="text"
-                className="bg-cc-black w-full px-2 text-xs md:text-sm"
-                placeholder="ENTER YOUR EMAIL ADDRESS"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-              <div className="bg-cc-purple p-3 cursor-pointer" onClick={() => addUserToKlaviyo()}>
-                <ArrowRightSvg className="text-white w-6" />
-              </div>
-            </div>
-          )}
-          {inTheLoop && (
-            <div class="flex">
-              <PrimaryButton
-                bg="transparent"
-                className="mr-4"
-                contentClasses="text-2xs md:text-sm"
-                onClick={() =>
-                  openContactFormForUser(
-                    isAuthenticated ? currentUser : { email },
-                    tourMessage(isAuthenticated)
-                  )
-                }
-              >
-                SCHEDULE TOUR
-              </PrimaryButton>
-              <PrimaryButton contentClasses="text-2xs md:text-sm" to={ROUTES.LOCATIONS}>
-                FIRST FREE
-              </PrimaryButton>
-            </div>
+          {!isAuthenticated && (
+            <>
+              <p className="font-shapiro95_super_wide">
+                {success ? "YOU'RE IN!" : 'STAY IN THE LOOP'}
+              </p>
+              {!success && (
+                <div className="flex border border-white p-2 md:w-4/5 justify-between">
+                  <input
+                    type="text"
+                    className="bg-cc-black w-full px-2 text-xs md:text-sm"
+                    placeholder="ENTER YOUR EMAIL ADDRESS"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                  />
+                  <div
+                    className="bg-cc-purple p-3 cursor-pointer"
+                    onClick={() => addUserToKlaviyo()}
+                  >
+                    <ArrowRightSvg className="text-white w-6" />
+                  </div>
+                </div>
+              )}
+              {success && (
+                <div class="flex">
+                  <PrimaryButton
+                    bg="transparent"
+                    className="mr-4"
+                    contentClasses="text-2xs md:text-sm"
+                    onClick={() =>
+                      openContactFormForUser(
+                        isAuthenticated ? currentUser : { email },
+                        tourMessage(isAuthenticated)
+                      )
+                    }
+                  >
+                    SCHEDULE TOUR
+                  </PrimaryButton>
+                  <PrimaryButton contentClasses="text-2xs md:text-sm" to={ROUTES.LOCATIONS}>
+                    FIRST FREE
+                  </PrimaryButton>
+                </div>
+              )}
+            </>
           )}
           <div className="relative">
             {showError && (
@@ -153,7 +159,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <InstagramSvg className="w-8" />
+            <InstagramSvg className="w-8 h-full" />
           </a>
           <Copyright className="md:hidden" />
         </div>
