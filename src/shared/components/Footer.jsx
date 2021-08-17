@@ -116,7 +116,7 @@ const Footer = () => {
           </div>
           <Copyright className="hidden md:flex mt-8" />
         </div>
-        <div className="flex flex-col justify-between">
+        <div className="flex flex-col justify-between text-sm md:text-base">
           <Link className="w-max hover:opacity-60 transition-opacity duration-300" to={ROUTES.FAQ}>
             FAQ
           </Link>
@@ -154,12 +154,12 @@ const Footer = () => {
             LOGIN
           </Link>
           <a
-            className="mt-8 w-max hover:opacity-60 transition-opacity duration-300"
+            className="mt-8 w-max hover:opacity-60 transition-opacity duration-300 h-full"
             href={INSTAGRAM_LINK}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <InstagramSvg className="w-8 h-full" />
+            <InstagramSvg className="w-8 h-8" />
           </a>
           <Copyright className="md:hidden" />
         </div>
