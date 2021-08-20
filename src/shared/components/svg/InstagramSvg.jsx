@@ -7,7 +7,7 @@ const InstagramSvg = ({ ...props }) => (
     focusable="false"
     data-prefix="fab"
     data-icon="instagram"
-    className={`svg-inline--fa fa-instagram fa-w-14 ${props.className}`}
+    className={`svg-inline--fa fa-instagram ${props.className}`}
     role="img"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 448 512"

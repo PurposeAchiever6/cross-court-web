@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
-
 import ROUTES from 'shared/constants/routes';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { openContactFormForUser } from 'shared/utils/contactForm';
@@ -15,6 +14,7 @@ import { identify } from 'shared/utils/klaviyo';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { validateEmail } from 'shared/utils/helpers';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { logoutInit } from 'screens/auth/actionCreators';
 
 const Copyright = ({ className }) => {
   return (
@@ -38,6 +38,8 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [showError, setShowError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const dispatch = useDispatch();
+  const logoutAction = () => dispatch(logoutInit());
 
   const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
 
@@ -141,18 +143,30 @@ const Footer = () => {
           >
             TOUR THE CLUB
           </p>
-          <Link
-            className="mt-4 w-max hover:opacity-60 transition-opacity duration-300"
-            to={ROUTES.SIGNUP}
-          >
-            SIGN UP
-          </Link>
-          <Link
-            className="w-max hover:opacity-60 transition-opacity duration-300"
-            to={ROUTES.LOGIN}
-          >
-            LOGIN
-          </Link>
+          {isAuthenticated ? (
+            <p
+              className="mt-4 cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
+              onClick={() => logoutAction()}
+            >
+              LOGOUT
+            </p>
+          ) : (
+            <>
+              <Link
+                className="mt-4 w-max hover:opacity-60 transition-opacity duration-300"
+                to={ROUTES.SIGNUP}
+              >
+                SIGN UP
+              </Link>
+              <Link
+                className="w-max hover:opacity-60 transition-opacity duration-300"
+                to={ROUTES.LOGIN}
+              >
+                LOGIN
+              </Link>
+            </>
+          )}
+
           <a
             className="mt-8 w-max hover:opacity-60 transition-opacity duration-300 h-full"
             href={INSTAGRAM_LINK}
