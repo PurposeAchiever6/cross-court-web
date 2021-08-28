@@ -39,9 +39,9 @@ export default {
     return response.data;
   },
 
-  checkPromoCode: async (promoCode, price) => {
+  checkPromoCode: async (promoCode, productId) => {
     const response = await api.get(
-      `/promo_code?promo_code=${encodeURI(promoCode)}&price=${Number(price)}`,
+      `/promo_code?promo_code=${encodeURI(promoCode)}&product_id=${productId}`,
       {
         data: {},
       }

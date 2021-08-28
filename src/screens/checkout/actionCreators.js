@@ -32,10 +32,9 @@ export const createAndReserveFreeSessionInit = (sessionId, date, referralCode) =
   },
 });
 
-export const checkPromoCode = (promoCode, price) => ({
+export const checkPromoCode = (promoCode) => ({
   type: CHECK_PROMO_CODE_INIT,
   payload: {
     promoCode,
-    price,
   },
 });

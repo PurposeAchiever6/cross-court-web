@@ -69,7 +69,7 @@ export function* checkPromoCodeFlow({ payload }) {
     const { price } = yield call(
       checkoutService.checkPromoCode,
       payload.promoCode,
-      selectedProduct.price
+      selectedProduct.id
     );
 
     yield put({
