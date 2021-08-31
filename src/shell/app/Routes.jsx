@@ -43,7 +43,7 @@ const PurchaseHistory = lazy(() => import('screens/purchase-history/PurchaseHist
 const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfirm'));
 const Payments = lazy(() => import('screens/payments/PaymentsPage'));
 const PaymentsAddCard = lazy(() => import('screens/payments/pages/AddCard'));
-const FAQ = lazy(() => import('shared/pages/Faq'));
+const FAQ = lazy(() => import('screens/faq/FaqPage'));
 const Rules = lazy(() => import('shared/pages/Rules'));
 const Rating = lazy(() => import('shared/pages/Rating'));
 const CancelationPolicy = lazy(() => import('screens/legal-docs/pages/CancelationPolicy'));
@@ -274,13 +274,13 @@ const setScrollClasses = () => {
           document.querySelector('.locations').scrollIntoView({ behavior: 'smooth' });
         }
 
-        window.setTimeout(function () {
+        window.setTimeout(function() {
           if (redirectToSpecificSession) {
             window.localStorage.removeItem('redirect');
             history.push(redirectToSpecificSession);
           } else {
             document.querySelector('.locations').classList.remove('faded-out');
-            window.setTimeout(function () {
+            window.setTimeout(function() {
               if (document.querySelector('.free-session-credit-added')) {
                 document.querySelector('.free-session-credit-added').style.display = 'none';
               }
@@ -403,8 +403,8 @@ const setScrollClasses = () => {
         keepScrolling = false;
         document.querySelector('main').classList.add('animation-done');
 
-        window.setTimeout(function () {
-          window.setTimeout(function () {
+        window.setTimeout(function() {
+          window.setTimeout(function() {
             if (document.querySelector('.no-session-credits')) {
               document.querySelector('.no-session-credits').style.display = 'none';
             }
@@ -425,12 +425,12 @@ const setScrollClasses = () => {
     body.getAttribute('data-page') === 'home' ||
     body.getAttribute('data-page') === 'how-it-works'
   ) {
-    window.setTimeout(function () {
+    window.setTimeout(function() {
       const video = document.querySelector('.video-player');
       const barMalik = document.querySelector('.bar-malik');
 
       if (video && barMalik) {
-        video.addEventListener('pause', function () {
+        video.addEventListener('pause', function() {
           video.classList.add('data-user-paused');
         });
 
@@ -488,7 +488,7 @@ const setScrollClasses = () => {
     }
   }
 
-  window.setTimeout(function () {
+  window.setTimeout(function() {
     const bottomBanner = document.querySelector('.banner-container');
 
     if (body.getAttribute('data-page') === 'how-it-works') {
@@ -519,7 +519,7 @@ const setScrollClasses = () => {
   }, 100);
 };
 
-window.cookieAndSessionStorageHandler = function (isAuthenticated) {
+window.cookieAndSessionStorageHandler = function(isAuthenticated) {
   let search = window.location.search;
   let params = new URLSearchParams(search);
   let referralCode = params.get('referralCode');
