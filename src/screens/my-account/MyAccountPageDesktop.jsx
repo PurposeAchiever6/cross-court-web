@@ -42,7 +42,7 @@ export const MyAccountPageDesktop = ({
       <MyCredits
         isUnlimited={userProfile.unlimitedCredits}
         credits={userProfile.totalCredits}
-        hasActiveSubscription={!!userProfile.activeSubscription}
+        activeSubscription={userProfile.activeSubscription}
       />
     </div>
     <div className="content-container">

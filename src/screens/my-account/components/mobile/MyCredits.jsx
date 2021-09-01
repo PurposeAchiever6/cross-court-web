@@ -1,8 +1,9 @@
 import React from 'react';
-import { number, bool } from 'prop-types';
+import { number, bool, object } from 'prop-types';
 import styled from 'styled-components';
 import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
 
 const MyCreditsContainer = styled.div`
   padding: 1rem;
@@ -26,7 +27,7 @@ const MyCreditsContainer = styled.div`
   }
 `;
 
-const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => {
+const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
   const sessionPluralize = credits === 1 ? 'SESSION' : 'SESSIONS';
 
   return (
@@ -41,7 +42,7 @@ const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => {
         ) : (
           <>
             <span className="session-number">{credits}</span>
-            {hasActiveSubscription ? (
+            {activeSubscription ? (
               <span className="sessions-left">
                 {`${sessionPluralize} LEFT`}
                 <br />
@@ -56,10 +57,26 @@ const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => {
             )}
           </>
         )}
+        {activeSubscription && (
+          <div className="text-sm mt-10">
+            <div>
+              <span className="font-shapiro95_super_wide uppercase mr-2">Current Membership:</span>
+              <span>{activeSubscription.product.name}</span>
+            </div>
+            <div>
+              <span className="font-shapiro95_super_wide uppercase mr-2">Billing Period:</span>
+              <span>
+                {`${subscriptionPeriodFormattedDate(
+                  activeSubscription.currentPeriodStart
+                )} - ${subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}`}
+              </span>
+            </div>
+          </div>
+        )}
       </div>
       <div>
         <PrimaryButton className="mb-1 block" to={ROUTES.MEMBERSHIPS} w="100%">
-          {hasActiveSubscription ? 'Manage Membership' : 'See Memberships'}
+          {activeSubscription ? 'Manage Membership' : 'See Memberships'}
         </PrimaryButton>
         <PrimaryButton to={ROUTES.PURCHASEHISTORY} w="100%">
           PURCHASE HISTORY
@@ -69,10 +86,14 @@ const MyCredits = ({ isUnlimited, credits, hasActiveSubscription }) => {
   );
 };
 
+MyCredits.defaultProps = {
+  activeSubscription: null,
+};
+
 MyCredits.propTypes = {
   isUnlimited: bool,
   credits: number,
-  hasActiveSubscription: bool.isRequired,
+  activeSubscription: object,
 };
 
 export default MyCredits;
