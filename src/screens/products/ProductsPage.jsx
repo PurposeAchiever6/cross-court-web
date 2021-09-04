@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import Loading from 'shared/components/Loading';
 import ROUTES from 'shared/constants/routes';
@@ -17,6 +18,8 @@ import CancelMembershipModal from './components/CancelMembershipModal';
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const env = runtimeEnv();
+  const APP_URL = env.REACT_APP_URL;
 
   const availableProducts = useSelector(getAvailableProducts);
   const isLoading = useSelector(getPageLoading);
@@ -32,7 +35,7 @@ const ProductsPage = () => {
 
     if (isAuthenticated) {
       identify(userProfile.email);
-      startedCheckout(product);
+      startedCheckout(product, `${APP_URL}${ROUTES.MEMBERSHIPS}`);
     }
     history.push(ROUTES.PAYMENTS);
   };
