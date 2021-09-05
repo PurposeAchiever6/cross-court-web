@@ -80,8 +80,9 @@ export function* checkPromoCodeFlow({ payload }) {
       },
     });
   } catch (err) {
-    yield call(toast.error, 'Invalid discount code');
-    yield put({ type: CHECK_PROMO_CODE_FAILURE, error: err.response.data.error });
+    const errorDetails = err.response?.data?.error || 'Invalid discount code';
+    yield call(toast.error, errorDetails);
+    yield put({ type: CHECK_PROMO_CODE_FAILURE, error: errorDetails });
   }
 }
 
