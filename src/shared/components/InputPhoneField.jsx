@@ -13,18 +13,20 @@ const InputTextContainer = styled.div`
   margin-bottom: 1.5rem;
 
   label {
-    font-size: 0.75rem;
-    line-height: 1rem;
-    color: #9999ff;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: ${(props) => props.labelColor};
     margin: 0 0 0.75rem;
     text-transform: uppercase;
     font-weight: bold;
+    font-weight: 400;
   }
   small {
     text-align: right;
     margin-top: 1rem;
     color: ${colors.errorRed};
     text-transform: initial;
+    font-family: shapiro45_welter_extd;
   }
   input {
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -34,6 +36,8 @@ const InputTextContainer = styled.div`
     font-size: 1.2rem;
     padding: 1rem 1rem 1rem 4rem;
     width: 100%;
+    font-family: shapiro45_welter_extd;
+    background-color: #fbf7f3;
     &:focus {
       border: 1px solid rgba(0, 0, 0, 1);
       color: rgba(0, 0, 0, 1);
@@ -63,11 +67,12 @@ const InputTextField = ({
   disabled = false,
   showLabel = true,
   displayErrorMsg = true,
+  labelColor = '#9999ff',
   ...props
 }) => (
   <Field name={name}>
     {({ field: { name, value, onChange, onBlur }, form: { touched, errors: formikError } }) => (
-      <InputTextContainer {...props}>
+      <InputTextContainer labelColor={labelColor} {...props}>
         {showLabel && <label htmlFor={name}>{labelText}</label>}
         <div className="input-box">
           <img src={UsFlag} alt="us-flag" />
@@ -86,7 +91,7 @@ const InputTextField = ({
             value={formatPhoneNumber(value)}
             type="tel"
             maxLength="17"
-            onPaste={e => e.preventDefault() && false}
+            onPaste={(e) => e.preventDefault() && false}
           />
         </div>
         {displayErrorMsg && (

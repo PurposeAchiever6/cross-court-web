@@ -1,8 +1,6 @@
 import React from 'react';
-import styled from 'styled-components'
 
 import ROUTES from 'shared/constants/routes';
-import ArButton from 'shared/components/ArButton';
 
 import oneHourIcon from 'shared/images/1-hour.png';
 import premiumFacilityIcon from 'shared/images/premium-facility.png';
@@ -10,98 +8,70 @@ import fifteenPlayerLimitIcon from 'shared/images/15-player-limit.png';
 import equipmentProvidedIcon from 'shared/images/equipment-provided.png';
 import sessionOfficialIcon from 'shared/images/session-official.png';
 import hypeSoundtracksIcon from 'shared/images/hype-soundtracks.png';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { useSelector } from 'react-redux';
 
-const Section = styled.section`
-  .text {
-    font-weight: bold;
-  }
+const TheSession = (props) => {
+  const isAuthenticated = useSelector(getIsAuthenticated);
 
-  .title {
-    text-align: left;
-    font-size: 3rem;
-    margin-bottom: 5rem;
-    letter-spacing: 0.2rem;
-    font-weight: 500;
-  }
-
-  @media (max-width: 991px) {
-    .title {
-      text-align: center;
-      font-size: 2rem;
-    }
-  }
-`;
-
-const TheSession = props => (
-  <Section className="the-session" {...props}>
-    <div className="boxes">
-      <div className="boxes-item">
-        <div className="boxes-image">
-          <img className="one-hour" src={oneHourIcon} />
+  return (
+    <div className="flex flex-col">
+      <section className="flex flex-wrap p-8 items-center justify-between" {...props}>
+        <div className="w-1/2 md:w-2/12 mb-4 md:mb-0 flex flex-col items-center text-center font-shapiro95_super_wide text-sm md:text-base">
+          <img className="w-36 md:w-44" alt="" src={oneHourIcon} />
+          <span>
+            ONE
+            <br />
+            HOUR
+          </span>
         </div>
-        <span className="boxes-text">
-          ONE
-          <br />
-          HOUR
-        </span>
-      </div>
-      <div className="boxes-item">
-        <div className="boxes-image">
-          <img className="premium-facility" src={premiumFacilityIcon} />
+        <div className="w-1/2 md:w-2/12 mb-4 md:mb-0 flex flex-col items-center text-center font-shapiro95_super_wide text-sm md:text-base">
+          <img className="w-36 md:w-44" alt="" src={premiumFacilityIcon} />
+          <span>
+            PREMIUM
+            <br />
+            FACILITY
+          </span>
         </div>
-        <span className="boxes-text">
-          PREMIUM
-          <br />
-          FACILITY
-        </span>
-      </div>
-      <div className="boxes-item">
-        <div className="boxes-image">
-          <img className="fifteen-player-limit" src={fifteenPlayerLimitIcon} />
+        <div className="w-1/2 md:w-2/12 mb-4 md:mb-0 flex flex-col items-center text-center font-shapiro95_super_wide text-sm md:text-base">
+          <img className="w-36 md:w-44" alt="" src={fifteenPlayerLimitIcon} />
+          <span>
+            15 PLAYER
+            <br />
+            LIMIT
+          </span>
         </div>
-        <span className="boxes-text">
-          15 PLAYER
-          <br />
-          LIMIT
-        </span>
-      </div>
-      <div className="boxes-item">
-        <div className="boxes-image">
-          <img className="equipment-provided" src={equipmentProvidedIcon} />
+        <div className="w-1/2 md:w-2/12 mb-4 md:mb-0 flex flex-col items-center text-center font-shapiro95_super_wide text-sm md:text-base">
+          <img className="w-36 md:w-44" alt="" src={equipmentProvidedIcon} />
+          <span>
+            EQUIPMENT
+            <br />
+            PROVIDED
+          </span>
         </div>
-        <span className="boxes-text">
-          EQUIPMENT
-          <br />
-          PROVIDED
-        </span>
-      </div>
-      <div className="boxes-item">
-        <div className="boxes-image">
-          <img className="session-official" src={sessionOfficialIcon} />
+        <div className="w-1/2 md:w-2/12 mb-4 md:mb-0 flex flex-col items-center text-center font-shapiro95_super_wide text-sm md:text-base">
+          <img className="w-36 md:w-44" alt="" src={sessionOfficialIcon} />
+          <span>
+            SESSION
+            <br />
+            OFFICIAL
+          </span>
         </div>
-        <span className="boxes-text">
-          SESSION
-          <br />
-          OFFICIAL
-        </span>
-      </div>
-      <div className="boxes-item">
-        <div className="boxes-image">
-          <img className="hype-soundtracks" src={hypeSoundtracksIcon} />
+        <div className="w-1/2 md:w-2/12 mb-4 md:mb-0 flex flex-col items-center text-center font-shapiro95_super_wide text-sm md:text-base">
+          <img className="w-36 md:w-44 mb-2" alt="" src={hypeSoundtracksIcon} />
+          <span>
+            HYPE
+            <br />
+            SOUNDTRACKS
+          </span>
         </div>
-        <span className="boxes-text">
-          HYPE
-          <br />
-          SOUNDTRACKS
-        </span>
-      </div>
+      </section>
+      <PrimaryButton className="text-center my-6" to={ROUTES.LOCATIONS}>
+        {isAuthenticated ? 'BOOK SESSION' : 'FIRST FREE'}
+      </PrimaryButton>
     </div>
-    <section className="button-wrapper">
-      <ArButton className="see-schedule-button" link={ROUTES.LOCATIONS} double={false}>
-        SEE SCHEDULE
-      </ArButton>
-    </section>
-  </Section>
-);
+  );
+};
 
 export default TheSession;

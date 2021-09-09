@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 import CheckIcon from 'shared/images/check-icon.png';
 import Button from 'shared/components/Button';
-import device from 'shared/styles/constants';
 
 const PageContainer = styled.div`
   display: flex;

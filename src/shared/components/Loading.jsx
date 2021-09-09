@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import colors from 'shared/styles/constants';
 
 const LoadingContainer = styled.div`
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(255, 255, 255, 0.9);
   flex: 1;
   justify-content: center;
   align-items: center;
@@ -21,13 +20,13 @@ const LoadingContainer = styled.div`
 const Loading = () => {
   return (
     <LoadingContainer>
-      <div class="loader-wrapper">
-        <div class="floor"></div>
-        <div class="ball">
-          <div class="ball-line"></div>
-          <div class="ball-line"></div>
-          <div class="ball-line"></div>
-          <div class="ball-line"></div>
+      <div className="loader-wrapper">
+        <div className="floor"></div>
+        <div className="ball">
+          <div className="ball-line"></div>
+          <div className="ball-line"></div>
+          <div className="ball-line"></div>
+          <div className="ball-line"></div>
         </div>
       </div>
     </LoadingContainer>

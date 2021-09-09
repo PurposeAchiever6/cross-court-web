@@ -7,11 +7,9 @@ import { Link } from 'react-router-dom';
 import { string, func, bool } from 'prop-types';
 
 import InputTextField from 'shared/components/InputTextField';
-import Spinner from 'shared/components/Spinner';
-import Button from 'shared/components/Button';
-import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const LoginFormContainer = styled.div`
   width: 23rem;
@@ -105,13 +103,13 @@ const LoginForm = ({ error, loginHandler, isLoading }) => (
       validateOnChange={false}
       validateOnBlur={false}
       initialValues={initialValues}
-      onSubmit={values => {
+      onSubmit={(values) => {
         loginHandler({ ...values });
       }}
       validationSchema={validationSchema}
       className="form"
     >
-      {props => {
+      {(props) => {
         const { errors } = props;
         return (
           <Form className="form">
@@ -134,9 +132,9 @@ const LoginForm = ({ error, loginHandler, isLoading }) => (
               />
             </div>
             {isEmpty(error) ? null : <div className="error-container">{error}</div>}
-            <Button className="ar-button" type="submit" disabled={isLoading}>
-              <div className="ar-button-inner">{!isLoading ? 'LOG IN' : <Spinner />}</div>
-            </Button>
+            <PrimaryButton type="submit" loading={isLoading} w="100%">
+              LOG IN
+            </PrimaryButton>
             <span className="forgot-pass">
               <Link to={ROUTES.FORGOTPASSWORD}>Forgot your password?</Link>
             </span>

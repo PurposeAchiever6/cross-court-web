@@ -10,10 +10,9 @@ import ScrollLock from 'react-scrolllock';
 
 import ROUTES from 'shared/constants/routes';
 import { claimFreeSessionInit } from 'screens/payments/actionCreators';
-import { setSelectedProduct } from 'screens/series/actionCreators';
-import { getAvailableProducts } from 'screens/series/reducer';
-
-import Button from 'shared/components/Button';
+import { setSelectedProduct } from 'screens/products/actionCreators';
+import { getAvailableProducts } from 'screens/products/reducer';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const FreeSessionModalContainer = styled.div`
   display: flex;
@@ -49,14 +48,14 @@ const FreeSessionModal = ({ closeHandler, isOpen }) => {
   const dispatch = useDispatch();
   const availableProducts = useSelector(getAvailableProducts);
 
-  const selectProductHandler = product => {
+  const selectProductHandler = (product) => {
     dispatch(setSelectedProduct(product));
     history.push(ROUTES.PAYMENTS);
   };
 
   const claimFreeSessionAction = () => {
     const selectedProduct = head(
-      availableProducts.filter(product => product.name === 'Free Session')
+      availableProducts.filter((product) => product.name === 'Free Session')
     );
 
     closeHandler();
@@ -73,9 +72,9 @@ const FreeSessionModal = ({ closeHandler, isOpen }) => {
           While your first Session is on us, we do require you to input a payment method in case you
           do not show up and we have to charge your account.
         </span>
-        <Button className="ar-button inverted" onClick={claimFreeSessionAction}>
-          <div className="ar-button-inner">I UNDERSTAND</div>
-        </Button>
+        <PrimaryButton inverted onClick={claimFreeSessionAction}>
+          I UNDERSTAND
+        </PrimaryButton>
       </FreeSessionModalContainer>
     </ScrollLock>
   );

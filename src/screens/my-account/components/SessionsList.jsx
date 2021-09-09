@@ -3,10 +3,9 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { isEmpty, take } from 'ramda';
 import colors from 'shared/styles/constants';
-import device from 'shared/styles/mediaQueries';
 import ROUTES from 'shared/constants/routes';
-import ArButton from 'shared/components/ArButton';
 import Session from './Session';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const SessionsListContainer = styled.div`
   margin: 2rem auto 1rem;
@@ -63,7 +62,7 @@ const SessionsListContainer = styled.div`
 `;
 
 const SessionsList = ({ title, sessions, past, isSem }) => {
-  const filteredSessions = sessions.filter(session => session.state !== 'canceled');
+  const filteredSessions = sessions.filter((session) => session.state !== 'canceled');
   const sesionsToShow = take(3, filteredSessions);
 
   return (
@@ -73,9 +72,7 @@ const SessionsList = ({ title, sessions, past, isSem }) => {
           <div className="container-empty-message">
             <h3>YOU HAVE NO {title}</h3>
             {!past && !isSem && (
-              <ArButton link={ROUTES.LOCATIONS} inverted={false}>
-                EXPLORE SESSIONS
-              </ArButton>
+              <PrimaryButton to={ROUTES.LOCATIONS}>EXPLORE SESSIONS</PrimaryButton>
             )}
           </div>
         </div>
@@ -83,7 +80,7 @@ const SessionsList = ({ title, sessions, past, isSem }) => {
         <div className="sessions">
           <h3>{title}</h3>
           <div className="sessions-container">
-            {sesionsToShow.map(session => (
+            {sesionsToShow.map((session) => (
               <Session isSem={isSem} past={past} key={session.id} sessionInfo={session} />
             ))}
           </div>

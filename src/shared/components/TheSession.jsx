@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import GymSvg from 'shared/components/svg/GymSvg';
 import { ReactComponent as ClockSvg } from 'shared/components/svg/clock.svg';

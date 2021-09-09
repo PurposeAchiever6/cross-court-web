@@ -38,11 +38,18 @@ const InputCheckboxContainer = styled.div`
     text-transform: initial;
   }
 `;
-export default function InputCheckbox({ error, name, labelText, disabled = false, children }) {
+export default function InputCheckbox({
+  error,
+  name,
+  labelText,
+  disabled = false,
+  children,
+  className = '',
+}) {
   return (
     <Field name={name}>
       {({ field, form: { touched, errors: formikError } }) => (
-        <InputCheckboxContainer>
+        <InputCheckboxContainer className={className}>
           <div className="checkbox-container">
             {labelText && (
               <label className="form-check-label" htmlFor={field.name}>
@@ -71,6 +78,7 @@ export default function InputCheckbox({ error, name, labelText, disabled = false
 InputCheckbox.propTypes = {
   error: PropTypes.string,
   name: PropTypes.string.isRequired,
-  labelText: PropTypes.string.isRequired,
+  labelText: PropTypes.string,
   disabled: PropTypes.bool,
+  className: PropTypes.string,
 };

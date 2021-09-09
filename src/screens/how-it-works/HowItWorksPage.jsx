@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import TheSessionVideo from './sections/TheSessionVideo';
 import SignupDesktop from './sections/SignupDesktop';
@@ -8,21 +7,17 @@ import SweatDesktop from './sections/SweatDesktop';
 import NewToCrosscourt from './sections/NewToCrosscourt';
 import TheSession from './sections/TheSession';
 
-const Desktop = styled.div``;
-
-function HowItWorksPage() {
+const HowItWorksPage = () => {
   return (
     <>
-      <Desktop>
-        <NewToCrosscourt />
-        <TheSessionVideo />
-        <SignupDesktop />
-        <ShowupDesktop />
-        <SweatDesktop />
-      </Desktop>
+      <NewToCrosscourt />
+      <TheSessionVideo />
+      <SignupDesktop />
+      <ShowupDesktop />
+      <SweatDesktop />
       <TheSession />
     </>
   );
-}
+};
 
 export default HowItWorksPage;

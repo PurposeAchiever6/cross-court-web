@@ -1,25 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useParams, useHistory } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { isNil } from 'ramda';
 import styled from 'styled-components';
 
 import Loading from 'shared/components/Loading';
 import Modal from 'shared/components/Modal';
 import BackButton from 'shared/components/BackButton';
-import colors from 'shared/styles/constants';
-import UserSvg from 'shared/components/svg/UserSvg';
 import { longSessionDate, hourRange } from 'shared/utils/date';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import AlternativeButton from 'shared/components/AlternativeButton';
 import SessionLevel from 'shared/components/SessionLevel';
-import LEVELS from 'shared/constants/levels';
-
-import ROUTES from 'shared/constants/routes';
 
 import { removeSessionFromStorage } from 'shared/actions/actionCreators';
+import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
 import {
   initialLoadInit,
   reserveSessionInit,
@@ -28,211 +23,41 @@ import {
   showCancelModal,
   initialLoadAuthInit,
   signupBookSession,
-  buyCreditsAndBookSession,
 } from './actionCreators';
 import { getPageLoading, getSessionInfo, getShowCancelModal } from './reducer';
 import CancelModal from './components/CancelModal';
 import SessionButtons from './components/SessionButtons';
+import SkillLevelWarning from './components/SkillLevelWarning';
+
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import SessionOfficials from './components/SessionOfficials';
 
 const SessionsPageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  .title-container {
-    display: flex;
-    padding: 4rem 0;
-
-    h2 {
-      margin: 0;
-      margin-left: 6rem;
-      text-transform: uppercase;
-      font-weight: 400;
-      font-size: 2.5rem;
-    }
-
-    button {
-      margin: 0;
-      margin-left: 2rem;
-    }
+  .title-officials {
+    -webkit-text-stroke: 1px;
+    line-height: 1;
   }
 
-  .session-details-container {
+  .carousel-root {
+    height: calc(100vh - 10rem);
     display: flex;
-    flex: 1;
-    img {
-      width: 50%;
-    }
-
-    .details-container {
-      display: flex;
-      background-color: ${colors.offWhite};
-      width: 50%;
-
-      .session-data-container {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        padding: 3rem;
-
-        .date-container,
-        .address-container,
-        .level-container,
-        .time-container {
-          display: flex;
-          flex-direction: column;
-          margin-bottom: 2rem;
-        }
-
-        .title {
-          color: #9999ff;
-          font-size: 0.75rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          margin-bottom: 1rem;
-          letter-spacing: 0.2rem;
-          display: block;
-        }
-      }
-
-      .side-container {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        background-color: ${colors.white};
-        text-align: center;
-        padding: 2rem;
-        justify-content: center;
-        align-items: center;
-
-        .sem-referee-container {
-          .sem-container,
-          .referee-container {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 2rem;
-            justify-content: center;
-            align-items: center;
-            img {
-              width: 5rem;
-              height: 5rem;
-              margin: 0 auto;
-              border-radius: 10rem;
-              margin-bottom: 0.5rem;
-              object-fit: cover;
-            }
-
-            .not-assigned-container {
-              height: 5rem;
-              width: 5rem;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              background: ${colors.lightGrey};
-              border-radius: 10rem;
-              font-size: 2.5rem;
-              color: ${colors.polarPlum};
-              margin-bottom: 0.5rem;
-            }
-            .title {
-              color: ${colors.polarPlum};
-              font-size: 0.7rem;
-              font-weight: 600;
-              text-transform: uppercase;
-              margin-bottom: 1rem;
-              letter-spacing: 0.2rem;
-            }
-
-            .name {
-              font-weight: 500;
-              font-size: 0.9rem;
-              text-transform: capitalize;
-            }
-          }
-        }
-        .button-container {
-          .btn-alternative {
-            color: ${colors.black};
-            border-color: ${colors.black};
-            padding: 1rem 2.3rem;
-          }
-
-          .buy-btn {
-            background-color: ${colors.black};
-            color: ${colors.white};
-          }
-        }
-      }
-    }
+    flex-direction: column;
+    justify-content: center;
+    width: 55%;
   }
 
   @media (max-width: 991px) {
-    .title-container {
-      padding: 1rem 0;
-
-      h2 {
-        font-size: 1rem;
-        margin-left: 0.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        strong {
-          margin-left: 0.5rem;
-        }
-      }
-
-      button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 1rem;
-        margin-left: 1rem;
-
-        svg {
-          font-size: 1rem;
-        }
-      }
-    }
-    .session-details-container {
-      flex-direction: column;
-
-      img {
-        width: 100%;
-      }
-
-      .details-container {
-        flex-direction: column;
-        width: 100%;
-
-        .session-data-container {
-          width: 91%;
-          padding: 3rem 1rem;
-        }
-
-        .side-container {
-          width: 100%;
-          padding: 2rem 0;
-          flex-direction: column;
-
-          .sem-referee-container {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            width: 100%;
-          }
-        }
-      }
+    .carousel-root {
+      width: 100%;
     }
   }
 `;
 
 const SessionsPage = () => {
   const { id, date } = useParams();
-  const referralCode = window.sessionStorage.getItem('referralCode') ?
-      window.sessionStorage.getItem('referralCode') :
-      false;
+  const referralCode = window.localStorage.getItem('referralCode');
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const isPageLoading = useSelector(getPageLoading);
   const sessionInfo = useSelector(getSessionInfo);
@@ -240,12 +65,14 @@ const SessionsPage = () => {
   const userProfile = useSelector(getUserProfile);
   const shouldShowCancelModal = useSelector(getShowCancelModal);
 
-  const reserveSessionAction = () => dispatch(reserveSessionInit(sessionInfo.id, date, referralCode));
+  const reserveSessionAction = () =>
+    dispatch(reserveSessionInit(sessionInfo.id, date, referralCode));
+  const createAndReserveFreeSessionHandler = () =>
+    dispatch(createAndReserveFreeSessionInit(sessionInfo.id, date, referralCode));
   const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
   const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
   const showCancelModalAction = () => dispatch(showCancelModal());
   const signupBookSessionAction = () => dispatch(signupBookSession(id, date));
-  const buyCreditsAndBookSessionAction = () => dispatch(buyCreditsAndBookSession(id, date));
   const removeSessionFromStorageAction = () => dispatch(removeSessionFromStorage());
 
   const isSessionComplete = sessionInfo.past;
@@ -258,8 +85,14 @@ const SessionsPage = () => {
     } else if (isSessionFull) {
       text = `SESSION FULL`;
     } else {
-      if (isAuthenticated && userProfile.credits) {
-        text = `YOU HAVE ${userProfile.credits} SESSION${userProfile.credits === 1 ? '' : 'S'} AVAILABLE`;
+      if (isAuthenticated) {
+        if (userProfile.unlimitedCredits) {
+          text = 'YOU HAVE UNLIMITED SESSIONS';
+        } else if (userProfile.totalCredits) {
+          text = `YOU HAVE ${userProfile.totalCredits} SESSION${
+            userProfile.totalCredits === 1 ? '' : 'S'
+          } ${userProfile.activeSubscription ? 'LEFT THIS MONTH' : 'AVAILABLE'}`;
+        }
       }
     }
 
@@ -279,120 +112,82 @@ const SessionsPage = () => {
   if (isNil(id)) {
     return <Redirect to="/" />;
   }
-  const inCancellationTime =
-    sessionInfo && sessionInfo.userSession && sessionInfo.userSession.inCancellationTime;
+
+  const sessionData = [
+    { title: 'DATE', value: longSessionDate(date) },
+    { title: 'TIME', value: hourRange(sessionInfo.time) },
+    {
+      title: 'LOCATION',
+      value: [
+        `${sessionInfo?.location?.address}`,
+        <br key="br" />,
+        `${sessionInfo?.location?.city}, CA ${sessionInfo?.location?.zipcode}`,
+      ],
+    },
+  ];
 
   return isPageLoading ? (
     <Loading />
   ) : (
-    <SessionsPageContainer className="sessions">
+    <SessionsPageContainer className="flex flex-col">
       <Modal shouldClose closeHandler={showCancelModalAction} isOpen={shouldShowCancelModal}>
         <CancelModal
           closeHandler={showCancelModalAction}
           cancelSessionAction={cancelSessionAction}
-          inCancellationTime={inCancellationTime}
+          inCancellationTime={sessionInfo?.userSession?.inCancellationTime}
+          isFreeSession={sessionInfo?.userSession?.isFreeSession}
+          unlimitedCredits={userProfile.unlimitedCredits}
         />
       </Modal>
-      <div className="title-container">
-        <BackButton />
-        <h2>
-          {sessionInfo.location.name} <strong>SESSION</strong>
+      <div className="md:flex py-4 md:py-8 font-shapiro95_super_wide">
+        <BackButton className="ml-8 mt-4 md:mt-0" />
+        <h2 className="md:ml-8 text-center uppercase font-normal py-8 md:py-0 text-2xl">
+          {sessionInfo.location.name} SESSION
         </h2>
       </div>
-      <div className="session-details-container">
-        <img src={sessionInfo.location.imageUrl} alt="Location" />
-        <div className="details-container">
-          <div className="session-data-container">
-            <div className="date-container shapiro95_super_wide">
-              <span className="title">DATE</span>
-              <span className="text">{longSessionDate(date)}</span>
+      <div className="flex flex-col md:flex-row bg-cc-black border-b border-gray-600 h-full">
+        <Carousel
+          className="carousel-h-full"
+          infiniteLoop={true}
+          showArrows={true}
+          showStatus={false}
+          showThumbs={false}
+        >
+          {sessionInfo.location.imageUrls.map((image, index) => (
+            <img className="w-full md:w-1/2" src={image} alt="" key={index} />
+          ))}
+        </Carousel>
+        <div className="flex w-full flex-col md:flex-row md:w-1/2 ">
+          <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
+            <div className="mb-8 flex flex-col items-center md:items-start">
+              {isAuthenticated && (
+                <SkillLevelWarning userProfile={userProfile} sessionInfo={sessionInfo} />
+              )}
+              {sessionData.map((data, i) => (
+                <div className="flex flex-col mb-8" key={`info-${i}`}>
+                  <span className="uppercase block tracking-wider font-semibold">{data.title}</span>
+                  <span className="font-shapiro45_welter_extd text-sm uppercase">{data.value}</span>
+                </div>
+              ))}
+              <SessionLevel showInfo level={sessionInfo.skillLevel} light />
             </div>
-            <div className="time-container shapiro95_super_wide">
-              <span className="title">TIME</span>
-              <span className="text">{hourRange(sessionInfo.time)}</span>
-            </div>
-            <div className="address-container shapiro95_super_wide">
-              <span className="title">LOCATION</span>
-              <span className="text">{sessionInfo.location.direction}</span>
-              <span className="location">{`${sessionInfo.location.city}, CA ${sessionInfo.location.zipcode}`}</span>
-            </div>
-            {sessionInfo.level === LEVELS.ADVANCED && (
-              <div className="level-container shapiro95_super_wide">
-                <span className="title">Level</span>
-                <SessionLevel showInfo level={sessionInfo.level} />
+            {getSessionsMessageContainerText() && (
+              <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
+                {getSessionsMessageContainerText()}
               </div>
             )}
-            <span className="sessions-message-container">{getSessionsMessageContainerText()}</span>
           </div>
-          <div className="side-container">
-            <div className="sem-referee-container">
-              <div className="sem-container">
-                <span className="title">Your Sem</span>
-                {isNil(sessionInfo.sem) || isNil(sessionInfo.sem.imageUrl) ? (
-                  <div className="not-assigned-container">
-                    <UserSvg />
-                  </div>
-                ) : (
-                  <img src={sessionInfo.sem.imageUrl} alt="SEM" />
-                )}
-
-                <span className="name">
-                  {sessionInfo.sem.name ? sessionInfo.sem.name : 'NOT ASSIGNED'}
-                </span>
-              </div>
-              <div className="referee-container">
-                <span className="title">Your SO</span>
-                {isNil(sessionInfo.referee) || isNil(sessionInfo.referee.imageUrl) ? (
-                  <div className="not-assigned-container">
-                    <UserSvg />
-                  </div>
-                ) : (
-                  <img src={sessionInfo.referee.imageUrl} alt="SEM" />
-                )}
-                <span className="name">
-                  {sessionInfo.referee.name ? sessionInfo.referee.name : 'NOT ASSIGNED'}
-                </span>
-              </div>
-            </div>
-            <div className="button-container">
-              {sessionInfo && !sessionInfo.past && (
-                <SessionButtons
-                  session={sessionInfo}
-                  reserveSessionAction={reserveSessionAction}
-                  confirmSessionAction={confirmSessionAction}
-                  showCancelModalAction={showCancelModalAction}
-                  userProfile={userProfile}
-                  signupBookSessionAction={signupBookSessionAction}
-                />
-              )}
-              {(isAuthenticated && userProfile.credits === 0 && !isSessionComplete && !isSessionFull &&
-                (
-                  !sessionInfo.userSession ||
-                  (sessionInfo.userSession && ['reserved', 'confirmed'].indexOf(sessionInfo.userSession.state) === -1)
-                )
-              ) && (
-                <AlternativeButton
-                  className="buy-btn ar-button double"
-                  onClick={() => {
-                    history.push(ROUTES.SERIES);
-                  }}
-                >
-                  <div className="ar-button-inner">CONFIRM RESERVATION</div>
-                  <div className="double-drop"></div>
-                </AlternativeButton>
-              )}
-              {(sessionInfo && (isSessionComplete || isSessionFull)) && (
-                <AlternativeButton
-                  className="buy-btn ar-button double"
-                  onClick={() => {
-                    history.push(ROUTES.LOCATIONS);
-                  }}
-              >
-                <div className="ar-button-inner">FIND NEW SESSION</div>
-                <div className="double-drop"></div>
-              </AlternativeButton>
-              )}
-            </div>
+          <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-between items-center px-4 py-12 md:px-4 md:py-10">
+            <SessionOfficials sessionInfo={sessionInfo} />
+            <SessionButtons
+              session={sessionInfo}
+              reserveSessionAction={reserveSessionAction}
+              confirmSessionAction={confirmSessionAction}
+              showCancelModalAction={showCancelModalAction}
+              userProfile={userProfile}
+              signupBookSessionAction={signupBookSessionAction}
+              createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
+            />
           </div>
         </div>
       </div>

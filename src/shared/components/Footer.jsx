@@ -1,149 +1,189 @@
 import React, { useState } from 'react';
-import {Helmet} from "react-helmet";
-import styled from 'styled-components';
-import ArButton from 'shared/components/ArButton';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
-
 import ROUTES from 'shared/constants/routes';
-import colors from 'shared/styles/constants';
+import { getUserProfile } from 'screens/my-account/reducer';
+import { openContactFormForUser } from 'shared/utils/contactForm';
 import InstagramSvg from './svg/InstagramSvg';
-import PaperPlaneSvg from './svg/PaperPlaneSvg';
+import LogoSvg from 'shared/components/svg/LogoSvg';
+import ArrowRightSvg from 'shared/components/svg/ArrowRightSvg';
+import ccLogo from 'shared/images/cc-logo.png';
+import { identify } from 'shared/utils/klaviyo';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { validateEmail } from 'shared/utils/helpers';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { logoutInit } from 'screens/auth/actionCreators';
 
-const FooterContainer = styled.footer`
-  color: ${colors.white};
-  background-color: #9999ff;
-  font-family: var(--main-font-family);
-  font-size: 0.875rem;
-  padding: 1rem 0.5rem 0.5rem;
+const Copyright = ({ className }) => {
+  return (
+    <div className={`flex mt-6 md:mt-10 justify-between items-end ${className}`}>
+      <div className="flex flex-col text-2xs md:text-xs">
+        <p>
+          {`Copyright`} &reg; {`${new Date().getFullYear()}`} Crosscourt
+        </p>
+        <p>333 N. Mission Rd Los Angeles CA 90033</p>
+      </div>
+      <img alt="" className="w-12" src={ccLogo} />
+    </div>
+  );
+};
 
-  .footer-content {
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    flex-direction: row-reverse;
-    justify-content: center;
-    .first-row {
-      display: flex;
-      width: 70%;
-
-      justify-content: flex-end;
-
-      .social-icons {
-        display: flex;
-        justify-content: space-around;
-        padding-left: 2rem;
-        width: 20rem;
-
-        .icon-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: ${colors.white};
-          color: ${colors.polarPlum};
-          border-radius: 3rem;
-          height: 3rem;
-          width: 3rem;
-          a {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-          }
-          .faq-button {
-            padding: 0.7rem 5rem;
-          }
-          svg {
-            height: 1.5rem;
-            width: 1.5rem;
-            color: ${colors.polarPlum};
-          }
-        }
-      }
-    }
-  }
-
-  @media (max-width: 991px) {
-    padding: 1rem;
-    height: auto;
-
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      margin: 0;
-      width: 100%;
-      padding: 0;
-      .first-row {
-        width: 100%;
-        flex-direction: column;
-        a {
-          text-align: center;
-          button {
-            width: 100%;
-          }
-        }
-        .social-icons {
-          width: 100%;
-          padding: 0;
-          margin: 1rem 0;
-          order: 3;
-          .icon-container {
-            margin: 0;
-            justify-content: space-between;
-          }
-        }
-      }
-      & > a {
-        margin: 1rem 0 2rem;
-        order: 2;
-        width: 84%;
-        button {
-          width: 100%;
-        }
-      }
-
-      .copyright {
-        margin: 0;
-        order: 1;
-      }
-    }
-  }
-`;
-
-function Footer() {
+const Footer = () => {
+  const isAuthenticated = useSelector(getIsAuthenticated);
   const env = runtimeEnv();
+  const { pathname } = useLocation();
+  const currentUser = useSelector(getUserProfile) || {};
+  const [email, setEmail] = useState('');
+  const [showError, setShowError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const dispatch = useDispatch();
+  const logoutAction = () => dispatch(logoutInit());
 
   const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
-  const EMAIL_LINK = env.REACT_APP_EMAIL_LINK;
 
-  return (
-    <FooterContainer className="footer">
-      <section className="left-side">
-        <p className="copyright title shapiro95_super_wide">
-          &copy;2020 CROSSCOURT ALL RIGHTS RESERVED
-        </p>
-      </section>
-      <section className="right-side">
-        <ArButton className="faq-link" link={ROUTES.FAQ}>
-          FAQ
-        </ArButton>
-        <a className="social" href={INSTAGRAM_LINK} target="_blank" rel="noopener noreferrer">
-          <InstagramSvg />
-        </a>
-        <a className="social" href="#modal" rel="noopener noreferrer" onClick={e => {
-          e.preventDefault();
-          document.querySelector('.eapps-form-floating-button').click();
-        }}>
-          <PaperPlaneSvg />
-        </a>
-        <div class="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136"></div>
-      </section>
-      <Helmet>
-        <script src="https://apps.elfsight.com/p/platform.js" defer></script>
-      </Helmet>
-    </FooterContainer>
+  const tourMessage = (isAuthenticated) =>
+    `Hi Crosscourt, \n\rI would like to visit the club on [DATE] at [TIME (ANYTIME BETWEEN 8PM-10PM M-THU, 6-8PM FRI, 10AM-NOON SAT/SUN)]. Please let me know if that works for your team. \n\rThank you${
+      isAuthenticated ? `, \n\r${currentUser.firstName}` : ''
+    }`;
+
+  const addUserToKlaviyo = () => {
+    if (email) {
+      const isValid = validateEmail(email);
+      setShowError(!isValid);
+      if (isValid) {
+        identify(email);
+        setShowError(!isValid);
+        setSuccess(true);
+      }
+    }
+  };
+
+  return pathname === ROUTES.DASHBOARD ? null : (
+    <>
+      <footer className="flex flex-col md:flex-row md:flex-row-reverse justify-evenly md:justify-between bg-cc-black p-6 text-white h-160 md:h-80">
+        <div className="md:w-1/2 flex flex-col h-full justify-evenly md:justify-between">
+          <LogoSvg className="w-72" />
+          {!isAuthenticated && (
+            <>
+              <p className="font-shapiro95_super_wide">
+                {success ? "YOU'RE IN!" : 'STAY IN THE LOOP'}
+              </p>
+              {!success && (
+                <div className="flex border border-white p-2 md:w-4/5 justify-between">
+                  <input
+                    type="text"
+                    className="bg-cc-black w-full px-2 text-xs md:text-sm"
+                    placeholder="ENTER YOUR EMAIL ADDRESS"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                  />
+                  <div
+                    className="bg-cc-purple p-3 cursor-pointer"
+                    onClick={() => addUserToKlaviyo()}
+                  >
+                    <ArrowRightSvg className="text-white w-6" />
+                  </div>
+                </div>
+              )}
+              {success && (
+                <div class="flex">
+                  <PrimaryButton
+                    bg="transparent"
+                    className="mr-4"
+                    contentClasses="text-2xs md:text-sm"
+                    onClick={() =>
+                      openContactFormForUser(
+                        isAuthenticated ? currentUser : { email },
+                        tourMessage(isAuthenticated)
+                      )
+                    }
+                  >
+                    SCHEDULE TOUR
+                  </PrimaryButton>
+                  <PrimaryButton contentClasses="text-2xs md:text-sm" to={ROUTES.LOCATIONS}>
+                    FIRST FREE
+                  </PrimaryButton>
+                </div>
+              )}
+            </>
+          )}
+          <div className="relative">
+            {showError && (
+              <p className="text-xs text-red-500 absolute -bottom-1 md:bottom-auto">
+                Email address is not valid
+              </p>
+            )}
+          </div>
+          <Copyright className="hidden md:flex mt-8" />
+        </div>
+        <div className="flex flex-col justify-between text-sm md:text-base">
+          <Link className="w-max hover:opacity-60 transition-opacity duration-300" to={ROUTES.FAQ}>
+            FAQ
+          </Link>
+          <Link className="w-max hover:opacity-60 transition-opacity duration-300" to={ROUTES.SEM}>
+            JOIN THE TEAM
+          </Link>
+          <p
+            className="cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
+            onClick={() => openContactFormForUser(currentUser)}
+          >
+            CONTACT US
+          </p>
+          <p
+            className="cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
+            onClick={() => openContactFormForUser(currentUser)}
+          >
+            PRIVATE SESSIONS / CLUB RENTALS
+          </p>
+          <p
+            className="cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
+            onClick={() => openContactFormForUser(currentUser)}
+          >
+            TOUR THE CLUB
+          </p>
+          {isAuthenticated ? (
+            <p
+              className="mt-4 cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
+              onClick={() => logoutAction()}
+            >
+              LOGOUT
+            </p>
+          ) : (
+            <>
+              <Link
+                className="mt-4 w-max hover:opacity-60 transition-opacity duration-300"
+                to={ROUTES.SIGNUP}
+              >
+                SIGN UP
+              </Link>
+              <Link
+                className="w-max hover:opacity-60 transition-opacity duration-300"
+                to={ROUTES.LOGIN}
+              >
+                LOGIN
+              </Link>
+            </>
+          )}
+
+          <a
+            className="mt-8 w-max hover:opacity-60 transition-opacity duration-300 h-full"
+            href={INSTAGRAM_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <InstagramSvg className="w-8 h-8" />
+          </a>
+          <Copyright className="md:hidden" />
+        </div>
+      </footer>
+      <div
+        className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136"
+        style={{ position: 'fixed' }}
+      />
+    </>
   );
-}
+};
 
 export default Footer;

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import ReactPlayer from 'react-player';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
-import device from 'shared/styles/mediaQueries';
 
 const Container = styled.div`
   margin: 2rem auto;

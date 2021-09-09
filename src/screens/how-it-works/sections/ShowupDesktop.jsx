@@ -1,33 +1,49 @@
 import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
-import { ReactComponent as JerseySvg } from 'shared/components/svg/jersey.svg';
-import { ReactComponent as GuidedExperienceSvg } from 'shared/components/svg/guided-experience.svg';
-import Icon from 'shared/components/Icon';
 
-import ArButton from 'shared/components/ArButton';
-import Icons from '../components/Icons';
-import Text from '../components/Text';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import styled from 'styled-components';
+import showUpGif from 'screens/how-it-works/images/show-up.gif';
+import colors from 'shared/styles/constants';
 
-import equipmentProvidedIcon from 'shared/images/equipment-provided-2.png';
-import guidedExperienceIcon from 'shared/images/guided-experience.png';
+const Section = styled.section`
+  .left-section,
+  .right-section {
+    min-height: 850px;
+    width: auto;
+    @media (min-width: 992px) {
+      width: 50vw;
+    }
+  }
 
-function Showup() {
+  .right-section {
+    background: transparent url(${showUpGif}) no-repeat 0 0;
+    background-size: cover;
+    height: 100vh;
+    order: 2;
+  }
+
+  .title {
+    color: ${colors.brandPurple};
+    font-size: 120px;
+    line-height: 100px;
+    margin-bottom: 15px;
+    font-family: dharma_gothic_cheavy;
+
+    @media (min-width: 992px) {
+      font-size: 250px;
+      line-height: 200px;
+    }
+  }
+`;
+
+const Showup = () => {
   return (
-    <section className="show-up section-block text-white">
-      <section className="left-section">
+    <Section className="flex flex-col md:flex-row text-white text-right">
+      <div className="left-section flex flex-col justify-center px-6 md:px-24">
         <p className="title dharma_gothic_cheavy">SHOW UP</p>
-        <Icons className="icons">
-          <Icon>
-            <img className="equipment-provided" src={equipmentProvidedIcon} />
-            <span className="boxes-text">EQUIPMENT<br />PROVIDED</span>
-          </Icon>
-          <Icon>
-            <img className="guided-experience" src={guidedExperienceIcon} />
-            <span className="boxes-text">GUIDED<br />EXPERIENCE</span>
-          </Icon>
-        </Icons>
-        <p className="description">
+        <p className="mb-16 text-black">
           Each hour-long session is run by our trained Experience Team.
           <br />
           <br />
@@ -36,17 +52,12 @@ function Showup() {
           court.
         </p>
         <div className="buttons-container">
-          {/* <ArButton link={ROUTES.SEM} double inverted>
-            JOIN THE TEAM
-          </ArButton> */}
-          <ArButton link={ROUTES.LOCATIONS} double>
-            RESERVE NOW
-          </ArButton>
+          <PrimaryButton to={ROUTES.LOCATIONS}>RESERVE NOW</PrimaryButton>
         </div>
-      </section>
-      <section className="right-section"></section>
-    </section>
+      </div>
+      <div className="right-section" />
+    </Section>
   );
-}
+};
 
 export default Showup;

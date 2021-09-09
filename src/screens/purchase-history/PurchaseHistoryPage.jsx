@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import Loading from 'shared/components/Loading';
 import BackButton from 'shared/components/BackButton';
-import device from 'shared/styles/mediaQueries';
 
 import { initialLoadInit } from './actionCreators';
 import { getPageLoading, getPurchaseHistory } from './reducer';
@@ -43,7 +42,7 @@ const PurchaseHistoryPage = () => {
   return (
     <PurchaseHistoryPageContainer className="purchase-history">
       <div className="buttons-container">
-        <BackButton />
+        <BackButton className="my-6 md:mt-0" />
       </div>
       <h2>PURCHASE HISTORY</h2>
       <PurchaseHistoryTable purchaseHistory={purchaseHistory} />

@@ -35,7 +35,7 @@ const WeekSelectorContainer = styled.div`
 
   .weektitle-container {
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: bold;
     flex: 1;
     text-align: center;
@@ -44,13 +44,10 @@ const WeekSelectorContainer = styled.div`
 
   .weekdays-container {
     display: flex;
-    justify-content: space-evenly;
+    overflow-y: scroll;
+    justify-content: space-between;
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-
-    .disabled {
-      color: ${colors.lightGrey};
-    }
   }
 `;
 
@@ -58,16 +55,16 @@ const DayContainer = styled.button`
   display: flex;
   flex-direction: column;
   text-transform: uppercase;
-  font-size: 0.75rem;
   font-weight: bold;
   text-align: center;
-  padding: 1rem;
+  padding: 6px;
   border: 0;
   cursor: pointer;
   justify-content: center;
   align-items: center;
   background-color: ${({ day, currentDay }) => (isSameDay(day, currentDay) ? 'black' : 'white')};
-  color: ${({ day, currentDay }) => (isSameDay(day, currentDay) ? 'white' : 'black')};
+  color: ${({ day, currentDay, disabled }) =>
+    disabled ? colors.lightGrey : isSameDay(day, currentDay) ? 'white' : 'black'};
   .day-number {
     text-align: center;
   }
@@ -89,18 +86,17 @@ const WeekSelector = ({
         <FontAwesomeIcon icon={faAngleRight} />
       </button>
     </div>
-    <div className="weekdays-container">
-      {weekRange(startOfWeek(selectedDate)).map(day => (
+    <div className="weekdays-container px-2 md:px-6">
+      {weekRange(startOfWeek(selectedDate)).map((day) => (
         <DayContainer
           key={day}
           day={day}
           currentDay={selectedDate}
-          className={`${isPast(day) ? 'day-container disabled' : 'day-container'}`}
           onClick={() => setSelectedDateHandler(day)}
           disabled={isPast(day)}
         >
-          <span className="day-name">{dayShort(day)}</span>
-          <span className="day-number">{dayNumber(day)}</span>
+          <span className="text-xs sm:text-base">{dayShort(day)}</span>
+          <span className="text-sm sm:text-base">{dayNumber(day)}</span>
         </DayContainer>
       ))}
     </div>

@@ -1,149 +1,93 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SportCharacter from 'shared/images/sport-character.png';
-import ArButton from 'shared/components/ArButton';
 
-import { getUserProfile } from 'screens/my-account/reducer.js';
-import { getSessionInfo, getSessionId, getSessionDate } from '../reducer';
+import { getSessionInfo, getSessionDate } from '../reducer';
+import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
-import {
-  formatSessionTime,
-  purchaseFormattedDate,
-} from 'shared/utils/date';
-
-const SessionReservedContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  .session-info-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  img {
-    margin-bottom: 2.75rem;
-    margin-top: 5rem;
+const SessionBookedContainer = styled.div`
+  .title {
+    font-family: shapiro95_super_wide;
+    color: ${colors.brandBlack};
+    font-size: 24px;
+    line-height: 24px;
+    @media (min-width: 992px) {
+      font-size: 33px;
+      line-height: 33px;
+    }
   }
 
-  h1 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: ${colors.black};
-    margin-bottom: 3rem;
-    width: 70%;
-    text-align: center;
-  }
-  span {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2.5rem;
+  .subtitle {
+    color: ${colors.brandBlack};
+    font-family: dharma_gothic_cexbold;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: ${colors.brandBlack};
+    font-family: shapiro95_super_wide;
+    font-size: 26px;
+    line-height: 26px;
+    @media (min-width: 992px) {
+      font-size: 36px;
+      line-height: 36px;
+    }
   }
 
-  .share-buttons-container {
-    display: flex;
-    margin-bottom: 5rem;
-
-    button {
-      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.14);
-      border-radius: 2px;
-      font-size: 1rem;
+  .black-btn {
+    border: 3px solid black;
+    .content {
       border: 0;
-      margin: 0 10px;
-      height: 2.5rem;
-      width: 2.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
+      color: black;
+      transition: 500ms background-color ease, 500ms color ease;
+      :hover {
+        background-color: black;
+        color: white;
+      }
     }
-
-    .facebook {
-      background: #3b5998;
-      color: ${colors.white};
-    }
-
-    .whatsapp {
-      background-color: #40c351;
-      color: ${colors.white};
-    }
-
-    .facebook-messenger {
-      background-color: ${colors.white};
-      color: #448aff;
-    }
-
-    .external-link {
-      background-color: ${colors.white};
-      color: ${colors.black};
-    }
-  }
-
-  button {
-    width: 100%;
-    margin-bottom: 6rem;
   }
 `;
 
 const SessionReserved = () => {
   const sessionInfo = useSelector(getSessionInfo);
-  const sessionId = useSelector(getSessionId);
   const sessionDate = useSelector(getSessionDate);
-  const sessionDateHumanFriendly = purchaseFormattedDate(sessionDate).slice(0, -3);
-  const sessionTime = formatSessionTime(sessionDate).replace(':00', '');
+  const [copied, setCopied] = useState(false);
 
-  const userProfile = useSelector(getUserProfile);
-
-  const env = runtimeEnv();
-  const APP_URL = env.REACT_APP_URL;
-  const SHARE_URL = `${window.location.origin}/session/${sessionId}/${sessionDate}?referralCode=${userProfile.referralCode}`;
-  const SHARE_MSG = `I just signed up for the Crosscourt ${sessionInfo.location.name} session at ${sessionTime} on ${sessionDateHumanFriendly}. Your first session's free. Sign up here: ${SHARE_URL}`;
-
-  const onCopyHandler = () => toast.success('Link Copied!');
+  const copyShareInfoToClipboard = () => {
+    const input = document.createElement('input');
+    const SHARE_URL = `${window.location.origin}/session/${sessionInfo.id}/${sessionDate}`;
+    const SHARE_MSG = `I just signed up for the Crosscourt ${
+      sessionInfo.location.name
+    } session at ${formatShareSessionTime(sessionInfo.time)} on ${formatShareSessionDate(
+      sessionDate
+    )}. Use my link to sign up. ${SHARE_URL}`;
+    input.setAttribute('value', SHARE_MSG);
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    setCopied(true);
+  };
 
   return (
-    <SessionReservedContainer className="session-reserved">
-      <div className="session-info-container">
-        <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
-        <h1>SESSION BOOKED</h1>
-        <h2>SUCCESSFULLY!</h2>
-        <button
-          className="ar-button double invite-a-friend-button"
-          data-href={'sms:?&body=' + encodeURI(SHARE_URL)}
-          onClick={e => {
-            var input = document.createElement('input');
-            input.setAttribute('value', SHARE_MSG);
-            document.body.appendChild(input);
-            input.select();
-            var result = document.execCommand('copy');
-            document.body.removeChild(input);
-            document.querySelector('.invite-a-friend-button .ar-button-inner').innerHTML  = 'COPIED!';
-          }}
-        >
-          <div className="ar-button-inner">
-            <FontAwesomeIcon icon={faExternalLinkAlt} /> INVITE A FRIEND
-          </div>
-          <div className="double-drop"></div>
-        </button>
-        <p class="refer-a-new-friend-message">REFER A NEW PLAYER, GET A FREE SESSION WHEN THEY BOOK!</p>
-        <br />
-        <ArButton className="done-button" inverted link={ROUTES.MYACCOUNT}>
+    <SessionBookedContainer>
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <img className="w-52" src={SportCharacter} alt="Sport Icon" />
+        <p className="title">SESSION BOOKED</p>
+        <p className="subtitle">SUCCESSFULLY!</p>
+        <PrimaryButton className="mt-6 mb-4" onClick={copyShareInfoToClipboard}>
+          <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
+        </PrimaryButton>
+        <PrimaryButton bg="transparent" className="black-btn" to={ROUTES.MYACCOUNT}>
           DONE
-        </ArButton>
+        </PrimaryButton>
       </div>
-    </SessionReservedContainer>
+    </SessionBookedContainer>
   );
 };
 

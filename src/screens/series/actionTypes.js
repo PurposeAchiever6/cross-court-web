@@ -1,5 +1,0 @@
-export const INITIAL_LOAD_INIT = '@series/INITIAL_LOAD_INIT';
-export const INITIAL_LOAD_SUCCESS = '@series/INITIAL_LOAD_SUCCESS';
-export const INITIAL_LOAD_FAILURE = '@series/INITIAL_LOAD_FAILURE';
-
-export const SET_SELECTED_PRODUCT = '@series/SET_SELECTED_PRODUCT';

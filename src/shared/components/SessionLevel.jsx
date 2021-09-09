@@ -1,57 +1,46 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 
-import colors from 'shared/styles/constants';
 import InfoSvg from 'shared/components/svg/InfoSvg';
-import LEVELS from 'shared/constants/levels';
-import TEXT from 'shared/constants/text';
+import colors from 'shared/styles/constants';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  p {
-    margin: 0.2rem 0;
-  }
-
-  span {
-    text-align: center;
-    padding: 0.3rem 1rem;
-    background-color: ${colors.darkGrey};
-    border-radius: 5rem;
-    width: 6rem;
-    color: ${colors.white};
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    margin-right: 1rem;
-    line-height: 1rem;
-  }
-`;
-
-const SessionLevel = ({ level, showInfo = false }) => {
-  if (level === LEVELS.BASIC) {
-    return null;
-  }
-
+const SessionLevel = ({ level, showInfo, light }) => {
   return (
-    <Container>
-      <span>LEVEL 2</span>
+    <div className="flex items-center">
+      <span
+        className={`rounded-md ${
+          light ? 'bg-white text-black' : 'bg-cc-black text-white'
+        }  text-2xs text-center px-5 mr-3 my-2 font-shapiro95_super_wide`}
+      >
+        {`${level.min} - ${level.max}`}
+      </span>
       {showInfo && (
         <>
-          <InfoSvg dataTip={TEXT.ADVANCED_TOOLTIP} />
-          <ReactTooltip place="right" html />
+          <InfoSvg className="text-cc-purple" dataTip={level.description} />
+          <ReactTooltip
+            backgroundColor={colors.brandPurple}
+            textColor="white"
+            place="right"
+            effect="solid"
+            className="max-w-xs font-shapiro45_welter_extd"
+            html
+          />
         </>
       )}
-    </Container>
+    </div>
   );
 };
 
+SessionLevel.defaultProps = {
+  light: false,
+  showInfo: false,
+};
+
 SessionLevel.propTypes = {
-  level: PropTypes.string.isRequired,
+  level: PropTypes.object.isRequired,
   showInfo: PropTypes.bool,
+  light: PropTypes.bool,
 };
 
 export default SessionLevel;

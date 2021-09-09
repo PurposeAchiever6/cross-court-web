@@ -65,7 +65,12 @@ export function* initialLoadAuthFlow({ payload }) {
 
 export function* reserveSessionFlow({ payload }) {
   try {
-    yield call(sessionService.reserveSession, payload.sessionId, payload.date, payload.referralCode);
+    yield call(
+      sessionService.reserveSession,
+      payload.sessionId,
+      payload.date,
+      payload.referralCode
+    );
     yield put({
       type: RESERVE_SESSION_SUCCESS,
     });
@@ -115,7 +120,7 @@ export function* signupBookSessionFlow({ payload }) {
 export function* buyCreditsAndBookSessionFlow({ payload }) {
   try {
     yield put({ type: SAVE_SESSION_TO_STORAGE, payload });
-    yield put(push(ROUTES.SERIES));
+    yield put(push(ROUTES.MEMBERSHIPS));
   } catch (err) {}
 }
 

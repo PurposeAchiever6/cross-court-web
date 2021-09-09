@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import { useSelector,  useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { isNil, equals } from 'ramda';
+import { isNil } from 'ramda';
 import PropTypes from 'prop-types';
 
-import Button from 'shared/components/Button';
-import AlternativeButton from 'shared/components/AlternativeButton';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { isPast, formatSessionTime, formatSessionDate } from 'shared/utils/date';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -13,16 +11,15 @@ import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionDate } from '../reducer';
 
 import { initialLoadInit } from 'screens/payments/actionCreators';
-import { getAvailableCards } from 'screens/payments/reducer';
+import { getSelectedCard } from 'screens/payments/reducer';
 import ROUTES from 'shared/constants/routes';
-
-import { createFreeSessionInit } from 'screens/checkout/actionCreators';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const ReserveButton = ({
   reserveSessionAction,
   session,
-  confirmSessionAction,
   signupBookSessionAction,
+  createAndReserveFreeSessionHandler,
 }) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const sessionDate = useSelector(getSessionDate);
@@ -35,18 +32,15 @@ const ReserveButton = ({
   /* START FSF FLOW VARS */
   const dispatch = useDispatch();
   const history = useHistory();
-  const availableCards = useSelector(getAvailableCards);
+  const selectedCard = useSelector(getSelectedCard);
   /* END FSF FLOW VARS */
 
   /* START FSF FLOW LOGIC */
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
+  const isFSFFlow = freeSessionNotExpired && freeSessionNotClaimed;
   /* END FSF FLOW LOGIC */
-
-  const createFreeSessionHandler = () => dispatch(createFreeSessionInit());
 
   useEffect(() => {
     dispatch(initialLoadInit());
@@ -57,68 +51,55 @@ const ReserveButton = ({
       if (session.full) {
         return (
           <a href={mailInfo}>
-            <AlternativeButton className="btn-alternative">JOIN WAITLIST</AlternativeButton>
+            <PrimaryButton className="btn-alternative">JOIN WAITLIST</PrimaryButton>
           </a>
         );
       }
       return (
-        <Button
-          className="ar-button double reserve-btn"
+        <PrimaryButton
           onClick={() => {
-            if (!availableCards.length && isFSFFlow) {
-              window.sessionStorage.setItem('redirect', window.location.pathname);
+            if (!selectedCard && isFSFFlow) {
+              window.localStorage.setItem('redirect', window.location.pathname);
               history.push(ROUTES.PAYMENTS);
             } else {
               if (isFSFFlow) {
-                createFreeSessionHandler();
+                createAndReserveFreeSessionHandler();
+              } else {
+                reserveSessionAction();
               }
-
-              reserveSessionAction();
             }
           }}
           disabled={isPast(sessionDate)}
         >
-          <div className="ar-button-inner">CONFIRM RESERVATION</div>
-          <div className="double-drop"></div>
-        </Button>
+          CONFIRM RESERVATION
+        </PrimaryButton>
       );
-    }
-
-    if (equals(session.userSession.state, 'reserved')) {
-        return <></>;
-    }
-    if (equals(session.userSession.state, 'confirmed')) {
-      return (
-        <Button className="ar-button double disabled reserve-btn" disabled>
-          <div className="ar-button-inner">SESSION CONFIRMED</div>
-          <div className="double-drop"></div>
-        </Button>
-      );
+    } else if (['reserved', 'confirmed'].includes(session.userSession.state)) {
+      return <></>;
     }
   } else {
     return (
-      <Button className="ar-button reserve-btn inverted double" onClick={() => {
-        window.sessionStorage.setItem('redirect', window.location.pathname);
-        history.push(ROUTES.LOGIN);
-      }}>
-        <div className="ar-button-inner">LOG IN TO BOOK</div>
-        <div class="double-drop"></div>
-      </Button>
+      <PrimaryButton
+        onClick={() => {
+          window.localStorage.setItem('redirect', window.location.pathname);
+          history.push(ROUTES.SIGNUP);
+        }}
+      >
+        CREATE PROFILE
+      </PrimaryButton>
     );
   }
 
   return (
-    <Button className="ar-button reserve-btn inverted double" onClick={signupBookSessionAction}>
-      <div className="ar-button-inner">CONFIRM RESERVATION</div>
-      <div class="double-drop"></div>
-    </Button>
+    <PrimaryButton inverted onClick={signupBookSessionAction}>
+      CONFIRM RESERVATION
+    </PrimaryButton>
   );
 };
 
 ReserveButton.propTypes = {
   reserveSessionAction: PropTypes.func.isRequired,
   session: PropTypes.object.isRequired,
-  confirmSessionAction: PropTypes.func.isRequired,
   signupBookSessionAction: PropTypes.func.isRequired,
 };
 

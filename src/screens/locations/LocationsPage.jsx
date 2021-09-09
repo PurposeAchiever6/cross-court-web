@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Loading from 'shared/components/Loading';
-import device from 'shared/styles/mediaQueries';
 import Map from 'shared/components/Map/Map';
 import { add, isPast, getUTCDate } from 'shared/utils/date';
 
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
 import LocationPicker from './components/LocationPicker';
 import WeekSelector from './components/WeekSelector';
 import SessionsList from './components/SessionsList';
@@ -25,34 +25,6 @@ import {
   getSessionsByDate,
   setSelectedDate,
 } from './actionCreators';
-import { getUserProfile } from 'screens/my-account/reducer';
-
-import { useHistory } from 'react-router-dom';
-
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
-
-  .map-container,
-  .sessions-container {
-    width: 50%;
-  }
-
-  .sessions-container {
-    display: flex;
-    flex-direction: column;
-  }
-
-  @media (max-width: 991px) {
-    flex-direction: column-reverse;
-
-    .map-container,
-    .sessions-container {
-      width: 100%;
-    }
-  }
-`;
 
 const LocationsPage = () => {
   const isPageLoading = useSelector(getPageLoading);
@@ -61,13 +33,12 @@ const LocationsPage = () => {
   const availableSessions = useSelector(getAvailableSessions);
   const selectedLocation = useSelector(getSelectedLocation);
   const selectedDate = useSelector(getSelectedDate);
+  const isAuthenticated = useSelector(getIsAuthenticated);
 
   const dispatch = useDispatch();
-  const setLocationHandler = locationId => dispatch(getSessionsByLocation(locationId));
-  const getSessionsByDateHandler = date => dispatch(getSessionsByDate(date));
-  const setSelectedDateHandler = date => dispatch(setSelectedDate(date));
-
-  const history = useHistory();
+  const setLocationHandler = (locationId) => dispatch(getSessionsByLocation(locationId));
+  const getSessionsByDateHandler = (date) => dispatch(getSessionsByDate(date));
+  const setSelectedDateHandler = (date) => dispatch(setSelectedDate(date));
 
   const increaseCurrentWeekHandler = () => {
     const nextWeekDate = add(selectedDate, 1, 'weeks');
@@ -91,14 +62,13 @@ const LocationsPage = () => {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
+  const isFSFFlow =
+    isAuthenticated &&
+    freeSessionNotExpired &&
+    freeSessionNotClaimed &&
+    window.localStorage.getItem('previousPage').indexOf('session-') === -1;
   /* END FSF FLOW LOGIC */
 
-  if (window.sessionStorage.getItem('previousPage') === 'signup-confirmation') {
-    window.sessionStorage.setItem('previousPage', 'null');
-    history.push('/locations')
-  }
   useEffect(() => {
     dispatch(initialLoadInit());
 
@@ -112,8 +82,8 @@ const LocationsPage = () => {
   ) : (
     <>
       {isFSFFlow && <FreeSessionCreditAdded />}
-      <PageContainer className="locations">
-        <div className="sessions-container">
+      <div className="locations pt-16 flex flex-col-reverse md:flex-row-reverse justify-center">
+        <div className="w-full md:w-1/2 flex flex-col">
           <LocationPicker
             availableLocations={[{ id: null, name: 'ALL LOCATIONS' }, ...availableLocations]}
             setLocationHandler={setLocationHandler}
@@ -132,14 +102,14 @@ const LocationsPage = () => {
             <SessionsList availableSessions={availableSessions} selectedDate={selectedDate} />
           )}
         </div>
-        <div className="map-container">
+        <div className="w-full md:w-1/2">
           <Map
             setLocationHandler={setLocationHandler}
             selectedLocation={selectedLocation}
             locations={availableLocations}
           />
         </div>
-      </PageContainer>
+      </div>
     </>
   );
 };

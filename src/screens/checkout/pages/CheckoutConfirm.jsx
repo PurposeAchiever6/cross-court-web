@@ -1,43 +1,42 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { isNil } from 'ramda';
 
 import SportCharacter from 'shared/images/sport-character.png';
-import ArButton from 'shared/components/ArButton';
 import ROUTES from 'shared/constants/routes';
-import device from 'shared/styles/mediaQueries';
-import StorageUtils from 'shared/utils/storage';
 
 import { getPurchaseConfirmed } from '../reducer';
 
-const PageContainer = styled.div`
-`;
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const CheckoutConfirm = () => {
   const purchaseConfirmed = useSelector(getPurchaseConfirmed);
-  const sessionSaved = StorageUtils.getSavedSession();
-  const sessionURL = `/session/${sessionSaved.id}/${sessionSaved.date}`;
+  const redirectUrl = window.localStorage.getItem('redirect');
 
   if (!purchaseConfirmed) {
     return <Redirect to={ROUTES.LOCATIONS} />;
   }
 
   return (
-    <PageContainer className="checkout-confirm">
-      <img className="sport-character-image" src={SportCharacter} alt="Sport Icon" />
-      <p>Thank you for purchasing a Series! Now click below to sign up for a session.</p>
-      {!isNil(sessionSaved.id) && !isNil(sessionSaved.date) ? (
-        <ArButton className="go-to-session-button" link={sessionURL} inverted={false}>
+    <div className="min-h-screen flex flex-col items-center justify-center">
+      <img className="w-52 inline-block mb-2" src={SportCharacter} alt="Sport Icon" />
+      <p className="mb-6 max-w-md mx-auto text-center">
+        Thank you for your purchase! Now click below to sign up for a session.
+      </p>
+      {redirectUrl ? (
+        <PrimaryButton
+          className="go-to-session-button"
+          to={redirectUrl}
+          onClick={() => {
+            window.localStorage.removeItem('redirect');
+          }}
+        >
           GO TO SESSION
-        </ArButton>
+        </PrimaryButton>
       ) : (
-        <ArButton className="see-schedule-button" link={ROUTES.LOCATIONS} inverted={false}>
-          SEE SCHEDULE
-        </ArButton>
+        <PrimaryButton to={ROUTES.LOCATIONS}>SEE SCHEDULE</PrimaryButton>
       )}
-    </PageContainer>
+    </div>
   );
 };
 

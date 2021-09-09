@@ -5,9 +5,7 @@ import * as Yup from 'yup';
 import styled from 'styled-components';
 
 import InputTextField from 'shared/components/InputTextField';
-import Spinner from 'shared/components/Spinner';
-import Button from 'shared/components/Button';
-import device from 'shared/styles/mediaQueries';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 import { checkPromoCode } from '../actionCreators';
 import { getPromoCodeLoading, getPromoCodeValid } from '../reducer';
@@ -20,8 +18,8 @@ const PromoCodeContainer = styled.div`
 
   button {
     height: 100%;
-    margin-top: 0.5rem;
-    margin-left: 0.5rem;
+    margin-top: 1.5rem;
+    margin-left: -1.5rem;
     padding: 1rem 2rem;
     align-self: flex-end;
     width: 9rem;
@@ -75,7 +73,7 @@ const PromoCode = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getPromoCodeLoading);
   const isPromoCodeValid = useSelector(getPromoCodeValid);
-  const checkPromoCodeAction = promoCode => dispatch(checkPromoCode(promoCode));
+  const checkPromoCodeAction = (promoCode) => dispatch(checkPromoCode(promoCode));
 
   const initialValues = {
     promoCode: '',
@@ -108,9 +106,9 @@ const PromoCode = () => {
             {isPromoCodeValid ? (
               <span className="success-msg">DISCOUNT ADDED!</span>
             ) : (
-              <Button className="use-code-button ar-button" type="submit" disabled={isLoading}>
-                <div className="ar-button-inner">{!isLoading ? 'USE CODE' : <Spinner />}</div>
-              </Button>
+              <PrimaryButton type="submit" loading={isLoading}>
+                USE CODE
+              </PrimaryButton>
             )}
           </Form>
         </PromoCodeContainer>

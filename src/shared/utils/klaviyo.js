@@ -1,4 +1,4 @@
-export const identify = email => {
+export const identify = (email) => {
   window._learnq.push([
     'identify',
     {
@@ -7,13 +7,14 @@ export const identify = email => {
   ]);
 };
 
-export const startedCheckout = product => {
+export const startedCheckout = (product, redirectTo) => {
   window._learnq.push([
     'track',
     'Started Checkout',
     {
-      ProductName: product.name,
-      ProductPrice: product.price,
+      productName: product.name,
+      productPrice: product.price,
+      redirectTo,
     },
   ]);
 };

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { object, arrayOf } from 'prop-types';
 
-import device from 'shared/styles/mediaQueries';
 import colors from 'shared/styles/constants';
 import Tabs from 'shared/components/Tabs';
 import SessionsList from './components/SessionsList';
@@ -40,7 +39,11 @@ export const MyAccountPageDesktop = ({
   <MyAccountPageContainer className="my-account-desktop">
     <div className="sidebar-container">
       <MyProfile profile={userProfile} />
-      <MyCredits credits={userProfile.credits} />
+      <MyCredits
+        isUnlimited={userProfile.unlimitedCredits}
+        credits={userProfile.totalCredits}
+        activeSubscription={userProfile.activeSubscription}
+      />
     </div>
     <div className="content-container">
       {userProfile.isSem || userProfile.isReferee ? (

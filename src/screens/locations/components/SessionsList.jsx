@@ -1,12 +1,15 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { isEmpty } from 'ramda';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { isEmpty } from 'ramda';
 
+import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SessionLevel from 'shared/components/SessionLevel';
-import SpotsLeft from 'shared/components/SpotsLeft';
+import FewSessionsLeftTriangle from 'shared/images/warning-triangle.png';
+
 import {
   hourRange,
   urlFormattedDate,
@@ -15,121 +18,132 @@ import {
   formatSessionTime,
   formatSessionDate,
 } from 'shared/utils/date';
+import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import ArButton from 'shared/components/ArButton';
+import { openContactFormForUser } from 'shared/utils/contactForm';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
-const SessionsListContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  flex: 1;
-  padding: 0 1rem;
-
-  .session-list-item-container {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    padding: 2rem 1.25rem;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-
-    .text-container {
-      display: flex;
-      flex-direction: column;
-      max-width: 50%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      .time {
-        font-size: 0.9em;
-        font-weight: 600;
-        letter-spacing: 0.1rem;
-        margin-bottom: 0.25rem;
-      }
-
-      .location {
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1rem;
-        margin-bottom: 0.25rem;
-      }
-    }
-
-    .btn-alternative {
-      color: ${colors.black};
-      border-color: ${colors.black};
-      padding: 1rem 2.3rem;
+const NoSessionContainer = styled.div`
+  .title {
+    font-family: shapiro95_super_wide;
+    color: ${colors.brandBlack};
+    font-size: 20px;
+    line-height: 20px;
+    @media (min-width: 992px) {
+      font-size: 33px;
+      line-height: 33px;
     }
   }
 
-  .no-sessions-container {
-    font-size: 3.5rem;
-    color: ${colors.grey};
-    text-align: center;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-
-    em {
-      font-weight: 600;
+  .subtitle {
+    color: ${colors.brandBlack};
+    font-family: dharma_gothic_cexbold;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: ${colors.brandBlack};
+    font-family: shapiro95_super_wide;
+    font-size: 20px;
+    line-height: 20px;
+    @media (min-width: 992px) {
+      font-size: 59px;
+      line-height: 59px;
     }
   }
 `;
 
+const fewSpotsLeftText = 'FEW SPOTS LEFT';
+
 const SessionsList = ({ availableSessions, selectedDate }) => {
-  const { phoneNumber } = useSelector(getUserProfile);
+  const history = useHistory();
+  const isAuthenticated = useSelector(getIsAuthenticated);
+  const currentUser = useSelector(getUserProfile);
 
   const sessionList = availableSessions.filter(({ startTime }) =>
     isSameDay(startTime, selectedDate)
   );
   const sortedSessions = sortSessionsByDate(sessionList);
 
+  const onClickJoinWaitlist = (sessionTime, sessionDate, locationName) => {
+    if (!isAuthenticated) {
+      return history.push(ROUTES.LOGIN);
+    }
+
+    const message =
+      `I would like to be added to the waitlist for the ${sessionTime} ` +
+      `session on ${sessionDate} at ${locationName}. Please notify me ` +
+      `if a spot opens up. You can reach me at ${currentUser.phoneNumber}.`;
+
+    openContactFormForUser(currentUser, message);
+  };
+
   if (isEmpty(sortedSessions)) {
     return (
-      <SessionsListContainer>
-        <div className="no-sessions-container">
-          NO SESSIONS SCHEDULED FOR THIS DATE
-        </div>
-      </SessionsListContainer>
+      <div className="flex flex-col h-full justify-center">
+        <NoSessionContainer className="py-4 text-center">
+          <p className="title">NO SESSIONS SCHEDULED</p>
+          <p className="subtitle">FOR THIS DATE</p>
+        </NoSessionContainer>
+      </div>
     );
   }
 
   return (
-    <SessionsListContainer>
+    <div className="px-3 font-shapiro45_welter_extd">
       {sortedSessions.map(
-        ({ id, startTime, time, full, location, level, spotsLeft, reserved, past }) => {
+        ({ id, startTime, time, full, location, skillLevel, spotsLeft, reserved, past }) => {
           const sessionTime = formatSessionTime(time);
           const URLdate = urlFormattedDate(startTime);
-          const emailSessionDate = formatSessionDate(startTime);
-          const mailInfo = `mailto:ccteam@cross-court.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${location.name}. Please notify me if a spot opens up. You can reach me at ${phoneNumber}.`;
+          const sessionDate = formatSessionDate(startTime);
           let button;
+
           if (reserved || past) {
             button = (
-              <ArButton link={`/session/${id}/${URLdate}`} inverted>
+              <PrimaryButton to={`/session/${id}/${URLdate}`} inverted>
                 SEE DETAILS
-              </ArButton>
+              </PrimaryButton>
             );
           } else if (full) {
-            button = <ArButton link={mailInfo}>JOIN WAITLIST</ArButton>;
+            button = (
+              <PrimaryButton
+                onClick={() => onClickJoinWaitlist(sessionTime, sessionDate, location.name)}
+              >
+                JOIN WAITLIST
+              </PrimaryButton>
+            );
           } else {
-            button = <ArButton link={`/session/${id}/${URLdate}`}>RESERVE</ArButton>;
+            button = <PrimaryButton to={`/session/${id}/${URLdate}`}>RESERVE</PrimaryButton>;
           }
+
           return (
-            <div className={'session-list-item-container' + (past ? ' past' : '')  + (full ? ' full' : '')} key={id}>
-              <div className="text-container">
-                <div className="time">{hourRange(time)}</div>
-                <div className="location">{location.name}</div>
-                <SessionLevel level={level} />
-                <SpotsLeft spotsLeft={spotsLeft} />
+            <div
+              className={`flex border-b py-6 md:px-5 justify-between w-full items-center overflow-hidden ${
+                past ? ' opacity-30' : ''
+              }`}
+              key={id}
+            >
+              <div className="flex flex-col">
+                <p className="font-bold whitespace-nowrap text-sm sm:text-base">
+                  {hourRange(time)}
+                </p>
+                <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
+                  {location.name}
+                </p>
+                <SessionLevel showInfo level={skillLevel} />
               </div>
-              {button}
+              <div className="flex flex-col items-end pl-8">
+                {button}
+                {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && (
+                  <div className="flex items-center mt-2 whitespace-nowrap">
+                    <img alt="" className="w-4 h-4" src={FewSessionsLeftTriangle} />
+                    <p className="text-2xs sm:text-xs mt-1 ml-2">{fewSpotsLeftText}</p>
+                  </div>
+                )}
+              </div>
             </div>
           );
         }
       )}
-    </SessionsListContainer>
+    </div>
   );
 };
 
@@ -140,7 +154,7 @@ SessionsList.propTypes = {
       startTime: PropTypes.string.isRequired,
       time: PropTypes.string.isRequired,
       location: PropTypes.object.isRequired,
-      level: PropTypes.string.isRequired,
+      level: PropTypes.object,
     })
   ),
   selectedDate: PropTypes.instanceOf(Date).isRequired,

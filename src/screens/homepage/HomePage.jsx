@@ -1,82 +1,71 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useCallback } from 'react';
 
-import PWABanner from 'shared/components/PWABanner';
-import DesktopLanding from './components/DesktopLanding';
+import Landing from './components/Landing';
 
 import Modal from 'shared/components/Modal';
-import SurveyModal from 'screens/survey/SurveyModal.jsx';
+import SurveyModal from 'screens/survey/SurveyModal';
 
-import {
-  getUserProfile,
-  getPreviousSessions,
-} from 'screens/my-account/reducer';
+import { getUserProfile, getPreviousSessions, getPageLoading } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { initialLoadInit } from 'screens/my-account/actionCreators';
 
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-
-const PageContainer = styled.div``;
-let shouldShowSurveyModal = false;
+import queryString from 'query-string';
+import { openContactForm, openContactFormForUser } from 'shared/utils/contactForm';
 
 const HomePage = () => {
-  // Handle post-login redirects:
   const history = useHistory();
+  const { search } = useLocation();
 
   const dispatch = useDispatch();
   const userInfo = useSelector(getUserProfile);
+  const loading = useSelector(getPageLoading);
   const previousSessions = useSelector(getPreviousSessions);
   previousSessions.sort((a, b) => b.id - a.id);
   const isAuthenticated = useSelector(getIsAuthenticated);
 
-  const [showConfirmModal, setShowConfirmModal] = useState(true);
-  const showConfirmModalHandler = () => setShowConfirmModal(true);
-  const hideConfirmModalHandler = () => setShowConfirmModal(false);
+  const redirectUrl = window.localStorage.getItem('redirect');
+  const shouldShowSurveyModal =
+    isAuthenticated && userInfo?.lastCheckedInUserSession?.surveyAnswers.length === 0;
 
-  const redirectUrl = window.sessionStorage.getItem('redirect');
-  const shouldShowSurveyModal = (
-    isAuthenticated &&
-    userInfo &&
-    userInfo.id &&
-    previousSessions &&
-    previousSessions.length &&
-    previousSessions[0].surveyAnswers.length === 0 &&
-    previousSessions[0].inCancellationTime === false &&
-    previousSessions[0].inConfirmationTime === false
-  );
-  const maybeGoBackToSessionToBook = () => {
-    if (redirectUrl) {
-      window.sessionStorage.removeItem('redirect');
+  const maybeGoBackToSessionToBook = useCallback(() => {
+    if (isAuthenticated && redirectUrl) {
+      window.localStorage.removeItem('redirect');
       history.push(redirectUrl);
     }
-  };
+  }, [history, isAuthenticated, redirectUrl]);
 
   useEffect(() => {
     dispatch(initialLoadInit());
 
     if (shouldShowSurveyModal) {
-      window.sessionStorage.setItem('surveyLock', 'true');
+      window.localStorage.setItem('surveyLock', 'true');
     } else {
-      //TODO: might need something like this if stuck in survey lock mode
-      //window.sessionStorage.removeItem('surveyLock', 'true');
+      window.localStorage.removeItem('surveyLock', 'true');
       maybeGoBackToSessionToBook();
     }
-  }, [dispatch, shouldShowSurveyModal]);
+  }, [dispatch, shouldShowSurveyModal, maybeGoBackToSessionToBook]);
+
+  useEffect(() => {
+    if (!loading) {
+      const { openForm } = queryString.parse(search);
+      setTimeout(() => {
+        if (openForm === 'true') {
+          isAuthenticated ? openContactFormForUser(userInfo) : openContactForm();
+        }
+      }, 3000);
+    }
+  }, [search, userInfo, isAuthenticated, loading]);
 
   return (
-    <PageContainer>
-      <PWABanner />
-      <section class="covid-19">Click <a href="/documents/COVID_guidelinesv2.pdf" target="_blank">here</a> to see the changes we&apos;re making in response to COVID-19.</section>
-      {shouldShowSurveyModal ? (
-        <Modal shouldClose closeHandler={() => {}} isOpen={showConfirmModal}>
-          <SurveyModal closeHandler={() => {}} isOpen={showConfirmModal} />
-        </Modal>
-        ) : ''
-      }
-      <DesktopLanding />
-    </PageContainer>
+    <>
+      <Landing />
+      <Modal isOpen={shouldShowSurveyModal}>
+        <SurveyModal isOpen={shouldShowSurveyModal} />
+      </Modal>
+    </>
   );
-}
+};
 
 export default HomePage;

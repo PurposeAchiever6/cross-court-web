@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { object, arrayOf } from 'prop-types';
 
-import device from 'shared/styles/mediaQueries';
 import Tabs from 'shared/components/Tabs';
 import MyProfile from './components/MyProfile';
 import SessionsList from './components/SessionsList';
@@ -30,7 +29,11 @@ export const MyAccountPageMobile = ({
         <MyProfile profile={userProfile} showTitle={false} />
       </div>
       <div label="MY CREDITS">
-        <MyCredits credits={userProfile.credits} />
+        <MyCredits
+          isUnlimited={userProfile.unlimitedCredits}
+          credits={userProfile.totalCredits}
+          activeSubscription={userProfile.activeSubscription}
+        />
       </div>
     </Tabs>
 

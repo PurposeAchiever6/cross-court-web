@@ -24,7 +24,11 @@ const AddCard = () => {
   const addCardHandler = (stripe, cardElement) => dispatch(addCard(stripe, cardElement));
 
   return (
-    <StripeScriptLoader uniqueId="stripeLib" script="https://js.stripe.com/v3/" loader={Loading}>
+    <StripeScriptLoader
+      uniqueId="stripeLib"
+      script="https://js.stripe.com/v3/"
+      loader={<Loading />}
+    >
       <StripeProvider apiKey={STRIPE_API_KEY}>
         <PageContainer>
           <Elements>

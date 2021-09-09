@@ -2,10 +2,9 @@ import { all } from 'redux-saga/effects';
 
 import rootAppSaga from 'shared/sagas/appSaga';
 import rootAuthSaga from 'screens/auth/saga';
-import rootSemSessionSaga from 'screens/sem-session/saga';
 import rootLocationSaga from 'screens/locations/saga';
 import rootSessionSaga from 'screens/sessions/saga';
-import rootSeriesSaga from 'screens/series/saga';
+import rootProductsSaga from 'screens/products/saga';
 import rootMyAccountSaga from 'screens/my-account/saga';
 import rootPurchaseHistorySaga from 'screens/purchase-history/saga';
 import rootPaymentsSaga from 'screens/payments/saga';
@@ -18,8 +17,7 @@ export default function* rootSaga() {
     rootAuthSaga(),
     rootLocationSaga(),
     rootSessionSaga(),
-    rootSeriesSaga(),
-    rootSemSessionSaga(),
+    rootProductsSaga(),
     rootMyAccountSaga(),
     rootPurchaseHistorySaga(),
     rootPaymentsSaga(),

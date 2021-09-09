@@ -1,80 +1,99 @@
 import React from 'react';
-import { number } from 'prop-types';
+import { number, bool, object } from 'prop-types';
 import styled from 'styled-components';
-import Button from 'shared/components/Button';
-import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
-import AlternativeButton from 'shared/components/AlternativeButton';
-import { Link } from 'react-router-dom';
-import ArButton from 'shared/components/ArButton';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
 
 const MyCreditsContainer = styled.div`
   padding: 1rem;
-  display: flex;
   margin-top: 1.5rem;
-  justify-content: space-between;
 
-  * {
-    flex: 1;
+  .session-number {
+    display: block;
+    font-family: 'shapiro95_super_wide';
+    font-size: 57px;
+    line-height: 63px;
+    margin-right: 0.5rem;
   }
 
-  h3 {
-    font-size: 1.75rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-  }
-  .sessions-number-container {
-    text-align: center;
-    margin-right: 1rem;
-
-    .session-number {
-      font-weight: 500;
-      font-size: 57px;
-      margin-bottom: 0.75rem;
-    }
-  }
-
-  .links {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .btn {
-    background-color: ${colors.black};
-    color: ${colors.white};
-    width: 100%;
-    padding: 1rem 1rem;
-  }
-  .alt-btn {
-    background-color: ${colors.white};
-    color: ${colors.black};
-    border: 1px solid ${colors.black};
-    width: 100%;
-    padding: 0.7rem 1rem;
-    height: 100%;
+  .sessions-left {
+    display: block;
+    font-family: 'shapiro95_super_wide';
+    font-size: 18px;
+    line-height: 16px;
+    max-width: 216px;
+    margin: 0 auto;
   }
 `;
 
-const MyCredits = ({ credits }) => (
-  <MyCreditsContainer>
-    <div className="sessions-number-container">
-      <span className="session-number">{credits}</span>
-      <span className="sessions-left">SESSIONS<br />LEFT</span>
-    </div>
-    <div className="links">
-      <ArButton className="buy-series-btn" link={ROUTES.SERIES}>
-        BUY SERIES
-      </ArButton>
-      <ArButton link={ROUTES.PURCHASEHISTORY}>
-        PURCHASE HISTORY
-      </ArButton>
-    </div>
-  </MyCreditsContainer>
-);
+const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
+  const sessionPluralize = credits === 1 ? 'SESSION' : 'SESSIONS';
+
+  return (
+    <MyCreditsContainer>
+      <div className="text-center pt-4 mb-16">
+        {isUnlimited ? (
+          <span className="sessions-left">
+            UNLIMITED
+            <br />
+            SESSIONS
+          </span>
+        ) : (
+          <>
+            <span className="session-number">{credits}</span>
+            {activeSubscription ? (
+              <span className="sessions-left">
+                {`${sessionPluralize} LEFT`}
+                <br />
+                THIS MONTH
+              </span>
+            ) : (
+              <span className="sessions-left">
+                {sessionPluralize}
+                <br />
+                LEFT
+              </span>
+            )}
+          </>
+        )}
+        {activeSubscription && (
+          <div className="text-sm mt-10">
+            <div>
+              <span className="font-shapiro95_super_wide uppercase mr-2">Current Membership:</span>
+              <span>{activeSubscription.product.name}</span>
+            </div>
+            <div>
+              <span className="font-shapiro95_super_wide uppercase mr-2">Billing Period:</span>
+              <span>
+                {`${subscriptionPeriodFormattedDate(
+                  activeSubscription.currentPeriodStart
+                )} - ${subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}`}
+              </span>
+            </div>
+          </div>
+        )}
+      </div>
+      <div>
+        <PrimaryButton className="mb-1 block" to={ROUTES.MEMBERSHIPS} w="100%">
+          {activeSubscription ? 'Manage Membership' : 'See Memberships'}
+        </PrimaryButton>
+        <PrimaryButton to={ROUTES.PURCHASEHISTORY} w="100%">
+          PURCHASE HISTORY
+        </PrimaryButton>
+      </div>
+    </MyCreditsContainer>
+  );
+};
+
+MyCredits.defaultProps = {
+  activeSubscription: null,
+};
 
 MyCredits.propTypes = {
+  isUnlimited: bool,
   credits: number,
+  activeSubscription: object,
 };
 
 export default MyCredits;

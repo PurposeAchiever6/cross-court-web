@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import ScrollLock from 'react-scrolllock';
-import device from 'shared/styles/mediaQueries';
 
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';

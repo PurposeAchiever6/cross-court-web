@@ -5,19 +5,17 @@ import { isEmpty } from 'ramda';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from 'shared/components/Button';
 import CCIcon from 'shared/components/CCIcon';
 import { useHistory } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
-import device from 'shared/styles/mediaQueries';
-import ArButton from 'shared/components/ArButton';
 import { deleteCard, setSelectedCard } from '../actionCreators';
 
 import { getUserProfile } from 'screens/my-account/reducer';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const PaymentMethodsContainer = styled.div`
   width: 35%;
-  margin-top: 5rem;
 
   .payment-methods-container {
     border: 1px solid #bbbecd;
@@ -154,11 +152,12 @@ const PaymentMethodsContainer = styled.div`
 const PaymentMethods = ({ availableCards }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const isAuthenticated = useSelector(getIsAuthenticated);
 
   const [selectedCard, setSelectedCard2] = useState('');
 
-  const deleteCardHandler = paymentMethodId => dispatch(deleteCard(paymentMethodId));
-  const selectedCardHandler = paymentMethod => {
+  const deleteCardHandler = (paymentMethodId) => dispatch(deleteCard(paymentMethodId));
+  const selectedCardHandler = (paymentMethod) => {
     dispatch(setSelectedCard(paymentMethod));
     setSelectedCard2(paymentMethod.id);
   };
@@ -167,15 +166,15 @@ const PaymentMethods = ({ availableCards }) => {
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
   const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const freeSessionCreditAdded = freeSessionNotExpired && freeSessionNotClaimed;
-  const isFSFFlow = (freeSessionCreditAdded || window.location.search === '?testanimation');
-  const redirectUrl = window.sessionStorage.getItem('redirect');
+  const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed;
+  const redirectUrl = window.localStorage.getItem('redirect');
   /* END FSF FLOW LOGIC */
+
   const shouldReturnFSFDetailsPage = () => !!(isFSFFlow && availableCards.length && redirectUrl);
 
   const nextHandler = () => {
     if (shouldReturnFSFDetailsPage()) {
-      window.sessionStorage.removeItem('redirect');
+      window.localStorage.removeItem('redirect');
       history.push(redirectUrl);
     } else {
       history.push('/checkout');
@@ -184,12 +183,12 @@ const PaymentMethods = ({ availableCards }) => {
 
   return (
     <PaymentMethodsContainer className="payments">
-      <h2>CHOOSE A PAYMENT METHOD</h2>
+      <h2 className="mb-8">CHOOSE A PAYMENT METHOD</h2>
       <div className="payment-methods-container">
         {isEmpty(availableCards) ? (
           <div className="empty-message">There are no payment methods added yet.</div>
         ) : (
-          availableCards.map(payment => {
+          availableCards.map((payment) => {
             const isCardSelected = selectedCard === payment.id;
             return (
               <div className="credit-card-container" key={payment.id}>
@@ -222,12 +221,12 @@ const PaymentMethods = ({ availableCards }) => {
         )}
       </div>
       <div className="buttons-container">
-        <ArButton link={ROUTES.PAYMENTSADDCARD} inverted>
+        <PrimaryButton to={ROUTES.PAYMENTSADDCARD} inverted>
           ADD NEW CARD
-        </ArButton>
-        <Button className="ar-button" disabled={isEmpty(selectedCard)} onClick={nextHandler}>
-          <div className="ar-button-inner">NEXT</div>
-        </Button>
+        </PrimaryButton>
+        <PrimaryButton disabled={isEmpty(selectedCard)} onClick={nextHandler}>
+          NEXT
+        </PrimaryButton>
       </div>
     </PaymentMethodsContainer>
   );

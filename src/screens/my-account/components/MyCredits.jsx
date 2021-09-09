@@ -1,71 +1,138 @@
 import React from 'react';
-import { number } from 'prop-types';
+import { number, bool, object } from 'prop-types';
 import styled from 'styled-components';
-import ArButton from 'shared/components/ArButton';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import ROUTES from 'shared/constants/routes';
+import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
 
 const MyCreditsContainer = styled.div`
   padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
+
   h3 {
     font-size: 1.75rem;
-    font-weight: 500;
-    margin: 0 0 2rem 0;
+    font-family: 'shapiro95_super_wide';
   }
-  .sessions-number-container {
-    font-size: 18px;
-    line-height: 22px;
-    text-align: center;
-    padding: 1rem;
-    margin-bottom: 2rem;
 
-    .session-number {
-      font-weight: 500;
-      font-size: 57px;
-      line-height: 47px;
-      margin-bottom: 0.75rem;
-    }
+  .session-number {
+    font-family: 'shapiro95_super_wide';
+    font-size: 76px;
+    line-height: 63px;
+    margin-right: 0.5rem;
   }
-  a {
-    width: 100%;
+
+  .dropin-title-1,
+  .subscription-title-1,
+  .unlimited-title-1 {
+    display: block;
+    font-family: 'shapiro95_super_wide';
   }
-  .btn {
-    background-color: #000;
-    color: #fff;
-    width: 100%;
+
+  .dropin-title-2,
+  .subscription-title-2,
+  .unlimited-title-2 {
+    display: block;
+    font-family: 'shapiro97_air_extd';
+    -webkit-text-stroke: 1px;
   }
-  .alt-btn {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #000;
-    margin-top: 2rem;
-    width: 100%;
+
+  .dropin-title-1 {
+    font-size: 22px;
+    line-height: 18px;
+  }
+
+  .dropin-title-2 {
+    font-size: 49px;
+    line-height: 45px;
+  }
+
+  .subscription-title-1 {
+    font-size: 24px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+
+  .subscription-title-2 {
+    font-size: 34px;
+    line-height: 45px;
+    white-space: nowrap;
+  }
+
+  .unlimited-title-1 {
+    font-size: 38px;
+    line-height: 35px;
+    letter-spacing: 0.5px;
+  }
+
+  .unlimited-title-2 {
+    font-size: 35px;
+    line-height: 30px;
   }
 `;
 
-const MyCredits = ({ credits }) => {
+const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
+  const sessionPluralize = credits === 1 ? 'SESSION' : 'SESSIONS';
+
   return (
     <MyCreditsContainer className="my-credits">
-      <h3>SERIES</h3>
-      <div className="sessions-number-container">
-        <span className="session-number">{credits}</span>
-        <span className="session-title-block">
-          <span className="session-title-1">SESSIONS</span>
-          <span className="session-title-2">LEFT</span>
-        </span>
+      <div className="mb-6">
+        {isUnlimited ? (
+          <div className="-mt-4s">
+            <span className="unlimited-title-1">UNLIMITED</span>
+            <span className="unlimited-title-2">SESSIONS</span>
+          </div>
+        ) : (
+          <div className="flex mb-4">
+            <span className="session-number">{credits}</span>
+            <span>
+              {activeSubscription ? (
+                <>
+                  <span className="subscription-title-1">{`${sessionPluralize} LEFT`}</span>
+                  <span className="subscription-title-2">THIS MONTH</span>
+                </>
+              ) : (
+                <>
+                  <span className="dropin-title-1">{sessionPluralize}</span>
+                  <span className="dropin-title-2">LEFT</span>
+                </>
+              )}
+            </span>
+          </div>
+        )}
+        {activeSubscription && (
+          <div className="text-sm mt-4">
+            <div>
+              <span className="font-shapiro95_super_wide uppercase mr-2">Current Membership:</span>
+              <span>{activeSubscription.product.name}</span>
+            </div>
+            <div>
+              <span className="font-shapiro95_super_wide uppercase mr-2">Billing Period:</span>
+              <span>
+                {`${subscriptionPeriodFormattedDate(
+                  activeSubscription.currentPeriodStart
+                )} - ${subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}`}
+              </span>
+            </div>
+          </div>
+        )}
       </div>
-      <ArButton className="buy-series-button" link="/series" inverted={false}>
-        BUY SERIES
-      </ArButton>
-      <ArButton link="/purchase-history" inverted>
-        PURCHASE HISTORY
-      </ArButton>
+      <PrimaryButton className="mb-1 block" to={ROUTES.MEMBERSHIPS} w="100%">
+        {activeSubscription ? 'Manage Membership' : 'See Memberships'}
+      </PrimaryButton>
+      <PrimaryButton to="/purchase-history" inverted w="100%">
+        Purchase History
+      </PrimaryButton>
     </MyCreditsContainer>
   );
 };
 
+MyCredits.defaultProps = {
+  activeSubscription: null,
+};
+
 MyCredits.propTypes = {
+  isUnlimited: bool.isRequired,
   credits: number.isRequired,
+  activeSubscription: object,
 };
 
 export default MyCredits;
