@@ -13,7 +13,7 @@ import { getAvailableProducts, getPageLoading } from './reducer';
 import Plans from './components/Plans';
 import FacilityRentals from './components/FacilityRentals';
 import NoSessionCredits from './components/NoSessionCredits';
-import CancelMembershipModal from './components/CancelMembershipModal';
+import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();

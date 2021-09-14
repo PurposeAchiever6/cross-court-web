@@ -27,14 +27,7 @@ const modalStyle = {
 
 ReactModal.setAppElement('#root');
 
-const Modal = ({
-  children,
-  shouldClose,
-  closeHandler,
-  isOpen,
-  style = {},
-  showCloseButton = false,
-}) => {
+const Modal = ({ children, shouldClose, closeHandler, isOpen, style, showCloseButton, title }) => {
   const { width: windowSize } = useWindowSize();
   const newModalStyle = {
     ...modalStyle,
@@ -52,11 +45,14 @@ const Modal = ({
       onRequestClose={closeHandler}
       isOpen={isOpen}
     >
-      {showCloseButton && (
-        <button className="h-1/5" onClick={closeHandler}>
-          <CrossSvg color="black" />
-        </button>
-      )}
+      <div className="flex items-center">
+        {showCloseButton && (
+          <button className="h-1/5" onClick={closeHandler}>
+            <CrossSvg color="black" />
+          </button>
+        )}
+        {title && <h2 className="ml-4">{title}</h2>}
+      </div>
       <div className={`flex items-center justify-center ${showCloseButton ? 'h-4/5' : 'h-full'}`}>
         {children}
       </div>
@@ -69,6 +65,12 @@ Modal.propTypes = {
   shouldClose: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
+};
+
+Modal.defaultProps = {
+  style: {},
+  showCloseButton: false,
+  title: null,
 };
 
 export default Modal;

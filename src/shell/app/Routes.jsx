@@ -38,6 +38,7 @@ const SessionConfirmed = lazy(() => import('screens/sessions/pages/SessionConfir
 const SessionReserved = lazy(() => import('screens/sessions/pages/SessionReserved'));
 const Checkout = lazy(() => import('screens/checkout/CheckoutPage'));
 const ProductsPage = lazy(() => import('screens/products/ProductsPage'));
+const ManageMembershipPage = lazy(() => import('screens/memberships/ManageMembershipPage'));
 const MyAccount = lazy(() => import('screens/my-account/MyAccountPage'));
 const PurchaseHistory = lazy(() => import('screens/purchase-history/PurchaseHistoryPage'));
 const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfirm'));
@@ -614,6 +615,9 @@ const Routes = () => {
         </Route>
         <Route path={ROUTES.MEMBERSHIPS}>
           <ProductsPage />
+        </Route>
+        <Route path={ROUTES.MANAGE_MEMBERSHIP}>
+          <ManageMembershipPage />
         </Route>
         <Route path={ROUTES.TERMS}>
           <TermsAndConditions />

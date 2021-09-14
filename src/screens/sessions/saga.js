@@ -89,7 +89,7 @@ export function* cancelSessionFlow({ payload }) {
     yield put({
       type: CANCEL_SESSION_SUCCESS,
     });
-    yield call(toast.success, 'Session successfully cancelled!');
+    yield call(toast.success, 'Session successfully canceled!');
     yield put(push(ROUTES.MYACCOUNT));
   } catch (err) {
     yield put({ type: CANCEL_SESSION_FAILURE, error: err.response.data.error });
