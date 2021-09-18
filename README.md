@@ -18,8 +18,8 @@ REACT_APP_GOOGLE_ANALYTICS_CODE=UA-111654318-1
 REACT_APP_GOOGLE_MAPS_API_KEY=AIzaSyDLr9IoxSVY-V0lN_Z7-EDjFWei2F6a55Y
 REACT_APP_STRIPE_API_KEY=pk_test_ruSiCBKu2EJm5li5MQ69Q5h900wyV2yYKw
 
-REACT_APP_FOUNTAIN_SO_LINK=https://work.fountain.com/jobs/CrossCourt-CrossCourt---Session-Official-Referee-gse4gsOYGacFc5z0
-REACT_APP_FOUNTAIN_SEM_LINK=https://work.fountain.com/jobs/CrossCourt-CrossCourt---Session-Experience-Manager-UhUp3IPnPhcKNMdP
+REACT_APP_SO_APPLICANT_LINK=https://crosscourt.bamboohr.com/jobs/view.php?id=21
+REACT_APP_SEM_APPLICANT_LINK=https://crosscourt.bamboohr.com/jobs/view.php?id=21
 
 REACT_APP_FACEBOOK_LINK=https://www.facebook.com/CrossCourtBall/
 REACT_APP_TWITTER_LINK=https://twitter.com/crosscourtball
