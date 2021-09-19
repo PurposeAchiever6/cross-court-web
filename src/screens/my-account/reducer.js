@@ -12,7 +12,10 @@ import {
   SHOW_EDIT_PROFILE,
 } from './actionTypes';
 
-import { CANCEL_SUBSCRIPTION_SUCCESS } from '../products/actionTypes';
+import {
+  CANCEL_SUBSCRIPTION_SUCCESS,
+  REACTIVE_SUBSCRIPTION_SUCCESS,
+} from '../products/actionTypes';
 import { CREATE_SUBSCRIPTION_SUCCESS, UPDATE_SUBSCRIPTION_SUCCESS } from '../checkout/actionTypes';
 
 const initialState = {
@@ -79,13 +82,10 @@ export default (state = initialState, action) => {
         ...state,
         userProfile: { ...action.payload.userProfile },
       };
-    case CANCEL_SUBSCRIPTION_SUCCESS:
-      return {
-        ...state,
-        userProfile: { ...state.userProfile, activeSubscription: null },
-      };
     case CREATE_SUBSCRIPTION_SUCCESS:
     case UPDATE_SUBSCRIPTION_SUCCESS:
+    case CANCEL_SUBSCRIPTION_SUCCESS:
+    case REACTIVE_SUBSCRIPTION_SUCCESS:
       return {
         ...state,
         userProfile: { ...state.userProfile, activeSubscription: action.payload.subscription },

@@ -8,7 +8,12 @@ import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { identify, startedCheckout } from 'shared/utils/klaviyo';
-import { initialLoad, setSelectedProduct, cancelSubscription } from './actionCreators';
+import {
+  initialLoad,
+  setSelectedProduct,
+  cancelSubscription,
+  reactiveSubscription,
+} from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
 import Plans from './components/Plans';
 import FacilityRentals from './components/FacilityRentals';
@@ -44,6 +49,10 @@ const ProductsPage = () => {
     setShowCancelModal(true);
   };
 
+  const reactiveMembership = () => {
+    dispatch(reactiveSubscription(userProfile.activeSubscription));
+  };
+
   const showAnimation =
     userProfile.totalCredits === 0 &&
     window.localStorage.getItem('previousPage').indexOf('session-') !== -1;
@@ -69,6 +78,7 @@ const ProductsPage = () => {
             cancelMembership={cancelMembership}
             availableProducts={availableProducts}
             activeSubscription={userProfile.activeSubscription}
+            reactiveMembership={reactiveMembership}
           />
         </div>
         <FacilityRentals />

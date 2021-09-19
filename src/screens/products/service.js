@@ -22,4 +22,12 @@ export default {
 
     return response.data;
   },
+
+  reactiveSubscription: async (subscriptionId) => {
+    const response = await api.post(`/subscriptions/${subscriptionId}/reactive`, {
+      data: {},
+    });
+
+    return response.data;
+  },
 };
