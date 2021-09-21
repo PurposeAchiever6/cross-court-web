@@ -12,7 +12,7 @@ import {
   initialLoad,
   setSelectedProduct,
   cancelSubscription,
-  reactiveSubscription,
+  reactivateSubscription,
 } from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
 import Plans from './components/Plans';
@@ -49,8 +49,8 @@ const ProductsPage = () => {
     setShowCancelModal(true);
   };
 
-  const reactiveMembership = () => {
-    dispatch(reactiveSubscription(userProfile.activeSubscription));
+  const reactivateMembership = () => {
+    dispatch(reactivateSubscription(userProfile.activeSubscription));
   };
 
   const showAnimation =
@@ -78,7 +78,7 @@ const ProductsPage = () => {
             cancelMembership={cancelMembership}
             availableProducts={availableProducts}
             activeSubscription={userProfile.activeSubscription}
-            reactiveMembership={reactiveMembership}
+            reactivateMembership={reactivateMembership}
           />
         </div>
         <FacilityRentals />

@@ -23,8 +23,8 @@ export default {
     return response.data;
   },
 
-  reactiveSubscription: async (subscriptionId) => {
-    const response = await api.post(`/subscriptions/${subscriptionId}/reactive`, {
+  reactivateSubscription: async (subscriptionId) => {
+    const response = await api.post(`/subscriptions/${subscriptionId}/reactivate`, {
       data: {},
     });
 

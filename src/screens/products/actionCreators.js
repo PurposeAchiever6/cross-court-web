@@ -2,7 +2,7 @@ import {
   INITIAL_LOAD_INIT,
   SET_SELECTED_PRODUCT,
   CANCEL_SUBSCRIPTION_INIT,
-  REACTIVE_SUBSCRIPTION_INIT,
+  REACTIVATE_SUBSCRIPTION_INIT,
 } from './actionTypes';
 
 export const initialLoad = () => ({
@@ -23,8 +23,8 @@ export const cancelSubscription = (subscription) => ({
   },
 });
 
-export const reactiveSubscription = (subscription) => ({
-  type: REACTIVE_SUBSCRIPTION_INIT,
+export const reactivateSubscription = (subscription) => ({
+  type: REACTIVATE_SUBSCRIPTION_INIT,
   payload: {
     subscription: subscription,
   },

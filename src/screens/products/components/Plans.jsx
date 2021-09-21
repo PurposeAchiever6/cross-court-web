@@ -9,7 +9,7 @@ const FREE_SESSION = 'Free Session';
 
 const getSubmitText = (isActiveSubscription, activeSubscription) => {
   if (isActiveSubscription) {
-    return activeSubscription.canceled ? 'Reactive' : 'Cancel';
+    return activeSubscription.canceled ? 'Reactivate' : 'Cancel';
   } else {
     return activeSubscription ? 'Select' : 'Join';
   }
@@ -18,7 +18,7 @@ const getSubmitText = (isActiveSubscription, activeSubscription) => {
 const Plans = ({
   selectProductHandler,
   cancelMembership,
-  reactiveMembership,
+  reactivateMembership,
   availableProducts,
   activeSubscription,
 }) => {
@@ -29,7 +29,7 @@ const Plans = ({
 
   const onSubmit = (isActiveSubscription, product) => {
     if (isActiveSubscription) {
-      activeSubscription.canceled ? reactiveMembership() : cancelMembership();
+      activeSubscription.canceled ? reactivateMembership() : cancelMembership();
     } else {
       selectProductHandler(product);
     }
@@ -92,7 +92,7 @@ Plans.propTypes = {
   availableProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeSubscription: PropTypes.object,
   cancelMembership: PropTypes.func.isRequired,
-  reactiveMembership: PropTypes.func.isRequired,
+  reactivateMembership: PropTypes.func.isRequired,
 };
 
 export default Plans;
