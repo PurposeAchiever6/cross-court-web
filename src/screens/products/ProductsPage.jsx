@@ -1,25 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import Loading from 'shared/components/Loading';
 import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { identify, startedCheckout } from 'shared/utils/klaviyo';
-import { initialLoad, setSelectedProduct, cancelSubscription } from './actionCreators';
+import {
+  initialLoad,
+  setSelectedProduct,
+  cancelSubscription,
+  reactivateSubscription,
+} from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
 import Plans from './components/Plans';
 import FacilityRentals from './components/FacilityRentals';
 import NoSessionCredits from './components/NoSessionCredits';
-import CancelMembershipModal from './components/CancelMembershipModal';
+import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const env = runtimeEnv();
-  const APP_URL = env.REACT_APP_URL;
 
   const availableProducts = useSelector(getAvailableProducts);
   const isLoading = useSelector(getPageLoading);
@@ -35,13 +37,17 @@ const ProductsPage = () => {
 
     if (isAuthenticated) {
       identify(userProfile.email);
-      startedCheckout(product, `${APP_URL}${ROUTES.MEMBERSHIPS}`);
+      startedCheckout({ product });
     }
     history.push(ROUTES.PAYMENTS);
   };
 
   const cancelMembership = () => {
     setShowCancelModal(true);
+  };
+
+  const reactivateMembership = () => {
+    dispatch(reactivateSubscription(userProfile.activeSubscription));
   };
 
   const showAnimation =
@@ -69,6 +75,7 @@ const ProductsPage = () => {
             cancelMembership={cancelMembership}
             availableProducts={availableProducts}
             activeSubscription={userProfile.activeSubscription}
+            reactivateMembership={reactivateMembership}
           />
         </div>
         <FacilityRentals />

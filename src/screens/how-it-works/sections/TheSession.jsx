@@ -55,7 +55,7 @@ const TheSession = (props) => {
           <span>
             SESSION
             <br />
-            OFFICIAL
+            OFFICIALS
           </span>
         </div>
         <div className="w-1/2 md:w-2/12 mb-4 md:mb-0 flex flex-col items-center text-center font-shapiro95_super_wide text-sm md:text-base">

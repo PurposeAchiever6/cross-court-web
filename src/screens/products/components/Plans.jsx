@@ -7,9 +7,18 @@ import ProductPlan from './ProductPlan';
 
 const FREE_SESSION = 'Free Session';
 
+const getSubmitText = (isActiveSubscription, activeSubscription) => {
+  if (isActiveSubscription) {
+    return activeSubscription.canceled ? 'Reactivate' : 'Cancel';
+  } else {
+    return activeSubscription ? 'Select' : 'Join';
+  }
+};
+
 const Plans = ({
   selectProductHandler,
   cancelMembership,
+  reactivateMembership,
   availableProducts,
   activeSubscription,
 }) => {
@@ -17,6 +26,14 @@ const Plans = ({
   const products = availableProducts.filter((product) => product.name !== FREE_SESSION);
   const oneTimeProducts = products.filter((product) => product.productType === ONE_TIME);
   const membershipProducts = products.filter((product) => product.productType === RECURRING);
+
+  const onSubmit = (isActiveSubscription, product) => {
+    if (isActiveSubscription) {
+      activeSubscription.canceled ? reactivateMembership() : cancelMembership();
+    } else {
+      selectProductHandler(product);
+    }
+  };
 
   return (
     <div className="lg:flex p-4 md:p-12 text-white">
@@ -45,19 +62,13 @@ const Plans = ({
           {membershipProducts.map((product) => {
             const isActiveSubscription = product.id === activeSubscription?.product.id;
 
-            const submitText = isActiveSubscription
-              ? 'Cancel'
-              : userHasActiveSubscription
-              ? 'Select'
-              : 'Join';
-
             return (
               <div key={product.id} className="w-full lg:w-1/3 lg:px-4 xl:px-7 mb-8">
                 <ProductPlan
                   product={product}
-                  submitText={submitText}
+                  submitText={getSubmitText(isActiveSubscription, activeSubscription)}
                   submitBtnSecondary={isActiveSubscription}
-                  handleSubmit={isActiveSubscription ? cancelMembership : selectProductHandler}
+                  handleSubmit={(product) => onSubmit(isActiveSubscription, product)}
                 />
               </div>
             );
@@ -81,6 +92,7 @@ Plans.propTypes = {
   availableProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
   activeSubscription: PropTypes.object,
   cancelMembership: PropTypes.func.isRequired,
+  reactivateMembership: PropTypes.func.isRequired,
 };
 
 export default Plans;

@@ -22,4 +22,12 @@ export default {
 
     return response.data;
   },
+
+  reactivateSubscription: async (subscriptionId) => {
+    const response = await api.post(`/subscriptions/${subscriptionId}/reactivate`, {
+      data: {},
+    });
+
+    return response.data;
+  },
 };

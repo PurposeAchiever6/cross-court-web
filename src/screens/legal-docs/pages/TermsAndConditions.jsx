@@ -50,8 +50,8 @@ const TermsAndConditions = () => {
         <br />
         In order to cancel a Reservation and return your purchased Session to your account, you must
         cancel your Reservation at least 5 hours prior to the start time of such Reservation. Once
-        your Reservation is cancelled, your purchased Session will be returned to your account to be
-        used at a future date. If you haven’t cancelled by the deadline listed above, your Session
+        your Reservation is canceled, your purchased Session will be returned to your account to be
+        used at a future date. If you haven’t canceled by the deadline listed above, your Session
         will have been used for the Reservation and will no longer be shown in your account.
         <br />
         <br />

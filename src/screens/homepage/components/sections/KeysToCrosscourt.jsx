@@ -100,7 +100,7 @@ const KeysToCrosscourt = (props) => (
       <span className="boxes-text">
         SESSION
         <br />
-        OFFICIAL
+        OFFICIALS
       </span>
     </div>
     <div className="boxes-item">

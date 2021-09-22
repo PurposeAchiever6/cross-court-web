@@ -52,7 +52,7 @@ const Section = styled.section`
 
 const SessionExperienceManager = () => {
   const env = runtimeEnv();
-  const SEM_LINK = env.REACT_APP_FOUNTAIN_SEM_LINK;
+  const SEM_LINK = env.REACT_APP_SEM_APPLICANT_LINK;
   const currentUser = useSelector(getUserProfile) || {};
 
   return (

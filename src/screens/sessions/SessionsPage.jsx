@@ -177,7 +177,7 @@ const SessionsPage = () => {
               </div>
             )}
           </div>
-          <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-between items-center px-4 py-12 md:px-4 md:py-10">
+          <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-around items-center px-4 py-12 md:px-4 md:py-10">
             <SessionOfficials sessionInfo={sessionInfo} />
             <SessionButtons
               session={sessionInfo}

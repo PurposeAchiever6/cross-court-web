@@ -55,7 +55,7 @@ const Section = styled.section`
 
 const TheSessionOfficial = () => {
   const env = runtimeEnv();
-  const SO_LINK = env.REACT_APP_FOUNTAIN_SO_LINK;
+  const SO_LINK = env.REACT_APP_SO_APPLICANT_LINK;
 
   const [showModal, setShowModal] = useState(false);
   const { width: windowSize } = useWindowSize();

@@ -115,7 +115,11 @@ const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
           </div>
         )}
       </div>
-      <PrimaryButton className="mb-1 block" to={ROUTES.MEMBERSHIPS} w="100%">
+      <PrimaryButton
+        className="mb-1 block"
+        to={activeSubscription ? ROUTES.MANAGE_MEMBERSHIP : ROUTES.MEMBERSHIPS}
+        w="100%"
+      >
         {activeSubscription ? 'Manage Membership' : 'See Memberships'}
       </PrimaryButton>
       <PrimaryButton to="/purchase-history" inverted w="100%">

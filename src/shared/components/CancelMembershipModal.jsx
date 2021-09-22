@@ -24,10 +24,11 @@ const CancelMembershipModal = ({ cancelSubscriptionAction, setShowCancelModal, .
       closeHandler={closeHandler}
       style={{
         borderRadius: 0,
-        width: windowSize < size.desktop ? '80%' : '35rem',
+        width: windowSize < size.desktop ? '80%' : '40rem',
         height: windowSize < size.desktop ? '' : '15rem',
       }}
       showCloseButton
+      title="Are you sure you want to cancel your membership?"
     >
       <div className="flex flex-col items-center my-4">
         {showCancelMsg ? (
@@ -37,7 +38,12 @@ const CancelMembershipModal = ({ cancelSubscriptionAction, setShowCancelModal, .
           </>
         ) : (
           <>
-            <p className="mb-4">Are you sure you want to cancel your membership?</p>
+            <p className="text-sm p-4">
+              You are about to cancel your membership. The credits in your account will remain
+              available until the end of the billing period. At that point, your card on file will
+              no longer be charged. <br />
+              Your membership can be reactivated at any point prior to end of billing period.
+            </p>
             <PrimaryButton onClick={handleClick}>YES</PrimaryButton>
           </>
         )}
