@@ -9,14 +9,14 @@ const API_URL = env.REACT_APP_API_URL;
 
 const ServiceInstance = axios.create({
   baseURL: API_URL,
-  transformResponse: [...axios.defaults.transformResponse, data => humps.camelizeKeys(data)],
-  transformRequest: [data => humps.decamelizeKeys(data), ...axios.defaults.transformRequest],
+  transformResponse: [...axios.defaults.transformResponse, (data) => humps.camelizeKeys(data)],
+  transformRequest: [(data) => humps.decamelizeKeys(data), ...axios.defaults.transformRequest],
 });
 
 ServiceInstance.defaults.headers.common['Content-Type'] = 'application/json';
 
 ServiceInstance.interceptors.request.use(
-  async config => {
+  async (config) => {
     const tokens = AuthUtils.getTokens();
     const { uid, accessToken, client } = tokens;
     if (tokens) {
@@ -27,7 +27,7 @@ ServiceInstance.interceptors.request.use(
 
     return config;
   },
-  async error => Promise.reject(error)
+  async (error) => Promise.reject(error)
 );
 
 export default ServiceInstance;

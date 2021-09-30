@@ -23,7 +23,7 @@ const Randomizer = () => {
   };
 
   return (
-    <div className="w-full mb-2 text-white p-6">
+    <div className="w-full mb-2 text-white px-6 py-2">
       <p className="text-white text-7xl font-shapiro95_super_wide ml-4">SUBS</p>
       <div className="flex m-2 ml-4 font-shapiro95_super_wide text-7xl">
         <div className="border border-white flex items-center justify-center mr-4 h-40 w-40">
