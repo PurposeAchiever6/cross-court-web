@@ -4,6 +4,8 @@ import ROUTES from 'shared/constants/routes';
 const env = runtimeEnv();
 const APP_URL = env.REACT_APP_URL;
 
+const contactUrl = `${APP_URL}?openForm=true`;
+
 export const identify = (email) => {
   window._learnq.push([
     'identify',
@@ -13,9 +15,29 @@ export const identify = (email) => {
   ]);
 };
 
+export const stayInTheLoop = (email) => {
+  const locationsUrl = `${APP_URL}${ROUTES.LOCATIONS}`;
+
+  window._learnq.push([
+    'identify',
+    {
+      $email: email,
+      stayInTheLoop: true,
+    },
+  ]);
+
+  window._learnq.push([
+    'track',
+    'Stay In The Loop',
+    {
+      locationsUrl,
+      contactUrl,
+    },
+  ]);
+};
+
 export const startedCheckout = ({ product }) => {
   const checkoutUrl = `${APP_URL}${ROUTES.MEMBERSHIPS}`;
-  const contactUrl = `${APP_URL}?openForm=true`;
 
   const isRecurringProduct = product.productType === 'recurring';
   let productName = null;
