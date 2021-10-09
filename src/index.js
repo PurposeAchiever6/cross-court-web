@@ -7,6 +7,7 @@ import App from 'shell/Root';
 import * as serviceWorker from './serviceWorker';
 
 import './assets/main.css';
+import 'shared/utils/eventListeners';
 import 'shared/styles/fonts.css';
 import 'shared/styles/bootstrap.scss';
 import 'shared/styles/index.css';

@@ -53,7 +53,7 @@ const Footer = () => {
       const isValid = validateEmail(email);
       setShowError(!isValid);
       if (isValid) {
-        stayInTheLoop(email);
+        stayInTheLoop({ email });
         setShowError(!isValid);
         setSuccess(true);
       }

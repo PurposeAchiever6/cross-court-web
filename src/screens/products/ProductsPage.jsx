@@ -6,7 +6,7 @@ import Loading from 'shared/components/Loading';
 import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import { identify, startedCheckout } from 'shared/utils/klaviyo';
+import { startedCheckout } from 'shared/utils/klaviyo';
 import {
   initialLoad,
   setSelectedProduct,
@@ -36,8 +36,7 @@ const ProductsPage = () => {
     dispatch(setSelectedProduct(product));
 
     if (isAuthenticated) {
-      identify(userProfile.email);
-      startedCheckout({ product });
+      startedCheckout({ email: userProfile.email, product });
     }
     history.push(ROUTES.PAYMENTS);
   };
