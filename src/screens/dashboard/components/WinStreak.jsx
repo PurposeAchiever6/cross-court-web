@@ -56,7 +56,7 @@ const WinStreak = ({ setStreak, streak }) => {
           )}
         </div>
       </div>
-      <div className="flex items-end z-0 bg-cc-purple w-full h-64 mt-4">
+      <div className="flex items-end z-0 bg-cc-purple w-full h-60 mt-4">
         <div className="bottom-4 ml-4 font-dharma_gothic_cheavy_italic text-10xl ml-24">
           {[0, 1, 2].map((index) => {
             return streak.length > index ? (

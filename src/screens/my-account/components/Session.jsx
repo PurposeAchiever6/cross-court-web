@@ -186,24 +186,16 @@ const Session = ({
         <div className="time-location-buttons-container">
           <p className="time">{hourRange(time)}</p>
           <p className="location">{locationName}</p>
-          {isSem && inStartTime ? (
-            <div className="buttons-container">
-              <PrimaryButton to={`/sem/session/${sessionId}/${urlFormattedDate(date)}`}>
-                START SESSION
-              </PrimaryButton>
-            </div>
-          ) : (
-            <div className="buttons-container">
-              <PrimaryButton
-                className="see-details-button"
-                to={`/session/${sessionId}/${urlFormattedDate(date)}`}
-                inverted={past}
-                style={{ border: '3px solid white' }}
-              >
-                SEE DETAILS
-              </PrimaryButton>
-            </div>
-          )}
+          <div className="buttons-container">
+            <PrimaryButton
+              className="see-details-button"
+              to={`/session/${sessionId}/${urlFormattedDate(date)}`}
+              inverted={past}
+              style={{ border: '3px solid white' }}
+            >
+              SEE DETAILS
+            </PrimaryButton>
+          </div>
         </div>
       </div>
     </SessionContainer>

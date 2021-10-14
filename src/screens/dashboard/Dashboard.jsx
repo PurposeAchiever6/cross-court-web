@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import WinStreak from './components/WinStreak';
 import Randomizer from './components/Randomizer';
 import Fouls from './components/Fouls';
+import Clock from './components/Clock';
+import PlayersList from './components/PlayersList';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import { useSelector } from 'react-redux';
@@ -69,6 +71,8 @@ const Dashboard = () => {
         <Fouls setFouls={setFouls} darkFouls={darkFouls} lightFouls={lightFouls} />
         <WinStreak setStreak={setStreak} streak={streak} />
         <Randomizer />
+        <Clock />
+        <PlayersList />
       </div>
     )
   );

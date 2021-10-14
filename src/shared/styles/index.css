@@ -4,6 +4,7 @@
 @import './homepage.css';
 @import './sidebar.css';
 @import './toasts.css';
+@import './chatlio.css';
 
 body {
   margin: 0;

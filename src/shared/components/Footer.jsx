@@ -10,7 +10,7 @@ import InstagramSvg from './svg/InstagramSvg';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 import ArrowRightSvg from 'shared/components/svg/ArrowRightSvg';
 import ccLogo from 'shared/images/cc-logo.png';
-import { identify } from 'shared/utils/klaviyo';
+import { stayInTheLoop } from 'shared/utils/klaviyo';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { validateEmail } from 'shared/utils/helpers';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -53,7 +53,7 @@ const Footer = () => {
       const isValid = validateEmail(email);
       setShowError(!isValid);
       if (isValid) {
-        identify(email);
+        stayInTheLoop({ email });
         setShowError(!isValid);
         setSuccess(true);
       }
@@ -88,7 +88,7 @@ const Footer = () => {
                 </div>
               )}
               {success && (
-                <div class="flex">
+                <div className="flex">
                   <PrimaryButton
                     bg="transparent"
                     className="mr-4"

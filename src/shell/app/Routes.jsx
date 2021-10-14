@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import { ToastContainer, Zoom } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactGA from 'react-ga';
+import { showWidget, hideWidget } from 'shared/utils/chatlio';
 
 import { initialAppLoad } from 'shared/actions/actionCreators';
 import ROUTES from 'shared/constants/routes';
@@ -275,13 +276,13 @@ const setScrollClasses = () => {
           document.querySelector('.locations').scrollIntoView({ behavior: 'smooth' });
         }
 
-        window.setTimeout(function() {
+        window.setTimeout(function () {
           if (redirectToSpecificSession) {
             window.localStorage.removeItem('redirect');
             history.push(redirectToSpecificSession);
           } else {
             document.querySelector('.locations').classList.remove('faded-out');
-            window.setTimeout(function() {
+            window.setTimeout(function () {
               if (document.querySelector('.free-session-credit-added')) {
                 document.querySelector('.free-session-credit-added').style.display = 'none';
               }
@@ -404,8 +405,8 @@ const setScrollClasses = () => {
         keepScrolling = false;
         document.querySelector('main').classList.add('animation-done');
 
-        window.setTimeout(function() {
-          window.setTimeout(function() {
+        window.setTimeout(function () {
+          window.setTimeout(function () {
             if (document.querySelector('.no-session-credits')) {
               document.querySelector('.no-session-credits').style.display = 'none';
             }
@@ -426,12 +427,12 @@ const setScrollClasses = () => {
     body.getAttribute('data-page') === 'home' ||
     body.getAttribute('data-page') === 'how-it-works'
   ) {
-    window.setTimeout(function() {
+    window.setTimeout(function () {
       const video = document.querySelector('.video-player');
       const barMalik = document.querySelector('.bar-malik');
 
       if (video && barMalik) {
-        video.addEventListener('pause', function() {
+        video.addEventListener('pause', function () {
           video.classList.add('data-user-paused');
         });
 
@@ -489,7 +490,7 @@ const setScrollClasses = () => {
     }
   }
 
-  window.setTimeout(function() {
+  window.setTimeout(function () {
     const bottomBanner = document.querySelector('.banner-container');
 
     if (body.getAttribute('data-page') === 'how-it-works') {
@@ -520,7 +521,7 @@ const setScrollClasses = () => {
   }, 100);
 };
 
-window.cookieAndSessionStorageHandler = function(isAuthenticated) {
+window.cookieAndSessionStorageHandler = function (isAuthenticated) {
   let search = window.location.search;
   let params = new URLSearchParams(search);
   let referralCode = params.get('referralCode');
@@ -547,6 +548,20 @@ history.listen((location) => {
   keepScrolling = true;
   window.addEventListener('scroll', setScrollClasses);
   window.setTimeout(setScrollClasses, 1000);
+
+  const shouldShowWidget = [
+    ROUTES.HOME,
+    ROUTES.HOWITWORKS,
+    ROUTES.LOCATIONS,
+    ROUTES.MEMBERSHIPS,
+    ROUTES.SEM,
+  ].includes(location.pathname);
+
+  if (shouldShowWidget) {
+    showWidget();
+  } else {
+    hideWidget();
+  }
 });
 
 setPageNameOnBodyClass(window.location.pathname);

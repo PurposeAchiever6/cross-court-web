@@ -51,6 +51,7 @@ export default (state = initialState, action) => {
         selectedProduct: {
           ...state.selectedProduct,
           price: action.payload.price,
+          priceForMembers: action.payload.price,
         },
       };
     case CLEAR_DISCOUNT:

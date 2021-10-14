@@ -4,18 +4,40 @@ import ROUTES from 'shared/constants/routes';
 const env = runtimeEnv();
 const APP_URL = env.REACT_APP_URL;
 
-export const identify = (email) => {
-  window._learnq.push([
-    'identify',
-    {
-      $email: email,
-    },
-  ]);
+const CONTACT_US_FORM_EVENT = 'Contact Us Form';
+const STAY_IN_THE_LOOP_EVENT = 'Stay In The Loop';
+const STARTED_CHECKOUT = 'Started Checkout';
+
+const contactUrl = `${APP_URL}?openForm=true`;
+
+const identify = (email, customProperties = {}) => {
+  window._learnq.push(['identify', { $email: email, ...customProperties }]);
 };
 
-export const startedCheckout = ({ product }) => {
+// On identify call, klaviyo updates the user cookies. So we need some delay to track an event
+// after we identify the user, so it uses the new cookie and not the old one. If we don't,
+// it will track the event using the old cookie, that means, potentially tracking an event for
+// other user
+const trackEventWithDelay = (eventName, eventProperties = {}) => {
+  setTimeout(() => {
+    window._learnq.push(['track', eventName, eventProperties]);
+  }, 1000);
+};
+
+export const contactUsForm = ({ email }) => {
+  identify(email);
+  trackEventWithDelay(CONTACT_US_FORM_EVENT);
+};
+
+export const stayInTheLoop = ({ email }) => {
+  const locationsUrl = `${APP_URL}${ROUTES.LOCATIONS}`;
+
+  identify(email, { stayInTheLoop: true });
+  trackEventWithDelay(STAY_IN_THE_LOOP_EVENT, { locationsUrl, contactUrl });
+};
+
+export const startedCheckout = ({ email, product }) => {
   const checkoutUrl = `${APP_URL}${ROUTES.MEMBERSHIPS}`;
-  const contactUrl = `${APP_URL}?openForm=true`;
 
   const isRecurringProduct = product.productType === 'recurring';
   let productName = null;
@@ -26,13 +48,6 @@ export const startedCheckout = ({ product }) => {
     productName = `drop in ${product.credits > 1 ? 'credits' : 'credit'}`;
   }
 
-  window._learnq.push([
-    'track',
-    'Started Checkout',
-    {
-      productName,
-      checkoutUrl,
-      contactUrl,
-    },
-  ]);
+  identify(email);
+  trackEventWithDelay(STARTED_CHECKOUT, { productName, checkoutUrl, contactUrl });
 };

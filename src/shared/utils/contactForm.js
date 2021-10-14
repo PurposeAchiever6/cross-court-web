@@ -1,5 +1,14 @@
+import { contactUsForm } from './klaviyo';
+
 export const openContactForm = () => {
   document.querySelector('.eapps-form-floating-button').click();
+};
+
+export const openContactFormForUser = (user, message = '') => {
+  const { firstName, lastName, phoneNumber, email } = user;
+
+  openContactForm();
+  autoCompleteContactForm({ firstName, lastName, phoneNumber, email, message });
 };
 
 export const autoCompleteContactForm = ({
@@ -22,9 +31,18 @@ export const autoCompleteContactForm = ({
   if (messageInput) messageInput.value = message;
 };
 
-export const openContactFormForUser = (user, message = '') => {
-  const { firstName, lastName, phoneNumber, email } = user;
+export const addEventListenerOnSubmitContactUsForm = () => {
+  document.addEventListener('click', (e) => {
+    if (
+      e.target &&
+      (e.target.className === 'eapps-form-actions-button-label' ||
+        e.target.className === 'eapps-form-actions-button eapps-form-button')
+    ) {
+      const email = document.querySelector(".eapps-form-form input[name='email-3']").value;
 
-  openContactForm();
-  autoCompleteContactForm({ firstName, lastName, phoneNumber, email, message });
+      if (email.length > 0) {
+        contactUsForm({ email });
+      }
+    }
+  });
 };
