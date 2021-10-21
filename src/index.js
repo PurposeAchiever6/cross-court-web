@@ -13,6 +13,8 @@ import 'shared/styles/bootstrap.scss';
 import 'shared/styles/index.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+import 'external-tools/hotjar';
+
 const env = runtimeEnv();
 const GOOGLE_ANALYTICS_CODE = env.REACT_APP_GOOGLE_ANALYTICS_CODE;
 
