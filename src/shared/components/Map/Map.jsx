@@ -46,7 +46,7 @@ const env = runtimeEnv();
 const GOOGLE_MAPS_API_KEY = env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const LocationsPageContainer = styled.div`
-  height: 100vh;
+  height: 40vh;
 
   @media (min-width: 768px) {
     height: calc(100vh - 4rem);

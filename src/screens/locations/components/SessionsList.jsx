@@ -98,7 +98,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
           if (reserved || past) {
             button = (
-              <PrimaryButton to={`/session/${id}/${URLdate}`} inverted>
+              <PrimaryButton fontSize="11px" to={`/session/${id}/${URLdate}`} inverted>
                 SEE DETAILS
               </PrimaryButton>
             );
