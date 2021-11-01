@@ -145,7 +145,7 @@ const SessionsPage = () => {
           {sessionInfo.location.name} SESSION
         </h2>
       </div>
-      <div className="flex flex-col md:flex-row bg-cc-black border-b border-gray-600 h-full">
+      <div className="flex flex-col-reverse md:flex-row bg-cc-black border-b border-gray-600 h-full">
         <Carousel
           className="carousel-h-full"
           infiniteLoop={true}
@@ -157,7 +157,7 @@ const SessionsPage = () => {
             <img className="w-full md:w-1/2" src={image} alt="" key={index} />
           ))}
         </Carousel>
-        <div className="flex w-full flex-col md:flex-row md:w-1/2 ">
+        <div className="flex w-full flex-col-reverse md:flex-row md:w-1/2 ">
           <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
             <div className="mb-8 flex flex-col items-center md:items-start">
               {isAuthenticated && (
@@ -177,7 +177,7 @@ const SessionsPage = () => {
               </div>
             )}
           </div>
-          <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-around items-center px-4 py-12 md:px-4 md:py-10">
+          <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-around items-center px-4 pb-12 md:px-4 md:py-10">
             <SessionOfficials sessionInfo={sessionInfo} />
             <SessionButtons
               session={sessionInfo}

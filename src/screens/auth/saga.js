@@ -45,11 +45,9 @@ export function* loginFlow({ payload }) {
 }
 
 export function* logoutFlow() {
-  const localStorageClear = localStorage.clear();
-  const reload = window.location.reload();
-  yield call(localStorageClear);
-  yield call(reload);
+  yield call(AuthUtils.removeTokens);
   yield put({ type: LOGOUT_SUCCESS });
+  yield put(push(ROUTES.HOME));
 }
 
 export function* signupFlow({ payload }) {
@@ -115,7 +113,6 @@ export function* autoLoginFlow({ payload }) {
   try {
     yield call(AuthUtils.setTokens, payload.headers);
     yield put({ type: AUTO_LOGIN_SUCCESS });
-    yield put(push(ROUTES.LOCATIONS));
   } catch (err) {
     yield put({ type: AUTO_LOGIN_FAILURE, error: err });
   }

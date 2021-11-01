@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import BasketballSvg from 'shared/components/svg/BasketballSvg';
-import styled from 'styled-components';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import { updateSkillRatingInit } from '../../screens/auth/actionCreators';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import BackButton from 'shared/components/BackButton';
+import styled from 'styled-components';
+
 import ROUTES from 'shared/constants/routes';
+import BasketballSvg from 'shared/components/svg/BasketballSvg';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import BackButton from 'shared/components/BackButton';
+import OnboardingTour from 'shared/components/OnboardingTour';
+import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
+
+import { updateSkillRatingInit } from '../../screens/auth/actionCreators';
 
 const Circle = styled.div`
   border: 2px solid black;
@@ -15,7 +19,7 @@ const Circle = styled.div`
   border-radius: 50%;
   width: 30px;
   position: absolute;
-}`;
+`;
 
 const ALLOWED_PATHS = [ROUTES.MYACCOUNT, ROUTES.SIGNUP];
 
@@ -136,9 +140,27 @@ const Rating = () => {
             </div>
           ))}
         </div>
-        <PrimaryButton disabled={!skillRating} className="my-6" onClick={handleClick}>
+        <PrimaryButton
+          id="rating-btn"
+          disabled={!skillRating}
+          className="my-6"
+          onClick={handleClick}
+        >
           {isEdit ? 'SAVE' : 'SIGN UP'}
         </PrimaryButton>
+        {!isEdit && (
+          <OnboardingTour
+            id="onboarding-tour-rating"
+            enabled={isOnboardingTourEnable('onboarding-tour-rating')}
+            steps={[
+              {
+                element: '#rating-btn',
+                intro:
+                  'Choose a description that most describes your current skill level and tap <strong>SIGN UP</strong> to receive your account verification email. Verify your email and a free session credit will be placed in your account. Make sure to check your other email folders if it’not in your inbox. Side note: You are able to edit your skill level later.',
+              },
+            ]}
+          />
+        )}
       </div>
     </div>
   );
