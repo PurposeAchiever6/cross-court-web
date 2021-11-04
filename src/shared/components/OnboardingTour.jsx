@@ -44,7 +44,7 @@ const OnboardingTour = ({ id, enabled, steps, initialStep, timeout, onExit }) =>
           showButtons: false,
           showBullets: false,
           disableInteraction: false,
-          exitOnOverlayClick: false,
+          exitOnOverlayClick: true,
         }}
       />
     )

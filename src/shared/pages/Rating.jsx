@@ -156,7 +156,7 @@ const Rating = () => {
               {
                 element: '#rating-btn',
                 intro:
-                  'Choose a description that most describes your current skill level and tap <strong>SIGN UP</strong> to receive your account verification email. Verify your email and a free session credit will be placed in your account. Make sure to check your other email folders if it’not in your inbox. Side note: You are able to edit your skill level later.',
+                  'Choose a description that most describes your current skill level and tap <strong>SIGN UP</strong> to receive your account verification email. Verify your email and a free session credit will be placed in your account. Make sure to check your other email folders if it’s not in your inbox. Side note: You are able to edit your skill level later.',
               },
             ]}
           />

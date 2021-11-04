@@ -190,7 +190,7 @@ const Header = () => {
               {
                 element: '#header-btn',
                 intro:
-                  'Your first Crosscourt session is on us. Tap <strong>FIRST FREE</strong> or navigate to our schedules page to find an upcoming session.',
+                  'Your first Crosscourt session is on us. Tap <strong>FIRST FREE</strong> to find an upcoming session.',
               },
             ]}
             onExit={exitHeaderOnboardingTour}
