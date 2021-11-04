@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SessionLevel from 'shared/components/SessionLevel';
+import OnboardingTour from 'shared/components/OnboardingTour';
 import FewSessionsLeftTriangle from 'shared/images/warning-triangle.png';
 
 import {
@@ -98,7 +99,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
 
           if (reserved || past) {
             button = (
-              <PrimaryButton to={`/session/${id}/${URLdate}`} inverted>
+              <PrimaryButton fontSize="11px" to={`/session/${id}/${URLdate}`} inverted>
                 SEE DETAILS
               </PrimaryButton>
             );
@@ -111,7 +112,24 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
               </PrimaryButton>
             );
           } else {
-            button = <PrimaryButton to={`/session/${id}/${URLdate}`}>RESERVE</PrimaryButton>;
+            button = (
+              <>
+                <PrimaryButton id="sessions-list-reserve-btn" to={`/session/${id}/${URLdate}`}>
+                  RESERVE
+                </PrimaryButton>
+                <OnboardingTour
+                  id="onboarding-tour-sessions-list"
+                  timeout={1000}
+                  steps={[
+                    {
+                      element: '#sessions-list-reserve-btn',
+                      intro:
+                        'Tap <strong>RESERVE</strong> to see the session details. Then create a profile to receive your free session credit and finish booking.',
+                    },
+                  ]}
+                />
+              </>
+            );
           }
 
           return (

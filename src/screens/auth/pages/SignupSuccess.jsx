@@ -25,21 +25,6 @@ const PageContainer = styled.div`
     margin-bottom: 2rem;
   }
 
-  p {
-    font-size: 1.2rem;
-    line-height: 1.7rem;
-    margin-bottom: 5rem;
-    text-align: center;
-
-    strong {
-      font-weight: 600;
-    }
-
-    span {
-      display: block;
-    }
-  }
-
   .send-again-container {
     text-align: center;
 
@@ -63,13 +48,20 @@ const SignupSuccessPage = () => {
     <PageContainer className="signup-success">
       <img className="envelope-open" src={envelopeOpenIcon} alt="Sent mail icon" />
       <h1>SO CLOSE!</h1>
-      <p className="body">
-        We&apos;ve sent an email to {`${userEmail}`}.
-        <br />
-        <span>
-          Please verify your account to complete registration and redeem your free session credit.
-        </span>
-      </p>
+      <div className="text-center max-w-xl">
+        <p className="text-xl leading-7 mb-10">
+          We&apos;ve sent an email to {`${userEmail}`}.
+          <br />
+          <span>
+            Please verify your account to complete registration and redeem your free session credit.
+          </span>
+        </p>
+        <p className="bg-black text-white p-3 text-xs mb-12">
+          Please note: you do not have any session booked at this point. After verifying your email,
+          you will be redirected back to the schedules page to complete your reservation. Feel free
+          to message us if you have any question.
+        </p>
+      </div>
       <div className="send-again-container mb-20">
         <span className="didnt-get-email">Didn&apos;t get the email?</span>
         <PrimaryButton onClick={sendEmailAction} w="100%">

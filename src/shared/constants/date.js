@@ -1,5 +1,5 @@
 export const FORMAT_SESSION_DATE = 'ddd. MM/DD';
-export const FORMAT_SESSION_DATE_LONG = 'dddd D, MMMM';
+export const FORMAT_SESSION_DATE_LONG = 'ddd MMM D, YYYY';
 export const FORMAT_URL = 'YYYY-MM-DD';
 export const FORMAT_HOUR = 'h:mm A';
 export const FORMAT_DATE_PURCHASE = 'MM/DD/YY';

@@ -1,21 +1,22 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLocation, Link } from 'react-router-dom';
 import DesktopMenu from 'cheeseburger-menu';
-import { Link } from 'react-router-dom';
+
 import ROUTES from 'shared/constants/routes';
+import useScrollBlock from 'shared/hooks/useScrollBlock';
+import colors from 'shared/styles/constants';
 import MenuSvg from 'shared/components/svg/MenuSvg';
 import LogoSvg from 'shared/components/svg/LogoSvg';
-import SidebarMenu from './SidebarMenu';
-import MobileMenu from './MobileMenu';
-import colors from 'shared/styles/constants';
-
-import { useSelector, useDispatch } from 'react-redux';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import OnboardingTour from 'shared/components/OnboardingTour';
+import { initialLoadInit } from 'screens/my-account/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
+import { isOnboardingTourEnable, disableOnboardingTour } from 'shared/utils/onboardingTour';
 
-import { initialLoadInit } from 'screens/my-account/actionCreators';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-
-import { useLocation } from 'react-router-dom';
+import SidebarMenu from './SidebarMenu';
+import MobileMenu from './MobileMenu';
 
 const SCROLL_LIMIT = 50;
 const ALWAYS_SCROLLED = [
@@ -43,6 +44,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
 
+  const [blockScroll, allowScroll] = useScrollBlock();
   const [scrolled, setScrolled] = useState(false);
 
   const changeBg = useCallback(
@@ -68,6 +70,18 @@ const Header = () => {
   }, [dispatch]);
 
   const isAuthenticated = useSelector(getIsAuthenticated);
+  const onboardingTourId = 'onboarding-tour-header';
+  const isHeaderOnboardingTourEnable =
+    !isAuthenticated && pathname === ROUTES.HOME && isOnboardingTourEnable(onboardingTourId);
+
+  const exitHeaderOnboardingTour = () => {
+    disableOnboardingTour(onboardingTourId);
+    allowScroll();
+  };
+
+  if (isHeaderOnboardingTourEnable) {
+    blockScroll();
+  }
 
   const userInfo = useSelector(getUserProfile);
   const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
@@ -103,7 +117,6 @@ const Header = () => {
   };
 
   const isFSFFlow = freeSessionNotExpired && freeSessionNotUsed;
-  const bannerButtonTarget = ROUTES.LOCATIONS;
   let buttonText;
 
   if (isAuthenticated) {
@@ -127,8 +140,8 @@ const Header = () => {
 
   return pathname === ROUTES.DASHBOARD ? null : (
     <div
-      className={`header w-full fixed h-16 top-0 z-10 bg-transparent transition duration-500 ${
-        scrolled ? `${!isBlackBg && 'shadow-navbar'} ${bgColor}` : ''
+      className={`header w-full h-16 top-0 bg-transparent transition duration-500 ${
+        scrolled ? `${!isBlackBg && 'shadow-navbar'} ${bgColor} fixed z-10` : 'absolute'
       }`}
     >
       <MobileMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />
@@ -158,9 +171,31 @@ const Header = () => {
             <LogoSvg className="w-32 md:w-52 h-6" color={logoColor} />
           </Link>
         </div>
-        <PrimaryButton className="italic" px="4px" py="6px" fontSize="12px" to={bannerButtonTarget}>
-          {buttonText}
-        </PrimaryButton>
+        <>
+          <PrimaryButton
+            id="header-btn"
+            className="italic"
+            px="4px"
+            py="6px"
+            fontSize="12px"
+            to={ROUTES.LOCATIONS}
+            onClick={exitHeaderOnboardingTour}
+          >
+            {buttonText}
+          </PrimaryButton>
+          <OnboardingTour
+            id={onboardingTourId}
+            enabled={isHeaderOnboardingTourEnable}
+            steps={[
+              {
+                element: '#header-btn',
+                intro:
+                  'Your first Crosscourt session is on us. Tap <strong>FIRST FREE</strong> to find an upcoming session.',
+              },
+            ]}
+            onExit={exitHeaderOnboardingTour}
+          />
+        </>
       </div>
     </div>
   );

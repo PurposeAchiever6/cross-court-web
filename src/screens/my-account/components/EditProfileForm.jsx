@@ -68,7 +68,6 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
                 error={errors.phoneNumber}
                 name="phoneNumber"
                 placeholder="(123) 123-4567"
-                disabled={true}
               />
               <div className="flex justify-end">
                 <PrimaryButton type="submit" loading={editProfileLoading}>

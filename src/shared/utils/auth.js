@@ -1,8 +1,15 @@
-const setTokens = loginPayload => {
+const setTokens = (loginPayload) => {
   localStorage.setItem('CLIENT', loginPayload.client);
   localStorage.setItem('UID', loginPayload.uid);
   localStorage.setItem('ACCESS-TOKEN', loginPayload.accessToken);
   localStorage.setItem('isAuthenticated', true);
+};
+
+const removeTokens = () => {
+  localStorage.removeItem('CLIENT');
+  localStorage.removeItem('UID');
+  localStorage.removeItem('ACCESS-TOKEN');
+  localStorage.removeItem('isAuthenticated');
 };
 
 const getTokens = () => {
@@ -23,6 +30,7 @@ const isAuthenticated = () => {
 
 export default {
   setTokens,
+  removeTokens,
   getTokens,
   isAuthenticated,
 };
