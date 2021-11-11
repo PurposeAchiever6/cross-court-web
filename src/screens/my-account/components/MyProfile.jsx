@@ -14,6 +14,7 @@ import EditProfileForm from './EditProfileForm';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { useHistory, useLocation } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
+import missingProfileImg from 'shared/images/missing-profile-image.png';
 
 const MyProfileContainer = styled.div`
   > button {
@@ -74,6 +75,15 @@ const MyProfile = ({ profile, showTitle = true }) => {
         />
       ) : (
         <>
+          <div className={detailRowClasses}>
+            <span className={titleClasses}>PROFILE IMAGE</span>
+            <img
+              className="w-16 h-16 object-cover rounded-full"
+              src={profile.imageUrl ? profile.imageUrl : missingProfileImg}
+              alt="Profile"
+            />
+          </div>
+
           <div className={detailRowClasses}>
             <span className={titleClasses}>FULL NAME</span>
             <span className="truncate">{`${profile.firstName} ${profile.lastName}`}</span>
