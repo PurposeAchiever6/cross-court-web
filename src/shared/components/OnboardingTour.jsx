@@ -41,7 +41,7 @@ const OnboardingTour = ({ id, enabled, steps, initialStep, timeout, onExit }) =>
         initialStep={initialStep}
         onExit={exitCallback}
         options={{
-          showButtons: false,
+          showButtons: steps.length > 1,
           showBullets: false,
           disableInteraction: false,
           exitOnOverlayClick: true,

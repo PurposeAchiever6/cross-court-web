@@ -55,6 +55,36 @@
   font-size: 0.875rem;
 }
 
+.onboarding-tour-tooltip .introjs-tooltipbuttons {
+  border-top: none;
+  padding-top: 0;
+  margin-top: -1rem;
+}
+
+.onboarding-tour-tooltip .introjs-tooltipbuttons .introjs-nextbutton {
+  color: #9999ff;
+  border-color: unset;
+  background-color: unset;
+  text-shadow: none;
+  border: none;
+}
+
+.onboarding-tour-tooltip .introjs-tooltipbuttons .introjs-nextbutton:hover {
+  text-decoration: underline;
+}
+
+.onboarding-tour-tooltip .introjs-tooltipbuttons .introjs-nextbutton:focus {
+  box-shadow: none;
+}
+
+.onboarding-tour-tooltip .introjs-tooltipbuttons .introjs-prevbutton {
+  display: none;
+}
+
+.onboarding-tour-tooltip .introjs-tooltipbuttons .introjs-donebutton {
+  display: none;
+}
+
 .introjs-tooltipReferenceLayer * {
   font-family: shapiro45_welter_extd;
 }

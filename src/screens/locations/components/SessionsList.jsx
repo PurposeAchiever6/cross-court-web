@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { isEmpty } from 'ramda';
+import { icon } from '@fortawesome/fontawesome-svg-core';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -122,6 +124,12 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                   timeout={1000}
                   steps={[
                     {
+                      element: '#sessions-list-session-level-info',
+                      intro: `Each session is assigned a skill level range. Refer to this module when looking for a session that fits your playstyle. Hover over or click the purple icon <span class="text-cc-purple">${
+                        icon(faInfoCircle).html
+                      }</span> for more skill based information.`,
+                    },
+                    {
                       element: '#sessions-list-reserve-btn',
                       intro:
                         'Tap <strong>RESERVE</strong> to see the session details. Then create a profile to receive your free session credit and finish booking.',
@@ -139,14 +147,16 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
               }`}
               key={id}
             >
-              <div className="flex flex-col">
+              <div className="flex flex-col items-start">
                 <p className="font-bold whitespace-nowrap text-sm sm:text-base">
                   {hourRange(time)}
                 </p>
                 <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
                   {location.name}
                 </p>
-                <SessionLevel showInfo level={skillLevel} />
+                <div id="sessions-list-session-level-info" className="my-2">
+                  <SessionLevel showInfo level={skillLevel} />
+                </div>
               </div>
               <div className="flex flex-col items-end pl-8">
                 {button}

@@ -35,11 +35,15 @@ const apiIsLoaded = (map, maps, locations) => {
   // Get bounds by our places
   const bounds = getMapBounds(maps, locations);
 
-  // Fit map to bounds
-  map.fitBounds(bounds);
-
   // Bind the resize listener
   bindResizeListener(map, maps, bounds);
+
+  if (locations.length === 1) {
+    map.setCenter({ lat: locations[0].lat, lng: locations[0].lng });
+  } else {
+    // Fit map to bounds
+    map.fitBounds(bounds);
+  }
 };
 
 const env = runtimeEnv();
@@ -64,8 +68,8 @@ const Map = ({ locations, selectedLocation, setLocationHandler }) => {
         }}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, locations)}
-        defaultZoom={15}
-        zoom={15}
+        defaultZoom={14}
+        zoom={14}
         options={{ styles }}
       >
         {locations.map((location) => (
