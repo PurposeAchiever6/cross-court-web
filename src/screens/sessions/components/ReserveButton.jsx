@@ -82,7 +82,9 @@ const ReserveButton = ({
           </PrimaryButton>
           <OnboardingTour
             id="onboarding-tour-session-confirm-reservation"
-            enabled={isOnboardingTourEnable('onboarding-tour-session-confirm-reservation')}
+            enabled={
+              isFSFFlow && isOnboardingTourEnable('onboarding-tour-session-confirm-reservation')
+            }
             steps={[
               {
                 element: '#session-confirm-reservation',
