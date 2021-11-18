@@ -11,13 +11,13 @@ const SessionLevel = ({ level, showInfo, light }) => {
       <span
         className={`rounded-md ${
           light ? 'bg-white text-black' : 'bg-cc-black text-white'
-        }  text-2xs text-center px-5 mr-3 my-2 font-shapiro95_super_wide`}
+        }  text-2xs text-center px-5 mr-3 font-shapiro95_super_wide`}
       >
         {`${level.min} - ${level.max}`}
       </span>
       {showInfo && (
         <>
-          <InfoSvg className="text-cc-purple" dataTip={level.description} />
+          <InfoSvg className="text-cc-purple cursor-pointer" dataTip={level.description} />
           <ReactTooltip
             backgroundColor={colors.brandPurple}
             textColor="white"

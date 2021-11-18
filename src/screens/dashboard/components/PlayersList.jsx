@@ -14,6 +14,7 @@ import { isSameDay, formatSessionTime, formatSessionDate } from 'shared/utils/da
 import userSessionService from 'screens/userSessions/service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import missingProfileImg from 'shared/images/missing-profile-image.png';
 
 const LEFT = 'left';
 const RIGHT = 'right';
@@ -136,10 +137,19 @@ const PlayersList = () => {
           <div>
             <div className="flex flex-col">
               {userSessions.map((userSession, index) => (
-                <div className="flex text-4xl justify-between" key={userSession.id}>
-                  <p className="font-shapiro96_inclined_wide w-1/4 text-right">{index + 1}</p>
-                  <p className="ml-20 w-2/4">{`${userSession.user.firstName} ${userSession.user.lastName}`}</p>
-                  <p className="uppercase font-shapiro96_inclined_wide w-1/4">
+                <div className="flex text-4xl justify-between items-center" key={userSession.id}>
+                  <p className="font-shapiro96_inclined_wide w-1/5 text-center">{index + 1}</p>
+                  <div className="flex justify-center w-1/5">
+                    <img
+                      className="w-16 h-16 object-cover rounded-full"
+                      src={
+                        userSession.user.imageUrl ? userSession.user.imageUrl : missingProfileImg
+                      }
+                      alt="Profile"
+                    />
+                  </div>
+                  <p className="ml-12 w-2/5">{`${userSession.user.firstName} ${userSession.user.lastName}`}</p>
+                  <p className="uppercase font-shapiro96_inclined_wide w-1/5">
                     {userSession.assignedTeam}
                   </p>
                 </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import colors from 'shared/styles/constants';
 
-const MapMarker = ({ onClickHandler, selected, location, $hover }) => {
+const MapMarker = ({ onClickHandler, selected, location }) => {
   const LocationInfo = () => (
     <div className="absolute bottom-20 -left-14 flex flex-col bg-cc-black text-white shadow-lg rounded-sm p-2 w-48 justify-center">
       <p className="font-shapiro95_super_wide truncate">ADDRESS</p>
@@ -14,7 +14,7 @@ const MapMarker = ({ onClickHandler, selected, location, $hover }) => {
   return (
     <>
       <div className="absolute -translate-x-1/2 -translate-y-1/2 -top-12 -left-9">
-        {$hover && <LocationInfo />}
+        <LocationInfo />
         <svg
           onClick={onClickHandler}
           width="83"

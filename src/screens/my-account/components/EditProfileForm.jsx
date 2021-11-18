@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import InputTextField from 'shared/components/InputTextField';
 import InputPhoneField from 'shared/components/InputPhoneField';
+import InputFileField from 'shared/components/InputFileField';
 import { formatPhoneNumber, phoneRegExp } from 'shared/utils/helpers';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
@@ -48,9 +49,15 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
         validationSchema={validationSchema}
       >
         {(props) => {
-          const { errors } = props;
+          const { errors, setFieldValue } = props;
           return (
             <Form className="flex flex-col">
+              <InputFileField
+                labelText="Profile Image"
+                name="image"
+                setFieldValue={setFieldValue}
+                accept="image/*"
+              />
               <InputTextField
                 labelText="First Name"
                 error={errors.firstName}
