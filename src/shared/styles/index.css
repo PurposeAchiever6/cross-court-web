@@ -7,6 +7,10 @@
 @import './chatlio.css';
 @import './onboarding-tour.css';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
 }
