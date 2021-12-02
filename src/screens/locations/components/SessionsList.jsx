@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SessionLevel from 'shared/components/SessionLevel';
+import Badge from 'shared/components/Badge';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import FewSessionsLeftTriangle from 'shared/images/warning-triangle.png';
 
@@ -93,7 +94,18 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   return (
     <div className="px-3 font-shapiro45_welter_extd">
       {sortedSessions.map(
-        ({ id, startTime, time, full, location, skillLevel, spotsLeft, reserved, past }) => {
+        ({
+          id,
+          startTime,
+          time,
+          full,
+          location,
+          skillLevel,
+          spotsLeft,
+          reserved,
+          past,
+          isPrivate,
+        }) => {
           const sessionTime = formatSessionTime(time);
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
@@ -150,6 +162,14 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
               <div className="flex flex-col items-start">
                 <p className="font-bold whitespace-nowrap text-sm sm:text-base">
                   {hourRange(time)}
+                  {isPrivate && (
+                    <Badge
+                      variant="black"
+                      className="block sm:inline-block sm:ml-3 mt-1 mb-2 sm:mt-0 sm:mb-0"
+                    >
+                      Private
+                    </Badge>
+                  )}
                 </p>
                 <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
                   {location.name}
