@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import ThanksForComingOutImg from 'shared/images/thanks-for-coming-out-2.png';
@@ -41,7 +40,7 @@ const SurveyModalContainer = styled.div`
   }
 `;
 
-const SurveyModal = ({ closeHandler, isOpen }) => {
+const SurveyModal = () => {
   const env = runtimeEnv();
   const history = useHistory();
   const redirectUrl = window.localStorage.getItem('redirect');
@@ -49,17 +48,17 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
   const [starsSelected, setStarsSelected] = useState(0);
   const [feedbackValue, setFeedbackValue] = useState('');
 
-  const starRatingMouseOverHandler = i => {
+  const starRatingMouseOverHandler = (i) => {
     for (let r = 0; r <= i; r++) {
       document.querySelectorAll('.star-pair')[r].classList.add('hover');
     }
   };
-  const starRatingMouseOutHandler = i => {
+  const starRatingMouseOutHandler = (i) => {
     for (let r = 0; r <= 4; r++) {
       document.querySelectorAll('.star-pair')[r].classList.remove('hover');
     }
   };
-  const starRatingClickHandler = i => {
+  const starRatingClickHandler = (i) => {
     setStarsSelected(i);
 
     fetch(`${env.REACT_APP_API_URL}/session_surveys/answers`, {
@@ -80,7 +79,7 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
       .then(() => {
         window.localStorage.removeItem('surveyLock');
       })
-      .catch(err => window.alert('Rating error: ' + err));
+      .catch((err) => window.alert('Rating error: ' + err));
   };
   const surveySubmitAction = () => {
     fetch(`${env.REACT_APP_API_URL}/session_surveys/answers`, {
@@ -98,13 +97,13 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
         },
       }),
     })
-      .then(data => {
+      .then((data) => {
         console.log('Feedback saved successfully!', data);
         document.querySelector('.close-btn').classList.remove('hide');
         document.querySelector('.survey-modal .body1').classList.add('hide');
         document.querySelector('.survey-modal .body2').classList.remove('hide');
       })
-      .catch(err => window.alert('Feedback error: ' + err));
+      .catch((err) => window.alert('Feedback error: ' + err));
   };
 
   const conditionalCloseHandler = () => {
@@ -112,8 +111,7 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
   };
 
   return (
-    <ScrollLock isActive={isOpen}>
-      {/* update color */}
+    <ScrollLock isActive={true}>
       <SurveyModalContainer className="survey-modal bg-cc-black">
         <FontAwesomeIcon
           className="close-btn hide"
@@ -123,8 +121,9 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
         <div className="body1">
           <img alt="" className="thanks-for-coming-out" src={ThanksForComingOutImg} />
           <div className="stars">
-            {[1, 2, 3, 4, 5].map((v, i) => (
+            {[1, 2, 3, 4, 5].map((_v, i) => (
               <div
+                key={`star-${i}`}
                 className={`star-pair ${i + 1 <= starsSelected ? 'selected' : ''}`}
                 onClick={() => starRatingClickHandler(i + 1)}
                 onMouseOver={() => starRatingMouseOverHandler(i)}
@@ -139,7 +138,7 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
             className="feedback"
             placeholder="What is the most important reason for your score? (Optional)"
             value={feedbackValue}
-            onChange={e => setFeedbackValue(e.target.value)}
+            onChange={(e) => setFeedbackValue(e.target.value)}
           ></textarea>
           <PrimaryButton
             className="submit-btn"
@@ -172,9 +171,6 @@ const SurveyModal = ({ closeHandler, isOpen }) => {
   );
 };
 
-SurveyModal.propTypes = {
-  closeHandler: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-};
+SurveyModal.defaultProps = {};
 
 export default SurveyModal;

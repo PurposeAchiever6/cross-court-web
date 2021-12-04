@@ -61,13 +61,20 @@ const Modal = ({ children, shouldClose, closeHandler, isOpen, style, showCloseBu
 };
 
 Modal.propTypes = {
-  children: PropTypes.element.isRequired,
-  shouldClose: PropTypes.bool.isRequired,
-  closeHandler: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
+  children: PropTypes.element,
+  shouldClose: PropTypes.bool,
+  closeHandler: PropTypes.func,
+  isOpen: PropTypes.bool,
+  style: PropTypes.object,
+  showCloseButton: PropTypes.bool,
+  title: PropTypes.string,
 };
 
 Modal.defaultProps = {
+  children: null,
+  shouldClose: false,
+  closeHandler: null,
+  isOpen: false,
   style: {},
   showCloseButton: false,
   title: null,
