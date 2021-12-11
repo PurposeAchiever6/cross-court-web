@@ -45,6 +45,7 @@ const MyProfile = ({ profile, showTitle = true }) => {
   const shareText = 'Use my link to sign up.';
   const shareUrl = `${window.location.origin}`;
   const shareTextAndUrl = `${shareText} ${shareUrl}`;
+  const dateOfBirth = new Date(profile.birthday);
 
   const handleCopy = () => {
     const input = document.createElement('input');
@@ -87,6 +88,12 @@ const MyProfile = ({ profile, showTitle = true }) => {
           <div className={detailRowClasses}>
             <span className={titleClasses}>FULL NAME</span>
             <span className="truncate">{`${profile.firstName} ${profile.lastName}`}</span>
+          </div>
+          <div className={detailRowClasses}>
+            <span className={titleClasses}>DATE OF BIRTH</span>
+            <span className="truncate">
+              {dateOfBirth.toLocaleDateString('en-GB', { timeZone: 'UTC' })}
+            </span>
           </div>
           <div className={detailRowClasses}>
             <span className={titleClasses}>PHONE</span>

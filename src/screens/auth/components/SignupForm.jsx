@@ -8,6 +8,7 @@ import ROUTES from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
 import InputPhoneField from 'shared/components/InputPhoneField';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
+import InputDateField from 'shared/components/InputDateField';
 import { phoneRegExp, zipcodeRegExp } from 'shared/utils/helpers';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import colors from 'shared/styles/constants';
@@ -44,6 +45,9 @@ const validationSchema = Yup.object().shape({
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Required'),
+  birthdayYear: Yup.number().required('Required'),
+  birthdayMonth: Yup.number().required('Required'),
+  birthdayDay: Yup.number().required('Required'),
 });
 
 const SignupForm = ({ signupHandler, isLoading, errors }) => (
@@ -53,7 +57,10 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
       validateOnBlur={false}
       initialValues={initialValues}
       onSubmit={(values) => {
-        signupHandler({ ...values });
+        const { birthdayYear, birthdayMonth, birthdayDay, ...rest } = values;
+        const birthday = new Date(birthdayYear, birthdayMonth - 1, birthdayDay);
+
+        signupHandler({ ...rest, birthday });
       }}
       validationSchema={validationSchema}
     >
@@ -86,6 +93,13 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
             labelText="Confirm Phone Number*"
             error={errors?.confirmPhoneNumber}
             name="confirmPhoneNumber"
+          />
+          <InputDateField
+            labelColor={colors.brandBlack}
+            labelText="Date of Birth*"
+            error={errors?.birthday}
+            name="birthday"
+            className="mb-6"
           />
           <InputTextField
             labelColor={colors.brandBlack}
