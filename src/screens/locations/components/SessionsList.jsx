@@ -105,15 +105,28 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           reserved,
           past,
           isPrivate,
+          comingSoon,
         }) => {
           const sessionTime = formatSessionTime(time);
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
           let button;
 
-          if (reserved || past) {
+          if (comingSoon) {
             button = (
-              <PrimaryButton fontSize="11px" to={`/session/${id}/${URLdate}`} inverted>
+              <PrimaryButton
+                fontSize="12px"
+                w="9.5rem"
+                px="0.5rem"
+                className="pointer-events-none"
+                inverted
+              >
+                COMING SOON
+              </PrimaryButton>
+            );
+          } else if (reserved || past) {
+            button = (
+              <PrimaryButton fontSize="12px" w="9.5rem" to={`/session/${id}/${URLdate}`} inverted>
                 SEE DETAILS
               </PrimaryButton>
             );
@@ -121,6 +134,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
             button = (
               <PrimaryButton
                 onClick={() => onClickJoinWaitlist(sessionTime, sessionDate, location.name)}
+                w="9.5rem"
               >
                 JOIN WAITLIST
               </PrimaryButton>
@@ -128,7 +142,11 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           } else {
             button = (
               <>
-                <PrimaryButton id="sessions-list-reserve-btn" to={`/session/${id}/${URLdate}`}>
+                <PrimaryButton
+                  id="sessions-list-reserve-btn"
+                  to={`/session/${id}/${URLdate}`}
+                  w="9.5rem"
+                >
                   RESERVE
                 </PrimaryButton>
                 <OnboardingTour
@@ -155,7 +173,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           return (
             <div
               className={`flex border-b py-6 md:px-5 justify-between w-full items-center overflow-hidden ${
-                past ? ' opacity-30' : ''
+                past || comingSoon ? ' opacity-30' : ''
               }`}
               key={id}
             >
