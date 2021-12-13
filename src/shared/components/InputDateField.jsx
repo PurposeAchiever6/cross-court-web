@@ -80,21 +80,21 @@ const InputDateField = ({
     {showLabel && <label htmlFor={name}>{labelText}</label>}
     <div className="flex justify-between text-sm">
       <InputSelectField
-        name={`${name}Day`}
-        showLabel={false}
-        disabled={disabled}
-        displayErrorMsg={true}
-        options={dayOptions}
-        placeholder="Day"
-        className="mr-1 flex-grow"
-      />
-      <InputSelectField
         name={`${name}Month`}
         showLabel={false}
         disabled={disabled}
         displayErrorMsg={true}
         options={monthOptions}
         placeholder="Month"
+        className="mr-1 flex-grow"
+      />
+      <InputSelectField
+        name={`${name}Day`}
+        showLabel={false}
+        disabled={disabled}
+        displayErrorMsg={true}
+        options={dayOptions}
+        placeholder="Day"
         className="mr-1 flex-grow"
       />
       <InputSelectField

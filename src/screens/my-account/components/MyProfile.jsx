@@ -93,7 +93,7 @@ const MyProfile = ({ profile, showTitle = true }) => {
             <span className={titleClasses}>DATE OF BIRTH</span>
             <span className="truncate">
               {profile.birthday
-                ? dateOfBirth.toLocaleDateString('en-GB', { timeZone: 'UTC' })
+                ? dateOfBirth.toLocaleDateString('en-US', { timeZone: 'UTC' })
                 : '-'}
             </span>
           </div>
