@@ -17,7 +17,7 @@ if (env.REACT_APP_ACTIVE_CAMPAIGN_ENABLED === 'true') {
     i = t.getElementsByTagName('script')[0];
     i.parentNode.insertBefore(r, i);
   })(window, document, 'https://diffuser-cdn.app-us1.com/diffuser/diffuser.js', 'vgo');
-  window.vgo('setAccount', '91219964');
+  window.vgo('setAccount', `${env.REACT_APP_ACTIVE_CAMPAIGN_ACCOUNT_NUMBER}`);
   window.vgo('setTrackByDefault', true);
 
   window.vgo('process');
