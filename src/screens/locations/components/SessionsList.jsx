@@ -10,8 +10,9 @@ import styled from 'styled-components';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SessionLevel from 'shared/components/SessionLevel';
+import Badge from 'shared/components/Badge';
 import OnboardingTour from 'shared/components/OnboardingTour';
-import FewSessionsLeftTriangle from 'shared/images/warning-triangle.png';
+import WarningTriangle from 'shared/images/warning-triangle.png';
 
 import {
   hourRange,
@@ -20,6 +21,7 @@ import {
   sortSessionsByDate,
   formatSessionTime,
   formatSessionDate,
+  yearsFrom,
 } from 'shared/utils/date';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -55,11 +57,15 @@ const NoSessionContainer = styled.div`
 `;
 
 const fewSpotsLeftText = 'FEW SPOTS LEFT';
+const onlyForUsersOver18Text = 'MUST BE 18+';
 
 const SessionsList = ({ availableSessions, selectedDate }) => {
   const history = useHistory();
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
+
+  const currentUserAge = currentUser.birthday && yearsFrom(new Date(currentUser.birthday));
+  const disableButton = currentUserAge && currentUserAge < 18;
 
   const sessionList = availableSessions.filter(({ startTime }) =>
     isSameDay(startTime, selectedDate)
@@ -93,15 +99,39 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   return (
     <div className="px-3 font-shapiro45_welter_extd">
       {sortedSessions.map(
-        ({ id, startTime, time, full, location, skillLevel, spotsLeft, reserved, past }) => {
+        ({
+          id,
+          startTime,
+          time,
+          full,
+          location,
+          skillLevel,
+          spotsLeft,
+          reserved,
+          past,
+          isPrivate,
+          comingSoon,
+        }) => {
           const sessionTime = formatSessionTime(time);
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
           let button;
 
-          if (reserved || past) {
+          if (comingSoon) {
             button = (
-              <PrimaryButton fontSize="11px" to={`/session/${id}/${URLdate}`} inverted>
+              <PrimaryButton
+                fontSize="12px"
+                w="9.5rem"
+                px="0.5rem"
+                className="pointer-events-none"
+                inverted
+              >
+                COMING SOON
+              </PrimaryButton>
+            );
+          } else if (reserved || past) {
+            button = (
+              <PrimaryButton fontSize="12px" w="9.5rem" to={`/session/${id}/${URLdate}`} inverted>
                 SEE DETAILS
               </PrimaryButton>
             );
@@ -109,6 +139,8 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
             button = (
               <PrimaryButton
                 onClick={() => onClickJoinWaitlist(sessionTime, sessionDate, location.name)}
+                w="9.5rem"
+                disabled={disableButton}
               >
                 JOIN WAITLIST
               </PrimaryButton>
@@ -116,7 +148,12 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           } else {
             button = (
               <>
-                <PrimaryButton id="sessions-list-reserve-btn" to={`/session/${id}/${URLdate}`}>
+                <PrimaryButton
+                  id="sessions-list-reserve-btn"
+                  to={`/session/${id}/${URLdate}`}
+                  w="9.5rem"
+                  disabled={disableButton}
+                >
                   RESERVE
                 </PrimaryButton>
                 <OnboardingTour
@@ -143,13 +180,21 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           return (
             <div
               className={`flex border-b py-6 md:px-5 justify-between w-full items-center overflow-hidden ${
-                past ? ' opacity-30' : ''
+                past || comingSoon ? ' opacity-30' : ''
               }`}
               key={id}
             >
               <div className="flex flex-col items-start">
                 <p className="font-bold whitespace-nowrap text-sm sm:text-base">
                   {hourRange(time)}
+                  {isPrivate && (
+                    <Badge
+                      variant="black"
+                      className="block sm:inline-block sm:ml-3 mt-1 mb-2 sm:mt-0 sm:mb-0"
+                    >
+                      Private
+                    </Badge>
+                  )}
                 </p>
                 <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
                   {location.name}
@@ -160,12 +205,21 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
               </div>
               <div className="flex flex-col items-end pl-8">
                 {button}
-                {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && (
+                {currentUser.birthday && currentUserAge < 18 && (
                   <div className="flex items-center mt-2 whitespace-nowrap">
-                    <img alt="" className="w-4 h-4" src={FewSessionsLeftTriangle} />
-                    <p className="text-2xs sm:text-xs mt-1 ml-2">{fewSpotsLeftText}</p>
+                    <img alt="" className="w-4 h-4" src={WarningTriangle} />
+                    <p className="text-2xs sm:text-xs mt-1 ml-2">{onlyForUsersOver18Text}</p>
                   </div>
                 )}
+                {spotsLeft > 0 &&
+                  spotsLeft <= 5 &&
+                  fewSpotsLeftText &&
+                  (currentUserAge == null || currentUserAge >= 18) && (
+                    <div className="flex items-center mt-2 whitespace-nowrap">
+                      <img alt="" className="w-4 h-4" src={WarningTriangle} />
+                      <p className="text-2xs sm:text-xs mt-1 ml-2">{fewSpotsLeftText}</p>
+                    </div>
+                  )}
               </div>
             </div>
           );

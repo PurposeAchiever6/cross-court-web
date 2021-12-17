@@ -9,13 +9,7 @@ import {
 
 const initialState = {
   pageLoading: false,
-  availableProducts: [
-    {
-      name: 'Free Session',
-      description: '1 session for free',
-      price: '0',
-    },
-  ],
+  availableProducts: [],
   selectedProduct: null,
   error: '',
 };

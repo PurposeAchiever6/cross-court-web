@@ -92,3 +92,18 @@ export const formatSessionDate = (time) => getUTCDate(time).format(FORMAT_DATE_P
 
 export const formatShareSessionDate = (date) => getUTCDate(date).format(FORMAT_SHARE_SESSION_DATE);
 export const formatShareSessionTime = (date) => getUTCDate(date).format(FORMAT_SHARE_SESSION_TIME);
+
+export const yearsFrom = (date) => {
+  let today = new Date();
+  let years;
+
+  years = today.getFullYear() - date.getFullYear();
+  if (
+    today.getMonth() < date.getMonth() ||
+    (today.getMonth() === date.getMonth() && today.getDate() < date.getDate())
+  ) {
+    years--;
+  }
+
+  return years;
+};

@@ -8,17 +8,20 @@ import BasketballSvg from 'shared/components/svg/BasketballSvg';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import BackButton from 'shared/components/BackButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
-import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
+import { isOnboardingTourEnable, disableOnboardingTour } from 'shared/utils/onboardingTour';
 
 import { updateSkillRatingInit } from '../../screens/auth/actionCreators';
 
 const Circle = styled.div`
-  border: 2px solid black;
+  border: 2px solid white;
   background-color: transparent;
   height: 30px;
   border-radius: 50%;
   width: 30px;
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const ALLOWED_PATHS = [ROUTES.MYACCOUNT, ROUTES.SIGNUP];
@@ -26,67 +29,38 @@ const ALLOWED_PATHS = [ROUTES.MYACCOUNT, ROUTES.SIGNUP];
 const RATINGS = [
   {
     value: '1',
-    description: 'Just beginning my basketball career. Primarily here for the cardio and vibes',
-  },
-  {
-    value: '1.5',
+    name: 'Rookie',
     description:
-      'Limited basketball experience and primarily focused on improving the fundamentals and having a good time',
+      'Lotta heart. Hustler. Not much basketball experience, but ready to do whatever ' +
+      'the team needs to succeed. Here for the vibes, the sweat, and lockdown defense.',
   },
   {
     value: '2',
+    name: 'Rising Star',
     description:
-      'Basic understanding of the game, but lack on-court experience and have obvious holes in my abilities, but working hard to improve',
-  },
-  {
-    value: '2.5',
-    description:
-      'Can sustain full offensive and defensive gameplay with players of similar ability. Love to hustle. Difficulty hanging with players of incremental skill levels',
+      'Love the game. Not a difference maker yet, but looking to improve my skills and quiet ' +
+      'the non-believers.',
   },
   {
     value: '3',
+    name: 'Vet',
     description:
-      'Fairly consistent with dribbling and have a decent shot. Not too comfortable with different types of shots and lack confidence when trying to shoot off the dribble or off balance. Consider myself a force on defense',
-  },
-  {
-    value: '3.5',
-    description:
-      'Have achieved improved shot dependability and have developed more control when shooting off balance, but still struggle shooting from deep or making difficult, contested shots. Here for a good time',
+      'Show flashes. Little inconsistent due to lack of play, but can hold my own against most ' +
+      'competition. Will be an MVP in no time.',
   },
   {
     value: '4',
+    name: 'All Star',
     description:
-      'Have a dependable shot from different areas of the court, including when off balance, plus have the ability to shoot consistently from different areas of the court. Occasionally force turnovers from lack of experience playing at a high level',
-  },
-  {
-    value: '4.5',
-    description:
-      'Starting to master the ability to score in different and creative ways. Understand game-flow. Can control pacing and know how to facilitate my teammates in a way that leads to points',
+      'Built different. Played competitively within the last 20 years at a D2/3 university or ' +
+      'was a varsity standout. Playmaker.',
   },
   {
     value: '5',
+    name: 'MVP',
     description:
-      'Have good court anticipation and consistently make shots as well as advanced passes. Can be a focal point of the offense and create own shots as well as force turnovers',
-  },
-  {
-    value: '5.5',
-    description:
-      'Have developed into an impactful weapon on offense and defense. I can execute consistently on both ends of the floor. Look like I played D1, but wouldn’t have made the team',
-  },
-  {
-    value: '6',
-    description:
-      'Have played competitive collegiate basketball at a D2, D3, or Junior College level within the last 20 years',
-  },
-  {
-    value: '6.5',
-    description:
-      'Have played competitive collegiate basketball at a D1 level and/or professionally overseas within the last 20 years',
-  },
-  {
-    value: '7',
-    description:
-      'Have played competitive basketball at a professional level in the US within the last 20 years',
+      'Like Mike. Walking bucket as the kids say. Played D1 or professionally within the last ' +
+      '20 years. Ball is/was life.',
   },
 ];
 
@@ -116,25 +90,28 @@ const Rating = () => {
         <h1 className="font-shapiro95_super_wide text-xl md:text-3xl text-center mt-4">
           SKILL ASSESSMENT SURVEY
         </h1>
-        <h2 className="my-4 md:text-lg max-w-7xl text-center">
+        <h2 className="my-8 md:text-lg max-w-7xl text-center">
           To give you the best experience possible, we ask that you choose one of the following
           descriptions of your current skill level so we are able to surround you with players of
           similar ability.
         </h2>
-        <div className="self-center">
+        <div className="text-white self-center">
           {RATINGS.map((rating) => (
             <div className="flex my-1 max-w-6xl" key={rating.value}>
-              <div className="flex items-center justify-center mx-1 w-2/12 md:w-1/12 bg-gray-200">
-                {rating.value}
+              <div className="flex items-center bg-cc-black p-4 md:px-8 md:py-4">
+                <span className="w-4 text-center">{rating.value}</span>
+                <span className="hidden sm:block ml-5 uppercase w-32">{rating.name}</span>
               </div>
-              <div className="flex mx-1 bg-gray-200 p-4 text-sm w-8/12 md:w-10/12 md:text-base">
+              <div className="flex mx-1 bg-cc-black p-4 text-sm md:text-base w-full">
                 {rating.description}
               </div>
               <div
-                className="flex items-center justify-center mx-1 w-2/12 md:w-1/12 bg-gray-200 cursor-pointer"
+                className="relative flex justify-center items-center bg-cc-black cursor-pointer p-4 sm:p-7 md:px-10 md:py-8"
                 onClick={() => setSkillRating(rating.value)}
               >
-                {skillRating === rating.value && <BasketballSvg className="relative w-6 h-6" />}
+                <BasketballSvg
+                  className={`w-6 h-6 ${skillRating === rating.value ? 'visible' : 'invisible'}`}
+                />
                 <Circle />
               </div>
             </div>
@@ -152,6 +129,10 @@ const Rating = () => {
           <OnboardingTour
             id="onboarding-tour-rating"
             enabled={isOnboardingTourEnable('onboarding-tour-rating')}
+            onExit={() => {
+              disableOnboardingTour('onboarding-tour-rating');
+              window.scrollTo({ top: 0 });
+            }}
             steps={[
               {
                 element: '#rating-btn',

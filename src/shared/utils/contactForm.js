@@ -1,4 +1,4 @@
-import { contactUsForm } from './klaviyo';
+import { contactUsForm } from './activeCampaign';
 
 export const openContactForm = () => {
   document.querySelector('.eapps-form-floating-button').click();
@@ -39,9 +39,12 @@ export const addEventListenerOnSubmitContactUsForm = () => {
         e.target.className === 'eapps-form-actions-button eapps-form-button')
     ) {
       const email = document.querySelector(".eapps-form-form input[name='email-3']").value;
+      const firstName = document.querySelector(".eapps-form-form input[name='first-name-0']").value;
+      const lastName = document.querySelector(".eapps-form-form input[name='last-name-1']").value;
+      const phoneNumber = document.querySelector(".eapps-form-form input[name='phone-2']").value;
 
       if (email.length > 0) {
-        contactUsForm({ email });
+        contactUsForm({ email, firstName, lastName, phoneNumber });
       }
     }
   });

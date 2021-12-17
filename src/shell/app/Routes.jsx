@@ -7,7 +7,6 @@ import styled from 'styled-components';
 import { ToastContainer, Zoom } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactGA from 'react-ga';
-import { toggleChatWidget } from 'shared/utils/chatlio';
 
 import { initialAppLoad } from 'shared/actions/actionCreators';
 import ROUTES from 'shared/constants/routes';
@@ -539,8 +538,6 @@ window.cookieAndSessionStorageHandler = function(isAuthenticated) {
   }
 };
 
-toggleChatWidget(window.location.pathname);
-
 history.listen((location) => {
   ReactGA.set({ page: location.pathname }); // Update the user's current page
   ReactGA.pageview(location.pathname); // Record a pageview for the given page
@@ -550,8 +547,6 @@ history.listen((location) => {
   keepScrolling = true;
   window.addEventListener('scroll', setScrollClasses);
   window.setTimeout(setScrollClasses, 1000);
-
-  toggleChatWidget(location.pathname);
 });
 
 setPageNameOnBodyClass(window.location.pathname);

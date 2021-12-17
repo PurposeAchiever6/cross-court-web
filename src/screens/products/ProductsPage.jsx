@@ -6,7 +6,7 @@ import Loading from 'shared/components/Loading';
 import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import { startedCheckout } from 'shared/utils/klaviyo';
+import { startedCheckout } from 'shared/utils/activeCampaign';
 import {
   initialLoad,
   setSelectedProduct,
