@@ -10,6 +10,7 @@ import MenuSvg from 'shared/components/svg/MenuSvg';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
+import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { initialLoadInit } from 'screens/my-account/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -35,17 +36,22 @@ const ALWAYS_SCROLLED = [
   ROUTES.CHECKOUT,
   ROUTES.PURCHASEHISTORY,
   ROUTES.MANAGE_MEMBERSHIP,
+  ROUTES.FIRSTSESSIONRESERVED,
   '/session',
+  '/first-session',
 ];
 const BLACK_BG = [ROUTES.SEM, ROUTES.MEMBERSHIPS];
 
 const Header = () => {
   const dispatch = useDispatch();
-  const [menuOpen, setMenuOpen] = useState(false);
   const { pathname } = useLocation();
 
-  const [blockScroll, allowScroll] = useScrollBlock();
+  const isAuthenticated = useSelector(getIsAuthenticated);
+  const userInfo = useSelector(getUserProfile);
+
+  const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [blockScroll, allowScroll] = useScrollBlock();
 
   const changeBg = useCallback(
     () =>
@@ -69,7 +75,6 @@ const Header = () => {
     dispatch(initialLoadInit());
   }, [dispatch]);
 
-  const isAuthenticated = useSelector(getIsAuthenticated);
   const onboardingTourId = 'onboarding-tour-header';
   const isHeaderOnboardingTourEnable =
     !isAuthenticated && pathname === ROUTES.HOME && isOnboardingTourEnable(onboardingTourId);
@@ -83,10 +88,6 @@ const Header = () => {
     blockScroll();
   }
 
-  const userInfo = useSelector(getUserProfile);
-  const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
-  const freeSessionNotUsed = ['not_claimed', 'claimed'].includes(userInfo.freeSessionState);
-  const freeSessionExpirationDate = userInfo.freeSessionExpirationDate;
   const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
     let parts = (input || '').split('-');
@@ -116,12 +117,11 @@ const Header = () => {
     return daysLeft;
   };
 
-  const isFSFFlow = freeSessionNotExpired && freeSessionNotUsed;
   let buttonText;
 
   if (isAuthenticated) {
-    if (isFSFFlow) {
-      buttonText = <span>EXPIRES {daysFromNow(freeSessionExpirationDate)}</span>;
+    if (isUserInFirstFreeSessionFlow(userInfo)) {
+      buttonText = <span>EXPIRES {daysFromNow(userInfo.freeSessionExpirationDate)}</span>;
     } else {
       buttonText = <span>RESERVE</span>;
     }
@@ -178,7 +178,7 @@ const Header = () => {
             px="4px"
             py="6px"
             fontSize="12px"
-            to={ROUTES.LOCATIONS}
+            to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.LOCATIONSFREE}
             onClick={exitHeaderOnboardingTour}
           >
             {buttonText}

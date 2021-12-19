@@ -1,17 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { head } from 'ramda';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import ScrollLock from 'react-scrolllock';
 
-import ROUTES from 'shared/constants/routes';
 import { claimFreeSessionInit } from 'screens/payments/actionCreators';
-import { setSelectedProduct } from 'screens/products/actionCreators';
-import { getAvailableProducts } from 'screens/products/reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const FreeSessionModalContainer = styled.div`
@@ -44,23 +39,11 @@ const FreeSessionModalContainer = styled.div`
 `;
 
 const FreeSessionModal = ({ closeHandler, isOpen }) => {
-  const history = useHistory();
   const dispatch = useDispatch();
-  const availableProducts = useSelector(getAvailableProducts);
-
-  const selectProductHandler = (product) => {
-    dispatch(setSelectedProduct(product));
-    history.push(ROUTES.PAYMENTS);
-  };
 
   const claimFreeSessionAction = () => {
-    const selectedProduct = head(
-      availableProducts.filter((product) => product.name === 'Free Session')
-    );
-
     closeHandler();
     dispatch(claimFreeSessionInit());
-    selectProductHandler(selectedProduct);
   };
 
   return (
