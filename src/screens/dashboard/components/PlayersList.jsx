@@ -6,10 +6,9 @@ import {
   getAvailableLocations,
   getAvailableSessions,
   getSessionsLoading,
-  getSelectedDate,
 } from 'screens/locations/reducer';
 import { initialLoadInit } from 'screens/locations/actionCreators';
-import { isSameDay, formatSessionTime, formatSessionDate } from 'shared/utils/date';
+import { isToday, formatSessionTime, formatSessionDate } from 'shared/utils/date';
 
 import userSessionService from 'screens/userSessions/service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -31,7 +30,6 @@ const PlayersList = () => {
   const isSessionsLoading = useSelector(getSessionsLoading);
   const availableLocations = useSelector(getAvailableLocations);
   const availableSessions = useSelector(getAvailableSessions);
-  const selectedDate = useSelector(getSelectedDate);
 
   const dispatch = useDispatch();
 
@@ -47,18 +45,19 @@ const PlayersList = () => {
 
   useEffect(() => {
     if (selectedLocation) {
-      const currentDate = new Date();
-      let sessions = availableSessions.filter(({ startTime = currentDate }) =>
-        isSameDay(startTime, selectedDate)
-      );
+      let sessions = availableSessions.filter(({ startTime }) => isToday(startTime));
       sessions = sessions.filter((session) => session.location.id === selectedLocation?.id);
       setSelectedSession(sessions[0]);
       setSessionsForThisLocation(sessions);
     }
-  }, [selectedLocation, availableSessions, setSelectedSession, selectedDate]);
+  }, [selectedLocation, availableSessions, setSelectedSession]);
 
   const getUserSessionsList = useCallback(async () => {
-    const userSessionsList = await userSessionService.getUserSessionList(selectedSession.id);
+    const currentDate = new Date().toLocaleDateString();
+    const userSessionsList = await userSessionService.getUserSessionList(
+      selectedSession.id,
+      currentDate
+    );
     setUserSessions(userSessionsList);
   }, [selectedSession]);
 
