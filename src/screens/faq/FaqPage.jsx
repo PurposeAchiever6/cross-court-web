@@ -5,9 +5,7 @@ const LINK_CLASSES = 'text-cc-purple hover:text-opacity-60';
 
 const Faq = () => (
   <div className="p-4 pt-8 md:p-8 mb-6">
-    <h1 className="font-shapiro95_super_wide text-center text-xl md:text-3xl mb-6">
-      CROSSCOURT FAQ
-    </h1>
+    <h1 className="font-shapiro95_super_wide text-center text-xl md:text-3xl mb-6">FAQ</h1>
     <QuestionAnswer question="What is Crosscourt?" className="mb-8">
       Crosscourt&apos;s a team-sport based fitness company. We offer a high-intensity,
       basketball-based fitness experience. Each session&apos;s one hour, limited to 15 players, and

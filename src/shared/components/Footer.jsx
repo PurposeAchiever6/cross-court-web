@@ -122,6 +122,12 @@ const Footer = () => {
           <Link className="w-max hover:opacity-60 transition-opacity duration-300" to={ROUTES.FAQ}>
             FAQ
           </Link>
+          <Link
+            className="w-max hover:opacity-60 transition-opacity duration-300"
+            to={ROUTES.CONTENT}
+          >
+            CONTENT
+          </Link>
           <Link className="w-max hover:opacity-60 transition-opacity duration-300" to={ROUTES.SEM}>
             JOIN THE TEAM
           </Link>

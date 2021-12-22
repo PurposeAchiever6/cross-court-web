@@ -83,7 +83,7 @@ const LocationsPage = () => {
   ) : (
     <>
       {isFSFFlow && <FreeSessionCreditAdded />}
-      <div className="locations pt-16 flex flex-col md:flex-row-reverse justify-center">
+      <div className="locations flex flex-col md:flex-row-reverse justify-center">
         <div className="w-full md:w-1/2 flex flex-col">
           <LocationPicker
             availableLocations={[{ id: null, name: 'ALL LOCATIONS' }, ...availableLocations]}
