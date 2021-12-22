@@ -598,13 +598,13 @@ const Routes = () => {
         <Route path={ROUTES.RESETPASSWORDSUCCESS}>
           <PassResetSuccess />
         </Route>
-        <Route path={ROUTES.LOCATIONS}>
+        <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFREE, ROUTES.LOCATIONSFIRST]}>
           <Locations />
         </Route>
         <Route path={ROUTES.SESSION} exact>
           <Sessions />
         </Route>
-        <Route path={ROUTES.SESSIONRESERVED}>
+        <Route path={[ROUTES.SESSIONRESERVED, ROUTES.FIRSTSESSIONRESERVED]}>
           <SessionReserved />
         </Route>
         <Route path={ROUTES.SESSIONCONFIRMED}>

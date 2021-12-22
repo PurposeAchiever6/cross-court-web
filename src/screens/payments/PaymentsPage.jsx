@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import Loading from 'shared/components/Loading';
 import { isNil } from 'ramda';
-import { getSelectedProduct } from 'screens/products/reducer';
-import { initialLoadInit } from './actionCreators';
-import { getPageLoading, getAvailableCards } from './reducer';
-import PaymentMethods from './components/PaymentMethods';
 
-import Modal from 'shared/components/Modal';
-import FreeSessionConfirmModal from 'shared/components/FreeSessionConfirmModal';
-import { getIsAuthenticated } from 'screens/auth/reducer';
-
-import { getUserProfile } from 'screens/my-account/reducer';
 import ROUTES from 'shared/constants/routes';
+import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import Loading from 'shared/components/Loading';
+import FreeSessionConfirmModal from 'shared/components/FreeSessionConfirmModal';
+import Modal from 'shared/components/Modal';
+import { getSelectedProduct } from 'screens/products/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
+
+import { getPageLoading, getAvailableCards } from './reducer';
+import { initialLoadInit } from './actionCreators';
+import PaymentMethods from './components/PaymentMethods';
 
 const PaymentsPage = () => {
   const dispatch = useDispatch();
@@ -21,15 +21,10 @@ const PaymentsPage = () => {
   const isLoading = useSelector(getPageLoading);
   const availableCards = useSelector(getAvailableCards);
   const selectedProduct = useSelector(getSelectedProduct);
-  const isAuthenticated = useSelector(getIsAuthenticated);
-
-  /* START FSF FLOW LOGIC */
   const userInfo = useSelector(getUserProfile);
-  const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
-  const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed;
+
+  const isFSFFlow = isUserInFirstFreeSessionFlow(userInfo);
   const redirectUrl = window.localStorage.getItem('redirect');
-  /* END FSF FLOW LOGIC */
 
   const shouldShowFSFModal = () => !!(isFSFFlow && !availableCards.length && redirectUrl);
   const [showConfirmModal, setShowConfirmModal] = useState(true);

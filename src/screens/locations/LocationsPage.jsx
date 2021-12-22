@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
+import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 import Map from 'shared/components/Map/Map';
 import { add, isPast, getUTCDate } from 'shared/utils/date';
+import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 
-import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import LocationPicker from './components/LocationPicker';
 import WeekSelector from './components/WeekSelector';
@@ -27,15 +29,17 @@ import {
 } from './actionCreators';
 
 const LocationsPage = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const isPageLoading = useSelector(getPageLoading);
   const isSessionsLoading = useSelector(getSessionsLoading);
   const availableLocations = useSelector(getAvailableLocations);
   const availableSessions = useSelector(getAvailableSessions);
   const selectedLocation = useSelector(getSelectedLocation);
   const selectedDate = useSelector(getSelectedDate);
-  const isAuthenticated = useSelector(getIsAuthenticated);
+  const userInfo = useSelector(getUserProfile);
 
-  const dispatch = useDispatch();
   const setLocationHandler = (locationId) => dispatch(getSessionsByLocation(locationId));
   const getSessionsByDateHandler = (date) => dispatch(getSessionsByDate(date));
   const setSelectedDateHandler = (date) => dispatch(setSelectedDate(date));
@@ -58,24 +62,21 @@ const LocationsPage = () => {
     }
   };
 
-  /* START FSF FLOW LOGIC */
-  const userInfo = useSelector(getUserProfile);
-  const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
-  const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
   const isFSFFlow =
-    isAuthenticated &&
-    freeSessionNotExpired &&
-    freeSessionNotClaimed &&
+    isUserInFirstFreeSessionFlow(userInfo) &&
     window.localStorage.getItem('previousPage').indexOf('session-') === -1;
-  /* END FSF FLOW LOGIC */
 
   useEffect(() => {
+    if (isUserInFirstFreeSessionFlow(userInfo)) {
+      history.push(ROUTES.LOCATIONSFIRST);
+    }
+
     dispatch(initialLoadInit());
 
     if (isFSFFlow) {
       document.body.setAttribute('data-page', 'free-session-credit-added');
     }
-  }, [dispatch, isFSFFlow]);
+  }, [dispatch, history, isFSFFlow, userInfo]);
 
   return isPageLoading ? (
     <Loading />

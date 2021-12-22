@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { isEmpty } from 'ramda';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { useSelector, useDispatch } from 'react-redux';
-import CCIcon from 'shared/components/CCIcon';
-import { useHistory } from 'react-router-dom';
-import ROUTES from 'shared/constants/routes';
-import { deleteCard, setSelectedCard } from '../actionCreators';
+import { isEmpty } from 'ramda';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
+import ROUTES from 'shared/constants/routes';
+import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { getUserProfile } from 'screens/my-account/reducer';
-import { getIsAuthenticated } from 'screens/auth/reducer';
+import CCIcon from 'shared/components/CCIcon';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+
+import { deleteCard, setSelectedCard } from '../actionCreators';
 
 const PaymentMethodsContainer = styled.div`
   width: 35%;
@@ -152,7 +153,8 @@ const PaymentMethodsContainer = styled.div`
 const PaymentMethods = ({ availableCards }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const isAuthenticated = useSelector(getIsAuthenticated);
+
+  const userInfo = useSelector(getUserProfile);
 
   const [selectedCard, setSelectedCard2] = useState('');
 
@@ -162,15 +164,10 @@ const PaymentMethods = ({ availableCards }) => {
     setSelectedCard2(paymentMethod.id);
   };
 
-  /* START FSF FLOW LOGIC */
-  const userInfo = useSelector(getUserProfile);
-  const freeSessionNotExpired = new Date(userInfo.freeSessionExpirationDate) > new Date();
-  const freeSessionNotClaimed = userInfo.freeSessionState === 'not_claimed';
-  const isFSFFlow = isAuthenticated && freeSessionNotExpired && freeSessionNotClaimed;
   const redirectUrl = window.localStorage.getItem('redirect');
-  /* END FSF FLOW LOGIC */
 
-  const shouldReturnFSFDetailsPage = () => !!(isFSFFlow && availableCards.length && redirectUrl);
+  const shouldReturnFSFDetailsPage = () =>
+    isUserInFirstFreeSessionFlow(userInfo) && availableCards.length && redirectUrl;
 
   const nextHandler = () => {
     if (shouldReturnFSFDetailsPage()) {
