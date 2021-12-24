@@ -146,6 +146,16 @@ const ContentPage = () => (
           <img alt="instruction-7-img-3" src={instruction7Img3} className="w-64" />
         </div>
       </InstructionItem>
+
+      <InstructionItem number={8}>
+        Show off your highlights! Send to friends, upload to instagram, or make a mixtape for all
+        your fans to see. If you have any issues or questions, feel free to email us at{' '}
+        <span className="font-shapiro95_super_wide">ccteam@cross-court.com</span>.
+      </InstructionItem>
+
+      <div className="font-dharma_gothic_cheavy_italic text-7xl text-center uppercase mb-10">
+        Let's get it!
+      </div>
     </ol>
   </div>
 );
