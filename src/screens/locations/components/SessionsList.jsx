@@ -13,6 +13,7 @@ import SessionLevel from 'shared/components/SessionLevel';
 import Badge from 'shared/components/Badge';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import WarningTriangle from 'shared/images/warning-triangle.png';
+import { isUserInLegalAge } from 'shared/utils/user';
 
 import {
   hourRange,
@@ -21,7 +22,6 @@ import {
   sortSessionsByDate,
   formatSessionTime,
   formatSessionDate,
-  yearsFrom,
 } from 'shared/utils/date';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -64,8 +64,8 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
 
-  const currentUserAge = currentUser.birthday && yearsFrom(new Date(currentUser.birthday));
-  const disableButton = currentUserAge && currentUserAge < 18;
+  const isLegalAge = isUserInLegalAge(currentUser);
+  const disableButton = !isLegalAge;
 
   const sessionList = availableSessions.filter(({ startTime }) =>
     isSameDay(startTime, selectedDate)
@@ -205,21 +205,18 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
               </div>
               <div className="flex flex-col items-end pl-8">
                 {button}
-                {currentUser.birthday && currentUserAge < 18 && (
-                  <div className="flex items-center mt-2 whitespace-nowrap">
-                    <img alt="" className="w-4 h-4" src={WarningTriangle} />
+                {!isLegalAge && (
+                  <div className="flex items-center sm:self-center mt-2 whitespace-nowrap">
+                    <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                     <p className="text-2xs sm:text-xs mt-1 ml-2">{onlyForUsersOver18Text}</p>
                   </div>
                 )}
-                {spotsLeft > 0 &&
-                  spotsLeft <= 5 &&
-                  fewSpotsLeftText &&
-                  (currentUserAge == null || currentUserAge >= 18) && (
-                    <div className="flex items-center mt-2 whitespace-nowrap">
-                      <img alt="" className="w-4 h-4" src={WarningTriangle} />
-                      <p className="text-2xs sm:text-xs mt-1 ml-2">{fewSpotsLeftText}</p>
-                    </div>
-                  )}
+                {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && isLegalAge && (
+                  <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
+                    <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                    <p className="text-2xs sm:text-xs mt-1 ml-2">{fewSpotsLeftText}</p>
+                  </div>
+                )}
               </div>
             </div>
           );
