@@ -23,6 +23,7 @@ const ReserveButton = ({
   session,
   signupBookSessionAction,
   createAndReserveFreeSessionHandler,
+  disabled,
 }) => {
   const env = runtimeEnv();
 
@@ -49,7 +50,9 @@ const ReserveButton = ({
       if (session.full) {
         return (
           <a href={mailInfo}>
-            <PrimaryButton className="btn-alternative">JOIN WAITLIST</PrimaryButton>
+            <PrimaryButton className="btn-alternative" disabled={disabled}>
+              JOIN WAITLIST
+            </PrimaryButton>
           </a>
         );
       }
@@ -69,7 +72,7 @@ const ReserveButton = ({
                 }
               }
             }}
-            disabled={isPast(sessionDate)}
+            disabled={disabled || isPast(sessionDate)}
           >
             CONFIRM RESERVATION
           </PrimaryButton>
@@ -117,16 +120,21 @@ const ReserveButton = ({
   }
 
   return (
-    <PrimaryButton inverted onClick={signupBookSessionAction}>
+    <PrimaryButton inverted onClick={signupBookSessionAction} disabled={disabled}>
       CONFIRM RESERVATION
     </PrimaryButton>
   );
+};
+
+ReserveButton.defaultProps = {
+  disabled: false,
 };
 
 ReserveButton.propTypes = {
   reserveSessionAction: PropTypes.func.isRequired,
   session: PropTypes.object.isRequired,
   signupBookSessionAction: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default ReserveButton;

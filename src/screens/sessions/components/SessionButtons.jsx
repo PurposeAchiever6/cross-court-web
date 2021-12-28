@@ -21,6 +21,7 @@ const SessionButtons = ({
   userProfile,
   signupBookSessionAction,
   createAndReserveFreeSessionHandler,
+  disabled,
 }) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const history = useHistory();
@@ -69,6 +70,7 @@ const SessionButtons = ({
               signupBookSessionAction={signupBookSessionAction}
               session={session}
               createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
+              disabled={disabled}
             />
           )}
           {isAuthenticated && !isNil(session.userSession) && (
@@ -89,17 +91,22 @@ const SessionButtons = ({
               window.localStorage.setItem('redirect', window.location.pathname);
               history.push(ROUTES.MEMBERSHIPS);
             }}
+            disabled={disabled}
           >
             CONFIRM RESERVATION
           </PrimaryButton>
         )}
       {session && (isSessionComplete || isSessionFull) && (
-        <PrimaryButton onClick={() => history.push(ROUTES.LOCATIONS)}>
+        <PrimaryButton onClick={() => history.push(ROUTES.LOCATIONS)} disabled={disabled}>
           FIND NEW SESSION
         </PrimaryButton>
       )}
     </>
   );
+};
+
+SessionButtons.defaultProps = {
+  disabled: false,
 };
 
 SessionButtons.propTypes = {
@@ -109,6 +116,7 @@ SessionButtons.propTypes = {
   signupBookSessionAction: PropTypes.func.isRequired,
   userProfile: PropTypes.object.isRequired,
   session: PropTypes.object.isRequired,
+  disabled: PropTypes.bool,
 };
 
 export default SessionButtons;

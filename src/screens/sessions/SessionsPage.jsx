@@ -8,6 +8,8 @@ import Loading from 'shared/components/Loading';
 import Modal from 'shared/components/Modal';
 import BackButton from 'shared/components/BackButton';
 import { longSessionDate, hourRange } from 'shared/utils/date';
+import { isUserInLegalAge } from 'shared/utils/user';
+import WarningTriangle from 'shared/images/warning-triangle.png';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -75,6 +77,7 @@ const SessionsPage = () => {
   const signupBookSessionAction = () => dispatch(signupBookSession(id, date));
   const removeSessionFromStorageAction = () => dispatch(removeSessionFromStorage());
 
+  const isLegalAge = isUserInLegalAge(userProfile);
   const isSessionComplete = sessionInfo.past;
   const isSessionFull = sessionInfo.spotsLeft === 0;
   const getSessionsMessageContainerText = () => {
@@ -187,7 +190,14 @@ const SessionsPage = () => {
               userProfile={userProfile}
               signupBookSessionAction={signupBookSessionAction}
               createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
+              disabled={!isLegalAge}
             />
+            {!isLegalAge && (
+              <div className="flex items-center whitespace-nowrap mt-4 md:mt-2">
+                <img className="w-4 h-4" src={WarningTriangle} alt="warning-icon" />
+                <p className="text-2xs sm:text-xs mt-1 ml-2">YOU MUST BE 18+</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
