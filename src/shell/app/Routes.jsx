@@ -50,6 +50,7 @@ const Rules = lazy(() => import('shared/pages/Rules'));
 const Rating = lazy(() => import('shared/pages/Rating'));
 const CancelationPolicy = lazy(() => import('screens/legal-docs/pages/CancelationPolicy'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
+const PrivacyPolicy = lazy(() => import('screens/legal-docs/pages/PrivacyPolicy'));
 const Survey = lazy(() => import('screens/survey/SurveyPage'));
 const PWA = lazy(() => import('screens/pwa/PWAPage'));
 
@@ -622,6 +623,9 @@ const Routes = () => {
         </Route>
         <Route path={ROUTES.TERMS}>
           <TermsAndConditions />
+        </Route>
+        <Route path={ROUTES.PRIVACY_POLICY}>
+          <PrivacyPolicy />
         </Route>
         <Route path={ROUTES.CANCELATIONPOLICY}>
           <CancelationPolicy />
