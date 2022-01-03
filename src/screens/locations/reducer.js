@@ -19,7 +19,7 @@ const initialState = {
   availableLocations: [],
   availableSessions: [],
   selectedLocation: null,
-  selectedDate: new Date(),
+  selectedDate: new Date().toLocaleDateString(),
 };
 
 export default (state = initialState, action) => {
@@ -43,7 +43,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selectedLocation: action.payload.locationId,
-        selectedDate: new Date(),
+        selectedDate: new Date().toLocaleDateString(),
         sessionsLoading: true,
         error: '',
       };
@@ -66,33 +66,33 @@ export default (state = initialState, action) => {
   }
 };
 
-const getLocations = state => state.locations;
+const getLocations = (state) => state.locations;
 
-export const getPageLoading = createSelector(getLocations, locations => locations.pageLoading);
+export const getPageLoading = createSelector(getLocations, (locations) => locations.pageLoading);
 
-export const getError = createSelector(getLocations, locations => locations.error);
+export const getError = createSelector(getLocations, (locations) => locations.error);
 
 export const getAvailableLocations = createSelector(
   getLocations,
-  locations => locations.availableLocations
+  (locations) => locations.availableLocations
 );
 
 export const getAvailableSessions = createSelector(
   getLocations,
-  locations => locations.availableSessions
+  (locations) => locations.availableSessions
 );
 
 export const getSelectedLocation = createSelector(
   getLocations,
-  locations => locations.selectedLocation
+  (locations) => locations.selectedLocation
 );
 
 export const getSessionsLoading = createSelector(
   getLocations,
-  locations => locations.sessionsLoading
+  (locations) => locations.sessionsLoading
 );
 
 export const getSelectedDate = createSelector(
   getLocations,
-  locations => new Date(locations.selectedDate)
+  (locations) => new Date(locations.selectedDate)
 );

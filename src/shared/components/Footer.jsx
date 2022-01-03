@@ -62,7 +62,7 @@ const Footer = () => {
 
   return pathname === ROUTES.DASHBOARD ? null : (
     <>
-      <footer className="flex flex-col md:flex-row md:flex-row-reverse justify-evenly md:justify-between bg-cc-black p-6 text-white h-160 md:h-80">
+      <footer className="flex flex-col md:flex-row md:flex-row-reverse justify-evenly md:justify-between bg-cc-black p-6 text-white h-160 md:h-96">
         <div className="md:w-1/2 flex flex-col h-full justify-evenly md:justify-between">
           <LogoSvg className="w-72" />
           {!isAuthenticated && (
@@ -174,13 +174,19 @@ const Footer = () => {
           )}
 
           <a
-            className="mt-8 w-max hover:opacity-60 transition-opacity duration-300 h-full"
+            className="my-8 w-max hover:opacity-60 transition-opacity duration-300 h-full"
             href={INSTAGRAM_LINK}
             target="_blank"
             rel="noopener noreferrer"
           >
             <InstagramSvg className="w-8 h-8" />
           </a>
+          <Link className="w-max hover:opacity-60 transition-opacity duration-300 text-2xs" to={ROUTES.TERMS}>
+            TERMS AND CONDITIONS
+          </Link>
+          <Link className="w-max hover:opacity-60 transition-opacity duration-300 text-2xs" to={ROUTES.PRIVACY_POLICY}>
+            PRIVACY POLICY
+          </Link>
           <Copyright className="md:hidden" />
         </div>
       </footer>

@@ -20,6 +20,7 @@ export default {
   MYACCOUNT: '/my-account',
   PAYMENTS: '/payments',
   PAYMENTSADDCARD: '/payments/add',
+  PRIVACY_POLICY: '/privacy-policy',
   PURCHASEHISTORY: '/purchase-history',
   PWA: '/app',
   RATING: '/rating',
