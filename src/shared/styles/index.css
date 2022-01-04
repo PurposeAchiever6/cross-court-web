@@ -1,6 +1,7 @@
 @import './animations.css';
 @import './carousel.css';
 @import './contact-form.css';
+@import './utilities.css';
 @import './homepage.css';
 @import './sidebar.css';
 @import './toasts.css';
@@ -156,7 +157,8 @@ body[data-page='how-it-works'] main,
 body[data-page='free-session-credit-added'] main,
 body[data-page='no-session-credits'] main,
 body[data-page='dashboard'] main,
-body[data-page='app'] main {
+body[data-page='app'] main,
+body[data-page='sem'] main {
   padding-top: 0;
 }
 

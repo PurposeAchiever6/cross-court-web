@@ -1,0 +1,10 @@
+.text-transparent {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 2px;
+}
+.text-stroke-white {
+  -webkit-text-stroke-color: white;
+}
+.text-stroke-black {
+  -webkit-text-stroke-color: black;
+}

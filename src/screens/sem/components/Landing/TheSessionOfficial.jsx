@@ -1,54 +1,30 @@
 import React, { useState } from 'react';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
-
-import useWindowSize from 'shared/hooks/useWindowSize';
 import ReactPlayer from 'react-player';
 import ReactModal from 'react-modal';
-import { size } from 'shared/styles/mediaQueries';
-
-import theSessionOfficialImg from 'screens/sem/images/the-session-official.png';
-
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import styled from 'styled-components';
 
+import useWindowSize from 'shared/hooks/useWindowSize';
+import { size } from 'shared/styles/mediaQueries';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import theSessionOfficialBgImg from 'screens/sem/images/pick-up-referee-3.jpeg';
+
 const Section = styled.section`
-  @media (min-width: 992px) {
-    background-image: url('${theSessionOfficialImg}');
-    background-attachment: fixed;
-    height: 100vh;
-  }
-
-  .mobile-image {
-    display: block;
-    height: auto;
-    width: 100%;
-    @media (min-width: 992px) {
-      display: none;
-    }
-  }
-
   .title {
-    color: white;
-    font-family: shapiro95_super_wide;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: white;
     font-size: 26px;
     line-height: 26px;
     @media (min-width: 992px) {
-      font-size: 52px;
-      line-height: 52px;
+      font-size: 36px;
+      line-height: 36px;
     }
   }
 
   .subtitle {
-    color: white;
-    font-family: shapiro95_super_wide;
-    font-size: 38px;
-    line-height: 38px;
+    font-size: 33px;
+    line-height: 33px;
     @media (min-width: 992px) {
-      font-size: 75px;
-      line-height: 75px;
+      font-size: 52px;
+      line-height: 52px;
     }
   }
 `;
@@ -85,27 +61,35 @@ const TheSessionOfficial = () => {
 
   return (
     <>
-      <Section className="flex flex-col items-end h-sreen bg-cc-black bg-no-repeat bg-cover justify-center text-white p-6">
-        <div className="text-right">
-          <p className="title">THE SESSION</p>
-          <p className="subtitle">OFFICIAL</p>
-          <p className="max-w-3xl my-10">
+      <Section className="flex flex-col-reverse md:flex-row flex-wrap">
+        <div
+          className="w-full md:w-1/2 bg-no-repeat bg-cover bg-center"
+          style={{
+            minHeight: '550px',
+            backgroundImage: `url('${theSessionOfficialBgImg}')`,
+          }}
+        />
+        <div className="w-full md:w-1/2 px-4 md:px-10 py-14 bg-cc-black text-white">
+          <div className="w-min ml-auto font-shapiro95_super_wide whitespace-nowrap text-center mb-10">
+            <div className="title text-transparent text-stroke-white">THE SESSION</div>
+            <div className="subtitle">OFFICIAL</div>
+          </div>
+          <p className="mb-20 max-w-2xl text-right ml-auto">
             As a session official, you will have fun enforcing the Crosscourt rules and maintaining
             order on the court. This isn&apos;t your average referee role. We encourage getting to
             know our players, hitting a dance move in between sessions, or adding some flare to a
             foul call. You are a leader on the Crosscourt team and will work side by side with the
             SEM to deliver a seamless and enjoyable in session experience, every time.
           </p>
+          <div className="flex justify-end">
+            <PrimaryButton className="mr-4 md:mr-12" onClick={() => window.open(SO_LINK, '_blank')}>
+              APPLY
+            </PrimaryButton>
+            <PrimaryButton onClick={() => setShowModal(true)} inverted bg="transparent">
+              LEARN MORE
+            </PrimaryButton>
+          </div>
         </div>
-        <div className="flex justify-between w-full md:w-96">
-          <PrimaryButton onClick={() => window.open(SO_LINK, '_blank')} w="100%">
-            APPLY
-          </PrimaryButton>
-          <PrimaryButton onClick={() => setShowModal(true)} inverted w="100%" bg="transparent">
-            <span className="text">LEARN MORE</span>
-          </PrimaryButton>
-        </div>
-        <img alt="" className="mobile-image" src={theSessionOfficialImg} />
       </Section>
 
       <ReactModal

@@ -4,7 +4,6 @@ import JoinTheCCTeam from './JoinTheCCTeam';
 import TheSessionExperienceManager from './TheSessionExperienceManager';
 import TheSessionOfficial from './TheSessionOfficial';
 import CCTeamPerks from './CCTeamPerks';
-import AnyQuestions from './AnyQuestions';
 
 const Landing = () => (
   <section>
@@ -12,7 +11,6 @@ const Landing = () => (
     <TheSessionExperienceManager />
     <TheSessionOfficial />
     <CCTeamPerks />
-    <AnyQuestions />
   </section>
 );
 

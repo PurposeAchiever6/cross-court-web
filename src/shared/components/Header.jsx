@@ -27,7 +27,6 @@ const ALWAYS_SCROLLED = [
   ROUTES.MEMBERSHIPS,
   ROUTES.MYACCOUNT,
   ROUTES.LOGIN,
-  ROUTES.SEM,
   ROUTES.DASHBOARD,
   ROUTES.FAQ,
   ROUTES.CONTENT,
@@ -44,7 +43,7 @@ const ALWAYS_SCROLLED = [
   '/session',
   '/first-session',
 ];
-const BLACK_BG = [ROUTES.SEM, ROUTES.MEMBERSHIPS];
+const BLACK_BG = [ROUTES.MEMBERSHIPS];
 
 const Header = () => {
   const dispatch = useDispatch();

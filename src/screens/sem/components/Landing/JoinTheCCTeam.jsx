@@ -1,44 +1,46 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledDiv = styled.div`
+import joinTheCCTeamBgImg from 'screens/sem/images/cool-basketball-gym.jpeg';
+
+const Section = styled.section`
   .title {
-    color: white;
-    font-family: dharma_gothic_cexbold;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: white;
     font-size: 200px;
     line-height: 180px;
     @media (min-width: 992px) {
-      font-size: 400px;
-      line-height: 310px;
+      font-size: 320px;
+      line-height: 260px;
     }
   }
 
   .subtitle {
-    color: white;
-    font-family: shapiro95_super_wide;
-    font-size: 45px;
-    line-height: 30px;
+    font-size: 20px;
+    line-height: 18px;
     @media (min-width: 992px) {
-      font-size: 90px;
-      line-height: 65px;
+      font-size: 33px;
+      line-height: 30px;
     }
   }
 `;
 
 const JoinTheCCTeam = () => (
-  <StyledDiv className="flex flex-col h-screen items-center justify-center text-white bg-cc-black">
-    <div className="w-min">
-      <p className="title">JOIN THE</p>
-      <p className="subtitle">CCTEAM</p>
-      <p className="text-center mt-10 text-xs">
+  <Section
+    className="flex justify-center items-center h-screen bg-cc-black bg-no-repeat bg-cover bg-top"
+    style={{ backgroundImage: `url('${joinTheCCTeamBgImg}')` }}
+  >
+    <div className="text-center text-white bg-cc-black bg-opacity-60 w-full p-6">
+      <div className="title font-dharma_gothic_cexbold text-transparent text-stroke-white text-13xl whitespace-nowrap">
+        JOIN THE
+      </div>
+      <div className="subtitle font-shapiro95_super_wide text-3xl whitespace-nowrap">
+        EXPERIENCE TEAM
+      </div>
+      <div className="text-sm max-w-2xl mt-4 mx-auto">
         AS A MEMBER OF THE CC EXPERIENCE TEAM, YOU&apos;LL HELP US UNITE AND IGNITE THE WORLD
         THROUGH THE POWER OF TEAM-SPORT
-      </p>
+      </div>
     </div>
-  </StyledDiv>
+  </Section>
 );
 
 export default JoinTheCCTeam;
