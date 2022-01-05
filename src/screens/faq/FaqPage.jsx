@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionAnswer from './components/QuestionAnswer';
+import QuestionAnswer from 'shared/components/QuestionAnswer';
 
 const LINK_CLASSES = 'text-cc-purple hover:text-opacity-60';
 

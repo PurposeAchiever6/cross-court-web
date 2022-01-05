@@ -11,7 +11,7 @@ import rewardsIcon from 'screens/sem/images/rewards.png';
 import ccFitIcon from 'screens/sem/images/cc-fit.png';
 import gloryIcon from 'screens/sem/images/glory.png';
 
-const images = [
+const PERKS = [
   { src: competitiveWageIcon, text: 'Competitive Wage', className: 'h-20 md:h-28' },
   { src: freeSessionsIcon, text: 'Free Membership', className: 'h-24 md:h-32' },
   { src: rewardsIcon, text: 'Rewards', className: 'h-24 md:h-32' },
@@ -29,13 +29,13 @@ const CCTeamPerks = () => {
     >
       <div className="bg-cc-black bg-opacity-50 px-4 md:px-12 pt-8 md:pb-4 mb-12">
         <div className="font-shapiro95_super_wide mb-10">
-          <div className="text-transparent text-stroke-white text-3xl md:text-4xl">
+          <h2 className="text-transparent text-stroke-white text-3xl md:text-4xl">
             EXPERIENCE TEAM
-          </div>
-          <div className="text-2xl md:text-3xl">PERKS</div>
+          </h2>
+          <h2 className="text-2xl md:text-3xl">PERKS</h2>
         </div>
         <div className="flex flex-wrap justify-between md:px-6 lg:px-8 xl:px-10">
-          {images.map(({ src, text, className }, index) => (
+          {PERKS.map(({ src, text, className }, index) => (
             <div
               key={index}
               className="flex flex-col justify-between items-center w-1/2 md:w-auto h-40 md:h-44 mb-14 md:mb-6 last:w-full md:last:w-auto px-4 md:px-6"
@@ -49,9 +49,9 @@ const CCTeamPerks = () => {
         </div>
       </div>
       <div className="text-center px-4 md:px-12">
-        <div className="font-dharma_gothic_cexbold text-transparent text-stroke-white text-9xl md:text-12xl mb-10">
+        <h2 className="font-dharma_gothic_cexbold text-transparent text-stroke-white text-9xl md:text-12xl mb-10">
           ANY QUESTIONS?
-        </div>
+        </h2>
         <div>
           <PrimaryButton onClick={() => openContactFormForUser(currentUser)}>
             EMAIL US

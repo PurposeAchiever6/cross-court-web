@@ -8,3 +8,6 @@
 .text-stroke-black {
   -webkit-text-stroke-color: black;
 }
+.text-stroke-width-1 {
+  -webkit-text-stroke-width: 1px;
+}

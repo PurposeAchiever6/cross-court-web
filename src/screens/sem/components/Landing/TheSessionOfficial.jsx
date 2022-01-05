@@ -71,8 +71,8 @@ const TheSessionOfficial = () => {
         />
         <div className="w-full md:w-1/2 px-4 md:px-10 py-14 bg-cc-black text-white">
           <div className="w-min ml-auto font-shapiro95_super_wide whitespace-nowrap text-center mb-10">
-            <div className="title text-transparent text-stroke-white">THE SESSION</div>
-            <div className="subtitle">OFFICIAL</div>
+            <h2 className="title text-transparent text-stroke-white">THE SESSION</h2>
+            <h2 className="subtitle">OFFICIAL</h2>
           </div>
           <p className="mb-20 max-w-2xl text-right ml-auto">
             As a session official, you will have fun enforcing the Crosscourt rules and maintaining
