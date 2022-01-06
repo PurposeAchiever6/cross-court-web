@@ -1,62 +1,24 @@
 import React from 'react';
-import whoWeAreMobileImg from 'screens/homepage/images/who-we-are.png';
+import whoWeAreImg from 'screens/homepage/images/los-angeles-pickup-basketball.jpg';
 import styled from 'styled-components';
 
 const Section = styled.section`
-  background-color: #fff;
-  background-image: none;
-  background-position: top right;
-  display: block;
-  height: auto;
-  min-height: 850px;
-
-  @media (min-width: 992px) {
-    background-image: url(${whoWeAreMobileImg});
-    background-attachment: fixed;
-  }
-
-  .description {
-    @media (min-width: 992px) {
-      max-width: 620px;
-    }
-  }
-
-  .title {
-    color: #9999ff;
-    font-size: 120px;
-    line-height: 100px;
-    margin-bottom: 15px;
-
-    @media (min-width: 992px) {
-      font-size: 250px;
-      line-height: 200px;
-    }
-  }
-
-  .mobile-image {
-    display: block;
-    height: auto;
-    margin-top: -20%;
-    position: relative;
-    right: 50%;
-    width: 150%;
-
-    @media (min-width: 992px) {
-      display: none;
-    }
-  }
+  background-image: url(${whoWeAreImg});
 `;
 
 const WhoWeAre = () => (
-  <Section className="section-block">
-    <section className="title-and-description-block shift-left">
-      <p className="title dharma_gothic_cheavy">
-        THE
+  <Section className="section-block text-white h-screen bg-no-repeat bg-cover bg-center bg-fixed relative">
+    <div className="bg-cc-black bg-opacity-60 w-4/5 md:w-2/6 md:h-screen md:ml-16 p-4 md:p-12 top-28 md:top-0 absolute">
+      <h1 className="text-8xl md:text-10xl 2xl:text-11xl dharma_gothic_cheavy z-10 mb-6">
+        <span className="text-transparent text-stroke-cc-purple">THE</span>
         <br />
-        CC TEAM
-      </p>
-      <p className="description">
-        The #ccteam is made up of doers that favor a team based workout enjoy a mid-week get
+        <span className="bg-cc-purple px-2 text-black">CCTEAM</span>
+      </h1>
+      <h2 className="text-base md:text-lg 2xl:text-2xl shapiro95_super_wide uppercase mb-6">
+        Everyone&apos;s an athlete
+      </h2>
+      <p className="text-sm md:text-base 2xl:text-lg mb-4">
+        The ccteam is made up of doers that favor a team based workout, enjoy a mid-week get
         together, or shamelessly refuse to give up on their dreams of going pro.
         <br />
         <br />
@@ -64,8 +26,7 @@ const WhoWeAre = () => (
         professionals, former varsity standouts, and everyone else in between, to shed sweat and
         stress as equals.
       </p>
-    </section>
-    <img alt="Who We Are?" className="mobile-image" src={whoWeAreMobileImg}></img>
+    </div>
   </Section>
 );
 

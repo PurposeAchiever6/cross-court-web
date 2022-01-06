@@ -143,7 +143,7 @@ const Header = () => {
   return pathname === ROUTES.DASHBOARD ? null : (
     <div
       className={`header w-full h-16 top-0 bg-transparent transition duration-500 ${
-        scrolled ? `${!isBlackBg && 'shadow-navbar'} ${bgColor} fixed z-10` : 'absolute'
+        scrolled ? `${!isBlackBg && 'shadow-navbar'} ${bgColor} fixed z-50` : 'absolute'
       }`}
     >
       <MobileMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />

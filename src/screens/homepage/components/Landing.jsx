@@ -1,5 +1,5 @@
 import React from 'react';
-import CrosscourtIsAHighIntensity from './sections/CrosscourtIsAHighIntensity';
+import BasketballBasedFitness from './sections/BasketballBasedFitness';
 import FollowUsOnInstagram from './sections/FollowUsOnInstagram';
 import HomeVideo from './sections/HomeVideo';
 import KeysToCrosscourt from './sections/KeysToCrosscourt';
@@ -13,10 +13,10 @@ const Landing = () => (
   <>
     <MakeSportYourLifestyle />
     <HomeVideo />
-    <CrosscourtIsAHighIntensity />
-    <WhyWeExist />
-    <WhoWeAre />
+    <BasketballBasedFitness />
     <WhatWeDo />
+    <WhoWeAre />
+    <WhyWeExist />
     <KeysToCrosscourt />
     <FollowUsOnInstagram />
     <Ready />

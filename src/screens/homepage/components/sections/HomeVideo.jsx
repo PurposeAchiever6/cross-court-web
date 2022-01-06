@@ -13,6 +13,7 @@ const Section = styled.section`
 
 const HomeVideo = (props) => (
   <Section
+    className="z-20"
     dangerouslySetInnerHTML={{
       __html: `
     <video

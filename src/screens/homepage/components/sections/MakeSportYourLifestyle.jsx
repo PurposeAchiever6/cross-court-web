@@ -2,102 +2,62 @@ import React from 'react';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import ROUTES from 'shared/constants/routes';
 import styled from 'styled-components';
-import sportsLifeStyle from 'screens/homepage/images/make-sport-your-lifestyle.jpg';
+import sportsLifeStyle from 'screens/homepage/images/basketball-gym-lockers.jpg';
+import basketballGymGuy from 'screens/homepage/images/basketball-gym-guy.png';
+import basketballGym from 'screens/homepage/images/basketball-gym.jpg';
 
 const Section = styled.section`
-  background-image: url('${sportsLifeStyle}');
-  background-position: top;
-  background-size: cover;
-  min-height: 850px;
-  @media (min-width: 992px) {
-    background-attachment: fixed;
+  background-image: url('${basketballGym}');
+  background-position: center;
+  @media (min-width: 768px) {
+    background-image: url('${sportsLifeStyle}');
+    background-position: 0 -350px;
+    background-color: #041634;
+    background-blend-mode: lighten;
   }
 
-  ::after {
-    content: '';
-    background: rgba(0, 0, 0, 0.4);
-    display: block;
-    height: 100vh;
-    min-height: 850px;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-  }
-
-  .title-and-buttons-block {
-    padding: 0 32px;
-    position: relative;
-    text-align: center;
-    z-index: 2;
-    .title {
-      animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
-      font-size: 30px;
-      line-height: 30px;
-      @media (min-width: 992px) {
-        font-size: 50px;
-        line-height: 50px;
-      }
-    }
-    .primary-button {
-      animation: 500ms ease-out 2500ms 1 both fadeIn;
-      display: block;
-      margin: 0 auto;
-      max-width: 200px;
-      margin-top: 1rem;
-      @media (min-width: 992px) {
-        display: inline-block;
-        max-width: none;
-        margin-right: 4rem;
-      }
-      .first-time-button {
-        margin-bottom: 20px;
-        width: 100%;
-        @media (min-width: 992px) {
-          margin: 0 50px 0 0;
-          width: auto;
-        }
-      }
-    }
-  }
-
-  .crosscourt-big-title {
-    bottom: -19.6vw;
-    font-size: 45vw;
-    left: -0.7vw;
-    line-height: 36vw;
-    margin: 0;
-    opacity: 0;
-    position: absolute;
-    text-align: center;
-    transition: opacity 100ms ease;
-    width: 100vw;
-    z-index: 1;
+  .animate {
+    animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
   }
 `;
 
+const BigTitle = styled.p`
+  bottom: -19.6vw;
+  font-size: 45vw;
+  left: -0.7vw;
+  line-height: 36vw;
+  transition: opacity 100ms ease;
+`;
+
 const MakeSportYourLifestyle = () => (
-  <Section className="section-block text-white">
-    <div className="title-and-buttons-block">
-      <p className="title shapiro95_super_wide">
-        MAKE SPORT YOUR <em className="shapiro96_inclined_wide">LIFESTYLE</em>
-      </p>
+  <Section className="section-block text-white bg-fixed bg-no-repeat bg-cover relative">
+    <img
+      alt="make-sports-your-lifestyle"
+      src={basketballGymGuy}
+      className="absolute -top-2.5 z-20 hidden md:block"
+    />
+    <h1 className="animate mb-8 md:mb-0 title font-shapiro95_super_wide text-3xl md:text-5xl 2xl:text-6xl text-center">
+      <span className="md:absolute md:left-36 2xl:left-52 md:-top-20 2xl:-top-14">MAKE SPORT </span>
+      <span className="lg:absolute md:right-24 2xl:right-40 md:-top-20 2xl:-top-14">
+        YOUR <em className="shapiro96_inclined_wide">LIFESTYLE</em>
+      </span>
+    </h1>
+    <div className="animate lg:absolute md:right-24 2xl:right-40 md:top-62 2xl:bottom-96 text-center md:block flex flex-col z-50">
       <PrimaryButton
-        className="first-time-button font-shapiro95_super_wide"
+        contentClasses="w-3/4 md:w-auto"
+        className="md:mr-8 mb-8 md:mb-0 first-time"
         to={ROUTES.HOWITWORKS}
         bg="transparent"
-        w="100%"
       >
         FIRST TIME?
       </PrimaryButton>
-      <PrimaryButton to={ROUTES.LOCATIONS} w="100%">
+      <PrimaryButton contentClasses="w-3/4 md:w-auto" to={ROUTES.LOCATIONS}>
         BOOK SESSION
       </PrimaryButton>
     </div>
-    <p className="crosscourt-big-title dharma_gothic_cheavy_italic">CROSSCOURT</p>
+    <BigTitle className="crosscourt-big-title w-screen text-center absolute m-0 opacity-0 font-dharma_gothic_cheavy_italic z-40">
+      CROSSCOURT
+    </BigTitle>
   </Section>
 );
 
