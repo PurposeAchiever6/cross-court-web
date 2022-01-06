@@ -30,7 +30,7 @@ const BigTitle = styled.p`
 `;
 
 const MakeSportYourLifestyle = () => (
-  <Section className="section-block text-white bg-fixed bg-no-repeat bg-cover relative">
+  <Section className="section-block text-white md:bg-fixed bg-no-repeat bg-cover relative">
     <img
       alt="make-sports-your-lifestyle"
       src={basketballGymGuy}

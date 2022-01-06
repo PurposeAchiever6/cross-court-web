@@ -10,7 +10,7 @@ const Section = styled.section`
 `;
 
 const CrosscourtIsAHighIntensity = () => (
-  <Section className="section-block text-white h-screen relative bg-fixed bg-no-repeat bg-cover bg-center">
+  <Section className="section-block text-white h-screen relative md:bg-fixed bg-no-repeat bg-cover bg-center">
     <h1 className="z-10 text-transparent text-stroke-cc-purple font-dharma_gothic_cheavy_italic uppercase absolute top-10 md:top-22 text-7xl md:text-12xl 2xl:text-13xl left-5 md:left-10">
       Basketball based fitness
     </h1>

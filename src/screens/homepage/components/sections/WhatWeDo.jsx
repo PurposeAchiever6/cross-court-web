@@ -12,7 +12,7 @@ const Section = styled.section`
 `;
 
 const WhatWeDo = () => (
-  <Section className="section-block text-white bg-cc-black relative h-screen bg-fixed bg-no-repeat bg-cover">
+  <Section className="section-block text-white bg-cc-black relative h-screen md:bg-fixed bg-no-repeat bg-cover">
     <div className="bg-cc-black bg-opacity-60 w-4/5 md:w-2/6 md:h-screen 2xl:ml-16 p-4 2xl:p-12 absolute right-0 md:right-10 text-right">
       <h1 className="text-8xl md:text-10xl 2xl:text-11xl dharma_gothic_cheavy text-transparent text-stroke-cc-purple mb-6">
         THE

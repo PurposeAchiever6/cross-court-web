@@ -7,7 +7,7 @@ const Section = styled.section`
 `;
 
 const WhyWeExist = () => (
-  <Section className="section-block text-white bg-cc-black relative h-screen bg-no-repeat bg-cover bg-center bg-fixed">
+  <Section className="section-block text-white bg-cc-black relative h-screen bg-no-repeat bg-cover bg-center md:bg-fixed">
     <div className="bg-cc-black bg-opacity-60 w-4/5 md:w-2/6 md:h-screen 2xl:ml-16 p-4 2xl:p-12 absolute right-0 md:right-10 text-right">
       <h1 className="text-8xl md:text-10xl 2xl:text-11xl dharma_gothic_cheavy text-transparent text-stroke-cc-purple mb-6">
         THE
