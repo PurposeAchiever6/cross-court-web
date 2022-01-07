@@ -128,14 +128,17 @@ const Footer = () => {
           >
             CONTENT
           </Link>
-          <Link className="w-max hover:opacity-60 transition-opacity duration-300" to={ROUTES.SEM}>
-            JOIN THE TEAM
-          </Link>
           <Link
             className="w-max hover:opacity-60 transition-opacity duration-300"
             to={ROUTES.HOWITWORKS}
           >
             HOW IT WORKS
+          </Link>
+          <Link
+            className="w-max hover:opacity-60 transition-opacity duration-300"
+            to={ROUTES.CAREERS}
+          >
+            JOIN THE TEAM
           </Link>
           <p
             className="cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"

@@ -5,7 +5,7 @@ import TheSessionExperienceManager from './sections/TheSessionExperienceManager'
 import TheSessionOfficial from './sections/TheSessionOfficial';
 import CCTeamPerks from './sections/CCTeamPerks';
 
-const SemHomePage = () => (
+const CareersPage = () => (
   <>
     <JoinTheCCTeam />
     <TheSessionExperienceManager />
@@ -14,4 +14,4 @@ const SemHomePage = () => (
   </>
 );
 
-export default SemHomePage;
+export default CareersPage;

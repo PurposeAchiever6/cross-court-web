@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { openContactFormForUser } from 'shared/utils/contactForm';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import CCTeamPerksBgImg from 'screens/sem/images/cc-team-perks.jpeg';
-import competitiveWageIcon from 'screens/sem/images/wage.png';
-import freeSessionsIcon from 'screens/sem/images/free-sessions.png';
-import rewardsIcon from 'screens/sem/images/rewards.png';
-import ccFitIcon from 'screens/sem/images/cc-fit.png';
-import gloryIcon from 'screens/sem/images/glory.png';
+import CCTeamPerksBgImg from 'screens/careers/images/cc-team-perks.jpeg';
+import competitiveWageIcon from 'screens/careers/images/wage.png';
+import freeSessionsIcon from 'screens/careers/images/free-sessions.png';
+import rewardsIcon from 'screens/careers/images/rewards.png';
+import ccFitIcon from 'screens/careers/images/cc-fit.png';
+import gloryIcon from 'screens/careers/images/glory.png';
 
 const PERKS = [
   { src: competitiveWageIcon, text: 'Competitive Wage', className: 'h-20 md:h-28' },

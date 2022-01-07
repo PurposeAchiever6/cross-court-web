@@ -31,7 +31,7 @@ const PassReset = lazy(() => import('screens/auth/pages/PassResetPage'));
 const PassResetSuccess = lazy(() => import('screens/auth/pages/PassResetSuccess'));
 const Dashboard = lazy(() => import('screens/dashboard/Dashboard'));
 const HowItWorks = lazy(() => import('screens/how-it-works/HowItWorksPage'));
-const SemHomePage = lazy(() => import('screens/sem/semHomePage'));
+const CareersPage = lazy(() => import('screens/careers/CareersPage'));
 const Locations = lazy(() => import('screens/locations/LocationsPage'));
 const Sessions = lazy(() => import('screens/sessions/SessionsPage'));
 const SessionConfirmed = lazy(() => import('screens/sessions/pages/SessionConfirmed'));
@@ -586,8 +586,8 @@ const Routes = () => {
         <Route path={ROUTES.HOME} exact>
           <Home />
         </Route>
-        <Route path={ROUTES.SEM} exact>
-          <SemHomePage />
+        <Route path={ROUTES.CAREERS} exact>
+          <CareersPage />
         </Route>
         <Route path={ROUTES.PWA} exact>
           <PWA />

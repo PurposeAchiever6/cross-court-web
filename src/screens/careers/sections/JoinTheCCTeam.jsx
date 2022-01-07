@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import joinTheCCTeamBgImg from 'screens/sem/images/cool-basketball-gym.jpeg';
+import joinTheCCTeamBgImg from 'screens/careers/images/cool-basketball-gym.jpeg';
 
 const Section = styled.section`
   .title {

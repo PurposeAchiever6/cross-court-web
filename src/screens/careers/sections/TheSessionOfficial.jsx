@@ -7,7 +7,7 @@ import styled from 'styled-components';
 import useWindowSize from 'shared/hooks/useWindowSize';
 import { size } from 'shared/styles/mediaQueries';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import theSessionOfficialBgImg from 'screens/sem/images/pick-up-referee-3.jpeg';
+import theSessionOfficialBgImg from 'screens/careers/images/pick-up-referee-3.jpeg';
 
 const Section = styled.section`
   .title {
