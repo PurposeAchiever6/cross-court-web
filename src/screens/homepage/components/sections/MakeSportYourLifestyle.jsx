@@ -21,14 +21,6 @@ const Section = styled.section`
   }
 `;
 
-const BigTitle = styled.p`
-  bottom: -19.6vw;
-  font-size: 45vw;
-  left: -0.7vw;
-  line-height: 36vw;
-  transition: opacity 100ms ease;
-`;
-
 const MakeSportYourLifestyle = () => (
   <Section className="flex justify-center flex-col text-white md:bg-fixed bg-no-repeat bg-cover relative min-h-screen">
     <img
@@ -55,9 +47,6 @@ const MakeSportYourLifestyle = () => (
         BOOK SESSION
       </PrimaryButton>
     </div>
-    <BigTitle className="crosscourt-big-title w-screen text-center absolute m-0 opacity-0 font-dharma_gothic_cheavy_italic z-40">
-      CROSSCOURT
-    </BigTitle>
   </Section>
 );
 
