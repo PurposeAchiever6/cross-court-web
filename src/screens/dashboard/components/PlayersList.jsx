@@ -45,7 +45,9 @@ const PlayersList = () => {
 
   useEffect(() => {
     if (selectedLocation) {
-      let sessions = availableSessions.filter(({ startTime }) => isToday(startTime));
+      let sessions = availableSessions
+        .filter(({ startTime }) => isToday(startTime))
+        .sort((a, b) => (a.time > b.time ? 1 : -1));
       sessions = sessions.filter((session) => session.location.id === selectedLocation?.id);
       setSelectedSession(sessions[0]);
       setSessionsForThisLocation(sessions);
