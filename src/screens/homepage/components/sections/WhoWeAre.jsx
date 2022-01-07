@@ -7,7 +7,7 @@ const Section = styled.section`
 `;
 
 const WhoWeAre = () => (
-  <Section className="section-block text-white h-screen bg-no-repeat bg-cover bg-center md:bg-fixed relative">
+  <Section className="text-white min-h-screen bg-no-repeat bg-cover bg-center md:bg-fixed relative">
     <div className="bg-cc-black bg-opacity-60 w-4/5 md:w-2/6 md:h-screen md:ml-16 p-4 md:p-12 top-28 md:top-0 absolute">
       <h1 className="text-8xl md:text-10xl 2xl:text-11xl dharma_gothic_cheavy z-10 mb-6">
         <span className="text-transparent text-stroke-cc-purple">THE</span>

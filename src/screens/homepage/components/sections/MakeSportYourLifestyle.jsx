@@ -17,7 +17,7 @@ const Section = styled.section`
   }
 
   .animate {
-    animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
+    animation: 2000ms ease-out 1000ms 1 both topFadeInAndSlideIn;
   }
 `;
 
@@ -30,7 +30,7 @@ const BigTitle = styled.p`
 `;
 
 const MakeSportYourLifestyle = () => (
-  <Section className="section-block text-white md:bg-fixed bg-no-repeat bg-cover relative">
+  <Section className="flex justify-center flex-col text-white md:bg-fixed bg-no-repeat bg-cover relative min-h-screen">
     <img
       alt="make-sports-your-lifestyle"
       src={basketballGymGuy}

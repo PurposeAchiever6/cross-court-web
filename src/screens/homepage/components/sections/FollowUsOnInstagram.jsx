@@ -62,7 +62,7 @@ const Section = styled.section`
 `;
 
 const FollowUsOnInstagram = () => (
-  <Section className="section-block">
+  <Section>
     <section className="title">
       <p>FOLLOW US ON</p>
       <br />
