@@ -1,100 +1,47 @@
 import React from 'react';
-import playButtonPurpleIcon from 'shared/images/play-button-purple.png';
-import playButtonWhiteIcon from 'shared/images/play-button-white.png';
-import newToCrosscourtMobileImg from 'screens/how-it-works/images/new-to-crosscourt-mobile.png';
-import newToCrosscourt from 'screens/how-it-works/images/new-to-crosscourt.png';
+import PropTypes from 'prop-types';
+
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import styled from 'styled-components';
-import colors from 'shared/styles/constants';
+import NewToCrosscourtBgImg from 'screens/how-it-works/images/pick-up-referee.jpeg';
+import playButtonWhiteIcon from 'shared/images/play-button-white.png';
+import playButtonPurpleIcon from 'shared/images/play-button-purple.png';
 
-const Section = styled.section`
-  color: white;
-  background-color: ${colors.brandBlack};
-  background-position: top center;
-  background-size: cover;
-  display: block;
-  height: 100vh;
-  padding: 100px 32px 0;
-
-  @media (min-width: 992px) {
-    background-image: url(${newToCrosscourt});
-    padding: 200px 32px 0;
-  }
-
-  .title-block {
-    animation: 2000ms ease-out 500ms 1 both topFadeInAndSlideIn;
-    .heading-sprite {
-      background-position: 0px -82px;
-      height: 46px;
-      margin-bottom: 20px !important;
-
-      @media (min-width: 992px) {
-        background-position: 0px -153px;
-        height: 86px;
-      }
-    }
-  }
-
-  .check-it-out {
-    img {
-      height: 22px;
-      left: 12px;
-      position: absolute;
-      top: 6px;
-      width: 22px;
-    }
-    .text {
-      margin-left: 25px;
-    }
-  }
-
-  .new-to-crosscourt .check-it-out img.play-button-white {
-    display: inline-block;
-  }
-
-  .new-to-crosscourt .check-it-out:hover img.play-button-white {
-    display: none;
-  }
-
-  .new-to-crosscourt .check-it-out .play-button-purple {
-    display: none;
-  }
-
-  .new-to-crosscourt .check-it-out:hover img.play-button-purple {
-    display: inline-block;
-  }
-
-  .mobile-image {
-    display: block;
-    height: auto;
-    margin: 37px 0 0 -40px;
-    max-width: 50vh;
-    @media (min-width: 992px) {
-      display: none;
-    }
-  }
-`;
-
-const NewToCrosscourt = () => {
-  const handleClick = (e) => {
-    e.preventDefault();
-    document.querySelector('.the-session-video').scrollIntoView({ behavior: 'smooth' });
-    document.querySelector('.the-session-video video').play();
-  };
-
-  return (
-    <Section>
-      <div className="title-block">
-        <p className="heading-sprite" />
+const NewToCrosscourt = ({ scrollToTheSessionVideo }) => (
+  <section
+    className="min-h-screen bg-no-repeat bg-cover bg-left-n-36 sm:bg-left-top text-white py-32"
+    style={{ backgroundImage: `url('${NewToCrosscourtBgImg}')` }}
+  >
+    <div className="lg:w-1/2 lg:ml-auto px-6 sm:px-20 flex justify-center sm:block">
+      <div>
+        <h1 className="font-dharma_gothic_cexbold text-9xl lg:text-11xl italic">NEW TO CC?</h1>
+        <h2 className="font-shapiro95_super_wide text-sm lg:text-lg w-60 lg:w-auto -mt-4 mb-3">
+          YOUR FIRST SESSION IS FREE
+        </h2>
+        <PrimaryButton
+          bg="transparent"
+          color="white"
+          className="group transform scale-90 origin-top-left"
+          onClick={scrollToTheSessionVideo}
+        >
+          <img
+            alt="play-video-icon"
+            className="w-5 h-5 mr-4 inline-block group-hover:hidden"
+            src={playButtonWhiteIcon}
+          />
+          <img
+            alt="play-video-icon"
+            className="w-5 h-5 mr-4 hidden group-hover:inline-block"
+            src={playButtonPurpleIcon}
+          />
+          <span>How it works</span>
+        </PrimaryButton>
       </div>
-      <PrimaryButton inverted bg={colors.brandBlack} className="check-it-out" onClick={handleClick}>
-        <img alt="" className="play-button-white" src={playButtonWhiteIcon} />
-        <img alt="" className="play-button-purple" src={playButtonPurpleIcon} />
-        <span className="text">CHECK IT OUT</span>
-      </PrimaryButton>
-      <img alt="" className="mobile-image" src={newToCrosscourtMobileImg} />
-    </Section>
-  );
+    </div>
+  </section>
+);
+
+NewToCrosscourt.propTypes = {
+  scrollToTheSessionVideo: PropTypes.func.isRequired,
 };
 
 export default NewToCrosscourt;

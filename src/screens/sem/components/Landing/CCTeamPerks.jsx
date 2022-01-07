@@ -16,7 +16,7 @@ const PERKS = [
   { src: freeSessionsIcon, text: 'Free Membership', className: 'h-24 md:h-32' },
   { src: rewardsIcon, text: 'Rewards', className: 'h-24 md:h-32' },
   { src: ccFitIcon, text: 'CC Swag', className: 'h-24 md:h-32' },
-  { src: gloryIcon, text: 'glory', className: 'h-28 md:h-36' },
+  { src: gloryIcon, text: 'Glory', className: 'h-28 md:h-36' },
 ];
 
 const CCTeamPerks = () => {

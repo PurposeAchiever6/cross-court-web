@@ -1,13 +1,14 @@
 import React from 'react';
-import BasketballBasedFitness from './sections/BasketballBasedFitness';
-import FollowUsOnInstagram from './sections/FollowUsOnInstagram';
-import HomeVideo from './sections/HomeVideo';
-import KeysToCrosscourt from './sections/KeysToCrosscourt';
+
+import CrosscourtKeys from 'shared/components/CrosscourtKeys';
 import MakeSportYourLifestyle from './sections/MakeSportYourLifestyle';
-import Ready from './sections/Ready';
+import HomeVideo from './sections/HomeVideo';
+import BasketballBasedFitness from './sections/BasketballBasedFitness';
 import WhatWeDo from './sections/WhatWeDo';
 import WhoWeAre from './sections/WhoWeAre';
 import WhyWeExist from './sections/WhyWeExist';
+import FollowUsOnInstagram from './sections/FollowUsOnInstagram';
+import Ready from './sections/Ready';
 
 const Landing = () => (
   <>
@@ -17,7 +18,7 @@ const Landing = () => (
     <WhatWeDo />
     <WhoWeAre />
     <WhyWeExist />
-    <KeysToCrosscourt />
+    <CrosscourtKeys />
     <FollowUsOnInstagram />
     <Ready />
   </>

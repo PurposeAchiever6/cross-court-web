@@ -33,6 +33,9 @@ module.exports = {
       boxShadow: {
         navbar: '0px 4px 4px #9999FF',
       },
+      backgroundPosition: {
+        'left-n-36': '-9rem center',
+      },
       animation: {
         fade: 'fade 2500ms linear 800ms 1 backwards',
         'slide-top': 'slide-top 1500ms ease-out 2000ms 1 backwards',
@@ -68,7 +71,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: { width: ['last'] },
+    extend: {
+      width: ['last'],
+      display: ['group-hover'],
+    },
   },
   plugins: [],
 };

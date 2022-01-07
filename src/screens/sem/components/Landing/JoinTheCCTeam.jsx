@@ -25,7 +25,7 @@ const Section = styled.section`
 
 const JoinTheCCTeam = () => (
   <Section
-    className="flex justify-center items-center h-screen bg-cc-black bg-no-repeat bg-cover bg-top"
+    className="flex justify-center items-center min-h-screen bg-cc-black bg-no-repeat bg-cover bg-top"
     style={{ backgroundImage: `url('${joinTheCCTeamBgImg}')` }}
   >
     <div className="text-center text-white bg-cc-black bg-opacity-60 w-full p-6">
