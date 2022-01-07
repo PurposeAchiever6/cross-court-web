@@ -36,10 +36,10 @@ const SessionExperienceManager = () => {
   return (
     <Section className="flex flex-wrap">
       <div className="w-full md:w-1/2 px-4 md:px-10 py-14">
-        <div className="w-min font-shapiro95_super_wide whitespace-nowrap text-center mb-10">
-          <div className="title text-transparent text-stroke-cc-black">THE SESSION</div>
-          <div className="subtitle">EXPERIENCE MANAGER</div>
-        </div>
+        <h2 className="font-shapiro95_super_wide mb-10">
+          <span className="title text-transparent text-stroke-cc-black block">THE SESSION</span>
+          <span className="subtitle block">EXPERIENCE MANAGER</span>
+        </h2>
         <p className="mb-20 max-w-2xl">
           Crosscourt&apos;s SEMs are the face of Crosscourt at each session. Part host, part DJ, and
           part coordinator, you represent Crosscourt at each session you manage. You bring the

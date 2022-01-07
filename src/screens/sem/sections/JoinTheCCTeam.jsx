@@ -29,11 +29,13 @@ const JoinTheCCTeam = () => (
     style={{ backgroundImage: `url('${joinTheCCTeamBgImg}')` }}
   >
     <div className="text-center text-white bg-cc-black bg-opacity-60 w-full p-6">
-      <h1 className="title font-dharma_gothic_cexbold text-transparent text-stroke-white text-13xl whitespace-nowrap">
-        JOIN THE
-      </h1>
-      <h1 className="subtitle font-shapiro95_super_wide text-3xl whitespace-nowrap">
-        EXPERIENCE TEAM
+      <h1>
+        <span className="title font-dharma_gothic_cexbold text-transparent text-stroke-white block whitespace-nowrap">
+          JOIN THE
+        </span>
+        <span className="subtitle font-shapiro95_super_wide block whitespace-nowrap">
+          EXPERIENCE TEAM
+        </span>
       </h1>
       <div className="text-sm max-w-2xl mt-4 mx-auto">
         AS A MEMBER OF THE CC EXPERIENCE TEAM, YOU&apos;LL HELP US UNITE AND IGNITE THE WORLD

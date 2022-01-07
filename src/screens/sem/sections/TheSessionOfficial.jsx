@@ -20,8 +20,8 @@ const Section = styled.section`
   }
 
   .subtitle {
-    font-size: 33px;
-    line-height: 33px;
+    font-size: 37px;
+    line-height: 37px;
     @media (min-width: 992px) {
       font-size: 52px;
       line-height: 52px;
@@ -70,10 +70,10 @@ const TheSessionOfficial = () => {
           }}
         />
         <div className="w-full md:w-1/2 px-4 md:px-10 py-14 bg-cc-black text-white">
-          <div className="w-min ml-auto font-shapiro95_super_wide whitespace-nowrap text-center mb-10">
-            <h2 className="title text-transparent text-stroke-white">THE SESSION</h2>
-            <h2 className="subtitle">OFFICIAL</h2>
-          </div>
+          <h2 className="text-right font-shapiro95_super_wide mb-10">
+            <span className="title text-transparent text-stroke-white block">THE SESSION</span>
+            <span className="subtitle block">OFFICIAL</span>
+          </h2>
           <p className="mb-20 max-w-2xl text-right ml-auto">
             As a session official, you will have fun enforcing the Crosscourt rules and maintaining
             order on the court. This isn&apos;t your average referee role. We encourage getting to

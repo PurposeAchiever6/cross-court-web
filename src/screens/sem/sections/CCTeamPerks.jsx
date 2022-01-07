@@ -28,12 +28,12 @@ const CCTeamPerks = () => {
       style={{ backgroundImage: `url('${CCTeamPerksBgImg}')` }}
     >
       <div className="bg-cc-black bg-opacity-50 px-4 md:px-12 pt-8 md:pb-4 mb-12">
-        <div className="font-shapiro95_super_wide mb-10">
-          <h2 className="text-transparent text-stroke-white text-3xl md:text-4xl">
+        <h2 className="font-shapiro95_super_wide mb-10">
+          <span className="text-transparent text-stroke-white text-3xl md:text-4xl block">
             EXPERIENCE TEAM
-          </h2>
-          <h2 className="text-2xl md:text-3xl">PERKS</h2>
-        </div>
+          </span>
+          <span className="text-2xl md:text-3xl block">PERKS</span>
+        </h2>
         <div className="flex flex-wrap justify-between md:px-6 lg:px-8 xl:px-10">
           {PERKS.map(({ src, text, className }, index) => (
             <div

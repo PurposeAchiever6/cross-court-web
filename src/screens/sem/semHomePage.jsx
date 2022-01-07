@@ -1,7 +1,17 @@
 import React from 'react';
 
-import Landing from './components/Landing';
+import JoinTheCCTeam from './sections/JoinTheCCTeam';
+import TheSessionExperienceManager from './sections/TheSessionExperienceManager';
+import TheSessionOfficial from './sections/TheSessionOfficial';
+import CCTeamPerks from './sections/CCTeamPerks';
 
-const SemHomePage = () => <Landing />;
+const SemHomePage = () => (
+  <>
+    <JoinTheCCTeam />
+    <TheSessionExperienceManager />
+    <TheSessionOfficial />
+    <CCTeamPerks />
+  </>
+);
 
 export default SemHomePage;
