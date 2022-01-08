@@ -30,7 +30,7 @@ const CrosscourtKeys = ({ showBtn }) => {
         {KEYS.map(({ text, src, className }, index) => (
           <div key={index} className="flex flex-col items-center w-1/2 md:w-1/3 lg:w-1/6 p-4">
             <img className={className} alt={`session-perk-${text}`} src={src} />
-            <div className="font-shapiro95_super_wide text-center text-sm sm:text-base mt-4">
+            <div className="font-shapiro95_super_wide text-center text-sm sm:text-base mt-4 uppercase">
               {text}
             </div>
           </div>

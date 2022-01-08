@@ -2,25 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import NewToCrosscourtBgImg from 'screens/how-it-works/images/pick-up-referee.jpeg';
+import NewToCrosscourtBgImg from 'screens/how-it-works/images/pick-up-referee.png';
 import playButtonWhiteIcon from 'shared/images/play-button-white.png';
 import playButtonPurpleIcon from 'shared/images/play-button-purple.png';
 
 const NewToCrosscourt = ({ scrollToTheSessionVideo }) => (
   <section
-    className="min-h-screen bg-no-repeat bg-cover bg-left-n-36 sm:bg-left-top text-white py-32"
+    className="min-h-screen bg-no-repeat bg-cover text-white py-32"
     style={{ backgroundImage: `url('${NewToCrosscourtBgImg}')` }}
   >
-    <div className="lg:w-1/2 lg:ml-auto px-6 sm:px-20 flex justify-center sm:block">
-      <div>
-        <h1 className="font-dharma_gothic_cexbold text-9xl lg:text-11xl italic">NEW TO CC?</h1>
-        <h2 className="font-shapiro95_super_wide text-sm lg:text-lg w-60 lg:w-auto -mt-4 mb-3">
-          YOUR FIRST SESSION IS FREE
-        </h2>
+    <div className="lg:w-1/2 lg:ml-auto px-4 sm:px-20">
+      <h1 className="font-dharma_gothic_cheavy_italic text-8xl sm:text-9xl lg:text-11xl pl-1 lg:pl-2">
+        NEW TO CC?
+      </h1>
+      <h2 className="font-shapiro96_inclined_wide text-xs sm:text-sm lg:text-lg w-48 sm:w-60 lg:w-auto lg:-mt-4 mb-4">
+        YOUR FIRST SESSION IS FREE
+      </h2>
+      <div className="lg:pl-px">
         <PrimaryButton
           bg="transparent"
           color="white"
-          className="group transform scale-90 origin-top-left"
+          className="group transform scale-75 sm:scale-90 origin-top-left"
           onClick={scrollToTheSessionVideo}
         >
           <img

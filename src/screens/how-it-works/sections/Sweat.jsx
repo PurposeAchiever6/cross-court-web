@@ -14,7 +14,7 @@ const Sweat = () => (
       }}
     />
     <div className="w-full md:w-1/2 px-4 md:px-10 py-10 md:py-20 bg-cc-black text-white">
-      <h2 className="font-dharma_gothic_cexbold text-9xl text-cc-black bg-cc-purple px-5 pt-2 inline-block mb-12">
+      <h2 className="font-dharma_gothic_cheavy_italic text-9xl text-cc-black bg-cc-purple pl-4 pr-3 pt-1 inline-block mb-12">
         SWEAT.
       </h2>
       <div className="font-shapiro95_super_wide mb-10">
