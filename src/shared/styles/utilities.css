@@ -18,3 +18,17 @@
 .text-stroke-width-1 {
   -webkit-text-stroke-width: 1px;
 }
+
+.text-stroke-width-2 {
+  -webkit-text-stroke-width: 2px;
+}
+
+@media (min-width: 768px) {
+  .md\:text-stroke-width-1 {
+    -webkit-text-stroke-width: 1px;
+  }
+
+  .md\:text-stroke-width-2 {
+    -webkit-text-stroke-width: 2px;
+  }
+}

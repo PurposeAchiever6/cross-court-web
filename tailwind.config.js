@@ -21,6 +21,9 @@ module.exports = {
         '12xl': ['14rem', { lineHeight: '1' }],
         '13xl': ['16rem', { lineHeight: '1' }],
       },
+      lineHeight: {
+        smaller: '0.75',
+      },
       maxWidth: {
         '2xs': '16rem',
       },

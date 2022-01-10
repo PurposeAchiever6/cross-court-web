@@ -1,33 +1,40 @@
 import React from 'react';
-import whoWeAreImg from 'screens/homepage/images/los-angeles-pickup-basketball.jpg';
-import styled from 'styled-components';
 
-const Section = styled.section`
-  background-image: url(${whoWeAreImg});
-`;
+import whoWeAreBgImg from 'screens/homepage/images/los-angeles-pickup-basketball.jpg';
 
 const WhoWeAre = () => (
-  <Section className="text-white min-h-screen bg-no-repeat bg-cover bg-center relative">
-    <div className="bg-cc-black bg-opacity-60 w-4/5 md:w-2/6 md:h-screen md:ml-16 p-4 md:p-12 top-28 md:top-0 absolute">
-      <h1 className="text-8xl md:text-10xl 2xl:text-11xl dharma_gothic_cheavy z-10 mb-6">
-        <span className="text-transparent text-stroke-cc-purple">THE</span>
-        <br />
-        <span className="bg-cc-purple px-2 text-black">CCTEAM</span>
-      </h1>
-      <h2 className="text-base md:text-lg 2xl:text-2xl shapiro95_super_wide uppercase mb-6">
-        Everyone&apos;s an athlete
-      </h2>
-      <p className="text-sm md:text-base 2xl:text-lg mb-4">
-        The ccteam is made up of doers that favor a team based workout, enjoy a mid-week get
-        together, or shamelessly refuse to give up on their dreams of going pro.
-        <br />
-        <br />
-        Crosscourt&apos;s the preferred destination for up and coming creatives, overworked
-        professionals, former varsity standouts, and everyone else in between, to shed sweat and
-        stress as equals.
-      </p>
+  <section
+    className="text-white min-h-screen bg-no-repeat bg-cover md:bg-fixed"
+    style={{ backgroundImage: `url('${whoWeAreBgImg}')` }}
+  >
+    <div className="bg-cc-black bg-opacity-70 w-4/5 max-w-sm md:max-w-md md:min-h-screen md:mx-20 mt-20 mb-40 sm:my-20 md:my-0">
+      <div className="px-4 sm:px-6 py-10 sm:py-16">
+        <h2 className="font-dharma_gothic_cheavy text-8xl md:text-9xl xl:text-10xl uppercase mb-6 md:mb-4 xl:mb-2">
+          <span className="text-transparent text-stroke-cc-purple text-stroke-width-1 md:text-stroke-width-2">
+            The
+          </span>
+          <br />
+          <span className="bg-cc-purple px-1 pt-2 text-cc-black leading-smaller inline-block transform -translate-y-2 md:-translate-y-4 xl:-translate-y-6">
+            CCTeam
+          </span>
+        </h2>
+        <h3 className="font-shapiro95_super_wide text-base md:text-lg uppercase mb-8">
+          Everyone's an athlete
+        </h3>
+        <div className="text-sm md:text-base">
+          <p className="mb-6">
+            The ccteam is made up of doers that favor a team based workout, enjoy a mid-week get
+            together, or shamelessly refuse to give up on their dreams of going pro.
+          </p>
+          <p>
+            Crosscourt's the preferred destination for up and coming creatives, overworked
+            professionals, former varsity standouts, and everyone else in between, to shed sweat and
+            stress as equals.
+          </p>
+        </div>
+      </div>
     </div>
-  </Section>
+  </section>
 );
 
 export default WhoWeAre;

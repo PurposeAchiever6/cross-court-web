@@ -72,7 +72,7 @@ const ProductsPage = () => {
 
   return (
     <>
-      <div className="bg-cc-black border-b border-gray-500">
+      <div className="bg-cc-black border-b border-gray-400">
         {showAnimation && <NoSessionCredits />}
         <Landing scrollToPlans={scrollToPlans} />
         <Plans

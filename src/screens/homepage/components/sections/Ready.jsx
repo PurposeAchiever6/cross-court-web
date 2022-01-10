@@ -1,36 +1,33 @@
 import React from 'react';
+
 import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import styled from 'styled-components';
-import readyImg from 'screens/homepage/images/ready.jpg';
-
-const Section = styled.section`
-  background-image: url(${readyImg});
-`;
+import readyBgImg from 'screens/homepage/images/ready.jpg';
 
 const Ready = () => (
-  <Section className="text-white text-center min-h-screen flex flex-col justify-center bg-no-repeat bg-cover bg-center">
-    <h1 className="mt-10 md:mt-0 font-dharma_gothic_cexbold text-transparent text-stroke-white text-9xl md:text-12xl 2xl:text-13xl mb-10">
-      READY TO SWEAT?
-    </h1>
-    <div className="flex flex-col md:block mt-20 mb-20 md:mb-0 px-20">
-      <PrimaryButton
-        to={ROUTES.HOWITWORKS}
-        inverted
-        className="md:mr-4"
-        contentClasses="w-full md:w-auto"
-      >
-        LEARN MORE
-      </PrimaryButton>
-      <PrimaryButton
-        className="mt-4 md:mt-0 md:ml-4"
-        to={ROUTES.LOCATIONS}
-        contentClasses="w-full md:w-auto"
-      >
-        SEE SCHEDULE
-      </PrimaryButton>
+  <section
+    className="text-white min-h-screen bg-no-repeat bg-cover bg-center md:bg-fixed flex justify-center items-center px-4 py-32"
+    style={{ backgroundImage: `url('${readyBgImg}')` }}
+  >
+    <div className="text-center">
+      <h2 className="font-dharma_gothic_cexbold text-transparent text-stroke-white text-9xl md:text-12xl mb-14">
+        READY TO SWEAT?
+      </h2>
+      <div className="flex flex-col md:flex-row justify-center items-center">
+        <PrimaryButton
+          to={ROUTES.HOWITWORKS}
+          bg="transparent"
+          color="white"
+          contentClasses="w-52 md:mr-8 mb-2 md:mb-0"
+        >
+          LEARN MORE
+        </PrimaryButton>
+        <PrimaryButton to={ROUTES.LOCATIONS} contentClasses="w-52">
+          SEE SCHEDULE
+        </PrimaryButton>
+      </div>
     </div>
-  </Section>
+  </section>
 );
 
 export default Ready;

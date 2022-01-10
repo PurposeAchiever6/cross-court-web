@@ -1,33 +1,38 @@
 import React from 'react';
-import theFundamentalsImg from 'screens/homepage/images/the-fundamentals.jpg';
-import styled from 'styled-components';
 
-const Section = styled.section`
-  background-image: url(${theFundamentalsImg});
-`;
+import theFundamentalsBgImg from 'screens/homepage/images/the-fundamentals.jpeg';
 
 const WhyWeExist = () => (
-  <Section className="text-white bg-cc-black relative min-h-screen bg-no-repeat bg-cover bg-center">
-    <div className="bg-cc-black bg-opacity-60 w-4/5 md:w-2/6 md:h-screen 2xl:ml-16 p-4 2xl:p-12 absolute right-0 md:right-10 text-right">
-      <h1 className="text-8xl md:text-10xl 2xl:text-11xl dharma_gothic_cheavy text-transparent text-stroke-cc-purple mb-6">
-        THE
-        <br />
-        FUNDAMENTALS
-      </h1>
-      <h2 className="text-base md:text-lg 2xl:text-2xl shapiro95_super_wide uppercase mb-6">
-        Redefining group fitness through basketball
-      </h2>
-      <p className="text-sm md:text-base 2xl:text-lg">
-        We exist to unite and ignite the world through the power of team-sport. To serve as an
-        outlet for modern athlete to shed sweat and stress.
-        <br />
-        <br />
-        To redefine group fitness by developing a community that knows success is only possible when
-        achieved together. We win when we elevate those around us and know that a shot at greatness
-        is always on the line.
-      </p>
+  <section
+    className="text-white min-h-screen bg-no-repeat bg-cover bg-center md:bg-fixed"
+    style={{ backgroundImage: `url('${theFundamentalsBgImg}')` }}
+  >
+    <div className="text-right">
+      <div className="bg-cc-black bg-opacity-70 w-4/5 max-w-sm md:max-w-md md:min-h-screen ml-auto md:mr-20 mt-20 mb-40 sm:my-20 md:my-0">
+        <div className="px-4 sm:px-6 py-10 sm:py-16">
+          <h2 className="font-dharma_gothic_cheavy text-transparent text-stroke-cc-purple text-stroke-width-1 md:text-stroke-width-2 text-8xl md:text-9xl xl:text-10xl uppercase mb-8">
+            The
+            <br />
+            Fundamentals
+          </h2>
+          <h3 className="font-shapiro95_super_wide text-base md:text-lg uppercase mb-8">
+            Redefining group fitness through basketball
+          </h3>
+          <div className="text-sm md:text-base">
+            <p className="mb-6">
+              We exist to unite and ignite the world through the power of team-sport. To serve as an
+              outlet for modern athlete to shed sweat and stress.
+            </p>
+            <p>
+              To redefine group fitness by developing a community that knows success is only
+              possible when achieved together. We win when we elevate those around us and know that
+              a shot at greatness is always on the line.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-  </Section>
+  </section>
 );
 
 export default WhyWeExist;
