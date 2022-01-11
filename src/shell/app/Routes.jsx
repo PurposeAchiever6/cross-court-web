@@ -1,12 +1,13 @@
 /* eslint-disable import/first */
 
 import React, { useEffect, Suspense, lazy } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
-import styled from 'styled-components';
-import { ToastContainer, Zoom } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
+import HttpsRedirect from 'react-https-redirect';
 import ReactGA from 'react-ga';
+import { ToastContainer, Zoom } from 'react-toastify';
+import styled from 'styled-components';
 
 import { initialAppLoad } from 'shared/actions/actionCreators';
 import ROUTES from 'shared/constants/routes';
@@ -346,103 +347,6 @@ const setScrollClasses = () => {
       scroll.classList.remove(...animClasses.filter((item) => item !== addClass));
     }
   }
-
-  if (
-    body.getAttribute('data-page') === 'home' ||
-    body.getAttribute('data-page') === 'how-it-works'
-  ) {
-    window.setTimeout(function() {
-      const video = document.querySelector('.video-player');
-      const barMalik = document.querySelector('.bar-malik');
-
-      if (video && barMalik) {
-        video.addEventListener('pause', function() {
-          video.classList.add('data-user-paused');
-        });
-
-        const options = {
-          rootMargin: '0px',
-          threshold: 0,
-        };
-
-        function callback(entries, observer) {
-          entries.forEach((entry) => {
-            if (entry.target.className.indexOf('video-player') !== -1) {
-              if (entry.intersectionRatio > 0) {
-                if (!video.classList.contains('data-user-paused')) {
-                  video.play();
-                }
-              } else {
-                video.pause();
-                video.classList.remove('data-user-paused');
-              }
-            } else if (entry.target.className.indexOf('bar-malik') !== -1) {
-              if (entry.intersectionRatio > 0) {
-                if (!barMalik.classList.contains('animated')) {
-                  barMalik
-                    .querySelector('.bar-malik-image')
-                    .classList.add(
-                      'animate__animated',
-                      'animate__bounce',
-                      'animate__slow',
-                      'animate__slideInLeft'
-                    );
-                  barMalik
-                    .querySelector('.info-box')
-                    .classList.add(
-                      'animate__animated',
-                      'animate__bounce',
-                      'animate__slow',
-                      'animate__slideInRight'
-                    );
-                  barMalik.classList.add('animated');
-                  window.observer.observe(document.querySelector('.bar-malik'));
-                }
-              }
-            }
-          });
-        }
-
-        window.observer = new IntersectionObserver(callback, options);
-        window.observer.observe(document.querySelector('.video-player'));
-        window.observer.observe(document.querySelector('.bar-malik'));
-      }
-    }, 2000);
-  } else {
-    if (window.observer) {
-      window.observer.disconnect();
-    }
-  }
-
-  window.setTimeout(function() {
-    const bottomBanner = document.querySelector('.banner-container');
-
-    if (body.getAttribute('data-page') === 'how-it-works') {
-      const seeScheduleButton = document.querySelector('.see-schedule-button');
-
-      if (
-        seeScheduleButton &&
-        !seeScheduleButton.classList.contains('done') &&
-        window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 400
-      ) {
-        seeScheduleButton.classList.add(
-          'animate__animated',
-          'animate__bounce',
-          'animate__slower',
-          'animate__bounceInLeft',
-          'done'
-        );
-      }
-    }
-
-    if (bottomBanner) {
-      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 200) {
-        bottomBanner.classList.add('scrolled-down');
-      } else {
-        bottomBanner.classList.remove('scrolled-down');
-      }
-    }
-  }, 100);
 };
 
 window.cookieAndSessionStorageHandler = function(isAuthenticated) {
@@ -496,7 +400,7 @@ const Routes = () => {
   const Pages = () => (
     <main>
       <Switch>
-        <Route path={ROUTES.LOGIN}>
+        <Route path={ROUTES.LOGIN} exact>
           <Login />
         </Route>
         <Route path={ROUTES.SIGNUP} exact>
@@ -505,79 +409,79 @@ const Routes = () => {
         <Route path={ROUTES.RATING} exact>
           <Rating />
         </Route>
-        <Route path={ROUTES.SIGNUPSUCCESS}>
+        <Route path={ROUTES.SIGNUPSUCCESS} exact>
           <SignupSuccess />
         </Route>
-        <Route path={ROUTES.SIGNUPCONFIRMATION}>
+        <Route path={ROUTES.SIGNUPCONFIRMATION} exact>
           <SignupConfirmation />
         </Route>
         <Route path={ROUTES.FORGOTPASSWORD} exact>
           <ForgotPass />
         </Route>
-        <Route path={ROUTES.FORGOTPASSWORDSUCCESS}>
+        <Route path={ROUTES.FORGOTPASSWORDSUCCESS} exact>
           <ForgotPassSuccess />
         </Route>
         <Route path={ROUTES.RESETPASSWORD} exact>
           <PassReset />
         </Route>
-        <Route path={ROUTES.RESETPASSWORDSUCCESS}>
+        <Route path={ROUTES.RESETPASSWORDSUCCESS} exact>
           <PassResetSuccess />
         </Route>
-        <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFREE, ROUTES.LOCATIONSFIRST]}>
+        <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFREE, ROUTES.LOCATIONSFIRST]} exact>
           <Locations />
         </Route>
         <Route path={ROUTES.SESSION} exact>
           <Sessions />
         </Route>
-        <Route path={[ROUTES.SESSIONRESERVED, ROUTES.FIRSTSESSIONRESERVED]}>
+        <Route path={[ROUTES.SESSIONRESERVED, ROUTES.FIRSTSESSIONRESERVED]} exact>
           <SessionReserved />
         </Route>
-        <Route path={ROUTES.SESSIONCONFIRMED}>
+        <Route path={ROUTES.SESSIONCONFIRMED} exact>
           <SessionConfirmed />
         </Route>
-        <Route path={ROUTES.HOWITWORKS}>
+        <Route path={ROUTES.HOWITWORKS} exact>
           <HowItWorks />
         </Route>
-        <Route path={ROUTES.MEMBERSHIPS}>
+        <Route path={ROUTES.MEMBERSHIPS} exact>
           <ProductsPage />
         </Route>
-        <Route path={ROUTES.MANAGE_MEMBERSHIP}>
+        <Route path={ROUTES.MANAGE_MEMBERSHIP} exact>
           <ManageMembershipPage />
         </Route>
-        <Route path={ROUTES.TERMS}>
+        <Route path={ROUTES.TERMS} exact>
           <TermsAndConditions />
         </Route>
-        <Route path={ROUTES.PRIVACY_POLICY}>
+        <Route path={ROUTES.PRIVACY_POLICY} exact>
           <PrivacyPolicy />
         </Route>
-        <Route path={ROUTES.CANCELATIONPOLICY}>
+        <Route path={ROUTES.CANCELATIONPOLICY} exact>
           <CancelationPolicy />
         </Route>
-        <Route path={ROUTES.SURVEY}>
+        <Route path={ROUTES.SURVEY} exact>
           <Survey />
         </Route>
-        <PrivateRoute path={ROUTES.PURCHASEHISTORY}>
+        <PrivateRoute path={ROUTES.PURCHASEHISTORY} exact>
           <PurchaseHistory />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.CHECKOUT} exact>
           <Checkout />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED}>
+        <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED} exact>
           <CheckoutConfirm />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.PAYMENTS} exact>
           <Payments />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.PAYMENTSADDCARD}>
+        <PrivateRoute path={ROUTES.PAYMENTSADDCARD} exact>
           <PaymentsAddCard />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.MYACCOUNT}>
+        <PrivateRoute path={ROUTES.MYACCOUNT} exact>
           <MyAccount />
         </PrivateRoute>
-        <Route path={ROUTES.FAQ}>
+        <Route path={ROUTES.FAQ} exact>
           <FAQ />
         </Route>
-        <Route path={ROUTES.CONTENT}>
+        <Route path={ROUTES.CONTENT} exact>
           <Content />
         </Route>
         <Route path={ROUTES.RULES} exact>
@@ -600,7 +504,7 @@ const Routes = () => {
   );
 
   return (
-    <>
+    <HttpsRedirect>
       <HtmlHead />
       <AppWrapper>
         <ToastContainer
@@ -627,7 +531,7 @@ const Routes = () => {
           </ConnectedRouter>
         </Suspense>
       </AppWrapper>
-    </>
+    </HttpsRedirect>
   );
 };
 

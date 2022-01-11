@@ -207,12 +207,6 @@ body .shapiro97_air_extd {
   -webkit-text-stroke: 1px;
 }
 
-/* BANNER CONTAINER (FIRST SESSION FREE) */
-body .banner-container .primary-button {
-  border: none;
-  padding: 0;
-}
-
 /* PAGES */
 /* GLOBAL */
 body .loader-wrapper {
