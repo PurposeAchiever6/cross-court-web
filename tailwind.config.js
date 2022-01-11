@@ -4,7 +4,8 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        160: '40rem',
+        112: '28rem',
+        164: '44rem',
       },
       padding: {
         160: '40rem',
@@ -16,7 +17,12 @@ module.exports = {
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '1rem' }],
         '10xl': ['10rem', { lineHeight: '1' }],
+        '11xl': ['12rem', { lineHeight: '1' }],
         '12xl': ['14rem', { lineHeight: '1' }],
+        '13xl': ['16rem', { lineHeight: '1' }],
+      },
+      lineHeight: {
+        smaller: '0.75',
       },
       maxWidth: {
         '2xs': '16rem',
@@ -55,7 +61,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      dharma_gothic_cexbold: ['dharma_gothic_cexboldf'],
+      dharma_gothic_cexbold: ['dharma_gothic_cexbold'],
       dharma_gothic_cheavy_italic: ['dharma_gothic_cheavy_italic'],
       dharma_gothic_cheavy: ['dharma_gothic_cheavy'],
       shapiro45_welter_extd: ['shapiro45_welter_extd'],
@@ -65,7 +71,10 @@ module.exports = {
     },
   },
   variants: {
-    extend: { width: ['last'] },
+    extend: {
+      width: ['last'],
+      display: ['group-hover'],
+    },
   },
   plugins: [],
 };

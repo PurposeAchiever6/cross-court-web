@@ -132,7 +132,7 @@ const SessionsPage = () => {
   return isPageLoading ? (
     <Loading />
   ) : (
-    <SessionsPageContainer className="flex flex-col">
+    <SessionsPageContainer className="flex flex-col border-b border-gray-400">
       <Modal shouldClose closeHandler={showCancelModalAction} isOpen={shouldShowCancelModal}>
         <CancelModal
           closeHandler={showCancelModalAction}
@@ -148,7 +148,7 @@ const SessionsPage = () => {
           {sessionInfo.location.name} SESSION
         </h2>
       </div>
-      <div className="flex flex-col-reverse md:flex-row bg-cc-black border-b border-gray-600 h-full">
+      <div className="flex flex-col-reverse md:flex-row bg-cc-black h-full">
         <Carousel
           className="carousel-h-full"
           infiniteLoop={true}

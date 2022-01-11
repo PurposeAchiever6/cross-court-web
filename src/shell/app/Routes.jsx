@@ -1,12 +1,13 @@
 /* eslint-disable import/first */
 
 import React, { useEffect, Suspense, lazy } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
-import styled from 'styled-components';
-import { ToastContainer, Zoom } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
+import HttpsRedirect from 'react-https-redirect';
 import ReactGA from 'react-ga';
+import { ToastContainer, Zoom } from 'react-toastify';
+import styled from 'styled-components';
 
 import { initialAppLoad } from 'shared/actions/actionCreators';
 import ROUTES from 'shared/constants/routes';
@@ -31,7 +32,7 @@ const PassReset = lazy(() => import('screens/auth/pages/PassResetPage'));
 const PassResetSuccess = lazy(() => import('screens/auth/pages/PassResetSuccess'));
 const Dashboard = lazy(() => import('screens/dashboard/Dashboard'));
 const HowItWorks = lazy(() => import('screens/how-it-works/HowItWorksPage'));
-const SemHomePage = lazy(() => import('screens/sem/semHomePage'));
+const CareersPage = lazy(() => import('screens/careers/CareersPage'));
 const Locations = lazy(() => import('screens/locations/LocationsPage'));
 const Sessions = lazy(() => import('screens/sessions/SessionsPage'));
 const SessionConfirmed = lazy(() => import('screens/sessions/pages/SessionConfirmed'));
@@ -87,84 +88,7 @@ const setPageNameOnBodyClass = (pathname) => {
   }
 };
 const setScrollClasses = () => {
-  if (body.getAttribute('data-page') === 'home') {
-    const bigTitle = document.querySelector('.crosscourt-big-title');
-
-    if (bigTitle) {
-      let addClass = '';
-      let animClasses = [
-        'anim1',
-        'anim2',
-        'anim3',
-        'anim4',
-        'anim5',
-        'anim6',
-        'anim7',
-        'anim8',
-        'anim9',
-        'anim10',
-        'anim11',
-        'anim12',
-        'anim13',
-        'anim14',
-        'anim15',
-        'anim16',
-        'anim17',
-        'anim18',
-        'anim19',
-        'anim20',
-      ];
-
-      if (window.scrollY < 100) {
-      } else if (window.scrollY >= 100 && window.scrollY < 130) {
-        addClass = 'anim1';
-      } else if (window.scrollY >= 130 && window.scrollY < 160) {
-        addClass = 'anim2';
-      } else if (window.scrollY >= 160 && window.scrollY < 190) {
-        addClass = 'anim3';
-      } else if (window.scrollY >= 190 && window.scrollY < 210) {
-        addClass = 'anim4';
-      } else if (window.scrollY >= 210 && window.scrollY < 240) {
-        addClass = 'anim5';
-      } else if (window.scrollY >= 240 && window.scrollY < 270) {
-        addClass = 'anim6';
-      } else if (window.scrollY >= 270 && window.scrollY < 300) {
-        addClass = 'anim7';
-      } else if (window.scrollY >= 300 && window.scrollY < 330) {
-        addClass = 'anim8';
-      } else if (window.scrollY >= 330 && window.scrollY < 360) {
-        addClass = 'anim9';
-      } else if (window.scrollY >= 360 && window.scrollY < 390) {
-        addClass = 'anim10';
-      } else if (window.scrollY >= 390 && window.scrollY < 420) {
-        addClass = 'anim11';
-      } else if (window.scrollY >= 420 && window.scrollY < 450) {
-        addClass = 'anim12';
-      } else if (window.scrollY >= 450 && window.scrollY < 480) {
-        addClass = 'anim13';
-      } else if (window.scrollY >= 480 && window.scrollY < 510) {
-        addClass = 'anim14';
-      } else if (window.scrollY >= 510 && window.scrollY < 540) {
-        addClass = 'anim15';
-      } else if (window.scrollY >= 540 && window.scrollY < 570) {
-        addClass = 'anim16';
-      } else if (window.scrollY >= 570 && window.scrollY < 600) {
-        addClass = 'anim17';
-      } else if (window.scrollY >= 600 && window.scrollY < 630) {
-        addClass = 'anim18';
-      } else if (window.scrollY >= 630 && window.scrollY < 660) {
-        addClass = 'anim19';
-      } else if (window.scrollY >= 660 && window.scrollY < 690) {
-        addClass = 'anim20';
-      } else if (window.scrollY >= 690) {
-      }
-
-      if (addClass) {
-        bigTitle.classList.add(addClass);
-      }
-      bigTitle.classList.remove(...animClasses.filter((item) => item !== addClass));
-    }
-  } else if (
+  if (
     body.getAttribute('data-page') === 'free-session-credit-added' ||
     (body.getAttribute('data-page') === 'locations' && window.location.search === '?testanimation')
   ) {
@@ -423,103 +347,6 @@ const setScrollClasses = () => {
       scroll.classList.remove(...animClasses.filter((item) => item !== addClass));
     }
   }
-
-  if (
-    body.getAttribute('data-page') === 'home' ||
-    body.getAttribute('data-page') === 'how-it-works'
-  ) {
-    window.setTimeout(function() {
-      const video = document.querySelector('.video-player');
-      const barMalik = document.querySelector('.bar-malik');
-
-      if (video && barMalik) {
-        video.addEventListener('pause', function() {
-          video.classList.add('data-user-paused');
-        });
-
-        const options = {
-          rootMargin: '0px',
-          threshold: 0,
-        };
-
-        function callback(entries, observer) {
-          entries.forEach((entry) => {
-            if (entry.target.className.indexOf('video-player') !== -1) {
-              if (entry.intersectionRatio > 0) {
-                if (!video.classList.contains('data-user-paused')) {
-                  video.play();
-                }
-              } else {
-                video.pause();
-                video.classList.remove('data-user-paused');
-              }
-            } else if (entry.target.className.indexOf('bar-malik') !== -1) {
-              if (entry.intersectionRatio > 0) {
-                if (!barMalik.classList.contains('animated')) {
-                  barMalik
-                    .querySelector('.bar-malik-image')
-                    .classList.add(
-                      'animate__animated',
-                      'animate__bounce',
-                      'animate__slow',
-                      'animate__slideInLeft'
-                    );
-                  barMalik
-                    .querySelector('.info-box')
-                    .classList.add(
-                      'animate__animated',
-                      'animate__bounce',
-                      'animate__slow',
-                      'animate__slideInRight'
-                    );
-                  barMalik.classList.add('animated');
-                  window.observer.observe(document.querySelector('.bar-malik'));
-                }
-              }
-            }
-          });
-        }
-
-        window.observer = new IntersectionObserver(callback, options);
-        window.observer.observe(document.querySelector('.video-player'));
-        window.observer.observe(document.querySelector('.bar-malik'));
-      }
-    }, 2000);
-  } else {
-    if (window.observer) {
-      window.observer.disconnect();
-    }
-  }
-
-  window.setTimeout(function() {
-    const bottomBanner = document.querySelector('.banner-container');
-
-    if (body.getAttribute('data-page') === 'how-it-works') {
-      const seeScheduleButton = document.querySelector('.see-schedule-button');
-
-      if (
-        seeScheduleButton &&
-        !seeScheduleButton.classList.contains('done') &&
-        window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 400
-      ) {
-        seeScheduleButton.classList.add(
-          'animate__animated',
-          'animate__bounce',
-          'animate__slower',
-          'animate__bounceInLeft',
-          'done'
-        );
-      }
-    }
-
-    if (bottomBanner) {
-      if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 200) {
-        bottomBanner.classList.add('scrolled-down');
-      } else {
-        bottomBanner.classList.remove('scrolled-down');
-      }
-    }
-  }, 100);
 };
 
 window.cookieAndSessionStorageHandler = function(isAuthenticated) {
@@ -573,7 +400,7 @@ const Routes = () => {
   const Pages = () => (
     <main>
       <Switch>
-        <Route path={ROUTES.LOGIN}>
+        <Route path={ROUTES.LOGIN} exact>
           <Login />
         </Route>
         <Route path={ROUTES.SIGNUP} exact>
@@ -582,79 +409,79 @@ const Routes = () => {
         <Route path={ROUTES.RATING} exact>
           <Rating />
         </Route>
-        <Route path={ROUTES.SIGNUPSUCCESS}>
+        <Route path={ROUTES.SIGNUPSUCCESS} exact>
           <SignupSuccess />
         </Route>
-        <Route path={ROUTES.SIGNUPCONFIRMATION}>
+        <Route path={ROUTES.SIGNUPCONFIRMATION} exact>
           <SignupConfirmation />
         </Route>
         <Route path={ROUTES.FORGOTPASSWORD} exact>
           <ForgotPass />
         </Route>
-        <Route path={ROUTES.FORGOTPASSWORDSUCCESS}>
+        <Route path={ROUTES.FORGOTPASSWORDSUCCESS} exact>
           <ForgotPassSuccess />
         </Route>
         <Route path={ROUTES.RESETPASSWORD} exact>
           <PassReset />
         </Route>
-        <Route path={ROUTES.RESETPASSWORDSUCCESS}>
+        <Route path={ROUTES.RESETPASSWORDSUCCESS} exact>
           <PassResetSuccess />
         </Route>
-        <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFREE, ROUTES.LOCATIONSFIRST]}>
+        <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFREE, ROUTES.LOCATIONSFIRST]} exact>
           <Locations />
         </Route>
         <Route path={ROUTES.SESSION} exact>
           <Sessions />
         </Route>
-        <Route path={[ROUTES.SESSIONRESERVED, ROUTES.FIRSTSESSIONRESERVED]}>
+        <Route path={[ROUTES.SESSIONRESERVED, ROUTES.FIRSTSESSIONRESERVED]} exact>
           <SessionReserved />
         </Route>
-        <Route path={ROUTES.SESSIONCONFIRMED}>
+        <Route path={ROUTES.SESSIONCONFIRMED} exact>
           <SessionConfirmed />
         </Route>
-        <Route path={ROUTES.HOWITWORKS}>
+        <Route path={ROUTES.HOWITWORKS} exact>
           <HowItWorks />
         </Route>
-        <Route path={ROUTES.MEMBERSHIPS}>
+        <Route path={ROUTES.MEMBERSHIPS} exact>
           <ProductsPage />
         </Route>
-        <Route path={ROUTES.MANAGE_MEMBERSHIP}>
+        <Route path={ROUTES.MANAGE_MEMBERSHIP} exact>
           <ManageMembershipPage />
         </Route>
-        <Route path={ROUTES.TERMS}>
+        <Route path={ROUTES.TERMS} exact>
           <TermsAndConditions />
         </Route>
-        <Route path={ROUTES.PRIVACY_POLICY}>
+        <Route path={ROUTES.PRIVACY_POLICY} exact>
           <PrivacyPolicy />
         </Route>
-        <Route path={ROUTES.CANCELATIONPOLICY}>
+        <Route path={ROUTES.CANCELATIONPOLICY} exact>
           <CancelationPolicy />
         </Route>
-        <Route path={ROUTES.SURVEY}>
+        <Route path={ROUTES.SURVEY} exact>
           <Survey />
         </Route>
-        <PrivateRoute path={ROUTES.PURCHASEHISTORY}>
+        <PrivateRoute path={ROUTES.PURCHASEHISTORY} exact>
           <PurchaseHistory />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.CHECKOUT} exact>
           <Checkout />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED}>
+        <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED} exact>
           <CheckoutConfirm />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.PAYMENTS} exact>
           <Payments />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.PAYMENTSADDCARD}>
+        <PrivateRoute path={ROUTES.PAYMENTSADDCARD} exact>
           <PaymentsAddCard />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.MYACCOUNT}>
+        <PrivateRoute path={ROUTES.MYACCOUNT} exact>
           <MyAccount />
         </PrivateRoute>
-        <Route path={ROUTES.FAQ}>
+        <Route path={ROUTES.FAQ} exact>
           <FAQ />
         </Route>
-        <Route path={ROUTES.CONTENT}>
+        <Route path={ROUTES.CONTENT} exact>
           <Content />
         </Route>
         <Route path={ROUTES.RULES} exact>
@@ -663,8 +490,8 @@ const Routes = () => {
         <Route path={ROUTES.HOME} exact>
           <Home />
         </Route>
-        <Route path={ROUTES.SEM} exact>
-          <SemHomePage />
+        <Route path={ROUTES.CAREERS} exact>
+          <CareersPage />
         </Route>
         <Route path={ROUTES.PWA} exact>
           <PWA />
@@ -677,7 +504,7 @@ const Routes = () => {
   );
 
   return (
-    <>
+    <HttpsRedirect>
       <HtmlHead />
       <AppWrapper>
         <ToastContainer
@@ -704,7 +531,7 @@ const Routes = () => {
           </ConnectedRouter>
         </Suspense>
       </AppWrapper>
-    </>
+    </HttpsRedirect>
   );
 };
 

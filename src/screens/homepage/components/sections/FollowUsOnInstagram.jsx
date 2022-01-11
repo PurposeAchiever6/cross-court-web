@@ -13,14 +13,14 @@ const Section = styled.section`
     line-height: 45px;
     margin-bottom: 20px;
     font-family: 'dharma_gothic_cexbold';
-    color: black;
+    color: #1a1a1a;
     width: fit-content;
     margin-left: 20px;
 
     @media (min-width: 992px) {
       font-size: 200px;
       line-height: 75px;
-      margin-top: 100px;
+      margin-top: 2rem;
       margin-bottom: 50px;
       text-align: right;
     }
@@ -62,7 +62,7 @@ const Section = styled.section`
 `;
 
 const FollowUsOnInstagram = () => (
-  <Section className="section-block">
+  <Section>
     <section className="title">
       <p>FOLLOW US ON</p>
       <br />

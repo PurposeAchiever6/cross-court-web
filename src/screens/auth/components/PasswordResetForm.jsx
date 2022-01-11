@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { isEmpty } from 'ramda';
@@ -8,119 +7,67 @@ import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
-import Spinner from 'shared/components/Spinner';
-import Button from 'shared/components/Button';
-import colors from 'shared/styles/constants';
-
-const PasswordResetFormContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2.5rem;
-  flex-direction: column;
-  margin-top: 5rem;
-
-  h1 {
-    width: 60%;
-    font-weight: 600;
-    font-size: 2rem;
-    margin-bottom: 3.5rem;
-    text-align: center;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  a {
-    font-weight: bold;
-    text-align: center;
-  }
-
-  .error-container {
-    display: flex;
-    justify-content: center;
-    padding: 0.25rem 1.5rem;
-    margin: 0.5rem 0;
-    background: ${colors.errorRed};
-    color: ${colors.white};
-    border-radius: 4px;
-    font-size: 0.8rem;
-  }
-
-  .login {
-    margin: 3rem;
-  }
-
-  @media (max-width: 991px) {
-    form {
-      width: 100%;
-    }
-
-    h1 {
-      width: 100%;
-      font-size: 1.5rem;
-      text-align: left;
-    }
-  }
-`;
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const initialValues = {
   password: '',
-  passwordConfirm: '',
+  passwordConfirmation: '',
 };
 
 const validationSchema = Yup.object().shape({
   password: Yup.string().required('Required'),
-  passwordConfirm: Yup.string().required('Required'),
+  passwordConfirmation: Yup.string().required('Required'),
 });
 
 const PasswordResetForm = ({ error, passResetHandler, isLoading }) => {
   return (
-    <PasswordResetFormContainer>
+    <div>
       <Formik
         validateOnChange={false}
         validateOnBlur={false}
         initialValues={initialValues}
-        onSubmit={values => {
-          passResetHandler({ ...values });
+        onSubmit={(values) => {
+          passResetHandler(values);
         }}
         validationSchema={validationSchema}
       >
         {() => (
           <>
-            <h1>Please Enter your New Password</h1>
-            <Form className="form">
-              <div className="form-group">
-                <InputTextField
-                  type="password"
-                  labelText="Password"
-                  name="password"
-                  placeholder="Min. 8 characters long"
-                />
+            <h1 className="font-shapiro95_super_wide text-center text-3xl uppercase mb-10">
+              New Password
+            </h1>
+            <Form>
+              <InputTextField
+                type="password"
+                labelText="Password"
+                name="password"
+                placeholder="Min. 8 characters long"
+              />
+              <InputTextField
+                type="password"
+                labelText="Confirm Password"
+                name="passwordConfirmation"
+                placeholder="Confirm password"
+              />
+              {!isEmpty(error) && <div className="alert-error mb-2">{error}</div>}
+              <PrimaryButton type="submit" loading={isLoading} w="100%" className="mb-10">
+                Set New Password
+              </PrimaryButton>
+              <div className="text-center">
+                <Link to={ROUTES.LOGIN} className="font-bold hover:underline">
+                  Back to Log in
+                </Link>
               </div>
-              <div className="form-group">
-                <InputTextField
-                  type="password"
-                  labelText="Confirm Password"
-                  name="passwordConfirm"
-                  placeholder="Confirm password"
-                />
-              </div>
-              {!isEmpty(error) && <div className="error-container">{error}</div>}
-              <Button type="submit" disabled={isLoading}>
-                {!isLoading ? 'Set New Password' : <Spinner />}
-              </Button>
-              <Link to={ROUTES.LOGIN} className="login">
-                Back to Log in
-              </Link>
             </Form>
           </>
         )}
       </Formik>
-    </PasswordResetFormContainer>
+    </div>
   );
+};
+
+PasswordResetForm.defaultProps = {
+  error: null,
 };
 
 PasswordResetForm.propTypes = {

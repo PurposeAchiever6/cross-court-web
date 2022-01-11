@@ -67,7 +67,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
       {() => (
         <Form className="font-shapiro95_super_wide flex flex-col px-10 md:max-w-md">
           <h1 className="font-semibold text-3xl mb-2 text-center color-cc-black">SIGN UP</h1>
-          <h2 className="mb-10 font-shapiro96_inclined_wide mb-10 text-center color-cc-black">
+          <h2 className="font-shapiro96_inclined_wide text-center color-cc-black mb-10">
             GET FIRST SESSION FREE
           </h2>
           <InputTextField

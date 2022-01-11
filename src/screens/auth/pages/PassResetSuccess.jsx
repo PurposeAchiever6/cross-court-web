@@ -1,65 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
+import ROUTES from 'shared/constants/routes';
 import CheckIcon from 'shared/images/check-icon.png';
-import Button from 'shared/components/Button';
-
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-
-  img {
-    margin-top: 1rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 900;
-    margin-bottom: 2rem;
-    margin-top: 3.12rem;
-  }
-
-  p {
-    margin-bottom: 3.62rem;
-    font-size: 1.2rem;
-    width: 100%;
-  }
-
-  button {
-    width: 16.5rem;
-  }
-
-  @media (max-width: 991px) {
-    img {
-      margin-bottom: 5.25rem;
-      margin-top: 7.7rem;
-    }
-    h1 {
-      margin-top: 0;
-      margin-bottom: 2rem;
-    }
-
-    p {
-      width: 100%;
-      margin-bottom: 2.5rem;
-    }
-  }
-`;
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const PassResetSuccess = () => (
-  <PageContainer>
-    <img src={CheckIcon} alt="Check icon" />
-    <h1>Password Reset</h1>
-    <p>Your Crosscourt Password was succesfully reset</p>
-    <Link to="/login">
-      <Button>Go to Login</Button>
-    </Link>
-  </PageContainer>
+  <div className="w-full max-w-sm mx-auto text-center px-4 py-16">
+    <h1 className="font-shapiro95_super_wide text-3xl uppercase mb-14">Password Reset</h1>
+    <img src={CheckIcon} alt="check-icon" className="inline-block mb-12" />
+    <p className="mb-12">Your Crosscourt password was been succesfully reset</p>
+    <PrimaryButton to={ROUTES.LOGIN}>Go to Login</PrimaryButton>
+  </div>
 );
 
 export default PassResetSuccess;

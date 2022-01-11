@@ -1,8 +1,9 @@
 @import './animations.css';
 @import './carousel.css';
 @import './contact-form.css';
-@import './homepage.css';
+@import './utilities.css';
 @import './sidebar.css';
+@import './alerts.css';
 @import './toasts.css';
 @import './onboarding-tour.css';
 
@@ -148,7 +149,7 @@ body .mobile-hide-inline {
 /* MAIN */
 body main,
 body main.animation-done,
-body[data-page='no-session-credits'] main.animation-done {
+main.animation-done {
   padding-top: 64px;
 }
 body[data-page='home'] main,
@@ -156,7 +157,9 @@ body[data-page='how-it-works'] main,
 body[data-page='free-session-credit-added'] main,
 body[data-page='no-session-credits'] main,
 body[data-page='dashboard'] main,
-body[data-page='app'] main {
+body[data-page='app'] main,
+body[data-page='careers'] main,
+body[data-page='memberships'] main {
   padding-top: 0;
 }
 
@@ -173,17 +176,6 @@ body .go-back .back-button {
 }
 body .go-back:hover .back-button {
   opacity: 0.6;
-}
-body .form .form-group label {
-  font-size: 16px;
-  font-family: 'shapiro95_super_wide';
-  font-weight: normal;
-  line-height: 16px;
-  margin-bottom: 10px;
-}
-body .form .form-group input {
-  background-color: #fbf7f3;
-  border: 1px solid #000;
 }
 body .dharma_gothic_cexbold {
   font-family: 'dharma_gothic_cexbold';
@@ -203,12 +195,6 @@ body .shapiro96_inclined_wide {
 body .shapiro97_air_extd {
   font-family: 'shapiro97_air_extd';
   -webkit-text-stroke: 1px;
-}
-
-/* BANNER CONTAINER (FIRST SESSION FREE) */
-body .banner-container .primary-button {
-  border: none;
-  padding: 0;
 }
 
 /* PAGES */
@@ -336,20 +322,6 @@ body .loader-wrapper .ball-line:nth-child(4) {
     left: -264.159265359px;
   }
 }
-body .heading-sprite {
-  background: transparent url('../../shared/images/HeadingSprite.png') no-repeat 0 0;
-  background-size: cover;
-  margin: 0 0 50px 0 !important;
-  padding: 0;
-  height: auto;
-  width: 230px;
-}
-@media (min-width: 992px) {
-  body .heading-sprite {
-    margin: 0 0 50px 0 !important;
-    width: 430px;
-  }
-}
 
 /* FREE SESSION MODAL */
 
@@ -471,17 +443,6 @@ body .survey-modal .body2 .thanks-for-your-feedback {
 body .survey-modal .body2 .book-next-session-btn {
   margin: 0 auto;
   width: 280px;
-}
-
-body .the-session-video {
-  background-color: #000;
-  scroll-margin-top: 64px;
-}
-body .the-session-video .video-player {
-  display: block;
-  height: auto;
-  margin: 0 auto;
-  width: 100%;
 }
 
 body .cancel-modal h2 {
@@ -686,39 +647,6 @@ body .add-card .card-container .expiration-date-element {
 }
 body .add-card .card-container .cvc-element {
   width: 60px;
-}
-
-/* LOGIN */
-
-body .login h1 {
-  font-family: 'shapiro95_super_wide';
-}
-body .login .form .form-group label {
-  color: #9999ff;
-  letter-spacing: 0;
-}
-
-/* FORGOT PASSWORD */
-body .forgotpassword {
-  margin: 80px 0;
-}
-body .forgotpassword h1 {
-  font-family: 'shapiro95_super_wide';
-  text-align: center;
-}
-body .forgotpassword .form .form-group label {
-  color: #9999ff;
-  letter-spacing: 0;
-}
-
-/* FORGOT PASSWORD SUCCESS */
-body .forgot-pass-success {
-  margin: 80px 0;
-}
-body .forgot-pass-success h1 {
-  font-family: 'shapiro95_super_wide';
-  margin-top: 0;
-  text-align: center;
 }
 
 /* SIGNUP SUCCESS */

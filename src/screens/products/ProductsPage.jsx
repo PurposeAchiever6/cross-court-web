@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -14,12 +14,14 @@ import {
   reactivateSubscription,
 } from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
+import Landing from './components/Landing';
 import Plans from './components/Plans';
-import FacilityRentals from './components/FacilityRentals';
+import FAQ from './components/FAQ';
 import NoSessionCredits from './components/NoSessionCredits';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 
 const ProductsPage = () => {
+  const plansRef = useRef(null);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -49,6 +51,10 @@ const ProductsPage = () => {
     dispatch(reactivateSubscription(userProfile.activeSubscription));
   };
 
+  const scrollToPlans = () => {
+    window.scroll({ top: plansRef.current.offsetTop - 50 });
+  };
+
   const showAnimation =
     userProfile.totalCredits === 0 &&
     window.localStorage.getItem('previousPage').indexOf('session-') !== -1;
@@ -66,18 +72,18 @@ const ProductsPage = () => {
 
   return (
     <>
-      <div className="bg-cc-black">
-        <div className="min-h-screen">
-          {showAnimation && <NoSessionCredits />}
-          <Plans
-            selectProductHandler={selectProductHandler}
-            cancelMembership={cancelMembership}
-            availableProducts={availableProducts}
-            activeSubscription={userProfile.activeSubscription}
-            reactivateMembership={reactivateMembership}
-          />
-        </div>
-        <FacilityRentals />
+      <div className="bg-cc-black border-b border-gray-400">
+        {showAnimation && <NoSessionCredits />}
+        <Landing scrollToPlans={scrollToPlans} />
+        <Plans
+          selectProductHandler={selectProductHandler}
+          cancelMembership={cancelMembership}
+          availableProducts={availableProducts}
+          activeSubscription={userProfile.activeSubscription}
+          reactivateMembership={reactivateMembership}
+          ref={plansRef}
+        />
+        <FAQ />
       </div>
       <CancelMembershipModal
         cancelSubscriptionAction={cancelSubscriptionAction}

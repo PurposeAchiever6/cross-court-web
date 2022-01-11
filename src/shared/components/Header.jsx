@@ -24,10 +24,10 @@ const ALWAYS_SCROLLED = [
   ROUTES.LOCATIONS,
   ROUTES.LOCATIONSFIRST,
   ROUTES.LOCATIONSFREE,
-  ROUTES.MEMBERSHIPS,
+  ROUTES.FORGOTPASSWORD,
+  ROUTES.RESETPASSWORD,
   ROUTES.MYACCOUNT,
   ROUTES.LOGIN,
-  ROUTES.SEM,
   ROUTES.DASHBOARD,
   ROUTES.FAQ,
   ROUTES.CONTENT,
@@ -44,7 +44,7 @@ const ALWAYS_SCROLLED = [
   '/session',
   '/first-session',
 ];
-const BLACK_BG = [ROUTES.SEM, ROUTES.MEMBERSHIPS];
+const BLACK_BG = [ROUTES.MEMBERSHIPS];
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -145,7 +145,7 @@ const Header = () => {
   return pathname === ROUTES.DASHBOARD ? null : (
     <div
       className={`header w-full h-16 top-0 bg-transparent transition duration-500 ${
-        scrolled ? `${!isBlackBg && 'shadow-navbar'} ${bgColor} fixed z-10` : 'absolute'
+        scrolled ? `${!isBlackBg && 'shadow-navbar'} ${bgColor} fixed z-50` : 'absolute'
       }`}
     >
       <MobileMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />

@@ -1,42 +1,31 @@
 import React from 'react';
-import ROUTES from 'shared/constants/routes';
-import styled from 'styled-components';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
-const Title = styled.p`
-  font-family: dharma_gothic_cexbold;
-  color: black;
-  -webkit-text-fill-color: white;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: black;
-  font-size: 120px;
-  line-height: 100px;
-  @media (min-width: 992px) {
-    margin-top: 150px;
-    font-size: 250px;
-    line-height: 200px;
-  }
-`;
+import ROUTES from 'shared/constants/routes';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import readyBgImg from 'screens/homepage/images/ready.jpg';
 
 const Ready = () => (
-  <section className="ready text-white text-center md:min-h-screen flex flex-col justify-center">
-    <Title className="mt-10 md:mt-0">READY TO SWEAT?</Title>
-    <div className="flex flex-col md:block mt-20 mb-20 md:mb-0 px-20">
-      <PrimaryButton
-        to={ROUTES.HOWITWORKS}
-        inverted
-        className="md:mr-4"
-        contentClasses="w-full md:w-auto"
-      >
-        LEARN MORE
-      </PrimaryButton>
-      <PrimaryButton
-        className="mt-4 md:mt-0 md:ml-4"
-        to={ROUTES.LOCATIONS}
-        contentClasses="w-full md:w-auto"
-      >
-        SEE SCHEDULE
-      </PrimaryButton>
+  <section
+    className="text-white min-h-screen bg-no-repeat bg-cover bg-center md:bg-fixed flex justify-center items-center px-4 py-32"
+    style={{ backgroundImage: `url('${readyBgImg}')` }}
+  >
+    <div className="text-center">
+      <h2 className="font-dharma_gothic_cexbold text-transparent text-stroke-white text-9xl md:text-12xl mb-14">
+        READY TO SWEAT?
+      </h2>
+      <div className="flex flex-col md:flex-row justify-center items-center">
+        <PrimaryButton
+          to={ROUTES.HOWITWORKS}
+          bg="transparent"
+          color="white"
+          contentClasses="w-52 md:mr-8 mb-2 md:mb-0"
+        >
+          LEARN MORE
+        </PrimaryButton>
+        <PrimaryButton to={ROUTES.LOCATIONS} contentClasses="w-52">
+          SEE SCHEDULE
+        </PrimaryButton>
+      </div>
     </div>
   </section>
 );
