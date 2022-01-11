@@ -11,10 +11,11 @@ const InputTextContainer = styled.div`
   margin-bottom: 1.5rem;
 
   label {
+    font-family: shapiro95_super_wide;
     font-size: 1rem;
     line-height: 1.5rem;
     color: ${(props) => props.labelColor};
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.5rem;
     text-transform: uppercase;
     font-weight: bold;
     font-weight: 400;

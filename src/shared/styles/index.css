@@ -3,6 +3,7 @@
 @import './contact-form.css';
 @import './utilities.css';
 @import './sidebar.css';
+@import './alerts.css';
 @import './toasts.css';
 @import './onboarding-tour.css';
 
@@ -175,17 +176,6 @@ body .go-back .back-button {
 }
 body .go-back:hover .back-button {
   opacity: 0.6;
-}
-body .form .form-group label {
-  font-size: 16px;
-  font-family: 'shapiro95_super_wide';
-  font-weight: normal;
-  line-height: 16px;
-  margin-bottom: 10px;
-}
-body .form .form-group input {
-  background-color: #fbf7f3;
-  border: 1px solid #000;
 }
 body .dharma_gothic_cexbold {
   font-family: 'dharma_gothic_cexbold';
@@ -657,39 +647,6 @@ body .add-card .card-container .expiration-date-element {
 }
 body .add-card .card-container .cvc-element {
   width: 60px;
-}
-
-/* LOGIN */
-
-body .login h1 {
-  font-family: 'shapiro95_super_wide';
-}
-body .login .form .form-group label {
-  color: #9999ff;
-  letter-spacing: 0;
-}
-
-/* FORGOT PASSWORD */
-body .forgotpassword {
-  margin: 80px 0;
-}
-body .forgotpassword h1 {
-  font-family: 'shapiro95_super_wide';
-  text-align: center;
-}
-body .forgotpassword .form .form-group label {
-  color: #9999ff;
-  letter-spacing: 0;
-}
-
-/* FORGOT PASSWORD SUCCESS */
-body .forgot-pass-success {
-  margin: 80px 0;
-}
-body .forgot-pass-success h1 {
-  font-family: 'shapiro95_super_wide';
-  margin-top: 0;
-  text-align: center;
 }
 
 /* SIGNUP SUCCESS */

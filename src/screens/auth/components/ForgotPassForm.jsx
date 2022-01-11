@@ -1,92 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { isEmpty } from 'ramda';
-import { Link } from 'react-router-dom';
 import { string, func, bool } from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
-import colors from 'shared/styles/constants';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-
-const ForgotPassFormContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2.5rem;
-  flex-direction: column;
-  margin-top: 5rem;
-
-  .forgot-pass {
-    font-weight: 600;
-  }
-
-  h1 {
-    font-weight: 600;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    width: 20rem;
-  }
-
-  p {
-    width: 64%;
-    font-size: 1.2rem;
-    line-height: 1.5rem;
-    margin-bottom: 3rem;
-
-    @media (min-width: 992px) {
-      text-align: center;
-    }
-  }
-
-  span {
-    font-size: 1rem;
-    text-align: center;
-    margin-top: 1rem;
-    cursor: pointer;
-
-    strong {
-      display: block;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .cancel {
-    margin-top: 3rem;
-  }
-
-  .error-container {
-    display: flex;
-    justify-content: center;
-    padding: 0.25rem 1.5rem;
-    margin: 0.5rem 0;
-    background: ${colors.errorRed};
-    color: ${colors.white};
-    border-radius: 4px;
-    font-size: 0.8rem;
-  }
-
-  @media (max-width: 991px) {
-    form {
-      width: 100%;
-    }
-
-    p {
-      width: 100%;
-      font-size: 1.1rem;
-    }
-  }
-`;
 
 const initialValues = {
   email: '',
@@ -97,39 +18,45 @@ const validationSchema = Yup.object().shape({
 });
 
 const ForgotPassForm = ({ error, forgotPassHandler, isLoading }) => (
-  <ForgotPassFormContainer className="forgotpassword">
+  <div>
     <Formik
       validateOnChange={false}
       validateOnBlur={false}
       initialValues={initialValues}
       onSubmit={(values) => {
-        forgotPassHandler({ ...values });
+        forgotPassHandler(values);
       }}
       validationSchema={validationSchema}
     >
       {() => (
         <>
-          <h1>FORGOT YOUR PASSWORD?</h1>
-          <p>Enter your email and we will send you a link to reset your password.</p>
-          <Form className="form">
-            <div className="form-group">
-              <InputTextField labelText="Email" name="email" placeholder="example@crosscourt.com" />
-            </div>
-            {!isEmpty(error) && <div className="error-container"> {error}</div>}
-            <PrimaryButton type="submit" loading={isLoading} w="100%">
-              RESET PASSWORD
+          <h1 className="font-shapiro95_super_wide text-3xl text-center uppercase mb-10">
+            Forgot Your Password?
+          </h1>
+          <p className="text-center mb-10">
+            Enter your email and we will send you a link to reset your password.
+          </p>
+          <Form>
+            <InputTextField labelText="Email" name="email" placeholder="example@crosscourt.com" />
+            {!isEmpty(error) && <div className="alert-error mb-2">{error}</div>}
+            <PrimaryButton type="submit" loading={isLoading} w="100%" className="mb-10">
+              Reset Password
             </PrimaryButton>
-            <span className="cancel">
-              <Link to={ROUTES.LOGIN}>
-                <strong>Cancel</strong>
+            <div className="text-center">
+              <Link to={ROUTES.LOGIN} className="font-bold hover:underline">
+                Cancel
               </Link>
-            </span>
+            </div>
           </Form>
         </>
       )}
     </Formik>
-  </ForgotPassFormContainer>
+  </div>
 );
+
+ForgotPassForm.defaultProps = {
+  error: null,
+};
 
 ForgotPassForm.propTypes = {
   error: string,

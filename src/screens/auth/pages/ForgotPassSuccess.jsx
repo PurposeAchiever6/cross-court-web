@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -7,62 +6,21 @@ import ROUTES from 'shared/constants/routes';
 import { getUserEmail } from 'screens/auth/reducer';
 import PaperPlaneIcon from 'shared/images/paper-plane-icon.png';
 
-const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    margin-bottom: 4rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    font-weight: 900;
-    margin-bottom: 4.5rem;
-    margin-top: 5rem;
-  }
-
-  p {
-    width: 26%;
-    font-size: 1rem;
-    line-height: 1.5rem;
-    margin-bottom: 5rem;
-    text-align: center;
-
-    strong {
-      font-weight: bold;
-    }
-
-    span {
-      display: block;
-    }
-  }
-
-  @media (max-width: 991px) {
-    p {
-      width: 80%;
-    }
-  }
-`;
-
 const ForgotPassSuccess = () => {
   const userEmail = useSelector(getUserEmail);
 
   return (
-    <PageContainer className="forgot-pass-success">
-      <h1>CHECK YOUR EMAIL</h1>
-      <img src={PaperPlaneIcon} alt="Sent mail icon" />
-      <p>
+    <div className="w-full max-w-md mx-auto text-center px-4 py-16">
+      <h1 className="font-shapiro95_super_wide text-3xl uppercase mb-14">Check Your Email</h1>
+      <img src={PaperPlaneIcon} alt="sent-mail-icon" className="inline-block mb-16" />
+      <p className="mb-12">
         We sent an email to <strong>{userEmail}</strong> which contains an link to reset your
         password.
       </p>
-      <Link to={ROUTES.LOGIN}>
+      <Link to={ROUTES.LOGIN} className="font-bold hover:underline">
         <strong>Back to Log In</strong>
       </Link>
-    </PageContainer>
+    </div>
   );
 };
 

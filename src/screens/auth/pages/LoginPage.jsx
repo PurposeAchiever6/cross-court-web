@@ -19,7 +19,7 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="w-full max-w-md mx-auto px-4 py-20">
       <LoginForm loginHandler={loginAction} isLoading={isLoading} error={error} />
     </div>
   );

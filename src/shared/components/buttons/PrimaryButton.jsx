@@ -64,6 +64,7 @@ const StyledButton = styled.button`
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  width: ${(props) => (props.w ? props.w : '')};
 `;
 
 const PrimaryButton = ({
@@ -122,6 +123,7 @@ const PrimaryButton = ({
       style={{ pointerEvents: disabled || loading ? 'none' : '' }}
       className={`primary-button ${className}`}
       type={type}
+      w={w}
     >
       {content}
     </StyledButton>
