@@ -1,11 +1,13 @@
 import React from 'react';
 
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import theFundamentalsBgImg from 'screens/homepage/images/the-fundamentals.jpeg';
 
 const WhyWeExist = () => (
-  <section
+  <LazyBackgroundImage
+    as="section"
+    img={theFundamentalsBgImg}
     className="text-white min-h-screen bg-no-repeat bg-cover bg-center md:bg-fixed"
-    style={{ backgroundImage: `url('${theFundamentalsBgImg}')` }}
   >
     <div className="text-right">
       <div className="bg-cc-black bg-opacity-70 w-4/5 max-w-sm md:max-w-md md:min-h-screen ml-auto md:mr-20 mt-20 mb-40 sm:my-20 md:my-0">
@@ -32,7 +34,7 @@ const WhyWeExist = () => (
         </div>
       </div>
     </div>
-  </section>
+  </LazyBackgroundImage>
 );
 
 export default WhyWeExist;

@@ -2,6 +2,7 @@ import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
 import ShowupBgImg from 'screens/how-it-works/images/pick-up-basketball.jpeg';
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const Showup = () => (
@@ -28,12 +29,10 @@ const Showup = () => (
         Reserve Now
       </PrimaryButton>
     </div>
-    <div
+    <LazyBackgroundImage
+      img={ShowupBgImg}
       className="w-full md:w-1/2 bg-no-repeat bg-cover bg-center"
-      style={{
-        minHeight: '550px',
-        backgroundImage: `url('${ShowupBgImg}')`,
-      }}
+      style={{ minHeight: '550px' }}
     />
   </section>
 );

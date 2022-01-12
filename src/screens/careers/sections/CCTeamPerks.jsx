@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { getUserProfile } from 'screens/my-account/reducer';
 import { openContactFormForUser } from 'shared/utils/contactForm';
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import CCTeamPerksBgImg from 'screens/careers/images/cc-team-perks.jpeg';
 import competitiveWageIcon from 'screens/careers/images/wage.png';
@@ -23,9 +24,10 @@ const CCTeamPerks = () => {
   const currentUser = useSelector(getUserProfile) || {};
 
   return (
-    <section
+    <LazyBackgroundImage
+      as="section"
+      img={CCTeamPerksBgImg}
       className="text-white bg-no-repeat bg-cover bg-center pt-16 pb-36"
-      style={{ backgroundImage: `url('${CCTeamPerksBgImg}')` }}
     >
       <div className="bg-cc-black bg-opacity-50 px-4 md:px-12 pt-8 md:pb-4 mb-12">
         <h2 className="font-shapiro95_super_wide mb-10">
@@ -58,7 +60,7 @@ const CCTeamPerks = () => {
           </PrimaryButton>
         </div>
       </div>
-    </section>
+    </LazyBackgroundImage>
   );
 };
 

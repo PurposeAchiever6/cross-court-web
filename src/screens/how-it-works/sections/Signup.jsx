@@ -2,16 +2,15 @@ import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
 import SignupBgImg from 'screens/how-it-works/images/pick-up-basketball-near-me.jpeg';
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const Signup = () => (
   <section className="flex flex-col-reverse md:flex-row flex-wrap">
-    <div
+    <LazyBackgroundImage
+      img={SignupBgImg}
       className="w-full md:w-1/2 bg-no-repeat bg-cover bg-center md:bg-left-top"
-      style={{
-        minHeight: '550px',
-        backgroundImage: `url('${SignupBgImg}')`,
-      }}
+      style={{ minHeight: '550px' }}
     />
     <div className="w-full md:w-1/2 px-4 md:px-10 py-10 md:py-20 bg-cc-black text-white">
       <h2 className="font-dharma_gothic_cheavy text-9xl text-cc-black bg-cc-purple px-5 pt-2 inline-block mb-12">

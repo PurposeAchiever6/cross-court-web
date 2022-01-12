@@ -1,15 +1,17 @@
 import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import playButtonWhiteIcon from 'shared/images/play-button-white.png';
 import playButtonPurpleIcon from 'shared/images/play-button-purple.png';
 import pickUpBasketBallBgImg from 'screens/homepage/images/pick-up-basketball-los-angeles.jpeg';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const CrosscourtIsAHighIntensity = () => (
-  <section
+  <LazyBackgroundImage
+    as="section"
+    img={pickUpBasketBallBgImg}
     className="text-white min-h-screen bg-no-repeat bg-cover bg-center md:bg-fixed"
-    style={{ backgroundImage: `url('${pickUpBasketBallBgImg}')` }}
   >
     <div className="bg-cc-black bg-opacity-70 w-4/5 max-w-sm md:max-w-md md:min-h-screen md:mx-20 mt-20 mb-40 sm:my-20 md:my-0">
       <div className="px-4 sm:px-6 py-10 sm:py-16">
@@ -41,7 +43,7 @@ const CrosscourtIsAHighIntensity = () => (
         </div>
       </div>
     </div>
-  </section>
+  </LazyBackgroundImage>
 );
 
 export default CrosscourtIsAHighIntensity;

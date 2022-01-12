@@ -6,6 +6,7 @@ import styled from 'styled-components';
 
 import useWindowSize from 'shared/hooks/useWindowSize';
 import { size } from 'shared/styles/mediaQueries';
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import theSessionOfficialBgImg from 'screens/careers/images/pick-up-referee-3.jpeg';
 
@@ -62,12 +63,10 @@ const TheSessionOfficial = () => {
   return (
     <>
       <Section className="flex flex-col-reverse md:flex-row flex-wrap">
-        <div
+        <LazyBackgroundImage
+          img={theSessionOfficialBgImg}
           className="w-full md:w-1/2 bg-no-repeat bg-cover bg-center"
-          style={{
-            minHeight: '550px',
-            backgroundImage: `url('${theSessionOfficialBgImg}')`,
-          }}
+          style={{ minHeight: '550px' }}
         />
         <div className="w-full md:w-1/2 px-4 md:px-10 py-14 bg-cc-black text-white">
           <h2 className="text-right font-shapiro95_super_wide mb-10">
