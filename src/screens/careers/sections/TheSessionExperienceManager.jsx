@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { openContactFormForUser } from 'shared/utils/contactForm';
 import theSessionExperienceManagerBgImg from 'screens/careers/images/the-session-experience-manager.jpeg';
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const Section = styled.section`
@@ -55,12 +56,10 @@ const SessionExperienceManager = () => {
           </PrimaryButton>
         </div>
       </div>
-      <div
+      <LazyBackgroundImage
+        img={theSessionExperienceManagerBgImg}
         className="w-full md:w-1/2 bg-no-repeat bg-cover"
-        style={{
-          minHeight: '450px',
-          backgroundImage: `url('${theSessionExperienceManagerBgImg}')`,
-        }}
+        style={{ minHeight: '450px' }}
       />
     </Section>
   );

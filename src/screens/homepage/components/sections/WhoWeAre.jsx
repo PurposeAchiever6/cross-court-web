@@ -1,11 +1,13 @@
 import React from 'react';
 
-import whoWeAreBgImg from 'screens/homepage/images/los-angeles-pickup-basketball.jpg';
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
+import whoWeAreBgImg from 'screens/homepage/images/los-angeles-pickup-basketball.jpeg';
 
 const WhoWeAre = () => (
-  <section
+  <LazyBackgroundImage
+    as="section"
+    img={whoWeAreBgImg}
     className="text-white min-h-screen bg-no-repeat bg-cover md:bg-fixed"
-    style={{ backgroundImage: `url('${whoWeAreBgImg}')` }}
   >
     <div className="bg-cc-black bg-opacity-70 w-4/5 max-w-sm md:max-w-md md:min-h-screen md:mx-20 mt-20 mb-40 sm:my-20 md:my-0">
       <div className="px-4 sm:px-6 py-10 sm:py-16">
@@ -34,7 +36,7 @@ const WhoWeAre = () => (
         </div>
       </div>
     </div>
-  </section>
+  </LazyBackgroundImage>
 );
 
 export default WhoWeAre;

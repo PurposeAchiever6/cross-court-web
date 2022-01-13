@@ -1,15 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import NewToCrosscourtBgImg from 'screens/how-it-works/images/pick-up-referee.png';
+import NewToCrosscourtBgImg from 'screens/how-it-works/images/pick-up-referee.jpeg';
 import playButtonWhiteIcon from 'shared/images/play-button-white.png';
 import playButtonPurpleIcon from 'shared/images/play-button-purple.png';
 
 const NewToCrosscourt = ({ scrollToTheSessionVideo }) => (
-  <section
+  <LazyBackgroundImage
+    as="section"
+    img={NewToCrosscourtBgImg}
     className="min-h-screen bg-no-repeat bg-cover text-white py-32"
-    style={{ backgroundImage: `url('${NewToCrosscourtBgImg}')` }}
   >
     <div className="lg:w-1/2 lg:ml-auto px-4 sm:px-20">
       <h1 className="font-dharma_gothic_cheavy_italic text-8xl sm:text-9xl lg:text-11xl pl-1 lg:pl-2">
@@ -39,7 +41,7 @@ const NewToCrosscourt = ({ scrollToTheSessionVideo }) => (
         </PrimaryButton>
       </div>
     </div>
-  </section>
+  </LazyBackgroundImage>
 );
 
 NewToCrosscourt.propTypes = {

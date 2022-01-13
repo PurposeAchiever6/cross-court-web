@@ -2,16 +2,15 @@ import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
 import SweatBgImg from 'screens/how-it-works/images/basketball-court.jpeg';
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const Sweat = () => (
   <section className="flex flex-col-reverse md:flex-row flex-wrap">
-    <div
+    <LazyBackgroundImage
+      img={SweatBgImg}
       className="w-full md:w-1/2 bg-no-repeat bg-cover bg-center"
-      style={{
-        minHeight: '550px',
-        backgroundImage: `url('${SweatBgImg}')`,
-      }}
+      style={{ minHeight: '550px' }}
     />
     <div className="w-full md:w-1/2 px-4 md:px-10 py-10 md:py-20 bg-cc-black text-white">
       <h2 className="font-dharma_gothic_cheavy_italic text-9xl text-cc-black bg-cc-purple pl-4 pr-3 pt-1 inline-block mb-12">

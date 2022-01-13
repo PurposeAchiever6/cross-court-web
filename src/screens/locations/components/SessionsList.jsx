@@ -140,6 +140,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
               <PrimaryButton
                 onClick={() => onClickJoinWaitlist(sessionTime, sessionDate, location.name)}
                 w="9.5rem"
+                fontSize="11px"
                 disabled={disableButton}
               >
                 JOIN WAITLIST
@@ -152,6 +153,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                   id="sessions-list-reserve-btn"
                   to={`/session/${id}/${URLdate}`}
                   w="9.5rem"
+                  fontSize="12px"
                   disabled={disableButton}
                 >
                   RESERVE

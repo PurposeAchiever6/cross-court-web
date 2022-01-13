@@ -4,7 +4,7 @@ import ROUTES from 'shared/constants/routes';
 import styled from 'styled-components';
 import sportsLifeStyle from 'screens/homepage/images/basketball-gym-lockers.jpeg';
 import basketballGymGuy from 'screens/homepage/images/basketball-gym-guy.png';
-import basketballGym from 'screens/homepage/images/basketball-gym.jpg';
+import basketballGym from 'screens/homepage/images/basketball-gym.jpeg';
 
 const Section = styled.section`
   background-image: url('${basketballGym}');
@@ -47,7 +47,7 @@ const Section = styled.section`
 `;
 
 const MakeSportYourLifestyle = () => (
-  <Section className="relative bg-no-repeat bg-cover md:bg-fixed min-h-screen overflow-hidden flex flex-col justify-center px-4">
+  <Section className="relative bg-cc-black bg-no-repeat bg-cover md:bg-fixed min-h-screen overflow-hidden flex flex-col justify-center px-4">
     <h1 className="font-shapiro95_super_wide text-white text-center text-3xl lg:text-4xl xl:text-5xl mb-12 lg:mb-0 lg:flex lg:whitespace-nowrap lg:-mt-20 animate">
       <span className="title-left block">MAKE SPORT</span>
       <span className="title-right block">
