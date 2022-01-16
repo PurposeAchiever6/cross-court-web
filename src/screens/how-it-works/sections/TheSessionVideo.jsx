@@ -5,6 +5,8 @@ const TheSessionVideo = forwardRef((_, ref) => (
     <video
       className="w-full"
       src="/how-it-works.mp4"
+      autoPlay
+      muted
       playsInline
       controls
       loop
