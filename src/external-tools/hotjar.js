@@ -2,11 +2,11 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 const env = runtimeEnv();
 
-if (env.REACT_APP_HOTJAT_ENABLED === 'true') {
-  (function (h, o, t, j, a, r) {
+if (env.REACT_APP_HOTJAR_ENABLED === 'true') {
+  (function(h, o, t, j, a, r) {
     h.hj =
       h.hj ||
-      function () {
+      function() {
         (h.hj.q = h.hj.q || []).push(arguments);
       };
     h._hjSettings = { hjid: 2657049, hjsv: 6 };
