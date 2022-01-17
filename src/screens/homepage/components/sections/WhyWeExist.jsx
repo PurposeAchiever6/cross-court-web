@@ -9,8 +9,8 @@ const WhyWeExist = () => (
     img={theFundamentalsBgImg}
     className="text-white min-h-screen bg-no-repeat bg-cover bg-center md:bg-fixed"
   >
-    <div className="text-right">
-      <div className="bg-cc-black bg-opacity-70 w-4/5 max-w-sm md:max-w-md md:min-h-screen ml-auto md:mr-20 mt-20 mb-40 sm:my-20 md:my-0">
+    <div className="text-right md:pr-20 pt-20 pb-40 sm:py-20 md:py-0">
+      <div className="bg-cc-black bg-opacity-70 w-4/5 max-w-sm md:max-w-md md:min-h-screen ml-auto">
         <div className="px-4 sm:px-6 py-10 sm:py-16">
           <h2 className="font-dharma_gothic_cheavy text-transparent text-stroke-cc-purple text-stroke-width-1 md:text-stroke-width-2 text-8xl md:text-9xl xl:text-10xl uppercase mb-8">
             The
