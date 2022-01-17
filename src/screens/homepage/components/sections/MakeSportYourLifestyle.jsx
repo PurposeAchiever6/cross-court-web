@@ -72,7 +72,7 @@ const MakeSportYourLifestyle = () => (
     <img
       alt="make-sports-your-lifestyle"
       src={basketballGymGuy}
-      className="absolute hidden lg:block top-4"
+      className="absolute hidden lg:block top-4 left-1/2 transform -translate-x-1/2 pl-6"
     />
   </Section>
 );

@@ -20,7 +20,10 @@ const LazyBackgroundImage = ({ as: HTMLTag, img, backgroundColor, children, ...p
       });
     };
 
-    const observer = new IntersectionObserver(onIntersection);
+    const observer = new IntersectionObserver(onIntersection, {
+      rootMargin: '150px',
+      threshold: 0,
+    });
     observer.observe(containerRef.current);
   }, [backgroundColor, img]);
 

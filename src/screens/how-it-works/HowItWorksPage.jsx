@@ -20,6 +20,8 @@ const HowItWorksPage = () => {
 
     setTimeout(() => {
       sessionVideoRef.current.play();
+      sessionVideoRef.current.currentTime = 0;
+      sessionVideoRef.current.muted = false;
     }, 1000);
   };
 
