@@ -1,8 +1,9 @@
 import React from 'react';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+
 import {
   isSameDay,
   startOfWeek,
@@ -14,6 +15,8 @@ import {
   isPast,
 } from 'shared/utils/date';
 import colors from 'shared/styles/constants';
+import { disableOnboardingTour } from 'shared/utils/onboardingTour';
+import OnboardingTour from 'shared/components/OnboardingTour';
 
 const WeekSelectorContainer = styled.div`
   .week-handler {
@@ -75,33 +78,57 @@ const WeekSelector = ({
   increaseHandler,
   decreaseHandler,
   setSelectedDateHandler,
-}) => (
-  <WeekSelectorContainer>
-    <div className="week-handler">
-      <button type="button" onClick={decreaseHandler} disabled={isThisWeek(selectedDate)}>
-        <FontAwesomeIcon icon={faAngleLeft} />
-      </button>
-      <span className="weektitle-container">{weekRangeTitle(selectedDate)}</span>
-      <button type="button" onClick={increaseHandler}>
-        <FontAwesomeIcon icon={faAngleRight} />
-      </button>
-    </div>
-    <div className="weekdays-container px-2 md:px-6">
-      {weekRange(startOfWeek(selectedDate)).map((day) => (
-        <DayContainer
-          key={day}
-          day={day}
-          currentDay={selectedDate}
-          onClick={() => setSelectedDateHandler(day)}
-          disabled={isPast(day)}
-        >
-          <span className="text-xs sm:text-base">{dayShort(day)}</span>
-          <span className="text-sm sm:text-base">{dayNumber(day)}</span>
-        </DayContainer>
-      ))}
-    </div>
-  </WeekSelectorContainer>
-);
+}) => {
+  const onboardingTourId = 'onboarding-tour-week-selector';
+
+  const exitWeekSelectorOnboardingTour = () => {
+    disableOnboardingTour(onboardingTourId);
+  };
+
+  const onNextWeekClick = () => {
+    exitWeekSelectorOnboardingTour();
+    increaseHandler();
+  };
+
+  return (
+    <WeekSelectorContainer>
+      <div className="week-handler">
+        <button type="button" onClick={decreaseHandler} disabled={isThisWeek(selectedDate)}>
+          <FontAwesomeIcon icon={faAngleLeft} />
+        </button>
+        <span className="weektitle-container">{weekRangeTitle(selectedDate)}</span>
+        <button id="week-selector-next-week" type="button" onClick={onNextWeekClick}>
+          <FontAwesomeIcon icon={faAngleRight} />
+        </button>
+      </div>
+      <div className="weekdays-container px-2 md:px-6">
+        {weekRange(startOfWeek(selectedDate)).map((day) => (
+          <DayContainer
+            key={day}
+            day={day}
+            currentDay={selectedDate}
+            onClick={() => setSelectedDateHandler(day)}
+            disabled={isPast(day)}
+          >
+            <span className="text-xs sm:text-base">{dayShort(day)}</span>
+            <span className="text-sm sm:text-base">{dayNumber(day)}</span>
+          </DayContainer>
+        ))}
+      </div>
+      <OnboardingTour
+        id={onboardingTourId}
+        timeout={1000}
+        steps={[
+          {
+            element: '#week-selector-next-week',
+            intro: "Tap here to see next week's schedule.",
+          },
+        ]}
+        onExit={exitWeekSelectorOnboardingTour}
+      />
+    </WeekSelectorContainer>
+  );
+};
 
 WeekSelector.propTypes = {
   selectedDate: PropTypes.instanceOf(Date).isRequired,
