@@ -193,7 +193,6 @@ const setScrollClasses = () => {
       } else if (window.scrollY >= 600) {
         addClass = 'anim30';
         keepScrolling = false;
-        document.querySelector('main').classList.add('animation-done');
 
         const redirectToSpecificSession = window.localStorage.getItem('redirect');
 
@@ -328,7 +327,6 @@ const setScrollClasses = () => {
       } else if (window.scrollY >= 600) {
         addClass = 'anim30';
         keepScrolling = false;
-        document.querySelector('main').classList.add('animation-done');
 
         window.setTimeout(function() {
           window.setTimeout(function() {
@@ -371,7 +369,6 @@ history.listen((location) => {
   ReactGA.set({ page: location.pathname }); // Update the user's current page
   ReactGA.pageview(location.pathname); // Record a pageview for the given page
 
-  document.querySelector('main').classList.remove('animation-done');
   setPageNameOnBodyClass(window.location.pathname);
   keepScrolling = true;
   window.addEventListener('scroll', setScrollClasses);
@@ -398,7 +395,7 @@ const Routes = () => {
   }, [dispatch, isAuthenticated]);
 
   const Pages = () => (
-    <main>
+    <main className='pt-16'>
       <Switch>
         <Route path={ROUTES.LOGIN} exact>
           <Login />

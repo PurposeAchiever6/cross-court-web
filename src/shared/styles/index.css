@@ -147,11 +147,6 @@ body .mobile-hide-inline {
 }
 
 /* MAIN */
-body main,
-body main.animation-done,
-main.animation-done {
-  padding-top: 64px;
-}
 body[data-page='home'] main,
 body[data-page='how-it-works'] main,
 body[data-page='free-session-credit-added'] main,

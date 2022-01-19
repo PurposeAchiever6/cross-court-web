@@ -20,7 +20,7 @@ import instruction7Img3 from 'shared/images/content-page/instruction-7_3.png';
 import InstructionItem from './components/InstructionItem';
 
 const ContentPage = () => (
-  <div className="p-4 pt-8 md:p-8">
+  <div className="px-4 md:px-12 py-12 max-w-5xl self-center">
     <h1 className="font-shapiro95_super_wide text-center text-xl md:text-3xl mb-6">CONTENT</h1>
 
     <p className="mb-6">
