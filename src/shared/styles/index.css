@@ -6,6 +6,7 @@
 @import './alerts.css';
 @import './toasts.css';
 @import './onboarding-tour.css';
+@import './active-campaign-chat.css';
 
 html {
   scroll-behavior: smooth;

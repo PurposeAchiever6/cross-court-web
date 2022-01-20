@@ -1,10 +1,12 @@
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+
 import ROUTES from 'shared/constants/routes';
 import activeCampaignService from 'shared/services/activeCampaign';
 
 const env = runtimeEnv();
 const APP_URL = env.REACT_APP_URL;
 
+const HIDE_CHATS_FOR_PATHS = [ROUTES.DASHBOARD];
 const STAY_IN_THE_LOOP_EVENT = 'Stay In The Loop';
 const STARTED_CHECKOUT_EVENT = 'Started Checkout';
 
@@ -39,4 +41,16 @@ export const startedCheckout = async ({ product }) => {
     { name: 'Checkout Url', value: checkoutUrl },
     { name: 'Contact Url', value: contactUrl },
   ]);
+};
+
+export const toggleActiveCampaignChat = () => {
+  // Chat widget takes some time to load, so the safer way is to hide it using CSS
+  const currentPath = window.location.pathname;
+  const body = document.body;
+
+  if (HIDE_CHATS_FOR_PATHS.includes(currentPath)) {
+    body.classList.add('hide-ac-chat');
+  } else {
+    body.classList.remove('hide-ac-chat');
+  }
 };
