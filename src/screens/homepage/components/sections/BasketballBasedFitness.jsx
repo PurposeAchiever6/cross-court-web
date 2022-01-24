@@ -20,11 +20,11 @@ const CrosscourtIsAHighIntensity = () => (
         </h2>
         <div>
           <h3 className="font-shapiro95_super_wide text-base md:text-lg uppercase mb-6 md:mb-8">
-            Crosscourt's the first, high intesity, basketball based fitness experience for the
+            Crosscourt's the first, high intensity, basketball based fitness experience for the
             modern athlete.
           </h3>
           <p className="text-sm md:text-base mb-8 md:mb-10">
-            Our guided 60 minute, 15 player sessions use a hollistic approach to fitness that
+            Our guided 60 minute, 15 player sessions use a holistic approach to fitness that
             challenge us physically, engage us socially, and recharge us mentally.
           </p>
           <PrimaryButton bg="transparent" to={ROUTES.HOWITWORKS} color="white" className="group">
