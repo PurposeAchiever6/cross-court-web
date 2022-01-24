@@ -18,6 +18,7 @@ import ScrollToPosition from 'shared/components/ScrollToPosition';
 import { history } from 'shared/history';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getLegalDocs } from 'screens/legal-docs/actionCreators';
+import { toggleActiveCampaignChat } from 'shared/utils/activeCampaign';
 import PrivateRoute from './PrivateRoute';
 import HtmlHead from './HtmlHead';
 
@@ -373,11 +374,14 @@ history.listen((location) => {
   keepScrolling = true;
   window.addEventListener('scroll', setScrollClasses);
   window.setTimeout(setScrollClasses, 1000);
+
+  toggleActiveCampaignChat();
 });
 
 setPageNameOnBodyClass(window.location.pathname);
 window.addEventListener('scroll', setScrollClasses);
 window.setTimeout(setScrollClasses, 1000);
+toggleActiveCampaignChat();
 
 const Routes = () => {
   const dispatch = useDispatch();
@@ -395,7 +399,7 @@ const Routes = () => {
   }, [dispatch, isAuthenticated]);
 
   const Pages = () => (
-    <main className='pt-16'>
+    <main className="pt-16">
       <Switch>
         <Route path={ROUTES.LOGIN} exact>
           <Login />

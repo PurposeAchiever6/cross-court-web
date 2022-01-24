@@ -128,7 +128,12 @@ const PlayersList = () => {
                 <FontAwesomeIcon icon={faAngleRight} />
               </button>
             </div>
-            <PrimaryButton inverted className="m-5" onClick={() => getUserSessionsList()}>
+            <PrimaryButton
+              inverted
+              className="m-5"
+              onClick={getUserSessionsList}
+              disabled={!selectedSession}
+            >
               Refresh
             </PrimaryButton>
             <PrimaryButton className="m-5" onClick={() => setShowList(false)}>

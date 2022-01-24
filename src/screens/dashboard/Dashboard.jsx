@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
+import ROUTES from 'shared/constants/routes';
+import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 import WinStreak from './components/WinStreak';
 import Randomizer from './components/Randomizer';
 import Fouls from './components/Fouls';
 import Clock from './components/Clock';
 import PlayersList from './components/PlayersList';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
-import { useSelector } from 'react-redux';
-import ROUTES from 'shared/constants/routes';
-import { useHistory } from 'react-router-dom';
 
 const DARK = 'dark';
 const PLUS = 'plus';
 
 const Dashboard = () => {
+  const history = useHistory();
+
   const [darkFouls, setDarkFouls] = useState(0);
   const [lightFouls, setLightFouls] = useState(0);
+
   const [streak, setStreak] = useState([]);
   const { isSem, isReferee } = useSelector(getUserProfile);
   const pageLoading = useSelector(getPageLoading);
-  const history = useHistory();
 
   useEffect(() => {
     if (!pageLoading) {

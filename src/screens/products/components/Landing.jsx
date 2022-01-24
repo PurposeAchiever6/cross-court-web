@@ -78,7 +78,7 @@ const Landing = ({ scrollToPlans }) => (
       className="bg-cc-purple absolute bottom-8 right-1/2 transform translate-x-1/2"
       onClick={scrollToPlans}
     >
-      <div className="font-dharma_gothic_cexbold italic text-5xl md:text-7xl py-2 px-4 flex">
+      <div className="font-dharma_gothic_cexbold italic text-5xl md:text-7xl py-2 px-4 flex justify-between items-center">
         SEE PRICING
         <ArrowDownSvg className="w-5 md:w-7 ml-4" />
       </div>
