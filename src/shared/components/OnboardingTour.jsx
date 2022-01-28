@@ -23,10 +23,12 @@ const OnboardingTour = ({ id, enabled, steps, initialStep, timeout, onExit }) =>
   };
 
   useEffect(() => {
+    if (!isEnabled) return;
+
     setTimeout(() => {
       setShow(true);
     }, timeout);
-  }, [timeout]);
+  }, [timeout, isEnabled]);
 
   return (
     show && (

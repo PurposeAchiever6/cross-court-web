@@ -124,7 +124,7 @@ const SessionsPage = () => {
       value: [
         `${sessionInfo?.location?.address}`,
         <br key="br" />,
-        `${sessionInfo?.location?.city}, CA ${sessionInfo?.location?.zipcode}`,
+        `${sessionInfo?.location?.city}, ${sessionInfo?.location?.state} ${sessionInfo?.location?.zipcode}`,
       ],
     },
   ];
