@@ -2,6 +2,9 @@
   "name": "crosscourt-web",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "build": "npm run watch:css && react-scripts build",
     "commit": "git-cz",
