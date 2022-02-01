@@ -55,9 +55,9 @@ const ProductsPage = () => {
     window.scroll({ top: plansRef.current.offsetTop - 50 });
   };
 
+  const previousPage = window.localStorage.getItem('previousPage');
   const showAnimation =
-    userProfile.totalCredits === 0 &&
-    window.localStorage.getItem('previousPage').indexOf('session-') !== -1;
+    userProfile.totalCredits === 0 && (previousPage ? previousPage.includes('session-') : true);
 
   useEffect(() => {
     dispatch(initialLoad());

@@ -89,10 +89,7 @@ const setPageNameOnBodyClass = (pathname) => {
   }
 };
 const setScrollClasses = () => {
-  if (
-    body.getAttribute('data-page') === 'free-session-credit-added' ||
-    (body.getAttribute('data-page') === 'locations' && window.location.search === '?testanimation')
-  ) {
+  if (body.getAttribute('data-page') === 'free-session-credit-added') {
     const bigTitle = document.querySelector('.free-session-credit-added .title');
     const scroll = document.querySelector('.free-session-credit-added .scroll');
 
