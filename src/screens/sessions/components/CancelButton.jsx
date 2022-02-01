@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const CancelButton = ({ modalToggler }) => (
-  <PrimaryButton className="cancel-btn" onClick={modalToggler} inverted>
+  <PrimaryButton className="mb-4" onClick={modalToggler} inverted>
     CANCEL RESERVATION
   </PrimaryButton>
 );

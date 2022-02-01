@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { isNil } from 'ramda';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import PropTypes from 'prop-types';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
-import { isPast, formatSessionTime, formatSessionDate } from 'shared/utils/date';
+import { isPast } from 'shared/utils/date';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { initialLoadInit } from 'screens/payments/actionCreators';
 import { getSelectedCard } from 'screens/payments/reducer';
@@ -35,43 +34,36 @@ const ReserveButton = ({
   const userProfile = useSelector(getUserProfile);
   const selectedCard = useSelector(getSelectedCard);
 
-  const emailSessionDate = formatSessionDate(sessionDate);
-  const sessionTime = formatSessionTime(session.time);
-  const mailInfo = `mailto:info@crosscourt.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${session.location.name}. Please notify me if a spot opens up. You can reach me at ${userProfile.phoneNumber}.`;
-
   const isFSFFlow = isUserInFirstFreeSessionFlow(userProfile);
 
   useEffect(() => {
     dispatch(initialLoadInit());
   }, [dispatch]);
 
-  if (isAuthenticated) {
-    if (isNil(session.userSession)) {
-      if (session.full) {
-        return (
-          <a href={mailInfo}>
-            <PrimaryButton className="btn-alternative" disabled={disabled}>
-              JOIN WAITLIST
-            </PrimaryButton>
-          </a>
-        );
+  const reservationHandler = () => {
+    if (!selectedCard && isFSFFlow) {
+      window.localStorage.setItem('redirect', window.location.pathname);
+      history.push(ROUTES.PAYMENTS);
+    } else {
+      if (!userProfile.unlimitedCredits && userProfile.totalCredits === 0) {
+        window.localStorage.setItem('redirect', window.location.pathname);
+        history.push(ROUTES.MEMBERSHIPS);
+      } else if (isFSFFlow) {
+        createAndReserveFreeSessionHandler();
+      } else {
+        reserveSessionAction();
       }
+    }
+  };
+
+  if (isAuthenticated) {
+    if (!session?.userSession && !session?.full) {
       return (
         <>
           <PrimaryButton
+            className="mb-4"
             id="session-confirm-reservation"
-            onClick={() => {
-              if (!selectedCard && isFSFFlow) {
-                window.localStorage.setItem('redirect', window.location.pathname);
-                history.push(ROUTES.PAYMENTS);
-              } else {
-                if (isFSFFlow) {
-                  createAndReserveFreeSessionHandler();
-                } else {
-                  reserveSessionAction();
-                }
-              }
-            }}
+            onClick={reservationHandler}
             disabled={disabled || isPast(sessionDate)}
           >
             CONFIRM RESERVATION
@@ -90,18 +82,14 @@ const ReserveButton = ({
           />
         </>
       );
-    } else if (['reserved', 'confirmed'].includes(session.userSession.state)) {
-      return <></>;
     }
   } else {
     return (
       <>
         <PrimaryButton
+          className="mb-4"
           id="session-create-profile"
-          onClick={() => {
-            window.localStorage.setItem('redirect', window.location.pathname);
-            history.push(ROUTES.SIGNUP);
-          }}
+          onClick={signupBookSessionAction}
         >
           CREATE PROFILE
         </PrimaryButton>
@@ -119,11 +107,7 @@ const ReserveButton = ({
     );
   }
 
-  return (
-    <PrimaryButton inverted onClick={signupBookSessionAction} disabled={disabled}>
-      CONFIRM RESERVATION
-    </PrimaryButton>
-  );
+  return null;
 };
 
 ReserveButton.defaultProps = {
