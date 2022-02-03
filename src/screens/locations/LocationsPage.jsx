@@ -39,6 +39,7 @@ const LocationsPage = () => {
   const selectedLocation = useSelector(getSelectedLocation);
   const selectedDate = useSelector(getSelectedDate);
   const userInfo = useSelector(getUserProfile);
+  const isFSFFlow = isUserInFirstFreeSessionFlow(userInfo);
 
   const setLocationHandler = (locationId) => dispatch(getSessionsByLocation(locationId));
   const getSessionsByDateHandler = (date) => dispatch(getSessionsByDate(date));
@@ -62,20 +63,12 @@ const LocationsPage = () => {
     }
   };
 
-  const isFSFFlow =
-    isUserInFirstFreeSessionFlow(userInfo) &&
-    window.localStorage.getItem('previousPage').indexOf('session-') === -1;
-
   useEffect(() => {
-    if (isUserInFirstFreeSessionFlow(userInfo)) {
+    if (isFSFFlow) {
       history.push(ROUTES.LOCATIONSFIRST);
     }
 
     dispatch(initialLoadInit());
-
-    if (isFSFFlow) {
-      document.body.setAttribute('data-page', 'free-session-credit-added');
-    }
   }, [dispatch, history, isFSFFlow, userInfo]);
 
   return isPageLoading ? (
