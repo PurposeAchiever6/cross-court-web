@@ -12,6 +12,7 @@ import {
   dayShort,
   dayNumber,
   isThisWeek,
+  isInFutureWeek,
   isPast,
 } from 'shared/utils/date';
 import colors from 'shared/styles/constants';
@@ -79,11 +80,19 @@ const WeekSelector = ({
 }) => (
   <WeekSelectorContainer>
     <div className="week-handler">
-      <button type="button" onClick={decreaseHandler} disabled={isThisWeek(selectedDate)}>
+      <button
+        type="button"
+        onClick={decreaseHandler}
+        className={isThisWeek(selectedDate) ? 'opacity-50 pointer-events-none' : ''}
+      >
         <FontAwesomeIcon icon={faAngleLeft} />
       </button>
       <span className="weektitle-container">{weekRangeTitle(selectedDate)}</span>
-      <button type="button" onClick={increaseHandler}>
+      <button
+        type="button"
+        onClick={increaseHandler}
+        className={isInFutureWeek(selectedDate, 2) ? 'opacity-50 pointer-events-none' : ''}
+      >
         <FontAwesomeIcon icon={faAngleRight} />
       </button>
     </div>

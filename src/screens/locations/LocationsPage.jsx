@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 import Map from 'shared/components/Map/Map';
-import { add, isPast, getUTCDate } from 'shared/utils/date';
+import { add, isPast, startOfWeek, getUTCDate } from 'shared/utils/date';
 import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -46,7 +46,7 @@ const LocationsPage = () => {
   const setSelectedDateHandler = (date) => dispatch(setSelectedDate(date));
 
   const increaseCurrentWeekHandler = () => {
-    const nextWeekDate = add(selectedDate, 1, 'weeks');
+    const nextWeekDate = startOfWeek(add(selectedDate, 1, 'weeks'));
     setSelectedDateHandler(nextWeekDate);
     getSessionsByDateHandler(nextWeekDate);
   };
