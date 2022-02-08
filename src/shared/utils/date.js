@@ -82,6 +82,11 @@ export const dayNumber = (date) => getUTCDate(date).format(FORMAT_DAY_NUMBER);
 export const isThisWeek = (date) =>
   dayjs(new Date(date)).isBetween(startOfWeek(new Date()), endOfWeek(new Date()));
 
+export const isInFutureWeek = (date, numberOfWeeks) => {
+  const futureDate = getUTCDate(new Date()).add(numberOfWeeks, 'weeks');
+  return getUTCDate(date).isBetween(startOfWeek(futureDate), endOfWeek(futureDate), null, '[]');
+};
+
 export const isPast = (date) => dayjs(date).diff(dayjs(), 'day') < 0;
 
 export const sortSessionsByDate = (sessions) =>
