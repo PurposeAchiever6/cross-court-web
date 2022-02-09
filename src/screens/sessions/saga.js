@@ -41,6 +41,8 @@ export function* initialLoadFlow({ payload }) {
       },
     });
   } catch (err) {
+    yield call(toast.error, err.response.data.error, { autoClose: false, closeButton: true });
+    yield put(push(ROUTES.LOCATIONS));
     yield put({ type: INITIAL_LOAD_FAILURE, error: err.response.data.error });
   }
 }
@@ -59,6 +61,8 @@ export function* initialLoadAuthFlow({ payload }) {
       },
     });
   } catch (err) {
+    yield call(toast.error, err.response.data.error, { autoClose: false, closeButton: true });
+    yield put(push(ROUTES.LOCATIONS));
     yield put({ type: INITIAL_LOAD_AUTH_FAILURE, error: err.response.data.error });
   }
 }
@@ -77,7 +81,6 @@ export function* reserveSessionFlow({ payload }) {
     yield put(push(ROUTES.SESSIONRESERVED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
-
     yield put({ type: RESERVE_SESSION_FAILURE, error: err.response.data.error });
   }
 }
@@ -105,7 +108,6 @@ export function* confirmSessionFlow({ payload }) {
     yield put(push(ROUTES.SESSIONCONFIRMED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
-
     yield put({ type: CONFIRM_SESSION_FAILURE, error: err.response.data.error });
   }
 }
