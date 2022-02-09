@@ -4,6 +4,7 @@ import { Redirect, useParams } from 'react-router-dom';
 import { isNil } from 'ramda';
 import styled from 'styled-components';
 
+import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 import Modal from 'shared/components/Modal';
 import BackButton from 'shared/components/BackButton';
@@ -75,7 +76,6 @@ const SessionsPage = () => {
   const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
   const showCancelModalAction = () => dispatch(showCancelModal());
   const signupBookSessionAction = () => dispatch(signupBookSession(id, date));
-  const removeSessionFromStorageAction = () => dispatch(removeSessionFromStorage());
 
   const isLegalAge = isUserInLegalAge(userProfile);
   const isSessionComplete = sessionInfo.past;
@@ -104,16 +104,15 @@ const SessionsPage = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      dispatch(removeSessionFromStorageAction());
+      dispatch(removeSessionFromStorage());
       dispatch(initialLoadAuthInit(id, date));
     } else {
       dispatch(initialLoadInit(id, date));
     }
-    // eslint-disable-next-line
-  }, [isAuthenticated]);
+  }, [dispatch, id, date, isAuthenticated]);
 
   if (isNil(id)) {
-    return <Redirect to="/" />;
+    return <Redirect to={ROUTES.HOME} />;
   }
 
   const sessionData = [

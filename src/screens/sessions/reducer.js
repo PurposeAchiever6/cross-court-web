@@ -17,7 +17,7 @@ import {
 } from './actionTypes';
 
 const initialState = {
-  error: '',
+  error: null,
   pageLoading: true,
   showCancelModal: false,
   sessionInfo: {},
@@ -32,7 +32,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pageLoading: true,
-        error: '',
+        error: null,
         sessionId: action.payload.sessionId,
         sessionDate: action.payload.date,
       };
@@ -45,6 +45,7 @@ export default (state = initialState, action) => {
       };
     case INITIAL_LOAD_FAILURE:
     case INITIAL_LOAD_AUTH_FAILURE:
+      return { ...state, error: action.error };
     case RESERVE_SESSION_FAILURE:
     case CONFIRM_SESSION_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
@@ -72,13 +73,13 @@ export default (state = initialState, action) => {
   }
 };
 
-const getSession = state => state.session;
+const getSession = (state) => state.session;
 
-export const getPageLoading = createSelector(getSession, session => session.pageLoading);
+export const getPageLoading = createSelector(getSession, (session) => session.pageLoading);
 
-export const getError = createSelector(getSession, session => session.error);
+export const getError = createSelector(getSession, (session) => session.error);
 
-export const getSessionInfo = createSelector(getSession, session => session.sessionInfo);
-export const getSessionId = createSelector(getSession, session => session.sessionId);
-export const getSessionDate = createSelector(getSession, session => session.sessionDate);
-export const getShowCancelModal = createSelector(getSession, session => session.showCancelModal);
+export const getSessionInfo = createSelector(getSession, (session) => session.sessionInfo);
+export const getSessionId = createSelector(getSession, (session) => session.sessionId);
+export const getSessionDate = createSelector(getSession, (session) => session.sessionDate);
+export const getShowCancelModal = createSelector(getSession, (session) => session.showCancelModal);

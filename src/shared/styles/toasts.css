@@ -18,3 +18,7 @@
   border: 3px solid #9999ff;
   color: #9999ff;
 }
+
+.toast-container .toast.Toastify__toast--error .Toastify__close-button {
+  color: #9999ff;
+}
