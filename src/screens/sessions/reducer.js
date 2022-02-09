@@ -14,6 +14,9 @@ import {
   CONFIRM_SESSION_INIT,
   CONFIRM_SESSION_SUCCESS,
   CONFIRM_SESSION_FAILURE,
+  JOIN_SESSION_WAITLIST_INIT,
+  JOIN_SESSION_WAITLIST_SUCCESS,
+  JOIN_SESSION_WAITLIST_FAILURE,
 } from './actionTypes';
 
 const initialState = {
@@ -23,6 +26,7 @@ const initialState = {
   sessionInfo: {},
   sessionId: '',
   sessionDate: '',
+  sessionWaitlist: {},
 };
 
 export default (state = initialState, action) => {
@@ -48,6 +52,7 @@ export default (state = initialState, action) => {
       return { ...state, error: action.error };
     case RESERVE_SESSION_FAILURE:
     case CONFIRM_SESSION_FAILURE:
+    case JOIN_SESSION_WAITLIST_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
     case SHOW_CANCEL_MODAL:
       return { ...state, showCancelModal: !state.showCancelModal };
@@ -58,6 +63,7 @@ export default (state = initialState, action) => {
       };
     case RESERVE_SESSION_INIT:
     case CONFIRM_SESSION_INIT:
+    case JOIN_SESSION_WAITLIST_INIT:
       return {
         ...state,
         pageLoading: true,
@@ -67,6 +73,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pageLoading: false,
+      };
+    case JOIN_SESSION_WAITLIST_SUCCESS:
+      return {
+        ...state,
+        pageLoading: false,
+        sessionWaitlist: action.payload.sessionWaitlist,
       };
     default:
       return state;
@@ -83,3 +95,4 @@ export const getSessionInfo = createSelector(getSession, (session) => session.se
 export const getSessionId = createSelector(getSession, (session) => session.sessionId);
 export const getSessionDate = createSelector(getSession, (session) => session.sessionDate);
 export const getShowCancelModal = createSelector(getSession, (session) => session.showCancelModal);
+export const getSessionWaitlist = createSelector(getSession, (session) => session.sessionWaitlist);

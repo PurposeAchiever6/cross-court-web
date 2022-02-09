@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { isEmpty } from 'ramda';
 import { icon } from '@fortawesome/fontawesome-svg-core';
@@ -25,8 +25,8 @@ import {
 } from 'shared/utils/date';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import { openContactFormForUser } from 'shared/utils/contactForm';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { joinSessionWaitlistInit } from 'screens/sessions/actionCreators';
 
 const NoSessionContainer = styled.div`
   .title {
@@ -58,9 +58,11 @@ const NoSessionContainer = styled.div`
 
 const fewSpotsLeftText = 'FEW SPOTS LEFT';
 const onlyForUsersOver18Text = 'MUST BE 18+';
+const onWaitlistText = 'ON THE WAITLIST';
 
 const SessionsList = ({ availableSessions, selectedDate }) => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
 
@@ -72,17 +74,12 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   );
   const sortedSessions = sortSessionsByDate(sessionList);
 
-  const onClickJoinWaitlist = (sessionTime, sessionDate, locationName) => {
+  const onClickJoinWaitlist = (sessionId, sessionDate) => {
     if (!isAuthenticated) {
       return history.push(ROUTES.LOGIN);
     }
 
-    const message =
-      `I would like to be added to the waitlist for the ${sessionTime} ` +
-      `session on ${sessionDate} at ${locationName}. Please notify me ` +
-      `if a spot opens up. You can reach me at ${currentUser.phoneNumber}.`;
-
-    openContactFormForUser(currentUser, message);
+    dispatch(joinSessionWaitlistInit(sessionId, sessionDate));
   };
 
   if (isEmpty(sortedSessions)) {
@@ -111,6 +108,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           past,
           isPrivate,
           comingSoon,
+          onWaitlist,
         }) => {
           const sessionTime = formatSessionTime(time);
           const URLdate = urlFormattedDate(startTime);
@@ -138,10 +136,10 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           } else if (full) {
             button = (
               <PrimaryButton
-                onClick={() => onClickJoinWaitlist(sessionTime, sessionDate, location.name)}
+                onClick={() => onClickJoinWaitlist(id, sessionDate)}
                 w="9.5rem"
                 fontSize="11px"
-                disabled={disableButton}
+                disabled={disableButton || onWaitlist}
               >
                 JOIN WAITLIST
               </PrimaryButton>
@@ -217,6 +215,11 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                   <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
                     <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                     <p className="text-2xs sm:text-xs mt-1 ml-2">{fewSpotsLeftText}</p>
+                  </div>
+                )}
+                {onWaitlist && !past && (
+                  <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
+                    <p className="text-2xs sm:text-xs mt-1 ml-2">{onWaitlistText}</p>
                   </div>
                 )}
               </div>

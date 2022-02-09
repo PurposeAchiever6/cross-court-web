@@ -15,7 +15,7 @@ export default {
   reserveSession: async (sessionId, date, referralCode) => {
     const response = await api.post(`/sessions/${sessionId}/user_sessions`, {
       date: requestFormattedDate(date),
-      referralCode
+      referralCode,
     });
 
     if (referralCode) {
@@ -24,13 +24,20 @@ export default {
 
     return response.data.session;
   },
-  cancelSession: async sessionId => {
+  cancelSession: async (sessionId) => {
     const response = await api.put(`/user_sessions/${sessionId}/cancel`, {});
 
     return response.data.session;
   },
-  confirmSession: async sessionId => {
+  confirmSession: async (sessionId) => {
     const response = await api.put(`/user_sessions/${sessionId}/confirm`, {});
+
+    return response.data;
+  },
+  joinSessionWaitlist: async (sessionId, date) => {
+    const response = await api.post(`/sessions/${sessionId}/waitlists`, {
+      date: requestFormattedDate(date),
+    });
 
     return response.data;
   },
