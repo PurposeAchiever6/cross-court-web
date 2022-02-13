@@ -41,4 +41,11 @@ export default {
 
     return response.data;
   },
+  removeSessionWaitlist: async (sessionId, date) => {
+    const response = await api.delete(`/sessions/${sessionId}/waitlists`, {
+      data: { date: requestFormattedDate(date) },
+    });
+
+    return response.data;
+  },
 };

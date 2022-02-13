@@ -4,8 +4,6 @@ import styled from 'styled-components';
 import { Redirect } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
-import colors from 'shared/styles/constants';
-
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionWaitlist } from 'screens/sessions/reducer';
 import { formatSessionTime, longSessionDate } from 'shared/utils/date';
@@ -52,12 +50,11 @@ const JoinWaitlist = () => {
   }
 
   const waitlist = sessionWaitlist.session.waitlist;
-  const waitlistItem = waitlist.find((item) => item.userId === userProfile.id);
   const waitlistPlacement = waitlist.map((e) => e.userId).indexOf(userProfile.id);
 
   return (
     <JoinWaitlistContainer>
-      <div className="min-h-screen py-20 flex flex-col items-center justify-center">
+      <div className="min-h-screen px-4 py-20 flex flex-col items-center justify-center">
         <p className="title text-cc-black font-shapiro95_super_wide">YOU'VE BEEN ADDED TO THE</p>
         <p className="subtitle text-transparent text-stroke-width-2 text-stroke-cc-black font-shapiro95_super_wide mb-10 md:mb-16">
           WAITLIST
@@ -75,7 +72,7 @@ const JoinWaitlist = () => {
         </div>
 
         <div className="mb-10 md:mb-16 text-sm md:text-2xl">
-          <p>DATE: {longSessionDate(waitlistItem.date)}</p>
+          <p>DATE: {longSessionDate(sessionWaitlist.session.startTime)}</p>
           <p>TIME: {formatSessionTime(sessionWaitlist.session.time)}</p>
           <p>WHERE: Crosscourt {sessionWaitlist.session.location.name}</p>
         </div>

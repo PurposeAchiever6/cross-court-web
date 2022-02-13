@@ -5,6 +5,7 @@ import {
   CANCEL_SESSION_INIT,
   CONFIRM_SESSION_INIT,
   JOIN_SESSION_WAITLIST_INIT,
+  REMOVE_SESSION_WAITLIST_INIT,
   SHOW_CANCEL_MODAL,
   SIGNUP_BOOK_SESSION,
   BUY_CREDITS_AND_BOOK_SESSION,
@@ -51,6 +52,14 @@ export const confirmSessionInit = (sessionId) => ({
 
 export const joinSessionWaitlistInit = (sessionId, sessionDate) => ({
   type: JOIN_SESSION_WAITLIST_INIT,
+  payload: {
+    sessionId,
+    sessionDate,
+  },
+});
+
+export const removeSessionWaitlistInit = (sessionId, sessionDate) => ({
+  type: REMOVE_SESSION_WAITLIST_INIT,
   payload: {
     sessionId,
     sessionDate,

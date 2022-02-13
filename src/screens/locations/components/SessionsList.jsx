@@ -20,13 +20,16 @@ import {
   urlFormattedDate,
   isSameDay,
   sortSessionsByDate,
-  formatSessionTime,
   formatSessionDate,
 } from 'shared/utils/date';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
+import { getSessionsLoadingBtns } from 'screens/sessions/reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import { joinSessionWaitlistInit } from 'screens/sessions/actionCreators';
+import {
+  joinSessionWaitlistInit,
+  removeSessionWaitlistInit,
+} from 'screens/sessions/actionCreators';
 
 const NoSessionContainer = styled.div`
   .title {
@@ -63,8 +66,10 @@ const onWaitlistText = 'ON THE WAITLIST';
 const SessionsList = ({ availableSessions, selectedDate }) => {
   const history = useHistory();
   const dispatch = useDispatch();
+
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
+  const sessionsLoadingBtns = useSelector(getSessionsLoadingBtns);
 
   const isLegalAge = isUserInLegalAge(currentUser);
   const disableButton = !isLegalAge;
@@ -80,6 +85,10 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
     }
 
     dispatch(joinSessionWaitlistInit(sessionId, sessionDate));
+  };
+
+  const onClickRemoveFromWaitlist = (sessionId, sessionDate) => {
+    dispatch(removeSessionWaitlistInit(sessionId, sessionDate));
   };
 
   if (isEmpty(sortedSessions)) {
@@ -110,7 +119,6 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           comingSoon,
           onWaitlist,
         }) => {
-          const sessionTime = formatSessionTime(time);
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
           let button;
@@ -133,6 +141,18 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 SEE DETAILS
               </PrimaryButton>
             );
+          } else if (onWaitlist) {
+            button = (
+              <PrimaryButton
+                onClick={() => onClickRemoveFromWaitlist(id, sessionDate)}
+                w="9.5rem"
+                fontSize="11px"
+                disabled={disableButton}
+                loading={sessionsLoadingBtns.includes(id)}
+              >
+                OUT WAITLIST
+              </PrimaryButton>
+            );
           } else if (full) {
             button = (
               <PrimaryButton
@@ -140,6 +160,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 w="9.5rem"
                 fontSize="11px"
                 disabled={disableButton || onWaitlist}
+                loading={sessionsLoadingBtns.includes(id)}
               >
                 JOIN WAITLIST
               </PrimaryButton>
