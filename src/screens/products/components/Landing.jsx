@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import LandingBgImg from 'screens/products/images/pick-up-basketball-facility.jpeg';
 import PerkMonthToMonth from 'screens/products/images/perk-month-to-month.png';
+import PerkWaitlistPriority from 'screens/products/images/perk-waitlist-priority.png';
 import PerkLockedInRate from 'screens/products/images/perk-locked-in-rate.png';
 import PerkGetHighlights from 'screens/products/images/perk-get-highlights.png';
 import PerkReducedSessions from 'screens/products/images/perk-reduced-sessions.png';
@@ -15,6 +16,12 @@ const PERKS = [
     description:
       'Memberships as flexible as they come. Upgrade, downgrade, cancel and reactivate as you please.',
     iconImg: PerkMonthToMonth,
+    iconClassName: 'w-10 lg:w-14 mr-6',
+  },
+  {
+    title: 'Waitlist Priority',
+    description: 'All members get moved straight to the top of any session waitlist.',
+    iconImg: PerkWaitlistPriority,
     iconClassName: 'w-10 lg:w-14 mr-6',
   },
   {

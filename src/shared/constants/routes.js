@@ -30,6 +30,7 @@ export default {
   SESSION: '/session/:id/:date',
   SESSIONCONFIRMED: '/session/confirmed',
   SESSIONRESERVED: '/session/reserved',
+  SESSIONJOINWAITLIST: '/session/join-waitlist',
   SIGNUP: '/signup',
   SIGNUPCONFIRMATION: '/signup/confirmation',
   SIGNUPSUCCESS: '/signup/success',

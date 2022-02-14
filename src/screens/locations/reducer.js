@@ -11,7 +11,7 @@ import {
   GET_SESSIONS_BY_DATE_FAILURE,
   SET_SELECTED_DATE,
 } from './actionTypes';
-
+import { REMOVE_SESSION_WAITLIST_SUCCESS } from 'screens/sessions/actionTypes';
 const initialState = {
   error: '',
   pageLoading: false,
@@ -61,6 +61,13 @@ export default (state = initialState, action) => {
       return { ...state, selectedDate: action.payload.date, sessionsLoading: true };
     case SET_SELECTED_DATE:
       return { ...state, selectedDate: action.payload.date };
+    case REMOVE_SESSION_WAITLIST_SUCCESS:
+      return {
+        ...state,
+        availableSessions: state.availableSessions.map((session) =>
+          session.id === action.payload.sessionId ? { ...session, onWaitlist: false } : session
+        ),
+      };
     default:
       return state;
   }
