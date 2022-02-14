@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        112: '28rem',
+        124: '31rem',
         164: '44rem',
       },
       padding: {
