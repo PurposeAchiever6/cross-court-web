@@ -173,7 +173,7 @@ const PurchaseDetailsContainer = styled.div`
 
 const PurchaseDetails = ({
   productDetails,
-  paymentDetails,
+  paymentMethod,
   createPurchaseHandler,
   userHasActiveSubscription,
 }) => {
@@ -204,12 +204,12 @@ const PurchaseDetails = ({
         <div className="payment-method-container">
           <span className="title">PAYMENT METHOD</span>
           <div className="card-data">
-            <CCIcon ccType={paymentDetails.card.brand} />
+            <CCIcon ccType={paymentMethod.brand} />
             <div className="card-info">
-              <span className="card-numbers">{`***${paymentDetails.card.last4}`}</span>
+              <span className="card-numbers">{`***${paymentMethod.last4}`}</span>
               <div className="expire-container">
                 <span>
-                  Expires {`${paymentDetails.card.expMonth}/${paymentDetails.card.expYear}`}
+                  Expires {`${paymentMethod.expMonth}/${paymentMethod.expYear}`}
                 </span>
               </div>
             </div>
@@ -230,7 +230,7 @@ const PurchaseDetails = ({
 };
 
 PurchaseDetails.propTypes = {
-  paymentDetails: PropTypes.object.isRequired,
+  paymentMethod: PropTypes.object.isRequired,
   productDetails: PropTypes.object.isRequired,
   createPurchaseHandler: PropTypes.func,
   userHasActiveSubscription: PropTypes.bool.isRequired,

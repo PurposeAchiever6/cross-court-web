@@ -43,11 +43,7 @@ const PaymentMethodsContainer = styled.div`
       &:last-child {
         border-bottom: 0;
       }
-      .icon-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+
       .ccnumber-container {
         width: 10rem;
         display: flex;
@@ -68,11 +64,7 @@ const PaymentMethodsContainer = styled.div`
         font-size: 1rem;
         line-height: 1.3rem;
       }
-      .button-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+
       button {
         font-size: 1rem;
         padding: 0.25rem;
@@ -156,7 +148,7 @@ const PaymentMethods = ({ availableCards }) => {
 
   const userInfo = useSelector(getUserProfile);
 
-  const [selectedCard, setSelectedCard2] = useState('');
+  const [selectedCard, setSelectedCard2] = useState(null);
 
   const deleteCardHandler = (paymentMethodId) => dispatch(deleteCard(paymentMethodId));
   const selectedCardHandler = (paymentMethod) => {
@@ -185,30 +177,30 @@ const PaymentMethods = ({ availableCards }) => {
         {isEmpty(availableCards) ? (
           <div className="empty-message">There are no payment methods added yet.</div>
         ) : (
-          availableCards.map((payment) => {
-            const isCardSelected = selectedCard === payment.id;
+          availableCards.map((card) => {
+            const isCardSelected = selectedCard === card.id;
             return (
-              <div className="credit-card-container" key={payment.id}>
+              <div className="credit-card-container" key={card.id}>
                 <div className="select-container">
                   <button
                     className={`${isCardSelected ? 'selector selected' : 'selector'}`}
                     type="button"
-                    onClick={() => selectedCardHandler(payment)}
+                    onClick={() => selectedCardHandler(card)}
                   />
                 </div>
-                <div className="icon-container">
-                  <CCIcon ccType={payment.card.brand} />
+                <div className="flex items-center justify-center">
+                  <CCIcon ccType={card.brand} />
                 </div>
                 <div className="cc-info">
                   <div className="ccnumber-container">
-                    <span>{`***${payment.card.last4}`}</span>
+                    <span>{`***${card.last4}`}</span>
                   </div>
                   <div className="expire-container">
-                    <span>Expires {`${payment.card.expMonth}/${payment.card.expYear}`}</span>
+                    <span>Expires {`${card.expMonth}/${card.expYear}`}</span>
                   </div>
                 </div>
-                <div className="button-container">
-                  <button type="button" onClick={() => deleteCardHandler(payment.id)}>
+                <div className="flex items-center justify-center">
+                  <button type="button" onClick={() => deleteCardHandler(card.id)}>
                     <FontAwesomeIcon icon={faTrashAlt} />
                   </button>
                 </div>

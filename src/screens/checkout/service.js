@@ -4,27 +4,27 @@ export default {
   createPurchase: async (productId, cardId, promoCode) => {
     const response = await api.post('/purchases', {
       productId,
-      paymentMethod: cardId,
+      paymentMethodId: cardId,
       promoCode,
     });
 
     return response.data;
   },
 
-  createSubscription: async (productId, paymentMethod, promoCode) => {
+  createSubscription: async (productId, paymentMethodId, promoCode) => {
     const response = await api.post('/subscriptions', {
       productId,
-      paymentMethod,
+      paymentMethodId,
       promoCode,
     });
 
     return response.data;
   },
 
-  updateSubscription: async (subscriptionId, productId, paymentMethod, promoCode) => {
+  updateSubscription: async (subscriptionId, productId, paymentMethodId, promoCode) => {
     const response = await api.put(`subscriptions/${subscriptionId}`, {
       productId,
-      paymentMethod,
+      paymentMethodId,
       promoCode,
     });
 
@@ -33,7 +33,7 @@ export default {
 
   createFreeSession: async (cardId) => {
     const response = await api.put(`/purchases/create_free_session_intent`, {
-      paymentMethod: cardId,
+      paymentMethodId: cardId,
     });
 
     return response.data;

@@ -20,14 +20,14 @@ export default {
       return response.paymentMethod.id;
     }
   },
-  addPaymentMethod: async paymentMethodId => {
+  addPaymentMethod: async (paymentMethodStripeId) => {
     const response = await api.post(`/payment_methods`, {
-      paymentMethod: paymentMethodId,
+      paymentMethodStripeId,
     });
 
     return response.data;
   },
-  deletePaymentMethod: async paymentMethodId => {
+  deletePaymentMethod: async (paymentMethodId) => {
     const response = await api.delete(`/payment_methods/${paymentMethodId}`, {
       data: {},
     });

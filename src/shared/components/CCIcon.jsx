@@ -6,7 +6,10 @@ import {
   faCcMastercard,
   faCcDiscover,
   faCcAmex,
+  faCcJcb,
+  faCcDinersClub
 } from '@fortawesome/free-brands-svg-icons';
+import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 
 const CCIconContainer = styled.div`
   svg {
@@ -41,10 +44,22 @@ const CCIcon = ({ ccType }) => {
           <FontAwesomeIcon icon={faCcAmex} />
         </CCIconContainer>
       );
+    case 'jcb':
+      return (
+        <CCIconContainer>
+          <FontAwesomeIcon icon={faCcJcb} />
+        </CCIconContainer>
+      );
+    case 'diners':
+      return (
+        <CCIconContainer>
+          <FontAwesomeIcon icon={faCcDinersClub} />
+        </CCIconContainer>
+      );
     default:
       return (
         <CCIconContainer>
-          <FontAwesomeIcon icon={faCcVisa} />
+          <FontAwesomeIcon icon={faCreditCard} />
         </CCIconContainer>
       );
   }
