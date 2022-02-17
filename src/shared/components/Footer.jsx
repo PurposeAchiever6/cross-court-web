@@ -3,18 +3,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhoneSquare } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+
 import ROUTES from 'shared/constants/routes';
-import { getUserProfile } from 'screens/my-account/reducer';
+import { validateEmail } from 'shared/utils/helpers';
 import { openContactFormForUser } from 'shared/utils/contactForm';
-import InstagramSvg from './svg/InstagramSvg';
+import { stayInTheLoop } from 'shared/utils/activeCampaign';
+import { getUserProfile } from 'screens/my-account/reducer';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { logoutInit } from 'screens/auth/actionCreators';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import ccLogo from 'shared/images/cc-logo.png';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 import ArrowRightSvg from 'shared/components/svg/ArrowRightSvg';
-import ccLogo from 'shared/images/cc-logo.png';
-import { stayInTheLoop } from 'shared/utils/activeCampaign';
-import { getIsAuthenticated } from 'screens/auth/reducer';
-import { validateEmail } from 'shared/utils/helpers';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import { logoutInit } from 'screens/auth/actionCreators';
 
 const Copyright = ({ className }) => {
   return (
@@ -62,7 +65,7 @@ const Footer = () => {
 
   return pathname === ROUTES.DASHBOARD ? null : (
     <>
-      <footer className="flex flex-col md:flex-row-reverse justify-evenly md:justify-between bg-cc-black px-4 py-8 md:p-12  text-white h-164 md:h-112">
+      <footer className="flex flex-col md:flex-row-reverse justify-evenly md:justify-between bg-cc-black px-4 py-8 md:p-12  text-white h-164 md:h-124">
         <div className="md:w-1/2 flex flex-col h-full justify-evenly md:justify-between">
           <LogoSvg className="w-72" />
           {!isAuthenticated && (
@@ -188,8 +191,12 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <InstagramSvg className="w-8 h-8" />
+            <FontAwesomeIcon icon={faInstagram} size="2x" />
           </a>
+          <div className="flex items-center mb-6">
+            <FontAwesomeIcon icon={faPhoneSquare} size="2x" className="mr-3" />
+            323 591 3916
+          </div>
           <Link
             className="w-max hover:opacity-60 transition-opacity duration-300 text-2xs"
             to={ROUTES.TERMS}

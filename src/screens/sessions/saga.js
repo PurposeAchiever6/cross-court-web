@@ -23,6 +23,12 @@ import {
   CONFIRM_SESSION_FAILURE,
   SIGNUP_BOOK_SESSION,
   BUY_CREDITS_AND_BOOK_SESSION,
+  JOIN_SESSION_WAITLIST_INIT,
+  JOIN_SESSION_WAITLIST_SUCCESS,
+  JOIN_SESSION_WAITLIST_FAILURE,
+  REMOVE_SESSION_WAITLIST_INIT,
+  REMOVE_SESSION_WAITLIST_SUCCESS,
+  REMOVE_SESSION_WAITLIST_FAILURE,
 } from './actionTypes';
 import sessionService from './service';
 
@@ -112,6 +118,44 @@ export function* confirmSessionFlow({ payload }) {
   }
 }
 
+export function* joinSessionWaitlistFlow({ payload }) {
+  try {
+    const sessionWaitlist = yield call(
+      sessionService.joinSessionWaitlist,
+      payload.sessionId,
+      payload.sessionDate
+    );
+    yield put({
+      type: JOIN_SESSION_WAITLIST_SUCCESS,
+      payload: { sessionWaitlist, sessionId: payload.sessionId },
+    });
+    yield put(push(ROUTES.SESSIONJOINWAITLIST));
+  } catch (err) {
+    yield call(toast.error, err.response.data.error);
+    yield put({
+      type: JOIN_SESSION_WAITLIST_FAILURE,
+      error: err.response.data.error,
+      payload: { sessionId: payload.sessionId },
+    });
+  }
+}
+
+export function* removeSessionWaitlistFlow({ payload }) {
+  try {
+    yield call(sessionService.removeSessionWaitlist, payload.sessionId, payload.sessionDate);
+    yield put({ type: REMOVE_SESSION_WAITLIST_SUCCESS, payload: { sessionId: payload.sessionId } });
+    yield call(toast.success, 'You have been removed from the waitlist successfully');
+  } catch (err) {
+    const errorMessage = err.response.data.error;
+    yield put({
+      type: REMOVE_SESSION_WAITLIST_FAILURE,
+      error: errorMessage,
+      payload: { sessionId: payload.sessionId },
+    });
+    yield call(toast.error, errorMessage);
+  }
+}
+
 export function* signupBookSessionFlow({ payload }) {
   try {
     yield put({ type: SAVE_SESSION_TO_STORAGE, payload });
@@ -133,6 +177,8 @@ export default function* rootSessionSaga() {
     takeLatest(RESERVE_SESSION_INIT, reserveSessionFlow),
     takeLatest(CANCEL_SESSION_INIT, cancelSessionFlow),
     takeLatest(CONFIRM_SESSION_INIT, confirmSessionFlow),
+    takeLatest(JOIN_SESSION_WAITLIST_INIT, joinSessionWaitlistFlow),
+    takeLatest(REMOVE_SESSION_WAITLIST_INIT, removeSessionWaitlistFlow),
     takeLatest(SIGNUP_BOOK_SESSION, signupBookSessionFlow),
     takeLatest(BUY_CREDITS_AND_BOOK_SESSION, buyCreditsAndBookSessionFlow),
   ]);
