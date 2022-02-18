@@ -45,8 +45,8 @@ const ManageMembershipPage = lazy(() => import('screens/memberships/ManageMember
 const MyAccount = lazy(() => import('screens/my-account/MyAccountPage'));
 const PurchaseHistory = lazy(() => import('screens/purchase-history/PurchaseHistoryPage'));
 const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfirm'));
-const Payments = lazy(() => import('screens/payments/PaymentsPage'));
-const PaymentsAddCard = lazy(() => import('screens/payments/pages/AddCard'));
+const PaymentMethods = lazy(() => import('screens/payment-methods/PaymentMethodsPage'));
+const AddPaymentMethod = lazy(() => import('screens/payment-methods/pages/AddCard'));
 const FAQ = lazy(() => import('screens/faq/FaqPage'));
 const Content = lazy(() => import('screens/content/ContentPage'));
 const Rules = lazy(() => import('shared/pages/Rules'));
@@ -199,13 +199,13 @@ const setScrollClasses = () => {
           document.querySelector('.locations').scrollIntoView({ behavior: 'smooth' });
         }
 
-        window.setTimeout(function() {
+        window.setTimeout(() => {
           if (redirectToSpecificSession) {
             window.localStorage.removeItem('redirect');
             history.push(redirectToSpecificSession);
           } else {
             document.querySelector('.locations').classList.remove('faded-out');
-            window.setTimeout(function() {
+            window.setTimeout(() => {
               if (document.querySelector('.free-session-credit-added')) {
                 document.querySelector('.free-session-credit-added').style.display = 'none';
               }
@@ -327,8 +327,8 @@ const setScrollClasses = () => {
         addClass = 'anim30';
         keepScrolling = false;
 
-        window.setTimeout(function() {
-          window.setTimeout(function() {
+        window.setTimeout(() => {
+          window.setTimeout(() => {
             if (document.querySelector('.no-session-credits')) {
               document.querySelector('.no-session-credits').style.display = 'none';
             }
@@ -346,7 +346,7 @@ const setScrollClasses = () => {
   }
 };
 
-window.cookieAndSessionStorageHandler = function(isAuthenticated) {
+window.cookieAndSessionStorageHandler = (isAuthenticated) => {
   let search = window.location.search;
   let params = new URLSearchParams(search);
   let referralCode = params.get('referralCode');
@@ -468,11 +468,11 @@ const Routes = () => {
         <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED} exact>
           <CheckoutConfirm />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.PAYMENTS} exact>
-          <Payments />
+        <PrivateRoute path={[ROUTES.PAYMENT_METHODS, ROUTES.EDIT_PAYMENT_METHODS]} exact>
+          <PaymentMethods />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.PAYMENTSADDCARD} exact>
-          <PaymentsAddCard />
+        <PrivateRoute path={ROUTES.ADD_PAYMENT_METHOD} exact>
+          <AddPaymentMethod />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.MYACCOUNT} exact>
           <MyAccount />

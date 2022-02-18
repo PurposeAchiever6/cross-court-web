@@ -7,7 +7,7 @@ import rootSessionSaga from 'screens/sessions/saga';
 import rootProductsSaga from 'screens/products/saga';
 import rootMyAccountSaga from 'screens/my-account/saga';
 import rootPurchaseHistorySaga from 'screens/purchase-history/saga';
-import rootPaymentsSaga from 'screens/payments/saga';
+import rootPaymentMethodsSaga from 'screens/payment-methods/saga';
 import rootCheckoutSaga from 'screens/checkout/saga';
 import rootLegalDocsSaga from 'screens/legal-docs/saga';
 
@@ -20,7 +20,7 @@ export default function* rootSaga() {
     rootProductsSaga(),
     rootMyAccountSaga(),
     rootPurchaseHistorySaga(),
-    rootPaymentsSaga(),
+    rootPaymentMethodsSaga(),
     rootCheckoutSaga(),
     rootLegalDocsSaga(),
   ]);

@@ -9,7 +9,7 @@ import sessionReducer from 'screens/sessions/reducer';
 import productsReducer from 'screens/products/reducer';
 import myAccountReducer from 'screens/my-account/reducer';
 import purchaseHistoryReducer from 'screens/purchase-history/reducer';
-import paymentsReducer from 'screens/payments/reducer';
+import paymentMethodsReducer from 'screens/payment-methods/reducer';
 import checkoutReducer from 'screens/checkout/reducer';
 import legalDocsReducer from 'screens/legal-docs/reducer';
 
@@ -30,7 +30,7 @@ const appReducer = (history) =>
       myAccountReducer
     ),
     purchaseHistory: purchaseHistoryReducer,
-    payments: paymentsReducer,
+    paymentMethods: paymentMethodsReducer,
     checkout: checkoutReducer,
     legalDocs: persistReducer(
       {

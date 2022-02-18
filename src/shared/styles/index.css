@@ -138,14 +138,6 @@ body .mobile-hide-inline {
     transform: translateY(0) rotate(0);
   }
 }
-@keyframes keepRotating {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 /* MAIN */
 body[data-page='home'] main,
@@ -444,81 +436,6 @@ body .survey-modal .body2 .book-next-session-btn {
 body .cancel-modal h2 {
   font-family: 'shapiro95_super_wide';
   text-align: center;
-}
-
-/* PAYMENTS */
-
-body .payments h2 {
-  font-family: 'shapiro95_super_wide';
-  text-align: center;
-}
-body .payments .payment-methods-container {
-  border: 3px solid #9999ff;
-  min-height: 0;
-}
-body .payments .payment-methods-container .credit-card-container {
-  padding: 16px 0;
-}
-body .payments .payment-methods-container .credit-card-container .select-container {
-  height: auto;
-  padding: 1px;
-  width: auto;
-}
-body .payments .payment-methods-container .credit-card-container .select-container .selector {
-  height: 40px;
-  width: 40px;
-}
-body
-  .payments
-  .payment-methods-container
-  .credit-card-container
-  .select-container
-  .selector.selected {
-  animation: keepRotating infinite 4s;
-  background: transparent url('../../shared/images/new-purple-circular-logo.png') no-repeat 0 0;
-  background-size: contain;
-}
-body .payments .payment-methods-container .credit-card-container .cc-info .ccnumber-container {
-  font-family: 'shapiro95_super_wide';
-  font-weight: normal;
-}
-body .payments .payment-methods-container .credit-card-container .cc-info .expire-container {
-  font-family: 'shapiro95_super_wide';
-  font-size: 12px;
-  font-style: normal;
-}
-body .payments .payment-methods-container .empty-message {
-  color: #000;
-  font-size: 16px;
-  line-height: 20px;
-  padding: 10px;
-}
-body .payments .buttons-container {
-  display: block;
-}
-@media (min-width: 992px) {
-  body .payments .buttons-container {
-    display: flex;
-  }
-}
-body .payments .buttons-container .primary-button {
-  display: block;
-  margin: 0 auto;
-  max-width: 200px;
-}
-@media (min-width: 992px) {
-  body .payments .buttons-container .primary-button {
-    display: inline-block;
-    margin: 0;
-  }
-}
-body .payments .buttons-container .primary-button:nth-of-type(1) {
-  margin-bottom: 20px;
-}
-@media (min-width: 992px) {
-  body .payments .buttons-container .primary-button:nth-of-type(1) {
-    margin-bottom: 0;
-  }
 }
 
 /* ADD CARD */

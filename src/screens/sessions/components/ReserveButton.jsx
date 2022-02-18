@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { isPast } from 'shared/utils/date';
 import { getUserProfile } from 'screens/my-account/reducer';
-import { initialLoadInit } from 'screens/payments/actionCreators';
-import { getSelectedCard } from 'screens/payments/reducer';
+import { initialLoadInit } from 'screens/payment-methods/actionCreators';
+import { getSelectedCard } from 'screens/payment-methods/reducer';
 import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -43,7 +43,7 @@ const ReserveButton = ({
   const reservationHandler = () => {
     if (!selectedCard && isFSFFlow) {
       window.localStorage.setItem('redirect', window.location.pathname);
-      history.push(ROUTES.PAYMENTS);
+      history.push(ROUTES.PAYMENT_METHODS);
     } else {
       if (!userProfile.unlimitedCredits && userProfile.totalCredits === 0) {
         window.localStorage.setItem('redirect', window.location.pathname);

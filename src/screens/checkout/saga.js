@@ -3,7 +3,7 @@ import { push } from 'connected-react-router';
 import { toast } from 'react-toastify';
 import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/products/reducer';
-import { getSelectedCard } from 'screens/payments/reducer';
+import { getSelectedCard } from 'screens/payment-methods/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 
 import { getPromoCode } from './reducer';
