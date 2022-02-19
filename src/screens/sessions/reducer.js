@@ -93,6 +93,7 @@ export default (state = initialState, action) => {
     case REMOVE_SESSION_WAITLIST_SUCCESS:
       return {
         ...state,
+        sessionInfo: { ...state.sessionInfo, onWaitlist: false },
         sessionsLoadingBtns: [
           ...state.sessionsLoadingBtns.filter((id) => id !== action.payload.sessionId),
         ],

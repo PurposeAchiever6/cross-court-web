@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
-import { Redirect } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -30,7 +30,7 @@ const JoinWaitlistContainer = styled.div`
 
   .black-btn {
     .content {
-      border: 0;
+      border-color: black;
       color: black;
       transition: 500ms background-color ease, 500ms color ease;
       :hover {
@@ -42,6 +42,8 @@ const JoinWaitlistContainer = styled.div`
 `;
 
 const JoinWaitlist = () => {
+  const history = useHistory();
+
   const sessionWaitlist = useSelector(getSessionWaitlist);
   const userProfile = useSelector(getUserProfile);
 
@@ -85,7 +87,7 @@ const JoinWaitlist = () => {
         <PrimaryButton
           bg="transparent"
           className="black-btn border-2 border-cc-black"
-          to={ROUTES.MYACCOUNT}
+          onClick={() => history.goBack()}
         >
           DONE
         </PrimaryButton>

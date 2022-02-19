@@ -186,7 +186,6 @@ const SessionsPage = () => {
               reserveSessionAction={reserveSessionAction}
               confirmSessionAction={confirmSessionAction}
               showCancelModalAction={showCancelModalAction}
-              userProfile={userProfile}
               signupBookSessionAction={signupBookSessionAction}
               createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
               disabled={!isLegalAge}

@@ -84,6 +84,13 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
       return history.push(ROUTES.LOGIN);
     }
 
+    if (!currentUser.unlimitedCredits && currentUser.totalCredits === 0) {
+      return history.push({
+        pathname: ROUTES.MEMBERSHIPS,
+        state: { showNoCreditsAnimation: true },
+      });
+    }
+
     dispatch(joinSessionWaitlistInit(sessionId, sessionDate));
   };
 
