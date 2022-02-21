@@ -9,9 +9,9 @@ import FreeSessionConfirmModal from 'shared/components/FreeSessionConfirmModal';
 import Modal from 'shared/components/Modal';
 import { getUserProfile } from 'screens/my-account/reducer';
 
-import { getPageLoading, getAvailableCards } from './reducer';
-import { initialLoadInit } from './actionCreators';
-import PaymentMethods from './components/PaymentMethods';
+import { getPageLoading, getAvailableCards } from '../reducer';
+import { initialLoadInit } from '../actionCreators';
+import PaymentMethods from '../components/PaymentMethods';
 
 const PaymentsPage = () => {
   const dispatch = useDispatch();

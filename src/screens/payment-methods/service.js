@@ -34,4 +34,11 @@ export default {
 
     return response.data;
   },
+  updatePaymentMethod: async (paymentMethodId, paymentMethodAttrs) => {
+    const response = await api.put(`/payment_methods/${paymentMethodId}`, {
+      paymentMethod: paymentMethodAttrs,
+    });
+
+    return response.data.paymentMethods;
+  },
 };

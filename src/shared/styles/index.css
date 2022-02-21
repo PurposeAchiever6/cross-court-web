@@ -438,17 +438,6 @@ body .cancel-modal h2 {
   text-align: center;
 }
 
-/* ADD CARD */
-body .add-card h2 {
-  font-family: 'shapiro95_super_wide';
-  text-align: center;
-}
-body .add-card .card-container .label {
-  color: #9999ff;
-  font-family: 'shapiro95_super_wide';
-  letter-spacing: 0;
-}
-
 /* CHECKOUT */
 body .checkout {
   display: block;

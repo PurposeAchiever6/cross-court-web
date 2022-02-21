@@ -12,6 +12,9 @@ import {
   DELETE_CARD_INIT,
   DELETE_CARD_SUCCESS,
   DELETE_CARD_FAILURE,
+  UPDATE_CARD_INIT,
+  UPDATE_CARD_SUCCESS,
+  UPDATE_CARD_FAILURE,
 } from './actionTypes';
 
 import paymentsService from './service';
@@ -30,7 +33,7 @@ export function* initialLoadFlow() {
   }
 }
 
-export function* addCardFlow(action) {
+export function* addPaymentMethodFlow(action) {
   try {
     const paymentMethodPayload = yield call(
       paymentsService.createPaymentMethod,
@@ -55,7 +58,31 @@ export function* addCardFlow(action) {
   }
 }
 
-export function* deleteCardFlow(action) {
+export function* updatePaymentMethodFlow(action) {
+  try {
+    const paymentMethodsPayload = yield call(
+      paymentsService.updatePaymentMethod,
+      action.payload.paymentMethodId,
+      action.payload.paymentMethodAttrs
+    );
+
+    console.log(paymentMethodsPayload);
+
+    yield put({
+      type: UPDATE_CARD_SUCCESS,
+      payload: {
+        availableCards: paymentMethodsPayload,
+      },
+    });
+    yield call(toast.success, 'Default card updated');
+  } catch (err) {
+    yield call(toast.error, err.message);
+
+    yield put({ type: UPDATE_CARD_FAILURE, error: err });
+  }
+}
+
+export function* deletePaymentMethodFlow(action) {
   try {
     yield call(paymentsService.deletePaymentMethod, action.payload.cardId);
 
@@ -76,7 +103,8 @@ export function* deleteCardFlow(action) {
 export default function* paymentsSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
-    takeLatest(ADD_CARD_INIT, addCardFlow),
-    takeLatest(DELETE_CARD_INIT, deleteCardFlow),
+    takeLatest(ADD_CARD_INIT, addPaymentMethodFlow),
+    takeLatest(DELETE_CARD_INIT, deletePaymentMethodFlow),
+    takeLatest(UPDATE_CARD_INIT, updatePaymentMethodFlow),
   ]);
 }

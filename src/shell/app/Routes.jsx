@@ -45,7 +45,7 @@ const ManageMembershipPage = lazy(() => import('screens/memberships/ManageMember
 const MyAccount = lazy(() => import('screens/my-account/MyAccountPage'));
 const PurchaseHistory = lazy(() => import('screens/purchase-history/PurchaseHistoryPage'));
 const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfirm'));
-const PaymentMethods = lazy(() => import('screens/payment-methods/PaymentMethodsPage'));
+const PaymentMethods = lazy(() => import('screens/payment-methods/pages/PaymentMethodsPage'));
 const AddPaymentMethod = lazy(() => import('screens/payment-methods/pages/AddCard'));
 const FAQ = lazy(() => import('screens/faq/FaqPage'));
 const Content = lazy(() => import('screens/content/ContentPage'));

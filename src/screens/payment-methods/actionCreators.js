@@ -4,6 +4,7 @@ import {
   DELETE_CARD_INIT,
   SET_SELECTED_CARD,
   CLAIM_FREE_SESSION,
+  UPDATE_CARD_INIT,
 } from './actionTypes';
 
 export const initialLoadInit = () => ({
@@ -16,6 +17,14 @@ export const addCard = (stripe, cardElement, redirectTo) => ({
     cardElement,
     stripe,
     redirectTo,
+  },
+});
+
+export const updateCard = (paymentMethodId, paymentMethodAttrs) => ({
+  type: UPDATE_CARD_INIT,
+  payload: {
+    paymentMethodId,
+    paymentMethodAttrs,
   },
 });
 

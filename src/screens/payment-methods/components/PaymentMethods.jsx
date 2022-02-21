@@ -12,7 +12,7 @@ import CCIcon from 'shared/components/CCIcon';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Spinner from 'shared/components/Spinner';
 
-import { deleteCard, setSelectedCard } from '../actionCreators';
+import { deleteCard, setSelectedCard, updateCard } from '../actionCreators';
 import { getDeleteCardLoading } from '../reducer';
 
 const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow }) => {
@@ -26,6 +26,8 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow }) => {
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [cardIdToDelete, setCardIdToDelete] = useState(null);
+  const updatePaymentMethod = (paymentMethodId, attrs) =>
+    dispatch(updateCard(paymentMethodId, attrs));
 
   const handleSelectPaymentMethod = useCallback(
     (paymentMethod) => {
@@ -76,11 +78,18 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow }) => {
     });
   };
 
+  const handleMakeDefault = (paymentMethodId) => {
+    updatePaymentMethod(paymentMethodId, { default: true });
+  };
+
   return (
     <div className="w-11/12 md:w-2/5">
-      <h2 className="mb-8 font-shapiro95_super_wide text-center text-lg">{`${
-        isPaymentFlow ? 'CHOOSE A PAYMENT METHOD' : 'PAYMENT METHODS'
-      }`}</h2>
+      <div className="flex flex-col mb-8 items-center justify-center">
+        <h2 className="font-shapiro95_super_wide text-lg">{`${
+          isPaymentFlow ? 'CHOOSE A PAYMENT METHOD' : 'PAYMENT METHODS'
+        }`}</h2>
+        <h3>{`${isPaymentFlow ? '' : 'Select your default payment method'}`}</h3>
+      </div>
       <div className="border-4 border-cc-purple flex flex-col justify-start">
         {availablePaymentMethods.length === 0 ? (
           <div className="min-h-60 flex items-center justify-center text-center">
@@ -89,6 +98,7 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow }) => {
         ) : (
           availablePaymentMethods.map((paymentMethod) => {
             const isCardSelected = selectedPaymentMethod === paymentMethod.id;
+            const isDefault = defaultPaymentMethod?.id === paymentMethod.id;
             return (
               <div
                 className="py-4 flex items-center justify-around border-b-2 last:border-0"
@@ -99,7 +109,11 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow }) => {
                     isCardSelected ? 'animate-spin-slow bg-cc-ball-logo bg-contain' : ''
                   }`}
                   type="button"
-                  onClick={() => selectedCardHandler(paymentMethod)}
+                  onClick={() =>
+                    isPaymentFlow
+                      ? selectedCardHandler(paymentMethod)
+                      : handleMakeDefault(paymentMethod.id)
+                  }
                 />
                 <div className="flex items-center justify-center w-10 md:w-20">
                   <CCIcon ccType={paymentMethod.brand} />
@@ -109,11 +123,7 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow }) => {
                   <span className="font-shapiro95_super_wide text-xs my-1">
                     Expires {`${paymentMethod.expMonth}/${paymentMethod.expYear}`}
                   </span>
-                  <span className="text-cc-purple text-xs">
-                    {`${
-                      defaultPaymentMethod?.id === paymentMethod.id ? 'Default' : 'Set as default'
-                    }`}
-                  </span>
+                  <span className="text-cc-purple text-xs">{`${isDefault ? 'Default' : ''}`}</span>
                 </div>
                 <div className="flex items-center justify-center">
                   {deleteCardLoading && cardIdToDelete === paymentMethod.id ? (
@@ -133,11 +143,12 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow }) => {
         <PrimaryButton onClick={handleAddNewCard} inverted>
           ADD NEW CARD
         </PrimaryButton>
-        {isPaymentFlow && (
-          <PrimaryButton disabled={!selectedPaymentMethod} onClick={nextHandler}>
-            NEXT
-          </PrimaryButton>
-        )}
+        <PrimaryButton
+          disabled={!selectedPaymentMethod}
+          onClick={isPaymentFlow ? nextHandler : () => history.goBack()}
+        >
+          {`${isPaymentFlow ? 'NEXT' : 'DONE'}`}
+        </PrimaryButton>
       </div>
     </div>
   );

@@ -17,7 +17,11 @@ import {
   REACTIVATE_SUBSCRIPTION_SUCCESS,
 } from '../products/actionTypes';
 import { CREATE_SUBSCRIPTION_SUCCESS, UPDATE_SUBSCRIPTION_SUCCESS } from '../checkout/actionTypes';
-import { ADD_CARD_SUCCESS, DELETE_CARD_SUCCESS } from '../payment-methods/actionTypes';
+import {
+  ADD_CARD_SUCCESS,
+  DELETE_CARD_SUCCESS,
+  UPDATE_CARD_SUCCESS,
+} from '../payment-methods/actionTypes';
 
 const initialState = {
   error: '',
@@ -92,8 +96,12 @@ export default (state = initialState, action) => {
         userProfile: { ...state.userProfile, activeSubscription: action.payload.subscription },
       };
     case ADD_CARD_SUCCESS:
+    case UPDATE_CARD_SUCCESS:
       const currentPaymentMethod = state.userProfile.defaultPaymentMethod;
-      const newPaymentMethod = action.payload.paymentMethod;
+      const newPaymentMethod =
+        action.type === UPDATE_CARD_SUCCESS
+          ? action.payload.availableCards.find((pm) => pm.default)
+          : action.payload.paymentMethod;
       return {
         ...state,
         userProfile: {

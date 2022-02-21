@@ -15,6 +15,7 @@ import {
   DELETE_CARD_INIT,
   DELETE_CARD_SUCCESS,
   DELETE_CARD_FAILURE,
+  UPDATE_CARD_SUCCESS,
 } from './actionTypes';
 
 const initialState = {
@@ -36,6 +37,7 @@ export default (state = initialState, action) => {
         error: '',
       };
     case INITIAL_LOAD_SUCCESS:
+    case UPDATE_CARD_SUCCESS:
       return {
         ...state,
         pageLoading: false,
