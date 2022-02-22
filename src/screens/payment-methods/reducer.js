@@ -38,6 +38,7 @@ export default (state = initialState, action) => {
       };
     case INITIAL_LOAD_SUCCESS:
     case UPDATE_CARD_SUCCESS:
+    case DELETE_CARD_SUCCESS:
       return {
         ...state,
         pageLoading: false,
@@ -76,14 +77,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         deleteCardLoading: true,
-      };
-    case DELETE_CARD_SUCCESS:
-      return {
-        ...state,
-        availableCards: state.availableCards.filter(
-          (item) => item.id !== action.payload.paymentMethodId
-        ),
-        deleteCardLoading: false,
       };
     case DELETE_CARD_FAILURE:
       return {

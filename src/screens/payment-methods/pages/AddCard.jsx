@@ -20,7 +20,7 @@ const AddCard = () => {
     dispatch(addCard(stripe, cardElement, redirectTo));
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center mt-20 md:mt-40">
       <StripeScriptLoader
         uniqueId="stripeLib"
         script="https://js.stripe.com/v3/"

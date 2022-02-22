@@ -50,7 +50,7 @@ export function* addPaymentMethodFlow(action) {
     });
     yield call(toast.success, 'Card sucessfully added!');
 
-    yield put(push(action?.payload?.redirectTo ?? ROUTES.EDIT_PAYMENT_METHODS));
+    yield put(push(action.payload.redirectTo || ROUTES.EDIT_PAYMENT_METHODS));
   } catch (err) {
     yield call(toast.error, err.message);
 
@@ -65,8 +65,6 @@ export function* updatePaymentMethodFlow(action) {
       action.payload.paymentMethodId,
       action.payload.paymentMethodAttrs
     );
-
-    console.log(paymentMethodsPayload);
 
     yield put({
       type: UPDATE_CARD_SUCCESS,
@@ -84,12 +82,15 @@ export function* updatePaymentMethodFlow(action) {
 
 export function* deletePaymentMethodFlow(action) {
   try {
-    yield call(paymentsService.deletePaymentMethod, action.payload.cardId);
+    const paymentMethodsPayload = yield call(
+      paymentsService.deletePaymentMethod,
+      action.payload.cardId
+    );
 
     yield put({
       type: DELETE_CARD_SUCCESS,
       payload: {
-        paymentMethodId: action.payload.cardId,
+        availableCards: paymentMethodsPayload,
       },
     });
     yield call(toast.success, 'Card successfully deleted');

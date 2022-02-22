@@ -44,8 +44,10 @@ const AddCard = ({ stripe, elements, addCardHandler }) => {
   };
 
   return (
-    <AddCardContainer className="flex flex-col items-center justify-center">
-      <h2 className="font-shapiro95_super_wide text-lg mb-8">ADD NEW PAYMENT METHOD</h2>
+    <AddCardContainer className="flex flex-col">
+      <h2 className="font-shapiro95_super_wide text-lg mb-8 text-center mx-4">
+        ADD NEW PAYMENT METHOD
+      </h2>
       <div className="flex flex-col md:flex-row items-center justify-center mb-8">
         <span className="w-screen px-6 md:p-0 md:w-44">
           <p className="text-sm text-cc-purple font-shapiro95_super_wide uppercase">Card Number</p>

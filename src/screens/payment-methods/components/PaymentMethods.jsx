@@ -84,7 +84,7 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow }) => {
 
   return (
     <div className="w-11/12 md:w-2/5">
-      <div className="flex flex-col mb-8 items-center justify-center">
+      <div className="flex flex-col mb-8 items-center justify-center text-center">
         <h2 className="font-shapiro95_super_wide text-lg">{`${
           isPaymentFlow ? 'CHOOSE A PAYMENT METHOD' : 'PAYMENT METHODS'
         }`}</h2>

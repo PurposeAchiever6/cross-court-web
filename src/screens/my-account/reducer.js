@@ -110,14 +110,12 @@ export default (state = initialState, action) => {
         },
       };
     case DELETE_CARD_SUCCESS:
-      const defaultPaymentMethod = state.userProfile.defaultPaymentMethod;
-      const paymentMethodId = action.payload.paymentMethodId;
+      const defaultPaymentMethod = action.payload.availableCards.find((pm) => pm.default);
       return {
         ...state,
         userProfile: {
           ...state.userProfile,
-          defaultPaymentMethod:
-            defaultPaymentMethod?.id === paymentMethodId ? null : defaultPaymentMethod,
+          defaultPaymentMethod,
         },
       };
     default:
