@@ -47,7 +47,10 @@ const ReserveButton = ({
     } else {
       if (!userProfile.unlimitedCredits && userProfile.totalCredits === 0) {
         window.localStorage.setItem('redirect', window.location.pathname);
-        history.push(ROUTES.MEMBERSHIPS);
+        history.push({
+          pathname: ROUTES.MEMBERSHIPS,
+          state: { showNoCreditsAnimation: true },
+        });
       } else if (isFSFFlow) {
         createAndReserveFreeSessionHandler();
       } else {

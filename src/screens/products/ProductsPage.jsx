@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import Loading from 'shared/components/Loading';
 import ROUTES from 'shared/constants/routes';
@@ -24,6 +24,7 @@ const ProductsPage = () => {
   const plansRef = useRef(null);
   const dispatch = useDispatch();
   const history = useHistory();
+  const { state } = useLocation();
 
   const availableProducts = useSelector(getAvailableProducts);
   const isLoading = useSelector(getPageLoading);
@@ -55,9 +56,7 @@ const ProductsPage = () => {
     window.scroll({ top: plansRef.current.offsetTop - 50 });
   };
 
-  const previousPage = window.localStorage.getItem('previousPage');
-  const showAnimation =
-    userProfile.totalCredits === 0 && (previousPage ? previousPage.includes('session-') : true);
+  const showAnimation = state?.showNoCreditsAnimation;
 
   useEffect(() => {
     dispatch(initialLoad());

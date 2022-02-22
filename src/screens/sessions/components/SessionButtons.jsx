@@ -1,36 +1,42 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { getIsAuthenticated } from 'screens/auth/reducer';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import ReserveButton from './ReserveButton';
-import CancelButton from './CancelButton';
-import ROUTES from 'shared/constants/routes';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
+
+import ROUTES from 'shared/constants/routes';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionDate } from 'screens/sessions/reducer';
 import {
-  formatShareSessionDate,
-  formatShareSessionTime,
-  formatSessionTime,
-  formatSessionDate,
-} from 'shared/utils/date';
+  joinSessionWaitlistInit,
+  removeSessionWaitlistInit,
+} from 'screens/sessions/actionCreators';
+
+import ReserveButton from './ReserveButton';
+import CancelButton from './CancelButton';
 
 const SessionButtons = ({
   session,
   reserveSessionAction,
   confirmSessionAction,
   showCancelModalAction,
-  userProfile,
   signupBookSessionAction,
   createAndReserveFreeSessionHandler,
   disabled,
 }) => {
-  const isAuthenticated = useSelector(getIsAuthenticated);
   const history = useHistory();
-  const [copied, setCopied] = useState(false);
+  const dispatch = useDispatch();
+
+  const isAuthenticated = useSelector(getIsAuthenticated);
+  const userProfile = useSelector(getUserProfile);
   const sessionDate = useSelector(getSessionDate);
+
+  const [copied, setCopied] = useState(false);
+
   const reservedOrConfirmed =
     (session?.userSession && ['reserved', 'confirmed'].includes(session.userSession.state)) ||
     false;
@@ -52,13 +58,24 @@ const SessionButtons = ({
     setCopied(true);
   };
 
-  const emailSessionDate = formatSessionDate(sessionDate);
-  const sessionTime = formatSessionTime(session.time);
-  const mailInfo = `mailto:ccteam@cross-court.com?subject=Join Waitlist&body=I would like to be added to the waitlist for the ${sessionTime} session on ${emailSessionDate} at ${session.location.name}. Please notify me if a spot opens up. You can reach me at ${userProfile.phoneNumber}.`;
+  const onClickJoinWaitlist = (sessionId, sessionDate) => {
+    if (!userProfile.unlimitedCredits && userProfile.totalCredits === 0) {
+      return history.push({
+        pathname: ROUTES.MEMBERSHIPS,
+        state: { showNoCreditsAnimation: true },
+      });
+    }
+
+    dispatch(joinSessionWaitlistInit(sessionId, sessionDate));
+  };
+
+  const onClickRemoveFromWaitlist = (sessionId, sessionDate) => {
+    dispatch(removeSessionWaitlistInit(sessionId, sessionDate));
+  };
 
   return (
     <div className="flex flex-col">
-      {(session?.past || session?.full) && (
+      {(session?.past || (session?.full && !reservedOrConfirmed)) && (
         <PrimaryButton
           className="mb-4"
           onClick={() => history.push(ROUTES.LOCATIONS)}
@@ -79,22 +96,31 @@ const SessionButtons = ({
           />
           {isAuthenticated && (
             <>
-              {session?.full && !reservedOrConfirmed && (
-                <a href={mailInfo}>
-                  <PrimaryButton className="mb-4" disabled={disabled}>
-                    JOIN WAITLIST
-                  </PrimaryButton>
-                </a>
+              {session?.onWaitlist && (
+                <PrimaryButton
+                  onClick={() => onClickRemoveFromWaitlist(session.id, sessionDate)}
+                  className="mb-4"
+                  disabled={disabled}
+                >
+                  OUT WAITLIST
+                </PrimaryButton>
               )}
-              {reservedOrConfirmed && (
-                <>
-                  <PrimaryButton className="mb-4" onClick={copyShareInfoToClipboard}>
-                    <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
-                    {copied ? 'COPIED' : 'INVITE A FRIEND'}
-                  </PrimaryButton>
-                  <CancelButton modalToggler={showCancelModalAction} />
-                </>
+              {session?.full && !session?.onWaitlist && !reservedOrConfirmed && (
+                <PrimaryButton
+                  onClick={() => onClickJoinWaitlist(session.id, sessionDate)}
+                  className="mb-4"
+                  disabled={disabled}
+                >
+                  JOIN WAITLIST
+                </PrimaryButton>
               )}
+              {reservedOrConfirmed && !session?.full && (
+                <PrimaryButton className="mb-4" onClick={copyShareInfoToClipboard}>
+                  <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
+                  {copied ? 'COPIED' : 'INVITE A FRIEND'}
+                </PrimaryButton>
+              )}
+              {reservedOrConfirmed && <CancelButton modalToggler={showCancelModalAction} />}
             </>
           )}
         </>
