@@ -25,6 +25,7 @@ import {
   UPDATE_SUBSCRIPTION_FAILURE,
 } from './actionTypes';
 import { RESERVE_SESSION_INIT } from '../sessions/actionTypes';
+import { GET_PROFILE_INIT } from 'screens/my-account/actionTypes';
 import checkoutService from './service';
 
 export function* createPurchaseFlow() {
@@ -34,9 +35,8 @@ export function* createPurchaseFlow() {
     const promoCode = yield select(getPromoCode);
 
     yield call(checkoutService.createPurchase, selectedProduct.id, selectedCard.id, promoCode);
-    yield put({
-      type: CREATE_PURCHASE_SUCCESS,
-    });
+    yield put({ type: CREATE_PURCHASE_SUCCESS });
+    yield put({ type: GET_PROFILE_INIT });
     yield put(push(ROUTES.CHECKOUTCONFIRMED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
@@ -105,6 +105,7 @@ export function* createSubscriptionFlow() {
         subscription,
       },
     });
+    yield put({ type: GET_PROFILE_INIT });
     yield put(push(ROUTES.CHECKOUTCONFIRMED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
@@ -135,6 +136,7 @@ export function* updateSubscriptionFlow() {
         subscription,
       },
     });
+    yield put({ type: GET_PROFILE_INIT });
     yield put(push(ROUTES.CHECKOUTCONFIRMED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);

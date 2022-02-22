@@ -10,6 +10,7 @@ import {
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAILURE,
   SHOW_EDIT_PROFILE,
+  GET_PROFILE_SUCCESS,
 } from './actionTypes';
 
 import {
@@ -59,6 +60,11 @@ export default (state = initialState, action) => {
       };
     case INITIAL_LOAD_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
+    case GET_PROFILE_SUCCESS:
+      return {
+        ...state,
+        userProfile: { ...action.payload.userProfile },
+      };
     case EDIT_PROFILE_INIT:
       return {
         ...state,
