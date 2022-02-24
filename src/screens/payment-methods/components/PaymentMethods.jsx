@@ -145,7 +145,7 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow }) => {
         </PrimaryButton>
         <PrimaryButton
           disabled={!selectedPaymentMethod}
-          onClick={isPaymentFlow ? nextHandler : () => history.goBack()}
+          onClick={isPaymentFlow ? nextHandler : () => history.push(ROUTES.MYACCOUNT)}
         >
           {`${isPaymentFlow ? 'NEXT' : 'DONE'}`}
         </PrimaryButton>
