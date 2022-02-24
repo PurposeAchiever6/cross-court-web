@@ -11,18 +11,20 @@ import {
   EDIT_PROFILE_FAILURE,
   SHOW_EDIT_PROFILE,
   GET_PROFILE_SUCCESS,
-} from './actionTypes';
-
+} from 'screens/my-account/actionTypes';
 import {
   CANCEL_SUBSCRIPTION_SUCCESS,
   REACTIVATE_SUBSCRIPTION_SUCCESS,
-} from '../products/actionTypes';
-import { CREATE_SUBSCRIPTION_SUCCESS, UPDATE_SUBSCRIPTION_SUCCESS } from '../checkout/actionTypes';
+} from 'screens/products/actionTypes';
+import {
+  CREATE_SUBSCRIPTION_SUCCESS,
+  UPDATE_SUBSCRIPTION_SUCCESS,
+} from 'screens/checkout/actionTypes';
 import {
   ADD_CARD_SUCCESS,
   DELETE_CARD_SUCCESS,
   UPDATE_CARD_SUCCESS,
-} from '../payment-methods/actionTypes';
+} from 'screens/payment-methods/actionTypes';
 
 const initialState = {
   error: '',

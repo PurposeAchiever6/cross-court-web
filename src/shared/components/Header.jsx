@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 import DesktopMenu from 'cheeseburger-menu';
 
@@ -11,7 +11,6 @@ import LogoSvg from 'shared/components/svg/LogoSvg';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
-import { initialLoadInit } from 'screens/my-account/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { isOnboardingTourEnable, disableOnboardingTour } from 'shared/utils/onboardingTour';
@@ -47,7 +46,6 @@ const ALWAYS_SCROLLED = [
 const BLACK_BG = [ROUTES.MEMBERSHIPS];
 
 const Header = () => {
-  const dispatch = useDispatch();
   const { pathname } = useLocation();
 
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -74,10 +72,6 @@ const Header = () => {
   useEffect(() => {
     changeBg();
   }, [pathname, changeBg]);
-
-  useEffect(() => {
-    dispatch(initialLoadInit());
-  }, [dispatch]);
 
   const onboardingTourId = 'onboarding-tour-header';
   const isHeaderOnboardingTourEnable =

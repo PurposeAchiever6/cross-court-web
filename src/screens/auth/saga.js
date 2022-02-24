@@ -45,10 +45,10 @@ export function* loginFlow({ payload }) {
   }
 }
 
-export function* logoutFlow() {
+export function* logoutFlow({ payload }) {
   yield call(AuthUtils.removeTokens);
   yield put({ type: LOGOUT_SUCCESS });
-  yield put(push(ROUTES.HOME));
+  yield put(push(payload.redirectTo || ROUTES.HOME));
 }
 
 export function* signupFlow({ payload }) {
