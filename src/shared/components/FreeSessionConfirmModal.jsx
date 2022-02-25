@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import ScrollLock from 'react-scrolllock';
 
-import { claimFreeSessionInit } from 'screens/payments/actionCreators';
+import { claimFreeSessionInit } from 'screens/payment-methods/actionCreators';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const FreeSessionModalContainer = styled.div`

@@ -7,6 +7,9 @@ import {
   EDIT_PROFILE_INIT,
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAILURE,
+  GET_PROFILE_INIT,
+  GET_PROFILE_SUCCESS,
+  GET_PROFILE_FAILURE,
 } from './actionTypes';
 
 import myAccountService from './service';
@@ -41,9 +44,25 @@ export function* editProfileFlow(action) {
   }
 }
 
+export function* getUserProfileFlow() {
+  try {
+    const userProfile = yield call(myAccountService.getUserProfile);
+
+    yield put({
+      type: GET_PROFILE_SUCCESS,
+      payload: {
+        userProfile,
+      },
+    });
+  } catch (err) {
+    yield put({ type: GET_PROFILE_FAILURE, error: err.response.data.error });
+  }
+}
+
 export default function* myAccountSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
     takeLatest(EDIT_PROFILE_INIT, editProfileFlow),
+    takeLatest(GET_PROFILE_INIT, getUserProfileFlow),
   ]);
 }

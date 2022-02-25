@@ -41,7 +41,7 @@ const ProductsPage = () => {
     if (isAuthenticated) {
       startedCheckout({ email: userProfile.email, product });
     }
-    history.push(ROUTES.PAYMENTS);
+    history.push(ROUTES.PAYMENT_METHODS);
   };
 
   const cancelMembership = () => {

@@ -1,4 +1,4 @@
-const saveSession = payload => {
+const saveSession = (payload) => {
   localStorage.setItem('SAVED_SESSION_ID', payload.sessionId);
   localStorage.setItem('SAVED_SESSION_DATE', payload.date);
 };

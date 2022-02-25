@@ -46,6 +46,7 @@ const MyProfile = ({ profile, showTitle = true }) => {
   const shareUrl = `${window.location.origin}`;
   const shareTextAndUrl = `${shareText} ${shareUrl}`;
   const dateOfBirth = new Date(profile.birthday);
+  const defaultPaymentMethod = profile.defaultPaymentMethod;
 
   const handleCopy = () => {
     const input = document.createElement('input');
@@ -104,26 +105,46 @@ const MyProfile = ({ profile, showTitle = true }) => {
             </span>
           </div>
           <div className={detailRowClasses}>
+            <span className={titleClasses}>BILLING</span>
+            <span className="mr-7">
+              {defaultPaymentMethod ? `Card ending in ${defaultPaymentMethod.last4}` : 'Not set'}
+            </span>
+            <PrimaryButton
+              className="text-left"
+              fontSize="0.75rem"
+              lineHeight="1"
+              onClick={() =>
+                history.push({
+                  pathname: ROUTES.EDIT_PAYMENT_METHODS,
+                  state: {
+                    from: location.pathname,
+                  },
+                })
+              }
+            >
+              Edit
+            </PrimaryButton>
+          </div>
+          <div className={detailRowClasses}>
             <span className={titleClasses}>SKILL RATING</span>
-            <div className="flex items-center">
-              <span className="mr-7">{profile.skillRating ? profile.skillRating : 'Not set'}</span>
-              <PrimaryButton
-                fontSize="0.75rem"
-                lineHeight="1"
-                onClick={() =>
-                  history.push({
-                    pathname: ROUTES.RATING,
-                    state: {
-                      isEdit: true,
-                      currentValue: profile.skillRating,
-                      from: location.pathname,
-                    },
-                  })
-                }
-              >
-                Edit
-              </PrimaryButton>
-            </div>
+            <span className="mr-7">{profile?.skillRating ?? 'Not set'}</span>
+            <PrimaryButton
+              className="text-left"
+              fontSize="0.75rem"
+              lineHeight="1"
+              onClick={() =>
+                history.push({
+                  pathname: ROUTES.RATING,
+                  state: {
+                    isEdit: true,
+                    currentValue: profile.skillRating,
+                    from: location.pathname,
+                  },
+                })
+              }
+            >
+              Edit
+            </PrimaryButton>
           </div>
           <div className={detailRowClasses}>
             <PrimaryButton className="invite-a-friend-button" onClick={handleCopy} w="100%">

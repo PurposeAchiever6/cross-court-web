@@ -24,6 +24,9 @@ module.exports = {
       lineHeight: {
         smaller: '0.75',
       },
+      minHeight: {
+        60: '15rem',
+      },
       maxWidth: {
         '2xs': '16rem',
       },
@@ -39,6 +42,10 @@ module.exports = {
       animation: {
         fade: 'fade 2500ms linear 800ms 1 backwards',
         'slide-top': 'slide-top 1500ms ease-out 2000ms 1 backwards',
+        'spin-slow': 'spin infinite 4s',
+      },
+      backgroundImage: {
+        'cc-ball-logo': "url('../shared/images/new-purple-circular-logo.png')",
       },
       keyframes: {
         fade: {
@@ -72,6 +79,7 @@ module.exports = {
   },
   variants: {
     extend: {
+      borderWidth: ['last'],
       width: ['last'],
       display: ['group-hover'],
     },

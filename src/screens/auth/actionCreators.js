@@ -14,8 +14,9 @@ export const loginInit = (payload) => ({
   payload,
 });
 
-export const logoutInit = () => ({
+export const logoutInit = (payload = {}) => ({
   type: LOGOUT_INIT,
+  payload,
 });
 
 export const signUpInit = (payload) => ({

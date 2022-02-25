@@ -5,7 +5,7 @@ import { isNil } from 'ramda';
 
 import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/products/reducer';
-import { getSelectedCard } from 'screens/payments/reducer';
+import { getSelectedCard } from 'screens/payment-methods/reducer';
 import BackButton from 'shared/components/BackButton';
 import { createPurchase, createSubscription, updateSubscription } from './actionCreators';
 import PurchaseDetails from './components/PurchaseDetails';
@@ -15,10 +15,10 @@ import { RECURRING } from 'screens/products/constants';
 const CheckoutPage = () => {
   const dispatch = useDispatch();
   const productDetails = useSelector(getSelectedProduct);
-  const paymentDetails = useSelector(getSelectedCard);
+  const paymentMethod = useSelector(getSelectedCard);
   const userProfile = useSelector(getUserProfile);
 
-  if (isNil(productDetails) || isNil(paymentDetails)) {
+  if (isNil(productDetails) || isNil(paymentMethod)) {
     return <Redirect to={ROUTES.LOCATIONS} />;
   }
 
@@ -43,7 +43,7 @@ const CheckoutPage = () => {
         <h1 className="mb-8">PURCHASE DETAILS</h1>
         <PurchaseDetails
           productDetails={productDetails}
-          paymentDetails={paymentDetails}
+          paymentMethod={paymentMethod}
           createPurchaseHandler={createPurchaseHandler}
           userHasActiveSubscription={userHasActiveSubscription}
         />
