@@ -9,9 +9,11 @@ import ROUTES from 'shared/constants/routes';
 import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { getUserProfile } from 'screens/my-account/reducer';
 import CCIcon from 'shared/components/CCIcon';
+import CrossCourtLogo from 'shared/images/cc-logo.png';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Badge from 'shared/components/Badge';
 import Spinner from 'shared/components/Spinner';
+import Tooltip from 'shared/components/Tooltip';
 
 import { deleteCard, setSelectedCard, updateCard } from '../actionCreators';
 import { getDeleteCardLoading } from '../reducer';
@@ -36,10 +38,6 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow, className }) =
     location.pathname === ROUTES.EDIT_PAYMENT_METHODS
       ? ROUTES.EDIT_PAYMENT_METHODS
       : ROUTES.PAYMENT_METHODS;
-
-  const anyPaymentMethodHasMembership = availablePaymentMethods.some(
-    (paymentMethod) => paymentMethod.withActiveSubscription
-  );
 
   const handleSelectPaymentMethod = useCallback(
     (paymentMethod) => {
@@ -106,12 +104,12 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow, className }) =
           availablePaymentMethods.map((paymentMethod) => {
             const isCardSelected = selectedPaymentMethod === paymentMethod.id;
             const isDefault = defaultPaymentMethod?.id === paymentMethod.id;
-            const isCurrentMembership = paymentMethod.withActiveSubscription;
+            const withActiveSubscription = paymentMethod.withActiveSubscription;
             return (
               <div key={paymentMethod.id} className="border-b-2 last:border-0 p-4">
                 <div className="flex items-center justify-between gap-x-4 sm:gap-x-10">
                   <button
-                    className={`border-2 rounded-full w-10 h-10 selector ${
+                    className={`border-2 rounded-full min-w-10 h-10 selector ${
                       isCardSelected ? 'animate-spin-slow bg-cc-ball-logo bg-contain' : ''
                     }`}
                     type="button"
@@ -122,34 +120,47 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow, className }) =
                     }
                   />
                   <CCIcon ccType={paymentMethod.brand} />
-                  <div className="text-center">
+                  <div className="text-center w-40 sm:w-48">
                     <div className="font-shapiro95_super_wide text-lg sm:text-xl mb-1">{`***${paymentMethod.last4}`}</div>
                     <div className="font-shapiro95_super_wide text-xs">
                       Expires {`${paymentMethod.expMonth}/${paymentMethod.expYear}`}
                     </div>
+                    {withActiveSubscription && (
+                      <Badge variant="black" className="inline-block text-2xs py-2 sm:py-1 mt-2">
+                        Linked to
+                        <span className="block sm:inline-block mt-1 sm:mt-0">
+                          <img
+                            src={CrossCourtLogo}
+                            alt="crosscourt-logo"
+                            className="inline-block w-3 h-3 mb-1 sm:mb-px mr-1 sm:ml-1"
+                          />
+                          Membership
+                        </span>
+                      </Badge>
+                    )}
                     {isDefault && <div className="text-cc-purple text-xs mt-2">Default</div>}
                   </div>
                   {deleteCardLoading && cardIdToDelete === paymentMethod.id ? (
                     <Spinner />
                   ) : (
-                    <button type="button" onClick={() => deleteCardHandler(paymentMethod.id)}>
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </button>
-                  )}
-                  {anyPaymentMethodHasMembership && (
-                    <div className={`hidden sm:block ${isCurrentMembership ? '' : 'invisible'}`}>
-                      <Badge variant="black" className="block text-2xs">
-                        <span className="block mb-1">Being used for</span>
-                        <span className="block">current membership</span>
-                      </Badge>
-                    </div>
+                    <Tooltip
+                      variant="black"
+                      tooltip={
+                        "This card can't be deleted because it's associated with your current active membership"
+                      }
+                      enable={withActiveSubscription}
+                    >
+                      <button
+                        type="button"
+                        onClick={() => deleteCardHandler(paymentMethod.id)}
+                        className={withActiveSubscription ? 'opacity-50 pointer-events-none' : ''}
+                        disabled={withActiveSubscription}
+                      >
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                      </button>
+                    </Tooltip>
                   )}
                 </div>
-                {isCurrentMembership && (
-                  <Badge variant="black" className="block sm:hidden text-2xs mt-5">
-                    Being used for current membership
-                  </Badge>
-                )}
               </div>
             );
           })

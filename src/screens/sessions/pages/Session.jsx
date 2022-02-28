@@ -105,7 +105,7 @@ const Session = () => {
                   <span className="font-shapiro45_welter_extd text-sm uppercase">{data.value}</span>
                 </div>
               ))}
-              <BadgeWithInfo showInfo info={skillLevel.description} variant="white">
+              <BadgeWithInfo info={skillLevel.description} variant="white">
                 {`${skillLevel.min} - ${skillLevel.max}`}
               </BadgeWithInfo>
             </div>

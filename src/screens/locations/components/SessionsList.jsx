@@ -242,10 +242,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                   {location.name}
                 </p>
                 <div id="sessions-list-session-level-info" className="my-2">
-                  <BadgeWithInfo
-                    showInfo
-                    info={isOpenClub ? OPEN_CLUB_INFO : skillLevel.description}
-                  >
+                  <BadgeWithInfo info={isOpenClub ? OPEN_CLUB_INFO : skillLevel.description}>
                     {isOpenClub ? 'OPEN CLUB' : `${skillLevel.min} - ${skillLevel.max}`}
                   </BadgeWithInfo>
                 </div>

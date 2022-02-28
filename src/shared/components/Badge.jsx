@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Badge = ({ variant, pill, className, children }) => {
-  let badgeClasses = `text-center whitespace-nowrap align-middle leading-none text-2xs font-normal px-3 py-1 ${
-    pill ? 'rounded-full' : 'rounded-md'
+  let badgeClasses = `text-center whitespace-nowrap align-middle leading-none text-xs font-normal px-2 py-1 ${
+    pill ? 'rounded-full' : 'rounded'
   }`;
 
   switch (variant) {

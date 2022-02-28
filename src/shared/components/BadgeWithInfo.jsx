@@ -1,45 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactTooltip from 'react-tooltip';
+
 import Badge from 'shared/components/Badge';
-
+import Tooltip from 'shared/components/Tooltip';
 import InfoSvg from 'shared/components/svg/InfoSvg';
-import colors from 'shared/styles/constants';
 
-const BadgeWithInfo = ({ showInfo, info, variant = 'black', children }) => {
+const BadgeWithInfo = ({ info, variant, children }) => {
   return (
     <div className="flex items-center">
       <Badge variant={variant} className="text-2xs text-center px-3 mr-2 font-shapiro95_super_wide">
         {children}
       </Badge>
-      {showInfo && (
-        <>
-          <InfoSvg className="text-cc-purple cursor-pointer" dataTip={info} />
-          <ReactTooltip
-            backgroundColor={colors.brandPurple}
-            textColor="white"
-            place="right"
-            effect="solid"
-            className="max-w-xs font-shapiro45_welter_extd"
-            html
-          />
-        </>
-      )}
+      <Tooltip variant="purple" tooltip={info} place="right">
+        <InfoSvg className="text-cc-purple cursor-pointer" />
+      </Tooltip>
     </div>
   );
 };
 
 BadgeWithInfo.defaultProps = {
-  showInfo: false,
-  info: '',
+  variant: 'black',
   light: false,
 };
 
 BadgeWithInfo.propTypes = {
-  showInfo: PropTypes.bool,
   info: PropTypes.string,
-  light: PropTypes.bool,
-  children: PropTypes.node,
+  variant: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default BadgeWithInfo;
