@@ -11,7 +11,7 @@ const SessionOfficials = ({ sessionInfo }) => {
           Your Session
         </span>
         <br />
-        <span className="title-officials font-shapiro97_air_extd text-2xl xl:text-3xl 2xl:text-4xl">
+        <span className="text-stroke-width-1 font-shapiro97_air_extd text-2xl xl:text-3xl 2xl:text-4xl">
           Officials
         </span>
       </h3>

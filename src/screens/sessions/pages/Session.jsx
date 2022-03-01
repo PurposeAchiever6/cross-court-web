@@ -2,19 +2,17 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 import { isNil } from 'ramda';
-import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 import Modal from 'shared/components/Modal';
-import BackButton from 'shared/components/BackButton';
-import { longSessionDate, hourRange } from 'shared/utils/date';
+
 import { isUserInLegalAge } from 'shared/utils/user';
 import WarningTriangle from 'shared/images/warning-triangle.png';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import SessionLevel from 'shared/components/SessionLevel';
+import BadgeWithInfo from 'shared/components/BadgeWithInfo';
 
 import { removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
@@ -26,38 +24,18 @@ import {
   showCancelModal,
   initialLoadAuthInit,
   signupBookSession,
-} from './actionCreators';
-import { getPageLoading, getSessionInfo, getShowCancelModal } from './reducer';
-import CancelModal from './components/CancelModal';
-import SessionButtons from './components/SessionButtons';
-import SkillLevelWarning from './components/SkillLevelWarning';
+} from 'screens/sessions/actionCreators';
+import { getPageLoading, getSessionInfo, getShowCancelModal } from 'screens/sessions/reducer';
+import CancelModal from 'screens/sessions/components/CancelModal';
+import SessionButtons from 'screens/sessions/components/SessionButtons';
+import SkillLevelWarning from 'screens/sessions/components/SkillLevelWarning';
+import SessionHeader from 'screens/sessions/components/SessionHeader';
 
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
-import SessionOfficials from './components/SessionOfficials';
+import SessionOfficials from 'screens/sessions/components/SessionOfficials';
+import Carousel from 'shared/components/Carousel';
+import { getSessionsMessageContainerText, sessionData } from 'screens/sessions/utils';
 
-const SessionsPageContainer = styled.div`
-  .title-officials {
-    -webkit-text-stroke: 1px;
-    line-height: 1;
-  }
-
-  .carousel-root {
-    height: calc(100vh - 10rem);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 55%;
-  }
-
-  @media (max-width: 991px) {
-    .carousel-root {
-      width: 100%;
-    }
-  }
-`;
-
-const SessionsPage = () => {
+const Session = () => {
   const { id, date } = useParams();
   const referralCode = window.localStorage.getItem('referralCode');
   const dispatch = useDispatch();
@@ -67,6 +45,7 @@ const SessionsPage = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const userProfile = useSelector(getUserProfile);
   const shouldShowCancelModal = useSelector(getShowCancelModal);
+  const { skillLevel } = sessionInfo;
 
   const reserveSessionAction = () =>
     dispatch(reserveSessionInit(sessionInfo.id, date, referralCode));
@@ -80,27 +59,6 @@ const SessionsPage = () => {
   const isLegalAge = isUserInLegalAge(userProfile);
   const isSessionComplete = sessionInfo.past;
   const isSessionFull = sessionInfo.spotsLeft === 0;
-  const getSessionsMessageContainerText = () => {
-    let text = '';
-
-    if (isSessionComplete) {
-      text = `SESSION COMPLETE`;
-    } else if (isSessionFull) {
-      text = `SESSION FULL`;
-    } else {
-      if (isAuthenticated) {
-        if (userProfile.unlimitedCredits) {
-          text = 'YOU HAVE UNLIMITED SESSIONS';
-        } else if (userProfile.totalCredits) {
-          text = `YOU HAVE ${userProfile.totalCredits} SESSION${
-            userProfile.totalCredits === 1 ? '' : 'S'
-          } ${userProfile.activeSubscription ? 'LEFT THIS MONTH' : 'AVAILABLE'}`;
-        }
-      }
-    }
-
-    return text;
-  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -115,23 +73,10 @@ const SessionsPage = () => {
     return <Redirect to={ROUTES.HOME} />;
   }
 
-  const sessionData = [
-    { title: 'DATE', value: longSessionDate(date) },
-    { title: 'TIME', value: hourRange(sessionInfo.time) },
-    {
-      title: 'LOCATION',
-      value: [
-        `${sessionInfo?.location?.address}`,
-        <br key="br" />,
-        `${sessionInfo?.location?.city}, ${sessionInfo?.location?.state} ${sessionInfo?.location?.zipcode}`,
-      ],
-    },
-  ];
-
   return isPageLoading ? (
     <Loading />
   ) : (
-    <SessionsPageContainer className="flex flex-col border-b border-gray-400">
+    <div className="flex flex-col border-b border-gray-400">
       <Modal shouldClose closeHandler={showCancelModalAction} isOpen={shouldShowCancelModal}>
         <CancelModal
           closeHandler={showCancelModalAction}
@@ -141,43 +86,37 @@ const SessionsPage = () => {
           unlimitedCredits={userProfile.unlimitedCredits}
         />
       </Modal>
-      <div className="md:flex py-4 md:py-8 font-shapiro95_super_wide">
-        <BackButton className="ml-8 mt-4 md:mt-0" />
-        <h2 className="md:ml-8 text-center uppercase font-normal py-8 md:py-0 text-2xl">
-          {sessionInfo.location.name} SESSION
-        </h2>
-      </div>
+      <SessionHeader>{sessionInfo.location.name} SESSION</SessionHeader>
       <div className="flex flex-col-reverse md:flex-row bg-cc-black h-full">
         <Carousel
-          className="carousel-h-full"
-          infiniteLoop={true}
-          showArrows={true}
-          showStatus={false}
-          showThumbs={false}
-        >
-          {sessionInfo.location.imageUrls.map((image, index) => (
-            <img className="w-full md:w-1/2" src={image} alt="" key={index} />
-          ))}
-        </Carousel>
+          className="session-carousel carousel-h-full"
+          imagesClassName="w-full md:w-1/2"
+          imageUrls={sessionInfo.location.imageUrls}
+        />
         <div className="flex w-full flex-col-reverse md:flex-row md:w-1/2 ">
           <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
             <div className="mb-8 flex flex-col items-center md:items-start">
               {isAuthenticated && (
                 <SkillLevelWarning userProfile={userProfile} sessionInfo={sessionInfo} />
               )}
-              {sessionData.map((data, i) => (
+              {sessionData(date, sessionInfo).map((data, i) => (
                 <div className="flex flex-col mb-8" key={`info-${i}`}>
                   <span className="uppercase block tracking-wider font-semibold">{data.title}</span>
                   <span className="font-shapiro45_welter_extd text-sm uppercase">{data.value}</span>
                 </div>
               ))}
-              <SessionLevel showInfo level={sessionInfo.skillLevel} light />
+              <BadgeWithInfo showInfo info={skillLevel.description} light>
+                {`${skillLevel.min} - ${skillLevel.max}`}
+              </BadgeWithInfo>
             </div>
-            {getSessionsMessageContainerText() && (
-              <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
-                {getSessionsMessageContainerText()}
-              </div>
-            )}
+            <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
+              {getSessionsMessageContainerText(
+                isSessionComplete,
+                isSessionFull,
+                isAuthenticated,
+                userProfile
+              )}
+            </div>
           </div>
           <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-around items-center px-4 pb-12 md:px-4 md:py-10">
             <SessionOfficials sessionInfo={sessionInfo} />
@@ -199,8 +138,8 @@ const SessionsPage = () => {
           </div>
         </div>
       </div>
-    </SessionsPageContainer>
+    </div>
   );
 };
 
-export default SessionsPage;
+export default Session;

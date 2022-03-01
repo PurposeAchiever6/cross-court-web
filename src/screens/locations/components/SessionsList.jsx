@@ -9,7 +9,7 @@ import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
-import SessionLevel from 'shared/components/SessionLevel';
+import BadgeWithInfo from 'shared/components/BadgeWithInfo';
 import Badge from 'shared/components/Badge';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import WarningTriangle from 'shared/images/warning-triangle.png';
@@ -59,6 +59,8 @@ const NoSessionContainer = styled.div`
   }
 `;
 
+const OPEN_CLUB_INFO =
+  '8 session/month and unlimited members can access the club to shootaround, train, or self-organize own runs (included with membership)';
 const fewSpotsLeftText = 'FEW SPOTS LEFT';
 const onlyForUsersOver18Text = 'MUST BE 18+';
 const onWaitlistText = 'ON THE WAITLIST';
@@ -125,6 +127,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           isPrivate,
           comingSoon,
           onWaitlist,
+          isOpenClub,
         }) => {
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
@@ -140,6 +143,17 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 inverted
               >
                 COMING SOON
+              </PrimaryButton>
+            );
+          } else if (isOpenClub) {
+            button = (
+              <PrimaryButton
+                fontSize="12px"
+                w="9.5rem"
+                px="0.5rem"
+                to={`/session/${id}/${URLdate}/open-club`}
+              >
+                OPEN CLUB
               </PrimaryButton>
             );
           } else if (reserved || past) {
@@ -228,7 +242,12 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                   {location.name}
                 </p>
                 <div id="sessions-list-session-level-info" className="my-2">
-                  <SessionLevel showInfo level={skillLevel} />
+                  <BadgeWithInfo
+                    showInfo
+                    info={isOpenClub ? OPEN_CLUB_INFO : skillLevel.description}
+                  >
+                    {isOpenClub ? 'OPEN CLUB' : `${skillLevel.min} - ${skillLevel.max}`}
+                  </BadgeWithInfo>
                 </div>
               </div>
               <div className="flex flex-col items-end pl-8">

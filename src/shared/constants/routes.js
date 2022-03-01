@@ -29,6 +29,7 @@ export default {
   RULES: '/rules',
   CAREERS: '/careers',
   SESSION: '/session/:id/:date',
+  OPEN_CLUB_SESSION: '/session/:id/:date/open-club',
   SESSIONCONFIRMED: '/session/confirmed',
   SESSIONRESERVED: '/session/reserved',
   SESSIONJOINWAITLIST: '/session/join-waitlist',

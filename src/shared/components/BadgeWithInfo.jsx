@@ -5,7 +5,7 @@ import ReactTooltip from 'react-tooltip';
 import InfoSvg from 'shared/components/svg/InfoSvg';
 import colors from 'shared/styles/constants';
 
-const SessionLevel = ({ level, showInfo, light }) => {
+const BadgeWithInfo = ({ showInfo, info, light, children }) => {
   return (
     <div className="flex items-center">
       <span
@@ -13,11 +13,11 @@ const SessionLevel = ({ level, showInfo, light }) => {
           light ? 'bg-white text-black' : 'bg-cc-black text-white'
         }  text-2xs text-center px-5 mr-3 font-shapiro95_super_wide`}
       >
-        {`${level.min} - ${level.max}`}
+        {children}
       </span>
       {showInfo && (
         <>
-          <InfoSvg className="text-cc-purple cursor-pointer" dataTip={level.description} />
+          <InfoSvg className="text-cc-purple cursor-pointer" dataTip={info} />
           <ReactTooltip
             backgroundColor={colors.brandPurple}
             textColor="white"
@@ -32,15 +32,17 @@ const SessionLevel = ({ level, showInfo, light }) => {
   );
 };
 
-SessionLevel.defaultProps = {
-  light: false,
+BadgeWithInfo.defaultProps = {
   showInfo: false,
+  info: '',
+  light: false,
 };
 
-SessionLevel.propTypes = {
-  level: PropTypes.object.isRequired,
+BadgeWithInfo.propTypes = {
   showInfo: PropTypes.bool,
+  info: PropTypes.string,
   light: PropTypes.bool,
+  children: PropTypes.node,
 };
 
-export default SessionLevel;
+export default BadgeWithInfo;

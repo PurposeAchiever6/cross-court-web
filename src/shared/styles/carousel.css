@@ -46,3 +46,17 @@ body .carousel-root .carousel .control-dots .dot.selected {
 .carousel-h-full .slider-wrapper {
   height: 100%;
 }
+
+.session-carousel {
+  height: calc(100vh - 10rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 55%;
+}
+
+@media (max-width: 991px) {
+  .session-carousel {
+    width: 100%;
+  }
+}
