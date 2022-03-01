@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'external-tools/gtm';
 import 'external-tools/hotjar';
 import 'external-tools/activeCampaign';
+import 'external-tools/activeCampaignModal';
 
 const env = runtimeEnv();
 const GOOGLE_ANALYTICS_CODE = env.REACT_APP_GOOGLE_ANALYTICS_CODE;
