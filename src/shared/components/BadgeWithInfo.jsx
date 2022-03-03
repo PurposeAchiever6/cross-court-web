@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
+import Badge from 'shared/components/Badge';
 
 import InfoSvg from 'shared/components/svg/InfoSvg';
 import colors from 'shared/styles/constants';
 
-const BadgeWithInfo = ({ showInfo, info, light, children }) => {
+const BadgeWithInfo = ({ showInfo, info, variant = 'black', children }) => {
   return (
     <div className="flex items-center">
-      <span
-        className={`rounded-md ${
-          light ? 'bg-white text-black' : 'bg-cc-black text-white'
-        }  text-2xs text-center px-5 mr-3 font-shapiro95_super_wide`}
-      >
+      <Badge variant={variant} className="text-2xs text-center px-3 mr-2 font-shapiro95_super_wide">
         {children}
-      </span>
+      </Badge>
       {showInfo && (
         <>
           <InfoSvg className="text-cc-purple cursor-pointer" dataTip={info} />

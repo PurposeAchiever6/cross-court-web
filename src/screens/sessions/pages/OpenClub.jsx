@@ -80,7 +80,7 @@ const OpenClub = () => {
                 </div>
               ))}
             </div>
-            <div className="flex flex-col bg-cc-purple p-3">
+            <div className="flex flex-col bg-cc-purple p-3 mb-10 md:mb-0">
               <p>HOW IT WORKS</p>
               <p className="font-shapiro45_welter_extd mt-1">
                 You will only be allowed to access open club hours if you are an 8 or unlimited
@@ -99,15 +99,15 @@ const OpenClub = () => {
           </div>
           <div className="flex flex-col justify-evenly w-full md:w-1/2 bg-white text-center px-4">
             <StyledTitle>
-              <p className="font-shapiro95_super_wide title mt-6 md:m-0">CC OPEN</p>
+              <p className="font-shapiro95_super_wide title mt-3 md:m-0">CC OPEN</p>
               <p className="font-shapiro95_super_wide text-stroke-width-2 text-white text-stroke-cc-black subtitle">
                 CLUB
               </p>
-              <p className="text-cc-purple">
+              <p className="text-cc-purple my-3 md:m-0">
                 8 SESSION PER MONTH AND <br /> UNLIMITED MEMBERS ONLY
               </p>
             </StyledTitle>
-            <div>
+            <div className="p-4 md:p-0">
               <div className="flex mb-10">
                 <div className="flex flex-col items-center justify-center w-1/2">
                   <img src={FreeIncludedIcon} alt="free-included" className="w-16 h-16 mb-2" />

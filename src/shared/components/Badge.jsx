@@ -13,6 +13,9 @@ const Badge = ({ variant, pill, className, children }) => {
     case 'black':
       badgeClasses += ' text-white bg-cc-black';
       break;
+    case 'white':
+      badgeClasses += ' text-cc-black bg-white';
+      break;
     default:
       break;
   }
