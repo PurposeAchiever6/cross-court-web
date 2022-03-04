@@ -25,7 +25,7 @@ const PaymentsPage = () => {
   const redirectUrl = window.localStorage.getItem('redirect');
   const isPaymentFlow = location.pathname === ROUTES.PAYMENT_METHODS;
 
-  const shouldShowFSFModal = () => !!(isFSFFlow && !availablePaymentMethods.length && redirectUrl);
+  const shouldShowFSFModal = !!(isFSFFlow && !availablePaymentMethods.length && redirectUrl);
   const [showConfirmModal, setShowConfirmModal] = useState(true);
   const hideConfirmModalHandler = () => setShowConfirmModal(false);
 
@@ -38,8 +38,8 @@ const PaymentsPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center mt-20 md:mt-40">
-      {shouldShowFSFModal() && (
+    <div className="min-h-screen pt-20 md:pt-32 px-4 pb-14">
+      {shouldShowFSFModal && (
         <Modal shouldClose closeHandler={hideConfirmModalHandler} isOpen={showConfirmModal}>
           <FreeSessionConfirmModal
             closeHandler={hideConfirmModalHandler}
@@ -50,6 +50,7 @@ const PaymentsPage = () => {
       <PaymentMethods
         availablePaymentMethods={availablePaymentMethods}
         isPaymentFlow={isPaymentFlow}
+        className="max-w-xl mx-auto"
       />
     </div>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Badge = ({ variant, pill, className, children }) => {
-  let badgeClasses = `text-center whitespace-nowrap align-middle leading-none text-sm font-normal p-2 ${
+  let badgeClasses = `text-center whitespace-nowrap align-middle leading-none text-xs font-normal px-2 py-1 ${
     pill ? 'rounded-full' : 'rounded'
   }`;
 
@@ -12,6 +12,9 @@ const Badge = ({ variant, pill, className, children }) => {
       break;
     case 'black':
       badgeClasses += ' text-white bg-cc-black';
+      break;
+    case 'white':
+      badgeClasses += ' text-cc-black bg-white';
       break;
     default:
       break;

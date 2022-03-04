@@ -6,16 +6,17 @@
     "node": "14.x"
   },
   "scripts": {
-    "build": "npm run watch:css && react-scripts build",
+    "heroku-prebuild": "npm install -g serve",
+    "build": "npm run tailwind:build && react-scripts build",
     "commit": "git-cz",
     "eject": "react-scripts eject",
     "format": "prettier --write '{src,__{tests,mocks}__}/**/*.{js,jsx,json,scss}'",
     "lint": "npm-run-all lint:code",
     "lint:code": "eslint -c .eslintrc src --color",
     "lint:fix": "eslint --fix src",
-    "start": "npm run watch:css && react-scripts start",
+    "start": "npm run tailwind:build && react-scripts start",
     "test": "react-scripts test",
-    "watch:css": "npx tailwind build src/assets/tailwind.css -o src/assets/main.css"
+    "tailwind:build": "npx tailwind build src/assets/tailwind.css -o src/assets/main.css"
   },
   "husky": {
     "hooks": {}

@@ -1,6 +1,10 @@
 import { createSelector } from 'reselect';
 import { INITIAL_LOAD_AUTH_SUCCESS as SESSIONS_INITIAL_LOAD } from 'screens/sessions/actionTypes';
-import { INITIAL_APP_LOAD_SUCCESS } from 'shared/actions/actionTypes';
+import {
+  INITIAL_APP_LOAD_INIT,
+  INITIAL_APP_LOAD_SUCCESS,
+  INITIAL_APP_LOAD_FAILURE,
+} from 'shared/actions/actionTypes';
 import { isToday } from 'shared/utils/date';
 import {
   INITIAL_LOAD_INIT,
@@ -41,6 +45,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case INITIAL_LOAD_INIT:
+    case INITIAL_APP_LOAD_INIT:
       return {
         ...state,
         pageLoading: true,
@@ -61,6 +66,7 @@ export default (state = initialState, action) => {
         ],
       };
     case INITIAL_LOAD_FAILURE:
+    case INITIAL_APP_LOAD_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
     case GET_PROFILE_SUCCESS:
       return {
@@ -93,6 +99,7 @@ export default (state = initialState, action) => {
     case INITIAL_APP_LOAD_SUCCESS:
       return {
         ...state,
+        pageLoading: false,
         userProfile: { ...action.payload.userProfile },
       };
     case CREATE_SUBSCRIPTION_SUCCESS:

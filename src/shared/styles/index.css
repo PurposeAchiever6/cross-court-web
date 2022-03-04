@@ -7,6 +7,7 @@
 @import './toasts.css';
 @import './onboarding-tour.css';
 @import './active-campaign-chat.css';
+@import './email-opt-in.css';
 
 html {
   scroll-behavior: smooth;

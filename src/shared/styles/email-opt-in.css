@@ -1,0 +1,44 @@
+._form {
+  padding: 3rem !important;
+  margin: 10rem auto !important;
+  border-radius: 0px !important;
+}
+
+._form-title {
+  font-family: 'shapiro95_super_wide';
+  font-size: 2rem !important;
+  line-height: 1 !important;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  ._form-title {
+    font-size: 3rem !important;
+  }
+}
+
+._form-body {
+  font-size: 16px !important;
+  font-family: 'shapiro45_welter_extd' !important;
+  font-size: 1rem !important;
+  text-align: center;
+}
+
+._field_name {
+  font-family: 'shapiro45_welter_extd' !important;
+}
+
+._field_email {
+  font-family: 'shapiro45_welter_extd' !important;
+}
+
+._submit {
+  font-size: 14px !important;
+  font-family: 'shapiro95_super_wide' !important;
+  font-size: 0.9rem !important;
+  margin-top: 1rem;
+}
+
+._form-thank-you {
+  font-family: 'shapiro45_welter_extd' !important;
+}
