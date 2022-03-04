@@ -18,17 +18,18 @@
 }
 
 ._form-body {
-  font-family: 'shapiro45_welter_extd';
+  font-size: 16px !important;
+  font-family: 'shapiro45_welter_extd' !important;
   font-size: 1rem !important;
   text-align: center;
 }
 
 ._field_name {
-  font-family: 'shapiro45_welter_extd';
+  font-family: 'shapiro45_welter_extd' !important;
 }
 
 ._field_email {
-  font-family: 'shapiro45_welter_extd';
+  font-family: 'shapiro45_welter_extd' !important;
 }
 
 ._submit {

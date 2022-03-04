@@ -388,6 +388,7 @@ const Routes = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
+      window.localStorage.setItem('hasLoggedIn', 'true');
       dispatch(initialAppLoad());
       dispatch(getLegalDocs());
     } else {
