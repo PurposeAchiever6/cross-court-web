@@ -65,10 +65,18 @@ export const CancelModal = ({
 
   const cancellationText = (() => {
     if (unlimitedCredits) {
-      return inCancellationTime
-        ? null
-        : `You will be charged a $${env.REACT_APP_UNLIMITED_CREDITS_CANCELED_OUT_OF_TIME_PRICE} \
-           late cancellation fee`;
+      if (inCancellationTime) {
+        return null;
+      }
+
+      const unlimitedCreditsCancelFee = env.REACT_APP_UNLIMITED_CREDITS_CANCELED_OUT_OF_TIME_PRICE;
+
+      if (Number(unlimitedCreditsCancelFee) > 0) {
+        return `You will be charged a $${unlimitedCreditsCancelFee} \
+                late cancellation fee`;
+      } else {
+        return 'You will not be charged a late cancellation fee';
+      }
     } else {
       if (inCancellationTime) {
         return 'The credit will be refunded to your account';
