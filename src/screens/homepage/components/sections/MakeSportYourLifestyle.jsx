@@ -30,16 +30,10 @@ const MakeSportYourLifestyle = () => (
     <div className="flex flex-col absolute w-full h-full bg-cc-black bg-opacity-60 top-0">
       <div className="absolute top-1/3 px-10 md:px-20">
         <h1 className="text-transparent text-stroke-white text-stroke-width-1 md:text-stroke-width-2 text-2xl md:text-5xl 2xl:text-6xl font-shapiro96_inclined_wide">
-          <span className="hidden md:block">MAKE SPORT YOUR LIFESTYLE</span>
-          <span className="block md:hidden">
-            MAKE SPORT <br /> YOUR LIFESTYLE
-          </span>
+          MAKE SPORT <br className="block md:hidden" /> YOUR LIFESTYLE
         </h1>
         <h2 className="text-white font-shapiro95_super_wide text-lg md:text-5xl 2xl:text-6xl">
-          <span className="hidden md:block">BASKETBALL BASED FITNESS</span>
-          <span className="block md:hidden">
-            BASKETBALL <br /> BASED FITNESS
-          </span>
+          BASKETBALL <br className="block md:hidden" /> BASED FITNESS
         </h2>
         <h3 className="text-white text-sm md:text-lg 2xl:text-2xl">
           Pickup inspired experience. 1 hour. 15 players. 2 oficials. Games to 11. Tiered skill
