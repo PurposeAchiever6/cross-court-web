@@ -1,55 +1,68 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import { cancelSubscription } from 'screens/products/actionCreators';
 import Modal from 'shared/components/Modal';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import useWindowSize from 'shared/hooks/useWindowSize';
-import { size } from 'shared/styles/mediaQueries';
 
-const CancelMembershipModal = ({ cancelSubscriptionAction, setShowCancelModal, ...props }) => {
-  const { width: windowSize } = useWindowSize();
+const CancelMembershipModal = ({ isOpen, closeHandler, subscription }) => {
+  const dispatch = useDispatch();
+
   const [showCancelMsg, setShowCancelMsg] = useState(false);
 
-  const handleClick = async () => {
-    await cancelSubscriptionAction();
+  const cancelSubscriptionHandler = () => {
+    dispatch(cancelSubscription(subscription));
     setShowCancelMsg(true);
   };
 
-  const closeHandler = () => {
+  const onClose = () => {
     setShowCancelMsg(false);
-    setShowCancelModal(false);
+    closeHandler();
   };
 
   return (
     <Modal
-      {...props}
-      closeHandler={closeHandler}
-      style={{
-        borderRadius: 0,
-        width: windowSize < size.desktop ? '80%' : '40rem',
-        height: windowSize < size.desktop ? '' : '15rem',
-      }}
-      showCloseButton
-      title="Are you sure you want to cancel your membership?"
+      isOpen={isOpen}
+      closeHandler={onClose}
+      title={
+        showCancelMsg ? 'Membership Canceled' : 'Are you sure you want to cancel your membership?'
+      }
+      size={showCancelMsg ? 'lg' : 'xl'}
     >
-      <div className="flex flex-col items-center my-4">
-        {showCancelMsg ? (
-          <>
-            <p>We&apos;ll miss you on the CCTeam!</p>
-            <p>Hope you come back soon!</p>
-          </>
-        ) : (
-          <>
-            <p className="text-sm p-4">
+      {showCancelMsg ? (
+        <div className="text-center">
+          <div className="mb-8">
+            <div className="mb-2">We&apos;ll miss you on the CCTeam.</div>
+            <div>Hope you come back soon!</div>
+          </div>
+          <PrimaryButton fontSize="0.75rem" onClick={onClose}>
+            Done
+          </PrimaryButton>
+        </div>
+      ) : (
+        <div>
+          <div className="text-sm mb-8">
+            <p className="mb-5">
               You are about to cancel your membership. The credits in your account will remain
               available until the end of the billing period. At that point, your card on file will
-              no longer be charged. <br />
-              Your membership can be reactivated at any point prior to end of billing period.
+              no longer be charged.
             </p>
-            <PrimaryButton onClick={handleClick}>YES</PrimaryButton>
-          </>
-        )}
-      </div>
+            <p>Your membership can be reactivated at any point prior to end of billing period.</p>
+          </div>
+          <div className="text-center">
+            <PrimaryButton onClick={cancelSubscriptionHandler}>YES</PrimaryButton>
+          </div>
+        </div>
+      )}
     </Modal>
   );
+};
+
+CancelMembershipModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  closeHandler: PropTypes.func.isRequired,
+  subscription: PropTypes.shape().isRequired,
 };
 
 export default CancelMembershipModal;

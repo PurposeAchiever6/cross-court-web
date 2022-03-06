@@ -7,12 +7,7 @@ import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { startedCheckout } from 'shared/utils/activeCampaign';
-import {
-  initialLoad,
-  setSelectedProduct,
-  cancelSubscription,
-  reactivateSubscription,
-} from './actionCreators';
+import { initialLoad, setSelectedProduct, reactivateSubscription } from './actionCreators';
 import { getAvailableProducts, getPageLoading } from './reducer';
 import Landing from './components/Landing';
 import Plans from './components/Plans';
@@ -32,8 +27,6 @@ const ProductsPage = () => {
   const userProfile = useSelector(getUserProfile);
 
   const [showCancelModal, setShowCancelModal] = useState(false);
-  const cancelSubscriptionAction = async () =>
-    dispatch(cancelSubscription(userProfile.activeSubscription));
 
   const selectProductHandler = (product) => {
     dispatch(setSelectedProduct(product));
@@ -41,7 +34,8 @@ const ProductsPage = () => {
     if (isAuthenticated) {
       startedCheckout({ email: userProfile.email, product });
     }
-    history.push(ROUTES.PAYMENT_METHODS);
+
+    history.push(ROUTES.PAYMENT_METHODS_SELECT);
   };
 
   const cancelMembership = () => {
@@ -85,11 +79,9 @@ const ProductsPage = () => {
         <FAQ />
       </div>
       <CancelMembershipModal
-        cancelSubscriptionAction={cancelSubscriptionAction}
-        shouldClose
         isOpen={showCancelModal}
-        setShowCancelModal={setShowCancelModal}
         closeHandler={() => setShowCancelModal(false)}
+        subscription={userProfile.activeSubscription}
       />
     </>
   );

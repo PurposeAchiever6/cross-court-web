@@ -5,7 +5,6 @@ import { isNil } from 'ramda';
 
 import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
-import Modal from 'shared/components/Modal';
 
 import { isUserInLegalAge } from 'shared/utils/user';
 import WarningTriangle from 'shared/images/warning-triangle.png';
@@ -77,15 +76,14 @@ const Session = () => {
     <Loading />
   ) : (
     <div className="flex flex-col border-b border-gray-400">
-      <Modal shouldClose closeHandler={showCancelModalAction} isOpen={shouldShowCancelModal}>
-        <CancelModal
-          closeHandler={showCancelModalAction}
-          cancelSessionAction={cancelSessionAction}
-          inCancellationTime={sessionInfo?.userSession?.inCancellationTime}
-          isFreeSession={sessionInfo?.userSession?.isFreeSession}
-          unlimitedCredits={userProfile.unlimitedCredits}
-        />
-      </Modal>
+      <CancelModal
+        isOpen={shouldShowCancelModal}
+        closeHandler={showCancelModalAction}
+        cancelSessionAction={cancelSessionAction}
+        inCancellationTime={sessionInfo?.userSession?.inCancellationTime}
+        isFreeSession={sessionInfo?.userSession?.isFreeSession}
+        unlimitedCredits={userProfile.unlimitedCredits}
+      />
       <SessionHeader>{sessionInfo.location.name} SESSION</SessionHeader>
       <div className="flex flex-col-reverse md:flex-row bg-cc-black h-full">
         <Carousel

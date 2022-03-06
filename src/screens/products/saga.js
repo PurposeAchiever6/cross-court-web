@@ -1,6 +1,7 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
+import { INITIAL_LOAD_INIT as INITIAL_PAYMENT_METHODS_LOAD_INIT } from 'screens/payment-methods/actionTypes';
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -11,6 +12,9 @@ import {
   REACTIVATE_SUBSCRIPTION_INIT,
   REACTIVATE_SUBSCRIPTION_SUCCESS,
   REACTIVATE_SUBSCRIPTION_FAILURE,
+  UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
+  UPDATE_SUBSCRIPTION_PAYMENT_METHOD_SUCCESS,
+  UPDATE_SUBSCRIPTION_PAYMENT_METHOD_FAILURE,
 } from './actionTypes';
 import productsService from './service';
 
@@ -59,10 +63,31 @@ export function* reactivateSubscriptionFlow(action) {
   }
 }
 
+export function* updateSubscriptionPaymentMethodFlow(action) {
+  try {
+    const subscription = yield call(
+      productsService.updateSubscriptionPaymentMethod,
+      action.payload.subscription.id,
+      action.payload.paymentMethod.id
+    );
+    yield put({
+      type: UPDATE_SUBSCRIPTION_PAYMENT_METHOD_SUCCESS,
+      payload: { subscription },
+    });
+    yield put({ type: INITIAL_PAYMENT_METHODS_LOAD_INIT });
+    yield call(toast.success, 'You have updated your membership payment method successfully');
+  } catch (err) {
+    const error = err.response.data.error;
+    yield put({ type: UPDATE_SUBSCRIPTION_PAYMENT_METHOD_FAILURE, error });
+    yield call(toast.error, error);
+  }
+}
+
 export default function* productsSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
     takeLatest(CANCEL_SUBSCRIPTION_INIT, cancelSubscriptionFlow),
     takeLatest(REACTIVATE_SUBSCRIPTION_INIT, reactivateSubscriptionFlow),
+    takeLatest(UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT, updateSubscriptionPaymentMethodFlow),
   ]);
 }

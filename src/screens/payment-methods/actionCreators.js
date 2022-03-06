@@ -3,7 +3,6 @@ import {
   ADD_CARD_INIT,
   DELETE_CARD_INIT,
   SET_SELECTED_CARD,
-  CLAIM_FREE_SESSION,
   UPDATE_CARD_INIT,
 } from './actionTypes';
 
@@ -40,8 +39,4 @@ export const setSelectedCard = (cardId) => ({
   payload: {
     selectedCard: cardId,
   },
-});
-
-export const claimFreeSessionInit = () => ({
-  type: CLAIM_FREE_SESSION,
 });

@@ -50,10 +50,9 @@ export function* addPaymentMethodFlow(action) {
     });
     yield call(toast.success, 'Card sucessfully added!');
 
-    yield put(push(action.payload.redirectTo || ROUTES.EDIT_PAYMENT_METHODS));
+    yield put(push(action.payload.redirectTo || ROUTES.PAYMENT_METHODS_DEFAULT));
   } catch (err) {
     yield call(toast.error, err.message);
-
     yield put({ type: ADD_CARD_FAILURE, error: err });
   }
 }
@@ -74,8 +73,7 @@ export function* updatePaymentMethodFlow(action) {
     });
     yield call(toast.success, 'Default card updated');
   } catch (err) {
-    yield call(toast.error, err.message);
-
+    yield call(toast.error, err.response.data.error);
     yield put({ type: UPDATE_CARD_FAILURE, error: err });
   }
 }
@@ -96,7 +94,6 @@ export function* deletePaymentMethodFlow(action) {
     yield call(toast.success, 'Card successfully deleted');
   } catch (err) {
     yield call(toast.error, err.response.data.error);
-
     yield put({ type: DELETE_CARD_FAILURE, error: err.response.data.error });
   }
 }

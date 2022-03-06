@@ -61,7 +61,12 @@ const HomePage = () => {
   return (
     <>
       <Landing />
-      <Modal isOpen={shouldShowSurveyModal}>
+      <Modal
+        isOpen={shouldShowSurveyModal}
+        showCloseButton={false}
+        closeOnOverlayClick={false}
+        dark
+      >
         <SurveyModal />
       </Modal>
     </>
