@@ -31,7 +31,7 @@ export const getSessionsMessageContainerText = (
 
 export const sessionData = (date, sessionInfo) => [
   { title: 'DATE', value: longSessionDate(date) },
-  { title: 'TIME', value: hourRange(sessionInfo.time) },
+  { title: 'TIME', value: hourRange(sessionInfo.time, sessionInfo.durationMinutes) },
   {
     title: 'LOCATION',
     value: [

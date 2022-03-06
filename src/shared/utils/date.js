@@ -39,10 +39,12 @@ export const startOfWeek = (date) => getUTCDate(date).startOf('week');
 
 export const endOfWeek = (date) => getUTCDate(date).endOf('week');
 
-export const hourRange = (time) =>
-  `${getUTCDate(time).format(FORMAT_HOUR)} - ${getUTCDate(time)
-    .add(1, 'hour')
-    .format(FORMAT_HOUR)}`;
+export const hourRange = (time, durationInMinutes = 60) => {
+  const startTimeHour = getUTCDate(time).format(FORMAT_HOUR);
+  const endTimeHour = getUTCDate(time).add(durationInMinutes, 'minutes').format(FORMAT_HOUR);
+
+  return `${startTimeHour} - ${endTimeHour}`;
+};
 
 export const weekRangeTitle = (date) =>
   ` WEEK ${startOfWeek(date).format(FORMAT_MONTH)} ${startOfWeek(date).date()} - ${endOfWeek(
@@ -54,9 +56,7 @@ export const purchaseFormattedDate = (date) => getUTCDate(date).format(FORMAT_DA
 export const requestFormattedDate = (date) => getUTCDate(date).format(FORMAT_DATE_REQUEST);
 
 export const subscriptionPeriodFormattedDate = (date) =>
-  getUTCDate(date)
-    .local()
-    .format(FORMAT_DATE_SUBSCRIPTION);
+  getUTCDate(date).local().format(FORMAT_DATE_SUBSCRIPTION);
 
 export const isSameDay = (date1, date2) =>
   requestFormattedDate(date1) === requestFormattedDate(date2);

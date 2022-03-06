@@ -157,6 +157,7 @@ const Session = ({
     session: {
       id: sessionId,
       time,
+      durationMinutes,
       location: { name: locationName, imageUrls },
     },
   },
@@ -184,7 +185,7 @@ const Session = ({
           )}
         </span>
         <div className="time-location-buttons-container">
-          <p className="time">{hourRange(time)}</p>
+          <p className="time">{hourRange(time, durationMinutes)}</p>
           <p className="location">{locationName}</p>
           <div className="buttons-container">
             <PrimaryButton

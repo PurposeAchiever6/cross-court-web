@@ -118,6 +118,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           id,
           startTime,
           time,
+          durationMinutes,
           full,
           location,
           skillLevel,
@@ -228,7 +229,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
             >
               <div className="flex flex-col items-start">
                 <p className="font-bold whitespace-nowrap text-sm sm:text-base">
-                  {hourRange(time)}
+                  {hourRange(time, durationMinutes)}
                   {isPrivate && (
                     <Badge
                       variant="black"
