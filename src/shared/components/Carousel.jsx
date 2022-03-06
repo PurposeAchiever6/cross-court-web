@@ -3,6 +3,15 @@ import { Carousel as ReactResponsiveCarousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import PropTypes from 'prop-types';
 
+const Arrow = ({ prev, prevClickHandler, nextClickHandler, label }) => (
+  <button
+    type="button"
+    onClick={prev ? prevClickHandler : nextClickHandler}
+    title={label}
+    className={`carousel-arrow ${prev ? 'prev' : 'next'}`}
+  />
+);
+
 const Carousel = ({
   imageUrls,
   className,
@@ -26,12 +35,28 @@ const Carousel = ({
     interval={interval}
     useKeyboardArrows={useKeyboardArrows}
     swipeable={swipeable}
+    renderArrowPrev={(clickHandler, _hasPrev, _label) => (
+      <Arrow prev prevClickHandler={clickHandler} />
+    )}
+    renderArrowNext={(clickHandler, _hasNext, _label) => <Arrow nextClickHandler={clickHandler} />}
   >
     {imageUrls.map((image, index) => (
       <img className={imagesClassName} src={image} alt={`carousel-${index}`} key={index} />
     ))}
   </ReactResponsiveCarousel>
 );
+
+Arrow.propTypes = {
+  prev: PropTypes.bool,
+  prevClickHandler: PropTypes.func,
+  nextClickHandler: PropTypes.func,
+};
+
+Arrow.defaultProps = {
+  prev: false,
+  prevClickHandler: null,
+  nextClickHandler: null,
+};
 
 Carousel.defaultProps = {
   imageUrls: [],

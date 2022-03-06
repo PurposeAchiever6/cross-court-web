@@ -1,18 +1,52 @@
-body .carousel-root .carousel .control-prev.control-arrow:hover,
-body .carousel-root .carousel .control-next.control-arrow:hover {
-  background: none;
+body .carousel-root .carousel .carousel-arrow.prev:hover,
+body .carousel-root .carousel .carousel-arrow.next:hover {
+  border-color: #9999ff;
 }
-body .carousel-root .carousel .control-prev.control-arrow::before,
-body .carousel-root .carousel .control-next.control-arrow::before {
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-  margin: 0 8px;
+
+@media (max-width: 991px) {
+  body .carousel-root .carousel .carousel-arrow.prev:hover,
+  body .carousel-root .carousel .carousel-arrow.next:hover {
+    border-color: white;
+  }
 }
-body .carousel-root .carousel .control-prev.control-arrow::before {
-  border-right: 16px solid #fff;
+
+body .carousel-root .carousel .carousel-arrow {
+  position: absolute;
+  z-index: 2;
+  top: calc(50% - 15px);
+  width: 30;
+  height: 30;
+  cursor: 'pointer';
+  display: block;
+  border-top: 3px solid white;
+  border-left: 3px solid white;
+  border-radius: 3px;
+  transition: border-color 0.5s ease;
+  padding: 15px;
 }
-body .carousel-root .carousel .control-next.control-arrow::before {
-  border-left: 16px solid #fff;
+
+body .carousel-root .carousel .carousel-arrow.prev {
+  transform: rotate(-45deg);
+  left: 50px;
+}
+
+body .carousel-root .carousel .carousel-arrow.next {
+  transform: rotate(135deg);
+  right: 50px;
+}
+
+@media (max-width: 991px) {
+  body .carousel-root .carousel .carousel-arrow.next,
+  body .carousel-root .carousel .carousel-arrow.prev {
+    margin: 8px;
+    padding: 8px;
+  }
+  body .carousel-root .carousel .carousel-arrow.next {
+    right: 10px;
+  }
+  body .carousel-root .carousel .carousel-arrow.prev {
+    left: 10px;
+  }
 }
 
 @media (min-width: 991px) {
