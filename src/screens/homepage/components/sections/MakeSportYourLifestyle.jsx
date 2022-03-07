@@ -14,7 +14,9 @@ import lockers from 'screens/homepage/images/lockers.jpeg';
 const MakeSportYourLifestyle = () => (
   <div className="relative">
     <Carousel
+      useKeyboardArrows
       autoPlay
+      swipeable
       interval={5000}
       className="w-screen h-screen"
       imagesClassName="w-screen h-screen object-cover"
@@ -27,8 +29,8 @@ const MakeSportYourLifestyle = () => (
         lockers,
       ]}
     />
-    <div className="flex flex-col absolute w-full h-full bg-cc-black bg-opacity-60 top-0">
-      <div className="absolute top-1/3 px-10 md:px-20">
+    <div className="flex flex-col absolute w-full h-full top-0 bg-cc-black bg-opacity-60">
+      <div className="absolute top-1/3 px-10 md:px-40">
         <h1 className="text-transparent text-stroke-white text-stroke-width-1 md:text-stroke-width-2 text-2xl md:text-5xl 2xl:text-6xl font-shapiro96_inclined_wide">
           MAKE SPORT <br className="block md:hidden" /> YOUR LIFESTYLE
         </h1>
@@ -36,7 +38,7 @@ const MakeSportYourLifestyle = () => (
           BASKETBALL <br className="block md:hidden" /> BASED FITNESS
         </h2>
         <h3 className="text-white text-sm md:text-lg 2xl:text-2xl">
-          Pickup inspired experience. 1 hour. 15 players. 2 oficials. Games to 11. Tiered skill
+          Pickup inspired experience. 1 hour. 15 players. 2 officials. Games to 11. Tiered skill
           levels.
         </h3>
         <div className="flex flex-col md:flex-row mt-10">

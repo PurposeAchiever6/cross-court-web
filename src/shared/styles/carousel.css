@@ -14,6 +14,20 @@ body .carousel-root .carousel .control-prev.control-arrow::before {
 body .carousel-root .carousel .control-next.control-arrow::before {
   border-left: 16px solid #fff;
 }
+
+@media (min-width: 991px) {
+  body .carousel-root .carousel .control-prev.control-arrow::before {
+    padding-right: 1em;
+  }
+  body .carousel-root .carousel .control-next.control-arrow::before {
+    padding-left: 1em;
+  }
+}
+
+body .carousel-root .carousel .control-dots {
+  z-index: 5;
+}
+
 body .carousel-root .carousel .control-dots .dot {
   background-color: #fff;
   box-shadow: none;
@@ -24,6 +38,7 @@ body .carousel-root .carousel .control-dots .dot {
   vertical-align: middle;
   width: 13px;
 }
+
 body .carousel-root .carousel .control-dots .dot.selected {
   height: 16px;
   opacity: 1;

@@ -13,6 +13,8 @@ const Carousel = ({
   showThumbs,
   autoPlay,
   interval,
+  useKeyboardArrows,
+  swipeable,
 }) => (
   <ReactResponsiveCarousel
     className={className}
@@ -22,6 +24,8 @@ const Carousel = ({
     showThumbs={showThumbs}
     autoPlay={autoPlay}
     interval={interval}
+    useKeyboardArrows={useKeyboardArrows}
+    swipeable={swipeable}
   >
     {imageUrls.map((image, index) => (
       <img className={imagesClassName} src={image} alt={`carousel-${index}`} key={index} />
@@ -39,6 +43,8 @@ Carousel.defaultProps = {
   showThumbs: false,
   autoPlay: false,
   interval: 3000,
+  useKeyboardArrows: false,
+  swipeable: true,
 };
 
 Carousel.propTypes = {
@@ -51,6 +57,8 @@ Carousel.propTypes = {
   showThumbs: PropTypes.bool,
   autoPlay: PropTypes.bool,
   interval: PropTypes.number,
+  useKeyboardArrows: PropTypes.bool,
+  swipeable: PropTypes.bool,
 };
 
 export default Carousel;
