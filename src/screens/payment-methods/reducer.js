@@ -1,14 +1,9 @@
 import { createSelector } from 'reselect';
 import {
-  CREATE_FREE_SESSION_SUCCESS,
-  CREATE_FREE_SESSION_FAILURE,
-} from 'screens/checkout/actionTypes';
-import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
   INITIAL_LOAD_FAILURE,
   SET_SELECTED_CARD,
-  CLAIM_FREE_SESSION,
   ADD_CARD_INIT,
   ADD_CARD_SUCCESS,
   ADD_CARD_FAILURE,
@@ -23,7 +18,6 @@ const initialState = {
   pageLoading: false,
   availableCards: [],
   selectedCard: null,
-  claimFreeSession: false,
   addCardLoading: false,
   deleteCardLoading: false,
 };
@@ -50,17 +44,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selectedCard: { ...action.payload.selectedCard },
-      };
-    case CLAIM_FREE_SESSION:
-      return {
-        ...state,
-        claimFreeSession: true,
-      };
-    case CREATE_FREE_SESSION_SUCCESS:
-    case CREATE_FREE_SESSION_FAILURE:
-      return {
-        ...state,
-        claimFreeSession: false,
       };
     case ADD_CARD_INIT:
       return {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,19 +6,29 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
-import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import { deleteCard } from 'screens/payment-methods/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
-import CCIcon from 'shared/components/CCIcon';
+import { getDeleteCardLoading } from 'screens/payment-methods/reducer';
 import CrossCourtLogo from 'shared/images/cc-logo.png';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import CCIcon from 'shared/components/CCIcon';
 import Badge from 'shared/components/Badge';
 import Spinner from 'shared/components/Spinner';
 import Tooltip from 'shared/components/Tooltip';
 
-import { deleteCard, setSelectedCard, updateCard } from '../actionCreators';
-import { getDeleteCardLoading } from '../reducer';
-
-const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow, className }) => {
+const PaymentMethods = ({
+  title,
+  subtitle,
+  submitBtnText,
+  showDefault,
+  showActiveSubscription,
+  selectedPaymentMethod,
+  availablePaymentMethods,
+  onSelectCard,
+  onSubmitBtn,
+  loading,
+  className,
+}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -27,73 +37,31 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow, className }) =
   const deleteCardLoading = useSelector(getDeleteCardLoading);
   const defaultPaymentMethod = userInfo.defaultPaymentMethod;
 
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(null);
   const [cardIdToDelete, setCardIdToDelete] = useState(null);
-  const updatePaymentMethod = (paymentMethodId, attrs) =>
-    dispatch(updateCard(paymentMethodId, attrs));
 
-  const redirectUrl = window.localStorage.getItem('redirect');
-
-  const redirectTo =
-    location.pathname === ROUTES.EDIT_PAYMENT_METHODS
-      ? ROUTES.EDIT_PAYMENT_METHODS
-      : ROUTES.PAYMENT_METHODS;
-
-  const handleSelectPaymentMethod = useCallback(
-    (paymentMethod) => {
-      dispatch(setSelectedCard(paymentMethod));
-      setSelectedPaymentMethod(paymentMethod.id);
-    },
-    [dispatch]
-  );
-
-  const deleteCardHandler = (paymentMethodId) => {
-    setCardIdToDelete(paymentMethodId);
-    dispatch(deleteCard(paymentMethodId));
+  const selectCardHandler = (paymentMethod) => {
+    onSelectCard(paymentMethod);
   };
 
-  const selectedCardHandler = (paymentMethod) => {
-    handleSelectPaymentMethod(paymentMethod);
+  const deleteCardHandler = (paymentMethod) => {
+    setCardIdToDelete(paymentMethod.id);
+    dispatch(deleteCard(paymentMethod.id));
   };
 
-  const shouldReturnFSFDetailsPage = () =>
-    isUserInFirstFreeSessionFlow(userInfo) && availablePaymentMethods.length && redirectUrl;
-
-  const nextHandler = () => {
-    if (shouldReturnFSFDetailsPage()) {
-      window.localStorage.removeItem('redirect');
-      history.push(redirectUrl);
-    } else {
-      history.push('/checkout');
-    }
-  };
-
-  useEffect(() => {
-    if (defaultPaymentMethod) {
-      handleSelectPaymentMethod(defaultPaymentMethod);
-    }
-  }, [handleSelectPaymentMethod, defaultPaymentMethod]);
-
-  const handleAddNewCard = () => {
+  const addNewCardHandler = () => {
     history.push({
-      pathname: ROUTES.ADD_PAYMENT_METHOD,
+      pathname: ROUTES.PAYMENT_METHODS_ADD,
       state: {
-        redirectTo,
+        redirectTo: location.pathname,
       },
     });
-  };
-
-  const handleMakeDefault = (paymentMethodId) => {
-    updatePaymentMethod(paymentMethodId, { default: true });
   };
 
   return (
     <div className={className}>
       <div className="text-center mb-8">
-        <h2 className="font-shapiro95_super_wide text-lg">
-          {`${isPaymentFlow ? 'CHOOSE A PAYMENT METHOD' : 'PAYMENT METHODS'}`}
-        </h2>
-        {!isPaymentFlow && <h3>Select your default payment method</h3>}
+        <h2 className="font-shapiro95_super_wide text-lg uppercase">{title}</h2>
+        {subtitle && <h3 className="mt-1">{subtitle}</h3>}
       </div>
       <div className="border-4 border-cc-purple mb-10">
         {availablePaymentMethods.length === 0 ? (
@@ -102,22 +70,25 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow, className }) =
           </div>
         ) : (
           availablePaymentMethods.map((paymentMethod) => {
-            const isCardSelected = selectedPaymentMethod === paymentMethod.id;
-            const isDefault = defaultPaymentMethod?.id === paymentMethod.id;
-            const withActiveSubscription = paymentMethod.withActiveSubscription;
+            const isCardSelected = selectedPaymentMethod?.id === paymentMethod.id;
+            const isDefault = showDefault && defaultPaymentMethod?.id === paymentMethod.id;
+            const withActiveSubscription =
+              showActiveSubscription && paymentMethod.withActiveSubscription;
+
             return (
-              <div key={paymentMethod.id} className="border-b-2 last:border-0 p-4">
+              <div
+                key={paymentMethod.id}
+                className={`border-b-2 last:border-0 p-4 ${
+                  loading ? 'pointer-events-none opacity-40' : ''
+                }`}
+              >
                 <div className="flex items-center justify-between gap-x-4 sm:gap-x-10">
                   <button
                     className={`border-2 rounded-full min-w-10 h-10 selector ${
                       isCardSelected ? 'animate-spin-slow bg-cc-ball-logo bg-contain' : ''
                     }`}
                     type="button"
-                    onClick={() =>
-                      isPaymentFlow
-                        ? selectedCardHandler(paymentMethod)
-                        : handleMakeDefault(paymentMethod.id)
-                    }
+                    onClick={() => selectCardHandler(paymentMethod)}
                   />
                   <CCIcon ccType={paymentMethod.brand} />
                   <div className="text-center w-40 sm:w-48">
@@ -152,7 +123,7 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow, className }) =
                     >
                       <button
                         type="button"
-                        onClick={() => deleteCardHandler(paymentMethod.id)}
+                        onClick={() => deleteCardHandler(paymentMethod)}
                         className={withActiveSubscription ? 'opacity-50 pointer-events-none' : ''}
                         disabled={withActiveSubscription}
                       >
@@ -167,14 +138,11 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow, className }) =
         )}
       </div>
       <div className="flex items-center justify-between">
-        <PrimaryButton onClick={handleAddNewCard} inverted>
-          ADD NEW CARD
+        <PrimaryButton onClick={addNewCardHandler} inverted>
+          Add New Card
         </PrimaryButton>
-        <PrimaryButton
-          disabled={!selectedPaymentMethod}
-          onClick={isPaymentFlow ? nextHandler : () => history.push(ROUTES.MYACCOUNT)}
-        >
-          {`${isPaymentFlow ? 'NEXT' : 'DONE'}`}
+        <PrimaryButton disabled={!selectedPaymentMethod} onClick={onSubmitBtn}>
+          {submitBtnText}
         </PrimaryButton>
       </div>
     </div>
@@ -182,12 +150,25 @@ const PaymentMethods = ({ availablePaymentMethods, isPaymentFlow, className }) =
 };
 
 PaymentMethods.defaultProps = {
+  subtitle: null,
+  showDefault: true,
+  showActiveSubscription: true,
+  initialPaymentMethodSelected: null,
+  loading: false,
   className: '',
 };
 
 PaymentMethods.propTypes = {
-  availablePaymentMethods: PropTypes.arrayOf(PropTypes.object).isRequired,
-  isPaymentFlow: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+  showDefault: PropTypes.bool,
+  showActiveSubscription: PropTypes.bool,
+  initialPaymentMethodSelected: PropTypes.shape(),
+  availablePaymentMethods: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  submitBtnText: PropTypes.string.isRequired,
+  onSelectCard: PropTypes.func.isRequired,
+  onSubmitBtn: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
   className: PropTypes.string,
 };
 

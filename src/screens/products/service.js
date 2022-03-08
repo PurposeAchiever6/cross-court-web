@@ -24,8 +24,14 @@ export default {
   },
 
   reactivateSubscription: async (subscriptionId) => {
-    const response = await api.post(`/subscriptions/${subscriptionId}/reactivate`, {
-      data: {},
+    const response = await api.post(`/subscriptions/${subscriptionId}/reactivate`, {});
+
+    return response.data;
+  },
+
+  updateSubscriptionPaymentMethod: async (subscriptionId, paymentMethodId) => {
+    const response = await api.post(`/subscriptions/${subscriptionId}/payment_method`, {
+      paymentMethodId,
     });
 
     return response.data;

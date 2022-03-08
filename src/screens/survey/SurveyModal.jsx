@@ -111,7 +111,7 @@ const SurveyModal = () => {
 
   return (
     <ScrollLock isActive={true}>
-      <SurveyModalContainer className="survey-modal bg-cc-black">
+      <SurveyModalContainer className="survey-modal">
         <FontAwesomeIcon
           className="close-btn hide"
           icon={faTimes}

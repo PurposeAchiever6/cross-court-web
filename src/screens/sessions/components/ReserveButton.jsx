@@ -43,7 +43,7 @@ const ReserveButton = ({
   const reservationHandler = () => {
     if (!selectedCard && isFSFFlow) {
       window.localStorage.setItem('redirect', window.location.pathname);
-      history.push(ROUTES.PAYMENT_METHODS);
+      history.push(ROUTES.PAYMENT_METHODS_SELECT);
     } else {
       if (!userProfile.unlimitedCredits && userProfile.totalCredits === 0) {
         window.localStorage.setItem('redirect', window.location.pathname);

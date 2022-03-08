@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
@@ -8,14 +8,14 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
-import { cancelSubscription } from 'screens/products/actionCreators';
 
 const ManageMembershipPage = () => {
-  const dispatch = useDispatch();
-
   const { activeSubscription } = useSelector(getUserProfile);
   const loading = useSelector(getPageLoading);
   const [showCancelModal, setShowCancelModal] = useState(false);
+
+  const active = !activeSubscription?.canceled;
+  const product = activeSubscription?.product;
 
   if (loading) {
     return <Loading />;
@@ -25,66 +25,70 @@ const ManageMembershipPage = () => {
     return <Redirect to={ROUTES.MYACCOUNT} />;
   }
 
-  const active = !activeSubscription.canceled;
-  const product = activeSubscription.product;
-
-  const cancelSubscriptionAction = async () => dispatch(cancelSubscription(activeSubscription));
-
   return (
-    <>
-      <div className="flex flex-col p-12 min-h-screen">
-        <h1 className="uppercase font-shapiro95_super_wide text-3xl text-cc-black mb-6">
-          Membership
-        </h1>
+    <div className="min-h-screen p-12">
+      <h1 className="font-shapiro95_super_wide text-3xl text-cc-black uppercase mb-6">
+        Membership
+      </h1>
 
-        <h3 className="uppercase font-shapiro95_super_wide text-xl text-cc-black">status</h3>
-        <p className="mb-8">{active ? 'Active' : 'Canceled'}</p>
+      <h3 className="font-shapiro95_super_wide text-xl text-cc-black uppercase">Status</h3>
 
-        {active ? (
-          <>
-            <h3 className="uppercase font-shapiro95_super_wide text-xl text-cc-black">billing</h3>
-            <p className="mb-8">
-              {`Your current membership price is $${
-                product.price
-              } + tax and your next bill is due on ${subscriptionPeriodFormattedDate(
-                activeSubscription.currentPeriodEnd
-              )}.`}
-            </p>
+      {active ? (
+        <>
+          <div className="mb-8">Active</div>
 
-            <h3 className="uppercase font-shapiro95_super_wide text-xl text-cc-black">
-              current membership
-            </h3>
-            <p className="mb-3 lowercase">{`${product?.name}/month`}</p>
-            <PrimaryButton inverted bg="transparent" className="w-max mb-8" to={ROUTES.MEMBERSHIPS}>
-              change membership
-            </PrimaryButton>
-
-            <h3 className="uppercase font-shapiro95_super_wide text-xl text-cc-black mb-3">
-              manage membership
-            </h3>
-            <PrimaryButton
-              inverted
-              bg="transparent"
-              className="w-max"
-              onClick={() => setShowCancelModal(true)}
-            >
-              cancel membership
-            </PrimaryButton>
-          </>
-        ) : (
-          <PrimaryButton to={ROUTES.MEMBERSHIPS} className="w-max">
-            reactivate
+          <h3 className="font-shapiro95_super_wide text-xl text-cc-black uppercase">Billing</h3>
+          <div className="mb-3">
+            {`Your current membership price is $${
+              product.price
+            } + tax and your next bill is due on ${subscriptionPeriodFormattedDate(
+              activeSubscription.currentPeriodEnd
+            )}.`}
+          </div>
+          <PrimaryButton
+            fontSize="0.75rem"
+            className="block mb-8"
+            to={ROUTES.PAYMENT_METHODS_MEMBERSHIP}
+          >
+            Edit
           </PrimaryButton>
-        )}
-      </div>
-      <CancelMembershipModal
-        cancelSubscriptionAction={cancelSubscriptionAction}
-        shouldClose
-        isOpen={showCancelModal}
-        setShowCancelModal={setShowCancelModal}
-        closeHandler={() => setShowCancelModal(false)}
-      />
-    </>
+
+          <h3 className="font-shapiro95_super_wide text-xl text-cc-black uppercase">
+            Current Membership
+          </h3>
+          <div className="mb-2">{`${product?.name}/month`}</div>
+          <PrimaryButton fontSize="0.75rem" className="block mb-8" to={ROUTES.MEMBERSHIPS}>
+            Change Membership
+          </PrimaryButton>
+
+          <h3 className="font-shapiro95_super_wide text-xl text-cc-black uppercase mb-3">
+            Manage Membership
+          </h3>
+          <PrimaryButton inverted fontSize="0.75rem" onClick={() => setShowCancelModal(true)}>
+            cancel membership
+          </PrimaryButton>
+          <CancelMembershipModal
+            isOpen={showCancelModal}
+            closeHandler={() => setShowCancelModal(false)}
+            subscription={activeSubscription}
+          />
+        </>
+      ) : (
+        <>
+          <div className="mb-1">Canceled</div>
+          <div className="mb-8">
+            {`Billing period ends on ${subscriptionPeriodFormattedDate(
+              activeSubscription.currentPeriodEnd
+            )}.`}
+            <br />
+            Your membership can be reactivated at any point prior to that date.
+          </div>
+          <PrimaryButton fontSize="0.75rem" to={ROUTES.MEMBERSHIPS}>
+            Reactivate
+          </PrimaryButton>
+        </>
+      )}
+    </div>
   );
 };
 

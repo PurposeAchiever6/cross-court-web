@@ -1,83 +1,125 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import ScrollLock from 'react-scrolllock';
 import PropTypes from 'prop-types';
-import useWindowSize from 'shared/hooks/useWindowSize';
-import { size } from 'shared/styles/mediaQueries';
-import CrossSvg from './svg/CrossSvg';
 
-const modalStyle = {
-  overlay: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.75)',
-    zIndex: 100,
-  },
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    maxHeight: 'calc(100vh - 50px)', // <-- This sets the height
-    overflowY: 'auto', // <-- This tells the modal to scrolad
-  },
-};
+import colors from 'shared/styles/constants';
+import useWindowSize from 'shared/hooks/useWindowSize';
+import { size as breakpoints } from 'shared/styles/mediaQueries';
+import CrossSvg from './svg/CrossSvg';
 
 ReactModal.setAppElement('#root');
 
-const Modal = ({ children, shouldClose, closeHandler, isOpen, style, showCloseButton, title }) => {
+const Modal = ({
+  isOpen,
+  closeHandler,
+  title,
+  lockScroll,
+  showCloseButton,
+  closeOnOverlayClick,
+  size,
+  style,
+  dark,
+  children,
+}) => {
   const { width: windowSize } = useWindowSize();
-  const newModalStyle = {
-    ...modalStyle,
+
+  const getWidthBySize = (() => {
+    switch (size) {
+      case 'xs':
+        return '20rem';
+      case 'sm':
+        return '25rem';
+      case 'md':
+        return '30rem';
+      case 'lg':
+        return '35rem';
+      case 'xl':
+        return '40rem';
+      case 'full':
+        return '100%';
+      default:
+        return '100%';
+    }
+  })();
+
+  const modalStyle = {
+    overlay: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: 'rgba(0, 0, 0, 0.75)',
+      zIndex: 100,
+    },
     content: {
-      ...modalStyle.content,
-      width: windowSize < size.desktop ? '80%' : '25rem',
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      width: windowSize < breakpoints.desktop ? '100%' : getWidthBySize,
+      maxWidth: '90%',
+      maxHeight: '95%',
+      overflowY: 'auto',
+      backgroundColor: dark ? colors.brandBlack : 'white',
+      borderColor: dark ? colors.brandBlack : null,
       ...style,
     },
   };
 
   return (
     <ReactModal
-      style={newModalStyle}
-      shouldCloseOnOverlayClick={shouldClose}
-      onRequestClose={closeHandler}
       isOpen={isOpen}
+      onRequestClose={closeHandler}
+      shouldCloseOnOverlayClick={closeOnOverlayClick}
+      style={modalStyle}
     >
-      <div className="flex items-center">
-        {showCloseButton && (
-          <button className="h-1/5" onClick={closeHandler}>
-            <CrossSvg color="black" />
-          </button>
-        )}
-        {title && <h2 className="ml-4">{title}</h2>}
-      </div>
-      <div className={`flex items-center justify-center ${showCloseButton ? 'h-4/5' : 'h-full'}`}>
-        {children}
-      </div>
+      <ScrollLock isActive={lockScroll}>
+        <div className={`p-2 ${showCloseButton ? 'pt-5' : ''}`}>
+          {showCloseButton && (
+            <button className="absolute top-0 right-0 p-4" onClick={closeHandler}>
+              <CrossSvg color={dark ? 'white' : 'black'} />
+            </button>
+          )}
+          {title && (
+            <h2
+              className={`font-shapiro95_super_wide text-lg sm:text-2xl text-center uppercase mb-6 ${
+                dark ? 'text-white' : ''
+              }`}
+            >
+              {title}
+            </h2>
+          )}
+          {children}
+        </div>
+      </ScrollLock>
     </ReactModal>
   );
 };
 
-Modal.propTypes = {
-  children: PropTypes.element,
-  shouldClose: PropTypes.bool,
-  closeHandler: PropTypes.func,
-  isOpen: PropTypes.bool,
-  style: PropTypes.object,
-  showCloseButton: PropTypes.bool,
-  title: PropTypes.string,
+Modal.defaultProps = {
+  closeHandler: () => null,
+  title: null,
+  lockScroll: true,
+  showCloseButton: true,
+  closeOnOverlayClick: true,
+  size: 'md',
+  dark: false,
+  style: {},
 };
 
-Modal.defaultProps = {
-  children: null,
-  shouldClose: false,
-  closeHandler: null,
-  isOpen: false,
-  style: {},
-  showCloseButton: false,
-  title: null,
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  closeHandler: PropTypes.func,
+  title: PropTypes.string,
+  lockScroll: PropTypes.bool,
+  showCloseButton: PropTypes.bool,
+  closeOnOverlayClick: PropTypes.bool,
+  size: PropTypes.string,
+  dark: PropTypes.bool,
+  style: PropTypes.object,
+  children: PropTypes.node.isRequired,
 };
 
 export default Modal;

@@ -15,4 +15,3 @@ export const DELETE_CARD_SUCCESS = '@payment-methods/DELETE_CARD_SUCCESS';
 export const DELETE_CARD_FAILURE = '@payment-methods/DELETE_CARD_FAILURE';
 
 export const SET_SELECTED_CARD = '@payment-methods/SET_SELECTED_CARD';
-export const CLAIM_FREE_SESSION = '@payment-methods/CLAIM_FREE_SESSION';

@@ -113,14 +113,7 @@ const MyProfile = ({ profile, showTitle = true }) => {
               className="text-left"
               fontSize="0.75rem"
               lineHeight="1"
-              onClick={() =>
-                history.push({
-                  pathname: ROUTES.EDIT_PAYMENT_METHODS,
-                  state: {
-                    from: location.pathname,
-                  },
-                })
-              }
+              onClick={() => history.push(ROUTES.PAYMENT_METHODS_DEFAULT)}
             >
               Edit
             </PrimaryButton>

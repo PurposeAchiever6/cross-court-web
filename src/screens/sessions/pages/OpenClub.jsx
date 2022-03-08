@@ -10,7 +10,7 @@ import Loading from 'shared/components/Loading';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 
-import { removeSessionFromStorage } from 'shared/actions/actionCreators';
+import { resetLoading, removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { initialLoadInit, initialLoadAuthInit } from 'screens/sessions/actionCreators';
 import { getPageLoading, getSessionInfo } from 'screens/sessions/reducer';
 import Carousel from 'shared/components/Carousel';
@@ -53,15 +53,25 @@ const OpenClub = () => {
     } else {
       dispatch(initialLoadInit(id, date));
     }
+
+    return () => {
+      dispatch(resetLoading());
+    };
   }, [dispatch, id, date, isAuthenticated]);
 
   if (isNil(id)) {
     return <Redirect to={ROUTES.HOME} />;
   }
 
-  return isPageLoading ? (
-    <Loading />
-  ) : (
+  if (isPageLoading) {
+    return <Loading />;
+  }
+
+  if (!sessionInfo.isOpenClub) {
+    return <Redirect to={`/session/${id}/${date}`} />;
+  }
+
+  return (
     <div className="flex flex-col border-b border-gray-400">
       <SessionHeader>{sessionInfo.location.name} OPEN CLUB</SessionHeader>
       <div className="flex flex-col-reverse md:flex-row bg-cc-black h-full">

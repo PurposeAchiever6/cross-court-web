@@ -5,10 +5,14 @@ import {
   INITIAL_LOAD_SUCCESS,
   INITIAL_LOAD_FAILURE,
   SET_SELECTED_PRODUCT,
+  UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
+  UPDATE_SUBSCRIPTION_PAYMENT_METHOD_SUCCESS,
+  UPDATE_SUBSCRIPTION_PAYMENT_METHOD_FAILURE,
 } from './actionTypes';
 
 const initialState = {
   pageLoading: false,
+  updateSubscriptionPaymentMethodLoading: false,
   availableProducts: [],
   selectedProduct: null,
   error: '',
@@ -38,6 +42,22 @@ export default (state = initialState, action) => {
         priceBeforeDiscount: action.payload.selectedProduct.price,
         selectedProduct: { ...action.payload.selectedProduct },
       };
+    case UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT:
+      return {
+        ...state,
+        updateSubscriptionPaymentMethodLoading: true,
+      };
+    case UPDATE_SUBSCRIPTION_PAYMENT_METHOD_SUCCESS:
+      return {
+        ...state,
+        updateSubscriptionPaymentMethodLoading: false,
+      };
+    case UPDATE_SUBSCRIPTION_PAYMENT_METHOD_FAILURE:
+      return {
+        ...state,
+        updateSubscriptionPaymentMethodLoading: false,
+        error: action.error,
+      };
     case CHECK_PROMO_CODE_SUCCESS:
       return {
         ...state,
@@ -64,6 +84,11 @@ export default (state = initialState, action) => {
 export const getProducts = (state) => state.products;
 
 export const getPageLoading = createSelector(getProducts, (products) => products.pageLoading);
+
+export const getUpdateSubscriptionPaymentMethodLoading = createSelector(
+  getProducts,
+  (products) => products.updateSubscriptionPaymentMethodLoading
+);
 
 export const getError = createSelector(getProducts, (products) => products.error);
 

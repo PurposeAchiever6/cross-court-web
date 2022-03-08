@@ -118,6 +118,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           id,
           startTime,
           time,
+          durationMinutes,
           full,
           location,
           skillLevel,
@@ -228,7 +229,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
             >
               <div className="flex flex-col items-start">
                 <p className="font-bold whitespace-nowrap text-sm sm:text-base">
-                  {hourRange(time)}
+                  {hourRange(time, durationMinutes)}
                   {isPrivate && (
                     <Badge
                       variant="black"
@@ -241,11 +242,17 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
                   {location.name}
                 </p>
-                <div id="sessions-list-session-level-info" className="my-2">
-                  <BadgeWithInfo info={isOpenClub ? OPEN_CLUB_INFO : skillLevel.description}>
-                    {isOpenClub ? 'OPEN CLUB' : `${skillLevel.min} - ${skillLevel.max}`}
-                  </BadgeWithInfo>
-                </div>
+                {isOpenClub ? (
+                  <div className="my-2">
+                    <BadgeWithInfo info={OPEN_CLUB_INFO}>Open Club</BadgeWithInfo>
+                  </div>
+                ) : (
+                  <div id="sessions-list-session-level-info" className="my-2">
+                    <BadgeWithInfo info={skillLevel.description}>
+                      {`${skillLevel.min} - ${skillLevel.max}`}
+                    </BadgeWithInfo>
+                  </div>
+                )}
               </div>
               <div className="flex flex-col items-end pl-8">
                 {button}

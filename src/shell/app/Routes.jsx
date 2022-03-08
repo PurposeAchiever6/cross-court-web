@@ -46,8 +46,6 @@ const ManageMembershipPage = lazy(() => import('screens/memberships/ManageMember
 const MyAccount = lazy(() => import('screens/my-account/MyAccountPage'));
 const PurchaseHistory = lazy(() => import('screens/purchase-history/PurchaseHistoryPage'));
 const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfirm'));
-const PaymentMethods = lazy(() => import('screens/payment-methods/pages/PaymentMethodsPage'));
-const AddPaymentMethod = lazy(() => import('screens/payment-methods/pages/AddCard'));
 const FAQ = lazy(() => import('screens/faq/FaqPage'));
 const Content = lazy(() => import('screens/content/ContentPage'));
 const Rules = lazy(() => import('shared/pages/Rules'));
@@ -57,6 +55,16 @@ const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndC
 const PrivacyPolicy = lazy(() => import('screens/legal-docs/pages/PrivacyPolicy'));
 const Survey = lazy(() => import('screens/survey/SurveyPage'));
 const PWA = lazy(() => import('screens/pwa/PWAPage'));
+const AddPaymentMethod = lazy(() => import('screens/payment-methods/pages/AddPaymentMethod'));
+const PaymentMethodsSelect = lazy(() =>
+  import('screens/payment-methods/pages/PaymentMethodsSelect')
+);
+const PaymentMethodsDefault = lazy(() =>
+  import('screens/payment-methods/pages/PaymentMethodsDefault')
+);
+const PaymentMethodsMembership = lazy(() =>
+  import('screens/payment-methods/pages/PaymentMethodsMembership')
+);
 
 const AppWrapper = styled.div`
   display: flex;
@@ -473,10 +481,16 @@ const Routes = () => {
         <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED} exact>
           <CheckoutConfirm />
         </PrivateRoute>
-        <PrivateRoute path={[ROUTES.PAYMENT_METHODS, ROUTES.EDIT_PAYMENT_METHODS]} exact>
-          <PaymentMethods />
+        <PrivateRoute path={[ROUTES.PAYMENT_METHODS_SELECT]} exact>
+          <PaymentMethodsSelect />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.ADD_PAYMENT_METHOD} exact>
+        <PrivateRoute path={[ROUTES.PAYMENT_METHODS_DEFAULT]} exact>
+          <PaymentMethodsDefault />
+        </PrivateRoute>
+        <PrivateRoute path={[ROUTES.PAYMENT_METHODS_MEMBERSHIP]} exact>
+          <PaymentMethodsMembership />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.PAYMENT_METHODS_ADD} exact>
           <AddPaymentMethod />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.MYACCOUNT} exact>
