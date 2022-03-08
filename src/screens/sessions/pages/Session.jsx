@@ -13,7 +13,7 @@ import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import BadgeWithInfo from 'shared/components/BadgeWithInfo';
 
-import { removeSessionFromStorage } from 'shared/actions/actionCreators';
+import { resetLoading, removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
 import {
   initialLoadInit,
@@ -66,15 +66,25 @@ const Session = () => {
     } else {
       dispatch(initialLoadInit(id, date));
     }
+
+    return () => {
+      dispatch(resetLoading());
+    };
   }, [dispatch, id, date, isAuthenticated]);
 
   if (isNil(id)) {
     return <Redirect to={ROUTES.HOME} />;
   }
 
-  return isPageLoading ? (
-    <Loading />
-  ) : (
+  if (isPageLoading) {
+    return <Loading />;
+  }
+
+  if (sessionInfo.isOpenClub) {
+    return <Redirect to={`/session/${id}/${date}/open-club`} />;
+  }
+
+  return (
     <div className="flex flex-col border-b border-gray-400">
       <CancelModal
         isOpen={shouldShowCancelModal}

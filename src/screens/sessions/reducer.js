@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { RESET_LOADING } from 'shared/actions/actionTypes';
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -106,6 +107,11 @@ export default (state = initialState, action) => {
         sessionsLoadingBtns: [
           ...state.sessionsLoadingBtns.filter((id) => id !== action.payload.sessionId),
         ],
+      };
+    case RESET_LOADING:
+      return {
+        ...state,
+        pageLoading: initialState.pageLoading,
       };
     default:
       return state;
