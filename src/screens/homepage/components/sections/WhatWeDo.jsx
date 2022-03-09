@@ -6,10 +6,10 @@ import whatWeDoBgImg from 'screens/homepage/images/what-we-do.jpeg';
 
 const Section = styled.section`
   .bg-img-position {
-    background-position: right;
+    background-position: -200px 0px;
 
     @media (min-width: 992px) {
-      background-position: 0px -500px;
+      background-position: 0px -400px;
     }
   }
 `;
