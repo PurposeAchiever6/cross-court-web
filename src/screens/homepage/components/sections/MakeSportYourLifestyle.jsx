@@ -30,7 +30,7 @@ const MakeSportYourLifestyle = () => (
       ]}
     />
     <div className="flex flex-col absolute w-full h-full top-0 bg-cc-black bg-opacity-60">
-      <div className="absolute top-1/3 px-10 md:px-40">
+      <div className="absolute top-1/3 px-14 md:px-40">
         <h1 className="text-transparent text-stroke-white text-stroke-width-1 md:text-stroke-width-2 text-2xl md:text-5xl 2xl:text-6xl font-shapiro96_inclined_wide">
           MAKE SPORT <br className="block md:hidden" /> YOUR LIFESTYLE
         </h1>

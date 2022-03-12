@@ -1,84 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'formik';
-import styled from 'styled-components';
-import { isNil, head } from 'ramda';
-import colors from 'shared/styles/constants';
 
-const InputCheckboxContainer = styled.div`
-  display: flex;
-  height: 100%;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 2rem;
-
-  .checkbox-container {
-    display: flex;
-    flex: 1;
-    height: 100%;
-    justify-content: flex-start;
-    align-items: center;
-
-    label {
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
-    input {
-      margin-left: 0;
-    }
-    .text-container {
-      padding-left: 0.5rem;
-    }
-  }
-
-  small {
-    text-align: right;
-    color: ${colors.errorRed};
-    text-transform: initial;
-  }
-`;
-export default function InputCheckbox({
-  error,
-  name,
-  labelText,
-  disabled = false,
-  children,
-  className = '',
-}) {
-  return (
-    <Field name={name}>
-      {({ field, form: { touched, errors: formikError } }) => (
-        <InputCheckboxContainer className={className}>
-          <div className="checkbox-container">
-            {labelText && (
-              <label className="form-check-label" htmlFor={field.name}>
-                {labelText}
-              </label>
-            )}
-            <input
-              type="checkbox"
-              className={
-                (touched[field.name] && formikError[field.name]) || error ? 'is-invalid' : ''
-              }
-              checked={field.value}
-              disabled={disabled}
-              {...field}
-            />
-            <div className="text-container">{children}</div>
-          </div>
-          <small id={`${field.name}-error`} className="form-text">
-            {isNil(error) ? formikError[field.name] : head(error)}
+const InputCheckboxField = ({ name, children, error, disabled, className }) => (
+  <Field name={name}>
+    {({ field, form: { errors: formikError } }) => (
+      <div className={className}>
+        <div className="flex">
+          <input
+            type="checkbox"
+            className="mt-1"
+            checked={field.value}
+            disabled={disabled}
+            {...field}
+          />
+          <div className="ml-4 text-sm">{children}</div>
+        </div>
+        {(error || formikError[field.name]) && (
+          <small className="block text-red-500 text-right mt-1">
+            {error || formikError[field.name]}
           </small>
-        </InputCheckboxContainer>
-      )}
-    </Field>
-  );
-}
-InputCheckbox.propTypes = {
-  error: PropTypes.string,
+        )}
+      </div>
+    )}
+  </Field>
+);
+
+InputCheckboxField.defaultProps = {
+  error: null,
+  disabled: false,
+  className: '',
+};
+
+InputCheckboxField.propTypes = {
   name: PropTypes.string.isRequired,
-  labelText: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  error: PropTypes.string,
   disabled: PropTypes.bool,
   className: PropTypes.string,
 };
+
+export default InputCheckboxField;
