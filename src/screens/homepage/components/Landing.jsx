@@ -7,6 +7,7 @@ import BasketballBasedFitness from './sections/BasketballBasedFitness';
 import WhatWeDo from './sections/WhatWeDo';
 import WhoWeAre from './sections/WhoWeAre';
 import WhyWeExist from './sections/WhyWeExist';
+import Testimonials from './sections/Testimonials';
 import FollowUsOnInstagram from './sections/FollowUsOnInstagram';
 import Ready from './sections/Ready';
 
@@ -19,6 +20,7 @@ const Landing = () => (
     <WhoWeAre />
     <WhyWeExist />
     <CrosscourtKeys />
+    <Testimonials />
     <FollowUsOnInstagram />
     <Ready />
   </>

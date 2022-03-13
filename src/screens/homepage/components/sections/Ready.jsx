@@ -8,8 +8,6 @@ import readyBgImg from 'screens/homepage/images/ready.jpeg';
 
 const Section = styled.section`
   .bg-img-position {
-    background-position: -75px 0px;
-
     @media (min-width: 992px) {
       background-position: 0px -900px;
     }

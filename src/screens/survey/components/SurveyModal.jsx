@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Modal from 'shared/components/Modal';
 import StarEmptyIcon from 'shared/images/star-empty.png';
-import StarFullIcon from 'shared/images/star-full2.png';
+import StarFullIcon from 'shared/images/star-full-white.png';
 
 const SurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, answerQuestion }) => {
   const [starsSelected, setStarsSelected] = useState(0);
