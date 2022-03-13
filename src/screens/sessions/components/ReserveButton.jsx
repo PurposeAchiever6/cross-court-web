@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import PropTypes from 'prop-types';
 
-import { getIsAuthenticated } from 'screens/auth/reducer';
-import { isPast } from 'shared/utils/date';
-import { getUserProfile } from 'screens/my-account/reducer';
-import { initialLoadInit } from 'screens/payment-methods/actionCreators';
-import { getSelectedCard } from 'screens/payment-methods/reducer';
-import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import ROUTES from 'shared/constants/routes';
+import { isPast } from 'shared/utils/date';
+import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
+import { getSelectedCard } from 'screens/payment-methods/reducer';
+import { getSessionDate } from 'screens/sessions/reducer';
+import { initialLoadInit } from 'screens/payment-methods/actionCreators';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
-import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
-
-import { getSessionDate } from '../reducer';
+import CodeOfConductModal from 'screens/sessions/components/CodeOfConductModal';
 
 const ReserveButton = ({
   reserveSessionAction,
@@ -33,6 +33,8 @@ const ReserveButton = ({
   const sessionDate = useSelector(getSessionDate);
   const userProfile = useSelector(getUserProfile);
   const selectedCard = useSelector(getSelectedCard);
+
+  const [showCodeOfConductModal, setShowCodeOfConductModal] = useState(false);
 
   const isFSFFlow = isUserInFirstFreeSessionFlow(userProfile);
 
@@ -52,7 +54,7 @@ const ReserveButton = ({
           state: { showNoCreditsAnimation: true },
         });
       } else if (isFSFFlow) {
-        createAndReserveFreeSessionHandler();
+        setShowCodeOfConductModal(true);
       } else {
         reserveSessionAction();
       }
@@ -82,6 +84,11 @@ const ReserveButton = ({
                 intro: `You’re s’close. Tap <strong>CONFIRM RESERVATION</strong> to hold your spot. Then enter your payment info and your first session is officially booked. Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`,
               },
             ]}
+          />
+          <CodeOfConductModal
+            isOpen={showCodeOfConductModal}
+            closeHandler={() => setShowCodeOfConductModal(false)}
+            createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
           />
         </>
       );

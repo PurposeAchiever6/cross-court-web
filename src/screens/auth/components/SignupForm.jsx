@@ -1,7 +1,7 @@
-import { Formik, Form } from 'formik';
 import React from 'react';
-import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';

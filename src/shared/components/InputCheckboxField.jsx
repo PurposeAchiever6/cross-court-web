@@ -4,19 +4,22 @@ import { Field } from 'formik';
 
 const InputCheckboxField = ({ name, children, error, disabled, className }) => (
   <Field name={name}>
-    {({ field, form: { errors: formikError } }) => (
+    {({ field, form: { touched, errors: formikError } }) => (
       <div className={className}>
         <div className="flex">
           <input
+            id={field.name}
             type="checkbox"
-            className="mt-1"
+            className="cursor-pointer mt-1"
             checked={field.value}
             disabled={disabled}
             {...field}
           />
-          <div className="ml-4 text-sm">{children}</div>
+          <label htmlFor={field.name} className="cursor-pointer ml-4 text-sm">
+            {children}
+          </label>
         </div>
-        {(error || formikError[field.name]) && (
+        {(error || (touched[field.name] && formikError[field.name])) && (
           <small className="block text-red-500 text-right mt-1">
             {error || formikError[field.name]}
           </small>
