@@ -13,6 +13,7 @@ import paymentMethodsReducer from 'screens/payment-methods/reducer';
 import checkoutReducer from 'screens/checkout/reducer';
 import legalDocsReducer from 'screens/legal-docs/reducer';
 import surveyReducer from 'screens/survey/reducer';
+import galleryReducer from 'screens/gallery/reducer';
 
 import { LOGOUT_INIT } from 'screens/auth/actionTypes';
 
@@ -41,6 +42,7 @@ const appReducer = (history) =>
       },
       legalDocsReducer
     ),
+    gallery: galleryReducer,
   });
 
 export default (history) => (state, action) => {

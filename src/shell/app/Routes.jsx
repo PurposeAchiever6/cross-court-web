@@ -64,6 +64,7 @@ const PaymentMethodsDefault = lazy(() =>
 const PaymentMethodsMembership = lazy(() =>
   import('screens/payment-methods/pages/PaymentMethodsMembership')
 );
+const Gallery = lazy(() => import('screens/gallery/GalleryPage'));
 
 const AppWrapper = styled.div`
   display: flex;
@@ -508,6 +509,9 @@ const Routes = () => {
         <PrivateRoute path={ROUTES.SESSIONJOINWAITLIST} exact>
           <SessionJoinWaitlist />
         </PrivateRoute>
+        <Route path={ROUTES.GALLERY} exact>
+          <Gallery />
+        </Route>
       </Switch>
     </main>
   );
