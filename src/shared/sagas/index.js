@@ -10,6 +10,7 @@ import rootPurchaseHistorySaga from 'screens/purchase-history/saga';
 import rootPaymentMethodsSaga from 'screens/payment-methods/saga';
 import rootCheckoutSaga from 'screens/checkout/saga';
 import rootLegalDocsSaga from 'screens/legal-docs/saga';
+import rootSurveySaga from 'screens/survey/saga';
 
 export default function* rootSaga() {
   yield all([
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     rootPaymentMethodsSaga(),
     rootCheckoutSaga(),
     rootLegalDocsSaga(),
+    rootSurveySaga(),
   ]);
 }

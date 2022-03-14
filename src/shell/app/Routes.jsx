@@ -53,7 +53,6 @@ const Rating = lazy(() => import('shared/pages/Rating'));
 const CancelationPolicy = lazy(() => import('screens/legal-docs/pages/CancelationPolicy'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
 const PrivacyPolicy = lazy(() => import('screens/legal-docs/pages/PrivacyPolicy'));
-const Survey = lazy(() => import('screens/survey/SurveyPage'));
 const PWA = lazy(() => import('screens/pwa/PWAPage'));
 const AddPaymentMethod = lazy(() => import('screens/payment-methods/pages/AddPaymentMethod'));
 const PaymentMethodsSelect = lazy(() =>
@@ -355,21 +354,13 @@ const setScrollClasses = () => {
   }
 };
 
-window.cookieAndSessionStorageHandler = (isAuthenticated) => {
+window.cookieAndSessionStorageHandler = () => {
   let search = window.location.search;
   let params = new URLSearchParams(search);
   let referralCode = params.get('referralCode');
 
   if (referralCode) {
     window.localStorage.setItem('referralCode', referralCode);
-  }
-
-  if (
-    isAuthenticated &&
-    window.localStorage.getItem('surveyLock') &&
-    window.location.pathname !== '/'
-  ) {
-    window.location.href = '/';
   }
 };
 
@@ -468,9 +459,6 @@ const Routes = () => {
         </Route>
         <Route path={ROUTES.CANCELATIONPOLICY} exact>
           <CancelationPolicy />
-        </Route>
-        <Route path={ROUTES.SURVEY} exact>
-          <Survey />
         </Route>
         <PrivateRoute path={ROUTES.PURCHASEHISTORY} exact>
           <PurchaseHistory />

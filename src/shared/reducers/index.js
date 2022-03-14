@@ -12,6 +12,7 @@ import purchaseHistoryReducer from 'screens/purchase-history/reducer';
 import paymentMethodsReducer from 'screens/payment-methods/reducer';
 import checkoutReducer from 'screens/checkout/reducer';
 import legalDocsReducer from 'screens/legal-docs/reducer';
+import surveyReducer from 'screens/survey/reducer';
 
 import { LOGOUT_INIT } from 'screens/auth/actionTypes';
 
@@ -32,6 +33,7 @@ const appReducer = (history) =>
     purchaseHistory: purchaseHistoryReducer,
     paymentMethods: paymentMethodsReducer,
     checkout: checkoutReducer,
+    survey: surveyReducer,
     legalDocs: persistReducer(
       {
         key: 'legalDocs',

@@ -38,6 +38,5 @@ export default {
   SIGNUP: '/signup',
   SIGNUPCONFIRMATION: '/signup/confirmation',
   SIGNUPSUCCESS: '/signup/success',
-  SURVEY: '/survey',
   TERMS: '/terms-and-conditions',
 };

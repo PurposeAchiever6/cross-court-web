@@ -1,14 +1,10 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
-import { push } from 'connected-react-router';
 import { toast } from 'react-toastify';
-import ROUTES from 'shared/constants/routes';
 import {
   GET_QUESTIONS_INIT,
   GET_QUESTIONS_SUCCESS,
   GET_QUESTIONS_FAILURE,
   SAVE_ANSWER_INIT,
-  SAVE_ANSWER_SUCCESS,
-  SAVE_ANSWER_FAILURE,
 } from './actionTypes';
 
 import surveyService from './service';
@@ -19,7 +15,7 @@ export function* getQuestionsFlow() {
     yield put({
       type: GET_QUESTIONS_SUCCESS,
       payload: {
-        questions: questionsPayload,
+        questions: questionsPayload.surveyQuestions,
       },
     });
   } catch (err) {
@@ -29,18 +25,9 @@ export function* getQuestionsFlow() {
 
 export function* saveAnswerFlow(action) {
   try {
-    const answerPayload = yield call(surveyService.saveAnswer);
-
-    yield put({
-      type: SAVE_ANSWER_SUCCESS,
-      payload: {
-        answer: answerPayload
-      },
-    });
+    yield call(surveyService.saveAnswer, action.payload);
   } catch (err) {
     yield call(toast.error, err.message);
-
-    yield put({ type: SAVE_ANSWER_FAILURE, error: err });
   }
 }
 
