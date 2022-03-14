@@ -5,6 +5,7 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
+import { hasConfirmCodeOfConduct } from 'shared/utils/codeOfConduct';
 import { isPast } from 'shared/utils/date';
 import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
@@ -56,7 +57,9 @@ const ReserveButton = ({
       } else if (isFSFFlow) {
         setShowCodeOfConductModal(true);
       } else {
-        reserveSessionAction();
+        hasConfirmCodeOfConduct(userProfile)
+          ? reserveSessionAction()
+          : setShowCodeOfConductModal(true);
       }
     }
   };
@@ -88,7 +91,8 @@ const ReserveButton = ({
           <CodeOfConductModal
             isOpen={showCodeOfConductModal}
             closeHandler={() => setShowCodeOfConductModal(false)}
-            createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
+            onConfirm={isFSFFlow ? createAndReserveFreeSessionHandler : reserveSessionAction}
+            userProfile={userProfile}
           />
         </>
       );

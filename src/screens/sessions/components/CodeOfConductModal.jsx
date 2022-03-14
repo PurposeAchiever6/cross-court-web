@@ -2,15 +2,12 @@ import React from 'react';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
 
+import { confirmCodeOfConduct } from 'shared/utils/codeOfConduct';
 import Modal from 'shared/components/Modal';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
-export const CodeOfConductModal = ({
-  isOpen,
-  closeHandler,
-  createAndReserveFreeSessionHandler,
-}) => {
+export const CodeOfConductModal = ({ isOpen, closeHandler, onConfirm, userProfile }) => {
   const initialValues = {
     codeOfConductOne: false,
     codeOfConductTwo: false,
@@ -31,7 +28,8 @@ export const CodeOfConductModal = ({
         <Formik
           initialValues={initialValues}
           onSubmit={() => {
-            createAndReserveFreeSessionHandler();
+            confirmCodeOfConduct(userProfile);
+            onConfirm();
           }}
         >
           {({ handleSubmit, values, isSubmitting }) => (
@@ -75,7 +73,8 @@ export const CodeOfConductModal = ({
 CodeOfConductModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
-  createAndReserveFreeSessionHandler: PropTypes.func.isRequired,
+  onConfirm: PropTypes.func.isRequired,
+  userProfile: PropTypes.shape().isRequired,
 };
 
 export default CodeOfConductModal;
