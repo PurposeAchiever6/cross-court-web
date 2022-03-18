@@ -21,6 +21,7 @@ const Modal = ({
   style,
   dark,
   children,
+  shouldCloseOnEsc,
 }) => {
   const { width: windowSize } = useWindowSize();
 
@@ -70,6 +71,7 @@ const Modal = ({
 
   return (
     <ReactModal
+      shouldCloseOnEsc={shouldCloseOnEsc}
       isOpen={isOpen}
       onRequestClose={closeHandler}
       shouldCloseOnOverlayClick={closeOnOverlayClick}
@@ -107,6 +109,7 @@ Modal.defaultProps = {
   size: 'md',
   dark: false,
   style: {},
+  shouldCloseOnEsc: true,
 };
 
 Modal.propTypes = {
@@ -120,6 +123,7 @@ Modal.propTypes = {
   dark: PropTypes.bool,
   style: PropTypes.object,
   children: PropTypes.node.isRequired,
+  shouldCloseOnEsc: PropTypes.bool,
 };
 
 export default Modal;

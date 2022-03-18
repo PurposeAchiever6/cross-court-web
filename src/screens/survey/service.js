@@ -8,9 +8,9 @@ export default {
 
     return response.data;
   },
-  saveAnswer: async () => {
-    const response = await api.post(`/session_surveys/answers`, {
-      paymentMethod: paymentMethodId,
+  saveAnswer: async (sessionAnswer) => {
+    await api.post(`/session_surveys/answers`, {
+      sessionAnswer,
     });
   },
 };

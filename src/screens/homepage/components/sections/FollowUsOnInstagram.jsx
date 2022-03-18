@@ -16,16 +16,17 @@ const Section = styled.section`
     color: #1a1a1a;
     width: fit-content;
     margin-left: 20px;
+    margin-top: 3rem;
 
     @media (min-width: 992px) {
       font-size: 200px;
       line-height: 75px;
-      margin-top: 2rem;
+      margin-top: 4rem;
       margin-bottom: 50px;
       text-align: right;
     }
 
-    p {
+    span {
       :first-child {
         -webkit-text-fill-color: white;
         -webkit-text-stroke-width: 2px;
@@ -64,9 +65,9 @@ const Section = styled.section`
 const FollowUsOnInstagram = () => (
   <Section>
     <section className="title">
-      <p>FOLLOW US ON</p>
+      <span className="block">FOLLOW US ON</span>
       <br />
-      <p>INSTAGRAM</p>
+      <span className="block">INSTAGRAM</span>
     </section>
     <div className="instafeed">
       <div className="elfsight-app-65f4b4ad-3836-464b-a390-4922497c4d6d"></div>

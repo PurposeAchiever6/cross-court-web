@@ -1,7 +1,7 @@
-import { Formik, Form } from 'formik';
 import React from 'react';
-import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
@@ -23,6 +23,7 @@ const initialValues = {
   password: '',
   confirmPassword: '',
   terms: false,
+  codeOfConduct: false,
 };
 
 const validationSchema = Yup.object().shape({
@@ -42,6 +43,7 @@ const validationSchema = Yup.object().shape({
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
   terms: Yup.bool().oneOf([true], 'Required'),
+  codeOfConduct: Yup.bool().oneOf([true], 'Required'),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Passwords must match')
     .required('Required'),
@@ -128,11 +130,16 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
             name="confirmPassword"
             type="password"
           />
-          <InputCheckboxField name="terms" className="font-shapiro45_welter_extd">
+          <InputCheckboxField name="terms" className="font-shapiro45_welter_extd mb-8">
             I agree to the{' '}
             <Link className="text-cc-purple hover:underline" to={ROUTES.TERMS}>
               terms and conditions
             </Link>
+          </InputCheckboxField>
+          <InputCheckboxField name="codeOfConduct" className="font-shapiro45_welter_extd mb-8">
+            I acknlowedge Crosscourt does not tolerate any acts of verbal, physical and malicious
+            aggression. Any player involved in "trash-talking" or any altercation may be suspended
+            or prohibited from participating in Crosscourt.
           </InputCheckboxField>
           <PrimaryButton loading={isLoading} w="100%">
             NEXT
