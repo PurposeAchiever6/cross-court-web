@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import ReactModal from 'react-modal';
-import ScrollLock from 'react-scrolllock';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import PropTypes from 'prop-types';
 
 import colors from 'shared/styles/constants';
@@ -23,7 +23,13 @@ const Modal = ({
   children,
   shouldCloseOnEsc,
 }) => {
+  const modalRef = useRef(null);
   const { width: windowSize } = useWindowSize();
+
+  useEffect(() => {
+    isOpen && lockScroll ? disableBodyScroll(modalRef.current) : enableBodyScroll(modalRef.current);
+    return () => clearAllBodyScrollLocks();
+  }, [isOpen]);
 
   const getWidthBySize = (() => {
     switch (size) {
@@ -76,26 +82,25 @@ const Modal = ({
       onRequestClose={closeHandler}
       shouldCloseOnOverlayClick={closeOnOverlayClick}
       style={modalStyle}
+      ref={modalRef}
     >
-      <ScrollLock isActive={lockScroll}>
-        <div className={`p-2 ${showCloseButton ? 'pt-5' : ''}`}>
-          {showCloseButton && (
-            <button className="absolute top-0 right-0 p-4" onClick={closeHandler}>
-              <CrossSvg color={dark ? 'white' : 'black'} />
-            </button>
-          )}
-          {title && (
-            <h2
-              className={`font-shapiro95_super_wide text-lg sm:text-2xl text-center uppercase mb-6 ${
-                dark ? 'text-white' : ''
-              }`}
-            >
-              {title}
-            </h2>
-          )}
-          {children}
-        </div>
-      </ScrollLock>
+      <div className={`p-2 ${showCloseButton ? 'pt-5' : ''}`}>
+        {showCloseButton && (
+          <button className="absolute top-0 right-0 p-4" onClick={closeHandler}>
+            <CrossSvg color={dark ? 'white' : 'black'} />
+          </button>
+        )}
+        {title && (
+          <h2
+            className={`font-shapiro95_super_wide text-lg sm:text-2xl text-center uppercase mb-6 ${
+              dark ? 'text-white' : ''
+            }`}
+          >
+            {title}
+          </h2>
+        )}
+        {children}
+      </div>
     </ReactModal>
   );
 };
