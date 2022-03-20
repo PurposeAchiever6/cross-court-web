@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import styled from 'styled-components';
-import ScrollLock from 'react-scrolllock';
 
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -23,6 +23,8 @@ const MobileMenuContainer = styled.div`
 `;
 
 const MobileMenu = ({ menuOpen, toggleMenu }) => {
+  const menuRef = useRef(null);
+
   useEffect(() => {
     modalRoot.appendChild(element);
     return () => {
@@ -30,12 +32,15 @@ const MobileMenu = ({ menuOpen, toggleMenu }) => {
     };
   }, []);
 
+  useEffect(() => {
+    menuOpen ? disableBodyScroll(menuRef.current) : enableBodyScroll(menuRef.current);
+    return () => clearAllBodyScrollLocks();
+  }, [menuOpen]);
+
   return ReactDOM.createPortal(
-    <ScrollLock isActive={menuOpen}>
-      <MobileMenuContainer open={menuOpen}>
-        <SidebarMenu menuToggler={toggleMenu} />
-      </MobileMenuContainer>
-    </ScrollLock>,
+    <MobileMenuContainer open={menuOpen} ref={menuRef}>
+      <SidebarMenu menuToggler={toggleMenu} />
+    </MobileMenuContainer>,
     element
   );
 };
