@@ -10,7 +10,7 @@ const InputCheckboxField = ({ name, children, error, disabled, className }) => (
           <input
             id={field.name}
             type="checkbox"
-            className="cursor-pointer mt-1"
+            className="cursor-pointer mt-1 min-w-4"
             checked={field.value}
             disabled={disabled}
             {...field}

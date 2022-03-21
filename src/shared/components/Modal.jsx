@@ -27,8 +27,10 @@ const Modal = ({
   const { width: windowSize } = useWindowSize();
 
   useEffect(() => {
-    isOpen && lockScroll ? disableBodyScroll(modalRef.current) : enableBodyScroll(modalRef.current);
-    return () => clearAllBodyScrollLocks();
+    if (lockScroll) {
+      isOpen ? disableBodyScroll(modalRef.current) : enableBodyScroll(modalRef.current);
+      return () => clearAllBodyScrollLocks();
+    }
   }, [isOpen, lockScroll]);
 
   const getWidthBySize = (() => {

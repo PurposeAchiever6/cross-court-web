@@ -18,7 +18,13 @@ export const CodeOfConductModal = ({ isOpen, closeHandler, onConfirm, userProfil
     values.codeOfConductOne && values.codeOfConductTwo && values.codeOfConductThree;
 
   return (
-    <Modal dark isOpen={isOpen} closeHandler={closeHandler} title="Code Of Conduct">
+    <Modal
+      dark
+      isOpen={isOpen}
+      closeHandler={closeHandler}
+      title="Code Of Conduct"
+      lockScroll={false}
+    >
       <div className="text-white">
         <p className="text-sm mb-5">
           The Crosscourt experience is designed to enhance the physical and emotional wellbeing of
