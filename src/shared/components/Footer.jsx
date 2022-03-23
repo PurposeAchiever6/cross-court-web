@@ -161,6 +161,12 @@ const Footer = () => {
           >
             TOUR THE CLUB
           </p>
+          <Link
+            className="w-max hover:opacity-60 transition-opacity duration-300"
+            to={ROUTES.GALLERY}
+          >
+            GALLERY
+          </Link>
           {isAuthenticated ? (
             <p
               className="mt-4 cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"

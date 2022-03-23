@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import ReactModal from 'react-modal';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import PropTypes from 'prop-types';
 
+import useScrollBlock from 'shared/hooks/useScrollBlock';
 import colors from 'shared/styles/constants';
 import useWindowSize from 'shared/hooks/useWindowSize';
 import { size as breakpoints } from 'shared/styles/mediaQueries';
@@ -23,15 +23,14 @@ const Modal = ({
   children,
   shouldCloseOnEsc,
 }) => {
-  const modalRef = useRef(null);
   const { width: windowSize } = useWindowSize();
+  const [blockScroll, allowScroll] = useScrollBlock();
 
   useEffect(() => {
     if (lockScroll) {
-      isOpen ? disableBodyScroll(modalRef.current) : enableBodyScroll(modalRef.current);
-      return () => clearAllBodyScrollLocks();
+      isOpen ? blockScroll() : allowScroll();
     }
-  }, [isOpen, lockScroll]);
+  }, [isOpen, lockScroll, blockScroll, allowScroll]);
 
   const getWidthBySize = (() => {
     switch (size) {
@@ -84,7 +83,6 @@ const Modal = ({
       onRequestClose={closeHandler}
       shouldCloseOnOverlayClick={closeOnOverlayClick}
       style={modalStyle}
-      ref={modalRef}
     >
       <div className={`p-2 ${showCloseButton ? 'pt-5' : ''}`}>
         {showCloseButton && (

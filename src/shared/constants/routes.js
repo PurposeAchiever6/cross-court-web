@@ -39,4 +39,5 @@ export default {
   SIGNUPCONFIRMATION: '/signup/confirmation',
   SIGNUPSUCCESS: '/signup/success',
   TERMS: '/terms-and-conditions',
+  GALLERY: '/gallery',
 };

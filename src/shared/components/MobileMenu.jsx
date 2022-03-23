@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
+import useScrollBlock from 'shared/hooks/useScrollBlock';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import SidebarMenu from './SidebarMenu';
@@ -23,7 +23,7 @@ const MobileMenuContainer = styled.div`
 `;
 
 const MobileMenu = ({ menuOpen, toggleMenu }) => {
-  const menuRef = useRef(null);
+  const [blockScroll, allowScroll] = useScrollBlock();
 
   useEffect(() => {
     modalRoot.appendChild(element);
@@ -33,12 +33,11 @@ const MobileMenu = ({ menuOpen, toggleMenu }) => {
   }, []);
 
   useEffect(() => {
-    menuOpen ? disableBodyScroll(menuRef.current) : enableBodyScroll(menuRef.current);
-    return () => clearAllBodyScrollLocks();
-  }, [menuOpen]);
+    menuOpen ? blockScroll() : allowScroll();
+  }, [menuOpen, blockScroll, allowScroll]);
 
   return ReactDOM.createPortal(
-    <MobileMenuContainer open={menuOpen} ref={menuRef}>
+    <MobileMenuContainer open={menuOpen}>
       <SidebarMenu menuToggler={toggleMenu} />
     </MobileMenuContainer>,
     element
