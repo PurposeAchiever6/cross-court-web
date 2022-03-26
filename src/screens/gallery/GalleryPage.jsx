@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import Loading from 'shared/components/Loading';
 import { getGalleryPhotos, getPageLoading } from './reducer';
 import { getGalleryPhotosInit } from './actionCreators';
-import GalleryHeader from './sections/GalleryHeader';
 import Gallery from 'shared/components/Gallery';
 
 const GalleryPage = () => {
@@ -27,12 +26,9 @@ const GalleryPage = () => {
   }
 
   return (
-    <>
-      <GalleryHeader />
-      <div className="w-full overflow-auto bg-cc-black border-b border-gray-400">
-        <Gallery images={images} />
-      </div>
-    </>
+    <div className="w-full overflow-auto bg-cc-black border-b border-gray-400">
+      <Gallery images={images} />
+    </div>
   );
 };
 
