@@ -8,7 +8,6 @@
 @import './onboarding-tour.css';
 @import './active-campaign-chat.css';
 @import './email-opt-in.css';
-@import './survey.css';
 
 html {
   scroll-behavior: smooth;
@@ -16,20 +15,6 @@ html {
 
 body {
   margin: 0;
-}
-
-input,
-textarea {
-  border-radius: 0;
-}
-
-div[type='submit'],
-button[type='submit'],
-input[type='submit'],
-a[type='button'] {
-  -webkit-appearance: none;
-  border-radius: 0;
-  -webkit-border-radius: 0px;
 }
 
 #modal-root {

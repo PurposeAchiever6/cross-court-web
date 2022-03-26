@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import queryString from 'query-string';
 
+import ROUTES from 'shared/constants/routes';
 import { openContactForm, openContactFormForUser } from 'shared/utils/contactForm';
-
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getQuestionsInit, saveAnswer } from 'screens/survey/actionCreators';
@@ -14,36 +14,44 @@ import SurveyModal from 'screens/survey/components/SurveyModal';
 import Landing from './components/Landing';
 
 const HomePage = () => {
+  const dispatch = useDispatch();
   const { search } = useLocation();
   const { openForm, openSurvey } = queryString.parse(search);
 
-  const dispatch = useDispatch();
   const userInfo = useSelector(getUserProfile);
   const loading = useSelector(getPageLoading);
   const isAuthenticated = useSelector(getIsAuthenticated);
   const questions = useSelector(getQuestions);
-  const answerQuestion = (questionId, answer) => dispatch(saveAnswer(questionId, answer));
+
+  const openFormParam = openForm === 'true';
+  const openSurveyParam = openSurvey === 'true';
 
   const [showSurveyModal, setShowSurveyModal] = useState(
-    openSurvey === 'true' ||
+    openSurveyParam ||
       (isAuthenticated && userInfo?.lastCheckedInUserSession?.surveyAnswers.length === 0)
   );
 
   useEffect(() => {
     if (!loading) {
       setTimeout(() => {
-        if (openForm === 'true') {
+        if (openFormParam) {
           isAuthenticated ? openContactFormForUser(userInfo) : openContactForm();
         }
-      }, 3000);
+      }, 1500);
     }
-  }, [search, userInfo, isAuthenticated, loading, openForm]);
+  }, [search, userInfo, isAuthenticated, loading, openFormParam]);
 
   useEffect(() => {
     if (showSurveyModal) {
       dispatch(getQuestionsInit());
     }
   }, [showSurveyModal, dispatch]);
+
+  const answerQuestion = (questionId, answer) => dispatch(saveAnswer(questionId, answer));
+
+  if (!isAuthenticated && openSurveyParam) {
+    return <Redirect to={ROUTES.LOGIN} />;
+  }
 
   return (
     <>

@@ -36,4 +36,10 @@ export default {
 
     return response.data;
   },
+
+  subscriptionFeedback: async (payload) => {
+    const response = await api.post('/subscriptions/feedback', payload);
+
+    return response.data;
+  },
 };

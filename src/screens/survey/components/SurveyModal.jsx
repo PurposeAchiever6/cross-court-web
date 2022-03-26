@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
+import InputTextareaField from 'shared/components/InputTextareaField';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Modal from 'shared/components/Modal';
-import StarEmptyIcon from 'shared/images/star-empty.png';
-import StarFullIcon from 'shared/images/star-full-white.png';
+import StarsRate from 'shared/components/StarsRate';
 
 const SurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, answerQuestion }) => {
   const [starsSelected, setStarsSelected] = useState(0);
@@ -17,18 +17,6 @@ const SurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, answerQue
       setAllMandatoryAnswered(mandatoryIds.every((elem) => answeredQuestionIds.includes(elem)));
     }
   }, [answeredQuestionIds, mandatoryIds]);
-
-  const starRatingMouseOverHandler = (i) => {
-    for (let r = 0; r <= i; r++) {
-      document.querySelectorAll('.star-pair')[r].classList.add('hover');
-    }
-  };
-
-  const starRatingMouseOutHandler = (i) => {
-    for (let r = 0; r <= i; r++) {
-      document.querySelectorAll('.star-pair')[r].classList.remove('hover');
-    }
-  };
 
   const starRatingClickHandler = (questionId, answer) => {
     setStarsSelected(answer);
@@ -73,29 +61,22 @@ const SurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, answerQue
             <div key={question.id} className="w-full">
               {isEnabled && type === 'rate' && (
                 <>
-                  <p className="font-shapiro95_super_wide text-sm md:text-2xl text-white uppercase">
+                  <h2 className="font-shapiro95_super_wide text-sm md:text-2xl text-white uppercase mb-5">
                     {allMandatoryAnswered ? 'Thanks for your feedback!' : question.question}
-                  </p>
-                  <div className="survey-modal-stars my-4">
-                    {[1, 2, 3, 4, 5].map((_v, i) => (
-                      <div
-                        key={`star-${i}`}
-                        className={`star-pair ${i + 1 <= starsSelected ? 'selected' : ''}`}
-                        onClick={() => starRatingClickHandler(question.id, i + 1)}
-                        onMouseOver={() => starRatingMouseOverHandler(i)}
-                        onMouseOut={() => starRatingMouseOutHandler(i)}
-                      >
-                        <img alt="" className="star-empty" src={StarEmptyIcon} />
-                        <img alt="" className="star-full" src={StarFullIcon} />
-                      </div>
-                    ))}
-                  </div>
+                  </h2>
+                  <StarsRate
+                    size="2xl"
+                    rate={starsSelected}
+                    onClick={(rate) => starRatingClickHandler(question.id, rate)}
+                    className="inline-block mb-4"
+                    showEmptyStars
+                  />
                 </>
               )}
               {isEnabled && type === 'open' && (
                 <>
-                  <textarea
-                    className="p-3 my-5 w-full text-sm md:text-md h-24 md:h-auto"
+                  <InputTextareaField
+                    className="my-5"
                     placeholder={question.question}
                     value={feedbackValue}
                     onChange={(e) => openQuestionHandler(question.id, e.target.value)}

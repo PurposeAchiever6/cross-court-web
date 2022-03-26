@@ -15,6 +15,9 @@ import {
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_SUCCESS,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_FAILURE,
+  SUBSCRIPTION_FEEDBACK_INIT,
+  SUBSCRIPTION_FEEDBACK_SUCCESS,
+  SUBSCRIPTION_FEEDBACK_FAILURE,
 } from './actionTypes';
 import productsService from './service';
 
@@ -83,11 +86,21 @@ export function* updateSubscriptionPaymentMethodFlow(action) {
   }
 }
 
+export function* subscriptionFeedbackFlow({ payload }) {
+  try {
+    yield call(productsService.subscriptionFeedback, payload);
+    yield put({ type: SUBSCRIPTION_FEEDBACK_SUCCESS });
+  } catch (err) {
+    yield put({ type: SUBSCRIPTION_FEEDBACK_FAILURE, error: err.response.data.error });
+  }
+}
+
 export default function* productsSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
     takeLatest(CANCEL_SUBSCRIPTION_INIT, cancelSubscriptionFlow),
     takeLatest(REACTIVATE_SUBSCRIPTION_INIT, reactivateSubscriptionFlow),
     takeLatest(UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT, updateSubscriptionPaymentMethodFlow),
+    takeLatest(SUBSCRIPTION_FEEDBACK_INIT, subscriptionFeedbackFlow),
   ]);
 }
