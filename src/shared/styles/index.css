@@ -149,8 +149,7 @@ body[data-page='no-session-credits'] main,
 body[data-page='dashboard'] main,
 body[data-page='app'] main,
 body[data-page='careers'] main,
-body[data-page='memberships'] main,
-body[data-page='gallery'] main {
+body[data-page='memberships'] main {
   padding-top: 0;
 }
 
