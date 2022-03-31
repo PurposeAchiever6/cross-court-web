@@ -4,6 +4,7 @@ import {
   CANCEL_SUBSCRIPTION_INIT,
   REACTIVATE_SUBSCRIPTION_INIT,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
+  SUBSCRIPTION_FEEDBACK_INIT,
 } from './actionTypes';
 
 export const initialLoad = () => ({
@@ -33,4 +34,9 @@ export const updateSubscriptionPaymentMethod = (subscription, paymentMethod) => 
     subscription,
     paymentMethod,
   },
+});
+
+export const subscriptionFeedback = (payload) => ({
+  type: SUBSCRIPTION_FEEDBACK_INIT,
+  payload,
 });

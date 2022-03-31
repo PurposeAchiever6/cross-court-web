@@ -51,7 +51,7 @@ const JoinWaitlist = () => {
     return <Redirect to={ROUTES.LOCATIONS} />;
   }
 
-  const waitlist = sessionWaitlist.session.waitlist;
+  const waitlist = sessionWaitlist.session.waitlist.filter((e) => !e.reached);
   const waitlistPlacement = waitlist.map((e) => e.userId).indexOf(userProfile.id);
 
   return (
