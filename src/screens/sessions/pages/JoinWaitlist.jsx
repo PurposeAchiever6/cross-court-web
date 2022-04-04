@@ -14,7 +14,7 @@ const JoinWaitlistContainer = styled.div`
     font-size: 16px;
     line-height: 24px;
     @media (min-width: 992px) {
-      font-size: 40px;
+      font-size: 30px;
       line-height: 33px;
     }
   }
@@ -22,9 +22,11 @@ const JoinWaitlistContainer = styled.div`
   .subtitle {
     font-size: 47px;
     line-height: 40px;
+    padding-left: 5px;
     @media (min-width: 992px) {
-      font-size: 120px;
-      line-height: 110px;
+      font-size: 89px;
+      line-height: 89px;
+      padding-left: 8px;
     }
   }
 
@@ -56,32 +58,48 @@ const JoinWaitlist = () => {
 
   return (
     <JoinWaitlistContainer>
-      <div className="min-h-screen px-4 py-20 flex flex-col items-center justify-center">
-        <p className="title text-cc-black font-shapiro95_super_wide">YOU'VE BEEN ADDED TO THE</p>
-        <p className="subtitle text-transparent text-stroke-width-2 text-stroke-cc-black font-shapiro95_super_wide mb-10 md:mb-16">
-          WAITLIST
-        </p>
-        <div className="flex items-center font-shapiro95_super_wide mb-10 md:mb-16">
-          <div className="flex flex-col items-center justify-center">
-            <p className="text-xs md:text-base mb-2">PLACEMENT</p>
-            <div className="flex bg-cc-purple rounded-full w-14 h-14 md:w-20 md:h-20 items-center justify-center">
-              <p className="text-white text-xl md:text-3xl">{waitlistPlacement + 1}</p>
+      <div className="min-h-screen px-4 py-20 flex flex-col items-center md:justify-center">
+        <h1 className="text-cc-black font-shapiro95_super_wide mb-12">
+          <span className="title block">YOU'VE BEEN ADDED TO THE</span>
+          <span className="subtitle text-transparent text-stroke-width-2 text-stroke-cc-black block">
+            WAITLIST
+          </span>
+        </h1>
+        <div className="font-shapiro95_super_wide mb-12">
+          <div className="text-xs md:text-base mb-2">PLACEMENT</div>
+          <div className="flex items-center font-shapiro95_super_wide">
+            <div className="flex bg-cc-purple rounded-full w-14 h-14 md:w-16 md:h-16 items-center justify-center mr-4">
+              <p className="text-white text-xl md:text-2xl">{waitlistPlacement + 1}</p>
             </div>
+            <p className="font-shapiro95_super_wide text-lg md:text-2xl uppercase">
+              {userProfile.firstName} {userProfile.lastName}
+            </p>
           </div>
-          <p className="title uppercase mt-7">
-            {userProfile.firstName} {userProfile.lastName}
+        </div>
+
+        <div className="mb-14 text-sm md:text-xl">
+          <p>
+            <span className="font-bold">DATE: </span>
+            {longSessionDate(sessionWaitlist.session.startTime)}
+          </p>
+          <p>
+            <span className="font-bold">TIME: </span>
+            {formatSessionTime(sessionWaitlist.session.time)}
+          </p>
+          <p>
+            <span className="font-bold">WHERE:</span> Crosscourt{' '}
+            {sessionWaitlist.session.location.name}
           </p>
         </div>
 
-        <div className="mb-10 md:mb-16 text-sm md:text-2xl">
-          <p>DATE: {longSessionDate(sessionWaitlist.session.startTime)}</p>
-          <p>TIME: {formatSessionTime(sessionWaitlist.session.time)}</p>
-          <p>WHERE: Crosscourt {sessionWaitlist.session.location.name}</p>
-        </div>
-
-        <p className="text-center text-xs mb-5 max-w-2xl md:text-base md:mx-40">
-          We will automatically add you to the session roster if someone in front of you cancels.
-          Please look out for an SMS message confirming your addition to the session.
+        <p className="text-center text-xs mb-10 max-w-2xl md:text-base md:mx-40">
+          <span className="text-cc-purple font-shapiro96_inclined_wide text-xl mr-2">
+            IMPORTANT:
+          </span>
+          Please do not show up to Crosscourt unless you receive a message saying you have been
+          added to the session roster from the waitlist. Our system will automatically add you to
+          the session if someone in front of you cancels. Please look out for an SMS message
+          confirming your addition to the session. Thank you.
         </p>
 
         <PrimaryButton
