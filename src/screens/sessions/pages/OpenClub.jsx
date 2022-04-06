@@ -93,9 +93,9 @@ const OpenClub = () => {
             <div className="flex flex-col bg-cc-purple p-3 mb-10 md:mb-4 md:-mt-2">
               <p>HOW IT WORKS</p>
               <p className="font-shapiro45_welter_extd mt-1">
-                You will only be allowed to access open club hours if you are an 8 or unlimited
-                member. Show your membership info located in "My Account" to our session experience
-                manager upon arrival.
+                You will only be allowed to access open club hours if you are a member. Show your
+                membership info located in "My Account" to our Session Experience Manager upon
+                arrival.
               </p>
             </div>
             <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
@@ -113,17 +113,13 @@ const OpenClub = () => {
               <p className="font-shapiro95_super_wide text-stroke-width-2 text-white text-stroke-cc-black subtitle">
                 CLUB
               </p>
-              <p className="text-cc-purple my-3 md:m-0">
-                8 SESSION PER MONTH AND <br /> UNLIMITED MEMBERS ONLY
-              </p>
+              <p className="text-cc-purple my-3 md:m-0">MEMBERS ONLY</p>
             </StyledTitle>
             <div className="p-4 md:p-0">
               <div className="flex mb-10">
                 <div className="flex flex-col items-center justify-center w-1/2">
                   <img src={FreeIncludedIcon} alt="free-included" className="w-16 h-16 mb-2" />
-                  <p className="font-shapiro95_super_wide text-xs">
-                    INCLUDED WITH 8 <br /> AND UNLIMITED <br /> MEMBERSHIPS
-                  </p>
+                  <p className="font-shapiro95_super_wide text-xs">INCLUDED WITH MEMBERSHIPS</p>
                 </div>
                 <div className="flex flex-col items-center justify-center w-1/2">
                   <img src={TrainSoloIcon} alt="train-solo" className="w-20 h-20 mb-2" />

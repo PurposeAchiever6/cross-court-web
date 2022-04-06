@@ -60,7 +60,7 @@ const NoSessionContainer = styled.div`
 `;
 
 const OPEN_CLUB_INFO =
-  '8 session/month and unlimited members can access the club to shootaround, train, or self-organize own runs (included with membership)';
+  'All members can access the club to shootaround, train, or self-organize own runs (included with membership)';
 const fewSpotsLeftText = 'FEW SPOTS LEFT';
 const onlyForUsersOver18Text = 'MUST BE 18+';
 const onWaitlistText = 'ON THE WAITLIST';
