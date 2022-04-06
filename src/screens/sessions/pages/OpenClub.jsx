@@ -94,7 +94,7 @@ const OpenClub = () => {
               <p>HOW IT WORKS</p>
               <p className="font-shapiro45_welter_extd mt-1">
                 You will only be allowed to access open club hours if you are a member. Show your
-                membership info located in "My Account" to our session experience manager upon
+                membership info located in "My Account" to our Session Experience Manager upon
                 arrival.
               </p>
             </div>
