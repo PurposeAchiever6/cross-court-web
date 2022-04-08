@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import currency from 'currency.js';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import { RECURRING } from 'screens/products/constants';
 import { productPrice } from 'screens/products/utils';
+import Ball from 'shared/images/white-circular-logo.png';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const ProductPlan = ({
@@ -14,6 +16,9 @@ const ProductPlan = ({
   userHasActiveSubscription,
   className,
 }) => {
+  const env = runtimeEnv();
+  const SAMPLE_UNLIMITED_SESSIONS_PER_MONTH = env.REACT_APP_SAMPLE_UNLIMITED_SESSIONS_PER_MONTH;
+
   const formatPrice = (price) =>
     currency(price, {
       formatWithSymbol: true,
@@ -23,6 +28,7 @@ const ProductPlan = ({
   const price = formatPrice(productPrice(product, userHasActiveSubscription));
   const isUnlimited = product.credits < 0;
   const sessionPricePerMonth = formatPrice(product.price / product.credits);
+  const unlimitedPricePerSession = formatPrice(product.price / SAMPLE_UNLIMITED_SESSIONS_PER_MONTH);
 
   const isRecurring = product.productType === RECURRING;
   const label = product.label;
@@ -44,16 +50,57 @@ const ProductPlan = ({
           </span>
         )}
       </div>
-      <div className="lg:h-44 mb-4">
+      <div className={`mb-6 lg:mb-4 ${isRecurring ? 'lg:h-108' : 'lg:h-44'}`}>
         <div className="dharma_gothic_cheavy_italic mb-3 lg:mb-0">
           <span className="text-9xl lg:text-10xl">{price}</span>
           {isRecurring && <span className="text-3xl lg:text-6xl">/month</span>}
         </div>
         {isRecurring && !isUnlimited && (
-          <div className="shapiro95_super_wide -mt-2 lg:-mt-4">{`${sessionPricePerMonth}/session`}</div>
+          <div className="shapiro95_super_wide text-sm -mt-2 lg:-mt-4 lg:text-base">{`${sessionPricePerMonth}/session`}</div>
+        )}
+        {isUnlimited && (
+          <div className="shapiro95_super_wide text-sm -mt-2 lg:-mt-4 lg:text-base">
+            {`${unlimitedPricePerSession}/session @ ${SAMPLE_UNLIMITED_SESSIONS_PER_MONTH}/month`}
+          </div>
+        )}
+        {isRecurring && (
+          <>
+            <h2 className="mb-3 mt-6 text-lg text-left lg:text-xl shapiro96_inclined_wide leading-none uppercase">
+              FEATURES
+            </h2>
+            <div className="flex mb-2">
+              <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
+              <div className="text-sm text-left mt-2 ml-2">
+                <div>Month to month</div>
+                <div>Reduced additional sessions</div>
+                <div>Highlights</div>
+                <div>Waitlist priority</div>
+              </div>
+            </div>
+            <div className="flex mb-2">
+              <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
+              <div className="text-sm text-left mt-2 ml-2">Open Club Access</div>
+            </div>
+            {isRecurring && (
+              <div className="flex mb-2">
+                <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
+                <div className="text-sm text-left mt-2 ml-2">Free Jersey Rental</div>
+              </div>
+            )}
+            {isUnlimited && (
+              <div className="flex mb-2">
+                <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
+                <div className="text-sm text-left mt-2 ml-2">No late cancellation fee</div>
+              </div>
+            )}
+          </>
         )}
       </div>
-      <div className="absolute lg:static top-1/2 right-5 transform lg:transform-none -translate-y-1/2 lg:mb-4">
+      <div
+        className={`absolute lg:static right-5 transform lg:transform-none -translate-y-1/3 lg:mb-4 ${
+          isRecurring ? 'top-1/4' : 'top-1/2'
+        }`}
+      >
         <PrimaryButton
           inverted={submitBtnSecondary}
           bg={submitBtnSecondary && 'transparent'}
