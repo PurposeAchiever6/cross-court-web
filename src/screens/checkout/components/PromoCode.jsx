@@ -55,7 +55,7 @@ const PromoCode = () => {
               displayErrorMsg={false}
             />
             {isPromoCodeValid ? (
-              <span className="success-msg">DISCOUNT ADDED!</span>
+              <span className="text-xs md:text-base ml-2 mt-6">DISCOUNT ADDED!</span>
             ) : (
               <PrimaryButton type="submit" loading={isLoading}>
                 USE <br /> CODE

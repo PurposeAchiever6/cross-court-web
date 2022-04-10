@@ -140,6 +140,16 @@ const MyProfile = ({ profile, showTitle = true }) => {
             </PrimaryButton>
           </div>
           <div className={detailRowClasses}>
+            <span className={titleClasses}>REFERRAL CODE</span>
+            <span>{profile.referralCode}</span>
+          </div>
+          <div className={detailRowClasses}>
+            <span className={titleClasses}>REFERRAL CREDITS</span>
+            <span className="font-shapiro95_super_wide text-3xl">{`$${Number(
+              profile.ccCash
+            )}`}</span>
+          </div>
+          <div className={detailRowClasses}>
             <PrimaryButton className="invite-a-friend-button" onClick={handleCopy} w="100%">
               <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
             </PrimaryButton>
