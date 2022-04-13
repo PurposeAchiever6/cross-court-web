@@ -128,6 +128,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           isPrivate,
           comingSoon,
           onWaitlist,
+          waitlistPlacement,
           isOpenClub,
         }) => {
           const URLdate = urlFormattedDate(startTime);
@@ -270,7 +271,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 )}
                 {onWaitlist && !past && (
                   <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
-                    <p className="text-2xs sm:text-xs mt-1 ml-2">{onWaitlistText}</p>
+                    <p className="text-2xs sm:text-xs mt-1 ml-2">{`#${waitlistPlacement} ${onWaitlistText}`}</p>
                   </div>
                 )}
               </div>
