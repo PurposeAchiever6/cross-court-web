@@ -40,7 +40,7 @@ const ProductPlan = ({
       }`}
     >
       <div className="inline-block mb-5 lg:h-9">
-        <h2 className="inline-block lg:block text-xl lg:text-2xl shapiro96_inclined_wide leading-none uppercase">
+        <h2 className="inline-block lg:block text-xl 2xl:text-2xl shapiro96_inclined_wide leading-none uppercase">
           {product.name}
           {!isRecurring && <span>*</span>}
         </h2>
@@ -50,22 +50,22 @@ const ProductPlan = ({
           </span>
         )}
       </div>
-      <div className={`mb-6 lg:mb-4 ${isRecurring ? 'lg:h-108' : 'lg:h-44'}`}>
+      <div className={`mb-6 lg:mb-4 ${isRecurring ? 'lg:h-116' : 'lg:h-44'}`}>
         <div className="dharma_gothic_cheavy_italic mb-3 lg:mb-0">
-          <span className="text-9xl lg:text-10xl">{price}</span>
+          <span className="text-9xl xl:text-10xl">{price}</span>
           {isRecurring && <span className="text-3xl lg:text-6xl">/month</span>}
         </div>
         {isRecurring && !isUnlimited && (
-          <div className="shapiro95_super_wide text-sm -mt-2 lg:-mt-4 lg:text-base">{`${sessionPricePerMonth}/session`}</div>
+          <div className="shapiro95_super_wide text-xs -mt-2 lg:-mt-2 2xl:text-sm">{`${sessionPricePerMonth}/session`}</div>
         )}
         {isUnlimited && (
-          <div className="shapiro95_super_wide text-sm -mt-2 lg:-mt-4 lg:text-base">
+          <div className="shapiro95_super_wide text-xs -mt-2 2xl:text-sm">
             {`${unlimitedPricePerSession}/session @ ${SAMPLE_UNLIMITED_SESSIONS_PER_MONTH}/month`}
           </div>
         )}
         {isRecurring && (
           <>
-            <h2 className="mb-3 mt-6 text-lg text-left lg:text-xl shapiro96_inclined_wide leading-none uppercase">
+            <h2 className="mb-3 mt-6 text-lg text-left xl:text-xl shapiro96_inclined_wide leading-none uppercase">
               FEATURES
             </h2>
             <div className="flex mb-2">

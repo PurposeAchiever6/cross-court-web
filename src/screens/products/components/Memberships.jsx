@@ -35,7 +35,7 @@ const Memberships = ({
 
   return (
     <div className="lg:flex lg:justify-center p-4 md:p-12 text-white">
-      <div className="lg:w-3/4">
+      <div className="lg:w-5/6 2xl:w-3/4">
         <div className="flex mb-4">
           <h2 className="dharma_gothic_cheavy text-8xl">MEMBERSHIP</h2>
           <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
