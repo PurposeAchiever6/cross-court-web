@@ -13,7 +13,6 @@ export default {
   HOWITWORKS: '/how-it-works',
   LOCATIONS: '/locations',
   LOCATIONSFIRST: '/locations-first',
-  LOCATIONSFREE: '/locations-free',
   LOGIN: '/login',
   MANAGE_MEMBERSHIP: '/manage-membership',
   MEMBERSHIPS: '/memberships',

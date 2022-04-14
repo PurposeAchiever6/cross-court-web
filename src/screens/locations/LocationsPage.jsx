@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -41,6 +41,8 @@ const LocationsPage = () => {
   const userInfo = useSelector(getUserProfile);
   const isFSFFlow = isUserInFirstFreeSessionFlow(userInfo);
 
+  const [showingFreeSessionCreditAdded, setShowingFreeSessionCreditAdded] = useState(true);
+
   const setLocationHandler = (locationId) => dispatch(getSessionsByLocation(locationId));
   const getSessionsByDateHandler = (date) => dispatch(getSessionsByDate(date));
   const setSelectedDateHandler = (date) => dispatch(setSelectedDate(date));
@@ -64,6 +66,10 @@ const LocationsPage = () => {
   };
 
   useEffect(() => {
+    setShowingFreeSessionCreditAdded(isFSFFlow);
+  }, [isFSFFlow]);
+
+  useEffect(() => {
     if (isFSFFlow) {
       history.push(ROUTES.LOCATIONSFIRST);
     }
@@ -75,7 +81,9 @@ const LocationsPage = () => {
     <Loading />
   ) : (
     <>
-      {isFSFFlow && <FreeSessionCreditAdded />}
+      {isFSFFlow && (
+        <FreeSessionCreditAdded onFinishAnimation={() => setShowingFreeSessionCreditAdded(false)} />
+      )}
       <div className="locations flex flex-col md:flex-row-reverse justify-center">
         <div className="w-full md:w-1/2 flex flex-col">
           <LocationPicker
@@ -93,7 +101,11 @@ const LocationsPage = () => {
           {isSessionsLoading ? (
             <Loading />
           ) : (
-            <SessionsList availableSessions={availableSessions} selectedDate={selectedDate} />
+            <SessionsList
+              availableSessions={availableSessions}
+              selectedDate={selectedDate}
+              showingFreeSessionCreditAdded={showingFreeSessionCreditAdded}
+            />
           )}
         </div>
         <div className="w-full md:w-1/2">

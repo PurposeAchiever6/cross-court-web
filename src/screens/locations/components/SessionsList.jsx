@@ -22,6 +22,7 @@ import {
   sortSessionsByDate,
   formatSessionDate,
 } from 'shared/utils/date';
+import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionsLoadingBtns } from 'screens/sessions/reducer';
@@ -30,6 +31,7 @@ import {
   joinSessionWaitlistInit,
   removeSessionWaitlistInit,
 } from 'screens/sessions/actionCreators';
+import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 
 const NoSessionContainer = styled.div`
   .title {
@@ -59,7 +61,7 @@ const NoSessionContainer = styled.div`
   }
 `;
 
-const SessionsList = ({ availableSessions, selectedDate }) => {
+const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCreditAdded }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -93,6 +95,13 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   const onClickRemoveFromWaitlist = (sessionId, sessionDate) => {
     dispatch(removeSessionWaitlistInit(sessionId, sessionDate));
   };
+
+  const onboardingTourId = 'onboarding-tour-sessions-list';
+  const isFSFFlow = isUserInFirstFreeSessionFlow(currentUser);
+  const isOnboardingTourEnabled =
+    isOnboardingTourEnable(onboardingTourId) &&
+    !showingFreeSessionCreditAdded &&
+    (!isAuthenticated || isFSFFlow);
 
   if (isEmpty(sortedSessions)) {
     return (
@@ -195,8 +204,9 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                   RESERVE
                 </PrimaryButton>
                 <OnboardingTour
-                  id="onboarding-tour-sessions-list"
+                  id={onboardingTourId}
                   timeout={1000}
+                  enabled={isOnboardingTourEnabled}
                   steps={[
                     {
                       element: '#sessions-list-session-level-info',
@@ -206,8 +216,9 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                     },
                     {
                       element: '#sessions-list-reserve-btn',
-                      intro:
-                        'Tap <strong>RESERVE</strong> to see the session details. Then create a profile to receive your free session credit and finish booking.',
+                      intro: isAuthenticated
+                        ? 'Tap <strong>RESERVE</strong> to see the session details and reserve your first free session.'
+                        : 'Tap <strong>RESERVE</strong> to see the session details. Then create a profile to receive your free session credit and finish booking.',
                     },
                   ]}
                 />
@@ -281,6 +292,10 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
   );
 };
 
+SessionsList.defaultProps = {
+  showingFreeSessionCreditAdded: false,
+};
+
 SessionsList.propTypes = {
   availableSessions: PropTypes.arrayOf(
     PropTypes.shape({
@@ -292,6 +307,7 @@ SessionsList.propTypes = {
     })
   ),
   selectedDate: PropTypes.instanceOf(Date).isRequired,
+  showingFreeSessionCreditAdded: PropTypes.bool,
 };
 
 export default SessionsList;

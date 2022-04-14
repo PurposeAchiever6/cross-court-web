@@ -84,7 +84,7 @@ const ReserveButton = ({
             steps={[
               {
                 element: '#session-confirm-reservation',
-                intro: `You’re s’close. Tap <strong>CONFIRM RESERVATION</strong> to hold your spot. Then enter your payment info and your first session is officially booked. Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`,
+                intro: `You’re s’close. Tap <strong>CONFIRM RESERVATION</strong> to hold your spot. First you'll need to enter your payment info and then you'll be ready to book your first session! Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`,
               },
             ]}
           />
