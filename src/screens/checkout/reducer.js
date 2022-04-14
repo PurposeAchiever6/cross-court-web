@@ -17,6 +17,9 @@ import {
   UPDATE_SUBSCRIPTION_INIT,
   UPDATE_SUBSCRIPTION_FAILURE,
   UPDATE_SUBSCRIPTION_SUCCESS,
+  SUBSCRIPTION_PRORATE_INIT,
+  SUBSCRIPTION_PRORATE_SUCCESS,
+  SUBSCRIPTION_PRORATE_FAILURE,
 } from './actionTypes';
 
 const initialState = {
@@ -27,6 +30,8 @@ const initialState = {
   promoCodeError: '',
   promoCodeValid: false,
   promoCode: null,
+  prorate: null,
+  prorateLoading: false,
 };
 
 export default (state = initialState, action) => {
@@ -73,6 +78,7 @@ export default (state = initialState, action) => {
         promoCodeLoading: false,
         promoCodeError: action.error,
         promoCodeValid: false,
+        prorateLoading: false,
       };
     case SET_SELECTED_PRODUCT:
       return {
@@ -86,6 +92,23 @@ export default (state = initialState, action) => {
         promoCodeError: '',
         promoCodeValid: false,
         promoCode: null,
+      };
+    case SUBSCRIPTION_PRORATE_INIT:
+      return {
+        ...state,
+        prorateLoading: true,
+      };
+    case SUBSCRIPTION_PRORATE_SUCCESS:
+      return {
+        ...state,
+        prorate: action.payload.prorate,
+        prorateLoading: false,
+      };
+    case SUBSCRIPTION_PRORATE_FAILURE:
+      return {
+        ...state,
+        prorate: null,
+        prorateLoading: false,
       };
     default:
       return state;
@@ -114,3 +137,6 @@ export const getPromoCodeLoading = createSelector(
 export const getPromoCodeError = createSelector(getCheckout, (checkout) => checkout.promoCodeError);
 export const getPromoCodeValid = createSelector(getCheckout, (checkout) => checkout.promoCodeValid);
 export const getPromoCode = createSelector(getCheckout, (checkout) => checkout.promoCode);
+
+export const getProrate = createSelector(getCheckout, (products) => products.prorate);
+export const getProrateLoading = createSelector(getCheckout, (products) => products.prorateLoading);

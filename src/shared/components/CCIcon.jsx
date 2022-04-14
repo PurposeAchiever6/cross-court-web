@@ -7,62 +7,59 @@ import {
   faCcDiscover,
   faCcAmex,
   faCcJcb,
-  faCcDinersClub
+  faCcDinersClub,
 } from '@fortawesome/free-brands-svg-icons';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
+import { string } from 'prop-types';
 
 const CCIconContainer = styled.div`
   svg {
     color: #000;
-    font-size: 2rem;
+    font-size: ${(props) => props.fontSize};
   }
 `;
 
-const CCIcon = ({ ccType }) => {
+const Logo = ({ ccType }) => {
   switch (ccType) {
     case 'visa':
-      return (
-        <CCIconContainer>
-          <FontAwesomeIcon icon={faCcVisa} />
-        </CCIconContainer>
-      );
+      return <FontAwesomeIcon icon={faCcVisa} />;
     case 'mastercard':
-      return (
-        <CCIconContainer>
-          <FontAwesomeIcon icon={faCcMastercard} />
-        </CCIconContainer>
-      );
+      return <FontAwesomeIcon icon={faCcMastercard} />;
     case 'discover':
-      return (
-        <CCIconContainer>
-          <FontAwesomeIcon icon={faCcDiscover} />
-        </CCIconContainer>
-      );
+      return <FontAwesomeIcon icon={faCcDiscover} />;
     case 'amex':
-      return (
-        <CCIconContainer>
-          <FontAwesomeIcon icon={faCcAmex} />
-        </CCIconContainer>
-      );
+      return <FontAwesomeIcon icon={faCcAmex} />;
     case 'jcb':
-      return (
-        <CCIconContainer>
-          <FontAwesomeIcon icon={faCcJcb} />
-        </CCIconContainer>
-      );
+      return <FontAwesomeIcon icon={faCcJcb} />;
     case 'diners':
-      return (
-        <CCIconContainer>
-          <FontAwesomeIcon icon={faCcDinersClub} />
-        </CCIconContainer>
-      );
+      return <FontAwesomeIcon icon={faCcDinersClub} />;
     default:
-      return (
-        <CCIconContainer>
-          <FontAwesomeIcon icon={faCreditCard} />
-        </CCIconContainer>
-      );
+      return <FontAwesomeIcon icon={faCreditCard} />;
   }
+};
+
+const CCIcon = ({ ccType, fontSize }) => (
+  <CCIconContainer fontSize={fontSize}>
+    <Logo ccType={ccType} />
+  </CCIconContainer>
+);
+
+Logo.defaultProps = {
+  ccType: '',
+};
+
+Logo.propTypes = {
+  ccType: string,
+};
+
+CCIcon.defaultProps = {
+  ccType: '',
+  fontSize: '2rem',
+};
+
+CCIcon.propTypes = {
+  ccType: string,
+  fontSize: string,
 };
 
 export default CCIcon;

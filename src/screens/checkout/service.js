@@ -40,12 +40,19 @@ export default {
   },
 
   checkPromoCode: async (promoCode, productId) => {
-    const response = await api.get(
-      `/promo_code?promo_code=${encodeURI(promoCode)}&product_id=${productId}`,
-      {
-        data: {},
-      }
-    );
+    const response = await api.get('/promo_code', {
+      data: {},
+      params: {
+        product_id: productId,
+        promo_code: promoCode,
+      },
+    });
+
+    return response.data;
+  },
+
+  subscriptionProrate: async (payload) => {
+    const response = await api.get('/subscriptions/preview_prorate', { data: {}, params: payload });
 
     return response.data;
   },

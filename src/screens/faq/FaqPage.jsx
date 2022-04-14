@@ -140,6 +140,16 @@ const Faq = () => (
       Our waitlist is first come first serve. Join the waitlist for a session you&apos;re interested
       in, and we&apos;ll notify you if someone cancels!
     </QuestionAnswer>
+    <QuestionAnswer
+      question="How does upgrading or downgrading your membership works?"
+      className="mb-8"
+    >
+      Changes to a membership such as upgrading or downgrading can result in prorated charges. For
+      example, if a member upgrades from a 10 USD per month membership to a 20 USD option,
+      they&apos;re charged prorated amounts for the time spent on each option. Assuming the change
+      occurred halfway through the billing period, the member is billed an additional 5 USD: -5 USD
+      for unused time on the initial price, and 10 USD for the remaining time on the new price.
+    </QuestionAnswer>
     <QuestionAnswer question="How did Crosscourt start?" collapsable className="mb-8">
       Crosscourt was started by two friends who were passionate about solving a problem they dealt
       with all too often: finding an efficient way to play pickup basketball. Both founders grew up

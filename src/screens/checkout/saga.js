@@ -5,6 +5,7 @@ import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/products/reducer';
 import { getSelectedCard } from 'screens/payment-methods/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
+import { RECURRING } from 'screens/products/constants';
 
 import { getPromoCode } from './reducer';
 import {
@@ -23,6 +24,9 @@ import {
   UPDATE_SUBSCRIPTION_INIT,
   UPDATE_SUBSCRIPTION_SUCCESS,
   UPDATE_SUBSCRIPTION_FAILURE,
+  SUBSCRIPTION_PRORATE_INIT,
+  SUBSCRIPTION_PRORATE_SUCCESS,
+  SUBSCRIPTION_PRORATE_FAILURE,
 } from './actionTypes';
 import { RESERVE_SESSION_INIT } from '../sessions/actionTypes';
 import { GET_PROFILE_INIT } from 'screens/my-account/actionTypes';
@@ -65,12 +69,17 @@ export function* createFreeSessionFlow({ payload }) {
 
 export function* checkPromoCodeFlow({ payload }) {
   try {
+    const userProfile = yield select(getUserProfile);
+    const activeSubscription = userProfile.activeSubscription;
     const selectedProduct = yield select(getSelectedProduct);
-    const { price } = yield call(
-      checkoutService.checkPromoCode,
-      payload.promoCode,
-      selectedProduct.id
-    );
+    const productId = selectedProduct.id;
+
+    const { price } = yield call(checkoutService.checkPromoCode, payload.promoCode, productId);
+
+    if (activeSubscription && selectedProduct.productType === RECURRING) {
+      const params = { product_id: productId, promo_code: payload.promoCode };
+      yield put({ type: SUBSCRIPTION_PRORATE_INIT, payload: params });
+    }
 
     yield put({
       type: CHECK_PROMO_CODE_SUCCESS,
@@ -145,6 +154,15 @@ export function* updateSubscriptionFlow() {
   }
 }
 
+export function* subscriptionProrateFlow({ payload }) {
+  try {
+    const prorate = yield call(checkoutService.subscriptionProrate, payload);
+    yield put({ type: SUBSCRIPTION_PRORATE_SUCCESS, payload: { prorate } });
+  } catch (err) {
+    yield put({ type: SUBSCRIPTION_PRORATE_FAILURE, error: err.response.data.error });
+  }
+}
+
 export default function* checkoutSaga() {
   yield all([
     takeLatest(CREATE_PURCHASE_INIT, createPurchaseFlow),
@@ -152,5 +170,6 @@ export default function* checkoutSaga() {
     takeLatest(UPDATE_SUBSCRIPTION_INIT, updateSubscriptionFlow),
     takeLatest(CREATE_FREE_SESSION_INIT, createFreeSessionFlow),
     takeLatest(CHECK_PROMO_CODE_INIT, checkPromoCodeFlow),
+    takeLatest(SUBSCRIPTION_PRORATE_INIT, subscriptionProrateFlow),
   ]);
 }

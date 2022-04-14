@@ -27,6 +27,7 @@ export default (state = initialState, action) => {
       };
     case INITIAL_LOAD_SUCCESS:
       return {
+        ...state,
         pageLoading: false,
         availableProducts: [...action.payload.availableProducts],
       };
