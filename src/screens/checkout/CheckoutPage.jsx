@@ -16,12 +16,14 @@ import { RECURRING } from 'screens/products/constants';
 
 const CheckoutPage = () => {
   const dispatch = useDispatch();
+
   const productDetails = useSelector(getSelectedProduct);
-  const productId = productDetails?.id;
   const paymentMethod = useSelector(getSelectedCard);
   const userProfile = useSelector(getUserProfile);
   const prorate = useSelector(getProrate);
   const prorateLoading = useSelector(getProrateLoading);
+
+  const productId = productDetails?.id;
   const userHasActiveSubscription = !!userProfile.activeSubscription;
   const isSubscription = productDetails?.productType === RECURRING;
 
@@ -35,29 +37,28 @@ const CheckoutPage = () => {
     return <Redirect to={ROUTES.LOCATIONS} />;
   }
 
-  let action;
-  if (isSubscription && userHasActiveSubscription) {
-    action = updateSubscription();
-  } else if (isSubscription && !userHasActiveSubscription) {
-    action = createSubscription();
-  } else {
-    action = createPurchase();
-  }
-
-  const createPurchaseHandler = () => dispatch(action);
+  const checkoutHandler = (params = {}) => {
+    if (isSubscription && userHasActiveSubscription) {
+      dispatch(updateSubscription());
+    } else if (isSubscription && !userHasActiveSubscription) {
+      dispatch(createSubscription());
+    } else {
+      dispatch(createPurchase(params));
+    }
+  };
 
   return (
     <>
       <BackButton className="mt-10 w-max" />
-      <div className="text-2xl md:text-base pt-20 flex flex-col items-center justify-center">
-        <h1 className="mb-8 font-shapiro95_super_wide text-lg">PURCHASE DETAILS</h1>
+      <div className="min-h-screen flex flex-col items-center justify-center">
+        <h1 className="font-shapiro95_super_wide text-2xl mb-8">PURCHASE DETAILS</h1>
         <PurchaseDetails
           prorate={prorate}
           prorateLoading={prorateLoading}
           productDetails={productDetails}
           paymentMethod={paymentMethod}
-          createPurchaseHandler={createPurchaseHandler}
-          userHasActiveSubscription={userHasActiveSubscription}
+          checkoutHandler={checkoutHandler}
+          userProfile={userProfile}
         />
       </div>
     </>

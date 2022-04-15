@@ -57,8 +57,8 @@ const PromoCode = () => {
             {isPromoCodeValid ? (
               <span className="text-xs md:text-base ml-2 mt-6">DISCOUNT ADDED!</span>
             ) : (
-              <PrimaryButton type="submit" loading={isLoading}>
-                USE <br /> CODE
+              <PrimaryButton type="submit" loading={isLoading} className="self-end ml-4" py="13px">
+                USE CODE
               </PrimaryButton>
             )}
           </PromoCodeContainer>
