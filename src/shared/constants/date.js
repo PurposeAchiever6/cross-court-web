@@ -10,3 +10,4 @@ export const FORMAT_DAY_NUMBER = 'D';
 export const FORMAT_MONTH = 'MMMM';
 export const FORMAT_SHARE_SESSION_DATE = 'MM/DD';
 export const FORMAT_SHARE_SESSION_TIME = 'h A';
+export const FORMAT_DATETIME = 'MM/DD/YYYY H:mm';

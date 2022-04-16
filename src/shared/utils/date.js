@@ -17,6 +17,7 @@ import {
   FORMAT_MONTH,
   FORMAT_SHARE_SESSION_DATE,
   FORMAT_SHARE_SESSION_TIME,
+  FORMAT_DATETIME,
 } from 'shared/constants/date';
 
 dayjs.extend(utc);
@@ -97,6 +98,8 @@ export const formatSessionDate = (time) => getUTCDate(time).format(FORMAT_DATE_P
 
 export const formatShareSessionDate = (date) => getUTCDate(date).format(FORMAT_SHARE_SESSION_DATE);
 export const formatShareSessionTime = (date) => getUTCDate(date).format(FORMAT_SHARE_SESSION_TIME);
+
+export const formatDateTime = (datetime) => getUTCDate(datetime).format(FORMAT_DATETIME);
 
 export const yearsFrom = (date) => {
   let today = new Date();

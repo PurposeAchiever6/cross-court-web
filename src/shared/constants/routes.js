@@ -9,6 +9,7 @@ export default {
   FIRSTSESSIONRESERVED: '/first-session/reserved',
   FORGOTPASSWORD: '/forgotpassword',
   FORGOTPASSWORDSUCCESS: '/forgotpassword/success',
+  GALLERY: '/gallery',
   HOME: '/',
   HOWITWORKS: '/how-it-works',
   LOCATIONS: '/locations',
@@ -27,6 +28,7 @@ export default {
   PURCHASEHISTORY: '/purchase-history',
   PWA: '/app',
   RATING: '/rating',
+  REFERRALS: '/my-account/referrals',
   RESETPASSWORD: '/resetpassword',
   RESETPASSWORDSUCCESS: '/resetpassword/success',
   RULES: '/rules',
@@ -38,5 +40,4 @@ export default {
   SIGNUPCONFIRMATION: '/signup/confirmation',
   SIGNUPSUCCESS: '/signup/success',
   TERMS: '/terms-and-conditions',
-  GALLERY: '/gallery',
 };
