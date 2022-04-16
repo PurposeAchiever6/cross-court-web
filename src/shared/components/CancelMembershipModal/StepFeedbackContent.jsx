@@ -6,7 +6,7 @@ import Label from 'shared/components/Label';
 import InputTextareaField from 'shared/components/InputTextareaField';
 import StarsRate from 'shared/components/StarsRate';
 
-const StepFeedbackContent = ({ subscriptionFeedback, cancelSubscription }) => {
+const StepFeedbackContent = ({ subscriptionFeedback }) => {
   const [errors, setErrors] = useState({});
   const [experiencieRate, setExperiencieRate] = useState(0);
   const [serviceRate, setServiceRate] = useState(0);
@@ -36,14 +36,15 @@ const StepFeedbackContent = ({ subscriptionFeedback, cancelSubscription }) => {
 
   const onSubmit = () => {
     if (validate()) {
-      cancelSubscription();
       subscriptionFeedback({ experiencieRate, serviceRate, recommendRate, feedback });
     }
   };
 
   return (
     <div className="text-sm">
-      <p className="mb-5">Please share your experience with us, to help make Crosscourt better.</p>
+      <p className="mb-5">
+        Please share your reason(s) for cancelling, to help make Crosscourt better.
+      </p>
       <div className="flex flex-wrap justify-between mb-5">
         <div className="w-full md:w-auto">
           <Label>Overall experience</Label>
@@ -108,7 +109,7 @@ const StepFeedbackContent = ({ subscriptionFeedback, cancelSubscription }) => {
         className="mb-6"
       />
       <div className="text-center">
-        <PrimaryButton onClick={onSubmit}>Cancel Membership</PrimaryButton>
+        <PrimaryButton onClick={onSubmit}>Submit Cancellation</PrimaryButton>
       </div>
     </div>
   );
@@ -116,7 +117,6 @@ const StepFeedbackContent = ({ subscriptionFeedback, cancelSubscription }) => {
 
 StepFeedbackContent.propTypes = {
   subscriptionFeedback: PropTypes.func.isRequired,
-  cancelSubscription: PropTypes.func.isRequired,
 };
 
 export default StepFeedbackContent;

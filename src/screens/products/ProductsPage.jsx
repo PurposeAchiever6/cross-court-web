@@ -104,7 +104,6 @@ const ProductsPage = () => {
       <CancelMembershipModal
         isOpen={showCancelModal}
         closeHandler={() => setShowCancelModal(false)}
-        subscription={userProfile.activeSubscription}
       />
     </>
   );
