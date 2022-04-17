@@ -28,7 +28,7 @@ const ToggleButton = ({ offLabel, onLabel, size, value, onChange, className }) =
       {!value && (
         <FontAwesomeIcon
           icon={faToggleOn}
-          className={`${getSize} text-cc-purple`}
+          className={`${getSize} text-cc-purple cursor-pointer`}
           rotation={180}
           onClick={() => onChange(true)}
         />
@@ -36,7 +36,7 @@ const ToggleButton = ({ offLabel, onLabel, size, value, onChange, className }) =
       {value && (
         <FontAwesomeIcon
           icon={faToggleOn}
-          className={`${getSize} text-cc-purple`}
+          className={`${getSize} text-cc-purple cursor-pointer`}
           onClick={() => onChange(false)}
         />
       )}

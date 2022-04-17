@@ -59,12 +59,6 @@ const NoSessionContainer = styled.div`
   }
 `;
 
-const OPEN_CLUB_INFO =
-  'All members can access the club to shootaround, train, or self-organize own runs (included with membership)';
-const fewSpotsLeftText = 'FEW SPOTS LEFT';
-const onlyForUsersOver18Text = 'MUST BE 18+';
-const onWaitlistText = 'ON THE WAITLIST';
-
 const SessionsList = ({ availableSessions, selectedDate }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -245,7 +239,9 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 </p>
                 {isOpenClub ? (
                   <div className="my-2">
-                    <BadgeWithInfo info={OPEN_CLUB_INFO}>Open Club</BadgeWithInfo>
+                    <BadgeWithInfo info="All members can access the club to shootaround, train, or self-organize own runs (included with memberships)">
+                      Open Club
+                    </BadgeWithInfo>
                   </div>
                 ) : (
                   <div id="sessions-list-session-level-info" className="my-2">
@@ -260,18 +256,20 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 {!isLegalAge && (
                   <div className="flex items-center sm:self-center mt-2 whitespace-nowrap">
                     <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                    <p className="text-2xs sm:text-xs mt-1 ml-2">{onlyForUsersOver18Text}</p>
+                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
                   </div>
                 )}
-                {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && isLegalAge && (
+                {!reserved && !onWaitlist && spotsLeft <= 5 && isLegalAge && (
                   <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
                     <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                    <p className="text-2xs sm:text-xs mt-1 ml-2">{fewSpotsLeftText}</p>
+                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
+                      {full ? 'Session full' : 'Few spots left'}
+                    </p>
                   </div>
                 )}
                 {onWaitlist && !past && (
                   <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
-                    <p className="text-2xs sm:text-xs mt-1 ml-2">{`#${waitlistPlacement} ${onWaitlistText}`}</p>
+                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
                   </div>
                 )}
               </div>
