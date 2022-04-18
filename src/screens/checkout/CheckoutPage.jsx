@@ -17,6 +17,7 @@ import { RECURRING } from 'screens/products/constants';
 const CheckoutPage = () => {
   const dispatch = useDispatch();
   const productDetails = useSelector(getSelectedProduct);
+  const productId = productDetails?.id;
   const paymentMethod = useSelector(getSelectedCard);
   const userProfile = useSelector(getUserProfile);
   const prorate = useSelector(getProrate);
@@ -25,14 +26,15 @@ const CheckoutPage = () => {
   const isSubscription = productDetails?.productType === RECURRING;
 
   useEffect(() => {
-    if (isSubscription && productDetails.id && userHasActiveSubscription) {
-      dispatch(subscriptionProrate(productDetails.id));
+    if (isSubscription && productId && userHasActiveSubscription) {
+      dispatch(subscriptionProrate(productId));
     }
-  }, [userHasActiveSubscription, dispatch, isSubscription, productDetails.id]);
+  }, [userHasActiveSubscription, dispatch, isSubscription, productId]);
 
   if (isNil(productDetails) || isNil(paymentMethod)) {
     return <Redirect to={ROUTES.LOCATIONS} />;
   }
+
   let action;
   if (isSubscription && userHasActiveSubscription) {
     action = updateSubscription();

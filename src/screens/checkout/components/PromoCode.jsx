@@ -44,8 +44,8 @@ const PromoCode = () => {
       validationSchema={validationSchema}
     >
       {() => (
-        <PromoCodeContainer>
-          <Form className="flex flex-col md:flex-row md:items-center mb-20 md:mb-0 h-16">
+        <PromoCodeContainer className="flex flex-col sm:flex-row h-16 mb-20 sm:mb-4">
+          <Form>
             <InputTextField
               showLabel={false}
               name="promoCode"
@@ -54,14 +54,14 @@ const PromoCode = () => {
               disabled={isPromoCodeValid}
               displayErrorMsg={false}
             />
-            {isPromoCodeValid ? (
-              <span className="success-msg">DISCOUNT ADDED!</span>
-            ) : (
-              <PrimaryButton type="submit" loading={isLoading}>
-                USE <br /> CODE
-              </PrimaryButton>
-            )}
           </Form>
+          {isPromoCodeValid ? (
+            <span className="success-msg">DISCOUNT ADDED!</span>
+          ) : (
+            <PrimaryButton type="submit" loading={isLoading}>
+              USE <br /> CODE
+            </PrimaryButton>
+          )}
         </PromoCodeContainer>
       )}
     </Formik>
