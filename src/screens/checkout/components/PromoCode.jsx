@@ -45,7 +45,7 @@ const PromoCode = () => {
     >
       {() => (
         <Form>
-          <PromoCodeContainer className="flex flex-col md:flex-row">
+          <PromoCodeContainer className="flex flex-col md:flex-row h-16 mb-20 md:mb-0">
             <InputTextField
               showLabel={false}
               name="promoCode"
