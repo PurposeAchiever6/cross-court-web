@@ -109,7 +109,7 @@ const StepFeedbackContent = ({ subscriptionFeedback }) => {
         className="mb-6"
       />
       <div className="text-center">
-        <PrimaryButton onClick={onSubmit}>Submit Cancellation</PrimaryButton>
+        <PrimaryButton onClick={onSubmit}>Submit Request</PrimaryButton>
       </div>
     </div>
   );
