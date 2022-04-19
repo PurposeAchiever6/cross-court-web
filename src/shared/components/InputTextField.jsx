@@ -22,7 +22,7 @@ const InputTextContainer = styled.div`
   }
   small {
     text-align: right;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
     color: ${colors.errorRed};
     text-transform: initial;
     font-family: shapiro45_welter_extd;
@@ -92,7 +92,7 @@ InputTextField.propTypes = {
   name: PropTypes.string.isRequired,
   error: PropTypes.string,
   type: PropTypes.string,
-  labelText: PropTypes.string.isRequired,
+  labelText: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   showLabel: PropTypes.bool,

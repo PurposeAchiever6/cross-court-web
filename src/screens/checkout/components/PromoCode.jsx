@@ -11,60 +11,12 @@ import { checkPromoCode } from '../actionCreators';
 import { getPromoCodeLoading, getPromoCodeValid } from '../reducer';
 
 const PromoCodeContainer = styled.div`
-  form {
-    display: flex;
-    align-items: center;
-  }
-
   button {
     height: 100%;
-    margin-top: 1.5rem;
-    margin-left: -1.5rem;
-    padding: 1rem 2rem;
-    align-self: flex-end;
-    width: 9rem;
-  }
-
-  .success-msg {
-    font-weight: 500;
-    margin-top: 1rem;
-    margin-left: 0.5rem;
-  }
-
-  .input-container {
-    width: 50%;
-    margin-bottom: 0;
-    font-size: 1rem;
-
-    input {
-      padding: 0.85rem 0.5rem;
-    }
-    label {
-      font-weight: bold;
-      font-size: 0.9rem;
-      line-height: 0.9rem;
-      letter-spacing: 0.2em;
-      color: #9999ff;
-      margin-bottom: 0.8rem;
-      text-transform: capitalize;
-    }
-    small {
-      display: none;
-    }
-  }
-  @media (max-width: 991px) {
-    form {
-      flex-direction: row;
-      button {
-        margin-left: 1rem;
-        padding: 0.9rem;
-      }
-    }
-    .input-container {
-      width: 55%;
-      input {
-        font-size: 1rem;
-      }
+    width: 6rem;
+    .content {
+      height: 100%;
+      padding: 0.5rem 1rem;
     }
   }
 `;
@@ -88,30 +40,29 @@ const PromoCode = () => {
       validateOnChange={false}
       validateOnBlur={false}
       initialValues={initialValues}
-      onSubmit={({ promoCode }) => {
-        checkPromoCodeAction(promoCode);
-      }}
+      onSubmit={({ promoCode }) => checkPromoCodeAction(promoCode)}
       validationSchema={validationSchema}
     >
       {() => (
-        <PromoCodeContainer className="promo-code">
-          <Form className="form">
+        <Form>
+          <PromoCodeContainer className="flex flex-col md:flex-row h-16 mb-20 md:mb-0">
             <InputTextField
-              labelText="DISCOUNT CODE"
+              showLabel={false}
               name="promoCode"
               placeholder="Enter your code"
-              className="input-container"
+              className="mb-4 md:mb-0 md:mr-4"
               disabled={isPromoCodeValid}
+              displayErrorMsg={false}
             />
             {isPromoCodeValid ? (
               <span className="success-msg">DISCOUNT ADDED!</span>
             ) : (
               <PrimaryButton type="submit" loading={isLoading}>
-                USE CODE
+                USE <br /> CODE
               </PrimaryButton>
             )}
-          </Form>
-        </PromoCodeContainer>
+          </PromoCodeContainer>
+        </Form>
       )}
     </Formik>
   );

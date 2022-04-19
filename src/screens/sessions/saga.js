@@ -143,7 +143,10 @@ export function* joinSessionWaitlistFlow({ payload }) {
 export function* removeSessionWaitlistFlow({ payload }) {
   try {
     yield call(sessionService.removeSessionWaitlist, payload.sessionId, payload.sessionDate);
-    yield put({ type: REMOVE_SESSION_WAITLIST_SUCCESS, payload: { sessionId: payload.sessionId } });
+    yield put({
+      type: REMOVE_SESSION_WAITLIST_SUCCESS,
+      payload: { sessionId: payload.sessionId, sessionDate: payload.sessionDate },
+    });
     yield call(toast.success, 'You have been removed from the waitlist successfully');
   } catch (err) {
     const errorMessage = err.response.data.error;

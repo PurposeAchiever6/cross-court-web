@@ -38,14 +38,16 @@ const QUESTIONS = [
 ];
 
 const FAQ = () => (
-  <section className="p-4 md:p-12 pt-0 md:pt-0 text-white">
-    <h2 className="font-shapiro95_super_wide text-3xl italic mb-8">MEMBERSHIP FAQ</h2>
-    <div>
-      {QUESTIONS.map(({ question, answer }, index) => (
-        <QuestionAnswer key={index} question={question} className="mb-8">
-          {answer}
-        </QuestionAnswer>
-      ))}
+  <section className="px-4 md:px-14 xl:px-24 text-white">
+    <div className="max-w-screen-xl mx-auto">
+      <h2 className="font-shapiro95_super_wide text-3xl italic mb-8">MEMBERSHIP FAQ</h2>
+      <div>
+        {QUESTIONS.map(({ question, answer }, index) => (
+          <QuestionAnswer key={index} question={question} className="mb-8">
+            {answer}
+          </QuestionAnswer>
+        ))}
+      </div>
     </div>
   </section>
 );

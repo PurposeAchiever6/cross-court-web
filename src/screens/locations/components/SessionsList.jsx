@@ -22,6 +22,7 @@ import {
   sortSessionsByDate,
   formatSessionDate,
 } from 'shared/utils/date';
+import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionsLoadingBtns } from 'screens/sessions/reducer';
@@ -30,6 +31,7 @@ import {
   joinSessionWaitlistInit,
   removeSessionWaitlistInit,
 } from 'screens/sessions/actionCreators';
+import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 
 const NoSessionContainer = styled.div`
   .title {
@@ -59,13 +61,7 @@ const NoSessionContainer = styled.div`
   }
 `;
 
-const OPEN_CLUB_INFO =
-  'All members can access the club to shootaround, train, or self-organize own runs (included with membership)';
-const fewSpotsLeftText = 'FEW SPOTS LEFT';
-const onlyForUsersOver18Text = 'MUST BE 18+';
-const onWaitlistText = 'ON THE WAITLIST';
-
-const SessionsList = ({ availableSessions, selectedDate }) => {
+const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCreditAdded }) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -100,6 +96,13 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
     dispatch(removeSessionWaitlistInit(sessionId, sessionDate));
   };
 
+  const onboardingTourId = 'onboarding-tour-sessions-list';
+  const isFSFFlow = isUserInFirstFreeSessionFlow(currentUser);
+  const isOnboardingTourEnabled =
+    isOnboardingTourEnable(onboardingTourId) &&
+    !showingFreeSessionCreditAdded &&
+    (!isAuthenticated || isFSFFlow);
+
   if (isEmpty(sortedSessions)) {
     return (
       <div className="flex flex-col h-full justify-center">
@@ -128,6 +131,7 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
           isPrivate,
           comingSoon,
           onWaitlist,
+          waitlistPlacement,
           isOpenClub,
         }) => {
           const URLdate = urlFormattedDate(startTime);
@@ -200,8 +204,9 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                   RESERVE
                 </PrimaryButton>
                 <OnboardingTour
-                  id="onboarding-tour-sessions-list"
+                  id={onboardingTourId}
                   timeout={1000}
+                  enabled={isOnboardingTourEnabled}
                   steps={[
                     {
                       element: '#sessions-list-session-level-info',
@@ -211,8 +216,9 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                     },
                     {
                       element: '#sessions-list-reserve-btn',
-                      intro:
-                        'Tap <strong>RESERVE</strong> to see the session details. Then create a profile to receive your free session credit and finish booking.',
+                      intro: isAuthenticated
+                        ? 'Tap <strong>RESERVE</strong> to see the session details and reserve your first free session.'
+                        : 'Tap <strong>RESERVE</strong> to see the session details. Then create a profile to receive your free session credit and finish booking.',
                     },
                   ]}
                 />
@@ -244,7 +250,9 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 </p>
                 {isOpenClub ? (
                   <div className="my-2">
-                    <BadgeWithInfo info={OPEN_CLUB_INFO}>Open Club</BadgeWithInfo>
+                    <BadgeWithInfo info="All members can access the club to shootaround, train, or self-organize own runs (included with memberships)">
+                      Open Club
+                    </BadgeWithInfo>
                   </div>
                 ) : (
                   <div id="sessions-list-session-level-info" className="my-2">
@@ -259,18 +267,20 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
                 {!isLegalAge && (
                   <div className="flex items-center sm:self-center mt-2 whitespace-nowrap">
                     <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                    <p className="text-2xs sm:text-xs mt-1 ml-2">{onlyForUsersOver18Text}</p>
+                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
                   </div>
                 )}
-                {spotsLeft > 0 && spotsLeft <= 5 && fewSpotsLeftText && isLegalAge && (
+                {!reserved && !onWaitlist && spotsLeft <= 5 && isLegalAge && (
                   <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
                     <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                    <p className="text-2xs sm:text-xs mt-1 ml-2">{fewSpotsLeftText}</p>
+                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
+                      {full ? 'Session full' : 'Few spots left'}
+                    </p>
                   </div>
                 )}
                 {onWaitlist && !past && (
                   <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
-                    <p className="text-2xs sm:text-xs mt-1 ml-2">{onWaitlistText}</p>
+                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
                   </div>
                 )}
               </div>
@@ -280,6 +290,10 @@ const SessionsList = ({ availableSessions, selectedDate }) => {
       )}
     </div>
   );
+};
+
+SessionsList.defaultProps = {
+  showingFreeSessionCreditAdded: false,
 };
 
 SessionsList.propTypes = {
@@ -293,6 +307,7 @@ SessionsList.propTypes = {
     })
   ),
   selectedDate: PropTypes.instanceOf(Date).isRequired,
+  showingFreeSessionCreditAdded: PropTypes.bool,
 };
 
 export default SessionsList;

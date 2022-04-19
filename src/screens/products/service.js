@@ -2,7 +2,7 @@ import api from 'shared/services';
 
 export default {
   getAllProducts: async () => {
-    const response = await api.get(`/products`, {
+    const response = await api.get('/products', {
       data: {},
     });
 

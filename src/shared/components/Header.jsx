@@ -22,7 +22,6 @@ const SCROLL_LIMIT = 50;
 const ALWAYS_SCROLLED = [
   ROUTES.LOCATIONS,
   ROUTES.LOCATIONSFIRST,
-  ROUTES.LOCATIONSFREE,
   ROUTES.FORGOTPASSWORD,
   ROUTES.RESETPASSWORD,
   ROUTES.MYACCOUNT,
@@ -177,7 +176,7 @@ const Header = () => {
             px="4px"
             py="6px"
             fontSize="12px"
-            to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.LOCATIONSFREE}
+            to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP}
             onClick={exitHeaderOnboardingTour}
           >
             {buttonText}
@@ -189,7 +188,7 @@ const Header = () => {
               {
                 element: '#header-btn',
                 intro:
-                  'Your first Crosscourt session is on us. Tap <strong>FIRST FREE</strong> to find an upcoming session.',
+                  'Your first Crosscourt session is on us. Tap <strong>FIRST FREE</strong> to receive your session credit.',
               },
             ]}
             onExit={exitHeaderOnboardingTour}

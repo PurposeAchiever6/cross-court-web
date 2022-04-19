@@ -1,4 +1,7 @@
 import { createSelector } from 'reselect';
+
+import { isSameDay } from 'shared/utils/date';
+import { REMOVE_SESSION_WAITLIST_SUCCESS } from 'screens/sessions/actionTypes';
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -11,7 +14,7 @@ import {
   GET_SESSIONS_BY_DATE_FAILURE,
   SET_SELECTED_DATE,
 } from './actionTypes';
-import { REMOVE_SESSION_WAITLIST_SUCCESS } from 'screens/sessions/actionTypes';
+
 const initialState = {
   error: '',
   pageLoading: false,
@@ -65,7 +68,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         availableSessions: state.availableSessions.map((session) =>
-          session.id === action.payload.sessionId ? { ...session, onWaitlist: false } : session
+          session.id === action.payload.sessionId &&
+          isSameDay(session.startTime, action.payload.sessionDate)
+            ? { ...session, onWaitlist: false }
+            : session
         ),
       };
     default:

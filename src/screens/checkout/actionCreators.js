@@ -5,6 +5,7 @@ import {
   CHECK_PROMO_CODE_INIT,
   CREATE_SUBSCRIPTION_INIT,
   UPDATE_SUBSCRIPTION_INIT,
+  SUBSCRIPTION_PRORATE_INIT,
 } from './actionTypes';
 
 export const clearDiscount = () => ({
@@ -37,4 +38,9 @@ export const checkPromoCode = (promoCode) => ({
   payload: {
     promoCode,
   },
+});
+
+export const subscriptionProrate = (productId) => ({
+  type: SUBSCRIPTION_PRORATE_INIT,
+  payload: { product_id: productId },
 });
