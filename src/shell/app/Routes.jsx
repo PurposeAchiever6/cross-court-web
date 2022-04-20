@@ -65,6 +65,7 @@ const PaymentMethodsMembership = lazy(() =>
   import('screens/payment-methods/pages/PaymentMethodsMembership')
 );
 const Gallery = lazy(() => import('screens/gallery/GalleryPage'));
+const Referrals = lazy(() => import('screens/referrals/ReferralsPage'));
 
 const AppWrapper = styled.div`
   display: flex;
@@ -381,6 +382,9 @@ const Routes = () => {
         <Route path={ROUTES.GALLERY} exact>
           <Gallery />
         </Route>
+        <PrivateRoute path={ROUTES.REFERRALS} exact>
+          <Referrals />
+        </PrivateRoute>
       </Switch>
     </main>
   );

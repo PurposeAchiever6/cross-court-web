@@ -1,0 +1,3 @@
+export const GET_REFERRALS_INIT = '@referrals/GET_REFERRALS_INIT';
+export const GET_REFERRALS_SUCCESS = '@referrals/GET_REFERRALS_SUCCESS';
+export const GET_REFERRALS_FAILURE = '@referrals/GET_REFERRALS_FAILURE';

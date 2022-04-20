@@ -32,13 +32,20 @@ import { RESERVE_SESSION_INIT } from '../sessions/actionTypes';
 import { GET_PROFILE_INIT } from 'screens/my-account/actionTypes';
 import checkoutService from './service';
 
-export function* createPurchaseFlow() {
+export function* createPurchaseFlow({ payload }) {
   try {
     const selectedProduct = yield select(getSelectedProduct);
     const selectedCard = yield select(getSelectedCard);
     const promoCode = yield select(getPromoCode);
+    const { useCcCash } = payload;
 
-    yield call(checkoutService.createPurchase, selectedProduct.id, selectedCard.id, promoCode);
+    yield call(
+      checkoutService.createPurchase,
+      selectedProduct.id,
+      selectedCard.id,
+      promoCode,
+      useCcCash
+    );
     yield put({ type: CREATE_PURCHASE_SUCCESS });
     yield put({ type: GET_PROFILE_INIT });
     yield put(push(ROUTES.CHECKOUTCONFIRMED));

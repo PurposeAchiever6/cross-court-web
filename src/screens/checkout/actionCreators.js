@@ -12,8 +12,9 @@ export const clearDiscount = () => ({
   type: CLEAR_DISCOUNT,
 });
 
-export const createPurchase = () => ({
+export const createPurchase = (payload) => ({
   type: CREATE_PURCHASE_INIT,
+  payload,
 });
 
 export const createSubscription = () => ({

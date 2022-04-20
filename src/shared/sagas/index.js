@@ -12,6 +12,7 @@ import rootCheckoutSaga from 'screens/checkout/saga';
 import rootLegalDocsSaga from 'screens/legal-docs/saga';
 import rootSurveySaga from 'screens/survey/saga';
 import rootGallerySaga from 'screens/gallery/saga';
+import rootReferralsSaga from 'screens/referrals/saga';
 
 export default function* rootSaga() {
   yield all([
@@ -27,5 +28,6 @@ export default function* rootSaga() {
     rootLegalDocsSaga(),
     rootSurveySaga(),
     rootGallerySaga(),
+    rootReferralsSaga(),
   ]);
 }
