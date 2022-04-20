@@ -23,6 +23,7 @@ const PurchaseDetails = ({
   userProfile,
   prorate,
   prorateLoading,
+  className,
 }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getCheckoutLoading);
@@ -45,11 +46,11 @@ const PurchaseDetails = ({
   }, [dispatch]);
 
   return (
-    <div className="w-full md:w-3/5 2xl:w-2/5 min-h-screen px-4">
-      <div className="border-4 border-cc-purple p-8 text-lg">
+    <div className={className}>
+      <div className="border-4 border-cc-purple p-4 sm:p-8">
         <div className="text-right font-shapiro95_super_wide md:text-xl mb-4">{purchaseDate}</div>
 
-        <div className="mb-4">
+        <div className="mb-8">
           <Label color="purple" className="mb-2">
             YOUR PURCHASE
           </Label>
@@ -57,22 +58,18 @@ const PurchaseDetails = ({
           <div>{productDetails.description}</div>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-8">
           <Label color="purple" className="mb-2">
             PAYMENT METHOD
           </Label>
           <div className="flex items-center">
             <CCIcon ccType={paymentMethod.brand} fontSize="2.5rem" />
-            <div className="flex flex-col ml-4 font-shapiro95_super_wide">
-              <span className="md:text-xl">{`***${paymentMethod.last4}`}</span>
-              <div>
-                <span>Expires {`${paymentMethod.expMonth}/${paymentMethod.expYear}`}</span>
-              </div>
+            <div className="ml-4 font-shapiro95_super_wide">
+              <div>{`***${paymentMethod.last4}`}</div>
+              <div>Expires {`${paymentMethod.expMonth}/${paymentMethod.expYear}`}</div>
             </div>
           </div>
         </div>
-
-        <PromoCode />
 
         {isDropIn && (
           <div className="mb-8">
@@ -94,9 +91,11 @@ const PurchaseDetails = ({
             </div>
           </div>
         )}
+
+        <PromoCode />
       </div>
 
-      <div className="font-shapiro95_super_wide mb-8 bg-cc-purple p-6 text-white text-2xl md:text-5xl">
+      <div className="font-shapiro95_super_wide bg-cc-purple text-white text-2xl md:text-4xl p-6 mb-8">
         {prorateLoading ? (
           <div className="flex justify-between items-center">
             <span>Total</span>
@@ -105,7 +104,7 @@ const PurchaseDetails = ({
             </span>
           </div>
         ) : prorate && isSubscription ? (
-          <Prorate prorate={prorate} productPrice={productPriceAmount} />
+          <Prorate prorate={prorate} />
         ) : (
           <div className="flex justify-between">
             <span>Total</span>
@@ -115,9 +114,11 @@ const PurchaseDetails = ({
       </div>
 
       <PrimaryButton
-        className="text-right w-full "
+        className="text-right w-full"
         onClick={() => checkoutHandler({ useCcCash })}
         loading={isLoading}
+        px="1rem"
+        py="1rem"
       >
         CHECKOUT
       </PrimaryButton>
@@ -125,11 +126,16 @@ const PurchaseDetails = ({
   );
 };
 
+PurchaseDetails.defaultProps = {
+  className: '',
+};
+
 PurchaseDetails.propTypes = {
   paymentMethod: PropTypes.object.isRequired,
   productDetails: PropTypes.object.isRequired,
-  checkoutHandler: PropTypes.func,
+  checkoutHandler: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
+  className: PropTypes.string,
 };
 
 export default PurchaseDetails;

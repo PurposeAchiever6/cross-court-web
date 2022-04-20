@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import InputTextField from 'shared/components/InputTextField';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -10,18 +10,7 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { checkPromoCode } from '../actionCreators';
 import { getPromoCodeLoading, getPromoCodeValid } from '../reducer';
 
-const PromoCodeContainer = styled.div`
-  button {
-    height: 100%;
-    width: 6rem;
-    .content {
-      height: 100%;
-      padding: 0.5rem 1rem;
-    }
-  }
-`;
-
-const PromoCode = () => {
+const PromoCode = ({ className }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(getPromoCodeLoading);
   const isPromoCodeValid = useSelector(getPromoCodeValid);
@@ -44,28 +33,38 @@ const PromoCode = () => {
       validationSchema={validationSchema}
     >
       {() => (
-        <Form>
-          <PromoCodeContainer className="flex flex-col md:flex-row h-16 mb-20 md:mb-0">
+        <Form className={className}>
+          <div className="flex flex-col sm:flex-row">
             <InputTextField
-              showLabel={false}
+              labelText="Discount Code"
               name="promoCode"
               placeholder="Enter your code"
-              className="mb-4 md:mb-0 md:mr-4"
+              className="mb-4 sm:mb-0"
               disabled={isPromoCodeValid}
               displayErrorMsg={false}
             />
             {isPromoCodeValid ? (
-              <span className="text-xs md:text-base ml-2 mt-6">DISCOUNT ADDED!</span>
+              <span className="text-right text-sm sm:text-base sm:ml-2 sm:mt-12">
+                DISCOUNT ADDED!
+              </span>
             ) : (
-              <PrimaryButton type="submit" loading={isLoading} className="self-end ml-4" py="13px">
+              <PrimaryButton type="submit" loading={isLoading} className="self-end ml-4" py="15px">
                 USE CODE
               </PrimaryButton>
             )}
-          </PromoCodeContainer>
+          </div>
         </Form>
       )}
     </Formik>
   );
+};
+
+PromoCode.defaultProps = {
+  className: '',
+};
+
+PromoCode.propTypes = {
+  className: PropTypes.string.isRequired,
 };
 
 export default PromoCode;
