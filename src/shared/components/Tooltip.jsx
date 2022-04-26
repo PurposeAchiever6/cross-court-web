@@ -44,7 +44,7 @@ const Tooltip = ({ children, tooltip, enable, variant, place, className }) => {
             textColor={textColor}
             place={place}
             effect="solid"
-            className={`max-w-xs font-shapiro45_welter_extd ${textAlign}`}
+            className={`max-w-xs font-shapiro45_welter_extd leading-normal ${textAlign}`}
             html
           />
         </>

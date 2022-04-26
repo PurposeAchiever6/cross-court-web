@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { object, bool } from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,9 +6,6 @@ import EditIcon from 'shared/components/svg/EditIcon.svg';
 import { formatPhoneNumber } from 'shared/utils/helpers';
 import { editProfileInit, showEditProfile } from '../actionCreators';
 import { getEditProfileLoading, getShowEditProfile } from '../reducer';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import EditProfileForm from './EditProfileForm';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -37,26 +34,14 @@ const MyProfile = ({ profile, showTitle = true }) => {
   const history = useHistory();
   const location = useLocation();
 
-  const [copied, setCopied] = useState(false);
   const editProfileAction = (values) => dispatch(editProfileInit(values));
   const showEditProfileAction = () => dispatch(showEditProfile());
+
   const editProfileLoading = useSelector(getEditProfileLoading);
   const showEditProfileForm = useSelector(getShowEditProfile);
-  const shareText = 'Use my link to sign up.';
-  const shareUrl = `${window.location.origin}`;
-  const shareTextAndUrl = `${shareText} ${shareUrl}`;
+
   const dateOfBirth = new Date(profile.birthday);
   const defaultPaymentMethod = profile.defaultPaymentMethod;
-
-  const handleCopy = () => {
-    const input = document.createElement('input');
-    input.setAttribute('value', shareTextAndUrl);
-    document.body.appendChild(input);
-    input.select();
-    document.execCommand('copy');
-    document.body.removeChild(input);
-    setCopied(true);
-  };
 
   return (
     <MyProfileContainer className="relative p-8">
@@ -140,10 +125,18 @@ const MyProfile = ({ profile, showTitle = true }) => {
             </PrimaryButton>
           </div>
           <div className={detailRowClasses}>
-            <PrimaryButton className="invite-a-friend-button" onClick={handleCopy} w="100%">
-              <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
-            </PrimaryButton>
+            <span className={titleClasses}>REFERRAL CODE</span>
+            <span>{profile.referralCode}</span>
           </div>
+          <div className="text-lg mb-3">
+            <span className={titleClasses}>REFERRAL CREDITS</span>
+            <span className="font-shapiro95_super_wide text-3xl block">{`$${Number(
+              profile.ccCash
+            )}`}</span>
+          </div>
+          <PrimaryButton to={ROUTES.REFERRALS} inverted w="100%">
+            Referral History
+          </PrimaryButton>
         </>
       )}
     </MyProfileContainer>

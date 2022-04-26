@@ -93,7 +93,7 @@ const ProductsPage = () => {
             reactivateMembership={reactivateMembership}
           />
         )}
-        <Perks />
+        {!showDropIns && <Perks />}
         <div className="w-full flex justify-center mb-16">
           <h2 className="dharma_gothic_cheavy_italic text-6xl lg:text-8xl text-cc-purple">
             HAVE A QUESTION? REACH OUT BELOW

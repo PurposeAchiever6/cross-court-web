@@ -25,7 +25,7 @@ const StepFeedbackContent = ({ subscriptionFeedback }) => {
     if (recommendRate === 0) {
       newErrors.recommendRate = true;
     }
-    if (feedback.length < 20) {
+    if (feedback.trim().length < 20) {
       newErrors.feedback = true;
     }
 
