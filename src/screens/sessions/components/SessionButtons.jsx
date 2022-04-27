@@ -35,6 +35,10 @@ const SessionButtons = ({
   const userProfile = useSelector(getUserProfile);
   const sessionDate = useSelector(getSessionDate);
 
+  const { activeSubscription } = userProfile;
+  const subscriptionPaused = activeSubscription?.paused;
+  const reservationDisabled = disabled || subscriptionPaused;
+
   const [copied, setCopied] = useState(false);
 
   const reservedOrConfirmed =
@@ -92,8 +96,9 @@ const SessionButtons = ({
             signupBookSessionAction={signupBookSessionAction}
             session={session}
             createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
-            disabled={disabled}
+            disabled={reservationDisabled}
           />
+          {subscriptionPaused && <p>You can't reserve when your membership is paused.</p>}
           {isAuthenticated && (
             <>
               {session?.onWaitlist && (

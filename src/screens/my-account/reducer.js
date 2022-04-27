@@ -19,6 +19,8 @@ import {
 import {
   CANCEL_SUBSCRIPTION_SUCCESS,
   REACTIVATE_SUBSCRIPTION_SUCCESS,
+  PAUSE_SUBSCRIPTION_SUCCESS,
+  UNPAUSE_SUBSCRIPTION_SUCCESS,
 } from 'screens/products/actionTypes';
 import {
   CREATE_SUBSCRIPTION_SUCCESS,
@@ -106,6 +108,8 @@ export default (state = initialState, action) => {
     case UPDATE_SUBSCRIPTION_SUCCESS:
     case CANCEL_SUBSCRIPTION_SUCCESS:
     case REACTIVATE_SUBSCRIPTION_SUCCESS:
+    case UNPAUSE_SUBSCRIPTION_SUCCESS:
+    case PAUSE_SUBSCRIPTION_SUCCESS:
       return {
         ...state,
         userProfile: { ...state.userProfile, activeSubscription: action.payload.subscription },

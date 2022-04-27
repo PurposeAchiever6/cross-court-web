@@ -142,7 +142,7 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => (
             aggression. Any player involved in "trash-talking" or any altercation may be suspended
             or prohibited from participating in Crosscourt.
           </InputCheckboxField>
-          <PrimaryButton loading={isLoading} w="100%">
+          <PrimaryButton loading={isLoading} w="100%" type="submit">
             NEXT
           </PrimaryButton>
           <div className="login font-shapiro45_welter_extd my-2">
