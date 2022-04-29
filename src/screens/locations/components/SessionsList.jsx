@@ -264,13 +264,13 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
               </div>
               <div className="flex flex-col items-end pl-8">
                 {button}
-                {!isLegalAge && (
+                {!isLegalAge && !isOpenClub && (
                   <div className="flex items-center sm:self-center mt-2 whitespace-nowrap">
                     <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                     <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
                   </div>
                 )}
-                {!reserved && !onWaitlist && spotsLeft <= 5 && isLegalAge && (
+                {!reserved && !isOpenClub && !onWaitlist && spotsLeft <= 5 && isLegalAge && (
                   <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
                     <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                     <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
