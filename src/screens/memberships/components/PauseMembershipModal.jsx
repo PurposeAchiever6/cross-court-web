@@ -25,7 +25,7 @@ export const PauseMembershipModal = ({
   };
 
   return (
-    <Modal isOpen={isOpen} closeHandler={closeHandler} subtitle="Take a temporary break">
+    <Modal isOpen={isOpen} closeHandler={closeHandler} subtitle="Enter Offseason">
       <div className="flex flex-col items-center justify-center">
         <p className="mb-2">
           You may freeze your membership for a minimum of one (1) month or a maximum of two (2)

@@ -10,7 +10,7 @@ import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import PauseMembershipModal from './components/PauseMembershipModal';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
-import { pauseSubscription, unpauseSubscription } from 'screens/products/actionCreators';
+import { pauseSubscription, cancelPauseSubscription } from 'screens/products/actionCreators';
 
 const ManageMembershipPage = () => {
   const { activeSubscription } = useSelector(getUserProfile);
@@ -22,12 +22,12 @@ const ManageMembershipPage = () => {
   const active = !activeSubscription?.canceled;
   const paused = activeSubscription?.paused;
   const product = activeSubscription?.product;
-  const willPause = active && activeSubscription?.pausedFrom && activeSubscription?.pausedUntil;
+  const willPause = activeSubscription?.willPause;
   const canPause = active && activeSubscription?.canPause;
 
   const pauseSubscriptionAction = (months) =>
     dispatch(pauseSubscription(activeSubscription, months));
-  const unpauseSubscriptionAction = () => dispatch(unpauseSubscription(activeSubscription));
+  const cancelPauseSubscriptionAction = () => dispatch(cancelPauseSubscription(activeSubscription));
 
   if (loading) {
     return <Loading />;
@@ -82,39 +82,38 @@ const ManageMembershipPage = () => {
             Manage Membership
           </h3>
           <div className="flex flex-col w-max items-start">
-            {paused ? (
-              <>
-                <PrimaryButton
-                  className="mb-2"
-                  inverted
-                  fontSize="0.75rem"
-                  onClick={() => unpauseSubscriptionAction()}
-                >
-                  Resume Membership
-                </PrimaryButton>
-              </>
+            {willPause ? (
+              <PrimaryButton
+                className="mb-1"
+                fontSize="0.75rem"
+                onClick={() => cancelPauseSubscriptionAction()}
+              >
+                Cancel pause
+              </PrimaryButton>
             ) : (
-              <>
-                <PrimaryButton
-                  className="mb-1"
-                  inverted
-                  fontSize="0.75rem"
-                  onClick={() => setShowPauseModal(true)}
-                  disabled={willPause || !canPause}
-                >
-                  Pause Membership
-                </PrimaryButton>
-                {!canPause && !willPause && (
-                  <p className="mb-4">You can't pause your membership anymore for this year.</p>
-                )}
-                {willPause && (
-                  <p className="mb-4">{`Your membership will be paused from ${subscriptionPeriodFormattedDate(
-                    activeSubscription?.pausedFrom
-                  )} until ${subscriptionPeriodFormattedDate(activeSubscription?.pausedUntil)}`}</p>
-                )}
-              </>
+              <PrimaryButton
+                className="mb-1"
+                fontSize="0.75rem"
+                onClick={() => setShowPauseModal(true)}
+                disabled={!canPause || paused}
+              >
+                Pause Membership
+              </PrimaryButton>
             )}
-            <PrimaryButton inverted fontSize="0.75rem" onClick={() => setShowCancelModal(true)}>
+            {!canPause && !willPause && (
+              <p className="mb-2">You can't pause your membership anymore for this year.</p>
+            )}
+            {willPause && (
+              <p className="mb-2">{`Your membership will be paused from ${subscriptionPeriodFormattedDate(
+                activeSubscription?.pausedFrom
+              )} until ${subscriptionPeriodFormattedDate(activeSubscription?.pausedUntil)}`}</p>
+            )}
+            <PrimaryButton
+              className="mt-1"
+              inverted
+              fontSize="0.75rem"
+              onClick={() => setShowCancelModal(true)}
+            >
               Cancel Membership
             </PrimaryButton>
           </div>

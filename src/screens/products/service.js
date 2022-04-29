@@ -49,8 +49,8 @@ export default {
     return response.data;
   },
 
-  unpauseSubscription: async (subscriptionId) => {
-    const response = await api.put(`/subscriptions/${subscriptionId}/unpause`, {});
+  cancelPauseSubscription: async (subscriptionId) => {
+    const response = await api.put(`/subscriptions/${subscriptionId}/cancel_pause`, {});
 
     return response.data;
   },
