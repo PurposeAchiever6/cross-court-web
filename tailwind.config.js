@@ -14,6 +14,7 @@ module.exports = {
       colors: {
         'cc-black': '#1a1a1a',
         'cc-purple': '#9999FF',
+        cream: '#fbf7f3',
       },
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '1rem' }],
@@ -88,6 +89,8 @@ module.exports = {
       borderWidth: ['last'],
       width: ['last'],
       display: ['group-hover'],
+      borderOpacity: ['focus'],
+      textColor: ['focus'],
     },
   },
   plugins: [],
