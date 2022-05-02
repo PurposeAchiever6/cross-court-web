@@ -42,4 +42,16 @@ export default {
 
     return response.data;
   },
+
+  pauseSubscription: async (subscriptionId, months) => {
+    const response = await api.put(`/subscriptions/${subscriptionId}/pause`, { months });
+
+    return response.data;
+  },
+
+  cancelPauseSubscription: async (subscriptionId) => {
+    const response = await api.put(`/subscriptions/${subscriptionId}/cancel_pause`, {});
+
+    return response.data;
+  },
 };

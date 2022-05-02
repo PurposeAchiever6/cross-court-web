@@ -33,6 +33,8 @@ import {
 } from 'screens/sessions/actionCreators';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 
+import { WOMEN_SESSION_INFO } from 'shared/constants/sessions';
+
 const NoSessionContainer = styled.div`
   .title {
     font-family: shapiro95_super_wide;
@@ -133,10 +135,12 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           onWaitlist,
           waitlistPlacement,
           isOpenClub,
+          womenOnly,
         }) => {
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
           let button;
+          let badge;
 
           if (comingSoon) {
             button = (
@@ -226,6 +230,22 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
             );
           }
 
+          if (isOpenClub) {
+            badge = (
+              <BadgeWithInfo info="All members can access the club to shootaround, train, or self-organize own runs (included with memberships).">
+                Open Club
+              </BadgeWithInfo>
+            );
+          } else if (womenOnly) {
+            badge = <BadgeWithInfo info={WOMEN_SESSION_INFO}>Women</BadgeWithInfo>;
+          } else {
+            badge = (
+              <BadgeWithInfo info={skillLevel.description}>
+                {`${skillLevel.min} - ${skillLevel.max}`}
+              </BadgeWithInfo>
+            );
+          }
+
           return (
             <div
               className={`flex border-b py-6 md:px-5 justify-between w-full items-center overflow-hidden ${
@@ -248,29 +268,22 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                 <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
                   {location.name}
                 </p>
-                {isOpenClub ? (
-                  <div className="my-2">
-                    <BadgeWithInfo info="All members can access the club to shootaround, train, or self-organize own runs (included with memberships)">
-                      Open Club
-                    </BadgeWithInfo>
-                  </div>
-                ) : (
-                  <div id="sessions-list-session-level-info" className="my-2">
-                    <BadgeWithInfo info={skillLevel.description}>
-                      {`${skillLevel.min} - ${skillLevel.max}`}
-                    </BadgeWithInfo>
-                  </div>
-                )}
+                <div
+                  id={`${!isOpenClub && !womenOnly ? 'sessions-list-session-level-info' : ''}`}
+                  className="my-2"
+                >
+                  {badge}
+                </div>
               </div>
               <div className="flex flex-col items-end pl-8">
                 {button}
-                {!isLegalAge && (
+                {!isLegalAge && !isOpenClub && (
                   <div className="flex items-center sm:self-center mt-2 whitespace-nowrap">
                     <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                     <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
                   </div>
                 )}
-                {!reserved && !onWaitlist && spotsLeft <= 5 && isLegalAge && (
+                {!reserved && !isOpenClub && !onWaitlist && spotsLeft <= 5 && isLegalAge && (
                   <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
                     <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                     <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
