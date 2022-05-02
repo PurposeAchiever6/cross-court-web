@@ -34,6 +34,8 @@ import SessionOfficials from 'screens/sessions/components/SessionOfficials';
 import Carousel from 'shared/components/Carousel';
 import { getSessionsMessageContainerText, sessionData } from 'screens/sessions/utils';
 
+import { WOMEN_SESSION_INFO } from 'shared/constants/sessions';
+
 const Session = () => {
   const { id, date } = useParams();
   const referralCode = window.localStorage.getItem('referralCode');
@@ -113,9 +115,15 @@ const Session = () => {
                   <span className="font-shapiro45_welter_extd text-sm uppercase">{data.value}</span>
                 </div>
               ))}
-              <BadgeWithInfo info={skillLevel.description} variant="white">
-                {`${skillLevel.min} - ${skillLevel.max}`}
-              </BadgeWithInfo>
+              {sessionInfo.womenOnly ? (
+                <BadgeWithInfo info={WOMEN_SESSION_INFO} variant="white">
+                  Women
+                </BadgeWithInfo>
+              ) : (
+                <BadgeWithInfo info={skillLevel.description} variant="white">
+                  {`${skillLevel.min} - ${skillLevel.max}`}
+                </BadgeWithInfo>
+              )}
             </div>
             <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
               {getSessionsMessageContainerText(
