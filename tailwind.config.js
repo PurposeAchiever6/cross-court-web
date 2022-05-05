@@ -41,6 +41,7 @@ module.exports = {
         115: '1.15',
       },
       zIndex: {
+        'n-1': -1,
         1005: 1005,
       },
       boxShadow: {
