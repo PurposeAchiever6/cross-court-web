@@ -27,12 +27,12 @@ const SignupPage = () => {
       <img
         src={signUnImage1}
         alt="Sign up to sweat"
-        className="absolute bottom-0 left-0 w-2/5 md:w-1/5 z-n-1"
+        className="absolute bottom-0 left-0 w-2/5 md:w-1/5 -z-1"
       />
       <img
         src={signUnImage2}
         alt="Sign up, first free"
-        className="absolute bottom-0 right-0 w-2/5 md:w-1/5 z-n-1"
+        className="absolute bottom-0 right-0 w-2/5 md:w-1/5 -z-1"
       />
       <SignupForm signupHandler={signupAction} errors={errors} isLoading={isLoading} />
     </div>
