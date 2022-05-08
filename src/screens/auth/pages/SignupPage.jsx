@@ -3,10 +3,11 @@ import { Redirect } from 'react-router-dom';
 
 import { useSelector, useDispatch } from 'react-redux';
 
+import ROUTES from 'shared/constants/routes';
+import { getUserSource } from 'shared/utils/userSource';
 import SignupForm from 'screens/auth/components/SignupForm';
 import { signUpInit } from 'screens/auth/actionCreators';
 import { getSignupLoading, getSignupErrors, getIsAuthenticated } from 'screens/auth/reducer';
-import ROUTES from 'shared/constants/routes';
 import signUnImage1 from 'screens/auth/images/sign_up_image_01.png';
 import signUnImage2 from 'screens/auth/images/sign_up_image_02.png';
 
@@ -15,8 +16,12 @@ const SignupPage = () => {
 
   const isLoading = useSelector(getSignupLoading);
   const errors = useSelector(getSignupErrors);
-  const signupAction = (credentials) => dispatch(signUpInit(credentials));
   const isAuthenticated = useSelector(getIsAuthenticated);
+
+  const signupAction = (credentials) => {
+    const source = getUserSource() || 'web';
+    dispatch(signUpInit({ ...credentials, source }));
+  };
 
   if (isAuthenticated) {
     return <Redirect to={ROUTES.HOME} />;

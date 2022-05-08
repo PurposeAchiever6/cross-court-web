@@ -19,6 +19,7 @@ import { history } from 'shared/history';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getLegalDocs } from 'screens/legal-docs/actionCreators';
 import { toggleActiveCampaignChat } from 'shared/utils/activeCampaign';
+import { getUserSource, setUserSource, removeUserSource } from 'shared/utils/userSource';
 import PrivateRoute from './PrivateRoute';
 import HtmlHead from './HtmlHead';
 
@@ -257,8 +258,19 @@ const Routes = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
 
   useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const source = query.get('source');
+    const userAlreadyHasSource = getUserSource();
+
+    if (!userAlreadyHasSource && source) {
+      setUserSource(source);
+    }
+  }, []);
+
+  useEffect(() => {
     if (isAuthenticated) {
       window.localStorage.setItem('hasLoggedIn', 'true');
+      removeUserSource();
       dispatch(initialAppLoad());
       dispatch(getLegalDocs());
     } else {
