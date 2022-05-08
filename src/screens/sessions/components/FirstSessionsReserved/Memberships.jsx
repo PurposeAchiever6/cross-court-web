@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
@@ -17,6 +18,7 @@ import ToggleButton from 'shared/components/ToggleButton';
 import ProductPlan from 'screens/products/components/ProductPlan';
 
 const Memberships = ({ className }) => {
+  const env = runtimeEnv();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -26,9 +28,15 @@ const Memberships = ({ className }) => {
 
   const [applyDiscount, setApplyDiscount] = useState(false);
 
+  const percentageDiscount = Number(env.REACT_APP_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT);
+
   const membershipProducts = products
     .filter((product) => product.productType === RECURRING)
-    .map((product) => (applyDiscount ? { ...product, price: product.price * 0.25 } : product));
+    .map((product) =>
+      applyDiscount
+        ? { ...product, price: product.price * ((100 - percentageDiscount) / 100) }
+        : product
+    );
 
   const joinMembershipHandler = (product) => {
     dispatch(
@@ -50,7 +58,7 @@ const Memberships = ({ className }) => {
     <div className={className}>
       <div className="text-center mb-6 lg:mb-16">
         <ToggleButton
-          onLabel="With 75% Off"
+          onLabel={`With ${percentageDiscount}% Off`}
           offLabel="Standard Pricing"
           size="4xl"
           value={applyDiscount}

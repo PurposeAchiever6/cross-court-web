@@ -25,6 +25,6 @@ export default (state = initialState, action) => {
   }
 };
 
-const getSurvey = (state) => state.survey;
+const getSessionsSurveys = (state) => state.sessionsSurveys;
 
-export const getQuestions = createSelector(getSurvey, (survey) => survey.questions);
+export const getQuestions = createSelector(getSessionsSurveys, (survey) => survey.questions);

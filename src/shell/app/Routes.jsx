@@ -320,12 +320,12 @@ const Routes = () => {
         <Route path={ROUTES.OPEN_CLUB_SESSION} exact>
           <OpenClubSession />
         </Route>
-        <Route path={ROUTES.SESSIONRESERVED} exact>
+        <PrivateRoute path={ROUTES.SESSIONRESERVED} exact>
           <SessionReserved />
-        </Route>
-        <Route path={ROUTES.FIRSTSESSIONRESERVED} exact>
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.FIRSTSESSIONRESERVED} exact>
           <FirstSessionReserved />
-        </Route>
+        </PrivateRoute>
         <Route path={ROUTES.SESSIONCONFIRMED} exact>
           <SessionConfirmed />
         </Route>

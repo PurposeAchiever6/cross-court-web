@@ -7,9 +7,9 @@ import ROUTES from 'shared/constants/routes';
 import { openContactForm, openContactFormForUser } from 'shared/utils/contactForm';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
-import { getQuestionsInit, saveAnswer } from 'screens/survey/actionCreators';
-import { getQuestions } from 'screens/survey/reducer';
-import SurveyModal from 'screens/survey/components/SurveyModal';
+import { getQuestionsInit, saveAnswer } from 'screens/surveys/sessions/actionCreators';
+import { getQuestions } from 'screens/surveys/sessions/reducer';
+import SessionSurveyModal from 'screens/surveys/sessions/components/SessionSurveyModal';
 
 import Landing from './components/Landing';
 
@@ -56,7 +56,7 @@ const HomePage = () => {
   return (
     <>
       <Landing />
-      <SurveyModal
+      <SessionSurveyModal
         showSurveyModal={showSurveyModal}
         setShowSurveyModal={setShowSurveyModal}
         questions={questions}

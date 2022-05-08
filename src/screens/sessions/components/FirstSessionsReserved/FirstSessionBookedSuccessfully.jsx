@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { capitalize } from 'shared/utils/helpers';
 import { getUserProfile } from 'screens/my-account/reducer';
 
-const FirstSessionBooked = ({ className }) => {
+const FirstSessionBookedSuccessfully = ({ className }) => {
   const userProfile = useSelector(getUserProfile);
 
   return (
@@ -29,12 +29,12 @@ const FirstSessionBooked = ({ className }) => {
   );
 };
 
-FirstSessionBooked.defaultProps = {
+FirstSessionBookedSuccessfully.defaultProps = {
   className: '',
 };
 
-FirstSessionBooked.propTypes = {
+FirstSessionBookedSuccessfully.propTypes = {
   className: PropTypes.string,
 };
 
-export default FirstSessionBooked;
+export default FirstSessionBookedSuccessfully;

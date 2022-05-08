@@ -1,7 +1,11 @@
 import React from 'react';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import PropTypes from 'prop-types';
 
 const JoinTheCCTeam = ({ className }) => {
+  const env = runtimeEnv();
+  const percentageDiscount = env.REACT_APP_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT;
+
   return (
     <div className={className}>
       <div className="md:flex md:items-center mb-8 md:mb-10">
@@ -10,11 +14,11 @@ const JoinTheCCTeam = ({ className }) => {
             Join The CCTeam
           </div>
           <div className="text-cc-purple text-sm md:text-lg font-shapiro95_super_wide text-center md:-mt-5">
-            75% off your first month
+            {`${percentageDiscount}% off your first month`}
           </div>
         </div>
         <p className="md:pl-8 text-sm md:text-lg max-w-xl md:-mt-6 text-center md:text-left">
-          By Being a Crosscourt member, you're gaining access to the CCTeam - a community that's
+          By Being a Crosscourt member, you're gaining access to the CCTeam - A community that's
           built for YOU, the modern athlete
         </p>
       </div>

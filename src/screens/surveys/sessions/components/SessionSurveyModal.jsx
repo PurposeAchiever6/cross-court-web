@@ -5,7 +5,7 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Modal from 'shared/components/Modal';
 import StarsRate from 'shared/components/StarsRate';
 
-const SurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, answerQuestion }) => {
+const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, answerQuestion }) => {
   const [starsSelected, setStarsSelected] = useState(0);
   const [feedbackValue, setFeedbackValue] = useState('');
   const [answeredQuestionIds, setAnsweredQuestionIds] = useState([]);
@@ -99,6 +99,4 @@ const SurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, answerQue
   );
 };
 
-SurveyModal.defaultProps = {};
-
-export default SurveyModal;
+export default SessionSurveyModal;

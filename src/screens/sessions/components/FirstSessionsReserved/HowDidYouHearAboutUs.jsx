@@ -1,25 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import InputCheckboxField from 'shared/components/InputCheckboxField';
+import { createOrUpdateFirstTimerSurvey } from 'screens/surveys/firstTimers/actionCreators';
 
-const HowDoYouHearAboutUs = ({ className }) => {
+const HowDidYouHearAboutUs = ({ className }) => {
+  const dispatch = useDispatch();
   const [firstTimerSurvey, setFirstTimerSurvey] = useState(null);
 
   const onChangeFirstTimerSurvey = (e) => {
     const { checked, id: value } = e.target;
+    const howDidYouHearAboutUs = checked ? value : null;
 
-    if (checked) {
-      setFirstTimerSurvey(value);
-    } else {
-      setFirstTimerSurvey(null);
-    }
+    setFirstTimerSurvey(howDidYouHearAboutUs);
+    dispatch(createOrUpdateFirstTimerSurvey({ howDidYouHearAboutUs }));
   };
+
+  useEffect(() => {
+    dispatch(createOrUpdateFirstTimerSurvey({ howDidYouHearAboutUs: null }));
+  }, [dispatch]);
 
   return (
     <div className={className}>
       <h4 className="text-cc-purple text-2xl font-shapiro96_inclined_wide mb-4">
-        How do you hear about us?
+        How did you hear about us?
       </h4>
       <div className="text-lg">
         <InputCheckboxField
@@ -41,27 +46,27 @@ const HowDoYouHearAboutUs = ({ className }) => {
           Ad
         </InputCheckboxField>
         <InputCheckboxField
-          name="socialMedia"
+          name="social-media"
           onChange={onChangeFirstTimerSurvey}
-          value={firstTimerSurvey === 'socialMedia'}
+          value={firstTimerSurvey === 'social-media'}
           className="mb-1"
           formik={false}
         >
           Social Media
         </InputCheckboxField>
         <InputCheckboxField
-          name="searchEngine"
+          name="search-engine"
           onChange={onChangeFirstTimerSurvey}
-          value={firstTimerSurvey === 'searchEngine'}
+          value={firstTimerSurvey === 'search-engine'}
           className="mb-1"
           formik={false}
         >
           Search Engine
         </InputCheckboxField>
         <InputCheckboxField
-          name="anotherWebsite"
+          name="another-website"
           onChange={onChangeFirstTimerSurvey}
-          value={firstTimerSurvey === 'anotherWebsite'}
+          value={firstTimerSurvey === 'another-website'}
           className="mb-1"
           formik={false}
         >
@@ -81,12 +86,12 @@ const HowDoYouHearAboutUs = ({ className }) => {
   );
 };
 
-HowDoYouHearAboutUs.defaultProps = {
+HowDidYouHearAboutUs.defaultProps = {
   className: '',
 };
 
-HowDoYouHearAboutUs.propTypes = {
+HowDidYouHearAboutUs.propTypes = {
   className: PropTypes.string,
 };
 
-export default HowDoYouHearAboutUs;
+export default HowDidYouHearAboutUs;
