@@ -4,7 +4,6 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        116: '29rem',
         124: '31rem',
         164: '44rem',
       },
@@ -38,7 +37,7 @@ module.exports = {
         '2xs': '16rem',
       },
       scale: {
-        115: '1.15',
+        110: '1.1',
       },
       zIndex: {
         '-1': -1,
@@ -54,6 +53,9 @@ module.exports = {
       },
       backgroundImage: {
         'cc-ball-logo': "url('../shared/images/new-purple-circular-logo.png')",
+      },
+      transitionDelay: {
+        0: '0ms',
       },
       keyframes: {
         fade: {
@@ -92,6 +94,7 @@ module.exports = {
       display: ['group-hover'],
       borderOpacity: ['focus'],
       textColor: ['focus'],
+      transitionDelay: ['group-hover'],
     },
   },
   plugins: [],

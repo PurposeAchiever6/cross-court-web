@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,11 +8,9 @@ import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SportCharacter from 'shared/images/sport-character.png';
 
-import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionInfo, getSessionDate } from 'screens/sessions/reducer';
 import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 
 const SessionBookedContainer = styled.div`
   .title {
@@ -57,13 +54,10 @@ const SessionBookedContainer = styled.div`
 `;
 
 const SessionReserved = () => {
-  const history = useHistory();
-
   const [copied, setCopied] = useState(false);
 
   const sessionInfo = useSelector(getSessionInfo);
   const sessionDate = useSelector(getSessionDate);
-  const userProfile = useSelector(getUserProfile);
 
   const copyShareInfoToClipboard = () => {
     const input = document.createElement('input');
@@ -80,12 +74,6 @@ const SessionReserved = () => {
     document.body.removeChild(input);
     setCopied(true);
   };
-
-  useEffect(() => {
-    if (isUserInFirstFreeSessionFlow(userProfile)) {
-      history.push(ROUTES.FIRSTSESSIONRESERVED);
-    }
-  }, [history, userProfile]);
 
   return (
     <SessionBookedContainer>

@@ -50,12 +50,16 @@ const Session = () => {
 
   const reserveSessionAction = () =>
     dispatch(reserveSessionInit(sessionInfo.id, date, referralCode));
-  const createAndReserveFreeSessionHandler = () =>
-    dispatch(createAndReserveFreeSessionInit(sessionInfo.id, date, referralCode));
   const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
   const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
   const showCancelModalAction = () => dispatch(showCancelModal());
   const signupBookSessionAction = () => dispatch(signupBookSession(id, date));
+  const createAndReserveFreeSessionHandler = () => {
+    const sessionId = sessionInfo.id;
+    const redirectTo = ROUTES.FIRSTSESSIONRESERVED;
+
+    dispatch(createAndReserveFreeSessionInit({ sessionId, date, referralCode, redirectTo }));
+  };
 
   const isLegalAge = isUserInLegalAge(userProfile);
   const isSessionComplete = sessionInfo.past;
@@ -87,7 +91,7 @@ const Session = () => {
   }
 
   return (
-    <div className="flex flex-col border-b border-gray-400">
+    <div className="flex flex-col">
       <CancelModal
         isOpen={shouldShowCancelModal}
         closeHandler={showCancelModalAction}

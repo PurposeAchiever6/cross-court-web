@@ -14,6 +14,7 @@ const ProductPlan = ({
   submitBtnSecondary,
   handleSubmit,
   userHasActiveSubscription,
+  showFeatures,
   className,
 }) => {
   const env = runtimeEnv();
@@ -35,7 +36,7 @@ const ProductPlan = ({
 
   return (
     <div
-      className={`relative border-2 border-cc-purple bg-cc-black text-white lg:text-center py-6 px-5 lg:px-8 transform lg:hover:scale-115 transition-transform duration-300 ${className} ${
+      className={`relative border-2 border-cc-purple bg-cc-black text-white lg:text-center py-6 px-5 lg:px-8 transform lg:hover:scale-110 transition-transform duration-300 ${className} ${
         label ? 'pl-14 lg:pl-8' : ''
       }`}
     >
@@ -50,7 +51,7 @@ const ProductPlan = ({
           </span>
         )}
       </div>
-      <div className={`mb-6 lg:mb-4 ${isRecurring ? 'lg:h-116' : 'lg:h-44'}`}>
+      <div className="mb-6 lg:mb-10">
         <div className="dharma_gothic_cheavy_italic mb-3 lg:mb-0">
           <span className="text-9xl xl:text-10xl">{price}</span>
           {isRecurring && <span className="text-3xl lg:text-6xl">/month</span>}
@@ -63,8 +64,8 @@ const ProductPlan = ({
             {`${unlimitedPricePerSession}/session @ ${SAMPLE_UNLIMITED_SESSIONS_PER_MONTH}/month`}
           </div>
         )}
-        {isRecurring && (
-          <>
+        {isRecurring && showFeatures && (
+          <div className="h-64">
             <h2 className="mb-3 mt-6 text-lg text-left xl:text-xl shapiro96_inclined_wide leading-none uppercase">
               FEATURES
             </h2>
@@ -93,7 +94,7 @@ const ProductPlan = ({
                 <div className="text-sm text-left mt-2 ml-2">No late cancellation fee</div>
               </div>
             )}
-          </>
+          </div>
         )}
       </div>
       <div
@@ -137,6 +138,7 @@ ProductPlan.defaultProps = {
   submitText: 'Buy',
   submitBtnSecondary: false,
   userHasActiveSubscription: false,
+  showFeatures: true,
 };
 
 ProductPlan.propTypes = {
@@ -146,6 +148,7 @@ ProductPlan.propTypes = {
   product: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   userHasActiveSubscription: PropTypes.bool,
+  showFeatures: PropTypes.bool,
 };
 
 export default ProductPlan;
