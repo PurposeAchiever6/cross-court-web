@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Field } from 'formik';
 import styled from 'styled-components';
 import { isNil } from 'ramda';
+import Label from 'shared/components/Label';
 
 const InputTextContainer = styled.div`
   input {
-    font-size: 1.2rem;
     padding-left: ${(props) => (props.leftIconWidth ? `${props.leftIconWidth}px` : '0.5rem')};
     padding-right: ${(props) => (props.rightIconWidth ? `${props.rightIconWidth}px` : '0.5rem')};
   }
@@ -42,18 +42,15 @@ function InputTextField({
       {({ field, form: { touched, errors: formikError } }) => {
         return (
           <InputTextContainer
-            className="flex flex-col mb-6"
+            className="flex flex-col mb-4"
             leftIconWidth={leftIconWidth}
             rightIconWidth={rightIconWidth}
             {...props}
           >
             {labelText && (
-              <label
-                className={`font-shapiro95_super_wide mb-1 uppercase ${labelColor}`}
-                htmlFor={field.name}
-              >
+              <Label className="mb-1 uppercase" htmlFor={name}>
                 {labelText}
-              </label>
+              </Label>
             )}
             <div className="relative">
               {leftIcon && (
@@ -65,7 +62,7 @@ function InputTextField({
                 </div>
               )}
               <input
-                className={`w-full font-shapiro45_welter_extd bg-cream border border-black border-opacity-50 focus:border-opacity-100 text-opacity-50 focus:text-opacity-100 text-black py-4 ${
+                className={`md:text-lg w-full font-shapiro45_welter_extd bg-cream border border-black border-opacity-50 focus:border-opacity-100 text-opacity-50 focus:text-opacity-100 text-black py-2 md:py-3 ${
                   (touched[field.name] && formikError[field.name]) || error
                     ? 'form-control is-invalid'
                     : 'form-control'
