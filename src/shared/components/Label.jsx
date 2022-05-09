@@ -13,7 +13,7 @@ const Label = ({ color, children, className, ...props }) => {
 
   return (
     <label
-      className={`block font-shapiro95_super_wide text-sm md:text-base${labelColorClass} ${className}`}
+      className={`block font-shapiro95_super_wide text-sm md:text-base ${labelColorClass} ${className}`}
       {...props}
     >
       {children}

@@ -42,13 +42,13 @@ function InputTextField({
       {({ field, form: { touched, errors: formikError } }) => {
         return (
           <InputTextContainer
-            className="flex flex-col mb-4"
+            className="flex flex-col mb-2 md:mb-4"
             leftIconWidth={leftIconWidth}
             rightIconWidth={rightIconWidth}
             {...props}
           >
             {labelText && (
-              <Label className="mb-1 uppercase" htmlFor={name}>
+              <Label className="mb-1 uppercase" htmlFor={name} color={labelColor}>
                 {labelText}
               </Label>
             )}

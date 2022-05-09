@@ -17,9 +17,9 @@ const InputPhoneField = ({
 }) => (
   <Field name={name}>
     {({ field: { name, value, onChange, onBlur }, form: { touched, errors: formikError } }) => (
-      <div {...props} className="flex flex-col mb-4">
+      <div {...props} className="flex flex-col mb-2 md:mb-4">
         {labelText && (
-          <Label className="mb-1 uppercase" htmlFor={name}>
+          <Label className="mb-1 uppercase" htmlFor={name} color={labelColor}>
             {labelText}
           </Label>
         )}

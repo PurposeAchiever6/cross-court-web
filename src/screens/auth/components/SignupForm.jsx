@@ -59,38 +59,16 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => {
               Create an account to receive a free session credit. Once you verify your email, it
               will be placed in your account.
             </h2>
-            <InputTextField
-              labelColor="text-cc-black"
-              labelText="First Name*"
-              error={errors?.firstName}
-              name="firstName"
-            />
-            <InputTextField
-              labelColor="text-cc-black"
-              labelText="Last Name*"
-              error={errors?.lastName}
-              name="lastName"
-            />
+            <InputTextField labelText="First Name*" error={errors?.firstName} name="firstName" />
+            <InputTextField labelText="Last Name*" error={errors?.lastName} name="lastName" />
             <InputPhoneField
-              labelColor="text-cc-black"
               labelText="Phone Number*"
               error={errors?.phoneNumber}
               name="phoneNumber"
             />
+            <InputTextField labelText="Zip Code*" error={errors?.zipcode} name="zipcode" />
+            <InputTextField labelText="Email*" error={errors?.email} name="email" />
             <InputTextField
-              labelColor="text-cc-black"
-              labelText="Zip Code*"
-              error={errors?.zipcode}
-              name="zipcode"
-            />
-            <InputTextField
-              labelColor="text-cc-black"
-              labelText="Email*"
-              error={errors?.email}
-              name="email"
-            />
-            <InputTextField
-              labelColor="text-cc-black"
               labelText="Password*"
               error={errors?.password}
               name="password"
