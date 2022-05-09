@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SportCharacter from 'shared/images/sport-character.png';
 
-import { getUserProfile } from 'screens/my-account/reducer';
-import { getSessionInfo, getSessionDate } from 'screens/sessions/reducer';
-import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import ReferAFriend from 'shared/components/ReferAFriend';
+import { getUserProfile } from 'screens/my-account/reducer';
 
 const SessionBookedContainer = styled.div`
   .title {
@@ -57,35 +52,7 @@ const SessionBookedContainer = styled.div`
 `;
 
 const SessionReserved = () => {
-  const history = useHistory();
-
-  const [copied, setCopied] = useState(false);
-
-  const sessionInfo = useSelector(getSessionInfo);
-  const sessionDate = useSelector(getSessionDate);
-  const userProfile = useSelector(getUserProfile);
-
-  const copyShareInfoToClipboard = () => {
-    const input = document.createElement('input');
-    const SHARE_URL = `${window.location.origin}/session/${sessionInfo.id}/${sessionDate}`;
-    const SHARE_MSG = `I just signed up for the Crosscourt ${
-      sessionInfo.location.name
-    } session at ${formatShareSessionTime(sessionInfo.time)} on ${formatShareSessionDate(
-      sessionDate
-    )}. Use my link to sign up. ${SHARE_URL}`;
-    input.setAttribute('value', SHARE_MSG);
-    document.body.appendChild(input);
-    input.select();
-    document.execCommand('copy');
-    document.body.removeChild(input);
-    setCopied(true);
-  };
-
-  useEffect(() => {
-    if (isUserInFirstFreeSessionFlow(userProfile)) {
-      history.push(ROUTES.FIRSTSESSIONRESERVED);
-    }
-  }, [history, userProfile]);
+  const currentUser = useSelector(getUserProfile) || {};
 
   return (
     <SessionBookedContainer>
@@ -93,10 +60,8 @@ const SessionReserved = () => {
         <img className="w-52" src={SportCharacter} alt="Sport Icon" />
         <p className="title">SESSION BOOKED</p>
         <p className="subtitle">SUCCESSFULLY!</p>
-        <PrimaryButton className="mt-6 mb-4" onClick={copyShareInfoToClipboard}>
-          <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'COPIED' : 'INVITE A FRIEND'}
-        </PrimaryButton>
-        <PrimaryButton bg="transparent" className="black-btn" to={ROUTES.MYACCOUNT}>
+        <ReferAFriend className="my-8" code={currentUser.referralCode} />
+        <PrimaryButton bg="transparent" className="black-btn mb-10" to={ROUTES.MYACCOUNT}>
           DONE
         </PrimaryButton>
       </div>

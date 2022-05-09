@@ -15,6 +15,7 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { editProfileInit, showEditProfile } from '../actionCreators';
 import { getEditProfileLoading, getShowEditProfile } from '../reducer';
 import EditProfileForm from './EditProfileForm';
+import { referralText } from 'shared/constants/referrals';
 
 const detailRowClasses = 'flex flex-col mb-8 text-lg';
 const titleClasses = 'font-shapiro95_super_wide';
@@ -34,9 +35,6 @@ const MyProfile = ({ profile, showTitle = true }) => {
 
   const dateOfBirth = new Date(profile.birthday);
   const defaultPaymentMethod = profile.defaultPaymentMethod;
-  const inviteFriendText =
-    `Use my referral code ${profile.referralCode} at checkout to receive 50% off ` +
-    'on your first month of any Crosscourt membership';
 
   return (
     <div className="relative p-8">
@@ -129,7 +127,10 @@ const MyProfile = ({ profile, showTitle = true }) => {
               profile.ccCash
             )}`}</span>
           </div>
-          <CopyToClipboard onCopy={() => setInviteFriendTextCopied(true)} text={inviteFriendText}>
+          <CopyToClipboard
+            onCopy={() => setInviteFriendTextCopied(true)}
+            text={referralText(profile.referralCode)}
+          >
             <PrimaryButton w="100%" className="mb-2">
               <FontAwesomeIcon icon={faExternalLinkAlt} />{' '}
               {inviteFriendTextCopied ? 'Copied' : 'Invite a friend'}

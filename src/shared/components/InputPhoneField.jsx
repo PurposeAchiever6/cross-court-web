@@ -1,87 +1,36 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Field } from 'formik';
 import { isNil } from 'ramda';
-import colors from 'shared/styles/constants';
 import UsFlag from 'shared/images/us-flag.png';
 import { formatPhoneNumber } from 'shared/utils/helpers';
+import Label from 'shared/components/Label';
 
-const InputTextContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1.5rem;
-
-  label {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    color: ${(props) => props.labelColor};
-    margin: 0 0 0.75rem;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-weight: 400;
-  }
-  small {
-    text-align: right;
-    margin-top: 1rem;
-    color: ${colors.errorRed};
-    text-transform: initial;
-    font-family: shapiro45_welter_extd;
-  }
-  input {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    box-sizing: border-box;
-    color: rgba(0, 0, 0, 0.5);
-    border-radius: 0;
-    font-size: 1.2rem;
-    padding: 1rem 1rem 1rem 4rem;
-    width: 100%;
-    font-family: shapiro45_welter_extd;
-    background-color: #fbf7f3;
-    &:focus {
-      border: 1px solid rgba(0, 0, 0, 1);
-      color: rgba(0, 0, 0, 1);
-      box-shadow: none;
-    }
-  }
-
-  .input-box {
-    position: relative;
-
-    img {
-      position: absolute;
-      left: 34px;
-      top: 50%;
-      height: 70%;
-      transform: translate(-50%, -50%);
-      bottom: 50%;
-    }
-  }
-`;
-
-const InputTextField = ({
+const InputPhoneField = ({
   name,
   error,
   labelText,
-  placeholder = '',
-  disabled = false,
-  showLabel = true,
-  displayErrorMsg = true,
-  labelColor = '#9999ff',
+  placeholder,
+  disabled,
+  labelColor,
   ...props
 }) => (
   <Field name={name}>
     {({ field: { name, value, onChange, onBlur }, form: { touched, errors: formikError } }) => (
-      <InputTextContainer labelColor={labelColor} {...props}>
-        {showLabel && <label htmlFor={name}>{labelText}</label>}
-        <div className="input-box">
-          <img src={UsFlag} alt="us-flag" />
+      <div {...props} className="flex flex-col mb-2 md:mb-4">
+        {labelText && (
+          <Label className="mb-1 uppercase" htmlFor={name} color={labelColor}>
+            {labelText}
+          </Label>
+        )}
+        <div className="relative">
+          <img src={UsFlag} alt="us-flag" className="absolute top-1 md:top-2 left-4 h-3/4" />
           <input
-            className={
+            className={`md:text-lg w-full font-shapiro45_welter_extd bg-cream border border-black border-opacity-50 focus:border-opacity-100 text-opacity-50 focus:text-opacity-100 text-black pl-16 py-2 md:py-3 ${
               (touched[name] && formikError[name]) || error
                 ? 'form-control is-invalid'
                 : 'form-control'
-            }
+            }`}
             autoComplete="off"
             placeholder={placeholder}
             disabled={disabled}
@@ -94,28 +43,34 @@ const InputTextField = ({
             onPaste={(e) => e.preventDefault() && false}
           />
         </div>
-        {displayErrorMsg && (
-          <small
-            id={`${name}-error`}
-            className={isNil(formikError[name]) ? 'inactive' : 'form-text'}
-          >
-            {isNil(error) ? formikError[name] : error}
-          </small>
-        )}
-      </InputTextContainer>
+        <small
+          id={`${name}-error`}
+          className={`text-right mt-1 text-red-500 font-shapiro45_welter_extd ${
+            isNil(formikError[name]) ? 'inactive' : 'form-text'
+          }`}
+        >
+          {isNil(error) ? formikError[name] : error}
+        </small>
+      </div>
     )}
   </Field>
 );
 
-InputTextField.propTypes = {
+InputPhoneField.propTypes = {
   name: PropTypes.string.isRequired,
   error: PropTypes.string,
-  type: PropTypes.string,
-  labelText: PropTypes.string.isRequired,
+  labelText: PropTypes.string,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
-  showLabel: PropTypes.bool,
-  displayErrorMsg: PropTypes.bool,
+  labelColor: PropTypes.string,
 };
 
-export default InputTextField;
+InputPhoneField.defaultProps = {
+  error: null,
+  labelText: null,
+  placeholder: '',
+  disabled: false,
+  labelColor: 'text-cc-purple',
+};
+
+export default InputPhoneField;

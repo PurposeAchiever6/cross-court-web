@@ -1,0 +1,2 @@
+export const CREATE_UPDATE_FIRST_TIMER_SURVEY =
+  '@surveys/first-timers/CREATE_UPDATE_FIRST_TIMER_SURVEY';

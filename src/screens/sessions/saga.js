@@ -84,7 +84,7 @@ export function* reserveSessionFlow({ payload }) {
     yield put({
       type: RESERVE_SESSION_SUCCESS,
     });
-    yield put(push(ROUTES.SESSIONRESERVED));
+    yield put(push(payload.redirectTo || ROUTES.SESSIONRESERVED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({ type: RESERVE_SESSION_FAILURE, error: err.response.data.error });

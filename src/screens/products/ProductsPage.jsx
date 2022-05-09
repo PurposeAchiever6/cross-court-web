@@ -64,17 +64,18 @@ const ProductsPage = () => {
 
   return (
     <>
-      <div className="bg-cc-black border-b border-gray-400 pt-16">
+      <div className="bg-cc-black pt-16 pb-10">
         {showAnimation && <NoSessionCredits />}
-        <ToggleButton
-          offLabel="Memberships"
-          onLabel="A la carte"
-          size="4xl"
-          value={showDropIns}
-          onChange={setDropIns}
-          className="w-full mt-4 flex justify-center items-center text-white lg:text-xl"
-        />
-
+        <div className="text-center">
+          <ToggleButton
+            offLabel="Memberships"
+            onLabel="A la carte"
+            size="4xl"
+            value={showDropIns}
+            onChange={setDropIns}
+            className="mt-4 text-white lg:text-xl"
+          />
+        </div>
         {!showDropIns && (
           <Memberships
             selectProductHandler={selectProductHandler}

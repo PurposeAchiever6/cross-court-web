@@ -31,6 +31,7 @@ const Modal = ({
     if (lockScroll) {
       isOpen ? blockScroll() : allowScroll();
     }
+    return () => allowScroll();
   }, [isOpen, lockScroll, blockScroll, allowScroll]);
 
   const getWidthBySize = (() => {

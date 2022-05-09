@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { ProGallery } from 'pro-gallery';
@@ -9,7 +9,10 @@ import { faSearch, faDownload } from '@fortawesome/free-solid-svg-icons';
 import Fancybox from './Fancybox';
 import ccLogo from 'shared/images/cc-logo.png';
 
-const Gallery = ({ images }) => {
+const Gallery = ({ images, hoverEnable, className }) => {
+  const containerRef = useRef(null);
+  const [container, setContainer] = useState({ width: window.innerWidth });
+
   images = images.map((image) => ({
     itemId: image.id.toString(),
     mediaUrl: image.src,
@@ -21,14 +24,9 @@ const Gallery = ({ images }) => {
 
   const options = {
     galleryLayout: -1,
-    galleryMargin: 10,
     imageMargin: 5,
     overlayBackground: '#9999ff80',
-  };
-
-  const container = {
-    width: window.innerWidth,
-    height: window.innerHeight,
+    hoveringBehaviour: hoverEnable ? 'APPEARS' : 'NEVER_SHOW',
   };
 
   const scrollingElement = window;
@@ -49,42 +47,53 @@ const Gallery = ({ images }) => {
     document.body.removeChild(a);
   };
 
+  useEffect(() => {
+    setContainer({ width: containerRef.current.offsetWidth });
+  }, []);
+
   return (
-    <Fancybox options={{ infinite: false }}>
-      <ProGallery
-        items={images}
-        options={options}
-        container={container}
-        scrollingElement={scrollingElement}
-        customImageRenderer={(imageProps) => (
-          <img
-            {...imageProps}
-            alt={imageProps.alt}
-            data-fancybox="gallery"
-            data-src={imageProps.src}
-          />
-        )}
-        customHoverRenderer={(itemProps) => (
-          <div className="flex-col w-full h-full justify-center items-center hidden md:flex">
-            <img alt="cc-logo" className="w-12 mb-12" src={ccLogo} />
-            <div className="flex justify-center items-center">
-              <FontAwesomeIcon
-                icon={faSearch}
-                className="relative text-3xl text-white mr-8 cursor-pointer"
-                data-fancybox-trigger="gallery"
-                data-fancybox-index={itemProps.idx}
-              />
-              <FontAwesomeIcon
-                icon={faDownload}
-                className="text-3xl text-white cursor-pointer"
-                onClick={() => downloadImage(itemProps.url)}
-              />
+    <div ref={containerRef} className={className}>
+      <Fancybox options={{ infinite: false }}>
+        <ProGallery
+          items={images}
+          options={options}
+          container={container}
+          scrollingElement={scrollingElement}
+          customImageRenderer={(imageProps) => (
+            <img
+              {...imageProps}
+              alt={imageProps.alt}
+              data-fancybox="gallery"
+              data-src={imageProps.src}
+            />
+          )}
+          customHoverRenderer={(itemProps) => (
+            <div className="flex-col w-full h-full justify-center items-center hidden md:flex">
+              <img alt="cc-logo" className="w-12 mb-12" src={ccLogo} />
+              <div className="flex justify-center items-center">
+                <FontAwesomeIcon
+                  icon={faSearch}
+                  className="relative text-3xl text-white mr-8 cursor-pointer"
+                  data-fancybox-trigger="gallery"
+                  data-fancybox-index={itemProps.idx}
+                />
+                <FontAwesomeIcon
+                  icon={faDownload}
+                  className="text-3xl text-white cursor-pointer"
+                  onClick={() => downloadImage(itemProps.url)}
+                />
+              </div>
             </div>
-          </div>
-        )}
-      />
-    </Fancybox>
+          )}
+        />
+      </Fancybox>
+    </div>
   );
+};
+
+Gallery.defaultProps = {
+  hoverEnable: true,
+  className: '',
 };
 
 Gallery.propTypes = {
@@ -94,6 +103,8 @@ Gallery.propTypes = {
       src: PropTypes.string.isRequired,
     })
   ).isRequired,
+  hoverEnable: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default Gallery;

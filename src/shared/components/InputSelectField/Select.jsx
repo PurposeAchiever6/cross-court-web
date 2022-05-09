@@ -9,13 +9,16 @@ const SelectContainer = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.5);
     color: rgba(0, 0, 0, 0.5);
     border-radius: 0;
-    padding: 0.5rem 0.5rem;
     background-color: #fbf7f3;
     font-family: shapiro45_welter_extd;
     &:focus {
       border: 1px solid rgba(0, 0, 0, 1);
       color: rgba(0, 0, 0, 1);
       box-shadow: none;
+    }
+    padding: 0.5rem 0.5rem;
+    @media (max-width: 768px) {
+      padding: 0;
     }
   }
 

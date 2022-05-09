@@ -65,7 +65,7 @@ const Footer = () => {
 
   return pathname === ROUTES.DASHBOARD ? null : (
     <>
-      <footer className="flex flex-col md:flex-row-reverse justify-evenly md:justify-between bg-cc-black px-4 py-8 md:p-12  text-white h-164 md:h-124">
+      <footer className="flex flex-col md:flex-row-reverse justify-evenly md:justify-between bg-cc-black px-4 py-8 md:p-12  text-white h-164 md:h-124 border-t border-gray-400 border-opacity-20">
         <div className="md:w-1/2 flex flex-col h-full justify-evenly md:justify-between">
           <LogoSvg className="w-72" />
           {!isAuthenticated && (

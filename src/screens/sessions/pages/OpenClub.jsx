@@ -72,7 +72,7 @@ const OpenClub = () => {
   }
 
   return (
-    <div className="flex flex-col border-b border-gray-400">
+    <div className="flex flex-col">
       <SessionHeader>{sessionInfo.location.name} OPEN CLUB</SessionHeader>
       <div className="flex flex-col-reverse md:flex-row bg-cc-black h-full">
         <Carousel

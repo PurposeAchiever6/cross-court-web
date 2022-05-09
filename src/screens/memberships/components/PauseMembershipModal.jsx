@@ -28,9 +28,9 @@ export const PauseMembershipModal = ({
     <Modal isOpen={isOpen} closeHandler={closeHandler} subtitle="Enter Offseason">
       <div className="flex flex-col items-center justify-center">
         <p className="mb-2">
-          You may freeze your membership for a minimum of one (1) month or a maximum of two (2)
-          months up to two (2) times per year. Once the freeze period ends, your membership will
-          revert to regular monthly billing. No payments will be made during the freeze period.
+          {`You may freeze your membership for a minimum of 1 month or a maximum of 2
+          months up to ${activeSubscription.pausesPerYear} times per year. Once the freeze period ends, your membership will
+          revert to regular monthly billing. No payments will be made during the freeze period.`}
         </p>
         <p className="mb-2">
           {`Your membership will freeze at the end of your current billing period, before ${subscriptionPeriodFormattedDate(

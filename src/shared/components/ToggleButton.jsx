@@ -24,23 +24,27 @@ const ToggleButton = ({ offLabel, onLabel, size, value, onChange, className }) =
 
   return (
     <div className={className}>
-      {offLabel && <span className="mr-5">{offLabel}</span>}
-      {!value && (
-        <FontAwesomeIcon
-          icon={faToggleOn}
-          className={`${getSize} text-cc-purple cursor-pointer`}
-          rotation={180}
-          onClick={() => onChange(true)}
-        />
-      )}
-      {value && (
-        <FontAwesomeIcon
-          icon={faToggleOn}
-          className={`${getSize} text-cc-purple cursor-pointer`}
-          onClick={() => onChange(false)}
-        />
-      )}
-      {onLabel && <span className="ml-5">{onLabel}</span>}
+      <div className="inline-block">
+        <div className="flex items-center">
+          {offLabel && <span className="select-none mr-5">{offLabel}</span>}
+          {!value && (
+            <FontAwesomeIcon
+              icon={faToggleOn}
+              className={`${getSize} text-cc-purple cursor-pointer`}
+              rotation={180}
+              onClick={() => onChange(true)}
+            />
+          )}
+          {value && (
+            <FontAwesomeIcon
+              icon={faToggleOn}
+              className={`${getSize} text-cc-purple cursor-pointer`}
+              onClick={() => onChange(false)}
+            />
+          )}
+          {onLabel && <span className="select-none ml-5">{onLabel}</span>}
+        </div>
+      </div>
     </div>
   );
 };

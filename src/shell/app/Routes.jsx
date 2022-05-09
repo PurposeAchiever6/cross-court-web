@@ -19,6 +19,7 @@ import { history } from 'shared/history';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getLegalDocs } from 'screens/legal-docs/actionCreators';
 import { toggleActiveCampaignChat } from 'shared/utils/activeCampaign';
+import { getUserSource, setUserSource, removeUserSource } from 'shared/utils/userSource';
 import PrivateRoute from './PrivateRoute';
 import HtmlHead from './HtmlHead';
 
@@ -39,6 +40,7 @@ const Session = lazy(() => import('screens/sessions/pages/Session'));
 const OpenClubSession = lazy(() => import('screens/sessions/pages/OpenClub'));
 const SessionConfirmed = lazy(() => import('screens/sessions/pages/SessionConfirmed'));
 const SessionReserved = lazy(() => import('screens/sessions/pages/SessionReserved'));
+const FirstSessionReserved = lazy(() => import('screens/sessions/pages/FirstSessionReserved'));
 const SessionJoinWaitlist = lazy(() => import('screens/sessions/pages/JoinWaitlist'));
 const Checkout = lazy(() => import('screens/checkout/CheckoutPage'));
 const ProductsPage = lazy(() => import('screens/products/ProductsPage'));
@@ -257,8 +259,19 @@ const Routes = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
 
   useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const source = query.get('source');
+    const userAlreadyHasSource = getUserSource();
+
+    if (!userAlreadyHasSource && source) {
+      setUserSource(source);
+    }
+  }, []);
+
+  useEffect(() => {
     if (isAuthenticated) {
       window.localStorage.setItem('hasLoggedIn', 'true');
+      removeUserSource();
       dispatch(initialAppLoad());
       dispatch(getLegalDocs());
     } else {
@@ -307,9 +320,12 @@ const Routes = () => {
         <Route path={ROUTES.OPEN_CLUB_SESSION} exact>
           <OpenClubSession />
         </Route>
-        <Route path={[ROUTES.SESSIONRESERVED, ROUTES.FIRSTSESSIONRESERVED]} exact>
+        <PrivateRoute path={ROUTES.SESSIONRESERVED} exact>
           <SessionReserved />
-        </Route>
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.FIRSTSESSIONRESERVED} exact>
+          <FirstSessionReserved />
+        </PrivateRoute>
         <Route path={ROUTES.SESSIONCONFIRMED} exact>
           <SessionConfirmed />
         </Route>

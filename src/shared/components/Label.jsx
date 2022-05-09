@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Label = ({ color, children, className }) => {
+const Label = ({ color, children, className, ...props }) => {
   const labelColorClass = (() => {
     switch (color) {
       case 'purple':
@@ -12,17 +12,22 @@ const Label = ({ color, children, className }) => {
   })();
 
   return (
-    <label className={`block font-shapiro95_super_wide ${labelColorClass} ${className}`}>
+    <label
+      className={`block font-shapiro95_super_wide text-sm md:text-base ${labelColorClass} ${className}`}
+      {...props}
+    >
       {children}
     </label>
   );
 };
 
 Label.defaultProps = {
+  color: '',
   className: '',
 };
 
 Label.propTypes = {
+  color: PropTypes.string,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
 };

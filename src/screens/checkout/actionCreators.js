@@ -25,13 +25,9 @@ export const updateSubscription = () => ({
   type: UPDATE_SUBSCRIPTION_INIT,
 });
 
-export const createAndReserveFreeSessionInit = (sessionId, date, referralCode) => ({
+export const createAndReserveFreeSessionInit = (payload) => ({
   type: CREATE_FREE_SESSION_INIT,
-  payload: {
-    sessionId,
-    date,
-    referralCode,
-  },
+  payload,
 });
 
 export const checkPromoCode = (promoCode) => ({

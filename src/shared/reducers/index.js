@@ -12,7 +12,7 @@ import purchaseHistoryReducer from 'screens/purchase-history/reducer';
 import paymentMethodsReducer from 'screens/payment-methods/reducer';
 import checkoutReducer from 'screens/checkout/reducer';
 import legalDocsReducer from 'screens/legal-docs/reducer';
-import surveyReducer from 'screens/survey/reducer';
+import sessionsSurveysReducer from 'screens/surveys/sessions/reducer';
 import galleryReducer from 'screens/gallery/reducer';
 import referralsReducer from 'screens/referrals/reducer';
 
@@ -35,7 +35,7 @@ const appReducer = (history) =>
     purchaseHistory: purchaseHistoryReducer,
     paymentMethods: paymentMethodsReducer,
     checkout: checkoutReducer,
-    survey: surveyReducer,
+    sessionsSurveys: sessionsSurveysReducer,
     legalDocs: persistReducer(
       {
         key: 'legalDocs',
