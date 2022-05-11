@@ -68,6 +68,7 @@ const PaymentMethodsMembership = lazy(() =>
 );
 const Gallery = lazy(() => import('screens/gallery/GalleryPage'));
 const Referrals = lazy(() => import('screens/referrals/ReferralsPage'));
+const MembershipConfirm = lazy(() => import('screens/checkout/pages/MembershipConfirm'));
 
 const AppWrapper = styled.div`
   display: flex;
@@ -353,8 +354,11 @@ const Routes = () => {
         <PrivateRoute path={ROUTES.CHECKOUT} exact>
           <Checkout />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.CHECKOUTCONFIRMED} exact>
+        <PrivateRoute path={ROUTES.CHECKOUT_CONFIRMED} exact>
           <CheckoutConfirm />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.CHECKOUT_MEMBERSHIP_CONFIRMED} exact>
+          <MembershipConfirm />
         </PrivateRoute>
         <PrivateRoute path={[ROUTES.PAYMENT_METHODS_SELECT]} exact>
           <PaymentMethodsSelect />
