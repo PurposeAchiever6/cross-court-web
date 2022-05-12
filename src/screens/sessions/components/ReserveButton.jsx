@@ -18,6 +18,10 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import CodeOfConductModal from 'screens/sessions/components/CodeOfConductModal';
 
+import { WOMEN_SESSION_TOOLTIP } from 'shared/constants/sessions';
+
+import Tooltip from 'shared/components/Tooltip';
+
 const ReserveButton = ({
   reserveSessionAction,
   session,
@@ -68,14 +72,23 @@ const ReserveButton = ({
     if (!session?.userSession && !session?.full) {
       return (
         <>
-          <PrimaryButton
-            className="mb-4"
-            id="session-confirm-reservation"
-            onClick={reservationHandler}
-            disabled={disabled || isPast(sessionDate)}
+          <Tooltip
+            variant="black"
+            place="top"
+            enable={session?.womenOnly}
+            tooltip={WOMEN_SESSION_TOOLTIP}
           >
-            CONFIRM RESERVATION
-          </PrimaryButton>
+            <PrimaryButton
+              id="session-confirm-reservation"
+              onClick={reservationHandler}
+              disabled={disabled || isPast(sessionDate)}
+            >
+              CONFIRM RESERVATION
+            </PrimaryButton>
+          </Tooltip>
+          {session?.womenOnly && (
+            <p className="text-xs md:hidden mt-8 px-8">{WOMEN_SESSION_TOOLTIP}</p>
+          )}
           <OnboardingTour
             id="onboarding-tour-session-confirm-reservation"
             enabled={
@@ -84,7 +97,7 @@ const ReserveButton = ({
             steps={[
               {
                 element: '#session-confirm-reservation',
-                intro: `You’re s’close. Tap <strong>CONFIRM RESERVATION</strong> to hold your spot. First you'll need to enter your payment info and then you'll be ready to book your first session! Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`,
+                intro: `You’re s’close. Press <strong>CONFIRM RESERVATION</strong> to hold your spot. First you'll need to enter your payment info and then you'll be ready to book your first session! Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`,
               },
             ]}
           />
