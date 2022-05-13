@@ -1,6 +1,15 @@
 import React from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faVideo,
+  faUser,
+  faPlusCircle,
+  faPlusSquare,
+  faTicketAlt,
+  faUsers,
+} from '@fortawesome/free-solid-svg-icons';
 
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
@@ -11,13 +20,6 @@ import { getPurchaseConfirmed } from '../reducer';
 import ROUTES from 'shared/constants/routes';
 
 import ReferAFriend from 'shared/components/ReferAFriend';
-
-import highlightsIcon from '../images/highlights.png';
-import profileIcon from '../images/profile.png';
-import downloadIcon from '../images/download.png';
-import vipIcon from '../images/vip.png';
-import plus1Icon from '../images/plus_1.png';
-import referIcon from '../images/refer.png';
 
 import basketImg from '../images/basket.jpg';
 import basketballImg from '../images/basketball.jpg';
@@ -34,20 +36,20 @@ const MembershipConfirm = () => {
 
   const ITEMS = [
     {
-      icon: highlightsIcon,
+      icon: faVideo,
       title: 'CLIPPING YOUR HIGHLIGHTS',
       description: `Watch your full length session or clip, download and upload personal highlights to
         social media using the Pixelott App. Go to our "content" page found in our website's
         footer for a step by step guide for viewing and personalizing Crosscourt content.`,
     },
     {
-      icon: profileIcon,
+      icon: faUser,
       title: 'PERSONALZING YOUR PROFILE',
       description: `Upload a profile image in "My Account" to finish setting up your profile.
       This will be displayed on our courtside dashboard before each session.`,
     },
     {
-      icon: downloadIcon,
+      icon: faPlusSquare,
       title: 'DOWNLOADING OUR WEB APP',
       description: `Adding Crosscourt to your mobile device's homescreen makes it easy to find
       upcoming sessions and stay up to date with everything Crosscourt. On your mobile device
@@ -55,20 +57,20 @@ const MembershipConfirm = () => {
       and hit "Add to Homescreen".`,
     },
     {
-      icon: vipIcon,
+      icon: faTicketAlt,
       title: 'COMING OUT TO ALL CC EXPERIENCES',
       description: `All members have access to our Open Club period.
       These are designated "open gym" hours for members to work on their game,
       hang out with other members, organize own runs, or get an extended warm up for their sessions.`,
     },
     {
-      icon: plus1Icon,
+      icon: faPlusCircle,
       title: 'ADDING MORE SESSIONS',
       description: `If you use all the credits in your account, you can either purchase additional
       drop in sessions at a discount or you can upgrade your membership.`,
     },
     {
-      icon: referIcon,
+      icon: faUsers,
       component: (
         <ReferAFriend
           className="flex flex-col w-full md:w-max items-center md:items-start"
@@ -103,7 +105,7 @@ const MembershipConfirm = () => {
         {ITEMS.map((item, i) => (
           <div className="flex mb-6 flex-col md:flex-row text-center md:text-left" key={i}>
             <div className="flex items-center justify-center w-full md:w-1/6 mb-4 md:mb-0">
-              <img className="w-auto h-12" src={item.icon} alt="icon" />
+              {item.icon && <FontAwesomeIcon icon={item.icon} size="3x" />}
             </div>
             <div className="flex flex-col w-full md:w-5/6">
               {item.title && <p className="shapiro95_super_wide text-2xl">{item.title}</p>}
@@ -113,7 +115,7 @@ const MembershipConfirm = () => {
           </div>
         ))}
       </div>
-      <div className="bg-cc-black p-5 md:p-10">
+      <div className="bg-cc-black p-5 md:p-10 flex flex-col items-center justify-center">
         <PrimaryButton
           fontSize="100px"
           font="dharma_gothic_cheavy_italic"
