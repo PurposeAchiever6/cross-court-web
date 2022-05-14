@@ -1,8 +1,8 @@
 import React from 'react';
 
+import blackTextureBgImg from 'shared/images/black-texture-bg.png';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import Testimonial from 'shared/components/Testimonial';
-import testimonialsBgImg from 'screens/homepage/images/testimonials-bg.png';
 import testimonialsPlayerBgImg from 'screens/homepage/images/testimonials-player-bg.jpeg';
 import testimonialsPlayerImg from 'screens/homepage/images/testimonials-player.jpeg';
 
@@ -47,7 +47,7 @@ const TESTIMONIALS_DATA = [
 const Testimonials = () => (
   <LazyBackgroundImage
     as="section"
-    img={testimonialsBgImg}
+    img={blackTextureBgImg}
     className="bg-no-repeat bg-cover bg-center"
   >
     <div className="lg:flex lg:pt-10 lg:pb-32">
