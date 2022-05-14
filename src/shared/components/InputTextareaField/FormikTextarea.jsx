@@ -1,7 +1,7 @@
 import React from 'react';
+import { Field } from 'formik';
 import PropTypes from 'prop-types';
 
-import { Field } from 'formik';
 import Textarea from './Textarea';
 
 const FormikTextarea = ({ name, error, ...props }) => (

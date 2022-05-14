@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { isEmpty } from 'ramda';
 import { string, func, bool } from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
@@ -37,8 +36,13 @@ const ForgotPassForm = ({ error, forgotPassHandler, isLoading }) => (
             Enter your email and we will send you a link to reset your password.
           </p>
           <Form>
-            <InputTextField labelText="Email" name="email" placeholder="example@crosscourt.com" />
-            {!isEmpty(error) && <div className="alert-error mb-2">{error}</div>}
+            <InputTextField
+              label="Email"
+              name="email"
+              placeholder="example@crosscourt.com"
+              className="mb-4"
+            />
+            {error && <div className="alert-error mb-2">{error}</div>}
             <PrimaryButton type="submit" loading={isLoading} w="100%" className="mb-10">
               Reset Password
             </PrimaryButton>

@@ -59,20 +59,43 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => {
               Create an account to receive a free session credit. Once you verify your email, it
               will be placed in your account.
             </h2>
-            <InputTextField labelText="First Name*" error={errors?.firstName} name="firstName" />
-            <InputTextField labelText="Last Name*" error={errors?.lastName} name="lastName" />
+            <InputTextField
+              label="First Name*"
+              error={errors?.firstName}
+              name="firstName"
+              className="mb-2 md:mb-5"
+            />
+            <InputTextField
+              label="Last Name*"
+              error={errors?.lastName}
+              name="lastName"
+              className="mb-2 md:mb-5"
+            />
             <InputPhoneField
-              labelText="Phone Number*"
+              label="Phone Number*"
               error={errors?.phoneNumber}
               name="phoneNumber"
+              className="mb-2 md:mb-5"
             />
-            <InputTextField labelText="Zip Code*" error={errors?.zipcode} name="zipcode" />
-            <InputTextField labelText="Email*" error={errors?.email} name="email" />
             <InputTextField
-              labelText="Password*"
+              label="Zip Code*"
+              error={errors?.zipcode}
+              name="zipcode"
+              className="mb-2 md:mb-5"
+            />
+            <InputTextField
+              label="Email*"
+              error={errors?.email}
+              name="email"
+              className="mb-2 md:mb-5"
+            />
+            <InputTextField
+              label="Password*"
               error={errors?.password}
               name="password"
               type={showPass ? 'text' : 'password'}
+              className="mb-5 md:mb-8"
+              rightIcon
               icon={
                 <FontAwesomeIcon
                   className="cursor-pointer"
@@ -80,7 +103,6 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => {
                   icon={showPass ? faEye : faEyeSlash}
                 />
               }
-              rightIcon
             />
             <InputCheckboxField name="terms" className="font-shapiro45_welter_extd mb-8">
               I agree to the{' '}

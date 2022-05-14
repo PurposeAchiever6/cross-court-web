@@ -2,12 +2,12 @@ import React from 'react';
 import { Field } from 'formik';
 import PropTypes from 'prop-types';
 
-import Checkbox from './Checkbox';
+import InputText from './InputText';
 
-const FormikCheckbox = ({ name, error, ...props }) => (
+const FormikInputText = ({ name, error, ...props }) => (
   <Field name={name}>
     {({ field, form: { touched, errors: formikErrors } }) => (
-      <Checkbox
+      <InputText
         {...props}
         {...field}
         error={error || (touched[field.name] && formikErrors[field.name])}
@@ -16,13 +16,13 @@ const FormikCheckbox = ({ name, error, ...props }) => (
   </Field>
 );
 
-FormikCheckbox.defaultProps = {
+FormikInputText.defaultProps = {
   error: null,
 };
 
-FormikCheckbox.propTypes = {
+FormikInputText.propTypes = {
   name: PropTypes.string.isRequired,
   error: PropTypes.string,
 };
 
-export default FormikCheckbox;
+export default FormikInputText;

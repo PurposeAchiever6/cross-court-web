@@ -34,9 +34,9 @@ const CheckboxInputContainer = styled.div`
   }
 `;
 
-const Checkbox = ({ name, value, children, error, className, ...props }) => (
+const Checkbox = ({ name, value, children, error, disabled, className, ...props }) => (
   <CheckboxInputContainer className={className}>
-    <div className="flex">
+    <div className={`flex ${disabled ? 'opacity-50 pointer-events-none' : ''}`}>
       <input id={name} type="checkbox" checked={value} {...props} />
       <label htmlFor={name} className="cursor-pointer ml-4 select-none">
         {children}
@@ -49,6 +49,7 @@ const Checkbox = ({ name, value, children, error, className, ...props }) => (
 Checkbox.defaultProps = {
   value: null,
   error: null,
+  disabled: false,
   className: '',
 };
 
@@ -57,6 +58,7 @@ Checkbox.propTypes = {
   children: PropTypes.node.isRequired,
   value: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  disabled: PropTypes.bool,
   className: PropTypes.string,
 };
 

@@ -8,7 +8,7 @@ const InputSelectField = ({ formik, ...props }) =>
   formik ? <FormikSelect {...props} /> : <Select {...props} />;
 
 InputSelectField.defaultProps = {
-  formik: false,
+  formik: true,
 };
 
 InputSelectField.propTypes = {
