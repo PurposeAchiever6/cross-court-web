@@ -50,6 +50,10 @@
     transform: translateX(-50vw);
     transition-delay: 300ms;
   }
+  .sidebar-nav .list-item:nth-of-type(8) {
+    transform: translateX(-50vw);
+    transition-delay: 350ms;
+  }
 }
 
 body .cheeseburger-menu.open .sidebar-nav .list-item {

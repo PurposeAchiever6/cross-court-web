@@ -17,7 +17,7 @@ const MobileMenuContainer = styled.div`
   top: 0;
   left: 0;
 
-  @media (max-width: 991px) {
+  @media (max-width: 768px) {
     display: ${({ open }) => (open ? 'block' : 'none')};
   }
 `;
