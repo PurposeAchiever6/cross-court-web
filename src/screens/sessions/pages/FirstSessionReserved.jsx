@@ -50,7 +50,7 @@ const SessionReserved = () => {
         <JoinTheCCTeam />
       </div>
       <div className="max-w-screen-2xl mx-auto mb-10">
-        <Memberships className="mb-3" />
+        <Memberships className="mb-6 md:mb-8" />
         <MembershipsFeatures />
       </div>
       <div className="max-w-screen-lg mx-auto mb-8">

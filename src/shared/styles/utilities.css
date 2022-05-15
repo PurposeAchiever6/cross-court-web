@@ -23,6 +23,10 @@
   -webkit-text-stroke-width: 2px;
 }
 
+.direction-rtl {
+  direction: rtl;
+}
+
 @media (min-width: 768px) {
   .md\:text-stroke-width-1 {
     -webkit-text-stroke-width: 1px;
@@ -30,5 +34,9 @@
 
   .md\:text-stroke-width-2 {
     -webkit-text-stroke-width: 2px;
+  }
+
+  .md\:direction-rtl {
+    direction: rtl;
   }
 }

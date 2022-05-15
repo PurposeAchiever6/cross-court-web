@@ -1,46 +1,49 @@
 import React from 'react';
 
-import blackTextureBgImg from 'shared/images/black-texture-bg.png';
+import ROUTES from 'shared/constants/routes';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import Testimonial from 'shared/components/Testimonial';
+import blackTextureBgImg from 'shared/images/black-texture-bg.png';
 import testimonialsPlayerBgImg from 'screens/homepage/images/testimonials-player-bg.jpeg';
 import testimonialsPlayerImg from 'screens/homepage/images/testimonials-player.jpeg';
 
 const TESTIMONIALS_DATA = [
   {
-    name: 'Matt McGinley',
+    name: 'Eric Zachary',
     rate: 5,
     description:
-      'I attended Crosscourt before covid. good runs. I appreciate the positivity from the staff. It creates good vibes for the runs. The new club is off the charts dope.',
+      'Session was perfect. 5 minute games are exactly the right length and the format makes each game feel like game 7. Really enjoyed my teammates and the refs are super cool. Can’t wait to check out my highlights.',
   },
   {
-    name: 'Jon Kaker',
-    rate: 5,
-    description: 'It is so organized that it puts LA Fitness pickup runs to shame.',
-  },
-  {
-    name: 'Filip Matic',
+    name: 'Tristan Merrill',
     rate: 5,
     description:
-      'Awesome. We gotta keep this rolling. This concept has unlimited potential. Thanks for all the effort of putting this together.',
+      'Going from playing at LA Fitness to Crosscourt has been game changing. I used to wait around for at least 30 minutes before being picked up by a squad. Having referees saves so much time arguing over foul calls and dealing with that bs. I am all in on CC.',
   },
   {
-    name: 'Demetrius Foster-Phenix',
+    name: 'Darell Neely',
     rate: 5,
     description:
-      'Dope experience. Got to meet really cool guys and network. Of course the sessions are fun & competitive. Facility is very nice. I will be a regular.',
+      'Crosscourt’s format is sick. That random player selector is brilliant. Shooting free throws for teams was such a waste of time. Left dripping in sweat and was good to get the competitive juices flowing again. ',
   },
   {
-    name: 'Kevin Simms',
+    name: 'Riley Kendrick',
     rate: 5,
     description:
-      'This place is amazing. Good quality courts. The staff and refs are fantastic, definitely taking care of the players and making sure the games are good and competitive. I highly recommend you coming out to this place.',
+      'Never going back to the park again. Stoked to be hooping consistently again. Forgot how much I missed this! I’m back!',
   },
   {
-    name: 'Antonio Calavano',
+    name: 'Bri Williams',
     rate: 5,
     description:
-      "Best place I've been to! Y'all are crushing it. Can't wait to come back & use the unlimited membership",
+      'The people at Crosscourt are super friendly and the hospitality is next level. Super welcoming experience and felt like a valued member from the moment I signed up for my first free session.',
+  },
+  {
+    name: 'Tony Baker',
+    rate: 5,
+    description:
+      'Crosscourt is special! Felt like a video game! Extremely convenient for me and works with my schedule. Love the flexibility and being a part of this awesome community of hoopers. Never running on a treadmill again!',
   },
 ];
 
@@ -58,7 +61,7 @@ const Testimonials = () => (
           </span>
           <span className="text-cc-purple block">PLAYERS SAY</span>
         </h2>
-        <div className="flex flex-wrap text-white -m-4">
+        <div className="flex flex-wrap text-white -m-4 mb-6">
           {TESTIMONIALS_DATA.map((testimonial, index) => (
             <div key={index} className="w-full md:w-1/2 p-4">
               <Testimonial
@@ -68,6 +71,9 @@ const Testimonials = () => (
               />
             </div>
           ))}
+        </div>
+        <div className="text-center">
+          <PrimaryButton to={ROUTES.LOCATIONS}>Book Session</PrimaryButton>
         </div>
       </div>
       <LazyBackgroundImage

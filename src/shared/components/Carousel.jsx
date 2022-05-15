@@ -3,12 +3,12 @@ import { Carousel as ReactResponsiveCarousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import PropTypes from 'prop-types';
 
-const Arrow = ({ prev, prevClickHandler, nextClickHandler, label }) => (
+const Arrow = ({ prev, prevClickHandler, nextClickHandler, label, className }) => (
   <button
     type="button"
     onClick={prev ? prevClickHandler : nextClickHandler}
     title={label}
-    className={`carousel-arrow ${prev ? 'prev' : 'next'}`}
+    className={`carousel-arrow ${prev ? 'prev' : 'next'} ${className}`}
   />
 );
 
@@ -16,6 +16,7 @@ const Carousel = ({
   imageUrls,
   className,
   imagesClassName,
+  arrowsClassName,
   infiniteLoop,
   showArrows,
   showStatus,
@@ -36,9 +37,11 @@ const Carousel = ({
     useKeyboardArrows={useKeyboardArrows}
     swipeable={swipeable}
     renderArrowPrev={(clickHandler, _hasPrev, _label) => (
-      <Arrow prev prevClickHandler={clickHandler} />
+      <Arrow prev prevClickHandler={clickHandler} className={arrowsClassName} />
     )}
-    renderArrowNext={(clickHandler, _hasNext, _label) => <Arrow nextClickHandler={clickHandler} />}
+    renderArrowNext={(clickHandler, _hasNext, _label) => (
+      <Arrow nextClickHandler={clickHandler} className={arrowsClassName} />
+    )}
   >
     {imageUrls.map((image, index) => (
       <img className={imagesClassName} src={image} alt={`carousel-${index}`} key={index} />
@@ -50,18 +53,21 @@ Arrow.propTypes = {
   prev: PropTypes.bool,
   prevClickHandler: PropTypes.func,
   nextClickHandler: PropTypes.func,
+  className: PropTypes.string,
 };
 
 Arrow.defaultProps = {
   prev: false,
   prevClickHandler: null,
   nextClickHandler: null,
+  className: '',
 };
 
 Carousel.defaultProps = {
   imageUrls: [],
   className: '',
   imagesClassName: '',
+  arrowsClassName: '',
   infiniteLoop: true,
   showArrows: true,
   showStatus: false,
@@ -76,6 +82,7 @@ Carousel.propTypes = {
   imageUrls: PropTypes.array,
   className: PropTypes.string,
   imagesClassName: PropTypes.string,
+  arrowsClassName: PropTypes.string,
   infiniteLoop: PropTypes.bool,
   showArrows: PropTypes.bool,
   showStatus: PropTypes.bool,
