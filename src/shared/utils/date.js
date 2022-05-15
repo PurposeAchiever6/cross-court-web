@@ -101,6 +101,8 @@ export const formatShareSessionTime = (date) => getUTCDate(date).format(FORMAT_S
 
 export const formatDateTime = (datetime) => getUTCDate(datetime).format(FORMAT_DATETIME);
 
+export const getMonth = (date = new Date()) => dayjs(new Date(date)).format(FORMAT_MONTH);
+
 export const yearsFrom = (date) => {
   let today = new Date();
   let years;
