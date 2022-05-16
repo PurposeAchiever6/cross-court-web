@@ -7,7 +7,6 @@ import Carousel from 'shared/components/Carousel';
 import unleashYourInnerAthleteImg from 'screens/homepage/images/unleash-your-inner-athlete.jpeg';
 import pickupBasketballFacilityImg from 'screens/homepage/images/pickup-basketball-facility.jpeg';
 import pickupBasketballFacility2Img from 'screens/homepage/images/pickup-basketball-facility-2.jpeg';
-import losAngelesBasketballCourtImg from 'screens/homepage/images/los-angeles-basketball-court.jpeg';
 import frontDeskImg from 'screens/homepage/images/front-desk.jpeg';
 import pickupBasketballImg from 'screens/homepage/images/pickup-basketball.jpeg';
 
@@ -25,14 +24,13 @@ const UnleashYourInnerAthlete = () => (
         unleashYourInnerAthleteImg,
         pickupBasketballFacilityImg,
         pickupBasketballFacility2Img,
-        losAngelesBasketballCourtImg,
         frontDeskImg,
         pickupBasketballImg,
       ]}
     />
     <div className="absolute inset-0 bg-cc-black bg-opacity-50">
       <div className="absolute top-1/3 px-4 md:px-40">
-        <h1 className="text-white font-shapiro95_super_wide text-3xl md:text-5xl 2xl:text-6xl mb-1">
+        <h1 className="text-white font-shapiro95_super_wide text-3xl md:text-4xl xl:text-5xl xl:whitespace-nowrap uppercase">
           Unleash Your Inner Athlete
         </h1>
         <h3 className="text-white md:text-xl 2xl:text-2xl max-w-screen-xl mb-10">

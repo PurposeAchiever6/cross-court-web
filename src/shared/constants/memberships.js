@@ -10,7 +10,7 @@ export const MEMBERSHIPS_FEATURES = [
       "Every session's filmed. Only members can access session highlights to then clip and share on social, or see where to improve",
   },
   {
-    name: 'Tiered Sessions Based on Skill Level',
+    name: 'Tiered Skill Levels',
     description:
       "Are you a former varsity standout and wanna relive your glory days? Join the CCTeam and participate in advanced sessions. What about if you've never played basketball and are just here for the cardio? We've got you covered with our beginner sessions.",
   },

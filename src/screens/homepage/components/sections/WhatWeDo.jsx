@@ -9,7 +9,7 @@ const WhatWeDo = () => (
   <LazyBackgroundImage
     as="section"
     img={whatWeDoBgImg}
-    className="text-white min-h-screen bg-no-repeat bg-cover"
+    className="text-white min-h-screen bg-no-repeat bg-cover bg-center"
   >
     <div className="md:pr-20 pt-20 pb-40 sm:py-20">
       <div className="bg-cc-black bg-opacity-70 w-4/5 max-w-sm md:max-w-md md:min-h-screen ml-auto">

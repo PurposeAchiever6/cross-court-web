@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 
 import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -14,7 +16,7 @@ const EveryoneIsAnThlete = () => {
       <LazyBackgroundImage
         as="section"
         img={everyoneIsAnAthleteBgImg}
-        className="text-white min-h-screen bg-no-repeat bg-cover"
+        className="text-white min-h-screen bg-no-repeat bg-cover bg-center"
       >
         <div className="md:pr-20 pt-20 pb-40 sm:py-20">
           <div className="bg-cc-black bg-opacity-70 w-4/5 max-w-sm md:max-w-md md:min-h-screen ml-auto">
@@ -47,7 +49,7 @@ const EveryoneIsAnThlete = () => {
                   color="white"
                 >
                   <div className="flex items-center">
-                    <div className="rounded-full border border-current w-4 h-4 mr-2" />
+                    <FontAwesomeIcon icon={faPlayCircle} className="text-lg mr-2" />
                     See In Action
                   </div>
                 </PrimaryButton>

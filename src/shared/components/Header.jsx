@@ -133,7 +133,7 @@ const Header = () => {
   };
 
   const showMembershipPromoBanner = pathname === ROUTES.HOME && !userInfo.activeSubscription;
-  const showNavItems = pathname === ROUTES.HOME && !isAuthenticated;
+  const showNavItems = pathname === ROUTES.HOME;
   const isBlackBg = BLACK_BG.includes(pathname);
   const bgColor = isBlackBg ? 'bg-cc-black' : 'bg-white';
   const logoColor =

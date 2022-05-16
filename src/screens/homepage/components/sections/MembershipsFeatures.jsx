@@ -14,7 +14,7 @@ const MembershipsFeatures = () => (
     className="bg-no-repeat bg-cover bg-center"
   >
     <div className="px-4 lg:px-20 py-16 lg:py-20">
-      <h2 className="font-shapiro95_super_wide mb-8">
+      <h2 className="font-shapiro95_super_wide uppercase mb-8">
         <span className="text-transparent text-stroke-cc-purple text-stroke-width-1 text-4xl md:text-5xl lg:text-7xl block">
           Membership
         </span>

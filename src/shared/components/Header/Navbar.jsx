@@ -9,17 +9,11 @@ const Navbar = ({ scrolled, dark, isAuthenticated }) => {
 
   return (
     <nav className="hidden lg:flex gap-5 xl:gap-12 mr-5 xl:mr-12">
-      <NavItem
-        name="First Time?"
-        link={ROUTES.HOWITWORKS}
-        color={color}
-        enable={!isAuthenticated}
-      />
+      <NavItem name="First Time?" link={ROUTES.HOWITWORKS} color={color} />
       <NavItem name="Schedule" link={ROUTES.LOCATIONS} color={color} />
       <NavItem name="Memberships" link={ROUTES.MEMBERSHIPS} color={color} />
-      <NavItem name="My Account" link={ROUTES.MYACCOUNT} color={color} enable={isAuthenticated} />
-      <NavItem name="Gallery" link={ROUTES.GALLERY} color={color} enable={isAuthenticated} />
       <NavItem name="Content" link={ROUTES.CONTENT} color={color} />
+      <NavItem name="My Account" link={ROUTES.MYACCOUNT} color={color} enable={isAuthenticated} />
       <NavItem name="Log In" link={ROUTES.LOGIN} color={color} enable={!isAuthenticated} />
     </nav>
   );

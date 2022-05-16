@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,16 +11,11 @@ import {
   faUsers,
 } from '@fortawesome/free-solid-svg-icons';
 
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-
+import ROUTES from 'shared/constants/routes';
+import ReferAFriend from 'shared/components/ReferAFriend';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSelectedProduct } from 'screens/products/reducer';
 import { getPurchaseConfirmed } from '../reducer';
-
-import ROUTES from 'shared/constants/routes';
-
-import ReferAFriend from 'shared/components/ReferAFriend';
-
 import basketImg from '../images/basket.jpg';
 import basketballImg from '../images/basketball.jpg';
 import courtImg from '../images/court.jpg';
@@ -32,7 +27,6 @@ const MembershipConfirm = () => {
   const purchaseConfirmed = useSelector(getPurchaseConfirmed);
   const currentUser = useSelector(getUserProfile);
   const productDetails = useSelector(getSelectedProduct);
-  const history = useHistory();
 
   const ITEMS = [
     {
@@ -116,23 +110,14 @@ const MembershipConfirm = () => {
         ))}
       </div>
       <div className="bg-cc-black p-5 md:p-10 flex flex-col items-center justify-center">
-        <PrimaryButton
-          fontSize="100px"
-          font="dharma_gothic_cheavy_italic"
-          className="text-center w-full hidden md:block"
-          lineHeight="100px"
-          w="500px"
-          color="#1a1a1a"
-          onClick={() => history.push(ROUTES.LOCATIONS)}
-        >
-          SEE SCHEDULE
-        </PrimaryButton>
-        <PrimaryButton
-          className="text-center w-full block md:hidden"
-          onClick={() => history.push(ROUTES.LOCATIONS)}
-        >
-          SEE SCHEDULE
-        </PrimaryButton>
+        <div className="text-center mt-6 md:mt-3">
+          <Link
+            className="font-dharma_gothic_cheavy_italic text-7xl sm:text-8xl text-cc-black bg-cc-purple px-4 pt-1 uppercase"
+            to={ROUTES.LOCATIONS}
+          >
+            See Schedule
+          </Link>
+        </div>
         <div className="flex h-3/3 mt-10 container">
           <img
             className="w-1/4 h-3/3 mr-2 object-cover object-center"

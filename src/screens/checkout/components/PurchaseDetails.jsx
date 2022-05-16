@@ -113,15 +113,16 @@ const PurchaseDetails = ({
         )}
       </div>
 
-      <PrimaryButton
-        className="text-right w-full"
-        onClick={() => checkoutHandler({ useCcCash })}
-        loading={isLoading}
-        px="1rem"
-        py="1rem"
-      >
-        CHECKOUT
-      </PrimaryButton>
+      <div className="text-right">
+        <PrimaryButton
+          onClick={() => checkoutHandler({ useCcCash })}
+          loading={isLoading}
+          px="1rem"
+          py="1rem"
+        >
+          CHECKOUT
+        </PrimaryButton>
+      </div>
     </div>
   );
 };

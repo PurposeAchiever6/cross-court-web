@@ -19,13 +19,13 @@ const CheckboxInputContainer = styled.div`
       content: '';
       width: 0.65em;
       height: 0.65em;
-      transform: scale(0);
-      transition: 120ms transform ease-in-out;
-      box-shadow: inset 1em 1em currentColor;
+      background-color: black;
+      opacity: 0;
+      transition: 120ms opacity ease-in-out;
     }
 
     &:checked::before {
-      transform: scale(1);
+      opacity: 100;
     }
   }
 
