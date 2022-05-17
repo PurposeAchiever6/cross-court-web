@@ -17,6 +17,7 @@ import { initialLoadInit } from 'screens/payment-methods/actionCreators';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import CodeOfConductModal from 'screens/sessions/components/CodeOfConductModal';
+import FirstTimersInformationModal from 'screens/sessions/components/FirstTimersInformationModal';
 
 import { WOMEN_SESSION_TOOLTIP } from 'shared/constants/sessions';
 
@@ -40,6 +41,7 @@ const ReserveButton = ({
   const selectedCard = useSelector(getSelectedCard);
 
   const [showCodeOfConductModal, setShowCodeOfConductModal] = useState(false);
+  const [showFirstTimersInformationModal, setShowFirstTimersInformationModal] = useState(false);
 
   const isFSFFlow = isUserInFirstFreeSessionFlow(userProfile);
 
@@ -66,6 +68,19 @@ const ReserveButton = ({
           : setShowCodeOfConductModal(true);
       }
     }
+  };
+
+  const onConfirmCodeOfConduct = () => {
+    if (isFSFFlow) {
+      setShowCodeOfConductModal(false);
+      setShowFirstTimersInformationModal(true);
+    } else {
+      reserveSessionAction();
+    }
+  };
+
+  const onConfirmFirstTimersInformation = () => {
+    createAndReserveFreeSessionHandler();
   };
 
   if (isAuthenticated) {
@@ -104,8 +119,12 @@ const ReserveButton = ({
           <CodeOfConductModal
             isOpen={showCodeOfConductModal}
             closeHandler={() => setShowCodeOfConductModal(false)}
-            onConfirm={isFSFFlow ? createAndReserveFreeSessionHandler : reserveSessionAction}
+            onConfirm={onConfirmCodeOfConduct}
             userProfile={userProfile}
+          />
+          <FirstTimersInformationModal
+            isOpen={showFirstTimersInformationModal}
+            onConfirm={onConfirmFirstTimersInformation}
           />
         </>
       );

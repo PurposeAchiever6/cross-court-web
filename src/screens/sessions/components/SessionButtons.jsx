@@ -78,7 +78,7 @@ const SessionButtons = ({
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center">
       {(session?.past || (session?.full && !reservedOrConfirmed)) && (
         <PrimaryButton
           className="mb-4"
