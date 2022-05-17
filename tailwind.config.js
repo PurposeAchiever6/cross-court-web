@@ -44,7 +44,9 @@ module.exports = {
         1005: 1005,
       },
       boxShadow: {
-        navbar: '0px 4px 4px #9999FF',
+        'header-white': '0px 1px 6px #9999FF',
+        'header-dark': '0px -2px 7px #9999FF',
+        'all-around-purple': '0px 0px 15px rgba(153, 153, 255, 0.4)',
       },
       animation: {
         fade: 'fade 2500ms linear 800ms 1 backwards',

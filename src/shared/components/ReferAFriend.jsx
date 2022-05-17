@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
 import { referralText } from 'shared/constants/referrals';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -21,11 +22,11 @@ const STEPS = [
   },
 ];
 
-const ReferAFriend = ({ code, ...props }) => {
+const ReferAFriend = ({ code, className }) => {
   const [copied, setCopied] = useState(false);
 
   return (
-    <div className={`flex flex-col items-center ${props?.className ?? ''}`}>
+    <div className={className}>
       <p className="font-shapiro95_super_wide text-2xl">REFER A FRIEND</p>
       <p>Give 50% off, get CC CA$H</p>
       <div className="my-4 text-sm md:text-base">
@@ -53,8 +54,14 @@ const ReferAFriend = ({ code, ...props }) => {
   );
 };
 
-ReferAFriend.defaultProps = {};
+ReferAFriend.defaultProps = {
+  code: null,
+  className: 'flex flex-col items-center',
+};
 
-ReferAFriend.propTypes = {};
+ReferAFriend.propTypes = {
+  code: PropTypes.string,
+  className: PropTypes.string,
+};
 
 export default ReferAFriend;

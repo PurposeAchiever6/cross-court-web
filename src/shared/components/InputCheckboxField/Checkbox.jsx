@@ -19,13 +19,13 @@ const CheckboxInputContainer = styled.div`
       content: '';
       width: 0.65em;
       height: 0.65em;
-      transform: scale(0);
-      transition: 120ms transform ease-in-out;
-      box-shadow: inset 1em 1em currentColor;
+      background-color: black;
+      opacity: 0;
+      transition: 120ms opacity ease-in-out;
     }
 
     &:checked::before {
-      transform: scale(1);
+      opacity: 100;
     }
   }
 
@@ -34,9 +34,9 @@ const CheckboxInputContainer = styled.div`
   }
 `;
 
-const Checkbox = ({ name, value, children, error, className, ...props }) => (
+const Checkbox = ({ name, value, children, error, disabled, className, ...props }) => (
   <CheckboxInputContainer className={className}>
-    <div className="flex">
+    <div className={`flex ${disabled ? 'opacity-50 pointer-events-none' : ''}`}>
       <input id={name} type="checkbox" checked={value} {...props} />
       <label htmlFor={name} className="cursor-pointer ml-4 select-none">
         {children}
@@ -49,6 +49,7 @@ const Checkbox = ({ name, value, children, error, className, ...props }) => (
 Checkbox.defaultProps = {
   value: null,
   error: null,
+  disabled: false,
   className: '',
 };
 
@@ -57,6 +58,7 @@ Checkbox.propTypes = {
   children: PropTypes.node.isRequired,
   value: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  disabled: PropTypes.bool,
   className: PropTypes.string,
 };
 

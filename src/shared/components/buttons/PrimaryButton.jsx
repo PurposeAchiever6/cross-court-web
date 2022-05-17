@@ -64,6 +64,7 @@ const StyledButton = styled.button`
   font: inherit;
   cursor: pointer;
   outline: inherit;
+  text-align: left;
   width: ${(props) => (props.w ? props.w : '')};
 `;
 

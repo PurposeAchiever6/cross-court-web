@@ -1,31 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import colors from 'shared/styles/constants';
+
+import Label from 'shared/components/Label';
 import InputSelectField from 'shared/components/InputSelectField';
-
-const InputDateContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  label {
-    font-size: 1rem;
-    line-height: 1.5rem;
-    color: ${(props) => props.labelColor};
-    margin: 0 0 0.75rem;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-weight: 400;
-  }
-
-  small {
-    text-align: right;
-    margin-top: 1rem;
-    color: ${colors.errorRed};
-    text-transform: initial;
-    font-family: shapiro45_welter_extd;
-  }
-`;
 
 const generateArrayOfDays = () => {
   let days = [];
@@ -65,63 +42,66 @@ const YEAR_OPTS = generateArrayOfYears();
 
 const InputDateField = ({
   name,
-  error,
-  labelText,
-  disabled,
-  showLabel,
-  displayErrorMsg,
+  label,
   labelColor,
+  error,
+  hint,
+  disabled,
   dayOptions,
   monthOptions,
   yearOptions,
   className,
 }) => (
-  <InputDateContainer labelColor={labelColor} className={className}>
-    {showLabel && <label htmlFor={name}>{labelText}</label>}
-    <div className="flex justify-between text-sm">
+  <div className={className}>
+    {label && (
+      <Label className="mb-1 uppercase text-sm md:text-base" htmlFor={name} color={labelColor}>
+        {label}
+      </Label>
+    )}
+    <div className="flex justify-between">
       <InputSelectField
         name={`${name}Month`}
         disabled={disabled}
-        displayErrorMsg={true}
         options={monthOptions}
         placeholder="Month"
         className="mr-1 flex-grow"
-        formik
       />
       <InputSelectField
         name={`${name}Day`}
         disabled={disabled}
-        displayErrorMsg={true}
         options={dayOptions}
         placeholder="Day"
         className="mr-1 flex-grow"
-        formik
       />
       <InputSelectField
         name={`${name}Year`}
         disabled={disabled}
-        displayErrorMsg={true}
         options={yearOptions}
         placeholder="Year"
         className="flex-grow"
-        formik
       />
     </div>
-    {displayErrorMsg && error && (
-      <small id={`${name}-error`} className="form-text">
-        {error}
-      </small>
+    {hint && (
+      <div
+        className={`font-shapiro45_welter_extd text-xs text-right mt-2 ${
+          error ? 'text-red-500' : 'text-current opacity-70'
+        }`}
+      >
+        {hint}
+      </div>
     )}
-  </InputDateContainer>
+    {error && !hint && (
+      <div className="font-shapiro45_welter_extd text-xs text-right text-red-500 mt-2">{error}</div>
+    )}
+  </div>
 );
 
 InputDateField.defaultProps = {
+  label: null,
+  labelColor: null,
   error: null,
-  labelText: null,
+  hint: null,
   disabled: false,
-  showLabel: true,
-  displayErrorMsg: true,
-  labelColor: '#9999FF',
   dayOptions: DAY_OPTS,
   monthOptions: MONTH_OPTS,
   yearOptions: YEAR_OPTS,
@@ -130,12 +110,11 @@ InputDateField.defaultProps = {
 
 InputDateField.propTypes = {
   name: PropTypes.string.isRequired,
-  error: PropTypes.string,
-  labelText: PropTypes.string,
-  disabled: PropTypes.bool,
-  showLabel: PropTypes.bool,
-  displayErrorMsg: PropTypes.bool,
+  label: PropTypes.string,
   labelColor: PropTypes.string,
+  error: PropTypes.string,
+  hint: PropTypes.string,
+  disabled: PropTypes.bool,
   dayOptions: PropTypes.arrayOf(PropTypes.shape()),
   monthOptions: PropTypes.arrayOf(PropTypes.shape()),
   yearOptions: PropTypes.arrayOf(PropTypes.shape()),

@@ -6,16 +6,15 @@ const Label = ({ color, children, className, ...props }) => {
     switch (color) {
       case 'purple':
         return 'text-cc-purple';
+      case 'white':
+        return 'text-white';
       default:
         return 'text-cc-black';
     }
   })();
 
   return (
-    <label
-      className={`block font-shapiro95_super_wide text-sm md:text-base ${labelColorClass} ${className}`}
-      {...props}
-    >
+    <label className={`block font-shapiro95_super_wide ${labelColorClass} ${className}`} {...props}>
       {children}
     </label>
   );

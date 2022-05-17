@@ -50,7 +50,7 @@ const CheckoutPage = () => {
   return (
     <>
       <BackButton className="mt-10 w-max" />
-      <div className="min-h-screen flex flex-col items-center justify-center py-20 px-4">
+      <div className="flex flex-col items-center justify-center py-20 px-4">
         <h1 className="font-shapiro95_super_wide text-2xl mb-8">PURCHASE DETAILS</h1>
         <PurchaseDetails
           prorate={prorate}

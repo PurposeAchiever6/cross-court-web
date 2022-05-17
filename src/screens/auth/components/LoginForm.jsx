@@ -39,17 +39,19 @@ const LoginForm = ({ error, loginHandler, isLoading }) => (
             </h1>
             <div className="mb-10">
               <InputTextField
-                labelText="Email"
+                label="Email"
                 error={errors.username}
                 name="email"
                 placeholder="example@crosscourt.com"
+                className="text-lg mb-5"
               />
               <InputTextField
                 type="password"
-                labelText="Password"
+                label="Password"
                 error={errors.password}
                 name="password"
                 placeholder="Type password"
+                className="text-lg"
               />
             </div>
             {isEmpty(error) ? null : <div className="alert-error mb-2">{error}</div>}

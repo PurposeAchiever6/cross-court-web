@@ -117,14 +117,16 @@ const Rating = () => {
             </div>
           ))}
         </div>
-        <PrimaryButton
-          id="rating-btn"
-          disabled={!skillRating}
-          className="my-6"
-          onClick={handleClick}
-        >
-          {isEdit ? 'SAVE' : 'SIGN UP'}
-        </PrimaryButton>
+        <div className="text-center">
+          <PrimaryButton
+            id="rating-btn"
+            disabled={!skillRating}
+            className="my-6"
+            onClick={handleClick}
+          >
+            {isEdit ? 'SAVE' : 'SIGN UP'}
+          </PrimaryButton>
+        </div>
         {!isEdit && (
           <OnboardingTour
             id="onboarding-tour-rating"

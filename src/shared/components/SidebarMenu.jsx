@@ -38,6 +38,12 @@ const SidebarMenu = ({ menuToggler }) => {
         <NavLink className="list-item" exact to={ROUTES.MEMBERSHIPS} onClick={menuToggler}>
           MEMBERSHIPS
         </NavLink>
+        <NavLink className="list-item" exact to={ROUTES.GALLERY} onClick={menuToggler}>
+          GALLERY
+        </NavLink>
+        <NavLink className="list-item" exact to={ROUTES.CONTENT} onClick={menuToggler}>
+          CONTENT
+        </NavLink>
 
         {isAuthenticated && (
           <>

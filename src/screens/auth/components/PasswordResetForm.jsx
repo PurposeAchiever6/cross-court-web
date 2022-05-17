@@ -38,16 +38,18 @@ const PasswordResetForm = ({ error, passResetHandler, isLoading }) => {
             </h1>
             <Form>
               <InputTextField
-                type="password"
-                labelText="Password"
                 name="password"
+                label="Password"
+                type="password"
                 placeholder="Min. 8 characters long"
+                className="mb-4"
               />
               <InputTextField
-                type="password"
-                labelText="Confirm Password"
                 name="passwordConfirmation"
+                label="Confirm Password"
+                type="password"
                 placeholder="Confirm password"
+                className="mb-6"
               />
               {!isEmpty(error) && <div className="alert-error mb-2">{error}</div>}
               <PrimaryButton type="submit" loading={isLoading} w="100%" className="mb-10">

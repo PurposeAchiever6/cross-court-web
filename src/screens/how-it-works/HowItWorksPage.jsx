@@ -32,7 +32,7 @@ const HowItWorksPage = () => {
       <Signup />
       <Showup />
       <Sweat />
-      <CrosscourtKeys showBtn />
+      <CrosscourtKeys />
     </>
   );
 };

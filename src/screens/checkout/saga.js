@@ -48,7 +48,7 @@ export function* createPurchaseFlow({ payload }) {
     );
     yield put({ type: CREATE_PURCHASE_SUCCESS });
     yield put({ type: GET_PROFILE_INIT });
-    yield put(push(ROUTES.CHECKOUTCONFIRMED));
+    yield put(push(ROUTES.CHECKOUT_CONFIRMED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
 
@@ -122,7 +122,7 @@ export function* createSubscriptionFlow() {
       },
     });
     yield put({ type: GET_PROFILE_INIT });
-    yield put(push(ROUTES.CHECKOUTCONFIRMED));
+    yield put(push(ROUTES.CHECKOUT_MEMBERSHIP_CONFIRMED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
 
@@ -153,7 +153,7 @@ export function* updateSubscriptionFlow() {
       },
     });
     yield put({ type: GET_PROFILE_INIT });
-    yield put(push(ROUTES.CHECKOUTCONFIRMED));
+    yield put(push(ROUTES.CHECKOUT_CONFIRMED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
 

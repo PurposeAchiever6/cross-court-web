@@ -99,15 +99,18 @@ const StepFeedbackContent = ({ subscriptionFeedback }) => {
           )}
         </div>
       </div>
-      <InputTextareaField
-        label="What is the primary reason(s) for cancelling?"
-        placeholder="Share as many details as you can to help us improve Crosscourt"
-        value={feedback}
-        onChange={(e) => setFeedback(e.target.value)}
-        hint="Please include at least 20 characters"
-        error={errors.feedback}
-        className="mb-6"
-      />
+      <div>
+        <Label className="mb-1">What is the primary reason(s) for cancelling?</Label>
+        <InputTextareaField
+          placeholder="Share as many details as you can to help us improve Crosscourt"
+          value={feedback}
+          onChange={(e) => setFeedback(e.target.value)}
+          hint="Please include at least 20 characters"
+          error={errors.feedback}
+          className="mb-6"
+          formik={false}
+        />
+      </div>
       <div className="text-center">
         <PrimaryButton onClick={onSubmit}>Submit Request</PrimaryButton>
       </div>

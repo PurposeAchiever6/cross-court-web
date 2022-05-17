@@ -8,7 +8,7 @@ const InputTextareaField = ({ formik, ...props }) =>
   formik ? <FormikTextarea {...props} /> : <Textarea {...props} />;
 
 InputTextareaField.defaultProps = {
-  formik: false,
+  formik: true,
 };
 
 InputTextareaField.propTypes = {

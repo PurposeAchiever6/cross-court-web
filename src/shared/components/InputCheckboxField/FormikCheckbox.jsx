@@ -1,7 +1,7 @@
 import React from 'react';
+import { Field } from 'formik';
 import PropTypes from 'prop-types';
 
-import { Field } from 'formik';
 import Checkbox from './Checkbox';
 
 const FormikCheckbox = ({ name, error, ...props }) => (

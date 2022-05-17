@@ -26,7 +26,7 @@ const GalleryPage = () => {
   }
 
   return (
-    <div className="w-full overflow-auto bg-cc-black p-2">
+    <div className="w-full overflow-auto bg-cc-black pt-16 p-2">
       <Gallery images={images} />
     </div>
   );

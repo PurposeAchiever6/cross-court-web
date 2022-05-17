@@ -59,22 +59,25 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
                 accept="image/*"
               />
               <InputTextField
-                labelText="First Name"
-                error={errors.firstName}
                 name="firstName"
+                label="First Name"
                 placeholder="John"
+                error={errors.firstName}
+                className="mb-6"
               />
               <InputTextField
-                labelText="Last Name"
-                error={errors.lastName}
                 name="lastName"
+                label="Last Name"
                 placeholder="Doe"
+                error={errors.lastName}
+                className="mb-6"
               />
               <InputPhoneField
-                labelText="Phone"
-                error={errors.phoneNumber}
                 name="phoneNumber"
+                label="Phone"
                 placeholder="(123) 123-4567"
+                error={errors.phoneNumber}
+                className="mb-8"
               />
               <div className="flex justify-end">
                 <PrimaryButton type="submit" loading={editProfileLoading}>

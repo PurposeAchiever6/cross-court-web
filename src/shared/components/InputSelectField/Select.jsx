@@ -9,17 +9,34 @@ const SelectContainer = styled.div`
     border: 1px solid rgba(0, 0, 0, 0.5);
     color: rgba(0, 0, 0, 0.5);
     border-radius: 0;
-    background-color: #fbf7f3;
     font-family: shapiro45_welter_extd;
-    &:focus {
-      border: 1px solid rgba(0, 0, 0, 1);
-      color: rgba(0, 0, 0, 1);
-      box-shadow: none;
-    }
+    background-color: #fbf7f3;
     padding: 0.5rem 0.5rem;
-    @media (max-width: 768px) {
-      padding: 0;
+
+    &--is-focused {
+      box-shadow: none;
+      border-color: rgba(0, 0, 0, 1) !important;
+
+      .select-field__single-value {
+        color: rgba(0, 0, 0, 1);
+      }
     }
+
+    &:hover {
+      border-color: unset;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 0.5rem;
+    }
+  }
+
+  .select-field__value-container {
+    padding-left: 0;
+  }
+
+  .select-field__single-value {
+    color: rgba(0, 0, 0, 0.5);
   }
 
   .select-field__indicator {
@@ -29,64 +46,54 @@ const SelectContainer = styled.div`
   .select-field__menu {
     z-index: 1000;
     display: block;
+    font-family: shapiro45_welter_extd;
   }
 `;
 
-const Select = ({
-  label,
-  labelColor,
-  name,
-  placeholder,
-  className,
-  disabled,
-  options,
-  onChange,
-  error,
-}) => (
+const Select = ({ name, label, labelColor, error, hint, disabled, className, ...props }) => (
   <SelectContainer className={className}>
-    {label && (
-      <Label className="mb-1" color={labelColor} htmlFor={name}>
-        {label}
-      </Label>
-    )}
-    <ReactSelect
-      name={name}
-      classNamePrefix="select-field"
-      options={options}
-      isDisabled={disabled}
-      placeholder={placeholder}
-      onChange={onChange}
-    />
-    {error && (
-      <div className="block text-xs text-right text-red-500 font-shapiro45_welter_extd mt-2">
-        {error}
-      </div>
-    )}
+    <div className={disabled ? 'opacity-50 pointer-events-none' : ''}>
+      {label && (
+        <Label className="mb-1 uppercase text-sm md:text-base" color={labelColor} htmlFor={name}>
+          {label}
+        </Label>
+      )}
+      <ReactSelect name={name} classNamePrefix="select-field" isDisabled={disabled} {...props} />
+      {hint && (
+        <div
+          className={`font-shapiro45_welter_extd text-xs text-right mt-2 ${
+            error ? 'text-red-500' : 'text-current opacity-70'
+          }`}
+        >
+          {hint}
+        </div>
+      )}
+      {error && !hint && (
+        <div className="font-shapiro45_welter_extd text-xs text-right text-red-500 mt-2">
+          {error}
+        </div>
+      )}
+    </div>
   </SelectContainer>
 );
 
 Select.defaultProps = {
   label: null,
-  labelColor: 'black',
-  name: null,
-  placeholder: null,
-  className: '',
-  disabled: false,
-  options: [],
-  onChange: null,
+  labelColor: null,
   error: null,
+  hint: null,
+  disabled: false,
+  className: '',
 };
 
 Select.propTypes = {
+  name: PropTypes.string.isRequired,
   label: PropTypes.string,
   labelColor: PropTypes.string,
-  name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  options: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  onChange: PropTypes.func.isRequired,
   error: PropTypes.string,
+  hint: PropTypes.string,
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default Select;

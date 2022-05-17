@@ -76,10 +76,12 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
               {isEnabled && type === 'open' && (
                 <>
                   <InputTextareaField
-                    className="my-5"
                     placeholder={question.question}
                     value={feedbackValue}
                     onChange={(e) => openQuestionHandler(question.id, e.target.value)}
+                    rows={6}
+                    className="my-5"
+                    formik={false}
                   />
                   <PrimaryButton
                     disabled={!allMandatoryAnswered}
