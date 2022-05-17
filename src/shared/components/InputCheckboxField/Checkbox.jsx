@@ -19,7 +19,7 @@ const CheckboxInputContainer = styled.div`
       content: '';
       width: 0.65em;
       height: 0.65em;
-      background-color: black;
+      background-color: currentColor;
       opacity: 0;
       transition: 120ms opacity ease-in-out;
     }
