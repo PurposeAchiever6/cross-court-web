@@ -182,34 +182,34 @@ const Header = () => {
               <LogoSvg className="w-32 md:w-52 h-6" color={logoColor} />
             </Link>
           </div>
-          <div className="flex items-center z-10">
-            {showNavItems && (
+          {showNavItems && (
+            <div className="hidden lg:flex lg:justify-end w-full z-10 mr-5 xl:mr-12">
               <Navbar scrolled={scrolled} dark={isBlackBg} isAuthenticated={isAuthenticated} />
-            )}
-            <PrimaryButton
-              id="header-btn"
-              className="italic"
-              px="4px"
-              py="6px"
-              fontSize="12px"
-              to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP}
-              onClick={exitHeaderOnboardingTour}
-            >
-              {buttonText}
-            </PrimaryButton>
-            <OnboardingTour
-              id={onboardingTourId}
-              enabled={isHeaderOnboardingTourEnable}
-              steps={[
-                {
-                  element: '#header-btn',
-                  intro:
-                    'Your first Crosscourt session is on us. Tap <strong>FIRST FREE</strong> to receive your session credit.',
-                },
-              ]}
-              onExit={exitHeaderOnboardingTour}
-            />
-          </div>
+            </div>
+          )}
+          <PrimaryButton
+            id="header-btn"
+            className="italic"
+            px="4px"
+            py="6px"
+            fontSize="12px"
+            to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP}
+            onClick={exitHeaderOnboardingTour}
+          >
+            {buttonText}
+          </PrimaryButton>
+          <OnboardingTour
+            id={onboardingTourId}
+            enabled={isHeaderOnboardingTourEnable}
+            steps={[
+              {
+                element: '#header-btn',
+                intro:
+                  'Your first Crosscourt session is on us. Tap <strong>FIRST FREE</strong> to receive your session credit.',
+              },
+            ]}
+            onExit={exitHeaderOnboardingTour}
+          />
         </div>
       </header>
     </>
