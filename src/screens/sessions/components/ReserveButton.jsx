@@ -108,13 +108,21 @@ const ReserveButton = ({
           <OnboardingTour
             id="onboarding-tour-session-confirm-reservation"
             enabled={
-              isFirstFreeSessionFlow &&
+              isFirstSessionFlow &&
               isOnboardingTourEnable('onboarding-tour-session-confirm-reservation')
             }
             steps={[
               {
                 element: '#session-confirm-reservation',
-                intro: `You’re s’close. Press <strong>CONFIRM RESERVATION</strong> to hold your spot. First you'll need to enter your payment info and then you'll be ready to book your first session! Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`,
+                intro: `You’re s’close. Press <strong>CONFIRM RESERVATION</strong> to hold your spot. ${
+                  isFirstFreeSessionFlow
+                    ? `First you'll need to enter your payment info and then you'll be ready to book your first session! Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`
+                    : `${
+                        userProfile.totalCredits === 0
+                          ? 'Due to your location, you are not eligible for a free trial session, but because is your first time, you can buy a session at a discounted price.'
+                          : ''
+                      } `
+                }`,
               },
             ]}
           />
@@ -147,7 +155,7 @@ const ReserveButton = ({
             {
               element: '#session-create-profile',
               intro:
-                'Your free session credit awaits. Tap <strong>CREATE PROFILE</strong> to enter your information. Then hit <strong>NEXT</strong> to fill out a brief skill assessment survey and finish setting up your profile.',
+                'Your free session credit awaits. Tap <strong>CREATE PROFILE</strong> to enter your information and set up your profile.',
             },
           ]}
         />
