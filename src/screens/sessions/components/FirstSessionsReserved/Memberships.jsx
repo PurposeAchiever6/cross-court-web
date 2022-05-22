@@ -34,7 +34,7 @@ const Memberships = ({ className }) => {
     .filter((product) => product.productType === RECURRING)
     .map((product) =>
       applyDiscount
-        ? { ...product, price: product.price * ((100 - percentageDiscount) / 100) }
+        ? { ...product, priceForUser: product.price * ((100 - percentageDiscount) / 100) }
         : product
     );
 

@@ -6,7 +6,7 @@ import { isNil } from 'ramda';
 import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 
-import { isUserInLegalAge } from 'shared/utils/user';
+import { isUserInFirstSessionFlow, isUserInLegalAge } from 'shared/utils/user';
 import WarningTriangle from 'shared/images/warning-triangle.png';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
@@ -46,18 +46,21 @@ const Session = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const userProfile = useSelector(getUserProfile);
   const shouldShowCancelModal = useSelector(getShowCancelModal);
+  const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
   const { skillLevel } = sessionInfo;
 
-  const reserveSessionAction = () =>
-    dispatch(reserveSessionInit(sessionInfo.id, date, referralCode));
   const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
   const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
   const showCancelModalAction = () => dispatch(showCancelModal());
   const signupBookSessionAction = () => dispatch(signupBookSession(id, date));
+  const reserveSessionAction = () => {
+    const sessionId = sessionInfo.id;
+    const redirectTo = isFirstSessionFlow ? ROUTES.FIRSTSESSIONRESERVED : ROUTES.SESSIONRESERVED;
+    dispatch(reserveSessionInit({ sessionId, date, referralCode, redirectTo }));
+  };
   const createAndReserveFreeSessionHandler = () => {
     const sessionId = sessionInfo.id;
     const redirectTo = ROUTES.FIRSTSESSIONRESERVED;
-
     dispatch(createAndReserveFreeSessionInit({ sessionId, date, referralCode, redirectTo }));
   };
 

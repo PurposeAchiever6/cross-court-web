@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import { hasConfirmCodeOfConduct } from 'shared/utils/codeOfConduct';
 import { isPast } from 'shared/utils/date';
-import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import { isUserInFirstSessionFlow, isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -43,14 +43,15 @@ const ReserveButton = ({
   const [showCodeOfConductModal, setShowCodeOfConductModal] = useState(false);
   const [showFirstTimersInformationModal, setShowFirstTimersInformationModal] = useState(false);
 
-  const isFSFFlow = isUserInFirstFreeSessionFlow(userProfile);
+  const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
+  const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(userProfile);
 
   useEffect(() => {
     dispatch(initialLoadInit());
   }, [dispatch]);
 
   const reservationHandler = () => {
-    if (!selectedCard && isFSFFlow) {
+    if (!selectedCard && isFirstFreeSessionFlow) {
       window.localStorage.setItem('redirect', window.location.pathname);
       history.push(ROUTES.PAYMENT_METHODS_SELECT);
     } else {
@@ -60,7 +61,7 @@ const ReserveButton = ({
           pathname: ROUTES.MEMBERSHIPS,
           state: { showNoCreditsAnimation: true },
         });
-      } else if (isFSFFlow) {
+      } else if (isFirstSessionFlow) {
         setShowCodeOfConductModal(true);
       } else {
         hasConfirmCodeOfConduct(userProfile)
@@ -71,7 +72,7 @@ const ReserveButton = ({
   };
 
   const onConfirmCodeOfConduct = () => {
-    if (isFSFFlow) {
+    if (isFirstSessionFlow) {
       setShowCodeOfConductModal(false);
       setShowFirstTimersInformationModal(true);
     } else {
@@ -80,7 +81,7 @@ const ReserveButton = ({
   };
 
   const onConfirmFirstTimersInformation = () => {
-    createAndReserveFreeSessionHandler();
+    isFirstFreeSessionFlow ? createAndReserveFreeSessionHandler() : reserveSessionAction();
   };
 
   if (isAuthenticated) {
@@ -107,7 +108,8 @@ const ReserveButton = ({
           <OnboardingTour
             id="onboarding-tour-session-confirm-reservation"
             enabled={
-              isFSFFlow && isOnboardingTourEnable('onboarding-tour-session-confirm-reservation')
+              isFirstFreeSessionFlow &&
+              isOnboardingTourEnable('onboarding-tour-session-confirm-reservation')
             }
             steps={[
               {

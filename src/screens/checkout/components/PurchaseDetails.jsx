@@ -8,7 +8,6 @@ import CCIcon from 'shared/components/CCIcon';
 import Label from 'shared/components/Label';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Spinner from 'shared/components/Spinner';
-import { productPrice } from 'screens/products/utils';
 import { RECURRING } from 'screens/products/constants';
 
 import Prorate from './Prorate';
@@ -30,13 +29,11 @@ const PurchaseDetails = ({
   const [useCcCash, setUseCcCash] = useState(false);
 
   const purchaseDate = purchaseFormattedDate();
-  const userHasActiveSubscription = !!userProfile.activeSubscription;
   const isDropIn = productDetails.productType !== RECURRING;
   const isSubscription = !isDropIn;
   const ccCash = Number(userProfile.ccCash);
-  const productPriceAmount = productPrice(productDetails, userHasActiveSubscription);
 
-  const price = currency(productPriceAmount, {
+  const price = currency(productDetails.priceForUser, {
     formatWithSymbol: true,
     precision: 2,
   }).format();

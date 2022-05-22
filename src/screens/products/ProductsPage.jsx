@@ -2,21 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import ROUTES from 'shared/constants/routes';
+import { startedCheckout } from 'shared/utils/activeCampaign';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getAvailableProducts, getPageLoading } from 'screens/products/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
+import {
+  initialLoad,
+  setSelectedProduct,
+  reactivateSubscription,
+} from 'screens/products/actionCreators';
+import ToggleButton from 'shared/components/ToggleButton';
+import Loading from 'shared/components/Loading';
+import CancelMembershipModal from 'shared/components/CancelMembershipModal';
+
 import Memberships from './components/Memberships';
 import DropIns from './components/DropIns';
-
-import Loading from 'shared/components/Loading';
-import ROUTES from 'shared/constants/routes';
-import ToggleButton from 'shared/components/ToggleButton';
-import { getIsAuthenticated } from 'screens/auth/reducer';
-import { getUserProfile } from 'screens/my-account/reducer';
-import { startedCheckout } from 'shared/utils/activeCampaign';
-import { initialLoad, setSelectedProduct, reactivateSubscription } from './actionCreators';
-import { getAvailableProducts, getPageLoading } from './reducer';
 import Perks from './components/Perks';
 import FAQ from './components/FAQ';
 import NoSessionCredits from './components/NoSessionCredits';
-import CancelMembershipModal from 'shared/components/CancelMembershipModal';
+import NoFreeSessionInformationModal from './components/NoFreeSessionInformationModal';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
@@ -28,8 +33,15 @@ const ProductsPage = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const userProfile = useSelector(getUserProfile);
 
+  const showDropInsProducts = state?.showDropInsProducts;
+  const showNoFreeSessionInformation = state?.showNoFreeSessionInformation;
+  const showAnimation = state?.showNoCreditsAnimation;
+
+  const [showDropIns, setDropIns] = useState(showDropInsProducts ? true : false);
   const [showCancelModal, setShowCancelModal] = useState(false);
-  const [showDropIns, setDropIns] = useState(false);
+  const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
+    showNoFreeSessionInformation ? true : false
+  );
 
   const selectProductHandler = (product) => {
     dispatch(setSelectedProduct(product));
@@ -48,8 +60,6 @@ const ProductsPage = () => {
   const reactivateMembership = () => {
     dispatch(reactivateSubscription(userProfile.activeSubscription));
   };
-
-  const showAnimation = state?.showNoCreditsAnimation;
 
   useEffect(() => {
     dispatch(initialLoad());
@@ -90,7 +100,6 @@ const ProductsPage = () => {
             selectProductHandler={selectProductHandler}
             cancelMembership={cancelMembership}
             availableProducts={availableProducts}
-            activeSubscription={userProfile.activeSubscription}
             reactivateMembership={reactivateMembership}
           />
         )}
@@ -105,6 +114,10 @@ const ProductsPage = () => {
       <CancelMembershipModal
         isOpen={showCancelModal}
         closeHandler={() => setShowCancelModal(false)}
+      />
+      <NoFreeSessionInformationModal
+        isOpen={showNoFreeSessionInformationModal}
+        closeHandler={() => setShowNoFreeSessionInformationModal(false)}
       />
     </>
   );

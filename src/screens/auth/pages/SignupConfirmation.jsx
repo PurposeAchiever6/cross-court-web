@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import useQuery from 'shared/hooks/useQuery';
 
 import ROUTES from 'shared/constants/routes';
@@ -9,11 +9,14 @@ import CheckIcon from 'shared/images/check-icon.png';
 import WarningIcon from 'shared/images/warning-triangle.png';
 import StorageUtils from 'shared/utils/storage';
 import { autoLogin, logoutInit } from 'screens/auth/actionCreators';
+import { getUserProfile } from 'screens/my-account/reducer';
 
 const SignupConfirmationPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const query = useQuery();
+
+  const currentUser = useSelector(getUserProfile);
 
   const success = query.get('success') === 'true';
   const error = query.get('error');
@@ -29,7 +32,12 @@ const SignupConfirmationPage = () => {
 
   const onClickAction = () => {
     if (success) {
-      history.push(ROUTES.LOCATIONS);
+      currentUser.hasReceivedFreeSession
+        ? history.push(ROUTES.LOCATIONS)
+        : history.push({
+            pathname: ROUTES.MEMBERSHIPS,
+            state: { showDropInsProducts: true, showNoFreeSessionInformation: true },
+          });
     } else {
       dispatch(logoutInit({ redirectTo: ROUTES.LOGIN }));
     }
