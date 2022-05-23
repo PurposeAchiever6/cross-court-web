@@ -24,6 +24,8 @@ const SignupConfirmationPage = () => {
   const accessToken = query.get('access-token');
   const uid = query.get('uid');
 
+  const userHasReceivedFreeSession = currentUser.hasReceivedFreeSession;
+
   useEffect(() => {
     if (success) {
       dispatch(autoLogin({ client, accessToken, uid }));
@@ -32,7 +34,7 @@ const SignupConfirmationPage = () => {
 
   const onClickAction = () => {
     if (success) {
-      currentUser.hasReceivedFreeSession
+      userHasReceivedFreeSession
         ? history.push(ROUTES.LOCATIONS)
         : history.push({
             pathname: ROUTES.MEMBERSHIPS,
@@ -45,7 +47,7 @@ const SignupConfirmationPage = () => {
 
   const { id: savedSessionId, date: savedSessionDate } = StorageUtils.getSavedSession();
 
-  if (success && savedSessionId && savedSessionDate) {
+  if (success && savedSessionId && savedSessionDate && userHasReceivedFreeSession) {
     return <Redirect to={`/session/${savedSessionId}/${savedSessionDate}`} />;
   }
 
