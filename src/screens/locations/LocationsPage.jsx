@@ -6,7 +6,7 @@ import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 import Map from 'shared/components/Map/Map';
 import { add, isPast, startOfWeek, getUTCDate } from 'shared/utils/date';
-import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import { isUserInFirstSessionFlow, isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 
 import { getUserProfile } from 'screens/my-account/reducer';
 import LocationPicker from './components/LocationPicker';
@@ -39,7 +39,8 @@ const LocationsPage = () => {
   const selectedLocation = useSelector(getSelectedLocation);
   const selectedDate = useSelector(getSelectedDate);
   const userInfo = useSelector(getUserProfile);
-  const isFSFFlow = isUserInFirstFreeSessionFlow(userInfo);
+  const isFirstSessionFlow = isUserInFirstSessionFlow(userInfo);
+  const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(userInfo);
 
   const [showingFreeSessionCreditAdded, setShowingFreeSessionCreditAdded] = useState(true);
 
@@ -66,22 +67,22 @@ const LocationsPage = () => {
   };
 
   useEffect(() => {
-    setShowingFreeSessionCreditAdded(isFSFFlow);
-  }, [isFSFFlow]);
+    setShowingFreeSessionCreditAdded(isFirstFreeSessionFlow);
+  }, [isFirstFreeSessionFlow]);
 
   useEffect(() => {
-    if (isFSFFlow) {
+    if (isFirstSessionFlow) {
       history.push(ROUTES.LOCATIONSFIRST);
     }
 
     dispatch(initialLoadInit());
-  }, [dispatch, history, isFSFFlow, userInfo]);
+  }, [dispatch, history, isFirstSessionFlow, userInfo]);
 
   return isPageLoading ? (
     <Loading />
   ) : (
     <>
-      {isFSFFlow && (
+      {isFirstFreeSessionFlow && (
         <FreeSessionCreditAdded onFinishAnimation={() => setShowingFreeSessionCreditAdded(false)} />
       )}
       <div className="locations flex flex-col md:flex-row-reverse justify-center">

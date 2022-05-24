@@ -59,17 +59,20 @@ const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
         )}
         {activeSubscription && (
           <div className="text-sm mt-10">
-            <div>
-              <span className="font-shapiro95_super_wide uppercase mr-2">Current Membership:</span>
-              <span>{activeSubscription.product.name}</span>
+            <div className="mb-4">
+              <div className="font-shapiro95_super_wide uppercase mr-2">Current Membership</div>
+              <div>
+                {activeSubscription.product.name}
+                {activeSubscription.paused && <span className="ml-1 text-xs">(paused)</span>}
+              </div>
             </div>
             <div>
-              <span className="font-shapiro95_super_wide uppercase mr-2">Billing Period:</span>
-              <span>
+              <div className="font-shapiro95_super_wide uppercase mr-2">Billing Period</div>
+              <div>
                 {`${subscriptionPeriodFormattedDate(
                   activeSubscription.currentPeriodStart
                 )} - ${subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}`}
-              </span>
+              </div>
             </div>
           </div>
         )}

@@ -1,9 +1,10 @@
 import React from 'react';
 import { number, bool, object } from 'prop-types';
 import styled from 'styled-components';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+
 import ROUTES from 'shared/constants/routes';
 import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const MyCreditsContainer = styled.div`
   padding: 2.5rem;
@@ -101,11 +102,16 @@ const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
         {activeSubscription && (
           <div className="text-sm mt-4">
             <div>
-              <span className="font-shapiro95_super_wide uppercase mr-2">Current Membership:</span>
+              <span className="font-shapiro95_super_wide uppercase whitespace-nowrap mr-2">
+                Current Membership:
+              </span>
               <span>{activeSubscription.product.name}</span>
+              {activeSubscription.paused && <span className="ml-1 text-xs">(paused)</span>}
             </div>
             <div>
-              <span className="font-shapiro95_super_wide uppercase mr-2">Billing Period:</span>
+              <span className="font-shapiro95_super_wide uppercase whitespace-nowrap mr-2">
+                Billing Period:
+              </span>
               <span>
                 {`${subscriptionPeriodFormattedDate(
                   activeSubscription.currentPeriodStart

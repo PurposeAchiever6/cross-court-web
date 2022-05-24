@@ -1,10 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import currency from 'currency.js';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
+import { getUserProfile } from 'screens/my-account/reducer';
 import { RECURRING } from 'screens/products/constants';
-import { productPrice } from 'screens/products/utils';
+import { productDiscount } from 'screens/products/utils';
 import Ball from 'shared/images/white-circular-logo.png';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
@@ -13,12 +15,13 @@ const ProductPlan = ({
   submitText,
   submitBtnSecondary,
   handleSubmit,
-  userHasActiveSubscription,
   showFeatures,
   className,
 }) => {
   const env = runtimeEnv();
   const SAMPLE_UNLIMITED_SESSIONS_PER_MONTH = env.REACT_APP_SAMPLE_UNLIMITED_SESSIONS_PER_MONTH;
+
+  const currentUser = useSelector(getUserProfile);
 
   const formatPrice = (price) =>
     currency(price, {
@@ -26,13 +29,16 @@ const ProductPlan = ({
       precision: 0,
     }).format();
 
-  const price = formatPrice(productPrice(product, userHasActiveSubscription));
   const isUnlimited = product.credits < 0;
-  const sessionPricePerMonth = formatPrice(product.price / product.credits);
-  const unlimitedPricePerSession = formatPrice(product.price / SAMPLE_UNLIMITED_SESSIONS_PER_MONTH);
+  const price = formatPrice(product.priceForUser);
+  const sessionPricePerMonth = formatPrice(product.priceForUser / product.credits);
+  const unlimitedPricePerSession = formatPrice(
+    product.priceForUser / SAMPLE_UNLIMITED_SESSIONS_PER_MONTH
+  );
 
   const isRecurring = product.productType === RECURRING;
   const label = product.label;
+  const { discountPercentage, discountReason } = productDiscount(product, currentUser);
 
   return (
     <div
@@ -57,11 +63,16 @@ const ProductPlan = ({
           {isRecurring && <span className="text-3xl lg:text-6xl">/month</span>}
         </div>
         {isRecurring && !isUnlimited && (
-          <div className="shapiro95_super_wide text-xs -mt-2 lg:-mt-2 2xl:text-sm">{`${sessionPricePerMonth}/session`}</div>
+          <div className="shapiro95_super_wide text-xs -mt-2 2xl:text-sm">{`${sessionPricePerMonth}/session`}</div>
         )}
         {isUnlimited && (
           <div className="shapiro95_super_wide text-xs -mt-2 2xl:text-sm">
             {`${unlimitedPricePerSession}/session @ ${SAMPLE_UNLIMITED_SESSIONS_PER_MONTH}/month`}
+          </div>
+        )}
+        {discountPercentage > 0 && (
+          <div className="shapiro95_super_wide bg-cc-purple text-cc-black text-xs -mt-2 md:mt-0 2xl:text-sm lg:-mx-2 p-2 rounded-sm">
+            {`${discountPercentage}% discount for ${discountReason}`}
           </div>
         )}
         {isRecurring && showFeatures && (
@@ -137,7 +148,6 @@ ProductPlan.defaultProps = {
   className: '',
   submitText: 'Buy',
   submitBtnSecondary: false,
-  userHasActiveSubscription: false,
   showFeatures: true,
 };
 
@@ -147,7 +157,6 @@ ProductPlan.propTypes = {
   submitBtnSecondary: PropTypes.bool,
   product: PropTypes.object.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  userHasActiveSubscription: PropTypes.bool,
   showFeatures: PropTypes.bool,
 };
 

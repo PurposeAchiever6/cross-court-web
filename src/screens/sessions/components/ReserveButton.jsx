@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import { hasConfirmCodeOfConduct } from 'shared/utils/codeOfConduct';
 import { isPast } from 'shared/utils/date';
-import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import { isUserInFirstSessionFlow, isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -17,6 +17,7 @@ import { initialLoadInit } from 'screens/payment-methods/actionCreators';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import CodeOfConductModal from 'screens/sessions/components/CodeOfConductModal';
+import FirstTimersInformationModal from 'screens/sessions/components/FirstTimersInformationModal';
 
 import { WOMEN_SESSION_TOOLTIP } from 'shared/constants/sessions';
 
@@ -40,15 +41,17 @@ const ReserveButton = ({
   const selectedCard = useSelector(getSelectedCard);
 
   const [showCodeOfConductModal, setShowCodeOfConductModal] = useState(false);
+  const [showFirstTimersInformationModal, setShowFirstTimersInformationModal] = useState(false);
 
-  const isFSFFlow = isUserInFirstFreeSessionFlow(userProfile);
+  const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
+  const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(userProfile);
 
   useEffect(() => {
     dispatch(initialLoadInit());
   }, [dispatch]);
 
   const reservationHandler = () => {
-    if (!selectedCard && isFSFFlow) {
+    if (!selectedCard && isFirstFreeSessionFlow) {
       window.localStorage.setItem('redirect', window.location.pathname);
       history.push(ROUTES.PAYMENT_METHODS_SELECT);
     } else {
@@ -58,7 +61,7 @@ const ReserveButton = ({
           pathname: ROUTES.MEMBERSHIPS,
           state: { showNoCreditsAnimation: true },
         });
-      } else if (isFSFFlow) {
+      } else if (isFirstSessionFlow) {
         setShowCodeOfConductModal(true);
       } else {
         hasConfirmCodeOfConduct(userProfile)
@@ -66,6 +69,19 @@ const ReserveButton = ({
           : setShowCodeOfConductModal(true);
       }
     }
+  };
+
+  const onConfirmCodeOfConduct = () => {
+    if (isFirstSessionFlow) {
+      setShowCodeOfConductModal(false);
+      setShowFirstTimersInformationModal(true);
+    } else {
+      reserveSessionAction();
+    }
+  };
+
+  const onConfirmFirstTimersInformation = () => {
+    isFirstFreeSessionFlow ? createAndReserveFreeSessionHandler() : reserveSessionAction();
   };
 
   if (isAuthenticated) {
@@ -92,20 +108,33 @@ const ReserveButton = ({
           <OnboardingTour
             id="onboarding-tour-session-confirm-reservation"
             enabled={
-              isFSFFlow && isOnboardingTourEnable('onboarding-tour-session-confirm-reservation')
+              isFirstSessionFlow &&
+              isOnboardingTourEnable('onboarding-tour-session-confirm-reservation')
             }
             steps={[
               {
                 element: '#session-confirm-reservation',
-                intro: `You’re s’close. Press <strong>CONFIRM RESERVATION</strong> to hold your spot. First you'll need to enter your payment info and then you'll be ready to book your first session! Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`,
+                intro: `You’re s’close. Press <strong>CONFIRM RESERVATION</strong> to hold your spot. ${
+                  isFirstFreeSessionFlow
+                    ? `First you'll need to enter your payment info and then you'll be ready to book your first session! Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`
+                    : `${
+                        userProfile.totalCredits === 0
+                          ? 'Due to your location, you are not eligible for a free trial session, but because is your first time, you can buy a session at a discounted price.'
+                          : ''
+                      } `
+                }`,
               },
             ]}
           />
           <CodeOfConductModal
             isOpen={showCodeOfConductModal}
             closeHandler={() => setShowCodeOfConductModal(false)}
-            onConfirm={isFSFFlow ? createAndReserveFreeSessionHandler : reserveSessionAction}
+            onConfirm={onConfirmCodeOfConduct}
             userProfile={userProfile}
+          />
+          <FirstTimersInformationModal
+            isOpen={showFirstTimersInformationModal}
+            onConfirm={onConfirmFirstTimersInformation}
           />
         </>
       );
@@ -126,7 +155,7 @@ const ReserveButton = ({
             {
               element: '#session-create-profile',
               intro:
-                'Your free session credit awaits. Tap <strong>CREATE PROFILE</strong> to enter your information. Then hit <strong>NEXT</strong> to fill out a brief skill assessment survey and finish setting up your profile.',
+                'Your free session credit awaits. Tap <strong>CREATE PROFILE</strong> to enter your information and set up your profile.',
             },
           ]}
         />

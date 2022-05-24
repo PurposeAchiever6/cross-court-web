@@ -62,9 +62,11 @@ const AddCard = ({ stripe, elements, addCardHandler }) => {
           <CardCvcElement />
         </span>
       </div>
-      <PrimaryButton onClick={submitHandler} loading={addCardLoading}>
-        ADD
-      </PrimaryButton>
+      <div className="text-center">
+        <PrimaryButton onClick={submitHandler} loading={addCardLoading}>
+          ADD
+        </PrimaryButton>
+      </div>
     </AddCardContainer>
   );
 };

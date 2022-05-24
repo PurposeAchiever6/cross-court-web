@@ -22,7 +22,7 @@ import {
   sortSessionsByDate,
   formatSessionDate,
 } from 'shared/utils/date';
-import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import { isUserInFirstSessionFlow, isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionsLoadingBtns } from 'screens/sessions/reducer';
@@ -99,11 +99,12 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   };
 
   const onboardingTourId = 'onboarding-tour-sessions-list';
-  const isFSFFlow = isUserInFirstFreeSessionFlow(currentUser);
+  const isFirstSessionFreeFlow = isUserInFirstFreeSessionFlow(currentUser);
+  const isFirstSessionFlow = isUserInFirstSessionFlow(currentUser);
   const isOnboardingTourEnabled =
     isOnboardingTourEnable(onboardingTourId) &&
     !showingFreeSessionCreditAdded &&
-    (!isAuthenticated || isFSFFlow);
+    (!isAuthenticated || isFirstSessionFlow);
 
   if (isEmpty(sortedSessions)) {
     return (
@@ -221,7 +222,9 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     {
                       element: '#sessions-list-reserve-btn',
                       intro: isAuthenticated
-                        ? 'Tap <strong>RESERVE</strong> to see the session details and reserve your first free session.'
+                        ? `Tap <strong>RESERVE</strong> to see the session details and reserve your first ${
+                            isFirstSessionFreeFlow ? 'free' : ''
+                          } session.`
                         : 'Tap <strong>RESERVE</strong> to see the session details. Then create a profile to receive your free session credit and finish booking.',
                     },
                   ]}

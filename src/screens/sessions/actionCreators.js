@@ -27,13 +27,9 @@ export const initialLoadAuthInit = (sessionId, date) => ({
   },
 });
 
-export const reserveSessionInit = (sessionId, date, referralCode) => ({
+export const reserveSessionInit = (payload) => ({
   type: RESERVE_SESSION_INIT,
-  payload: {
-    sessionId,
-    date,
-    referralCode,
-  },
+  payload,
 });
 
 export const cancelSessionInit = (sessionId) => ({

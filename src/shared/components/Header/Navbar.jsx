@@ -8,7 +8,7 @@ const Navbar = ({ scrolled, dark, isAuthenticated }) => {
   const color = dark || !scrolled ? 'white' : 'purple';
 
   return (
-    <nav className="hidden lg:flex gap-5 xl:gap-12 mr-5 xl:mr-12">
+    <nav className="flex gap-5 xl:gap-12">
       <NavItem name="First Time?" link={ROUTES.HOWITWORKS} color={color} />
       <NavItem name="Schedule" link={ROUTES.LOCATIONS} color={color} />
       <NavItem name="Memberships" link={ROUTES.MEMBERSHIPS} color={color} />

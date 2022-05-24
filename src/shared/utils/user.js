@@ -1,5 +1,11 @@
 import { yearsFrom } from 'shared/utils/date';
 
+export const isUserInFirstSessionFlow = (userProfile) => {
+  if (!userProfile) return false;
+
+  return !userProfile.hasReserveAnySession;
+};
+
 export const isUserInFirstFreeSessionFlow = (userProfile) => {
   if (!userProfile) return false;
 
