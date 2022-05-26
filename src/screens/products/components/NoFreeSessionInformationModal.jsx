@@ -9,7 +9,7 @@ export const NoFreeSessionInformationModal = ({ isOpen, closeHandler }) => (
     <div>
       <p className="mb-8">
         Due to your location, you are not eligible for a free trial session. If you wish to proceed,
-        you can buy a session at a discounted price.
+        you can buy a session at a discounted price of $12.
       </p>
       <div className="text-center">
         <PrimaryButton onClick={closeHandler}>Done</PrimaryButton>
