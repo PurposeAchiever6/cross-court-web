@@ -63,10 +63,10 @@ const ProductPlan = ({
           {isRecurring && <span className="text-3xl lg:text-6xl">/month</span>}
         </div>
         {isRecurring && !isUnlimited && (
-          <div className="shapiro95_super_wide text-xs -mt-2 2xl:text-sm">{`${sessionPricePerMonth}/session`}</div>
+          <div className="shapiro95_super_wide text-xs -mt-2 2xl:text-sm mb-3">{`${sessionPricePerMonth}/session`}</div>
         )}
         {isUnlimited && (
-          <div className="shapiro95_super_wide text-xs -mt-2 2xl:text-sm">
+          <div className="shapiro95_super_wide text-xs -mt-2 2xl:text-sm mb-3">
             {`${unlimitedPricePerSession}/session @ ${SAMPLE_UNLIMITED_SESSIONS_PER_MONTH}/month`}
           </div>
         )}

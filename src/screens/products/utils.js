@@ -12,6 +12,9 @@ export const productDiscount = (product, user) => {
   const priceForFirstTimersNoFreeSession = product.priceForFirstTimersNoFreeSession;
   const price = product.price;
 
+  let discountPercentage = 0;
+  let discountReason = null;
+
   if (
     oneTimeProduct &&
     priceForFirstTimersNoFreeSession &&
@@ -19,16 +22,15 @@ export const productDiscount = (product, user) => {
     userHasNotReserveAnySession &&
     userHasNotAnyCredits
   ) {
-    return {
-      discountPercentage: 100 - (priceForUser * 100) / price,
-      discountReason: 'being your first session',
-    };
+    discountPercentage = 100 - (priceForUser * 100) / price;
+    discountReason = 'being your first session';
   } else if (oneTimeProduct && priceForMembers && userHasActiveSubscription) {
-    return {
-      discountPercentage: 100 - (priceForUser * 100) / price,
-      discountReason: 'being a member',
-    };
-  } else {
-    return { discountPercentage: 0 };
+    discountPercentage = 100 - (priceForUser * 100) / price;
+    discountReason = 'being a member';
   }
+
+  return {
+    discountPercentage: Math.round(discountPercentage),
+    discountReason,
+  };
 };
