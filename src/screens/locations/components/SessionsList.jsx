@@ -286,7 +286,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
                   </div>
                 )}
-                {!reserved && !isOpenClub && !onWaitlist && spotsLeft <= 5 && isLegalAge && (
+                {!past && !reserved && !isOpenClub && !onWaitlist && spotsLeft <= 5 && isLegalAge && (
                   <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
                     <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                     <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
