@@ -29,6 +29,12 @@ import {
   REMOVE_SESSION_WAITLIST_INIT,
   REMOVE_SESSION_WAITLIST_SUCCESS,
   REMOVE_SESSION_WAITLIST_FAILURE,
+  VOTE_SESSION_INIT,
+  VOTE_SESSION_SUCCESS,
+  VOTE_SESSION_FAILURE,
+  REMOVE_VOTE_SESSION_INIT,
+  REMOVE_VOTE_SESSION_SUCCESS,
+  REMOVE_VOTE_SESSION_FAILURE,
 } from './actionTypes';
 import sessionService from './service';
 
@@ -173,6 +179,34 @@ export function* buyCreditsAndBookSessionFlow({ payload }) {
   } catch (err) {}
 }
 
+export function* voteSessionFlow({ payload }) {
+  try {
+    yield call(sessionService.voteSession, payload.sessionId, payload.sessionDate);
+    yield put({
+      type: VOTE_SESSION_SUCCESS,
+      payload: { sessionId: payload.sessionId, sessionDate: payload.sessionDate },
+    });
+  } catch (err) {
+    const errorMessage = err.response.data.error;
+    yield call(toast.error, errorMessage);
+    yield put({ type: VOTE_SESSION_FAILURE, error: errorMessage });
+  }
+}
+
+export function* removeVoteSessionFlow({ payload }) {
+  try {
+    yield call(sessionService.removeVoteSession, payload.sessionId, payload.sessionDate);
+    yield put({
+      type: REMOVE_VOTE_SESSION_SUCCESS,
+      payload: { sessionId: payload.sessionId, sessionDate: payload.sessionDate },
+    });
+  } catch (err) {
+    const errorMessage = err.response.data.error;
+    yield call(toast.error, errorMessage);
+    yield put({ type: REMOVE_VOTE_SESSION_FAILURE, error: errorMessage });
+  }
+}
+
 export default function* rootSessionSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
@@ -184,5 +218,7 @@ export default function* rootSessionSaga() {
     takeLatest(REMOVE_SESSION_WAITLIST_INIT, removeSessionWaitlistFlow),
     takeLatest(SIGNUP_BOOK_SESSION, signupBookSessionFlow),
     takeLatest(BUY_CREDITS_AND_BOOK_SESSION, buyCreditsAndBookSessionFlow),
+    takeLatest(VOTE_SESSION_INIT, voteSessionFlow),
+    takeLatest(REMOVE_VOTE_SESSION_INIT, removeVoteSessionFlow),
   ]);
 }

@@ -32,8 +32,8 @@ import {
   removeSessionWaitlistInit,
 } from 'screens/sessions/actionCreators';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
-
 import { WOMEN_SESSION_INFO } from 'shared/constants/sessions';
+import SessionVote from 'screens/locations/components/SessionVote';
 
 const NoSessionContainer = styled.div`
   .title {
@@ -136,6 +136,8 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           onWaitlist,
           waitlistPlacement,
           isOpenClub,
+          votes,
+          voted,
           womenOnly,
         }) => {
           const URLdate = urlFormattedDate(startTime);
@@ -149,7 +151,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                 fontSize="12px"
                 w="9.5rem"
                 px="0.5rem"
-                className="pointer-events-none"
+                className={past ? '' : 'opacity-30 pointer-events-none'}
                 inverted
               >
                 COMING SOON
@@ -252,11 +254,15 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           return (
             <div
               className={`flex border-b py-6 md:px-5 justify-between w-full items-center overflow-hidden ${
-                past || comingSoon ? ' opacity-30' : ''
+                past ? 'opacity-30 pointer-events-none' : ''
               }`}
               key={id}
             >
-              <div className="flex flex-col items-start">
+              <div
+                className={`flex flex-col items-start ${
+                  comingSoon && !past ? 'opacity-30 pointer-events-none' : ''
+                }`}
+              >
                 <p className="font-bold whitespace-nowrap text-sm sm:text-base">
                   {hourRange(time, durationMinutes)}
                   {isPrivate && (
@@ -278,27 +284,43 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                   {badge}
                 </div>
               </div>
-              <div className="flex flex-col items-end pl-8">
-                {button}
-                {!isLegalAge && !isOpenClub && (
-                  <div className="flex items-center sm:self-center mt-2 whitespace-nowrap">
-                    <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
-                  </div>
+              <div className="flex flex-col-reverse lg:flex-row items-center pl-8">
+                {isAuthenticated && comingSoon && !past && (
+                  <SessionVote
+                    sessionId={id}
+                    sessionDate={sessionDate}
+                    votes={votes}
+                    voted={voted}
+                    className="mt-2 lg:mt-0 lg:mr-4"
+                  />
                 )}
-                {!past && !reserved && !isOpenClub && !onWaitlist && spotsLeft <= 5 && isLegalAge && (
-                  <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
-                    <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
-                      {full ? 'Session full' : 'Few spots left'}
-                    </p>
-                  </div>
-                )}
-                {onWaitlist && !past && (
-                  <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
-                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
-                  </div>
-                )}
+                <div className="flex flex-col items-end">
+                  {button}
+                  {!isLegalAge && !isOpenClub && (
+                    <div className="flex items-center sm:self-center mt-2 whitespace-nowrap">
+                      <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                      <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
+                    </div>
+                  )}
+                  {!past &&
+                    !reserved &&
+                    !isOpenClub &&
+                    !onWaitlist &&
+                    spotsLeft <= 5 &&
+                    isLegalAge && (
+                      <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
+                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
+                          {full ? 'Session full' : 'Few spots left'}
+                        </p>
+                      </div>
+                    )}
+                  {onWaitlist && !past && (
+                    <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
+                      <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           );
