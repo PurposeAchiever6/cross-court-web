@@ -9,8 +9,13 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import PauseMembershipModal from './components/PauseMembershipModal';
+import UnpauseMembershipModal from './components/UnpauseMembershipModal';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
-import { pauseSubscription, cancelPauseSubscription } from 'screens/products/actionCreators';
+import {
+  pauseSubscription,
+  cancelPauseSubscription,
+  unpauseSubscription,
+} from 'screens/products/actionCreators';
 
 const ManageMembershipPage = () => {
   const { activeSubscription } = useSelector(getUserProfile);
@@ -18,6 +23,7 @@ const ManageMembershipPage = () => {
   const dispatch = useDispatch();
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [showPauseModal, setShowPauseModal] = useState(false);
+  const [showUnpauseModal, setShowUnpauseModal] = useState(false);
 
   const active = !activeSubscription?.canceled;
   const paused = activeSubscription?.paused;
@@ -28,6 +34,7 @@ const ManageMembershipPage = () => {
   const pauseSubscriptionAction = (months) =>
     dispatch(pauseSubscription(activeSubscription, months));
   const cancelPauseSubscriptionAction = () => dispatch(cancelPauseSubscription(activeSubscription));
+  const unpauseSubscriptionAction = () => dispatch(unpauseSubscription(activeSubscription));
 
   if (loading) {
     return <Loading />;
@@ -91,14 +98,26 @@ const ManageMembershipPage = () => {
                 Cancel pause
               </PrimaryButton>
             ) : (
-              <PrimaryButton
-                className="mb-1"
-                fontSize="0.75rem"
-                onClick={() => setShowPauseModal(true)}
-                disabled={!canPause || paused}
-              >
-                Pause Membership
-              </PrimaryButton>
+              <>
+                {paused ? (
+                  <PrimaryButton
+                    className="mb-1"
+                    fontSize="0.75rem"
+                    onClick={() => setShowUnpauseModal(true)}
+                  >
+                    Unpause Membership
+                  </PrimaryButton>
+                ) : (
+                  <PrimaryButton
+                    className="mb-1"
+                    fontSize="0.75rem"
+                    onClick={() => setShowPauseModal(true)}
+                    disabled={!canPause}
+                  >
+                    Pause Membership
+                  </PrimaryButton>
+                )}
+              </>
             )}
             {!canPause && !willPause && (
               <p className="mb-2">You can't pause your membership anymore for this year.</p>
@@ -126,6 +145,11 @@ const ManageMembershipPage = () => {
             closeHandler={() => setShowPauseModal(false)}
             activeSubscription={activeSubscription}
             pauseSubscriptionAction={pauseSubscriptionAction}
+          />
+          <UnpauseMembershipModal
+            isOpen={showUnpauseModal}
+            closeHandler={() => setShowUnpauseModal(false)}
+            unpauseSubscriptionAction={unpauseSubscriptionAction}
           />
         </>
       ) : (
