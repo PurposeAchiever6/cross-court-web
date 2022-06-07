@@ -76,10 +76,10 @@ export default JSON.stringify({
     },
     {
       '@type': 'Question',
-      name: "What happens if I forget to confirm or confirm, but don't show up?",
+      name: "What happens if I don't show up?",
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Forgetting to confirm or canceling after the cancellation window (less than 5 hours before your session) will result in a charge for the amount of your session credit or a fee (depending on what type of membeship you have) and will not result in a refund. Confirming and no showing will also result in lost session credit or no show fee. If this happens twice, your account will be flagged. The other players in the session are relying on your attendance, so not showing up will affect the entire groups experience.',
+        text: 'Canceling after the cancellation window (less than 5 hours before your session) will not result in a refund and a fee may be applied if it was for the Free First Session. No showing will also result in lost session credit or no show fee. If this happens twice, your account will be flagged. The other players in the session are relying on your attendance, so not showing up will affect the entire groups experience.',
       },
     },
     {
