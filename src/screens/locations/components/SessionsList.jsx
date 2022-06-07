@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { isEmpty } from 'ramda';
@@ -34,6 +34,8 @@ import {
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { WOMEN_SESSION_INFO } from 'shared/constants/sessions';
 import SessionVote from 'screens/locations/components/SessionVote';
+import { hasConfirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
+import OutsideOfSkillLevelModal from './OutsideOfSkillLevelModal';
 
 const NoSessionContainer = styled.div`
   .title {
@@ -67,6 +69,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const [showOutsideSkillLevelModal, setShowOutsideSkillLevelModal] = useState(false);
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
   const sessionsLoadingBtns = useSelector(getSessionsLoadingBtns);
@@ -98,6 +101,15 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
     dispatch(removeSessionWaitlistInit(sessionId, sessionDate));
   };
 
+  const showModalForOutsideSkillLevel = (e, outsideOfSkillLevel) => {
+    if (outsideOfSkillLevel && !hasConfirmOutsideOfSkillLevelSession(currentUser)) {
+      e.preventDefault();
+      setShowOutsideSkillLevelModal(true);
+    }
+  };
+
+  const goToReserveDetails = (id, URLdate) => history.push(`/session/${id}/${URLdate}`);
+
   const onboardingTourId = 'onboarding-tour-sessions-list';
   const isFirstSessionFreeFlow = isUserInFirstFreeSessionFlow(currentUser);
   const isFirstSessionFlow = isUserInFirstSessionFlow(currentUser);
@@ -105,6 +117,8 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
     isOnboardingTourEnable(onboardingTourId) &&
     !showingFreeSessionCreditAdded &&
     (!isAuthenticated || isFirstSessionFlow);
+
+  const userSkillRating = parseInt(currentUser.skillRating);
 
   if (isEmpty(sortedSessions)) {
     return (
@@ -139,11 +153,16 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           votes,
           voted,
           womenOnly,
+          allSkillLevelsAllowed,
         }) => {
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
           let button;
           let badge;
+
+          const outsideOfSkillLevel =
+            userSkillRating < skillLevel.min || userSkillRating > skillLevel.max;
+          const cannotReserveBecauseSkillLevel = !allSkillLevelsAllowed && outsideOfSkillLevel;
 
           if (comingSoon) {
             button = (
@@ -206,7 +225,8 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                   to={`/session/${id}/${URLdate}`}
                   w="9.5rem"
                   fontSize="12px"
-                  disabled={disableButton}
+                  disabled={cannotReserveBecauseSkillLevel}
+                  onClick={(e) => showModalForOutsideSkillLevel(e, outsideOfSkillLevel)}
                 >
                   RESERVE
                 </PrimaryButton>
@@ -230,6 +250,12 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                         : 'Tap <strong>RESERVE</strong> to see the session details. Then create a profile to receive your free session credit and finish booking.',
                     },
                   ]}
+                />
+                <OutsideOfSkillLevelModal
+                  isOpen={showOutsideSkillLevelModal}
+                  closeHandler={() => setShowOutsideSkillLevelModal(false)}
+                  onConfirm={() => goToReserveDetails(id, URLdate)}
+                  userProfile={currentUser}
                 />
               </>
             );
@@ -312,6 +338,19 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                         <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                         <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
                           {full ? 'Session full' : 'Few spots left'}
+                        </p>
+                      </div>
+                    )}
+                  {!reserved &&
+                    !isOpenClub &&
+                    !onWaitlist &&
+                    spotsLeft > 5 &&
+                    isLegalAge &&
+                    cannotReserveBecauseSkillLevel && (
+                      <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
+                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
+                          {`For ${skillLevel.name} only`}
                         </p>
                       </div>
                     )}
