@@ -70,6 +70,9 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   const dispatch = useDispatch();
 
   const [showOutsideSkillLevelModal, setShowOutsideSkillLevelModal] = useState(false);
+  const [idModal, setIdModal] = useState('');
+  const [URLDateModal, setURLDateModal] = useState('');
+  const [levelNameModal, setLevelNameModal] = useState('');
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
   const sessionsLoadingBtns = useSelector(getSessionsLoadingBtns);
@@ -101,14 +104,17 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
     dispatch(removeSessionWaitlistInit(sessionId, sessionDate));
   };
 
-  const showModalForOutsideSkillLevel = (e, outsideOfSkillLevel) => {
+  const showModalForOutsideSkillLevel = (e, outsideOfSkillLevel, id, URLdate, levelName) => {
     if (outsideOfSkillLevel && !hasConfirmOutsideOfSkillLevelSession(currentUser)) {
       e.preventDefault();
+      setIdModal(id);
+      setURLDateModal(URLdate);
+      setLevelNameModal(levelName);
       setShowOutsideSkillLevelModal(true);
     }
   };
 
-  const goToReserveDetails = (id, URLdate) => history.push(`/session/${id}/${URLdate}`);
+  const goToReserveDetails = () => history.push(`/session/${idModal}/${URLDateModal}`);
 
   const onboardingTourId = 'onboarding-tour-sessions-list';
   const isFirstSessionFreeFlow = isUserInFirstFreeSessionFlow(currentUser);
@@ -226,7 +232,15 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                   w="9.5rem"
                   fontSize="12px"
                   disabled={cannotReserveBecauseSkillLevel}
-                  onClick={(e) => showModalForOutsideSkillLevel(e, outsideOfSkillLevel)}
+                  onClick={(e) =>
+                    showModalForOutsideSkillLevel(
+                      e,
+                      outsideOfSkillLevel,
+                      id,
+                      URLdate,
+                      skillLevel.name
+                    )
+                  }
                 >
                   RESERVE
                 </PrimaryButton>
@@ -250,12 +264,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                         : 'Tap <strong>RESERVE</strong> to see the session details. Then create a profile to receive your free session credit and finish booking.',
                     },
                   ]}
-                />
-                <OutsideOfSkillLevelModal
-                  isOpen={showOutsideSkillLevelModal}
-                  closeHandler={() => setShowOutsideSkillLevelModal(false)}
-                  onConfirm={() => goToReserveDetails(id, URLdate)}
-                  userProfile={currentUser}
                 />
               </>
             );
@@ -350,7 +358,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                       <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
                         <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                         <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
-                          {`For ${skillLevel.name} only`}
+                          {`${skillLevel.name} only`}
                         </p>
                       </div>
                     )}
@@ -365,6 +373,13 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           );
         }
       )}
+      <OutsideOfSkillLevelModal
+        isOpen={showOutsideSkillLevelModal}
+        closeHandler={() => setShowOutsideSkillLevelModal(false)}
+        onConfirm={goToReserveDetails}
+        level={levelNameModal}
+        userProfile={currentUser}
+      />
     </div>
   );
 };
