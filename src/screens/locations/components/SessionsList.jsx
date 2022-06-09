@@ -357,9 +357,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     cannotReserveBecauseSkillLevel && (
                       <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
                         <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
-                          {`${skillLevel.name} only`}
-                        </p>
+                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{skillLevel.name}</p>
                       </div>
                     )}
                   {onWaitlist && !past && (
