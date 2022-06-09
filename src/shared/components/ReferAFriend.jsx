@@ -31,7 +31,7 @@ const ReferAFriend = ({ code, className }) => {
       <p>Give 50% off, get CC CA$H</p>
       <div className="my-4 text-sm md:text-base">
         {STEPS.map((step, i) => (
-          <div key={`step-${i}`} className="flex items-center px-4 mb-1">
+          <div key={`step-${i}`} className="flex items-center mb-1">
             <div className="bg-cc-purple rounded-full flex items-center justify-center w-8 h-8 md:w-10 md:h-10 m-4 font-dharma_gothic_cheavy_italic text-2xl md:text-3xl text-white">
               {i + 1}
             </div>
@@ -42,7 +42,7 @@ const ReferAFriend = ({ code, className }) => {
           </div>
         ))}
       </div>
-      <div className="px-4 w-full">
+      <div className="w-full">
         {code && <div className="bg-gray-300 w-full p-2 mb-1 text-center">{code}</div>}
         <CopyToClipboard onCopy={() => setCopied(true)} text={referralText(code)}>
           <PrimaryButton w="100%" className="mb-2">

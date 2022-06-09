@@ -12,7 +12,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import ROUTES from 'shared/constants/routes';
+import confettiAnimation from 'shared/animations/confetti';
 import ReferAFriend from 'shared/components/ReferAFriend';
+import Animation from 'shared/components/Animation';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSelectedProduct } from 'screens/products/reducer';
 import { getPurchaseConfirmed } from '../reducer';
@@ -80,34 +82,40 @@ const MembershipConfirm = () => {
 
   return (
     <>
-      <div className="container sm:min-h-screen flex flex-col px-4 pt-14 pb-10 md:pb-20 mx-auto">
-        <h1 className="text-center shapiro95_super_wide text-2xl">MEMBERSHIP CONFIRMED!</h1>
-        <h2 className="text-center shapiro95_super_wide text-2xl mb-2">
-          WELCOME TO THE CC TEAM{' '}
-          <span className="text-cc-purple uppercase">{currentUser.firstName}</span>
-        </h2>
-        {productDetails?.credits > 0 && (
-          <h3 className="text-center text-lg">
-            {`You have ${productDetails?.credits} sessions to use within the next 30 days before they refill. Let's put em to good
+      <div className="container sm:min-h-screen flex flex-col px-4 pt-14 pb-10 md:pb-20 mx-auto relative">
+        <Animation
+          animation={confettiAnimation}
+          className="absolute inset-0 bottom-1/2 md:bottom-0"
+        />
+        <div className="relative z-10">
+          <h1 className="text-center shapiro95_super_wide text-2xl">MEMBERSHIP CONFIRMED!</h1>
+          <h2 className="text-center shapiro95_super_wide text-2xl mb-2">
+            WELCOME TO THE CC TEAM{' '}
+            <span className="text-cc-purple uppercase">{currentUser.firstName}</span>
+          </h2>
+          {productDetails?.credits > 0 && (
+            <h3 className="text-center text-lg">
+              {`You have ${productDetails?.credits} sessions to use within the next 30 days before they refill. Let's put em to good
         use!`}
-          </h3>
-        )}
+            </h3>
+          )}
 
-        <p className="font-shapiro96_inclined_wide text-4xl md:text-6xl text-transparent text-stroke-cc-purple text-stroke-width-2 my-6 text-center">
-          NEXT STEPS!
-        </p>
-        {ITEMS.map((item, i) => (
-          <div className="flex mb-6 flex-col md:flex-row text-center md:text-left" key={i}>
-            <div className="flex items-center justify-center w-full md:w-1/6 mb-4 md:mb-0">
-              {item.icon && <FontAwesomeIcon icon={item.icon} size="3x" />}
+          <p className="font-shapiro96_inclined_wide text-4xl md:text-6xl text-transparent text-stroke-cc-purple text-stroke-width-2 my-6 text-center">
+            NEXT STEPS!
+          </p>
+          {ITEMS.map((item, i) => (
+            <div className="flex mb-6 flex-col md:flex-row text-center md:text-left" key={i}>
+              <div className="flex items-center justify-center w-full md:w-1/6 mb-4 md:mb-0">
+                {item.icon && <FontAwesomeIcon icon={item.icon} size="3x" />}
+              </div>
+              <div className="flex flex-col w-full md:w-5/6">
+                {item.title && <p className="shapiro95_super_wide text-2xl">{item.title}</p>}
+                {item.description && <p>{item.description}</p>}
+                {item.component}
+              </div>
             </div>
-            <div className="flex flex-col w-full md:w-5/6">
-              {item.title && <p className="shapiro95_super_wide text-2xl">{item.title}</p>}
-              {item.description && <p>{item.description}</p>}
-              {item.component}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       <div className="bg-cc-black p-5 md:p-10 flex flex-col items-center justify-center">
         <div className="text-center mt-6 md:mt-3">
