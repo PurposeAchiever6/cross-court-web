@@ -20,9 +20,13 @@ const StepAreYouSureContent = ({ areYouSureHandler, pausesPerYear }) => (
   </div>
 );
 
+StepAreYouSureContent.defaultProps = {
+  pausesPerYear: '2',
+};
+
 StepAreYouSureContent.propTypes = {
   areYouSureHandler: PropTypes.func.isRequired,
-  pausesPerYear: PropTypes.string.isRequired,
+  pausesPerYear: PropTypes.string,
 };
 
 export default StepAreYouSureContent;

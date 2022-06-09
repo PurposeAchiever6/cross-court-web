@@ -18,7 +18,7 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => 
 
   const [step, setStep] = useState(STEP_ARE_YOU_SURE);
 
-  const { pausesPerYear } = activeSubscription;
+  const pausesPerYear = activeSubscription?.pausesPerYear;
 
   const subscriptionFeedbackHandler = (feedback) => {
     dispatch(subscriptionFeedback(feedback));
