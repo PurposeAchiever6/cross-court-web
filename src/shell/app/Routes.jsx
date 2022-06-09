@@ -17,7 +17,6 @@ import Loading from 'shared/components/Loading';
 import ScrollToPosition from 'shared/components/ScrollToPosition';
 import { history } from 'shared/history';
 import { getIsAuthenticated } from 'screens/auth/reducer';
-import { getLegalDocs } from 'screens/legal-docs/actionCreators';
 import { toggleActiveCampaignChat } from 'shared/utils/activeCampaign';
 import { getUserSource, setUserSource, removeUserSource } from 'shared/utils/userSource';
 import PrivateRoute from './PrivateRoute';
@@ -52,7 +51,6 @@ const FAQ = lazy(() => import('screens/faq/FaqPage'));
 const Content = lazy(() => import('screens/content/ContentPage'));
 const Rules = lazy(() => import('shared/pages/Rules'));
 const Rating = lazy(() => import('shared/pages/Rating'));
-const CancelationPolicy = lazy(() => import('screens/legal-docs/pages/CancelationPolicy'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
 const PrivacyPolicy = lazy(() => import('screens/legal-docs/pages/PrivacyPolicy'));
 const PWA = lazy(() => import('screens/pwa/PWAPage'));
@@ -274,9 +272,6 @@ const Routes = () => {
       window.localStorage.setItem('hasLoggedIn', 'true');
       removeUserSource();
       dispatch(initialAppLoad());
-      dispatch(getLegalDocs());
-    } else {
-      dispatch(getLegalDocs());
     }
 
     window.cookieAndSessionStorageHandler(isAuthenticated);
@@ -344,9 +339,6 @@ const Routes = () => {
         </Route>
         <Route path={ROUTES.PRIVACY_POLICY} exact>
           <PrivacyPolicy />
-        </Route>
-        <Route path={ROUTES.CANCELATIONPOLICY} exact>
-          <CancelationPolicy />
         </Route>
         <PrivateRoute path={ROUTES.PURCHASEHISTORY} exact>
           <PurchaseHistory />

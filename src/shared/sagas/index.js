@@ -9,7 +9,6 @@ import rootMyAccountSaga from 'screens/my-account/saga';
 import rootPurchaseHistorySaga from 'screens/purchase-history/saga';
 import rootPaymentMethodsSaga from 'screens/payment-methods/saga';
 import rootCheckoutSaga from 'screens/checkout/saga';
-import rootLegalDocsSaga from 'screens/legal-docs/saga';
 import rootSessionsSurveysSaga from 'screens/surveys/sessions/saga';
 import rootFirstTimersSurveysSaga from 'screens/surveys/firstTimers/saga';
 import rootGallerySaga from 'screens/gallery/saga';
@@ -26,7 +25,6 @@ export default function* rootSaga() {
     rootPurchaseHistorySaga(),
     rootPaymentMethodsSaga(),
     rootCheckoutSaga(),
-    rootLegalDocsSaga(),
     rootSessionsSurveysSaga(),
     rootFirstTimersSurveysSaga(),
     rootGallerySaga(),

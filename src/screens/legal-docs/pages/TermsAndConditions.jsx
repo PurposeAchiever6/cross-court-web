@@ -372,13 +372,13 @@ const TermsAndConditions = () => {
         <br />
         You can cancel your Crosscourt membership at any time in person, via email, or phone. You
         need to cancel your Crosscourt membership at least 30 days before your last renewal date.
-        You will be charged for one more month after the cancelation and can go to unused sessions
+        You will be charged for one more month after the cancellation and can go to unused sessions
         during this period.
         <br />
         <br />
         Crosscourt promises to refund full initial monthly membership if you are not satisfied with
         the service. This is only available for Unlimited Members who have attended 12 sessions at
-        their local club. To receive this refund, you need to give notice of cancelation to your
+        their local club. To receive this refund, you need to give notice of cancellation to your
         local studio within 30 days from the start date of your membership.
         <br />
         <br />
