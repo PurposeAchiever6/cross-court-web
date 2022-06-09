@@ -32,6 +32,7 @@ const ProductsPage = () => {
   const isLoading = useSelector(getPageLoading);
   const isAuthenticated = useSelector(getIsAuthenticated);
   const userProfile = useSelector(getUserProfile);
+  const { activeSubscription } = userProfile;
 
   const showDropInsProducts = state?.showDropInsProducts;
   const showNoFreeSessionInformation = state?.showNoFreeSessionInformation;
@@ -58,7 +59,7 @@ const ProductsPage = () => {
   };
 
   const reactivateMembership = () => {
-    dispatch(reactivateSubscription(userProfile.activeSubscription));
+    dispatch(reactivateSubscription(activeSubscription));
   };
 
   useEffect(() => {
@@ -91,7 +92,7 @@ const ProductsPage = () => {
             selectProductHandler={selectProductHandler}
             cancelMembership={cancelMembership}
             availableProducts={availableProducts}
-            activeSubscription={userProfile.activeSubscription}
+            activeSubscription={activeSubscription}
             reactivateMembership={reactivateMembership}
           />
         )}
@@ -114,6 +115,7 @@ const ProductsPage = () => {
       <CancelMembershipModal
         isOpen={showCancelModal}
         closeHandler={() => setShowCancelModal(false)}
+        activeSubscription={activeSubscription}
       />
       <NoFreeSessionInformationModal
         isOpen={showNoFreeSessionInformationModal}
