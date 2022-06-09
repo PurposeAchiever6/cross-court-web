@@ -9,6 +9,8 @@ import {
   SHOW_CANCEL_MODAL,
   SIGNUP_BOOK_SESSION,
   BUY_CREDITS_AND_BOOK_SESSION,
+  VOTE_SESSION_INIT,
+  REMOVE_VOTE_SESSION_INIT,
 } from './actionTypes';
 
 export const initialLoadInit = (sessionId, date) => ({
@@ -79,5 +81,21 @@ export const buyCreditsAndBookSession = (id, date) => ({
   payload: {
     sessionId: id,
     date,
+  },
+});
+
+export const voteSessionInit = (sessionId, sessionDate) => ({
+  type: VOTE_SESSION_INIT,
+  payload: {
+    sessionId,
+    sessionDate,
+  },
+});
+
+export const removeVoteSessionInit = (sessionId, sessionDate) => ({
+  type: REMOVE_VOTE_SESSION_INIT,
+  payload: {
+    sessionId,
+    sessionDate,
   },
 });

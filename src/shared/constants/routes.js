@@ -1,5 +1,4 @@
 export default {
-  CANCELATIONPOLICY: '/cancelation-policy',
   CAREERS: '/careers',
   CHECKOUT: '/checkout',
   CHECKOUT_CONFIRMED: '/checkout/confirmed',

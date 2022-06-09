@@ -7,6 +7,7 @@ import {
   SUBSCRIPTION_FEEDBACK_INIT,
   PAUSE_SUBSCRIPTION_INIT,
   CANCEL_PAUSE_SUBSCRIPTION_INIT,
+  UNPAUSE_SUBSCRIPTION_INIT,
 } from './actionTypes';
 
 export const initialLoad = () => ({
@@ -50,5 +51,10 @@ export const pauseSubscription = (subscription, months) => ({
 
 export const cancelPauseSubscription = (subscription) => ({
   type: CANCEL_PAUSE_SUBSCRIPTION_INIT,
+  payload: { subscription },
+});
+
+export const unpauseSubscription = (subscription) => ({
+  type: UNPAUSE_SUBSCRIPTION_INIT,
   payload: { subscription },
 });

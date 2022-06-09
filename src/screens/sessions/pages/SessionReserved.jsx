@@ -5,7 +5,9 @@ import { useSelector } from 'react-redux';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SportCharacter from 'shared/images/sport-character.png';
+import confettiAnimation from 'shared/animations/confetti';
 
+import Animation from 'shared/components/Animation';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import ReferAFriend from 'shared/components/ReferAFriend';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -55,12 +57,13 @@ const SessionReserved = () => {
   const currentUser = useSelector(getUserProfile) || {};
 
   return (
-    <SessionBookedContainer>
-      <div className="min-h-screen flex flex-col items-center justify-center">
+    <SessionBookedContainer className="relative px-4">
+      <Animation animation={confettiAnimation} className="absolute inset-0" />
+      <div className="min-h-screen flex flex-col items-center justify-center relative z-10">
         <img className="w-52" src={SportCharacter} alt="Sport Icon" />
         <p className="title">SESSION BOOKED</p>
         <p className="subtitle">SUCCESSFULLY!</p>
-        <ReferAFriend className="my-8" code={currentUser.referralCode} />
+        <ReferAFriend code={currentUser.referralCode} className="text-center my-8" />
         <PrimaryButton bg="transparent" className="black-btn mb-10" to={ROUTES.MYACCOUNT}>
           DONE
         </PrimaryButton>

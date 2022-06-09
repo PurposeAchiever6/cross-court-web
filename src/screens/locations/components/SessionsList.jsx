@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { isEmpty } from 'ramda';
@@ -32,8 +32,10 @@ import {
   removeSessionWaitlistInit,
 } from 'screens/sessions/actionCreators';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
-
 import { WOMEN_SESSION_INFO } from 'shared/constants/sessions';
+import SessionVote from 'screens/locations/components/SessionVote';
+import { hasConfirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
+import OutsideOfSkillLevelModal from './OutsideOfSkillLevelModal';
 
 const NoSessionContainer = styled.div`
   .title {
@@ -67,6 +69,10 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const [showOutsideSkillLevelModal, setShowOutsideSkillLevelModal] = useState(false);
+  const [idModal, setIdModal] = useState('');
+  const [URLDateModal, setURLDateModal] = useState('');
+  const [levelNameModal, setLevelNameModal] = useState('');
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
   const sessionsLoadingBtns = useSelector(getSessionsLoadingBtns);
@@ -98,6 +104,18 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
     dispatch(removeSessionWaitlistInit(sessionId, sessionDate));
   };
 
+  const showModalForOutsideSkillLevel = (e, outsideOfSkillLevel, id, URLdate, levelName) => {
+    if (outsideOfSkillLevel && !hasConfirmOutsideOfSkillLevelSession(currentUser)) {
+      e.preventDefault();
+      setIdModal(id);
+      setURLDateModal(URLdate);
+      setLevelNameModal(levelName);
+      setShowOutsideSkillLevelModal(true);
+    }
+  };
+
+  const goToReserveDetails = () => history.push(`/session/${idModal}/${URLDateModal}`);
+
   const onboardingTourId = 'onboarding-tour-sessions-list';
   const isFirstSessionFreeFlow = isUserInFirstFreeSessionFlow(currentUser);
   const isFirstSessionFlow = isUserInFirstSessionFlow(currentUser);
@@ -105,6 +123,8 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
     isOnboardingTourEnable(onboardingTourId) &&
     !showingFreeSessionCreditAdded &&
     (!isAuthenticated || isFirstSessionFlow);
+
+  const userSkillRating = parseInt(currentUser.skillRating);
 
   if (isEmpty(sortedSessions)) {
     return (
@@ -136,12 +156,19 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           onWaitlist,
           waitlistPlacement,
           isOpenClub,
+          votes,
+          voted,
           womenOnly,
+          allSkillLevelsAllowed,
         }) => {
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
           let button;
           let badge;
+
+          const outsideOfSkillLevel =
+            userSkillRating < skillLevel.min || userSkillRating > skillLevel.max;
+          const cannotReserveBecauseSkillLevel = !allSkillLevelsAllowed && outsideOfSkillLevel;
 
           if (comingSoon) {
             button = (
@@ -149,7 +176,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                 fontSize="12px"
                 w="9.5rem"
                 px="0.5rem"
-                className="pointer-events-none"
+                className={past ? '' : 'opacity-30 pointer-events-none'}
                 inverted
               >
                 COMING SOON
@@ -204,7 +231,16 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                   to={`/session/${id}/${URLdate}`}
                   w="9.5rem"
                   fontSize="12px"
-                  disabled={disableButton}
+                  disabled={cannotReserveBecauseSkillLevel}
+                  onClick={(e) =>
+                    showModalForOutsideSkillLevel(
+                      e,
+                      outsideOfSkillLevel,
+                      id,
+                      URLdate,
+                      skillLevel.name
+                    )
+                  }
                 >
                   RESERVE
                 </PrimaryButton>
@@ -252,11 +288,15 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           return (
             <div
               className={`flex border-b py-6 md:px-5 justify-between w-full items-center overflow-hidden ${
-                past || comingSoon ? ' opacity-30' : ''
+                past ? 'opacity-30 pointer-events-none' : ''
               }`}
               key={id}
             >
-              <div className="flex flex-col items-start">
+              <div
+                className={`flex flex-col items-start ${
+                  comingSoon && !past ? 'opacity-30 pointer-events-none' : ''
+                }`}
+              >
                 <p className="font-bold whitespace-nowrap text-sm sm:text-base">
                   {hourRange(time, durationMinutes)}
                   {isPrivate && (
@@ -278,32 +318,66 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                   {badge}
                 </div>
               </div>
-              <div className="flex flex-col items-end pl-8">
-                {button}
-                {!isLegalAge && !isOpenClub && (
-                  <div className="flex items-center sm:self-center mt-2 whitespace-nowrap">
-                    <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
-                  </div>
+              <div className="flex flex-col-reverse lg:flex-row items-center pl-8">
+                {isAuthenticated && comingSoon && !past && (
+                  <SessionVote
+                    sessionId={id}
+                    sessionDate={sessionDate}
+                    votes={votes}
+                    voted={voted}
+                    className="mt-2 lg:mt-0 lg:mr-4"
+                  />
                 )}
-                {!past && !reserved && !isOpenClub && !onWaitlist && spotsLeft <= 5 && isLegalAge && (
-                  <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
-                    <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
-                      {full ? 'Session full' : 'Few spots left'}
-                    </p>
-                  </div>
-                )}
-                {onWaitlist && !past && (
-                  <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
-                    <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
-                  </div>
-                )}
+                <div className="flex flex-col items-end">
+                  {button}
+                  {!isLegalAge && !isOpenClub && (
+                    <div className="flex items-center sm:self-center mt-2 whitespace-nowrap">
+                      <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                      <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
+                    </div>
+                  )}
+                  {!past &&
+                    !reserved &&
+                    !isOpenClub &&
+                    !onWaitlist &&
+                    spotsLeft <= 5 &&
+                    isLegalAge && (
+                      <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
+                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
+                          {full ? 'Session full' : 'Few spots left'}
+                        </p>
+                      </div>
+                    )}
+                  {!reserved &&
+                    !isOpenClub &&
+                    !onWaitlist &&
+                    spotsLeft > 5 &&
+                    isLegalAge &&
+                    cannotReserveBecauseSkillLevel && (
+                      <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
+                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{skillLevel.name}</p>
+                      </div>
+                    )}
+                  {onWaitlist && !past && (
+                    <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
+                      <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           );
         }
       )}
+      <OutsideOfSkillLevelModal
+        isOpen={showOutsideSkillLevelModal}
+        closeHandler={() => setShowOutsideSkillLevelModal(false)}
+        onConfirm={goToReserveDetails}
+        level={levelNameModal}
+        userProfile={currentUser}
+      />
     </div>
   );
 };

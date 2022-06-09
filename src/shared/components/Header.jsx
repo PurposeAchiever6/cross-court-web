@@ -11,7 +11,6 @@ import LogoSvg from 'shared/components/svg/LogoSvg';
 import Navbar from 'shared/components/Header/Navbar';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
-import { getMonth } from 'shared/utils/date';
 import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -143,7 +142,7 @@ const Header = () => {
     <>
       {showMembershipPromoBanner && (
         <div className="bg-cc-black z-10 text-white h-12 md:h-8 flex justify-center items-center text-center px-4">
-          Get 50% off your first month's membership through {getMonth()}
+          Get 25% off your first month. In club only!
         </div>
       )}
       <header

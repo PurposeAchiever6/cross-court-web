@@ -1,7 +1,11 @@
 import { createSelector } from 'reselect';
 
 import { isSameDay } from 'shared/utils/date';
-import { REMOVE_SESSION_WAITLIST_SUCCESS } from 'screens/sessions/actionTypes';
+import {
+  REMOVE_SESSION_WAITLIST_SUCCESS,
+  VOTE_SESSION_SUCCESS,
+  REMOVE_VOTE_SESSION_SUCCESS,
+} from 'screens/sessions/actionTypes';
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -71,6 +75,26 @@ export default (state = initialState, action) => {
           session.id === action.payload.sessionId &&
           isSameDay(session.startTime, action.payload.sessionDate)
             ? { ...session, onWaitlist: false }
+            : session
+        ),
+      };
+    case VOTE_SESSION_SUCCESS:
+      return {
+        ...state,
+        availableSessions: state.availableSessions.map((session) =>
+          session.id === action.payload.sessionId &&
+          isSameDay(session.startTime, action.payload.sessionDate)
+            ? { ...session, votes: session.votes + 1, voted: true }
+            : session
+        ),
+      };
+    case REMOVE_VOTE_SESSION_SUCCESS:
+      return {
+        ...state,
+        availableSessions: state.availableSessions.map((session) =>
+          session.id === action.payload.sessionId &&
+          isSameDay(session.startTime, action.payload.sessionDate)
+            ? { ...session, votes: session.votes - 1, voted: false }
             : session
         ),
       };

@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
+import blackTextureBgImg from 'shared/images/black-texture-bg.png';
 
 import WinStreak from './components/WinStreak';
 import Randomizer from './components/Randomizer';
@@ -59,7 +61,11 @@ const Dashboard = () => {
 
   return (
     !pageLoading && (
-      <div className="flex flex-col bg-cc-black min-h-screen">
+      <LazyBackgroundImage
+        as="div"
+        img={blackTextureBgImg}
+        className="flex flex-col min-h-screen bg-no-repeat bg-cover bg-center"
+      >
         <div className="flex justify-end">
           <PrimaryButton
             inverted
@@ -76,7 +82,7 @@ const Dashboard = () => {
         <Randomizer />
         <Clock />
         <PlayersList />
-      </div>
+      </LazyBackgroundImage>
     )
   );
 };

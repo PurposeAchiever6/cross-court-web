@@ -8,6 +8,8 @@ import { getUserProfile } from 'screens/my-account/reducer';
 import blackTextureBgImg from 'shared/images/black-texture-bg.png';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Animation from 'shared/components/Animation';
+import confettiAnimation from 'shared/animations/confetti';
 
 import FirstSessionBookedSuccessfully from 'screens/sessions/components/FirstSessionsReserved/FirstSessionBookedSuccessfully';
 import HowDidYouHearAboutUs from 'screens/sessions/components/FirstSessionsReserved/HowDidYouHearAboutUs';
@@ -33,7 +35,7 @@ const SessionReserved = () => {
       img={blackTextureBgImg}
       className="bg-no-repeat bg-cover bg-center text-white px-4 sm:px-20 pt-28 pb-10"
     >
-      <div className="fixed top-16 inset-x-0 text-center z-10">
+      <div className="fixed top-16 inset-x-0 text-center z-20">
         <div className="bg-cc-purple text-cc-black px-4 py-1 sm:py-2 uppercase text-sm sm:text-lg">
           {`Get ${percentageDiscount}% off your first month if you join today!`}
         </div>
@@ -42,16 +44,23 @@ const SessionReserved = () => {
           {percentageDiscount}% off your first month!
         </div>
       </div>
-      <div className="max-w-screen-sm mx-auto mb-10">
-        <FirstSessionBookedSuccessfully className="mb-10" />
-        <HowDidYouHearAboutUs />
-      </div>
-      <div className="max-w-screen-lg mx-auto mb-14">
-        <JoinTheCCTeam />
-      </div>
-      <div className="max-w-screen-2xl mx-auto mb-10">
-        <Memberships className="mb-6 md:mb-8" />
-        <MembershipsFeatures />
+      <Animation
+        animation={confettiAnimation}
+        height="150vh"
+        className="absolute inset-x-0 top-28"
+      />
+      <div className="relative z-10">
+        <div className="max-w-screen-sm mx-auto mb-10">
+          <FirstSessionBookedSuccessfully className="mb-10" />
+          <HowDidYouHearAboutUs />
+        </div>
+        <div className="max-w-screen-lg mx-auto mb-14">
+          <JoinTheCCTeam />
+        </div>
+        <div className="max-w-screen-2xl mx-auto mb-10">
+          <Memberships className="mb-6 md:mb-8" />
+          <MembershipsFeatures />
+        </div>
       </div>
       <div className="max-w-screen-lg mx-auto mb-8">
         <GalleryPhotos />

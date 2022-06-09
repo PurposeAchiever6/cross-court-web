@@ -22,13 +22,6 @@ const QUESTIONS = [
       'front desk between sessions.',
   },
   {
-    question: 'Are there any additional fees or add on items?',
-    answer:
-      'There are no initiation or cancellation fees. However, you will need to either rent or ' +
-      "purchase a jersey, unless it's your first session (Free). We sell personal Crosscourt " +
-      'water bottles and towels at the front desk if you need them.',
-  },
-  {
     question:
       'Does purchasing a membership mean I have access to the club during all business hours?',
     answer:

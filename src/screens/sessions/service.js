@@ -48,4 +48,18 @@ export default {
 
     return response.data;
   },
+  voteSession: async (sessionId, date) => {
+    const response = await api.post(`/sessions/${sessionId}/votes`, {
+      date: requestFormattedDate(date),
+    });
+
+    return response.data;
+  },
+  removeVoteSession: async (sessionId, date) => {
+    const response = await api.delete(`/sessions/${sessionId}/votes`, {
+      data: { date: requestFormattedDate(date) },
+    });
+
+    return response.data;
+  },
 };

@@ -1,3 +1,0 @@
-export const GET_LEGAL_DOCS_INIT = '@legalDocs/GET_LEGAL_DOCS_INIT';
-export const GET_LEGAL_DOCS_SUCCESS = '@legalDocs/GET_LEGAL_DOCS_SUCCESS';
-export const GET_LEGAL_DOCS_FAILURE = '@legalDocs/GET_LEGAL_DOCS_FAILURE';

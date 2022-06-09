@@ -24,6 +24,9 @@ import {
   CANCEL_PAUSE_SUBSCRIPTION_INIT,
   CANCEL_PAUSE_SUBSCRIPTION_SUCCESS,
   CANCEL_PAUSE_SUBSCRIPTION_FAILURE,
+  UNPAUSE_SUBSCRIPTION_INIT,
+  UNPAUSE_SUBSCRIPTION_SUCCESS,
+  UNPAUSE_SUBSCRIPTION_FAILURE,
 } from './actionTypes';
 import productsService from './service';
 
@@ -126,6 +129,16 @@ export function* cancelPauseSubscriptionFlow({ payload }) {
   }
 }
 
+export function* unpauseSubscriptionFlow({ payload }) {
+  try {
+    const subscription = yield call(productsService.unpauseSubscription, payload.subscription.id);
+
+    yield put({ type: UNPAUSE_SUBSCRIPTION_SUCCESS, payload: { subscription } });
+  } catch (err) {
+    yield put({ type: UNPAUSE_SUBSCRIPTION_FAILURE, error: err.response.data.error });
+  }
+}
+
 export default function* productsSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
@@ -135,5 +148,6 @@ export default function* productsSaga() {
     takeLatest(SUBSCRIPTION_FEEDBACK_INIT, subscriptionFeedbackFlow),
     takeLatest(PAUSE_SUBSCRIPTION_INIT, pauseSubscriptionFlow),
     takeLatest(CANCEL_PAUSE_SUBSCRIPTION_INIT, cancelPauseSubscriptionFlow),
+    takeLatest(UNPAUSE_SUBSCRIPTION_INIT, unpauseSubscriptionFlow),
   ]);
 }
