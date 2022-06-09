@@ -67,8 +67,6 @@ const PlayersList = () => {
     if (selectedSession) getUserSessionsList();
   }, [selectedSession, getUserSessionsList]);
 
-  useEffect(() => {}, [selectedSession]);
-
   const changeSelectedSession = (operation) => {
     let newIndex;
     if (operation === LEFT) {
@@ -154,7 +152,11 @@ const PlayersList = () => {
                       alt="Profile"
                     />
                   </div>
-                  <p className="ml-12 w-2/5">{`${userSession.user.firstName} ${userSession.user.lastName}`}</p>
+                  <p
+                    className={`ml-12 w-2/5 ${
+                      userSession.isFirstSession ? 'text-cc-purple' : 'text-cc-black'
+                    }`}
+                  >{`${userSession.user.firstName} ${userSession.user.lastName}`}</p>
                   <p className="uppercase font-shapiro96_inclined_wide w-1/5">
                     {userSession.assignedTeam}
                   </p>
