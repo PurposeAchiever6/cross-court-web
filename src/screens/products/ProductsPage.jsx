@@ -15,10 +15,10 @@ import {
 import ToggleButton from 'shared/components/ToggleButton';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
+import MembershipsFeatures from 'shared/components/MembershipsFeatures';
 
 import Memberships from './components/Memberships';
 import DropIns from './components/DropIns';
-import Perks from './components/Perks';
 import FAQ from './components/FAQ';
 import NoSessionCredits from './components/NoSessionCredits';
 import NoFreeSessionInformationModal from './components/NoFreeSessionInformationModal';
@@ -104,7 +104,7 @@ const ProductsPage = () => {
             reactivateMembership={reactivateMembership}
           />
         )}
-        {!showDropIns && <Perks />}
+        {!showDropIns && <MembershipsFeatures />}
         <div className="w-full flex justify-center mb-16">
           <h2 className="dharma_gothic_cheavy_italic text-6xl lg:text-8xl text-cc-purple">
             HAVE A QUESTION? REACH OUT BELOW

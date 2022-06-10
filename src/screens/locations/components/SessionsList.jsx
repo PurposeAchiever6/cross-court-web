@@ -336,10 +336,21 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                       <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
                     </div>
                   )}
+                  {!reserved &&
+                    !isOpenClub &&
+                    !onWaitlist &&
+                    isLegalAge &&
+                    cannotReserveBecauseSkillLevel && (
+                      <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
+                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{skillLevel.name}</p>
+                      </div>
+                    )}
                   {!past &&
                     !reserved &&
                     !isOpenClub &&
                     !onWaitlist &&
+                    !cannotReserveBecauseSkillLevel &&
                     spotsLeft <= 5 &&
                     isLegalAge && (
                       <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
@@ -347,17 +358,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                         <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
                           {full ? 'Session full' : 'Few spots left'}
                         </p>
-                      </div>
-                    )}
-                  {!reserved &&
-                    !isOpenClub &&
-                    !onWaitlist &&
-                    spotsLeft > 5 &&
-                    isLegalAge &&
-                    cannotReserveBecauseSkillLevel && (
-                      <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
-                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{skillLevel.name}</p>
                       </div>
                     )}
                   {onWaitlist && !past && (
