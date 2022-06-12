@@ -29,7 +29,7 @@ const UnleashYourInnerAthlete = () => (
       ]}
     />
     <div className="absolute inset-0 bg-cc-black bg-opacity-50">
-      <div className="absolute top-1/3 px-4 md:px-40">
+      <div className="absolute top-1/2 px-4 md:px-40 transform -translate-y-1/2">
         <h1 className="text-white font-shapiro95_super_wide text-3xl md:text-4xl xl:text-5xl xl:whitespace-nowrap uppercase">
           Unleash Your Inner Athlete
         </h1>
