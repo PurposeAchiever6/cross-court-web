@@ -98,7 +98,11 @@ const SessionButtons = ({
             createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
             disabled={reservationDisabled}
           />
-          {subscriptionPaused && <p>You can't reserve when your membership is paused.</p>}
+          {subscriptionPaused && (
+            <p className="text-sm mt-4">
+              You can't reserve when your <br /> membership is paused.
+            </p>
+          )}
           {isAuthenticated && (
             <>
               {session?.onWaitlist && (
