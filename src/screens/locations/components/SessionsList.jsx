@@ -78,7 +78,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   const sessionsLoadingBtns = useSelector(getSessionsLoadingBtns);
 
   const isLegalAge = isUserInLegalAge(currentUser);
-  const disableButton = !isLegalAge;
 
   const sessionList = availableSessions.filter(({ startTime }) =>
     isSameDay(startTime, selectedDate)
@@ -205,7 +204,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                 onClick={() => onClickRemoveFromWaitlist(id, sessionDate)}
                 w="9.5rem"
                 fontSize="11px"
-                disabled={disableButton}
                 loading={sessionsLoadingBtns.includes(id)}
               >
                 OUT WAITLIST
@@ -217,7 +215,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                 onClick={() => onClickJoinWaitlist(id, sessionDate)}
                 w="9.5rem"
                 fontSize="11px"
-                disabled={disableButton || onWaitlist}
+                disabled={!isLegalAge || cannotReserveBecauseSkillLevel}
                 loading={sessionsLoadingBtns.includes(id)}
               >
                 JOIN WAITLIST
@@ -231,7 +229,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                   to={`/session/${id}/${URLdate}`}
                   w="9.5rem"
                   fontSize="12px"
-                  disabled={cannotReserveBecauseSkillLevel}
+                  disabled={!isLegalAge || cannotReserveBecauseSkillLevel}
                   onClick={(e) =>
                     showModalForOutsideSkillLevel(
                       e,
@@ -331,7 +329,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                 <div className="flex flex-col items-end">
                   {button}
                   {!isLegalAge && !isOpenClub && (
-                    <div className="flex items-center sm:self-center mt-2 whitespace-nowrap">
+                    <div className="flex items-center self-center mt-2 whitespace-nowrap">
                       <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                       <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
                     </div>
@@ -341,7 +339,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     !onWaitlist &&
                     isLegalAge &&
                     cannotReserveBecauseSkillLevel && (
-                      <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
+                      <div className="flex items-center self-center mt-2 whitespace-nowrap">
                         <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                         <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{skillLevel.name}</p>
                       </div>
@@ -353,7 +351,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     !cannotReserveBecauseSkillLevel &&
                     spotsLeft <= 5 &&
                     isLegalAge && (
-                      <div className="flex items-center self-center sm:self-end mt-2 whitespace-nowrap">
+                      <div className="flex items-center self-center mt-2 whitespace-nowrap">
                         <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
                         <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
                           {full ? 'Session full' : 'Few spots left'}
