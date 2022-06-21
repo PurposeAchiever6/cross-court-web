@@ -26,7 +26,7 @@ const initialState = {
   availableLocations: [],
   availableSessions: [],
   selectedLocation: null,
-  selectedDate: new Date().toLocaleDateString(),
+  selectedDate: new Date().toLocaleDateString('en-US'),
 };
 
 export default (state = initialState, action) => {
@@ -50,7 +50,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         selectedLocation: action.payload.locationId,
-        selectedDate: new Date().toLocaleDateString(),
+        selectedDate: new Date().toLocaleDateString('en-US'),
         sessionsLoading: true,
         error: '',
       };
