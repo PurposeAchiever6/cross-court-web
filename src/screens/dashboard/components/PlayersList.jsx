@@ -55,7 +55,7 @@ const PlayersList = () => {
   }, [selectedLocation, availableSessions, setSelectedSession]);
 
   const getUserSessionsList = useCallback(async () => {
-    const currentDate = new Date().toLocaleDateString();
+    const currentDate = new Date().toLocaleDateString('en-US');
     const userSessionsList = await userSessionService.getUserSessionList(
       selectedSession.id,
       currentDate
