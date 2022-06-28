@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import currency from 'currency.js';
 import PropTypes from 'prop-types';
 
-import { purchaseFormattedDate } from 'shared/utils/date';
+import { paymentFormattedDate } from 'shared/utils/date';
 import CCIcon from 'shared/components/CCIcon';
 import Label from 'shared/components/Label';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -28,7 +28,7 @@ const PurchaseDetails = ({
   const isLoading = useSelector(getCheckoutLoading);
   const [useCcCash, setUseCcCash] = useState(false);
 
-  const purchaseDate = purchaseFormattedDate();
+  const purchaseDate = paymentFormattedDate();
   const isDropIn = productDetails.productType !== RECURRING;
   const isSubscription = !isDropIn;
   const ccCash = Number(userProfile.ccCash);

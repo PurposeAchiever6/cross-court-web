@@ -2,7 +2,7 @@ import api from 'shared/services';
 
 export default {
   createPurchase: async (productId, cardId, promoCode, useCcCash) => {
-    const response = await api.post('/purchases', {
+    const response = await api.post('/payments', {
       productId,
       paymentMethodId: cardId,
       promoCode,
@@ -33,7 +33,7 @@ export default {
   },
 
   createFreeSession: async (cardId) => {
-    const response = await api.put(`/purchases/create_free_session_intent`, {
+    const response = await api.put(`/payments/create_free_session_intent`, {
       paymentMethodId: cardId,
     });
 

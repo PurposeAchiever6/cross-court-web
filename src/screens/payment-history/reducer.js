@@ -4,7 +4,7 @@ import { INITIAL_LOAD_INIT, INITIAL_LOAD_SUCCESS, INITIAL_LOAD_FAILURE } from '.
 const initialState = {
   error: '',
   pageLoading: false,
-  purchaseHistory: [],
+  payments: [],
 };
 
 export default (state = initialState, action) => {
@@ -19,7 +19,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pageLoading: false,
-        purchaseHistory: [...action.payload.availablePurchaseHistory],
+        payments: [...action.payload.payments],
       };
     case INITIAL_LOAD_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
@@ -28,19 +28,19 @@ export default (state = initialState, action) => {
   }
 };
 
-const getPurchaseHistoryReducer = state => state.purchaseHistory;
+const getPaymentHistoryReducer = (state) => state.paymentHistory;
 
 export const getPageLoading = createSelector(
-  getPurchaseHistoryReducer,
-  purchaseHistory => purchaseHistory.pageLoading
+  getPaymentHistoryReducer,
+  (paymentHistory) => paymentHistory.pageLoading
 );
 
 export const getError = createSelector(
-  getPurchaseHistoryReducer,
-  purchaseHistory => purchaseHistory.error
+  getPaymentHistoryReducer,
+  (paymentHistory) => paymentHistory.error
 );
 
-export const getPurchaseHistory = createSelector(
-  getPurchaseHistoryReducer,
-  purchaseHistory => purchaseHistory.purchaseHistory
+export const getPaymentHistory = createSelector(
+  getPaymentHistoryReducer,
+  (paymentHistory) => paymentHistory.payments
 );

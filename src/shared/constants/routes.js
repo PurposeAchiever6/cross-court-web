@@ -25,7 +25,7 @@ export default {
   PAYMENT_METHODS_MEMBERSHIP: '/payment-methods/membership',
   PAYMENT_METHODS_SELECT: '/payment-methods/select',
   PRIVACY_POLICY: '/privacy-policy',
-  PURCHASEHISTORY: '/purchase-history',
+  PAYMENT_HISTORY: '/payment-history',
   PWA: '/app',
   RATING: '/rating',
   REFERRALS: '/my-account/referrals',
