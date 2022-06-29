@@ -85,13 +85,13 @@ const PaymentHistoryPage = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center py-10">
-      <BackButton className="my-6 md:mt-0 self-start" />
-      <h2 className="mb-1 font-shapiro95_super_wide">PAYMENT HISTORY</h2>
+    <div className="px-4 py-10">
+      <BackButton className="my-6 md:mt-0 ml-0" />
+      <h2 className="text-center font-shapiro95_super_wide mb-4">PAYMENT HISTORY</h2>
       <Table
         columns={columns}
         data={paymentHistory}
-        className="w-full p-4 text-center w-full md:w-1/2 font-bold"
+        className="w-full lg:max-w-screen-lg text-center font-bold mx-auto overflow-y-auto"
         headerClassName="bg-cc-black text-white"
       />
     </div>
