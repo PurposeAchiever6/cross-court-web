@@ -45,7 +45,7 @@ const Checkout = lazy(() => import('screens/checkout/CheckoutPage'));
 const ProductsPage = lazy(() => import('screens/products/ProductsPage'));
 const ManageMembershipPage = lazy(() => import('screens/memberships/ManageMembershipPage'));
 const MyAccount = lazy(() => import('screens/my-account/MyAccountPage'));
-const PurchaseHistory = lazy(() => import('screens/purchase-history/PurchaseHistoryPage'));
+const PaymentHistory = lazy(() => import('screens/payment-history/PaymentHistoryPage'));
 const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfirm'));
 const FAQ = lazy(() => import('screens/faq/FaqPage'));
 const Content = lazy(() => import('screens/content/ContentPage'));
@@ -340,8 +340,8 @@ const Routes = () => {
         <Route path={ROUTES.PRIVACY_POLICY} exact>
           <PrivacyPolicy />
         </Route>
-        <PrivateRoute path={ROUTES.PURCHASEHISTORY} exact>
-          <PurchaseHistory />
+        <PrivateRoute path={ROUTES.PAYMENT_HISTORY} exact>
+          <PaymentHistory />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.CHECKOUT} exact>
           <Checkout />

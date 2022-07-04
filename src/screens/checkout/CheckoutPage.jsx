@@ -1,18 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { isNil } from 'ramda';
 
 import ROUTES from 'shared/constants/routes';
+import { RECURRING } from 'screens/products/constants';
 import { getSelectedProduct } from 'screens/products/reducer';
 import { getProrate, getProrateLoading } from 'screens/checkout/reducer';
 import { getSelectedCard } from 'screens/payment-methods/reducer';
-import BackButton from 'shared/components/BackButton';
-import { createPurchase, createSubscription, updateSubscription } from './actionCreators';
+import {
+  createPurchase,
+  createSubscription,
+  updateSubscription,
+} from 'screens/checkout/actionCreators';
 import { subscriptionProrate } from 'screens/checkout/actionCreators';
-import PurchaseDetails from './components/PurchaseDetails';
 import { getUserProfile } from 'screens/my-account/reducer';
-import { RECURRING } from 'screens/products/constants';
+import BackButton from 'shared/components/BackButton';
+import MembershipPurchaseConfirmationModal from 'screens/checkout/components/MembershipPurchaseConfirmationModal';
+import PurchaseDetails from 'screens/checkout/components/PurchaseDetails';
 
 const CheckoutPage = () => {
   const dispatch = useDispatch();
@@ -22,6 +27,8 @@ const CheckoutPage = () => {
   const userProfile = useSelector(getUserProfile);
   const prorate = useSelector(getProrate);
   const prorateLoading = useSelector(getProrateLoading);
+
+  const [showMembershipConfirmationModal, setShowMembershipConfirmationModal] = useState(false);
 
   const productId = productDetails?.id;
   const userHasActiveSubscription = !!userProfile.activeSubscription;
@@ -41,10 +48,15 @@ const CheckoutPage = () => {
     if (isSubscription && userHasActiveSubscription) {
       dispatch(updateSubscription());
     } else if (isSubscription && !userHasActiveSubscription) {
-      dispatch(createSubscription());
+      setShowMembershipConfirmationModal(true);
     } else {
       dispatch(createPurchase(params));
     }
+  };
+
+  const createSubscriptionHandler = () => {
+    setShowMembershipConfirmationModal(false);
+    dispatch(createSubscription());
   };
 
   return (
@@ -62,6 +74,11 @@ const CheckoutPage = () => {
           className="w-full max-w-screen-md"
         />
       </div>
+      <MembershipPurchaseConfirmationModal
+        isOpen={showMembershipConfirmationModal}
+        closeHandler={() => setShowMembershipConfirmationModal(false)}
+        onConfirm={createSubscriptionHandler}
+      />
     </>
   );
 };

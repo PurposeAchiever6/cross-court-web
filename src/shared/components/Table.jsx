@@ -2,8 +2,11 @@ import React from 'react';
 import { useTable } from 'react-table';
 import PropTypes from 'prop-types';
 
-const Table = ({ columns, data, className }) => {
+const SHARED_CLASSES = 'border border-cc-black text-sm md:text-base bg-gray-100';
+
+const Table = ({ columns, data, className, headerClassName, initialState }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
+    initialState,
     columns,
     data,
   });
@@ -17,7 +20,7 @@ const Table = ({ columns, data, className }) => {
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps({
-                    className: 'p-2 border border-cc-black text-sm md:text-base bg-gray-100',
+                    className: `p-2 ${SHARED_CLASSES} ${headerClassName}`,
                   })}
                 >
                   {column.render('Header')}
@@ -34,7 +37,7 @@ const Table = ({ columns, data, className }) => {
                 {row.cells.map((cell) => (
                   <td
                     {...cell.getCellProps({
-                      className: `p-3 border border-cc-black text-sm md:text-base bg-gray-100 ${
+                      className: `p-3 ${SHARED_CLASSES} ${
                         cell.column.className ? cell.column.className : ''
                       }`,
                     })}
@@ -53,12 +56,16 @@ const Table = ({ columns, data, className }) => {
 
 Table.defaultProps = {
   className: '',
+  headerClassName: '',
+  initialState: {},
 };
 
 Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   data: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   className: PropTypes.string,
+  headerClassName: PropTypes.string,
+  initialState: PropTypes.shape({}),
 };
 
 export default Table;

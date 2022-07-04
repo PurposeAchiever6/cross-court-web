@@ -8,7 +8,7 @@ import locationsReducer from 'screens/locations/reducer';
 import sessionReducer from 'screens/sessions/reducer';
 import productsReducer from 'screens/products/reducer';
 import myAccountReducer from 'screens/my-account/reducer';
-import purchaseHistoryReducer from 'screens/purchase-history/reducer';
+import paymentHistoryReducer from 'screens/payment-history/reducer';
 import paymentMethodsReducer from 'screens/payment-methods/reducer';
 import checkoutReducer from 'screens/checkout/reducer';
 import sessionsSurveysReducer from 'screens/surveys/sessions/reducer';
@@ -31,7 +31,7 @@ const appReducer = (history) =>
       },
       myAccountReducer
     ),
-    purchaseHistory: purchaseHistoryReducer,
+    paymentHistory: paymentHistoryReducer,
     paymentMethods: paymentMethodsReducer,
     checkout: checkoutReducer,
     sessionsSurveys: sessionsSurveysReducer,

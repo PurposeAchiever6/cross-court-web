@@ -781,16 +781,6 @@ body .my-account-mobile .tab-content {
   margin-bottom: 20px;
 }
 
-/* PURCHASE HISTORY */
-body .purchase-history h2 {
-  font-family: 'shapiro95_super_wide';
-  text-align: center;
-}
-body .purchase-history-table {
-  margin-bottom: 30px;
-  padding: 0;
-}
-
 /* PWA */
 body[data-page='app'] {
   overflow: hidden;

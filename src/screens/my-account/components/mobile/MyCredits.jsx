@@ -85,8 +85,8 @@ const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
         >
           {activeSubscription ? 'Manage Membership' : 'See Memberships'}
         </PrimaryButton>
-        <PrimaryButton to={ROUTES.PURCHASEHISTORY} w="100%">
-          PURCHASE HISTORY
+        <PrimaryButton to={ROUTES.PAYMENT_HISTORY} w="100%">
+          PAYMENT HISTORY
         </PrimaryButton>
       </div>
     </MyCreditsContainer>

@@ -9,7 +9,7 @@ import {
   FORMAT_SESSION_DATE_LONG,
   FORMAT_URL,
   FORMAT_HOUR,
-  FORMAT_DATE_PURCHASE,
+  FORMAT_DATE_MM_DD_YY,
   FORMAT_DATE_SUBSCRIPTION,
   FORMAT_DATE_REQUEST,
   FORMAT_DAY_SHORT,
@@ -52,7 +52,7 @@ export const weekRangeTitle = (date) =>
     date
   ).format(FORMAT_MONTH)} ${endOfWeek(date).date()}`;
 
-export const purchaseFormattedDate = (date) => getUTCDate(date).format(FORMAT_DATE_PURCHASE);
+export const paymentFormattedDate = (date) => getUTCDate(date).format(FORMAT_DATE_MM_DD_YY);
 
 export const requestFormattedDate = (date) => getUTCDate(date).format(FORMAT_DATE_REQUEST);
 
@@ -94,7 +94,7 @@ export const sortSessionsByDate = (sessions) =>
   sort((a, b) => (dayjs(new Date(a.time)).isAfter(dayjs(new Date(b.time))) ? 1 : -1), sessions);
 
 export const formatSessionTime = (time) => getUTCDate(time).format(FORMAT_HOUR);
-export const formatSessionDate = (time) => getUTCDate(time).format(FORMAT_DATE_PURCHASE);
+export const formatSessionDate = (time) => getUTCDate(time).format(FORMAT_DATE_MM_DD_YY);
 
 export const formatShareSessionDate = (date) => getUTCDate(date).format(FORMAT_SHARE_SESSION_DATE);
 export const formatShareSessionTime = (date) => getUTCDate(date).format(FORMAT_SHARE_SESSION_TIME);

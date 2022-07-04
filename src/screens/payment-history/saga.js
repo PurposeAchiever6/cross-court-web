@@ -2,15 +2,15 @@ import { put, takeLatest, call } from 'redux-saga/effects';
 
 import { INITIAL_LOAD_INIT, INITIAL_LOAD_SUCCESS, INITIAL_LOAD_FAILURE } from './actionTypes';
 
-import purchaseHistoryService from './service';
+import paymentHistoryService from './service';
 
 export function* initialLoadFlow() {
   try {
-    const purchaseHistoryPayload = yield call(purchaseHistoryService.getPurchaseHistory);
+    const paymentHistoryPayload = yield call(paymentHistoryService.getPaymentHistory);
     yield put({
       type: INITIAL_LOAD_SUCCESS,
       payload: {
-        availablePurchaseHistory: purchaseHistoryPayload,
+        payments: paymentHistoryPayload,
       },
     });
   } catch (err) {
@@ -18,6 +18,6 @@ export function* initialLoadFlow() {
   }
 }
 
-export default function* purchaseHistorySaga() {
+export default function* paymentHistorySaga() {
   yield takeLatest(INITIAL_LOAD_INIT, initialLoadFlow);
 }
