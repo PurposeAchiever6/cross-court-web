@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { isEmpty } from 'ramda';
 import { icon } from '@fortawesome/fontawesome-svg-core';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -34,6 +35,7 @@ import {
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { WOMEN_SESSION_INFO } from 'shared/constants/sessions';
 import SessionVote from 'screens/locations/components/SessionVote';
+import SessionRoster from 'screens/locations/components/SessionRoster';
 import { hasConfirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
 import OutsideOfSkillLevelModal from './OutsideOfSkillLevelModal';
 
@@ -70,6 +72,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   const dispatch = useDispatch();
 
   const [showOutsideSkillLevelModal, setShowOutsideSkillLevelModal] = useState(false);
+  const [showSessionRoster, setShowSessionRoster] = useState(null);
   const [idModal, setIdModal] = useState('');
   const [URLDateModal, setURLDateModal] = useState('');
   const [levelNameModal, setLevelNameModal] = useState('');
@@ -159,9 +162,12 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           voted,
           womenOnly,
           allSkillLevelsAllowed,
+          reservations,
         }) => {
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
+          const showRoster = showSessionRoster === `${id}${sessionDate}`;
+
           let button;
           let badge;
 
@@ -285,86 +291,106 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
 
           return (
             <div
-              className={`flex border-b py-6 md:px-5 justify-between w-full items-center overflow-hidden ${
+              className={`border-b py-6 md:px-5 overflow-hidden ${
                 past ? 'opacity-30 pointer-events-none' : ''
               }`}
-              key={id}
             >
-              <div
-                className={`flex flex-col items-start ${
-                  comingSoon && !past ? 'opacity-30 pointer-events-none' : ''
-                }`}
-              >
-                <p className="font-bold whitespace-nowrap text-sm sm:text-base">
-                  {hourRange(time, durationMinutes)}
-                  {isPrivate && (
-                    <Badge
-                      variant="black"
-                      className="block sm:inline-block sm:ml-3 mt-1 mb-2 sm:mt-0 sm:mb-0"
-                    >
-                      Private
-                    </Badge>
-                  )}
-                </p>
-                <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
-                  {location.name}
-                </p>
+              <div className="flex justify-between items-center" key={id}>
                 <div
-                  id={`${!isOpenClub && !womenOnly ? 'sessions-list-session-level-info' : ''}`}
-                  className="my-2"
+                  className={`flex flex-col items-start ${
+                    comingSoon && !past ? 'opacity-30 pointer-events-none' : ''
+                  }`}
                 >
-                  {badge}
-                </div>
-              </div>
-              <div className="flex flex-col-reverse lg:flex-row items-center pl-8">
-                {isAuthenticated && comingSoon && !past && (
-                  <SessionVote
-                    sessionId={id}
-                    sessionDate={sessionDate}
-                    votes={votes}
-                    voted={voted}
-                    className="mt-2 lg:mt-0 lg:mr-4"
-                  />
-                )}
-                <div className="flex flex-col items-end">
-                  {button}
-                  {!isLegalAge && !isOpenClub && (
-                    <div className="flex items-center self-center mt-2 whitespace-nowrap">
-                      <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                      <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
-                    </div>
-                  )}
-                  {!reserved &&
-                    !isOpenClub &&
-                    !onWaitlist &&
-                    isLegalAge &&
-                    cannotReserveBecauseSkillLevel && (
-                      <div className="flex items-center self-center mt-2 whitespace-nowrap">
-                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{skillLevel.name}</p>
-                      </div>
+                  <p className="font-bold whitespace-nowrap text-sm sm:text-base">
+                    {hourRange(time, durationMinutes)}
+                    {isPrivate && (
+                      <Badge
+                        variant="black"
+                        className="block sm:inline-block sm:ml-3 mt-1 mb-2 sm:mt-0 sm:mb-0"
+                      >
+                        Private
+                      </Badge>
                     )}
-                  {!past &&
-                    !reserved &&
-                    !isOpenClub &&
-                    !onWaitlist &&
-                    !cannotReserveBecauseSkillLevel &&
-                    spotsLeft <= 5 &&
-                    isLegalAge && (
-                      <div className="flex items-center self-center mt-2 whitespace-nowrap">
-                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
-                          {full ? 'Session full' : 'Few spots left'}
-                        </p>
-                      </div>
-                    )}
-                  {onWaitlist && !past && (
-                    <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
-                      <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
+                  </p>
+                  <p className="font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis whitespace-nowrap">
+                    {location.name}
+                  </p>
+                  <div
+                    id={`${!isOpenClub && !womenOnly ? 'sessions-list-session-level-info' : ''}`}
+                    className="mt-2"
+                  >
+                    {badge}
+                  </div>
+                  {!isOpenClub && (
+                    <div
+                      className="flex items-center font-shapiro96_inclined_wide text-xs uppercase mt-3 cursor-pointer"
+                      onClick={() =>
+                        setShowSessionRoster(showRoster ? null : `${id}${sessionDate}`)
+                      }
+                    >
+                      See Roster
+                      <FontAwesomeIcon
+                        className={`text-cc-purple text-lg ml-2 transition-transform ${
+                          showRoster ? 'transform rotate-180' : ''
+                        }`}
+                        icon={faChevronDown}
+                      />
                     </div>
                   )}
                 </div>
+                <div className="flex flex-col-reverse lg:flex-row items-center pl-8">
+                  {isAuthenticated && comingSoon && !past && (
+                    <SessionVote
+                      sessionId={id}
+                      sessionDate={sessionDate}
+                      votes={votes}
+                      voted={voted}
+                      className="mt-2 lg:mt-0 lg:mr-4"
+                    />
+                  )}
+                  <div className="flex flex-col items-end">
+                    {button}
+                    {!isLegalAge && !isOpenClub && (
+                      <div className="flex items-center self-center mt-2 whitespace-nowrap">
+                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
+                      </div>
+                    )}
+                    {!reserved &&
+                      !isOpenClub &&
+                      !onWaitlist &&
+                      isLegalAge &&
+                      cannotReserveBecauseSkillLevel && (
+                        <div className="flex items-center self-center mt-2 whitespace-nowrap">
+                          <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                          <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
+                            {skillLevel.name}
+                          </p>
+                        </div>
+                      )}
+                    {!past &&
+                      !reserved &&
+                      !isOpenClub &&
+                      !onWaitlist &&
+                      !cannotReserveBecauseSkillLevel &&
+                      spotsLeft <= 5 &&
+                      isLegalAge && (
+                        <div className="flex items-center self-center mt-2 whitespace-nowrap">
+                          <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                          <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
+                            {full ? 'Session full' : 'Few spots left'}
+                          </p>
+                        </div>
+                      )}
+                    {onWaitlist && !past && (
+                      <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
+                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
+              {showRoster && <SessionRoster users={reservations} className="mt-3" />}
             </div>
           );
         }
