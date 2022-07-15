@@ -213,10 +213,6 @@ const Footer = () => {
           <Copyright className="md:hidden" />
         </div>
       </footer>
-      <div
-        className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136"
-        style={{ position: 'fixed' }}
-      />
     </>
   );
 };
