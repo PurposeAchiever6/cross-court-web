@@ -88,7 +88,7 @@ const ManageMembershipPage = () => {
           <h3 className="font-shapiro95_super_wide text-xl text-cc-black uppercase mb-3">
             Manage Membership
           </h3>
-          <div className="flex flex-col w-max items-start">
+          <div className="flex flex-col items-start">
             {willPause ? (
               <PrimaryButton
                 className="mb-1"

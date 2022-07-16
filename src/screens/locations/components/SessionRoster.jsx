@@ -6,7 +6,7 @@ import missingProfileImg from 'shared/images/missing-profile-image.png';
 const SessionRoster = ({ users, className }) => (
   <div className={className}>
     {users.map((user, index) => (
-      <div className="flex items-center mb-2">
+      <div className="flex items-center mb-2" key={user.id}>
         <span className="font-shapiro95_super_wide w-6 text-right inline-block mr-3">
           {index + 1}
         </span>

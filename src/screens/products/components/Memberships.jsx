@@ -44,7 +44,7 @@ const Memberships = ({
           Heavily discounted subscription feature that automatically refills your sessions monthly
           and gives you access to exclusive CC perks.
         </p>
-        <div className="flex flex-wrap justify-between mt-10 lg:mt-16">
+        <div className="flex flex-wrap justify-center mt-10 lg:mt-16">
           {membershipProducts.map((product) => {
             const isActiveSubscription = product.id === activeSubscription?.product.id;
 

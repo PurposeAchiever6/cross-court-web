@@ -15,6 +15,7 @@ import Badge from 'shared/components/Badge';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import WarningTriangle from 'shared/images/warning-triangle.png';
 import { isUserInLegalAge } from 'shared/utils/user';
+import { reserveTeamReservationAllowed } from 'shared/utils/sessions';
 
 import {
   hourRange,
@@ -81,6 +82,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   const sessionsLoadingBtns = useSelector(getSessionsLoadingBtns);
 
   const isLegalAge = isUserInLegalAge(currentUser);
+  const isReserveTeam = currentUser.reserveTeam;
 
   const sessionList = availableSessions.filter(({ startTime }) =>
     isSameDay(startTime, selectedDate)
@@ -142,28 +144,31 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   return (
     <div className="px-3 font-shapiro45_welter_extd">
       {sortedSessions.map(
-        ({
-          id,
-          startTime,
-          time,
-          durationMinutes,
-          full,
-          location,
-          skillLevel,
-          spotsLeft,
-          reserved,
-          past,
-          isPrivate,
-          comingSoon,
-          onWaitlist,
-          waitlistPlacement,
-          isOpenClub,
-          votes,
-          voted,
-          womenOnly,
-          allSkillLevelsAllowed,
-          reservations,
-        }) => {
+        (
+          {
+            id,
+            startTime,
+            time,
+            durationMinutes,
+            full,
+            location,
+            skillLevel,
+            spotsLeft,
+            reserved,
+            past,
+            isPrivate,
+            comingSoon,
+            onWaitlist,
+            waitlistPlacement,
+            isOpenClub,
+            votes,
+            voted,
+            womenOnly,
+            allSkillLevelsAllowed,
+            reservations,
+          },
+          index
+        ) => {
           const URLdate = urlFormattedDate(startTime);
           const sessionDate = formatSessionDate(startTime);
           const showRoster = showSessionRoster === `${id}${sessionDate}`;
@@ -174,6 +179,17 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           const outsideOfSkillLevel =
             userSkillRating < skillLevel.min || userSkillRating > skillLevel.max;
           const cannotReserveBecauseSkillLevel = !allSkillLevelsAllowed && outsideOfSkillLevel;
+
+          const reserveTeamAllowed = reserveTeamReservationAllowed(
+            time,
+            sessionDate,
+            reservations.length,
+            womenOnly,
+            isOpenClub,
+            past,
+            isReserveTeam,
+            isPrivate
+          );
 
           if (comingSoon) {
             button = (
@@ -235,7 +251,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                   to={`/session/${id}/${URLdate}`}
                   w="9.5rem"
                   fontSize="12px"
-                  disabled={!isLegalAge || cannotReserveBecauseSkillLevel}
+                  disabled={!isLegalAge || cannotReserveBecauseSkillLevel || !reserveTeamAllowed}
                   onClick={(e) =>
                     showModalForOutsideSkillLevel(
                       e,
@@ -291,6 +307,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
 
           return (
             <div
+              key={index}
               className={`border-b py-6 md:px-5 overflow-hidden ${
                 past ? 'opacity-30 pointer-events-none' : ''
               }`}
@@ -373,6 +390,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                       !isOpenClub &&
                       !onWaitlist &&
                       !cannotReserveBecauseSkillLevel &&
+                      !isReserveTeam &&
                       spotsLeft <= 5 &&
                       isLegalAge && (
                         <div className="flex items-center self-center mt-2 whitespace-nowrap">
@@ -385,6 +403,14 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     {onWaitlist && !past && (
                       <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
                         <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
+                      </div>
+                    )}
+                    {!onWaitlist && !reserved && !reserveTeamAllowed && isReserveTeam && (
+                      <div className="flex items-center self-center mt-2 whitespace-nowrap">
+                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
+                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
+                          Reserve Team not allowed
+                        </p>
                       </div>
                     )}
                   </div>
