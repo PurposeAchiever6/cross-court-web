@@ -31,7 +31,7 @@ const ForgotPass = lazy(() => import('screens/auth/pages/ForgotPassPage'));
 const ForgotPassSuccess = lazy(() => import('screens/auth/pages/ForgotPassSuccess'));
 const PassReset = lazy(() => import('screens/auth/pages/PassResetPage'));
 const PassResetSuccess = lazy(() => import('screens/auth/pages/PassResetSuccess'));
-const Dashboard = lazy(() => import('screens/dashboard/Dashboard'));
+const Dashboard = lazy(() => import('screens/dashboard/DashboardPage'));
 const HowItWorks = lazy(() => import('screens/how-it-works/HowItWorksPage'));
 const CareersPage = lazy(() => import('screens/careers/CareersPage'));
 const Locations = lazy(() => import('screens/locations/LocationsPage'));

@@ -46,7 +46,7 @@ const PlayersList = () => {
   useEffect(() => {
     if (selectedLocation) {
       let sessions = availableSessions
-        .filter(({ startTime }) => isToday(startTime))
+        .filter(({ startTime, isOpenClub }) => isToday(startTime) && !isOpenClub)
         .sort((a, b) => (a.time > b.time ? 1 : -1));
       sessions = sessions.filter((session) => session.location.id === selectedLocation?.id);
       setSelectedSession(sessions[0]);
@@ -81,6 +81,10 @@ const PlayersList = () => {
     setSelectedSession(sessionsForThisLocation[newIndex]);
   };
 
+  const isFirstSessionSelected = sessionsForThisLocation.indexOf(selectedSession) === 0;
+  const isLastSessionSelected =
+    sessionsForThisLocation.indexOf(selectedSession) === sessionsForThisLocation.length - 1;
+
   return (
     <>
       <PrimaryButton
@@ -102,8 +106,11 @@ const PlayersList = () => {
             <div className="flex items-center justify-center">
               <button
                 type="button"
-                className="text-4xl px-4"
                 onClick={() => changeSelectedSession(LEFT)}
+                disabled={isFirstSessionSelected}
+                className={`text-4xl px-4 ${
+                  isFirstSessionSelected ? 'pointer-events-none opacity-40' : ''
+                }`}
               >
                 <FontAwesomeIcon icon={faAngleLeft} />
               </button>
@@ -120,8 +127,11 @@ const PlayersList = () => {
               </div>
               <button
                 type="button"
-                className="text-4xl px-4"
                 onClick={() => changeSelectedSession(RIGHT)}
+                disabled={isLastSessionSelected}
+                className={`text-4xl px-4 ${
+                  isLastSessionSelected ? 'pointer-events-none opacity-40' : ''
+                }`}
               >
                 <FontAwesomeIcon icon={faAngleRight} />
               </button>

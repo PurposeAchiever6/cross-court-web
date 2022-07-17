@@ -17,7 +17,7 @@ import PlayersList from './components/PlayersList';
 const DARK = 'dark';
 const PLUS = 'plus';
 
-const Dashboard = () => {
+const DashboardPage = () => {
   const history = useHistory();
 
   const [darkFouls, setDarkFouls] = useState(0);
@@ -87,4 +87,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardPage;
