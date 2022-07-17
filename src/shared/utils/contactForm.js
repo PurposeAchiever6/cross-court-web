@@ -1,7 +1,13 @@
 import { contactUsForm } from './activeCampaign';
 
+const FIRST_NAME_ID = 'l5of37lq';
+const LAST_NAME_ID = '629f0cdb66675';
+const PHONE_ID = '629f0cdb666e3';
+const EMAIL_ID = '629f0cdb6673d';
+const MESSAGE_ID = '629f0cdb6677f';
+
 export const openContactForm = () => {
-  document.querySelector('.eapps-form-floating-button').click();
+  document.querySelector('.open-contact-us-form').click();
 };
 
 export const openContactFormForUser = (user, message = '') => {
@@ -11,6 +17,20 @@ export const openContactFormForUser = (user, message = '') => {
   autoCompleteContactForm({ firstName, lastName, phoneNumber, email, message });
 };
 
+const setNativeValue = (element, value) => {
+  let lastValue = element.value;
+  element.value = value;
+  let event = new Event('input', { target: element, bubbles: true });
+  // React 15
+  event.simulated = true;
+  // React 16
+  let tracker = element._valueTracker;
+  if (tracker) {
+    tracker.setValue(lastValue);
+  }
+  element.dispatchEvent(event);
+};
+
 export const autoCompleteContactForm = ({
   firstName = '',
   lastName = '',
@@ -18,32 +38,34 @@ export const autoCompleteContactForm = ({
   email = '',
   message = '',
 }) => {
-  const firstNameInput = document.querySelector(".eapps-form-form input[name='first-name-0']");
-  const lastNameInput = document.querySelector(".eapps-form-form input[name='last-name-1']");
-  const phoneNumberInput = document.querySelector(".eapps-form-form input[name='phone-2']");
-  const emailInput = document.querySelector(".eapps-form-form input[name='email-3']");
-  const messageInput = document.querySelector(".eapps-form-form textarea[name='message-4']");
+  const firstNameInput = document.getElementById(FIRST_NAME_ID);
+  const lastNameInput = document.getElementById(LAST_NAME_ID);
+  const phoneNumberInput = document.getElementById(PHONE_ID);
+  const emailInput = document.getElementById(EMAIL_ID);
+  const messageInput = document.getElementById(MESSAGE_ID);
 
-  if (firstNameInput) firstNameInput.value = firstName;
-  if (lastNameInput) lastNameInput.value = lastName;
-  if (phoneNumberInput) phoneNumberInput.value = phoneNumber;
-  if (emailInput) emailInput.value = email;
-  if (messageInput) messageInput.value = message;
+  if (firstNameInput) setNativeValue(firstNameInput, firstName);
+  if (lastNameInput) setNativeValue(lastNameInput, lastName);
+  if (phoneNumberInput) setNativeValue(phoneNumberInput, phoneNumber);
+  if (emailInput) setNativeValue(emailInput, email);
+  if (messageInput) setNativeValue(messageInput, message);
 };
 
 export const addEventListenerOnSubmitContactUsForm = () => {
   document.addEventListener('click', (e) => {
-    if (
-      e.target &&
-      (e.target.className === 'eapps-form-actions-button-label' ||
-        e.target.className === 'eapps-form-actions-button eapps-form-button')
-    ) {
-      const email = document.querySelector(".eapps-form-form input[name='email-3']").value;
-      const firstName = document.querySelector(".eapps-form-form input[name='first-name-0']").value;
-      const lastName = document.querySelector(".eapps-form-form input[name='last-name-1']").value;
-      const phoneNumber = document.querySelector(".eapps-form-form input[name='phone-2']").value;
+    const target = e.target;
 
-      if (email.length > 0) {
+    if (
+      target &&
+      target.tagName?.toLowerCase() === 'span' &&
+      target.className?.includes('ButtonBase')
+    ) {
+      const firstName = document.getElementById(FIRST_NAME_ID)?.value;
+      const lastName = document.getElementById(LAST_NAME_ID)?.value;
+      const phoneNumber = document.getElementById(PHONE_ID)?.value;
+      const email = document.getElementById(EMAIL_ID)?.value;
+
+      if (email?.length > 0) {
         contactUsForm({ email, firstName, lastName, phoneNumber });
       }
     }

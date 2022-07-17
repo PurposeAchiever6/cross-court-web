@@ -1,49 +1,23 @@
-.eapps-form-floating-button {
-  display: none !important;
+.contact-us-form {
+  font-family: 'shapiro45_welter_extd' !important;
 }
-#eapps-form-1 .eapps-form-style-classic .eapps-form-header-title {
-  font-family: 'shapiro95_super_wide';
+
+.contact-us-form button {
+  background-color: #9999ff !important;
+  border: 3px solid #fff !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  font-family: 'shapiro95_super_wide' !important;
+  font-size: 14px !important;
+  font-weight: normal !important;
+  line-height: 20px !important;
+  text-transform: uppercase !important;
+  transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease !important;
 }
-#eapps-form-1 .eapps-form-style-classic .eapps-form-element-label {
-  color: #9999ff;
-  font-size: 16px;
-  font-family: 'shapiro95_super_wide';
-  font-weight: normal;
-  line-height: 16px;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-}
-#eapps-form-1
-  .eapps-form-style-classic
-  .eapps-form-element-container
-  .eapps-form-element-input-text {
-  background-color: #fbf7f3;
-  border: 1px solid #000 !important;
-}
-#eapps-form-1
-  .eapps-form-style-classic
-  .eapps-form-element-container
-  .eapps-form-element-input-textarea {
-  background-color: #fbf7f3;
-  border: 1px solid #000 !important;
-  min-height: 100px;
-}
-#eapps-form-1 .eapps-form-style-classic .eapps-form-button,
-#eapps-form-1 .eapps-form-style-classic .eapps-form-button.eapps-form-actions-button {
-  background-color: #9999ff;
-  border: 3px solid #fff;
-  border-radius: 0;
-  color: #fff;
-  font-family: 'shapiro95_super_wide';
-  font-size: 14px;
-  font-weight: normal;
-  line-height: 20px;
-  text-transform: uppercase;
-  transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
-}
-#eapps-form-1 .eapps-form-style-classic .eapps-form-button,
-#eapps-form-1 .eapps-form-style-classic .eapps-form-button.eapps-form-actions-button:hover {
-  background-color: #fff;
-  border-color: #9999ff;
-  color: #9999ff;
+
+.contact-us-form button:hover {
+  background-color: white !important;
+  border: 3px solid #9999ff !important;
+  border-radius: 0 !important;
+  color: #9999ff !important;
 }

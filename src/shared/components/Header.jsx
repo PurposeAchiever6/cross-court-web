@@ -159,7 +159,7 @@ const Header = () => {
           isOpen={menuOpen}
           closeCallback={toggleMenu}
           topOffset="0"
-          width="50vw"
+          width={document.documentElement.clientWidth / 2}
           transitionTime={1}
           className="hidden md:block"
         >
