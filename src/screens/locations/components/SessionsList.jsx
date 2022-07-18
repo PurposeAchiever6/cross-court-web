@@ -180,16 +180,15 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
             userSkillRating < skillLevel.min || userSkillRating > skillLevel.max;
           const cannotReserveBecauseSkillLevel = !allSkillLevelsAllowed && outsideOfSkillLevel;
 
-          const reserveTeamAllowed = reserveTeamReservationAllowed(
-            time,
+          const reserveTeamAllowed = reserveTeamReservationAllowed({
+            sessionTime: time,
             sessionDate,
-            reservations.length,
-            womenOnly,
+            reservationsCount: reservations.length,
             isOpenClub,
             past,
             isReserveTeam,
-            isPrivate
-          );
+            isPrivate,
+          });
 
           if (comingSoon) {
             button = (

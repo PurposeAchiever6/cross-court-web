@@ -1,16 +1,15 @@
 import dayjs from 'dayjs';
 
-export const reserveTeamReservationAllowed = (
+export const reserveTeamReservationAllowed = ({
   sessionTime,
   sessionDate,
   reservationsCount,
-  womenOnly,
   isOpenClub,
   past,
   isReserveTeam,
-  isPrivate
-) => {
-  if (womenOnly || isOpenClub || past || !isReserveTeam || isPrivate) {
+  isPrivate,
+}) => {
+  if (isOpenClub || past || !isReserveTeam || isPrivate) {
     return true;
   }
 

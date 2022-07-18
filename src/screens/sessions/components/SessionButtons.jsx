@@ -39,18 +39,17 @@ const SessionButtons = ({
   const { activeSubscription, reserveTeam } = userProfile;
   const subscriptionPaused = activeSubscription?.paused;
 
-  const { womenOnly, isOpenClub, past, time, reservationsCount, isPrivate, onWaitlist } = session;
+  const { isOpenClub, past, time, reservationsCount, isPrivate, onWaitlist } = session;
 
-  const reserveTeamAllowed = reserveTeamReservationAllowed(
-    time,
+  const reserveTeamAllowed = reserveTeamReservationAllowed({
+    sessionTime: time,
     sessionDate,
     reservationsCount,
-    womenOnly,
     isOpenClub,
     past,
-    reserveTeam,
-    isPrivate
-  );
+    isReserveTeam: reserveTeam,
+    isPrivate,
+  });
 
   const reserveTeamNotAllowed = reserveTeam ? !reserveTeamAllowed : false;
 
@@ -121,7 +120,7 @@ const SessionButtons = ({
             </p>
           )}
           {reserveTeamNotAllowed && !reservedOrConfirmed && !onWaitlist && (
-            <p className="text-sm mt-4">Reserve Team not allowed</p>
+            <p className="text-sm mt-4">Reserve Team restricted</p>
           )}
           {isAuthenticated && (
             <>

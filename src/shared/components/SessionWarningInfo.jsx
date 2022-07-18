@@ -27,7 +27,7 @@ const SessionWarningInfo = ({
             return (
               <>
                 Reserve Team <br className="md:hidden" />
-                not allowed
+                restricted
               </>
             );
           }
