@@ -13,9 +13,9 @@ import colors from 'shared/styles/constants';
 import BadgeWithInfo from 'shared/components/BadgeWithInfo';
 import Badge from 'shared/components/Badge';
 import OnboardingTour from 'shared/components/OnboardingTour';
-import WarningTriangle from 'shared/images/warning-triangle.png';
 import { isUserInLegalAge } from 'shared/utils/user';
 import { reserveTeamReservationAllowed } from 'shared/utils/sessions';
+import SessionWarningInfo from 'shared/components/SessionWarningInfo';
 
 import {
   hourRange,
@@ -367,50 +367,23 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                   )}
                   <div className="flex flex-col items-end">
                     {button}
-                    {!isLegalAge && !isOpenClub && (
-                      <div className="flex items-center self-center mt-2 whitespace-nowrap">
-                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">Must be 18+</p>
-                      </div>
+                    {!isOpenClub && !comingSoon && (
+                      <SessionWarningInfo
+                        isLegalAge={isLegalAge}
+                        reserved={reserved}
+                        onWaitlist={onWaitlist}
+                        cannotReserveBecauseSkillLevel={cannotReserveBecauseSkillLevel}
+                        skillLevelName={skillLevel.name}
+                        reserveTeamAllowed={reserveTeamAllowed}
+                        isReserveTeam={isReserveTeam}
+                        full={full}
+                        spotsLeft={spotsLeft}
+                        past={past}
+                      />
                     )}
-                    {!reserved &&
-                      !isOpenClub &&
-                      !onWaitlist &&
-                      isLegalAge &&
-                      cannotReserveBecauseSkillLevel && (
-                        <div className="flex items-center self-center mt-2 whitespace-nowrap">
-                          <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                          <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
-                            {skillLevel.name}
-                          </p>
-                        </div>
-                      )}
-                    {!past &&
-                      !reserved &&
-                      !isOpenClub &&
-                      !onWaitlist &&
-                      !cannotReserveBecauseSkillLevel &&
-                      !isReserveTeam &&
-                      spotsLeft <= 5 &&
-                      isLegalAge && (
-                        <div className="flex items-center self-center mt-2 whitespace-nowrap">
-                          <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                          <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
-                            {full ? 'Session full' : 'Few spots left'}
-                          </p>
-                        </div>
-                      )}
                     {onWaitlist && !past && (
                       <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
                         <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
-                      </div>
-                    )}
-                    {!onWaitlist && !reserved && !reserveTeamAllowed && isReserveTeam && (
-                      <div className="flex items-center self-center mt-2 whitespace-nowrap">
-                        <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-                        <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">
-                          Reserve Team not allowed
-                        </p>
                       </div>
                     )}
                   </div>
