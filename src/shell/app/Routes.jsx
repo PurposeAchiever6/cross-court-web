@@ -2,7 +2,7 @@
 
 import React, { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import HttpsRedirect from 'react-https-redirect';
 import ReactGA from 'react-ga';
@@ -67,6 +67,7 @@ const PaymentMethodsMembership = lazy(() =>
 const Gallery = lazy(() => import('screens/gallery/GalleryPage'));
 const Referrals = lazy(() => import('screens/referrals/ReferralsPage'));
 const MembershipConfirm = lazy(() => import('screens/checkout/pages/MembershipConfirm'));
+const NotFoundPage = lazy(() => import('screens/not-found/NotFoundPage'));
 
 const AppWrapper = styled.div`
   display: flex;
@@ -397,6 +398,12 @@ const Routes = () => {
         <PrivateRoute path={ROUTES.REFERRALS} exact>
           <Referrals />
         </PrivateRoute>
+        <Route path={ROUTES.NOT_FOUND} exact>
+          <NotFoundPage />
+        </Route>
+        <Route path="*">
+          <Redirect to={ROUTES.NOT_FOUND} />
+        </Route>
       </Switch>
     </main>
   );
