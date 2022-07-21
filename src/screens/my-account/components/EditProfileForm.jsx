@@ -34,6 +34,7 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
     firstName: profile ? profile.firstName : '',
     lastName: profile ? profile.lastName : '',
     phoneNumber: profile ? formatPhoneNumber(profile.phoneNumber) : '',
+    instagramUsername: profile ? profile.instagramUsername : '',
   };
 
   return (
@@ -57,6 +58,12 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
                 name="image"
                 setFieldValue={setFieldValue}
                 accept="image/*"
+              />
+              <InputTextField
+                name="instagramUsername"
+                label="Instagram"
+                error={errors.instagramUsername}
+                className="mb-6"
               />
               <InputTextField
                 name="firstName"
