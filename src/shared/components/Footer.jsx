@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import CheeseburgerMenu from 'cheeseburger-menu';
 
 import ROUTES from 'shared/constants/routes';
 import { validateEmail } from 'shared/utils/helpers';
@@ -38,6 +39,7 @@ const Footer = () => {
   const { pathname } = useLocation();
   const currentUser = useSelector(getUserProfile) || {};
   const [email, setEmail] = useState('');
+  const [contactUsOpen, setContactUsOpen] = useState(false);
   const [showError, setShowError] = useState(false);
   const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
@@ -64,6 +66,17 @@ const Footer = () => {
 
   return pathname === ROUTES.DASHBOARD ? null : (
     <>
+      <CheeseburgerMenu
+        width={document.documentElement.clientWidth / 3}
+        right
+        isOpen={contactUsOpen}
+        closeCallback={() => setContactUsOpen(false)}
+      >
+        <div className="hidden open-contact-us-form" onClick={() => setContactUsOpen(true)} />
+        <div className="p-4 mt-10 contact-us-form">
+          <div className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136" />
+        </div>
+      </CheeseburgerMenu>
       <footer className="flex flex-col md:flex-row-reverse justify-evenly md:justify-between bg-cc-black px-4 py-8 md:p-12  text-white h-164 md:h-124 border-t border-gray-400 border-opacity-20">
         <div className="md:w-1/2 flex flex-col h-full justify-evenly md:justify-between">
           <LogoSvg className="w-72" />

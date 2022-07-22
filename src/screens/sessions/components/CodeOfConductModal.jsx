@@ -42,7 +42,7 @@ export const CodeOfConductModal = ({ isOpen, closeHandler, onConfirm, userProfil
               </InputCheckboxField>
               <InputCheckboxField name="codeOfConductTwo" className="mb-5">
                 I acknowledge that hard fouls, throwing the ball, excessive bodily contact, or any
-                other form of aggressive physical behavior will not be toleraed.
+                other form of aggressive physical behavior will not be tolerated.
               </InputCheckboxField>
               <InputCheckboxField name="codeOfConductThree" className="mb-8">
                 I acknowledge that a violation of any of the acts above will result in one of the

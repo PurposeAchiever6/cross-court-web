@@ -18,6 +18,8 @@ import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import MembershipsFeatures from 'shared/components/MembershipsFeatures';
 
 import Memberships from './components/Memberships';
+import ReserveTeamMemberships from './components/reserve-team/Memberships';
+import ReserveTeamMembershipsFeatures from './components/reserve-team/MembershipsFeatures';
 import DropIns from './components/DropIns';
 import FAQ from './components/FAQ';
 import NoSessionCredits from './components/NoSessionCredits';
@@ -32,7 +34,7 @@ const ProductsPage = () => {
   const isLoading = useSelector(getPageLoading);
   const isAuthenticated = useSelector(getIsAuthenticated);
   const userProfile = useSelector(getUserProfile);
-  const { activeSubscription } = userProfile;
+  const { activeSubscription, reserveTeam } = userProfile;
 
   const showDropInsProducts = state?.showDropInsProducts;
   const showNoFreeSessionInformation = state?.showNoFreeSessionInformation;
@@ -62,6 +64,22 @@ const ProductsPage = () => {
     dispatch(reactivateSubscription(activeSubscription));
   };
 
+  const onSubmit = (isActiveSubscription, product) => {
+    if (isActiveSubscription) {
+      activeSubscription.canceled ? reactivateMembership() : cancelMembership();
+    } else {
+      selectProductHandler(product);
+    }
+  };
+
+  const getSubmitText = (isActiveSubscription, activeSubscription) => {
+    if (isActiveSubscription) {
+      return activeSubscription.canceled ? 'Reactivate' : 'Cancel';
+    } else {
+      return activeSubscription ? 'Select' : 'Join';
+    }
+  };
+
   useEffect(() => {
     dispatch(initialLoad());
     if (showAnimation) {
@@ -87,15 +105,22 @@ const ProductsPage = () => {
             className="mt-4 text-white lg:text-xl"
           />
         </div>
-        {!showDropIns && (
-          <Memberships
-            selectProductHandler={selectProductHandler}
-            cancelMembership={cancelMembership}
-            availableProducts={availableProducts}
-            activeSubscription={activeSubscription}
-            reactivateMembership={reactivateMembership}
-          />
-        )}
+        {!showDropIns &&
+          (reserveTeam ? (
+            <ReserveTeamMemberships
+              onSubmit={onSubmit}
+              availableProducts={availableProducts}
+              activeSubscription={activeSubscription}
+              getSubmitText={getSubmitText}
+            />
+          ) : (
+            <Memberships
+              onSubmit={onSubmit}
+              availableProducts={availableProducts}
+              activeSubscription={activeSubscription}
+              getSubmitText={getSubmitText}
+            />
+          ))}
         {showDropIns && (
           <DropIns
             selectProductHandler={selectProductHandler}
@@ -104,7 +129,8 @@ const ProductsPage = () => {
             reactivateMembership={reactivateMembership}
           />
         )}
-        {!showDropIns && <MembershipsFeatures />}
+        {!showDropIns &&
+          (reserveTeam ? <ReserveTeamMembershipsFeatures /> : <MembershipsFeatures />)}
         <div className="w-full flex justify-center mb-16">
           <h2 className="dharma_gothic_cheavy_italic text-6xl lg:text-8xl text-cc-purple">
             HAVE A QUESTION? REACH OUT BELOW

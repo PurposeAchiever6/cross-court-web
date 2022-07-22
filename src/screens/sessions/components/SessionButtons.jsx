@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
+import { reserveTeamReservationAllowed } from 'shared/utils/sessions';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionDate } from 'screens/sessions/reducer';
@@ -35,9 +36,24 @@ const SessionButtons = ({
   const userProfile = useSelector(getUserProfile);
   const sessionDate = useSelector(getSessionDate);
 
-  const { activeSubscription } = userProfile;
+  const { activeSubscription, reserveTeam } = userProfile;
   const subscriptionPaused = activeSubscription?.paused;
-  const reservationDisabled = disabled || subscriptionPaused;
+
+  const { isOpenClub, past, time, reservationsCount, isPrivate, onWaitlist } = session;
+
+  const reserveTeamAllowed = reserveTeamReservationAllowed({
+    sessionTime: time,
+    sessionDate,
+    reservationsCount,
+    isOpenClub,
+    past,
+    isReserveTeam: reserveTeam,
+    isPrivate,
+  });
+
+  const reserveTeamNotAllowed = reserveTeam ? !reserveTeamAllowed : false;
+
+  const reservationDisabled = disabled || subscriptionPaused || reserveTeamNotAllowed;
 
   const [copied, setCopied] = useState(false);
 
@@ -51,7 +67,7 @@ const SessionButtons = ({
     const SHARE_URL = `${window.location.origin}/session/${session.id}/${sessionDate}`;
     const SHARE_MSG = `I just signed up for the Crosscourt ${
       session.location.name
-    } session at ${formatShareSessionTime(session.time)} on ${formatShareSessionDate(
+    } session at ${formatShareSessionTime(time)} on ${formatShareSessionDate(
       sessionDate
     )}. Use my link to sign up. ${SHARE_URL}`;
     input.setAttribute('value', SHARE_MSG);
@@ -79,7 +95,7 @@ const SessionButtons = ({
 
   return (
     <div className="flex flex-col items-center">
-      {(session?.past || (session?.full && !reservedOrConfirmed)) && (
+      {(past || (session?.full && !reservedOrConfirmed)) && (
         <PrimaryButton
           className="mb-4"
           onClick={() => history.push(ROUTES.LOCATIONS)}
@@ -88,7 +104,7 @@ const SessionButtons = ({
           FIND NEW SESSION
         </PrimaryButton>
       )}
-      {!session?.past && (
+      {!past && (
         <>
           <ReserveButton
             reserveSessionAction={reserveSessionAction}
@@ -100,12 +116,15 @@ const SessionButtons = ({
           />
           {subscriptionPaused && (
             <p className="text-sm mt-4">
-              You can't reserve when your <br /> membership is paused.
+              You can't reserve when your <br /> membership is paused
             </p>
+          )}
+          {reserveTeamNotAllowed && !reservedOrConfirmed && !onWaitlist && (
+            <p className="text-sm mt-4">Reserve Team restricted</p>
           )}
           {isAuthenticated && (
             <>
-              {session?.onWaitlist && (
+              {onWaitlist && (
                 <PrimaryButton
                   onClick={() => onClickRemoveFromWaitlist(session.id, sessionDate)}
                   className="mb-4"
@@ -114,7 +133,7 @@ const SessionButtons = ({
                   OUT WAITLIST
                 </PrimaryButton>
               )}
-              {session?.full && !session?.onWaitlist && !reservedOrConfirmed && (
+              {session?.full && !onWaitlist && !reservedOrConfirmed && (
                 <PrimaryButton
                   onClick={() => onClickJoinWaitlist(session.id, sessionDate)}
                   className="mb-4"

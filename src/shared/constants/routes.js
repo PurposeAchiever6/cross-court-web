@@ -1,4 +1,5 @@
 export default {
+  NOT_FOUND: '/404',
   CAREERS: '/careers',
   CHECKOUT: '/checkout',
   CHECKOUT_CONFIRMED: '/checkout/confirmed',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
@@ -63,7 +63,22 @@ const MyProfile = ({ profile, showTitle = true }) => {
               alt="Profile"
             />
           </div>
-
+          <div className={detailRowClasses}>
+            <span className={titleClasses}>INSTAGRAM</span>
+            <span className="truncate">
+              {profile.instagramUsername ? (
+                <Link
+                  to={{ pathname: profile.instagramProfile }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {profile.instagramUsername}
+                </Link>
+              ) : (
+                '-'
+              )}
+            </span>
+          </div>
           <div className={detailRowClasses}>
             <span className={titleClasses}>FULL NAME</span>
             <span className="truncate">{`${profile.firstName} ${profile.lastName}`}</span>

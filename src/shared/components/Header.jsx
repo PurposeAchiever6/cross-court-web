@@ -40,6 +40,7 @@ const ALWAYS_SCROLLED = [
   ROUTES.MANAGE_MEMBERSHIP,
   ROUTES.FIRSTSESSIONRESERVED,
   ROUTES.PRIVACY_POLICY,
+  ROUTES.NOT_FOUND,
   '/session',
   '/first-session',
 ];
@@ -159,7 +160,7 @@ const Header = () => {
           isOpen={menuOpen}
           closeCallback={toggleMenu}
           topOffset="0"
-          width="50vw"
+          width={document.documentElement.clientWidth / 2}
           transitionTime={1}
           className="hidden md:block"
         >

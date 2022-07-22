@@ -23,6 +23,10 @@
   -webkit-text-stroke-width: 2px;
 }
 
+.text-stroke-width-3 {
+  -webkit-text-stroke-width: 3px;
+}
+
 .direction-rtl {
   direction: rtl;
 }
