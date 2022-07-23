@@ -11,7 +11,6 @@ import WarningTriangle from 'shared/images/warning-triangle.png';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import BadgeWithInfo from 'shared/components/BadgeWithInfo';
 
 import { resetLoading, removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
@@ -29,12 +28,11 @@ import CancelModal from 'screens/sessions/components/CancelModal';
 import SessionButtons from 'screens/sessions/components/SessionButtons';
 import SkillLevelWarning from 'screens/sessions/components/SkillLevelWarning';
 import SessionHeader from 'screens/sessions/components/SessionHeader';
+import SessionBadge from 'screens/sessions/components/SessionBadge';
 
 import SessionOfficials from 'screens/sessions/components/SessionOfficials';
 import Carousel from 'shared/components/Carousel';
 import { getSessionsMessageContainerText, sessionData } from 'screens/sessions/utils';
-
-import { WOMEN_SESSION_INFO } from 'shared/constants/sessions';
 
 const Session = () => {
   const { id, date } = useParams();
@@ -47,7 +45,6 @@ const Session = () => {
   const userProfile = useSelector(getUserProfile);
   const shouldShowCancelModal = useSelector(getShowCancelModal);
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
-  const { skillLevel } = sessionInfo;
 
   const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
   const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
@@ -67,6 +64,7 @@ const Session = () => {
   const isLegalAge = isUserInLegalAge(userProfile);
   const isSessionComplete = sessionInfo.past;
   const isSessionFull = sessionInfo.spotsLeft === 0;
+  const isSkillSession = sessionInfo.skillSession;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -122,20 +120,19 @@ const Session = () => {
                   <span className="font-shapiro45_welter_extd text-sm uppercase">{data.value}</span>
                 </div>
               ))}
-              {sessionInfo.womenOnly ? (
-                <BadgeWithInfo info={WOMEN_SESSION_INFO} variant="white">
-                  Women
-                </BadgeWithInfo>
-              ) : (
-                <BadgeWithInfo info={skillLevel.description} variant="white">
-                  {`${skillLevel.min} - ${skillLevel.max}`}
-                </BadgeWithInfo>
-              )}
+              <SessionBadge
+                skillLevel={sessionInfo.skillLevel}
+                isOpenClub={sessionInfo.isOpenClub}
+                womenOnly={sessionInfo.womenOnly}
+                skillSession={sessionInfo.skillSession}
+                variant="white"
+              />
             </div>
             <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
               {getSessionsMessageContainerText(
                 isSessionComplete,
                 isSessionFull,
+                isSkillSession,
                 isAuthenticated,
                 userProfile
               )}

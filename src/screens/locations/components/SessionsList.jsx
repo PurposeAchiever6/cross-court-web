@@ -10,7 +10,6 @@ import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
-import BadgeWithInfo from 'shared/components/BadgeWithInfo';
 import Badge from 'shared/components/Badge';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import { isUserInLegalAge } from 'shared/utils/user';
@@ -34,9 +33,9 @@ import {
   removeSessionWaitlistInit,
 } from 'screens/sessions/actionCreators';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
-import { WOMEN_SESSION_INFO } from 'shared/constants/sessions';
 import SessionVote from 'screens/locations/components/SessionVote';
 import SessionRoster from 'screens/locations/components/SessionRoster';
+import SessionBadge from 'screens/sessions/components/SessionBadge';
 import { hasConfirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
 import OutsideOfSkillLevelModal from './OutsideOfSkillLevelModal';
 
@@ -164,6 +163,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
             votes,
             voted,
             womenOnly,
+            skillSession,
             allSkillLevelsAllowed,
             reservations,
           },
@@ -174,7 +174,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           const showRoster = showSessionRoster === `${id}${sessionDate}`;
 
           let button;
-          let badge;
 
           const outsideOfSkillLevel =
             userSkillRating < skillLevel.min || userSkillRating > skillLevel.max;
@@ -288,22 +287,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
             );
           }
 
-          if (isOpenClub) {
-            badge = (
-              <BadgeWithInfo info="All members can access the club to shootaround, train, or self-organize own runs (included with memberships).">
-                Open Club
-              </BadgeWithInfo>
-            );
-          } else if (womenOnly) {
-            badge = <BadgeWithInfo info={WOMEN_SESSION_INFO}>Women</BadgeWithInfo>;
-          } else {
-            badge = (
-              <BadgeWithInfo info={skillLevel.description}>
-                {`${skillLevel.min} - ${skillLevel.max}`}
-              </BadgeWithInfo>
-            );
-          }
-
           return (
             <div
               key={index}
@@ -332,10 +315,19 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     {location.name}
                   </p>
                   <div
-                    id={`${!isOpenClub && !womenOnly ? 'sessions-list-session-level-info' : ''}`}
+                    id={`${
+                      !isOpenClub && !womenOnly && !skillSession
+                        ? 'sessions-list-session-level-info'
+                        : ''
+                    }`}
                     className="mt-2"
                   >
-                    {badge}
+                    <SessionBadge
+                      skillLevel={skillLevel}
+                      isOpenClub={isOpenClub}
+                      womenOnly={womenOnly}
+                      skillSession={skillSession}
+                    />
                   </div>
                   {!isOpenClub && (
                     <div

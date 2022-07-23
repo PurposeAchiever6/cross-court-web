@@ -4,29 +4,51 @@ import { longSessionDate, hourRange } from 'shared/utils/date';
 export const getSessionsMessageContainerText = (
   isSessionComplete,
   isSessionFull,
+  isSkillSession,
   isAuthenticated,
   userProfile
 ) => {
-  let text = '';
-  const { totalCredits, activeSubscription, unlimitedCredits } = userProfile;
+  const {
+    activeSubscription,
+    totalCredits,
+    subscriptionSkillSessionCredits,
+    unlimitedCredits,
+    unlimitedSkillSessionCredits,
+  } = userProfile;
 
   if (isSessionComplete) {
-    text = `SESSION COMPLETE`;
+    return 'SESSION COMPLETE';
   } else if (isSessionFull) {
-    text = `SESSION FULL`;
-  } else {
-    if (isAuthenticated) {
-      if (unlimitedCredits) {
-        text = 'YOU HAVE UNLIMITED SESSIONS';
-      } else if (totalCredits) {
-        text = `YOU HAVE ${totalCredits} SESSION${totalCredits === 1 ? '' : 'S'} ${
-          activeSubscription ? 'LEFT THIS MONTH' : 'AVAILABLE'
-        }`;
-      }
+    return 'SESSION FULL';
+  }
+
+  if (!isAuthenticated) {
+    return '';
+  }
+
+  if (isSkillSession) {
+    if (unlimitedSkillSessionCredits) {
+      return 'YOU HAVE UNLIMITED SKILL SESSIONS';
+    }
+
+    if (subscriptionSkillSessionCredits) {
+      return `YOU HAVE ${subscriptionSkillSessionCredits} SKILL SESSION${
+        subscriptionSkillSessionCredits === 1 ? '' : 'S'
+      } LEFT THIS MONTH`;
     }
   }
 
-  return text;
+  if (unlimitedCredits) {
+    return 'YOU HAVE UNLIMITED SESSIONS';
+  }
+
+  if (totalCredits) {
+    return `YOU HAVE ${totalCredits} SESSION${totalCredits === 1 ? '' : 'S'} ${
+      activeSubscription ? 'LEFT THIS MONTH' : 'AVAILABLE'
+    }`;
+  }
+
+  return '';
 };
 
 export const sessionData = (date, sessionInfo) => [

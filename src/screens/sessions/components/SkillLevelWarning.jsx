@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 
 const SkillLevelWarning = ({ userProfile, sessionInfo }) => {
   const { skillRating } = userProfile;
-  const { skillLevel } = sessionInfo;
+  const { skillLevel, skillSession } = sessionInfo;
   const level = parseFloat(skillRating || 0);
 
   let showWarning = false;
+
   if (
+    !skillSession &&
     skillRating !== '' &&
     skillLevel?.min !== '' &&
     skillLevel?.max !== '' &&
