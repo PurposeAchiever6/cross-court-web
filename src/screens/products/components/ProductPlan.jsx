@@ -5,7 +5,7 @@ import currency from 'currency.js';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import { getUserProfile } from 'screens/my-account/reducer';
-import { RECURRING } from 'screens/products/constants';
+import { RECURRING, UNLIMITED_VALUE } from 'screens/products/constants';
 import { productDiscount } from 'screens/products/utils';
 import Ball from 'shared/images/white-circular-logo.png';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -28,6 +28,9 @@ const ProductPlan = ({
       formatWithSymbol: true,
       precision: 0,
     }).format();
+
+  const getSkillSessionCreditsString = (skillSessionCredits) =>
+    skillSessionCredits === UNLIMITED_VALUE ? 'Unlimited' : skillSessionCredits.toString();
 
   const isUnlimited = product.credits < 0;
   const price = formatPrice(product.priceForUser);
@@ -76,7 +79,7 @@ const ProductPlan = ({
           </div>
         )}
         {isRecurring && showFeatures && (
-          <div className="h-64">
+          <div className="h-80">
             <h2 className="mb-3 mt-6 text-lg text-left xl:text-xl shapiro96_inclined_wide leading-none uppercase">
               FEATURES
             </h2>
@@ -93,18 +96,22 @@ const ProductPlan = ({
               <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
               <div className="text-sm text-left mt-2 ml-2">Open Club Access</div>
             </div>
-            {isRecurring && (
-              <div className="flex mb-2">
-                <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
-                <div className="text-sm text-left mt-2 ml-2">Free Jersey Rental</div>
-              </div>
-            )}
+            <div className="flex mb-2">
+              <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
+              <div className="text-sm text-left mt-2 ml-2">Free Jersey Rental</div>
+            </div>
             {isUnlimited && (
               <div className="flex mb-2">
                 <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
                 <div className="text-sm text-left mt-2 ml-2">No late cancellation fee</div>
               </div>
             )}
+            <div className="flex mb-2">
+              <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
+              <div className="text-sm text-left mt-2 ml-2">{`${getSkillSessionCreditsString(
+                product.skillSessionCredits
+              )} Skill Session Credits`}</div>
+            </div>
           </div>
         )}
       </div>
