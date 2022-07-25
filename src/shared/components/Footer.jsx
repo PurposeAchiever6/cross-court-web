@@ -9,6 +9,7 @@ import CheeseburgerMenu from 'cheeseburger-menu';
 
 import ROUTES from 'shared/constants/routes';
 import { validateEmail } from 'shared/utils/helpers';
+import { TRIBE_COMMUNITY } from 'shared/constants/urls';
 import { openContactFormForUser } from 'shared/utils/contactForm';
 import { stayInTheLoop } from 'shared/utils/activeCampaign';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -178,6 +179,14 @@ const Footer = () => {
             to={ROUTES.GALLERY}
           >
             GALLERY
+          </Link>
+          <Link
+            className="w-max hover:opacity-60 transition-opacity duration-300"
+            to={{ pathname: TRIBE_COMMUNITY }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            COMMUNITY
           </Link>
           {isAuthenticated ? (
             <p
