@@ -27,8 +27,15 @@ const MyCreditsContainer = styled.div`
   }
 `;
 
-const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
+const MyCredits = ({
+  isUnlimited,
+  credits,
+  isUnlimitedSkillSession,
+  skillSessionCredits,
+  activeSubscription,
+}) => {
   const sessionPluralize = credits === 1 ? 'SESSION' : 'SESSIONS';
+  const skillSessionPluralize = skillSessionCredits === 1 ? 'SKILL SESSION' : 'SKILL SESSIONS';
 
   return (
     <MyCreditsContainer>
@@ -58,23 +65,43 @@ const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
           </>
         )}
         {activeSubscription && (
-          <div className="text-sm mt-10">
-            <div className="mb-4">
-              <div className="font-shapiro95_super_wide uppercase mr-2">Current Membership</div>
+          <>
+            <div className="mt-4">
+              {isUnlimitedSkillSession ? (
+                <span className="sessions-left">
+                  UNLIMITED
+                  <br />
+                  SKILL SESSIONS
+                </span>
+              ) : (
+                <>
+                  <span className="session-number">{skillSessionCredits}</span>
+                  <span className="sessions-left">
+                    {skillSessionPluralize}
+                    <br />
+                    <span className="whitespace-nowrap">LEFT THIS MONTH</span>
+                  </span>
+                </>
+              )}
+            </div>
+            <div className="text-sm mt-10">
+              <div className="mb-4">
+                <div className="font-shapiro95_super_wide uppercase mr-2">Current Membership</div>
+                <div>
+                  {activeSubscription.product.name}
+                  {activeSubscription.paused && <span className="ml-1 text-xs">(paused)</span>}
+                </div>
+              </div>
               <div>
-                {activeSubscription.product.name}
-                {activeSubscription.paused && <span className="ml-1 text-xs">(paused)</span>}
+                <div className="font-shapiro95_super_wide uppercase mr-2">Billing Period</div>
+                <div>
+                  {`${subscriptionPeriodFormattedDate(
+                    activeSubscription.currentPeriodStart
+                  )} - ${subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}`}
+                </div>
               </div>
             </div>
-            <div>
-              <div className="font-shapiro95_super_wide uppercase mr-2">Billing Period</div>
-              <div>
-                {`${subscriptionPeriodFormattedDate(
-                  activeSubscription.currentPeriodStart
-                )} - ${subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}`}
-              </div>
-            </div>
-          </div>
+          </>
         )}
       </div>
       <div>
@@ -100,6 +127,8 @@ MyCredits.defaultProps = {
 MyCredits.propTypes = {
   isUnlimited: bool,
   credits: number,
+  isUnlimitedSkillSession: bool.isRequired,
+  skillSessionCredits: number.isRequired,
   activeSubscription: object,
 };
 
