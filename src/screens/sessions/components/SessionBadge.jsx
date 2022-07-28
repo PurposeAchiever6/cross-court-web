@@ -45,11 +45,12 @@ const SessionBadge = ({ skillLevel, isOpenClub, womenOnly, skillSession, variant
 };
 
 SessionBadge.defaultProps = {
+  skillLevel: null,
   variant: 'black',
 };
 
 SessionBadge.propTypes = {
-  skillLevel: PropTypes.shape().isRequired,
+  skillLevel: PropTypes.shape(),
   isOpenClub: PropTypes.bool.isRequired,
   womenOnly: PropTypes.bool.isRequired,
   skillSession: PropTypes.bool.isRequired,

@@ -176,7 +176,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           let button;
 
           const outsideOfSkillLevel =
-            userSkillRating < skillLevel.min || userSkillRating > skillLevel.max;
+            skillLevel && (userSkillRating < skillLevel.min || userSkillRating > skillLevel.max);
           const cannotReserveBecauseSkillLevel = !allSkillLevelsAllowed && outsideOfSkillLevel;
 
           const reserveTeamAllowed = reserveTeamReservationAllowed({
@@ -256,7 +256,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                       outsideOfSkillLevel,
                       id,
                       URLdate,
-                      skillLevel.name
+                      skillLevel?.name
                     )
                   }
                 >
@@ -364,7 +364,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                         reserved={reserved}
                         onWaitlist={onWaitlist}
                         cannotReserveBecauseSkillLevel={cannotReserveBecauseSkillLevel}
-                        skillLevelName={skillLevel.name}
+                        skillLevelName={skillLevel?.name}
                         reserveTeamAllowed={reserveTeamAllowed}
                         isReserveTeam={isReserveTeam}
                         full={full}

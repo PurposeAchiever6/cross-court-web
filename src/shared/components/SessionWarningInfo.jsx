@@ -55,16 +55,17 @@ const SessionWarningInfo = ({
 };
 
 SessionWarningInfo.defaultProps = {
+  skillLevelName: null,
   className: '',
 };
 
 SessionWarningInfo.propTypes = {
   className: PropTypes.string,
+  skillLevelName: PropTypes.string,
   isLegalAge: PropTypes.bool.isRequired,
   reserved: PropTypes.bool.isRequired,
   onWaitlist: PropTypes.bool.isRequired,
   cannotReserveBecauseSkillLevel: PropTypes.bool.isRequired,
-  skillLevelName: PropTypes.string.isRequired,
   reserveTeamAllowed: PropTypes.bool.isRequired,
   isReserveTeam: PropTypes.bool.isRequired,
   full: PropTypes.bool.isRequired,
