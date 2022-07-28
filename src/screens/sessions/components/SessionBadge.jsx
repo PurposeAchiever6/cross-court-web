@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import BadgeWithInfo from 'shared/components/BadgeWithInfo';
+import VideoPlayer from 'shared/components/VideoPlayer';
 
 const SessionBadge = ({ skillLevel, isOpenClub, womenOnly, skillSession, variant }) => {
+  const [watchVideo, setWatchVideo] = useState(false);
+  const [enableBadgeInfo, setEnableBadgeInfo] = useState(true);
+
   if (isOpenClub) {
     return (
       <BadgeWithInfo
@@ -27,13 +31,38 @@ const SessionBadge = ({ skillLevel, isOpenClub, womenOnly, skillSession, variant
   }
 
   if (skillSession) {
+    const tooltipInformation = (
+      <div>
+        60 minute, trainer led, group workout for members to level up their game. Work on handles,
+        shooting, passing, endurance, and more in this high intensity, community driven experience.{' '}
+        <button
+          onClick={() => {
+            setWatchVideo(true);
+            setEnableBadgeInfo(false);
+          }}
+          className="block font-bold hover:underline cursor-pointer"
+        >
+          Watch Video
+        </button>
+      </div>
+    );
+
     return (
-      <BadgeWithInfo
-        info="60 minute, trainer led, group workout for members to level up their game. Work on handles, shooting, passing, endurance, and more in this high intensity, community driven experience."
-        variant={variant}
-      >
-        Skill Session
-      </BadgeWithInfo>
+      <>
+        <BadgeWithInfo info={tooltipInformation} enableInfo={enableBadgeInfo} variant={variant}>
+          Skill Session
+        </BadgeWithInfo>
+        <VideoPlayer
+          url="/skill-sessions.mp4"
+          playing
+          openOnModal
+          isModalOpen={watchVideo}
+          closeModalHandler={() => {
+            setWatchVideo(false);
+            setEnableBadgeInfo(true);
+          }}
+        />
+      </>
     );
   }
 

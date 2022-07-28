@@ -35,18 +35,21 @@ const Tooltip = ({ children, tooltip, enable, variant, place, className }) => {
     <>
       {enable ? (
         <>
-          <div data-for={tooltipId} data-tip={tooltip} className={className}>
+          <div data-for={tooltipId} data-tip className={className}>
             {children}
           </div>
           <ReactTooltip
             id={tooltipId}
             backgroundColor={backgroundColor}
+            delayHide={250}
+            delayUpdate={500}
             textColor={textColor}
             place={place}
             effect="solid"
             className={`max-w-xs font-shapiro45_welter_extd leading-normal ${textAlign}`}
-            html
-          />
+          >
+            {tooltip}
+          </ReactTooltip>
         </>
       ) : (
         children
