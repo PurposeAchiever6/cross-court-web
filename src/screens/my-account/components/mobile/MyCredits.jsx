@@ -1,9 +1,11 @@
 import React from 'react';
 import { number, bool, object } from 'prop-types';
 import styled from 'styled-components';
+
+import { ZERO_SKLZ_CREDITS_NOTICE } from 'screens/my-account/constants';
 import ROUTES from 'shared/constants/routes';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const MyCreditsContainer = styled.div`
   padding: 1rem;
@@ -35,7 +37,7 @@ const MyCredits = ({
   activeSubscription,
 }) => {
   const sessionPluralize = credits === 1 ? 'SESSION' : 'SESSIONS';
-  const skillSessionPluralize = skillSessionCredits === 1 ? 'SKILL SESSION' : 'SKILL SESSIONS';
+  const skillSessionPluralize = skillSessionCredits === 1 ? 'SKLZ SESSION' : 'SKLZ SESSIONS';
 
   return (
     <MyCreditsContainer>
@@ -71,7 +73,7 @@ const MyCredits = ({
                 <span className="sessions-left">
                   UNLIMITED
                   <br />
-                  SKILL SESSIONS
+                  SKLZ SESSIONS
                 </span>
               ) : (
                 <>
@@ -81,6 +83,11 @@ const MyCredits = ({
                     <br />
                     <span className="whitespace-nowrap">LEFT THIS MONTH</span>
                   </span>
+                  {skillSessionCredits === 0 && (
+                    <div className="text-xs font-semibold mt-4 max-w-sm mx-auto">
+                      {ZERO_SKLZ_CREDITS_NOTICE}
+                    </div>
+                  )}
                 </>
               )}
             </div>

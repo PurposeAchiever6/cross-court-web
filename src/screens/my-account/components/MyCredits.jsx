@@ -2,6 +2,7 @@ import React from 'react';
 import { number, bool, object } from 'prop-types';
 import styled from 'styled-components';
 
+import { ZERO_SKLZ_CREDITS_NOTICE } from 'screens/my-account/constants';
 import ROUTES from 'shared/constants/routes';
 import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -84,7 +85,7 @@ const MyCredits = ({
   activeSubscription,
 }) => {
   const sessionPluralize = credits === 1 ? 'SESSION' : 'SESSIONS';
-  const skillSessionPluralize = skillSessionCredits === 1 ? 'SKILL SESSION' : 'SKILL SESSIONS';
+  const skillSessionPluralize = skillSessionCredits === 1 ? 'SKLZ SESSION' : 'SKLZ SESSIONS';
 
   return (
     <MyCreditsContainer className="my-credits">
@@ -117,14 +118,19 @@ const MyCredits = ({
             {isUnlimitedSkillSession ? (
               <div className="mb-6">
                 <span className="unlimited-title-1">UNLIMITED</span>
-                <span className="unlimited-skill-title-2">SKILL SESSIONS</span>
+                <span className="unlimited-skill-title-2">SKLZ SESSIONS</span>
               </div>
             ) : (
               <div className="flex mb-6">
                 <span className="session-number">{skillSessionCredits}</span>
                 <span>
                   <span className="subscription-title-1">{`${skillSessionPluralize} LEFT`}</span>
-                  <span className="subscription-title-2">THIS MONTH</span>
+                  <spam>
+                    <div className="subscription-title-2">THIS MONTH</div>
+                    {skillSessionCredits === 0 && (
+                      <div className="text-xs font-semibold mt-2">{ZERO_SKLZ_CREDITS_NOTICE}</div>
+                    )}
+                  </spam>
                 </span>
               </div>
             )}

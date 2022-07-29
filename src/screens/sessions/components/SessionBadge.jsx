@@ -50,7 +50,7 @@ const SessionBadge = ({ skillLevel, isOpenClub, womenOnly, skillSession, variant
     return (
       <>
         <BadgeWithInfo info={tooltipInformation} enableInfo={enableBadgeInfo} variant={variant}>
-          Skill Session
+          SKLZ
         </BadgeWithInfo>
         <VideoPlayer
           url="/skill-sessions.mp4"

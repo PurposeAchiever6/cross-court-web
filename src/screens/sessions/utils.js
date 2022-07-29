@@ -27,15 +27,15 @@ export const getSessionsMessageContainerText = (
   }
 
   if (isSkillSession) {
-    if (unlimitedSkillSessionCredits) {
-      return 'YOU HAVE UNLIMITED SKILL SESSIONS';
+    if (unlimitedCredits || unlimitedSkillSessionCredits) {
+      return 'YOU HAVE UNLIMITED SKLZ SESSIONS';
     }
 
-    if (subscriptionSkillSessionCredits) {
-      return `YOU HAVE ${subscriptionSkillSessionCredits} SKILL SESSION${
-        subscriptionSkillSessionCredits === 1 ? '' : 'S'
-      } LEFT THIS MONTH`;
-    }
+    const totalSkillSessionCredits = totalCredits + subscriptionSkillSessionCredits;
+
+    return `YOU HAVE ${totalSkillSessionCredits} SKLZ SESSION${
+      totalSkillSessionCredits === 1 ? '' : 'S'
+    } LEFT THIS MONTH`;
   }
 
   if (unlimitedCredits) {
