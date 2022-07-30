@@ -12,6 +12,7 @@ import WarningTriangle from 'shared/images/warning-triangle.png';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 
+import sklzLogoWhite from 'shared/images/sklz-logo-white.png';
 import { resetLoading, removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
 import {
@@ -128,6 +129,11 @@ const Session = () => {
                 variant="white"
               />
             </div>
+            {isSkillSession && (
+              <div className="w-full text-center mb-8">
+                <img alt="sklz-logo" className="h-7 inline-block" src={sklzLogoWhite} />
+              </div>
+            )}
             <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
               {getSessionsMessageContainerText(
                 isSessionComplete,

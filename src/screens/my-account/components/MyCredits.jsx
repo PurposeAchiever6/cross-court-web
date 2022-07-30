@@ -125,12 +125,12 @@ const MyCredits = ({
                 <span className="session-number">{skillSessionCredits}</span>
                 <span>
                   <span className="subscription-title-1">{`${skillSessionPluralize} LEFT`}</span>
-                  <spam>
+                  <span>
                     <div className="subscription-title-2">THIS MONTH</div>
                     {skillSessionCredits === 0 && (
                       <div className="text-xs font-semibold mt-2">{ZERO_SKLZ_CREDITS_NOTICE}</div>
                     )}
-                  </spam>
+                  </span>
                 </span>
               </div>
             )}
