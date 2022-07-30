@@ -66,7 +66,7 @@ Tooltip.defaultProps = {
 };
 
 Tooltip.propTypes = {
-  tooltip: PropTypes.string.isRequired,
+  tooltip: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   children: PropTypes.node.isRequired,
   variant: PropTypes.string,
   className: PropTypes.string,

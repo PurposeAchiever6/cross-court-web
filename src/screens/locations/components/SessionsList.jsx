@@ -24,6 +24,8 @@ import {
   formatSessionDate,
 } from 'shared/utils/date';
 import { isUserInFirstSessionFlow, isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import { hasConfirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
+import { hasConfirmSkillSession } from 'shared/utils/skillSessionsConfirmations';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionsLoadingBtns } from 'screens/sessions/reducer';
@@ -36,8 +38,8 @@ import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import SessionVote from 'screens/locations/components/SessionVote';
 import SessionRoster from 'screens/locations/components/SessionRoster';
 import SessionBadge from 'screens/sessions/components/SessionBadge';
-import { hasConfirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
-import OutsideOfSkillLevelModal from './OutsideOfSkillLevelModal';
+import OutsideOfSkillLevelModal from 'screens/locations/components/OutsideOfSkillLevelModal';
+import SkillSessionReservationModal from 'screens/locations/components/SkillSessionReservationModal';
 
 const NoSessionContainer = styled.div`
   .title {
@@ -72,10 +74,13 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   const dispatch = useDispatch();
 
   const [showOutsideSkillLevelModal, setShowOutsideSkillLevelModal] = useState(false);
+  const [showSkillSessionReservationModal, setShowSkillSessionReservationModal] = useState(false);
   const [showSessionRoster, setShowSessionRoster] = useState(null);
-  const [idModal, setIdModal] = useState('');
-  const [URLDateModal, setURLDateModal] = useState('');
-  const [levelNameModal, setLevelNameModal] = useState('');
+
+  const [selectedSessionId, setSelectedSessionId] = useState(null);
+  const [selectedSessionDate, setSelectedSessionDate] = useState(null);
+  const [selectedSessionSkillLevel, setSelectedSessionSkillLevel] = useState(null);
+
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
   const sessionsLoadingBtns = useSelector(getSessionsLoadingBtns);
@@ -107,17 +112,8 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
     dispatch(removeSessionWaitlistInit(sessionId, sessionDate));
   };
 
-  const showModalForOutsideSkillLevel = (e, outsideOfSkillLevel, id, URLdate, levelName) => {
-    if (outsideOfSkillLevel && !hasConfirmOutsideOfSkillLevelSession(currentUser)) {
-      e.preventDefault();
-      setIdModal(id);
-      setURLDateModal(URLdate);
-      setLevelNameModal(levelName);
-      setShowOutsideSkillLevelModal(true);
-    }
-  };
-
-  const goToReserveDetails = () => history.push(`/session/${idModal}/${URLDateModal}`);
+  const goToSessionDetails = () =>
+    history.push(`/session/${selectedSessionId}/${selectedSessionDate}`);
 
   const onboardingTourId = 'onboarding-tour-sessions-list';
   const isFirstSessionFreeFlow = isUserInFirstFreeSessionFlow(currentUser);
@@ -189,6 +185,20 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
             isPrivate,
           });
 
+          const onClickReserve = () => {
+            setSelectedSessionId(id);
+            setSelectedSessionDate(URLdate);
+            setSelectedSessionSkillLevel(skillLevel);
+
+            if (outsideOfSkillLevel && !hasConfirmOutsideOfSkillLevelSession(currentUser)) {
+              setShowOutsideSkillLevelModal(true);
+            } else if (skillSession && !hasConfirmSkillSession(currentUser)) {
+              setShowSkillSessionReservationModal(true);
+            } else {
+              history.push(`/session/${id}/${URLdate}`);
+            }
+          };
+
           if (comingSoon) {
             button = (
               <PrimaryButton
@@ -246,19 +256,10 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
               <>
                 <PrimaryButton
                   id="sessions-list-reserve-btn"
-                  to={`/session/${id}/${URLdate}`}
                   w="9.5rem"
                   fontSize="12px"
                   disabled={!isLegalAge || cannotReserveBecauseSkillLevel || !reserveTeamAllowed}
-                  onClick={(e) =>
-                    showModalForOutsideSkillLevel(
-                      e,
-                      outsideOfSkillLevel,
-                      id,
-                      URLdate,
-                      skillLevel?.name
-                    )
-                  }
+                  onClick={onClickReserve}
                 >
                   RESERVE
                 </PrimaryButton>
@@ -388,8 +389,14 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
       <OutsideOfSkillLevelModal
         isOpen={showOutsideSkillLevelModal}
         closeHandler={() => setShowOutsideSkillLevelModal(false)}
-        onConfirm={goToReserveDetails}
-        level={levelNameModal}
+        onConfirm={goToSessionDetails}
+        userProfile={currentUser}
+        level={selectedSessionSkillLevel?.name}
+      />
+      <SkillSessionReservationModal
+        isOpen={showSkillSessionReservationModal}
+        closeHandler={() => setShowSkillSessionReservationModal(false)}
+        onConfirm={goToSessionDetails}
         userProfile={currentUser}
       />
     </div>

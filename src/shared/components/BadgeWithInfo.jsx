@@ -25,7 +25,7 @@ BadgeWithInfo.defaultProps = {
 };
 
 BadgeWithInfo.propTypes = {
-  info: PropTypes.string,
+  info: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   variant: PropTypes.string,
   enableInfo: PropTypes.bool,
   children: PropTypes.node.isRequired,

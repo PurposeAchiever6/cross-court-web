@@ -4,25 +4,25 @@ import PropTypes from 'prop-types';
 import Modal from 'shared/components/Modal';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
-import { confirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
+import { confirmSkillSession } from 'shared/utils/skillSessionsConfirmations';
 
-const OutsideOfSkillLevelModal = ({ isOpen, closeHandler, onConfirm, level, userProfile }) => {
+const SkillSessionReservationModal = ({ isOpen, closeHandler, onConfirm, userProfile }) => {
   const [dontShowModalAgain, setDontShowModalAgain] = useState(false);
 
   const handleClick = () => {
     if (dontShowModalAgain) {
-      confirmOutsideOfSkillLevelSession(userProfile);
+      confirmSkillSession(userProfile);
     }
 
     onConfirm();
   };
 
   return (
-    <Modal isOpen={isOpen} closeHandler={closeHandler} title={`${level} session`} size="sm">
+    <Modal isOpen={isOpen} closeHandler={closeHandler} title="SKLZ Session" size="sm">
       <div className="mb-8">
-        <p className="mb-5">This session is for {level.toLowerCase()} players</p>
+        <p className="mb-5">Please notice you are booking a SKLZ session.</p>
         <InputCheckboxField
-          name="confirmOutsideSkillLevel"
+          name="confirmSkillSessionReservation"
           onChange={() => setDontShowModalAgain(!dontShowModalAgain)}
           value={dontShowModalAgain}
           formik={false}
@@ -39,16 +39,11 @@ const OutsideOfSkillLevelModal = ({ isOpen, closeHandler, onConfirm, level, user
   );
 };
 
-OutsideOfSkillLevelModal.defaultProps = {
-  level: '',
-};
-
-OutsideOfSkillLevelModal.propTypes = {
+SkillSessionReservationModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
-  level: PropTypes.string,
 };
 
-export default OutsideOfSkillLevelModal;
+export default SkillSessionReservationModal;
