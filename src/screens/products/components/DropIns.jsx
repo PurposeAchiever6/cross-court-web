@@ -11,21 +11,13 @@ const DropIns = ({ selectProductHandler, availableProducts }) => {
   const oneTimeProducts = products.filter((product) => product.productType === ONE_TIME);
 
   return (
-    <div className="lg:flex lg:justify-center p-4 md:p-12 text-white">
-      <div className="lg:w-1/4 lg:pr-8">
-        <h2 className="dharma_gothic_cheavy text-8xl mb-4">DROP IN</h2>
-        <div className="flex flex-wrap mb-12 lg:mb-0 lg:-mx-4 xl:-mx-7">
-          {oneTimeProducts.map((product) => (
-            <div key={product.id} className="w-full lg:px-4 xl:px-7">
-              <ProductPlan
-                product={product}
-                submitBtnSecondary
-                handleSubmit={selectProductHandler}
-              />
-            </div>
-          ))}
+    <div className="text-white w-full lg:w-1/4 mb-4 md:mb-0">
+      <h2 className="dharma_gothic_cheavy text-8xl md:h-44 md:mb-10 md:ml-2">DROP IN</h2>
+      {oneTimeProducts.map((product) => (
+        <div key={product.id} className="w-full md:px-4">
+          <ProductPlan product={product} submitBtnSecondary handleSubmit={selectProductHandler} />
         </div>
-      </div>
+      ))}
     </div>
   );
 };

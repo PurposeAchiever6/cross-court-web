@@ -38,7 +38,7 @@ const SignupConfirmationPage = () => {
         ? history.push(ROUTES.LOCATIONS)
         : history.push({
             pathname: ROUTES.MEMBERSHIPS,
-            state: { showDropInsProducts: true, showNoFreeSessionInformation: true },
+            state: { showNoFreeSessionInformation: true },
           });
     } else {
       dispatch(logoutInit({ redirectTo: ROUTES.LOGIN }));

@@ -14,7 +14,7 @@ export const NoFreeSessionInformationModal = ({ isOpen, closeHandler }) => (
         </p>
         <p>
           You can purchase this session credit later by going to the <strong>"Memberships"</strong>{' '}
-          page and then toggling to <strong>"A La Carte"</strong> at the top.
+          page.
         </p>
       </div>
       <div className="text-center">

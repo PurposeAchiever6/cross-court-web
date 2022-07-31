@@ -6,7 +6,6 @@ import currency from 'currency.js';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { RECURRING } from 'screens/products/constants';
 import { productDiscount } from 'screens/products/utils';
-import Ball from 'shared/images/white-circular-logo.png';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const ProductPlan = ({
@@ -39,12 +38,9 @@ const ProductPlan = ({
       }`}
     >
       <div className="mb-5 lg:h-9 flex flex-col lg:inline-block">
-        <h2 className="inline-block lg:block text-xl 2xl:text-2xl shapiro96_inclined_wide leading-none uppercase">
-          {`${product.name}*`}
+        <h2 className="inline-block lg:block text-3xl 2xl:text-2xl font-shapiro96_inclined_wide leading-none uppercase">
+          {product.name}
         </h2>
-        <span className="lg:block text-left shapiro95_super_wide text-xs leading-none">
-          *RESERVE TEAM
-        </span>
       </div>
       <div className="mb-6 lg:mb-10">
         <div className="dharma_gothic_cheavy_italic mb-3 lg:mb-0">
@@ -60,19 +56,13 @@ const ProductPlan = ({
           </div>
         )}
         {isRecurring && showFeatures && (
-          <div className="h-28">
-            <h2 className="mb-3 mt-6 text-lg text-left xl:text-xl shapiro96_inclined_wide leading-none uppercase">
-              FEATURES
+          <div className="h-28 flex flex-col justify-between">
+            <h2 className="my-3 text-transparent text-stroke-white text-stroke-width-1 text-lg text-left xl:text-xl font-shapiro96_inclined_wide leading-none uppercase">
+              WHAT'S INCLUDED
             </h2>
-            <div className="flex mb-2">
-              <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
-              <div className="text-sm text-left mt-2 ml-2">
-                <div>Month to month</div>
-              </div>
-            </div>
-            <div className="flex mb-2">
-              <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
-              <div className="text-sm text-left mt-2 ml-2">Open Club Access</div>
+            <div className="text-xs font-shapiro96_inclined_wide text-left uppercase">
+              <p className="mt-2">Month to month</p>
+              <p className="mt-2">Open club access</p>
             </div>
           </div>
         )}
@@ -91,11 +81,7 @@ const ProductPlan = ({
         </PrimaryButton>
       </div>
       <div className="lg:h-4">
-        {!isUnlimited && (
-          <div className="text-xs">
-            {isRecurring ? '*Sessions do not rollover' : '*Expires in 30 Days'}
-          </div>
-        )}
+        {!isUnlimited && !isRecurring && <div className="text-xs">*Expires in 30 Days</div>}
       </div>
       {label && (
         <>
