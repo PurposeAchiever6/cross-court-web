@@ -101,7 +101,7 @@ const ProductPlan = ({
         </PrimaryButton>
       </div>
       <div className="lg:h-4">
-        {!isUnlimited && !isRecurring && <div className="text-xs">*Expires in 30 Days</div>}
+        {!isRecurring && <div className="text-xs">*Expires in 30 Days</div>}
       </div>
       {label && (
         <>
