@@ -7,7 +7,7 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import blackTextureBgImg from 'shared/images/black-texture-bg.png';
 
-const MembershipsFeatures = ({ setWatchVideo }) => (
+const MembershipsFeatures = ({ setWatchSkillsVideo }) => (
   <LazyBackgroundImage
     as="section"
     img={blackTextureBgImg}
@@ -34,7 +34,7 @@ const MembershipsFeatures = ({ setWatchVideo }) => (
               description={description}
               linkDescription={linkDescription}
               className="h-64"
-              linkOnClick={() => setWatchVideo(true)}
+              linkOnClick={setWatchSkillsVideo ? () => setWatchSkillsVideo(true) : null}
             />
           </div>
         ))}
@@ -46,8 +46,12 @@ const MembershipsFeatures = ({ setWatchVideo }) => (
   </LazyBackgroundImage>
 );
 
+MembershipsFeatures.defaultProps = {
+  setWatchSkillsVideo: null,
+};
+
 MembershipsFeatures.propTypes = {
-  setWatchVideo: PropTypes.func.isRequired,
+  setWatchSkillsVideo: PropTypes.func,
 };
 
 export default MembershipsFeatures;

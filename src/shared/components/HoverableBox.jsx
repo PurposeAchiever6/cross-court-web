@@ -16,7 +16,7 @@ const HoverableBox = ({
       </div>
       <div className="absolute inset-0 flex flex-col justify-center items-center p-4 text-sm opacity-0 group-hover:opacity-100 transition-all duration-300">
         {description}
-        {linkDescription && (
+        {linkDescription && (linkOnClick || linkHref) && (
           <a className="hover:underline" onClick={linkOnClick} href={linkHref}>
             {linkDescription}
           </a>

@@ -120,7 +120,7 @@ const ProductsPage = () => {
         {reserveTeam ? (
           <ReserveTeamMembershipsFeatures setWatchVideo={setWatchVideo} />
         ) : (
-          <MembershipsFeatures setWatchVideo={setWatchVideo} />
+          <MembershipsFeatures setWatchSkillsVideo={setWatchVideo} />
         )}
         <div className="w-full flex justify-center mb-16">
           <h2 className="dharma_gothic_cheavy_italic text-6xl lg:text-8xl text-cc-purple">
