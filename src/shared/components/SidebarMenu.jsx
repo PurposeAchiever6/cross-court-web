@@ -37,7 +37,7 @@ const SidebarMenu = ({ menuToggler }) => {
           SCHEDULE
         </NavLink>
         <NavLink className="list-item" exact to={ROUTES.MEMBERSHIPS} onClick={menuToggler}>
-          MEMBERSHIPS
+          MEMBERSHIPS / PRICING
         </NavLink>
         <NavLink
           className="list-item"

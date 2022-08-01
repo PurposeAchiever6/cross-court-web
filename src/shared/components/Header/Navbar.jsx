@@ -11,7 +11,7 @@ const Navbar = ({ scrolled, dark, isAuthenticated }) => {
     <nav className="flex gap-5 xl:gap-12">
       <NavItem name="First Time?" link={ROUTES.HOWITWORKS} color={color} />
       <NavItem name="Schedule" link={ROUTES.LOCATIONS} color={color} />
-      <NavItem name="Memberships" link={ROUTES.MEMBERSHIPS} color={color} />
+      <NavItem name="Memberships / Pricing" link={ROUTES.MEMBERSHIPS} color={color} />
       <NavItem name="Content" link={ROUTES.CONTENT} color={color} />
       <NavItem name="My Account" link={ROUTES.MYACCOUNT} color={color} enable={isAuthenticated} />
       <NavItem name="Log In" link={ROUTES.LOGIN} color={color} enable={!isAuthenticated} />

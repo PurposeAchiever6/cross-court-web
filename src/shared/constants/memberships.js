@@ -1,3 +1,5 @@
+export const SKLZ = 'SKLZ';
+
 export const MEMBERSHIPS_FEATURES = [
   {
     name: 'Discounted cost/session',
@@ -25,12 +27,13 @@ export const MEMBERSHIPS_FEATURES = [
       'We\'ve partnered with "Go Arena" to give our members the ability to hit some strength exercises before or after your session. It\'s a complete gym solution in a device the size of a suitcase so you can build some strength after your sport fueled sweat.',
   },
   {
-    name: 'Private Skills Training (coming soon)',
+    name: 'SKLZ',
     description:
       'Our member-only skills training sessions are designed to get your game to the next level. Go from beginner to intermediate, then intermediate to advanced by working on your game with a Crosscourt coach.',
+    linkDescription: 'See video',
   },
   {
-    name: 'Member Tournaments (coming soon)',
+    name: 'Member Tournaments',
     description: "It's a weekend block party. Bring your best 5 and compete for prizes.",
   },
   {
@@ -57,7 +60,7 @@ export const RESERVE_TEAM_NOT_INCLUDED_MEMBERSHIPS_FEATURES = [
       'Members with active subscriptions have higher priority on the waitlist than non members.',
   },
   {
-    name: 'Private Skills Training (coming soon)',
+    name: 'SKLZ',
     description:
       'Our member-only skills training sessions are designed to get your game to the next level. Go from beginner to intermediate, then intermediate to advanced by working on your game with a Crosscourt coach.',
   },

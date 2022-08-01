@@ -15,6 +15,7 @@ import {
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import MembershipsFeatures from 'shared/components/MembershipsFeatures';
+import VideoPlayer from 'shared/components/VideoPlayer';
 
 import Memberships from './components/Memberships';
 import ReserveTeamMemberships from './components/reserve-team/Memberships';
@@ -39,6 +40,7 @@ const ProductsPage = () => {
   const showAnimation = state?.showNoCreditsAnimation;
 
   const [showCancelModal, setShowCancelModal] = useState(false);
+  const [watchVideo, setWatchVideo] = useState(false);
   const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
     showNoFreeSessionInformation ? true : false
   );
@@ -115,7 +117,11 @@ const ProductsPage = () => {
             />
           )}
         </div>
-        {reserveTeam ? <ReserveTeamMembershipsFeatures /> : <MembershipsFeatures />}
+        {reserveTeam ? (
+          <ReserveTeamMembershipsFeatures setWatchVideo={setWatchVideo} />
+        ) : (
+          <MembershipsFeatures setWatchVideo={setWatchVideo} />
+        )}
         <div className="w-full flex justify-center mb-16">
           <h2 className="dharma_gothic_cheavy_italic text-6xl lg:text-8xl text-cc-purple">
             HAVE A QUESTION? REACH OUT BELOW
@@ -131,6 +137,13 @@ const ProductsPage = () => {
       <NoFreeSessionInformationModal
         isOpen={showNoFreeSessionInformationModal}
         closeHandler={() => setShowNoFreeSessionInformationModal(false)}
+      />
+      <VideoPlayer
+        url="/skill-sessions.mp4"
+        playing
+        openOnModal
+        isModalOpen={watchVideo}
+        closeModalHandler={() => setWatchVideo(false)}
       />
     </>
   );
