@@ -60,7 +60,7 @@ const ProductPlan = ({
           </div>
         )}
         {isRecurring && showFeatures && (
-          <div className="h-60 lg:h-80 flex flex-col">
+          <div className="h-64 lg:h-80 flex flex-col">
             <h2 className="my-3 text-transparent text-stroke-white text-stroke-width-1 text-lg text-left xl:text-xl font-shapiro96_inclined_wide leading-none uppercase">
               WHAT'S INCLUDED
             </h2>
