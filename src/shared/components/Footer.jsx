@@ -65,10 +65,12 @@ const Footer = () => {
     }
   };
 
+  const windowSize = document.documentElement.clientWidth;
+
   return pathname === ROUTES.DASHBOARD ? null : (
     <>
       <CheeseburgerMenu
-        width={document.documentElement.clientWidth / 3}
+        width={windowSize < 768 ? windowSize : windowSize / 3}
         right
         isOpen={contactUsOpen}
         closeCallback={() => setContactUsOpen(false)}
