@@ -71,7 +71,7 @@ const PurchaseDetails = ({
         {isDropIn && (
           <div className="mb-8">
             <Label color="purple" className="mb-2">
-              REFERRAL CREDITS
+              CC CA$H
             </Label>
             <div className="flex items-center">
               <button
@@ -82,7 +82,7 @@ const PurchaseDetails = ({
                 onClick={() => setUseCcCash(!useCcCash)}
               />
               <span className="ml-2">
-                <span className={ccCash <= 0 ? 'opacity-60' : ''}>Use my referral credits</span> (
+                <span className={ccCash <= 0 ? 'opacity-60' : ''}>Use my CC CA$H</span> (
                 <strong>{`$${ccCash}`}</strong> available)
               </span>
             </div>

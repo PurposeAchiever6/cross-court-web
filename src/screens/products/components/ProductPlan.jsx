@@ -5,7 +5,7 @@ import currency from 'currency.js';
 
 import { getUserProfile } from 'screens/my-account/reducer';
 import { RECURRING, UNLIMITED_VALUE } from 'screens/products/constants';
-import { productDiscount } from 'screens/products/utils';
+import { productDiscount, creditsString } from 'screens/products/utils';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const ProductPlan = ({
@@ -25,11 +25,8 @@ const ProductPlan = ({
     }).format();
 
   const isUnlimited = product.credits === UNLIMITED_VALUE;
-  const sessionsCreditsString = isUnlimited ? 'Unlimited' : product.credits.toString();
-  const skillSessionCreditsString =
-    product.skillSessionCredits === UNLIMITED_VALUE
-      ? 'Unlimited'
-      : product.skillSessionCredits.toString();
+  const sessionsCreditsString = creditsString(product.credits);
+  const skillSessionCreditsString = creditsString(product.skillSessionCredits);
 
   const price = formatPrice(product.priceForUser);
 

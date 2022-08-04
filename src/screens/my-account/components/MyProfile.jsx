@@ -3,9 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useLocation, Link } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
+import Tooltip from 'shared/components/Tooltip';
 import ROUTES from 'shared/constants/routes';
 import { formatPhoneNumber } from 'shared/utils/helpers';
 import missingProfileImg from 'shared/images/missing-profile-image.png';
@@ -137,7 +138,16 @@ const MyProfile = ({ profile, showTitle = true }) => {
             <span>{profile.referralCode}</span>
           </div>
           <div className="text-lg mb-3">
-            <span className={titleClasses}>REFERRAL CREDITS</span>
+            <div className="flex">
+              <span className={titleClasses}>CC CA$H</span>
+              <Tooltip
+                variant="purple"
+                tooltip="Accumulate CC CA$H through membership referrals and attending certain sessions that have a discount offer"
+                className="ml-3"
+              >
+                <FontAwesomeIcon icon={faInfoCircle} className="text-cc-purple cursor-pointer" />
+              </Tooltip>
+            </div>
             <span className="font-shapiro95_super_wide text-3xl block">{`$${Number(
               profile.ccCash
             )}`}</span>
