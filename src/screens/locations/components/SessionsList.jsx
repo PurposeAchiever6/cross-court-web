@@ -342,9 +342,11 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                 )}
               </div>
               <div className="flex flex-col-reverse lg:flex-row items-center pl-8">
-                <SessionExtraInformation session={session} />
                 <div className="flex flex-col items-end">
-                  {button}
+                  <div className="flex flex-col-reverse lg:flex-row items-center">
+                    <SessionExtraInformation session={session} className="mt-4 lg:mt-0 lg:mr-3" />
+                    {button}
+                  </div>
                   {!isOpenClub && !comingSoon && (
                     <SessionWarningInfo
                       isLegalAge={isLegalAge}
@@ -357,10 +359,11 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                       full={full}
                       spotsLeft={spotsLeft}
                       past={past}
+                      className="self-center lg:self-end lg:w-38 mt-3"
                     />
                   )}
                   {onWaitlist && !past && (
-                    <div className="flex items-center justify-center self-center mt-2 whitespace-nowrap">
+                    <div className="self-center lg:self-end mt-3 whitespace-nowrap">
                       <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>
                     </div>
                   )}

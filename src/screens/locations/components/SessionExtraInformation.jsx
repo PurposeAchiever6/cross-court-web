@@ -7,7 +7,7 @@ import { getIsAuthenticated } from 'screens/auth/reducer';
 import SessionVote from 'screens/locations/components/SessionVote';
 import SessionCcCashEarned from 'screens/locations/components/SessionCcCashEarned';
 
-const SessionExtraInformation = ({ session }) => {
+const SessionExtraInformation = ({ session, className }) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
 
   const sessionDate = formatSessionDate(session.startTime);
@@ -20,25 +20,25 @@ const SessionExtraInformation = ({ session }) => {
         sessionDate={sessionDate}
         votes={session.votes}
         voted={session.voted}
-        className="mt-2 lg:mt-0 lg:mr-3"
+        className={className}
       />
     );
   }
 
   if (sessionCcCashEarned > 0) {
-    return (
-      <SessionCcCashEarned
-        ccCash={sessionCcCashEarned}
-        className="lg:self-start mt-2 lg:mt-0 lg:mr-3"
-      />
-    );
+    return <SessionCcCashEarned ccCash={sessionCcCashEarned} className={className} />;
   }
 
   return null;
 };
 
+SessionExtraInformation.defaultProps = {
+  className: '',
+};
+
 SessionExtraInformation.propTypes = {
   session: PropTypes.shape().isRequired,
+  className: PropTypes.string,
 };
 
 export default SessionExtraInformation;

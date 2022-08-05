@@ -2,13 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Tooltip from 'shared/components/Tooltip';
+import Badge from 'shared/components/Badge';
 
 const SessionCcCashEarned = ({ ccCash, className }) => (
   <div className={className}>
-    <Tooltip variant="purple" tooltip="Get CCcash for coming out to certain sessions">
-      <div className="rounded-full border border-cc-black bg-cc-black text-white flex flex-col justify-center items-center w-10 h-10">
-        ${ccCash}
-      </div>
+    <Tooltip tooltip={`Receive $${ccCash} in CC Cash when you attend this session`}>
+      <Badge variant="black" size="sm" className="font-shapiro95_super_wide">
+        Earn ${ccCash}
+      </Badge>
     </Tooltip>
   </div>
 );
