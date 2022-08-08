@@ -1,5 +1,8 @@
-import { INITIAL_LOAD_INIT } from './actionTypes';
+import { FETCH_PAYMENTS_INIT } from './actionTypes';
 
-export const initialLoadInit = () => ({
-  type: INITIAL_LOAD_INIT,
+export const fetchPayments = (page) => ({
+  type: FETCH_PAYMENTS_INIT,
+  payload: {
+    page,
+  },
 });

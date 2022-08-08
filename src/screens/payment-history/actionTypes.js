@@ -1,3 +1,3 @@
-export const INITIAL_LOAD_INIT = '@paymentHistory/INITIAL_LOAD_INIT';
-export const INITIAL_LOAD_SUCCESS = '@paymentHistory/INITIAL_LOAD_SUCCESS';
-export const INITIAL_LOAD_FAILURE = '@paymentHistory/INITIAL_LOAD_FAILURE';
+export const FETCH_PAYMENTS_INIT = '@paymentHistory/FETCH_PAYMENTS_INIT';
+export const FETCH_PAYMENTS_SUCCESS = '@paymentHistory/FETCH_PAYMENTS_SUCCESS';
+export const FETCH_PAYMENTS_FAILURE = '@paymentHistory/FETCH_PAYMENTS_FAILURE';
