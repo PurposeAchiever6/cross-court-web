@@ -26,7 +26,7 @@ const SessionWarningInfo = ({
           if (isReserveTeam && !reserveTeamAllowed) {
             return (
               <>
-                Reserve Team <br className="md:hidden" />
+                Reserve team <br />
                 restricted
               </>
             );
@@ -47,7 +47,7 @@ const SessionWarningInfo = ({
   const text = warningText();
 
   return text ? (
-    <div className={`flex items-center self-center mt-2 whitespace-nowrap ${className}`}>
+    <div className={`flex justify-center items-center whitespace-nowrap ${className}`}>
       <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
       <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{text}</p>
     </div>
@@ -55,16 +55,17 @@ const SessionWarningInfo = ({
 };
 
 SessionWarningInfo.defaultProps = {
+  skillLevelName: null,
   className: '',
 };
 
 SessionWarningInfo.propTypes = {
   className: PropTypes.string,
+  skillLevelName: PropTypes.string,
   isLegalAge: PropTypes.bool.isRequired,
   reserved: PropTypes.bool.isRequired,
   onWaitlist: PropTypes.bool.isRequired,
   cannotReserveBecauseSkillLevel: PropTypes.bool.isRequired,
-  skillLevelName: PropTypes.string.isRequired,
   reserveTeamAllowed: PropTypes.bool.isRequired,
   isReserveTeam: PropTypes.bool.isRequired,
   full: PropTypes.bool.isRequired,

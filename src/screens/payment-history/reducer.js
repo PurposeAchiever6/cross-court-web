@@ -1,27 +1,32 @@
 import { createSelector } from 'reselect';
-import { INITIAL_LOAD_INIT, INITIAL_LOAD_SUCCESS, INITIAL_LOAD_FAILURE } from './actionTypes';
+import { FETCH_PAYMENTS_INIT, FETCH_PAYMENTS_SUCCESS, FETCH_PAYMENTS_FAILURE } from './actionTypes';
 
 const initialState = {
   error: '',
   pageLoading: false,
   payments: [],
+  pagination: {
+    totalPages: '',
+    totalRecords: '',
+  },
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case INITIAL_LOAD_INIT:
+    case FETCH_PAYMENTS_INIT:
       return {
         ...state,
         pageLoading: true,
         error: '',
       };
-    case INITIAL_LOAD_SUCCESS:
+    case FETCH_PAYMENTS_SUCCESS:
       return {
         ...state,
         pageLoading: false,
         payments: [...action.payload.payments],
+        pagination: { ...action.payload.pagination },
       };
-    case INITIAL_LOAD_FAILURE:
+    case FETCH_PAYMENTS_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
     default:
       return state;
@@ -43,4 +48,9 @@ export const getError = createSelector(
 export const getPaymentHistory = createSelector(
   getPaymentHistoryReducer,
   (paymentHistory) => paymentHistory.payments
+);
+
+export const getPagination = createSelector(
+  getPaymentHistoryReducer,
+  (paymentHistory) => paymentHistory.pagination
 );

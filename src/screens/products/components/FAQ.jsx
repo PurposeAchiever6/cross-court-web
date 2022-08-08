@@ -10,23 +10,16 @@ const QUESTIONS = [
       'sessions on our schedule page.',
   },
   {
-    question: 'Do sessions carryover to the next month?',
+    question: 'Do sessions rollover to the next month?',
     answer:
-      'Unused sessions do not carryover to the next month. Choose a Membership that works with ' +
-      'your lifestyle.',
+      'A certain number of unused session credits will rollover each month depending on membership type. ' +
+      'See above for specifics.',
   },
   {
     question: 'Can I schedule back-to-back sessions?',
     answer:
       'Yes, you may book a spot in back to back sessions. You will need to re-check in at the ' +
       'front desk between sessions.',
-  },
-  {
-    question:
-      'Does purchasing a membership mean I have access to the club during all business hours?',
-    answer:
-      'Unfortunately not. You will need to have a session booked within 30 minutes of arrival ' +
-      'to be able to access the club.',
   },
 ];
 

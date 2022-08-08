@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import { MEMBERSHIPS_FEATURES } from 'shared/constants/memberships';
 import HoverableBox from 'shared/components/HoverableBox';
@@ -7,7 +7,7 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import blackTextureBgImg from 'shared/images/black-texture-bg.png';
 
-const MembershipsFeatures = () => (
+const MembershipsFeatures = ({ setWatchSkillsVideo }) => (
   <LazyBackgroundImage
     as="section"
     img={blackTextureBgImg}
@@ -27,9 +27,15 @@ const MembershipsFeatures = () => (
         bonded by the power of team-sport and exclusive CCteam experiences.
       </p>
       <div className="flex flex-wrap sm:-m-5 pb-12">
-        {MEMBERSHIPS_FEATURES.map(({ name, description }) => (
+        {MEMBERSHIPS_FEATURES.map(({ name, description, linkDescription }) => (
           <div key={name} className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 mb-4 sm:mb-0 sm:p-5">
-            <HoverableBox title={name} description={description} className="h-64" />
+            <HoverableBox
+              title={name}
+              description={description}
+              linkDescription={linkDescription}
+              className="h-64"
+              linkOnClick={setWatchSkillsVideo ? () => setWatchSkillsVideo(true) : null}
+            />
           </div>
         ))}
       </div>
@@ -39,5 +45,13 @@ const MembershipsFeatures = () => (
     </div>
   </LazyBackgroundImage>
 );
+
+MembershipsFeatures.defaultProps = {
+  setWatchSkillsVideo: null,
+};
+
+MembershipsFeatures.propTypes = {
+  setWatchSkillsVideo: PropTypes.func,
+};
 
 export default MembershipsFeatures;

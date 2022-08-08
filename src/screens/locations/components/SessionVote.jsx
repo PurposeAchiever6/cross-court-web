@@ -25,7 +25,7 @@ const SessionVote = ({ sessionId, sessionDate, votes, voted, className }) => {
           <Tooltip
             variant="purple"
             tooltip='Each week, if a "Coming Soon" session gets 15 or more upvotes, it will become availabe for booking'
-            className="mr-4 mt-1"
+            className="mr-2 mt-1"
           >
             <FontAwesomeIcon
               icon={faInfoCircle}

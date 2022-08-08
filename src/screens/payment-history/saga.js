@@ -1,23 +1,24 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 
-import { INITIAL_LOAD_INIT, INITIAL_LOAD_SUCCESS, INITIAL_LOAD_FAILURE } from './actionTypes';
+import { FETCH_PAYMENTS_INIT, FETCH_PAYMENTS_SUCCESS, FETCH_PAYMENTS_FAILURE } from './actionTypes';
 
 import paymentHistoryService from './service';
 
-export function* initialLoadFlow() {
+export function* fetchPaymentsFlow({ payload }) {
   try {
-    const paymentHistoryPayload = yield call(paymentHistoryService.getPaymentHistory);
+    const paymentHistoryPayload = yield call(paymentHistoryService.getPaymentHistory, payload);
     yield put({
-      type: INITIAL_LOAD_SUCCESS,
+      type: FETCH_PAYMENTS_SUCCESS,
       payload: {
-        payments: paymentHistoryPayload,
+        payments: paymentHistoryPayload.payments,
+        pagination: paymentHistoryPayload.pagination,
       },
     });
   } catch (err) {
-    yield put({ type: INITIAL_LOAD_FAILURE, error: err.response.data.error });
+    yield put({ type: FETCH_PAYMENTS_FAILURE, error: err.response.data.error });
   }
 }
 
 export default function* paymentHistorySaga() {
-  yield takeLatest(INITIAL_LOAD_INIT, initialLoadFlow);
+  yield takeLatest(FETCH_PAYMENTS_INIT, fetchPaymentsFlow);
 }

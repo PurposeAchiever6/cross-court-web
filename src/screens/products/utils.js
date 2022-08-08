@@ -1,4 +1,4 @@
-import { ONE_TIME } from 'screens/products/constants';
+import { ONE_TIME, UNLIMITED_VALUE } from 'screens/products/constants';
 
 export const productDiscount = (product, user) => {
   const userHasActiveSubscription = !!user.activeSubscription;
@@ -34,3 +34,5 @@ export const productDiscount = (product, user) => {
     discountReason,
   };
 };
+
+export const creditsString = (credits) => (credits === UNLIMITED_VALUE ? 'Unlimited' : credits);

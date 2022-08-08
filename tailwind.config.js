@@ -10,6 +10,9 @@ module.exports = {
       padding: {
         160: '40rem',
       },
+      width: {
+        38: '9.5rem',
+      },
       colors: {
         'cc-black': '#1a1a1a',
         'cc-purple': '#9999FF',

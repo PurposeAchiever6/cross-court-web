@@ -1,10 +1,13 @@
 import api from 'shared/services';
 
 export default {
-  getPaymentHistory: async () => {
+  getPaymentHistory: async ({ page }) => {
     const response = await api.get(`/payments`, {
       data: {},
+      params: {
+        page,
+      },
     });
-    return response.data.payments;
+    return response.data;
   },
 };

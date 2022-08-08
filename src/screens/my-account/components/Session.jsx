@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { equals } from 'ramda';
 
+import sklzLogoPurple from 'shared/images/sklz-logo-purple.png';
 import colors from 'shared/styles/constants';
 import { urlFormattedDate, shortSessionDate, hourRange } from 'shared/utils/date';
 import CheckCircle from 'shared/components/svg/CheckCircleSvg';
@@ -29,14 +30,6 @@ const SessionContainer = styled.div`
     margin: 0 0 2rem 0;
   }
 
-  img {
-    width: 100%;
-    height: 10rem;
-    object-fit: cover;
-    object-position: top;
-    display: flex;
-    height: 13.5rem;
-  }
   .reserved-check {
     height: 2rem;
     width: 2rem;
@@ -56,6 +49,15 @@ const SessionContainer = styled.div`
   }
   .image {
     flex: 1;
+
+    .location-img {
+      width: 100%;
+      height: 10rem;
+      object-fit: cover;
+      object-position: top;
+      display: flex;
+      height: 13.5rem;
+    }
   }
 
   .details {
@@ -129,11 +131,13 @@ const SessionContainer = styled.div`
   @media (max-width: 991px) {
     flex-direction: row;
 
-    img {
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      display: flex;
+    .image {
+      .location-img {
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        display: flex;
+      }
     }
     .location {
       font-size: 1.2rem;
@@ -158,6 +162,7 @@ const Session = ({
       id: sessionId,
       time,
       durationMinutes,
+      skillSession,
       location: { name: locationName, imageUrls },
     },
   },
@@ -172,8 +177,15 @@ const Session = ({
 
   return (
     <SessionContainer className="session-container">
-      <div className="image">
-        <img src={imageUrls[0]} alt="Session" />
+      <div className="relative image">
+        <img src={imageUrls[0]} className="location-img" alt="Session" />
+        {skillSession && (
+          <img
+            alt="sklz-logo"
+            className="absolute top-0 right-0 w-24 md:w-32 m-2 md:m-4"
+            src={sklzLogoPurple}
+          />
+        )}
       </div>
       <div className="details">
         <span className={dateClassName}>

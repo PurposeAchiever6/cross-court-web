@@ -2,6 +2,7 @@ import React from 'react';
 import { number, bool, object } from 'prop-types';
 import styled from 'styled-components';
 
+import { ZERO_SKLZ_CREDITS_NOTICE } from 'screens/my-account/constants';
 import ROUTES from 'shared/constants/routes';
 import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -30,7 +31,8 @@ const MyCreditsContainer = styled.div`
 
   .dropin-title-2,
   .subscription-title-2,
-  .unlimited-title-2 {
+  .unlimited-title-2,
+  .unlimited-skill-title-2 {
     display: block;
     font-family: 'shapiro97_air_extd';
     -webkit-text-stroke: 1px;
@@ -64,25 +66,37 @@ const MyCreditsContainer = styled.div`
     letter-spacing: 0.5px;
   }
 
-  .unlimited-title-2 {
+  .unlimited-title-2,
+  .unlimited-skill-title-2 {
     font-size: 35px;
     line-height: 30px;
   }
+
+  .unlimited-skill-title-2 {
+    white-space: nowrap;
+  }
 `;
 
-const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
+const MyCredits = ({
+  isUnlimited,
+  credits,
+  isUnlimitedSkillSession,
+  skillSessionCredits,
+  activeSubscription,
+}) => {
   const sessionPluralize = credits === 1 ? 'SESSION' : 'SESSIONS';
+  const skillSessionPluralize = skillSessionCredits === 1 ? 'SKLZ SESSION' : 'SKLZ SESSIONS';
 
   return (
     <MyCreditsContainer className="my-credits">
       <div className="mb-6">
         {isUnlimited ? (
-          <div className="-mt-4s">
+          <div className="mb-6">
             <span className="unlimited-title-1">UNLIMITED</span>
             <span className="unlimited-title-2">SESSIONS</span>
           </div>
         ) : (
-          <div className="flex mb-4">
+          <div className="flex mb-6">
             <span className="session-number">{credits}</span>
             <span>
               {activeSubscription ? (
@@ -100,25 +114,46 @@ const MyCredits = ({ isUnlimited, credits, activeSubscription }) => {
           </div>
         )}
         {activeSubscription && (
-          <div className="text-sm mt-4">
-            <div>
-              <span className="font-shapiro95_super_wide uppercase whitespace-nowrap mr-2">
-                Current Membership:
-              </span>
-              <span>{activeSubscription.product.name}</span>
-              {activeSubscription.paused && <span className="ml-1 text-xs">(paused)</span>}
+          <>
+            {isUnlimitedSkillSession ? (
+              <div className="mb-6">
+                <span className="unlimited-title-1">UNLIMITED</span>
+                <span className="unlimited-skill-title-2">SKLZ SESSIONS</span>
+              </div>
+            ) : (
+              <div className="flex mb-6">
+                <span className="session-number">{skillSessionCredits}</span>
+                <span>
+                  <span className="subscription-title-1">{`${skillSessionPluralize} LEFT`}</span>
+                  <span>
+                    <div className="subscription-title-2">THIS MONTH</div>
+                    {skillSessionCredits === 0 && (
+                      <div className="text-xs font-semibold mt-2">{ZERO_SKLZ_CREDITS_NOTICE}</div>
+                    )}
+                  </span>
+                </span>
+              </div>
+            )}
+            <div className="text-sm mt-4">
+              <div>
+                <span className="font-shapiro95_super_wide uppercase whitespace-nowrap mr-2">
+                  Current Membership:
+                </span>
+                <span>{activeSubscription.product.name}</span>
+                {activeSubscription.paused && <span className="ml-1 text-xs">(paused)</span>}
+              </div>
+              <div>
+                <span className="font-shapiro95_super_wide uppercase whitespace-nowrap mr-2">
+                  Billing Period:
+                </span>
+                <span>
+                  {`${subscriptionPeriodFormattedDate(
+                    activeSubscription.currentPeriodStart
+                  )} - ${subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}`}
+                </span>
+              </div>
             </div>
-            <div>
-              <span className="font-shapiro95_super_wide uppercase whitespace-nowrap mr-2">
-                Billing Period:
-              </span>
-              <span>
-                {`${subscriptionPeriodFormattedDate(
-                  activeSubscription.currentPeriodStart
-                )} - ${subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}`}
-              </span>
-            </div>
-          </div>
+          </>
         )}
       </div>
       <PrimaryButton
@@ -142,6 +177,8 @@ MyCredits.defaultProps = {
 MyCredits.propTypes = {
   isUnlimited: bool.isRequired,
   credits: number.isRequired,
+  isUnlimitedSkillSession: bool.isRequired,
+  skillSessionCredits: number.isRequired,
   activeSubscription: object,
 };
 

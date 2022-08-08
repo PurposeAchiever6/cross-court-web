@@ -16,6 +16,7 @@ import {
   cancelPauseSubscription,
   unpauseSubscription,
 } from 'screens/products/actionCreators';
+import { creditsString } from 'screens/products/utils';
 
 const ManageMembershipPage = () => {
   const { activeSubscription } = useSelector(getUserProfile);
@@ -30,6 +31,8 @@ const ManageMembershipPage = () => {
   const product = activeSubscription?.product;
   const willPause = activeSubscription?.willPause;
   const canPause = active && activeSubscription?.canPause;
+
+  const productsCreditsString = creditsString(product?.credits);
 
   const pauseSubscriptionAction = (months) =>
     dispatch(pauseSubscription(activeSubscription, months));
@@ -80,7 +83,7 @@ const ManageMembershipPage = () => {
           <h3 className="font-shapiro95_super_wide text-xl text-cc-black uppercase">
             Current Membership
           </h3>
-          <div className="mb-2">{`${product?.name}/month`}</div>
+          <div className="mb-2">{`${product?.name} - ${productsCreditsString} credits/month`}</div>
           <PrimaryButton fontSize="0.75rem" className="w-max block mb-8" to={ROUTES.MEMBERSHIPS}>
             Change Membership
           </PrimaryButton>

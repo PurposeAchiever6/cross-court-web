@@ -39,7 +39,7 @@ const ReferralsList = ({ referrals, className }) => {
         </p>
         <p>
           Share that code with a friend so they get a first month discount on their first membership
-          purchase, and you will get referral credits to spend at Crosscourt!
+          purchase, and you will get CC CA$H to spend at Crosscourt!
         </p>
       </div>
       {referrals.length > 0 && (

@@ -12,10 +12,10 @@ import {
   setSelectedProduct,
   reactivateSubscription,
 } from 'screens/products/actionCreators';
-import ToggleButton from 'shared/components/ToggleButton';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import MembershipsFeatures from 'shared/components/MembershipsFeatures';
+import VideoPlayer from 'shared/components/VideoPlayer';
 
 import Memberships from './components/Memberships';
 import ReserveTeamMemberships from './components/reserve-team/Memberships';
@@ -36,12 +36,11 @@ const ProductsPage = () => {
   const userProfile = useSelector(getUserProfile);
   const { activeSubscription, reserveTeam } = userProfile;
 
-  const showDropInsProducts = state?.showDropInsProducts;
   const showNoFreeSessionInformation = state?.showNoFreeSessionInformation;
   const showAnimation = state?.showNoCreditsAnimation;
 
-  const [showDropIns, setDropIns] = useState(showDropInsProducts ? true : false);
   const [showCancelModal, setShowCancelModal] = useState(false);
+  const [watchVideo, setWatchVideo] = useState(false);
   const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
     showNoFreeSessionInformation ? true : false
   );
@@ -95,18 +94,14 @@ const ProductsPage = () => {
     <>
       <div className="bg-cc-black pt-16 pb-10">
         {showAnimation && <NoSessionCredits />}
-        <div className="text-center">
-          <ToggleButton
-            offLabel="Memberships"
-            onLabel="A la carte"
-            size="4xl"
-            value={showDropIns}
-            onChange={setDropIns}
-            className="mt-4 text-white lg:text-xl"
+        <div className="flex flex-col lg:flex-row p-4">
+          <DropIns
+            selectProductHandler={selectProductHandler}
+            cancelMembership={cancelMembership}
+            availableProducts={availableProducts}
+            reactivateMembership={reactivateMembership}
           />
-        </div>
-        {!showDropIns &&
-          (reserveTeam ? (
+          {reserveTeam ? (
             <ReserveTeamMemberships
               onSubmit={onSubmit}
               availableProducts={availableProducts}
@@ -120,17 +115,13 @@ const ProductsPage = () => {
               activeSubscription={activeSubscription}
               getSubmitText={getSubmitText}
             />
-          ))}
-        {showDropIns && (
-          <DropIns
-            selectProductHandler={selectProductHandler}
-            cancelMembership={cancelMembership}
-            availableProducts={availableProducts}
-            reactivateMembership={reactivateMembership}
-          />
+          )}
+        </div>
+        {reserveTeam ? (
+          <ReserveTeamMembershipsFeatures setWatchVideo={setWatchVideo} />
+        ) : (
+          <MembershipsFeatures setWatchSkillsVideo={setWatchVideo} />
         )}
-        {!showDropIns &&
-          (reserveTeam ? <ReserveTeamMembershipsFeatures /> : <MembershipsFeatures />)}
         <div className="w-full flex justify-center mb-16">
           <h2 className="dharma_gothic_cheavy_italic text-6xl lg:text-8xl text-cc-purple">
             HAVE A QUESTION? REACH OUT BELOW
@@ -146,6 +137,13 @@ const ProductsPage = () => {
       <NoFreeSessionInformationModal
         isOpen={showNoFreeSessionInformationModal}
         closeHandler={() => setShowNoFreeSessionInformationModal(false)}
+      />
+      <VideoPlayer
+        url="/skill-sessions.mp4"
+        playing
+        openOnModal
+        isModalOpen={watchVideo}
+        closeModalHandler={() => setWatchVideo(false)}
       />
     </>
   );

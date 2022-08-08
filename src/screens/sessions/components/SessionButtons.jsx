@@ -120,7 +120,7 @@ const SessionButtons = ({
             </p>
           )}
           {reserveTeamNotAllowed && !reservedOrConfirmed && !onWaitlist && (
-            <p className="text-sm mt-4">Reserve Team restricted</p>
+            <p className="text-sm mt-4">Reserve team restricted</p>
           )}
           {isAuthenticated && (
             <>

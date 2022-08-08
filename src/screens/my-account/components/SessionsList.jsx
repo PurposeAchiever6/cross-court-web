@@ -48,7 +48,9 @@ const SessionsListContainer = styled.div`
 
   .sessions {
     width: 90%;
-    margin: auto;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
 
     .sessions-container {
       display: flex;
@@ -72,7 +74,9 @@ const SessionsList = ({ title, sessions, past, isSem }) => {
           <div className="container-empty-message">
             <h3>YOU HAVE NO {title}</h3>
             {!past && !isSem && (
-              <PrimaryButton to={ROUTES.LOCATIONS}>EXPLORE SESSIONS</PrimaryButton>
+              <PrimaryButton to={ROUTES.LOCATIONS} className="mt-6 block">
+                EXPLORE SESSIONS
+              </PrimaryButton>
             )}
           </div>
         </div>

@@ -8,13 +8,12 @@ import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
-import { getUserProfile } from 'screens/my-account/reducer';
 
 import { resetLoading, removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { initialLoadInit, initialLoadAuthInit } from 'screens/sessions/actionCreators';
 import { getPageLoading, getSessionInfo } from 'screens/sessions/reducer';
 import Carousel from 'shared/components/Carousel';
-import { getSessionsMessageContainerText, sessionData } from 'screens/sessions/utils';
+import { sessionData } from 'screens/sessions/utils';
 
 import SessionHeader from 'screens/sessions/components/SessionHeader';
 import FreeIncludedIcon from 'shared/images/open-club/free-included-icon.png';
@@ -41,10 +40,6 @@ const OpenClub = () => {
   const isPageLoading = useSelector(getPageLoading);
   const sessionInfo = useSelector(getSessionInfo);
   const isAuthenticated = useSelector(getIsAuthenticated);
-  const userProfile = useSelector(getUserProfile);
-
-  const isSessionComplete = sessionInfo.past;
-  const isSessionFull = sessionInfo.spotsLeft === 0;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -97,14 +92,6 @@ const OpenClub = () => {
                 membership info located in "My Account" to our Session Experience Manager upon
                 arrival.
               </p>
-            </div>
-            <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
-              {getSessionsMessageContainerText(
-                isSessionComplete,
-                isSessionFull,
-                isAuthenticated,
-                userProfile
-              )}
             </div>
           </div>
           <div className="flex flex-col justify-evenly w-full md:w-1/2 bg-white text-center px-4 pb-12 md:pb-0">

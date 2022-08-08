@@ -10,22 +10,24 @@ const Memberships = ({ onSubmit, availableProducts, activeSubscription, getSubmi
   const membershipProducts = products.filter((product) => product.productType === RECURRING);
 
   return (
-    <div className="lg:flex lg:justify-center p-4 md:p-12 text-white">
-      <div className="lg:w-5/6 2xl:w-3/4">
-        <div className="flex mb-4">
-          <h2 className="dharma_gothic_cheavy text-8xl">MEMBERSHIP</h2>
-          <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
+    <div className="lg:flex text-white w-full lg:w-3/4">
+      <div>
+        <div className="md:h-44 md:ml-4 mb-10">
+          <div className="flex mb-2">
+            <h2 className="dharma_gothic_cheavy text-8xl">MEMBERSHIP</h2>
+            <img className="w-5 h-5 ml-1 mt-2" src={Ball} alt="Icon" />
+          </div>
+          <p className="md:w-5/6">
+            Heavily discounted subscription feature that automatically refills your sessions monthly
+            and gives you access to exclusive CC perks.
+          </p>
         </div>
-        <p>
-          Heavily discounted subscription feature that automatically refills your sessions monthly
-          and gives you access to exclusive CC perks.
-        </p>
-        <div className="flex flex-wrap justify-center mt-10 lg:mt-16">
+        <div className="flex flex-wrap">
           {membershipProducts.map((product) => {
             const isActiveSubscription = product.id === activeSubscription?.product.id;
 
             return (
-              <div key={product.id} className="w-full lg:w-1/3 lg:px-4 xl:px-7 mb-8">
+              <div key={product.id} className="w-full lg:w-1/3 md:px-4 mb-8">
                 <ProductPlan
                   product={product}
                   submitText={getSubmitText(isActiveSubscription, activeSubscription)}
