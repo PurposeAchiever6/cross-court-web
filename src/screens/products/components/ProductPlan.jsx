@@ -66,8 +66,8 @@ const ProductPlan = ({
                 <span className="text-cc-purple">{sessionsCreditsString}</span> sessions per month
               </p>
               <p className="mt-2">
-                <span className="text-cc-purple">{skillSessionCreditsString}</span> free sklz
-                sessions per month
+                <span className="text-cc-purple">{skillSessionCreditsString}</span> sklz sessions
+                per month
               </p>
               {!isUnlimited && (
                 <p className="mt-2">
