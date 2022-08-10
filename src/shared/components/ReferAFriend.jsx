@@ -15,6 +15,7 @@ const STEPS = [
   {
     title: 'THEY GET A CC MEMBERSHIP',
     subtitle: 'For 50% off their first month',
+    note: 'PLEASE NOTE: Must be redeemed before attending first session',
   },
   {
     title: 'YOU GET CC CA$H',
@@ -38,6 +39,7 @@ const ReferAFriend = ({ code, className }) => {
             <div className="flex flex-col w-3/4">
               <p>{step.title}</p>
               <p>{step.subtitle}</p>
+              {step.note && <p className="text-xs">{step.note}</p>}
             </div>
           </div>
         ))}
