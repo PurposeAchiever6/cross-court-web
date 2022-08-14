@@ -28,7 +28,7 @@ const EveryoneIsAnThlete = () => {
                 No more "who has next" BS
               </h3>
               <div className="md:text-lg mb-10">
-                <p className="mb-6">Basketball was probably your jam before becaming "an adult".</p>
+                <p className="mb-6">Basketball was probably your jam before becoming "an adult".</p>
                 <p className="mb-6">
                   If we had to guess, too many nightmarish pickup experiences forced you stop
                   playing, and you lost not only the sport you love, but a means of exercise,
