@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import Tooltip from 'shared/components/Tooltip';
+import InfoSvg from 'shared/components/svg/InfoSvg';
 import BadgeWithInfo from 'shared/components/BadgeWithInfo';
 import VideoPlayer from 'shared/components/VideoPlayer';
 import sklzLogoWhite from 'shared/images/sklz-logo-white.png';
+import sklzLogoBlack from 'shared/images/sklz-logo-black.png';
 
 const SessionBadge = ({ skillLevel, isOpenClub, womenOnly, skillSession, variant }) => {
   const [watchVideo, setWatchVideo] = useState(false);
@@ -50,9 +53,21 @@ const SessionBadge = ({ skillLevel, isOpenClub, womenOnly, skillSession, variant
 
     return (
       <>
-        <BadgeWithInfo info={tooltipInformation} enableInfo={enableBadgeInfo} variant={variant}>
-          <img alt="sklz-logo" className="h-2 inline-block" src={sklzLogoWhite} />
-        </BadgeWithInfo>
+        <div className="flex items-center">
+          <img
+            alt="sklz-logo"
+            className={`${variant === 'black' ? 'h-3' : 'h-4'} mr-2 inline-block`}
+            src={variant === 'black' ? sklzLogoBlack : sklzLogoWhite}
+          />
+          <Tooltip
+            variant="purple"
+            tooltip={tooltipInformation}
+            place="right"
+            enable={enableBadgeInfo}
+          >
+            <InfoSvg className="text-cc-purple cursor-pointer" />
+          </Tooltip>
+        </div>
         <VideoPlayer
           url="/skill-sessions.mp4"
           playing
