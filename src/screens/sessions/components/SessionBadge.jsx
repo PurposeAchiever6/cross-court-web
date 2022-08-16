@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import BadgeWithInfo from 'shared/components/BadgeWithInfo';
 import VideoPlayer from 'shared/components/VideoPlayer';
+import sklzLogoWhite from 'shared/images/sklz-logo-white.png';
 
 const SessionBadge = ({ skillLevel, isOpenClub, womenOnly, skillSession, variant }) => {
   const [watchVideo, setWatchVideo] = useState(false);
@@ -50,7 +51,7 @@ const SessionBadge = ({ skillLevel, isOpenClub, womenOnly, skillSession, variant
     return (
       <>
         <BadgeWithInfo info={tooltipInformation} enableInfo={enableBadgeInfo} variant={variant}>
-          SKLZ
+          <img alt="sklz-logo" className="h-2 inline-block" src={sklzLogoWhite} />
         </BadgeWithInfo>
         <VideoPlayer
           url="/skill-sessions.mp4"
