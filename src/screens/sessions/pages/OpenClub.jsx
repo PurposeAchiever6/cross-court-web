@@ -8,14 +8,15 @@ import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
 
 import { resetLoading, removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { initialLoadInit, initialLoadAuthInit } from 'screens/sessions/actionCreators';
 import { getPageLoading, getSessionInfo } from 'screens/sessions/reducer';
 import Carousel from 'shared/components/Carousel';
-import { sessionData } from 'screens/sessions/utils';
 
 import SessionHeader from 'screens/sessions/components/SessionHeader';
+import SessionInfo from 'screens/sessions/components/SessionInfo';
 import FreeIncludedIcon from 'shared/images/open-club/free-included-icon.png';
 import StationaryBikeIcon from 'shared/images/open-club/stationary-bike-icon.png';
 import TrainSoloIcon from 'shared/images/open-club/train-solo-icon.png';
@@ -40,6 +41,7 @@ const OpenClub = () => {
   const isPageLoading = useSelector(getPageLoading);
   const sessionInfo = useSelector(getSessionInfo);
   const isAuthenticated = useSelector(getIsAuthenticated);
+  const userProfile = useSelector(getUserProfile);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -77,14 +79,12 @@ const OpenClub = () => {
         />
         <div className="flex w-full flex-col-reverse md:flex-row md:w-1/2 ">
           <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
-            <div className="flex flex-col items-center md:items-start">
-              {sessionData(date, sessionInfo).map((data, i) => (
-                <div className="flex flex-col mb-8" key={`info-${i}`}>
-                  <span className="uppercase block tracking-wider font-semibold">{data.title}</span>
-                  <span className="font-shapiro45_welter_extd text-sm uppercase">{data.value}</span>
-                </div>
-              ))}
-            </div>
+            <SessionInfo
+              isAuthenticated={isAuthenticated}
+              userProfile={userProfile}
+              date={date}
+              sessionInfo={sessionInfo}
+            />
             <div className="flex flex-col bg-cc-purple p-3 mb-10 md:mb-4 md:-mt-2">
               <p>HOW IT WORKS</p>
               <p className="font-shapiro45_welter_extd mt-1">
