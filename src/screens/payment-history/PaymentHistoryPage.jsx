@@ -77,16 +77,14 @@ const PaymentHistoryPage = () => {
       },
       {
         Header: 'Status',
-        accessor: (row) => {
-          const isSuccess = row.status === SUCCESS;
-          const icon = isSuccess ? faCheckCircle : faTimesCircle;
-          const color = isSuccess ? 'green' : 'red';
-          return (
-            <Tooltip tooltip={row.errorMessage || ''}>
-              <FontAwesomeIcon icon={icon} color={color} />
+        accessor: (row) =>
+          row.status === SUCCESS ? (
+            <FontAwesomeIcon icon={faCheckCircle} color="green" />
+          ) : (
+            <Tooltip tooltip={row.errorMessage}>
+              <FontAwesomeIcon icon={faTimesCircle} color="red" />
             </Tooltip>
-          );
-        },
+          ),
       },
     ],
     []
