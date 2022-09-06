@@ -28,6 +28,7 @@ import SessionButtons from 'screens/sessions/components/SessionButtons';
 import SessionHeader from 'screens/sessions/components/SessionHeader';
 import SessionInfo from 'screens/sessions/components/SessionInfo';
 import LegalAgeWarning from 'screens/sessions/components/LegalAgeWarning';
+import SkillLevelWarning from 'screens/sessions/components/SkillLevelWarning';
 
 import SessionOfficials from 'screens/sessions/components/SessionOfficials';
 import Carousel from 'shared/components/Carousel';
@@ -113,12 +114,10 @@ const Session = () => {
         />
         <div className="flex w-full flex-col-reverse md:flex-row md:w-1/2">
           <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
-            <SessionInfo
-              isAuthenticated={isAuthenticated}
-              userProfile={userProfile}
-              date={date}
-              sessionInfo={sessionInfo}
-            />
+            {isAuthenticated && (
+              <SkillLevelWarning userProfile={userProfile} sessionInfo={sessionInfo} />
+            )}
+            <SessionInfo date={date} sessionInfo={sessionInfo} />
             <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
               {getSessionsMessageContainerText(
                 isSessionComplete,

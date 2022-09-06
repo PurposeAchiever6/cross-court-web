@@ -29,7 +29,7 @@ import SessionHeader from 'screens/sessions/components/SessionHeader';
 import SessionInfo from 'screens/sessions/components/SessionInfo';
 import LegalAgeWarning from 'screens/sessions/components/LegalAgeWarning';
 
-import SessionOfficials from 'screens/sessions/components/SessionOfficials';
+import SklzCoaches from 'screens/sessions/components/SklzCoaches';
 import Carousel from 'shared/components/Carousel';
 import { getSessionsMessageContainerText } from 'screens/sessions/utils';
 
@@ -121,12 +121,7 @@ const Session = () => {
         />
         <div className="flex w-full flex-col-reverse md:flex-row md:w-1/2">
           <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
-            <SessionInfo
-              isAuthenticated={isAuthenticated}
-              userProfile={userProfile}
-              date={date}
-              sessionInfo={sessionInfo}
-            />
+            <SessionInfo date={date} sessionInfo={sessionInfo} />
             <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
               {getSessionsMessageContainerText(
                 isSessionComplete,
@@ -138,7 +133,7 @@ const Session = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-around items-center px-4 pb-12 md:px-4 md:py-10">
-            <SessionOfficials sessionInfo={sessionInfo} />
+            <SklzCoaches sessionInfo={sessionInfo} />
             <SessionButtons
               session={sessionInfo}
               reserveSessionAction={reserveSessionAction}

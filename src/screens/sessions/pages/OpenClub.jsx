@@ -8,7 +8,6 @@ import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 
 import { getIsAuthenticated } from 'screens/auth/reducer';
-import { getUserProfile } from 'screens/my-account/reducer';
 
 import { resetLoading, removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { initialLoadInit, initialLoadAuthInit } from 'screens/sessions/actionCreators';
@@ -41,7 +40,6 @@ const OpenClub = () => {
   const isPageLoading = useSelector(getPageLoading);
   const sessionInfo = useSelector(getSessionInfo);
   const isAuthenticated = useSelector(getIsAuthenticated);
-  const userProfile = useSelector(getUserProfile);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -79,12 +77,7 @@ const OpenClub = () => {
         />
         <div className="flex w-full flex-col-reverse md:flex-row md:w-1/2 ">
           <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
-            <SessionInfo
-              isAuthenticated={isAuthenticated}
-              userProfile={userProfile}
-              date={date}
-              sessionInfo={sessionInfo}
-            />
+            <SessionInfo date={date} sessionInfo={sessionInfo} />
             <div className="flex flex-col bg-cc-purple p-3 mb-10 md:mb-4 md:-mt-2">
               <p>HOW IT WORKS</p>
               <p className="font-shapiro45_welter_extd mt-1">
