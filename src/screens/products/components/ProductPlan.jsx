@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import PropTypes from 'prop-types';
 import currency from 'currency.js';
 
@@ -16,6 +17,8 @@ const ProductPlan = ({
   showFeatures,
   className,
 }) => {
+  const env = runtimeEnv();
+
   const currentUser = useSelector(getUserProfile);
 
   const formatPrice = (price) =>
@@ -23,6 +26,9 @@ const ProductPlan = ({
       formatWithSymbol: true,
       precision: 0,
     }).format();
+
+  const unlimitedCreditsCancelFee = env.REACT_APP_UNLIMITED_CREDITS_CANCELED_OUT_OF_TIME_PRICE;
+  const unlimitedHasNoLateCancellationFee = Number(unlimitedCreditsCancelFee) === 0;
 
   const isUnlimited = product.credits === UNLIMITED_VALUE;
   const sessionsCreditsString = creditsString(product.credits);
@@ -78,7 +84,9 @@ const ProductPlan = ({
               <p className="mt-2">Free jersey/towel rental</p>
               <p className="mt-2">Members only event access</p>
               <p className="mt-2">Online community forum access</p>
-              {isUnlimited && <p className="mt-2">No late cancellation fee</p>}
+              {isUnlimited && unlimitedHasNoLateCancellationFee && (
+                <p className="mt-2">No late cancellation fee</p>
+              )}
               <p className="mt-2 text-cc-purple">Plus all memberships perks below</p>
             </div>
           </div>
