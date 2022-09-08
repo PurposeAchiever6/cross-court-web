@@ -28,11 +28,18 @@ import SessionButtons from 'screens/sessions/components/SessionButtons';
 import SessionHeader from 'screens/sessions/components/SessionHeader';
 import SessionInfo from 'screens/sessions/components/SessionInfo';
 import LegalAgeWarning from 'screens/sessions/components/LegalAgeWarning';
-import SkillLevelWarning from 'screens/sessions/components/SkillLevelWarning';
 
-import SessionOfficials from 'screens/sessions/components/SessionOfficials';
+import SklzCoaches from 'screens/sessions/components/SklzCoaches';
 import Carousel from 'shared/components/Carousel';
 import { getSessionsMessageContainerText } from 'screens/sessions/utils';
+
+import sklz from 'shared/images/sklz/sklz.jpg';
+import goTeam from 'shared/images/sklz/go-team.jpg';
+import clap from 'shared/images/sklz/clap.jpg';
+import learn from 'shared/images/sklz/learn.jpg';
+import sweat from 'shared/images/sklz/sweat.jpg';
+
+const IMAGES = [sklz, goTeam, clap, learn, sweat];
 
 const Session = () => {
   const { id, date } = useParams();
@@ -91,8 +98,8 @@ const Session = () => {
     return <Redirect to={`/session/${id}/${date}/open-club`} />;
   }
 
-  if (sessionInfo.skillSession) {
-    return <Redirect to={`/session/${id}/${date}/sklz`} />;
+  if (!sessionInfo.skillSession) {
+    return <Redirect to={`/session/${id}/${date}`} />;
   }
 
   return (
@@ -110,13 +117,10 @@ const Session = () => {
         <Carousel
           className="session-carousel carousel-h-full"
           imagesClassName="w-full md:w-1/2"
-          imageUrls={sessionInfo.location.imageUrls}
+          imageUrls={IMAGES}
         />
         <div className="flex w-full flex-col-reverse md:flex-row md:w-1/2">
           <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
-            {isAuthenticated && (
-              <SkillLevelWarning userProfile={userProfile} sessionInfo={sessionInfo} />
-            )}
             <SessionInfo date={date} sessionInfo={sessionInfo} />
             <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
               {getSessionsMessageContainerText(
@@ -129,7 +133,7 @@ const Session = () => {
             </div>
           </div>
           <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-around items-center px-4 pb-12 md:px-4 md:py-10">
-            <SessionOfficials sessionInfo={sessionInfo} />
+            <SklzCoaches sessionInfo={sessionInfo} />
             <SessionButtons
               session={sessionInfo}
               reserveSessionAction={reserveSessionAction}

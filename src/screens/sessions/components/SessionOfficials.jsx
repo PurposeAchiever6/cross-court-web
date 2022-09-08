@@ -1,5 +1,4 @@
 import React from 'react';
-import { isNil } from 'ramda';
 import UserSvg from 'shared/components/svg/UserSvg';
 import PropTypes from 'prop-types';
 
@@ -17,16 +16,16 @@ const SessionOfficials = ({ sessionInfo }) => {
       </h3>
       <div className="font-shapiro95_super_wide">
         <div className="flex flex-col mb-8 justify-center items-center">
-          {isNil(sessionInfo.sem) || isNil(sessionInfo.sem.imageUrl) ? (
-            <div className="h-20 w-20 flex justify-center items-center bg-gray-200 text-cc-purple mb-2 text-4xl rounded-full">
-              <UserSvg className="w-8 h-8" />
-            </div>
-          ) : (
+          {sessionInfo?.sem?.imageUrl ? (
             <img
               className="w-20 h-20 rounded-full mb-2 object-cover my-0 mx-auto"
               src={sessionInfo.sem.imageUrl}
               alt="SEM"
             />
+          ) : (
+            <div className="h-20 w-20 flex justify-center items-center bg-gray-200 text-cc-purple mb-2 text-4xl rounded-full">
+              <UserSvg className="w-8 h-8" />
+            </div>
           )}
 
           <span className="capitalize font-medium">
@@ -34,16 +33,16 @@ const SessionOfficials = ({ sessionInfo }) => {
           </span>
         </div>
         <div className="flex flex-col mb-8 justify-center items-center">
-          {isNil(sessionInfo.referee) || isNil(sessionInfo.referee.imageUrl) ? (
-            <div className="h-20 w-20 flex justify-center items-center bg-gray-200 text-cc-purple mb-2 text-4xl rounded-full">
-              <UserSvg className="w-8 h-8" />
-            </div>
-          ) : (
+          {sessionInfo?.referee?.imageUrl ? (
             <img
               className="w-20 h-20 rounded-full mb-2 object-cover my-0 mx-auto"
               src={sessionInfo.referee.imageUrl}
-              alt="SEM"
+              alt="REFEREE"
             />
+          ) : (
+            <div className="h-20 w-20 flex justify-center items-center bg-gray-200 text-cc-purple mb-2 text-4xl rounded-full">
+              <UserSvg className="w-8 h-8" />
+            </div>
           )}
           <span className="capitalize font-medium">
             {sessionInfo.referee.name ? sessionInfo.referee.name : 'NOT ASSIGNED'}

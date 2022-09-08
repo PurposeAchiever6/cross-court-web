@@ -20,6 +20,7 @@ export default {
   MEMBERSHIPS: '/memberships',
   MYACCOUNT: '/my-account',
   OPEN_CLUB_SESSION: '/session/:id/:date/open-club',
+  SKLZ_SESSION: '/session/:id/:date/sklz',
   PAYMENT_METHODS: '/payment-methods',
   PAYMENT_METHODS_ADD: '/payment-methods/add',
   PAYMENT_METHODS_DEFAULT: '/payment-methods/default',
