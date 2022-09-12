@@ -16,7 +16,7 @@ const SklzCoaches = ({ sessionInfo }) => {
       </h3>
       <div className="font-shapiro95_super_wide">
         <div className="flex flex-col mb-8 justify-center items-center">
-          {sessionInfo?.sklzCoach?.imageUrl ? (
+          {sessionInfo?.coach?.imageUrl ? (
             <img
               className="w-20 h-20 rounded-full mb-2 object-cover my-0 mx-auto"
               src={sessionInfo.coach.imageUrl}
