@@ -30,6 +30,9 @@ import {
   UPDATE_SKILL_RATING_INIT,
   UPDATE_SKILL_RATING_SUCCESS,
   UPDATE_SKILL_RATING_FAILURE,
+  UPDATE_PROFILE_REQUEST_INIT,
+  UPDATE_PROFILE_REQUEST_SUCCESS,
+  UPDATE_PROFILE_REQUEST_FAILURE,
 } from './actionTypes';
 import authService from './service';
 import { getUserEmail } from './reducer';
@@ -74,8 +77,11 @@ export function* sendConfirmationEmailFlow() {
     const userEmail = yield select(getUserEmail);
     yield call(authService.sendConfirmationEmail, userEmail);
     yield put({ type: SEND_CONFIRMATION_EMAIL_SUCCESS });
+    yield call(toast.success, 'Confirmation email sent successfully');
   } catch (err) {
-    yield put({ type: SEND_CONFIRMATION_EMAIL_FAILURE, error: err.response.data.error });
+    const errorMessage = err.response.data.error;
+    yield call(toast.error, errorMessage);
+    yield put({ type: SEND_CONFIRMATION_EMAIL_FAILURE, error: errorMessage });
   }
 }
 
@@ -89,7 +95,18 @@ export function* updateSkillRatingFlow({ payload }) {
     yield put({ type: UPDATE_SKILL_RATING_SUCCESS });
     yield put(push(isEdit ? ROUTES.MYACCOUNT : ROUTES.SIGNUPSUCCESS));
   } catch (err) {
-    yield put({ type: UPDATE_SKILL_RATING_FAILURE, error: err.response.data.error });
+    const errorMessage = err.response.data.error;
+    yield call(toast.error, errorMessage);
+    yield put({ type: UPDATE_SKILL_RATING_FAILURE, error: errorMessage });
+  }
+}
+
+export function* updateRequestFlow({ payload }) {
+  try {
+    yield call(authService.updateProfileRequest, payload);
+    yield put({ type: UPDATE_PROFILE_REQUEST_SUCCESS });
+  } catch (err) {
+    yield put({ type: UPDATE_PROFILE_REQUEST_FAILURE, error: err.response.data.error });
   }
 }
 
@@ -132,5 +149,6 @@ export default function* rootLoginSaga() {
     takeLatest(PASS_RESET_INIT, passResetFlow),
     takeLatest(AUTO_LOGIN_INIT, autoLoginFlow),
     takeLatest(UPDATE_SKILL_RATING_INIT, updateSkillRatingFlow),
+    takeLatest(UPDATE_PROFILE_REQUEST_INIT, updateRequestFlow),
   ]);
 }

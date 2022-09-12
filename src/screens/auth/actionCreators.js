@@ -7,6 +7,7 @@ import {
   PASS_RESET_INIT,
   AUTO_LOGIN_INIT,
   UPDATE_SKILL_RATING_INIT,
+  UPDATE_PROFILE_REQUEST_INIT,
 } from './actionTypes';
 
 export const loginInit = (payload) => ({
@@ -30,6 +31,11 @@ export const sendConfirmationEmailInit = () => ({
 
 export const updateSkillRatingInit = (payload) => ({
   type: UPDATE_SKILL_RATING_INIT,
+  payload,
+});
+
+export const updateProfileRequestInit = (payload) => ({
+  type: UPDATE_PROFILE_REQUEST_INIT,
   payload,
 });
 
