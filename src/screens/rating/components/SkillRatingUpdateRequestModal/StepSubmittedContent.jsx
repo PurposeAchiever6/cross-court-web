@@ -5,7 +5,10 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const StepSubmittedContent = ({ goToMyAccount }) => (
   <div className="text-center">
-    <p className="mb-8">Thank you. Your request has been submitted. The CCteam will be in touch!</p>
+    <p className="mb-8">
+      Thank you! You will receive a text message response letting you know when your request has
+      been processed.
+    </p>
     <PrimaryButton onClick={goToMyAccount}>Done</PrimaryButton>
   </div>
 );

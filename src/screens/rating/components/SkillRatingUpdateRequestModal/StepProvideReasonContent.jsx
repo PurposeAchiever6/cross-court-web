@@ -31,10 +31,11 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
     <div>
       <div className="mb-8">
         <p className="mb-5">
-          The CCteam needs to review your request for updating your skill rating to{' '}
-          <strong>level {newSkillRating}</strong>.
+          Please submit a request in order to adjust your skill level to{' '}
+          <strong>level {newSkillRating}</strong> and allow 3-5 business days for the CCteam to
+          review.
         </p>
-        <Label className="mb-2">What is the main reason you are changing skill level:</Label>
+        <Label className="mb-2">What is the reason for wanting to update your skill level?</Label>
         <InputTextareaField
           placeholder="Share as many details as you can please"
           value={reason}
