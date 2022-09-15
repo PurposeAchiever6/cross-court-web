@@ -26,10 +26,7 @@ const HomePage = () => {
   const openFormParam = openForm === 'true';
   const openSurveyParam = openSurvey === 'true';
 
-  const [showSurveyModal, setShowSurveyModal] = useState(
-    openSurveyParam ||
-      (isAuthenticated && userInfo?.lastCheckedInUserSession?.surveyAnswers.length === 0)
-  );
+  const [showSurveyModal, setShowSurveyModal] = useState(openSurveyParam);
 
   useEffect(() => {
     if (!loading) {
@@ -42,10 +39,16 @@ const HomePage = () => {
   }, [search, userInfo, isAuthenticated, loading, openFormParam]);
 
   useEffect(() => {
+    if (isAuthenticated && userInfo?.lastCheckedInUserSession?.surveyAnswers.length === 0) {
+      setShowSurveyModal(true);
+    }
+  }, [isAuthenticated, userInfo]);
+
+  useEffect(() => {
     if (showSurveyModal) {
       dispatch(getQuestionsInit());
     }
-  }, [showSurveyModal, dispatch]);
+  }, [dispatch, showSurveyModal]);
 
   const answerQuestion = (questionId, answer) => dispatch(saveAnswer(questionId, answer));
 
