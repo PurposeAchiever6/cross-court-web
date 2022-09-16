@@ -37,7 +37,7 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
         </p>
         <Label className="mb-2">What is the reason for wanting to update your skill level?</Label>
         <InputTextareaField
-          placeholder="Share as many details as you can please"
+          placeholder="Please add any links to gameplay video or any pages that show highest level of basketball played"
           value={reason}
           onChange={(e) => setReason(e.target.value)}
           hint="Please include at least 8 characters"
