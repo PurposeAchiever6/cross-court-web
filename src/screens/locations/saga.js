@@ -15,17 +15,12 @@ import { getSelectedDate, getSelectedLocation } from './reducer';
 
 export function* initialLoadFlow() {
   try {
-    const selectedDate = yield select(getSelectedDate);
-    const selectedLocation = yield select(getSelectedLocation);
-    const [availableLocationsPayload, availableSessionsPayload] = yield all([
-      call(locationsService.getLocations),
-      call(locationsService.getSessions, selectedLocation, selectedDate),
-    ]);
+    const availableLocationsPayload = yield call(locationsService.getLocations);
+
     yield put({
       type: INITIAL_LOAD_SUCCESS,
       payload: {
         availableLocations: availableLocationsPayload,
-        availableSessions: availableSessionsPayload,
       },
     });
   } catch (err) {

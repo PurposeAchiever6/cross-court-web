@@ -42,7 +42,6 @@ export default (state = initialState, action) => {
         ...state,
         pageLoading: false,
         availableLocations: [...action.payload.availableLocations],
-        availableSessions: [...action.payload.availableSessions],
       };
     case INITIAL_LOAD_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
