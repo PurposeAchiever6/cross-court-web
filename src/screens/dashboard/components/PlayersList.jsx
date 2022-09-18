@@ -7,7 +7,11 @@ import {
   getAvailableSessions,
   getSessionsLoading,
 } from 'screens/locations/reducer';
-import { initialLoadInit } from 'screens/locations/actionCreators';
+import {
+  getLocations,
+  getSessionsByLocation,
+  setSelectedDate,
+} from 'screens/locations/actionCreators';
 import { isToday, formatSessionTime, formatSessionDate } from 'shared/utils/date';
 
 import userSessionService from 'screens/userSessions/service';
@@ -19,6 +23,8 @@ const LEFT = 'left';
 const RIGHT = 'right';
 
 const PlayersList = () => {
+  const dispatch = useDispatch();
+
   const [showList, setShowList] = useState(false);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [sessionsForThisLocation, setSessionsForThisLocation] = useState([]);
@@ -31,10 +37,9 @@ const PlayersList = () => {
   const availableLocations = useSelector(getAvailableLocations);
   const availableSessions = useSelector(getAvailableSessions);
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(initialLoadInit());
+    dispatch(getLocations());
+    dispatch(setSelectedDate(new Date().toLocaleDateString('en-US')));
   }, [dispatch]);
 
   useEffect(() => {
@@ -45,14 +50,20 @@ const PlayersList = () => {
 
   useEffect(() => {
     if (selectedLocation) {
-      let sessions = availableSessions
+      dispatch(getSessionsByLocation(selectedLocation.id));
+    }
+  }, [dispatch, selectedLocation]);
+
+  useEffect(() => {
+    if (availableSessions.length) {
+      const sessions = availableSessions
         .filter(({ startTime, isOpenClub }) => isToday(startTime) && !isOpenClub)
         .sort((a, b) => (a.time > b.time ? 1 : -1));
-      sessions = sessions.filter((session) => session.location.id === selectedLocation?.id);
+
       setSelectedSession(sessions[0]);
       setSessionsForThisLocation(sessions);
     }
-  }, [selectedLocation, availableSessions, setSelectedSession]);
+  }, [availableSessions]);
 
   const getUserSessionsList = useCallback(async () => {
     const currentDate = new Date().toLocaleDateString('en-US');

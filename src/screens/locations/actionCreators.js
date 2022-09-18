@@ -1,12 +1,12 @@
 import {
-  INITIAL_LOAD_INIT,
+  GET_LOCATIONS_INIT,
   GET_SESSIONS_BY_LOCATION_INIT,
   GET_SESSIONS_BY_DATE_INIT,
   SET_SELECTED_DATE,
 } from './actionTypes';
 
-export const initialLoadInit = () => ({
-  type: INITIAL_LOAD_INIT,
+export const getLocations = () => ({
+  type: GET_LOCATIONS_INIT,
 });
 
 export const getSessionsByLocation = (locationId) => ({

@@ -16,4 +16,6 @@ const TheSessionVideo = forwardRef((_, ref) => (
   </section>
 ));
 
+TheSessionVideo.displayName = 'TheSessionVideo';
+
 export default TheSessionVideo;
