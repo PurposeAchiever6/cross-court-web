@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -17,7 +18,7 @@ const PWAPage = () => {
   const pwaAndroidChromeMessage = <span>GO TO SETTINGS AND ADD TO HOME SCREEN</span>;
   const pwaIOSSafariMessage = (
     <span>
-      TAP <span className="home-icon"></span> AND CLICK "ADD TO HOME SCREEN"
+      TAP <span className="home-icon" /> AND CLICK "ADD TO HOME SCREEN"
     </span>
   );
   const pwaMessage = pwaSupported

@@ -36,10 +36,10 @@ const Carousel = ({
     interval={interval}
     useKeyboardArrows={useKeyboardArrows}
     swipeable={swipeable}
-    renderArrowPrev={(clickHandler, _hasPrev, _label) => (
+    renderArrowPrev={(clickHandler) => (
       <Arrow prev prevClickHandler={clickHandler} className={arrowsClassName} />
     )}
-    renderArrowNext={(clickHandler, _hasNext, _label) => (
+    renderArrowNext={(clickHandler) => (
       <Arrow nextClickHandler={clickHandler} className={arrowsClassName} />
     )}
   >

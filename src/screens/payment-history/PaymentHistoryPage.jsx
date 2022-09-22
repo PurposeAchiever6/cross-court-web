@@ -37,6 +37,15 @@ const PaymentHistoryPage = () => {
     }
   }, [totalRecords, setTotalRecords]);
 
+  const status = (row) =>
+    row.status === SUCCESS ? (
+      <FontAwesomeIcon icon={faCheckCircle} color="green" />
+    ) : (
+      <Tooltip tooltip={row.errorMessage}>
+        <FontAwesomeIcon icon={faTimesCircle} color="red" />
+      </Tooltip>
+    );
+
   const columns = useMemo(
     () => [
       {
@@ -77,14 +86,7 @@ const PaymentHistoryPage = () => {
       },
       {
         Header: 'Status',
-        accessor: (row) =>
-          row.status === SUCCESS ? (
-            <FontAwesomeIcon icon={faCheckCircle} color="green" />
-          ) : (
-            <Tooltip tooltip={row.errorMessage}>
-              <FontAwesomeIcon icon={faTimesCircle} color="red" />
-            </Tooltip>
-          ),
+        accessor: (row) => status(row),
       },
     ],
     []

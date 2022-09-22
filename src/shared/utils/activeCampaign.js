@@ -46,7 +46,7 @@ export const startedCheckout = async ({ product }) => {
 export const toggleActiveCampaignChat = () => {
   // Chat widget takes some time to load, so the safer way is to hide it using CSS
   const currentPath = window.location.pathname;
-  const body = document.body;
+  const { body } = document;
 
   if (HIDE_CHATS_FOR_PATHS.includes(currentPath)) {
     body.classList.add('hide-ac-chat');

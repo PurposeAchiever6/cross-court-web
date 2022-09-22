@@ -17,20 +17,18 @@ const LoadingContainer = styled.div`
   bottom: 0;
 `;
 
-const Loading = () => {
-  return (
-    <LoadingContainer>
-      <div className="loader-wrapper">
-        <div className="floor"></div>
-        <div className="ball">
-          <div className="ball-line"></div>
-          <div className="ball-line"></div>
-          <div className="ball-line"></div>
-          <div className="ball-line"></div>
-        </div>
+const Loading = () => (
+  <LoadingContainer>
+    <div className="loader-wrapper">
+      <div className="floor" />
+      <div className="ball">
+        <div className="ball-line" />
+        <div className="ball-line" />
+        <div className="ball-line" />
+        <div className="ball-line" />
       </div>
-    </LoadingContainer>
-  );
-};
+    </div>
+  </LoadingContainer>
+);
 
 export default Loading;

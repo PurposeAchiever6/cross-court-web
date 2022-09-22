@@ -8,7 +8,7 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const StyledButton = styled.button`
   outline: none;
-  background-color: ${props => (props.disabled ? 'grey' : colors.polarPlum)};
+  background-color: ${(props) => (props.disabled ? 'grey' : colors.polarPlum)};
   color: ${colors.white};
   border-color: ${colors.polarPlum};
   border: 0;

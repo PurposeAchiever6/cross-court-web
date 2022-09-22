@@ -7,10 +7,7 @@ export const productDiscount = (product, user) => {
   const userHasNotAnyCredits = user.totalCredits === 0;
 
   const oneTimeProduct = product.productType === ONE_TIME;
-  const priceForUser = product.priceForUser;
-  const priceForMembers = product.priceForMembers;
-  const priceForFirstTimersNoFreeSession = product.priceForFirstTimersNoFreeSession;
-  const price = product.price;
+  const { priceForUser, priceForMembers, priceForFirstTimersNoFreeSession, price } = product;
 
   let discountPercentage = 0;
   let discountReason = null;

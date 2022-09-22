@@ -88,7 +88,7 @@ const Modal = ({
     >
       <div className={`p-2 ${showCloseButton ? 'pt-5' : ''}`}>
         {showCloseButton && (
-          <button className="absolute top-0 right-0 p-4" onClick={closeHandler}>
+          <button className="absolute top-0 right-0 p-4" onClick={closeHandler} type="button">
             <CrossSvg color={dark ? 'white' : 'black'} />
           </button>
         )}

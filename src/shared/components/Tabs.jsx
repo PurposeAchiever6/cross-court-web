@@ -40,7 +40,7 @@ const Tabs = ({ children }) => {
         ))}
       </div>
       <div className="tab-content">
-        {children.map(child => {
+        {children.map((child) => {
           if (child.props.label !== activeTab) return undefined;
           return child.props.children;
         })}

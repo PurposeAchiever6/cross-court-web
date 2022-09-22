@@ -36,7 +36,6 @@ HoverableBox.propTypes = {
 HoverableBox.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  descriptclassNameion: PropTypes.string,
   linkOnClick: PropTypes.func,
   linkDescription: PropTypes.string,
   linkHref: PropTypes.string,

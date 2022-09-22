@@ -12,7 +12,11 @@ import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import Badge from 'shared/components/Badge';
 import OnboardingTour from 'shared/components/OnboardingTour';
-import { isUserInLegalAge } from 'shared/utils/user';
+import {
+  isUserInLegalAge,
+  isUserInFirstSessionFlow,
+  isUserInFirstFreeSessionFlow,
+} from 'shared/utils/user';
 import { reserveTeamReservationAllowed } from 'shared/utils/sessions';
 import SessionWarningInfo from 'shared/components/SessionWarningInfo';
 
@@ -23,7 +27,6 @@ import {
   sortSessionsByDate,
   formatSessionDate,
 } from 'shared/utils/date';
-import { isUserInFirstSessionFlow, isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { hasConfirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
 import { hasConfirmSkillSession } from 'shared/utils/skillSessionsConfirmations';
 import { getIsAuthenticated } from 'screens/auth/reducer';
@@ -123,7 +126,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
     !showingFreeSessionCreditAdded &&
     (!isAuthenticated || isFirstSessionFlow);
 
-  const userSkillRating = parseInt(currentUser.skillRating);
+  const userSkillRating = parseInt(currentUser.skillRating, 10);
 
   if (isEmpty(sortedSessions)) {
     return (

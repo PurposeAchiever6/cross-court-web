@@ -13,10 +13,10 @@ import missingProfileImg from 'shared/images/missing-profile-image.png';
 import EditIcon from 'shared/components/svg/EditIcon.svg';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
+import { referralText } from 'shared/constants/referrals';
 import { editProfileInit, showEditProfile } from '../actionCreators';
 import { getEditProfileLoading, getShowEditProfile } from '../reducer';
 import EditProfileForm from './EditProfileForm';
-import { referralText } from 'shared/constants/referrals';
 
 const detailRowClasses = 'flex flex-col mb-8 text-lg';
 const titleClasses = 'font-shapiro95_super_wide';
@@ -35,7 +35,7 @@ const MyProfile = ({ profile, showTitle = true }) => {
   const showEditProfileForm = useSelector(getShowEditProfile);
 
   const dateOfBirth = new Date(profile.birthday);
-  const defaultPaymentMethod = profile.defaultPaymentMethod;
+  const { defaultPaymentMethod } = profile;
 
   return (
     <div className="relative p-8">

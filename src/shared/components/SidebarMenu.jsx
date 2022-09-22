@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseButton from 'shared/components/CloseButton';
 import ROUTES from 'shared/constants/routes';
@@ -8,7 +8,6 @@ import { TRIBE_COMMUNITY } from 'shared/constants/urls';
 import { logoutInit } from 'screens/auth/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import { useHistory } from 'react-router-dom';
 
 const SidebarMenu = ({ menuToggler }) => {
   const dispatch = useDispatch();

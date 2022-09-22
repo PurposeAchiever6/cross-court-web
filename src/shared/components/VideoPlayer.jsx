@@ -35,25 +35,23 @@ const VideoPlayer = ({
   };
 
   return openOnModal ? (
-    <>
-      <ReactModal
-        isOpen={isModalOpen}
-        onRequestClose={closeModalHandler}
-        shouldCloseOnEsc
-        shouldCloseOnOverlayClick
-        style={modalStyle}
+    <ReactModal
+      isOpen={isModalOpen}
+      onRequestClose={closeModalHandler}
+      shouldCloseOnEsc
+      shouldCloseOnOverlayClick
+      style={modalStyle}
+    >
+      <div
+        className="absolute top-0 right-0 mt-2 mr-3 cursor-pointer text-white text-3xl"
+        onClick={closeModalHandler}
       >
-        <div
-          className="absolute top-0 right-0 mt-2 mr-3 cursor-pointer text-white text-3xl"
-          onClick={closeModalHandler}
-        >
-          &#x2715;
-        </div>
-        <div className="px-0 md:px-12 py-10 md:py-0 w-full h-full">
-          <ReactPlayer url={url} width={width} height={height} controls={controls} {...props} />
-        </div>
-      </ReactModal>
-    </>
+        &#x2715;
+      </div>
+      <div className="px-0 md:px-12 py-10 md:py-0 w-full h-full">
+        <ReactPlayer url={url} width={width} height={height} controls={controls} {...props} />
+      </div>
+    </ReactModal>
   ) : (
     <ReactPlayer url={url} width={width} height={height} controls={controls} {...props} />
   );

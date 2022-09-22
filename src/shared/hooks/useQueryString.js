@@ -26,7 +26,7 @@ const useQueryString = (key, initialValue) => {
       setValue(newValue);
       setQueryStringValue(history, key, newValue);
     },
-    [key]
+    [key, history]
   );
 
   return [value, onSetValue];

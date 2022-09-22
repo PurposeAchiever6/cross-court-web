@@ -42,7 +42,7 @@ const CCTeamPerks = () => {
               key={index}
               className="flex flex-col justify-between items-center w-1/2 md:w-auto h-40 md:h-44 mb-14 md:mb-6 last:w-full md:last:w-auto px-4 md:px-6"
             >
-              <img src={src} alt={`perk-{text}`} className={className} />
+              <img src={src} alt={`perk-${text}`} className={className} />
               <div className="font-shapiro95_super_wide text-center text-sm sm:text-base uppercase">
                 {text}
               </div>

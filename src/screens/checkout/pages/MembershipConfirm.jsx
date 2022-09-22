@@ -12,7 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import ROUTES from 'shared/constants/routes';
-import confettiAnimation from 'shared/animations/confetti';
+import confettiAnimation from 'shared/animations/confetti.json';
 import ReferAFriend from 'shared/components/ReferAFriend';
 import Animation from 'shared/components/Animation';
 import { getUserProfile } from 'screens/my-account/reducer';

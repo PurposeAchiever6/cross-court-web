@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
@@ -104,7 +105,7 @@ export const formatDateTime = (datetime) => getUTCDate(datetime).format(FORMAT_D
 export const getMonth = (date = new Date()) => dayjs(new Date(date)).format(FORMAT_MONTH);
 
 export const yearsFrom = (date) => {
-  let today = new Date();
+  const today = new Date();
   let years;
 
   years = today.getFullYear() - date.getFullYear();

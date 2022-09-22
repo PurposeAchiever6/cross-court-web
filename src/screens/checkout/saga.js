@@ -7,6 +7,7 @@ import { getSelectedCard } from 'screens/payment-methods/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { RECURRING } from 'screens/products/constants';
 
+import { GET_PROFILE_INIT } from 'screens/my-account/actionTypes';
 import { getPromoCode } from './reducer';
 import {
   CREATE_PURCHASE_INIT,
@@ -29,7 +30,6 @@ import {
   SUBSCRIPTION_PRORATE_FAILURE,
 } from './actionTypes';
 import { RESERVE_SESSION_INIT } from '../sessions/actionTypes';
-import { GET_PROFILE_INIT } from 'screens/my-account/actionTypes';
 import checkoutService from './service';
 
 export function* createPurchaseFlow({ payload }) {
@@ -77,7 +77,7 @@ export function* createFreeSessionFlow({ payload }) {
 export function* checkPromoCodeFlow({ payload }) {
   try {
     const userProfile = yield select(getUserProfile);
-    const activeSubscription = userProfile.activeSubscription;
+    const { activeSubscription } = userProfile;
     const selectedProduct = yield select(getSelectedProduct);
     const productId = selectedProduct.id;
 
@@ -96,7 +96,7 @@ export function* checkPromoCodeFlow({ payload }) {
       },
     });
   } catch (err) {
-    const errorDetails = err.response?.data?.error || 'Invalid discount code';
+    const errorDetails = err.response.data.error || 'Invalid discount code';
     yield call(toast.error, errorDetails);
     yield put({ type: CHECK_PROMO_CODE_FAILURE, error: errorDetails });
   }
@@ -136,7 +136,7 @@ export function* updateSubscriptionFlow() {
     const selectedCard = yield select(getSelectedCard);
     const promoCode = yield select(getPromoCode);
     const userProfile = yield select(getUserProfile);
-    const activeSubscription = userProfile.activeSubscription;
+    const { activeSubscription } = userProfile;
 
     const subscription = yield call(
       checkoutService.updateSubscription,

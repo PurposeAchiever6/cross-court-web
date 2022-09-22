@@ -42,7 +42,7 @@ const ProductsPage = () => {
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [watchVideo, setWatchVideo] = useState(false);
   const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
-    showNoFreeSessionInformation ? true : false
+    !!showNoFreeSessionInformation
   );
 
   const selectProductHandler = (product) => {
@@ -74,9 +74,9 @@ const ProductsPage = () => {
   const getSubmitText = (isActiveSubscription, activeSubscription) => {
     if (isActiveSubscription) {
       return activeSubscription.canceled ? 'Reactivate' : 'Cancel';
-    } else {
-      return activeSubscription ? 'Select' : 'Join';
     }
+
+    return activeSubscription ? 'Select' : 'Join';
   };
 
   useEffect(() => {

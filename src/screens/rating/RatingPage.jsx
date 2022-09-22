@@ -82,12 +82,12 @@ const RatingPage = () => {
 
   const updateSkillRatingAction = () => dispatch(updateSkillRatingInit({ skillRating, isEdit }));
 
+  const updateNeedsReview = () =>
+    isEdit && oldSkillRating < skillRating && skillRatingsForReview.includes(skillRating);
+
   const handleClick = () => {
     updateNeedsReview() ? setShowSkillRatingUpdateRequestModal(true) : updateSkillRatingAction();
   };
-
-  const updateNeedsReview = () =>
-    isEdit && oldSkillRating < skillRating && skillRatingsForReview.includes(skillRating);
 
   useEffect(() => {
     if (!ALLOWED_PATHS.includes(location?.state?.from)) {

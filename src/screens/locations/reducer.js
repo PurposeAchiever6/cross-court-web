@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 
 import { isSameDay } from 'shared/utils/date';

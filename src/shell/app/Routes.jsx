@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable import/first */
 
 import React, { useEffect, Suspense, lazy } from 'react';
@@ -113,7 +114,7 @@ const setScrollClasses = () => {
 
     if (bigTitle && keepScrolling) {
       let addClass = '';
-      let animClasses = [
+      const animClasses = [
         'anim1',
         'anim2',
         'anim3',
@@ -146,8 +147,7 @@ const setScrollClasses = () => {
         'anim30',
       ];
 
-      if (window.scrollY < 20) {
-      } else if (window.scrollY >= 20 && window.scrollY < 40) {
+      if (window.scrollY >= 20 && window.scrollY < 40) {
         addClass = 'anim1';
       } else if (window.scrollY >= 40 && window.scrollY < 60) {
         addClass = 'anim2';
@@ -229,9 +229,9 @@ const setScrollClasses = () => {
 };
 
 window.cookieAndSessionStorageHandler = () => {
-  let search = window.location.search;
-  let params = new URLSearchParams(search);
-  let referralCode = params.get('referralCode');
+  const { search } = window.location;
+  const params = new URLSearchParams(search);
+  const referralCode = params.get('referralCode');
 
   if (referralCode) {
     window.localStorage.setItem('referralCode', referralCode);

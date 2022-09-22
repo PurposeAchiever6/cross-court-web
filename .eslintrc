@@ -5,8 +5,11 @@
     "plugin:import/warnings",
     "airbnb",
     "prettier",
-    "prettier/react"
+    "prettier"
   ],
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
   "plugins": ["react", "react-hooks", "prettier"],
   "env": {
     "es2020": true,
@@ -50,13 +53,15 @@
     "object-curly-spacing": [1, "always"],
     "space-before-blocks": [1, "always"],
     "keyword-spacing": 1,
-    "indent": [1, 2, { "SwitchCase": 1 }],
+    "indent": 0,
     "max-len": 0,
     "jsx-a11y/click-events-have-key-events": 0,
     "jsx-a11y/label-has-for": 0,
     "jsx-a11y/no-static-element-interactions": 0,
     "jsx-a11y/anchor-is-valid": "off",
     "jsx-a11y/control-has-associated-label": 0,
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "react/no-unescaped-entities": "off",
     "react/display-name": [1, { "ignoreTranspilerName": false }],
     "react/forbid-prop-types": [1, { "forbid": ["any", "array"] }],
     "react/jsx-curly-spacing": 1,
@@ -76,7 +81,7 @@
     "react/no-did-mount-set-state": 1,
     "react/no-did-update-set-state": 1,
     "react/no-direct-mutation-state": 1,
-    "react/no-multi-comp": 1,
+    "react/no-multi-comp": 0,
     "react/no-set-state": 0,
     "react/no-unknown-property": 1,
     "react/prefer-es6-class": 1,
@@ -94,7 +99,13 @@
     "react/jsx-props-no-spreading": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "arrow-parens": 0
+    "arrow-parens": 0,
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": ["function-declaration", "arrow-function"]
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

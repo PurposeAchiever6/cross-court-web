@@ -67,7 +67,7 @@ const Section = styled.section`
   }
 `;
 
-const TheSession = props => (
+const TheSession = (props) => (
   <Section {...props}>
     <h2 className="title">
       THE <span className="text">SESSION</span>

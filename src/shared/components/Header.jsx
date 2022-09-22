@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
@@ -89,7 +90,7 @@ const Header = () => {
 
   const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
-    let parts = (input || '').split('-');
+    const parts = (input || '').split('-');
     const firstDate = new Date();
     const secondDate = new Date(parts[0], parts[1] - 1, parts[2]);
     let daysLeft = Math.floor(Math.abs((secondDate - firstDate) / oneDay));
@@ -147,12 +148,12 @@ const Header = () => {
         </div>
       )}
       <header
-        className={`header w-full h-16 bg-transparent transition duration-700 ${
+        className={`header w-full h-16 transition duration-700 ${
           scrolled
             ? `${
                 isBlackBg ? 'shadow-header-dark' : 'shadow-header-white'
               } ${bgColor} fixed z-50 top-0`
-            : `absolute ${showMembershipPromoBanner ? 'top-12 md:top-8' : 'top-0'}`
+            : `bg-transparent absolute ${showMembershipPromoBanner ? 'top-12 md:top-8' : 'top-0'}`
         }`}
       >
         <MobileMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />

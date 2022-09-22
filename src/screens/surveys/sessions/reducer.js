@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 import { GET_QUESTIONS_INIT, GET_QUESTIONS_SUCCESS, GET_QUESTIONS_FAILURE } from './actionTypes';
 

@@ -1,13 +1,16 @@
+/* eslint-disable prefer-rest-params */
+/* eslint-disable prefer-destructuring */
+/* eslint-disable func-names */
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 const env = runtimeEnv();
 
 if (env.REACT_APP_ACTIVE_CAMPAIGN_ENABLED === 'true') {
-  (function(e, t, o, n, p, r, i) {
+  (function (e, t, o, n, p, r, i) {
     e.visitorGlobalObjectAlias = n;
     e[e.visitorGlobalObjectAlias] =
       e[e.visitorGlobalObjectAlias] ||
-      function() {
+      function () {
         (e[e.visitorGlobalObjectAlias].q = e[e.visitorGlobalObjectAlias].q || []).push(arguments);
       };
     e[e.visitorGlobalObjectAlias].l = new Date().getTime();

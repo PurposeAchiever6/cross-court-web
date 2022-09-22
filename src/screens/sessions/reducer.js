@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 import { RESET_LOADING } from 'shared/actions/actionTypes';
 import {

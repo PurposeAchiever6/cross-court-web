@@ -33,7 +33,7 @@ const Prorate = ({ prorate }) => {
 };
 
 Prorate.propTypes = {
-  prorate: PropTypes.object.isRequired,
+  prorate: PropTypes.object,
 };
 
 Prorate.defaultProps = {

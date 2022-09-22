@@ -53,9 +53,7 @@ const BackButton = ({ className = '' }) => {
 };
 
 BackButton.propTypes = {
-  showText: PropTypes.bool,
   className: PropTypes.string,
-  color: PropTypes.string,
 };
 
 export default BackButton;

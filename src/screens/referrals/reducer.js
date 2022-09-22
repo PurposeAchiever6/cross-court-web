@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 import { GET_REFERRALS_INIT, GET_REFERRALS_SUCCESS, GET_REFERRALS_FAILURE } from './actionTypes';
 

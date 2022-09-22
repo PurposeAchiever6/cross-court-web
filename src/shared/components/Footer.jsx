@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
@@ -20,19 +19,15 @@ import ccLogo from 'shared/images/cc-logo.png';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 import ArrowRightSvg from 'shared/components/svg/ArrowRightSvg';
 
-const Copyright = ({ className }) => {
-  return (
-    <div className={`flex mt-6 md:mt-10 justify-between items-end ${className}`}>
-      <div className="flex flex-col text-2xs md:text-xs">
-        <p>
-          {`Copyright`} &reg; {`${new Date().getFullYear()}`} Crosscourt
-        </p>
-        <p>333 N. Mission Rd Los Angeles CA 90033</p>
-      </div>
-      <img alt="" className="w-12" src={ccLogo} />
+const Copyright = ({ className }) => (
+  <div className={`flex mt-6 md:mt-10 justify-between items-end ${className}`}>
+    <div className="flex flex-col text-2xs md:text-xs">
+      <p>Copyright &reg; {`${new Date().getFullYear()}`} Crosscourt</p>
+      <p>333 N. Mission Rd Los Angeles CA 90033</p>
     </div>
-  );
-};
+    <img alt="" className="w-12" src={ccLogo} />
+  </div>
+);
 
 const Footer = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -80,7 +75,7 @@ const Footer = () => {
           <div className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136" />
         </div>
       </CheeseburgerMenu>
-      <footer className="flex flex-col md:flex-row-reverse justify-evenly md:justify-between bg-cc-black px-4 py-8 md:p-12  text-white h-164 md:h-124 border-t border-gray-400 border-opacity-20">
+      <footer className="flex flex-col md:flex-row-reverse justify-evenly md:justify-between bg-cc-black px-4 py-8 md:p-12 text-white h-164 md:h-124 border-t border-gray-400/20">
         <div className="md:w-1/2 flex flex-col h-full justify-evenly md:justify-between">
           <LogoSvg className="w-72" />
           {!isAuthenticated && (

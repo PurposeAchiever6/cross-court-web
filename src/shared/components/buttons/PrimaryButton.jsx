@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -106,8 +107,8 @@ const PrimaryButton = ({
       className={contentClasses}
       {...props}
     >
-      {<div className="content">{loading ? <Spinner /> : children}</div>}
-      {double && <div className="double-drop"></div>}
+      <div className="content">{loading ? <Spinner /> : children}</div>
+      {double && <div className="double-drop" />}
     </StyledDiv>
   );
 

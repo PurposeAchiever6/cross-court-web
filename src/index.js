@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import ReactGA from 'react-ga';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
@@ -20,7 +20,9 @@ import 'external-tools/activeCampaignModal';
 
 const env = runtimeEnv();
 const GOOGLE_ANALYTICS_CODE = env.REACT_APP_GOOGLE_ANALYTICS_CODE;
+const rootElement = document.getElementById('root');
+const root = createRoot(rootElement);
 
 ReactGA.initialize(GOOGLE_ANALYTICS_CODE);
-ReactDOM.render(<App />, document.getElementById('root'));
+root.render(<App />);
 serviceWorker.unregister();

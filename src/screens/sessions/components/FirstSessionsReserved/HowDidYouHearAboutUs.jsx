@@ -24,7 +24,7 @@ const HowDidYouHearAboutUs = ({ className }) => {
   };
 
   const onChangeOpenAnswer = (e) => {
-    const value = e.target.value;
+    const { value } = e.target;
     setOpenAnswer(value);
     dispatch(createOrUpdateFirstTimerSurvey({ howDidYouHearAboutUs: value }));
 

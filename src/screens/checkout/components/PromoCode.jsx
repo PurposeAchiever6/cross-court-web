@@ -63,7 +63,7 @@ PromoCode.defaultProps = {
 };
 
 PromoCode.propTypes = {
-  className: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 export default PromoCode;

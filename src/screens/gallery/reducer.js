@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 import {
   GET_GALLERY_PHOTOS_INIT,

@@ -1,6 +1,6 @@
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  mode: 'jit',
+  content: ['./src/**/*.{js,jsx}'],
   theme: {
     extend: {
       height: {
@@ -90,16 +90,6 @@ module.exports = {
       shapiro95_super_wide: ['shapiro95_super_wide'],
       shapiro96_inclined_wide: ['shapiro96_inclined_wide'],
       shapiro97_air_extd: ['shapiro97_air_extd'],
-    },
-  },
-  variants: {
-    extend: {
-      borderWidth: ['last'],
-      width: ['last'],
-      display: ['group-hover'],
-      borderOpacity: ['focus'],
-      textColor: ['focus'],
-      transitionDelay: ['group-hover'],
     },
   },
   plugins: [],

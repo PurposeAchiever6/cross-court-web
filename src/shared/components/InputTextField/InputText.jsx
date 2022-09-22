@@ -67,7 +67,7 @@ function InputText({
             </div>
           )}
           <input
-            className={`w-full font-shapiro45_welter_extd text-cc-black text-opacity-70 focus:text-opacity-100 bg-cream border border-cc-black border-opacity-50 focus:border-opacity-100 ${inputClasses}`}
+            className={`w-full font-shapiro45_welter_extd text-cc-black text-opacity-70 focus:text-opacity-100 bg-cream border border-cc-black/50 focus:border-cc-black/100 ${inputClasses}`}
             autoComplete="off"
             name={name}
             disabled={disabled}
