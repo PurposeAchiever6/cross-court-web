@@ -51,7 +51,7 @@ const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfir
 const FAQ = lazy(() => import('screens/faq/FaqPage'));
 const Content = lazy(() => import('screens/content/ContentPage'));
 const Rules = lazy(() => import('shared/pages/Rules'));
-const Rating = lazy(() => import('shared/pages/Rating'));
+const Rating = lazy(() => import('screens/rating/RatingPage'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
 const PrivacyPolicy = lazy(() => import('screens/legal-docs/pages/PrivacyPolicy'));
 const PWA = lazy(() => import('screens/pwa/PWAPage'));

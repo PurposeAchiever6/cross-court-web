@@ -60,4 +60,9 @@ export default {
 
     return response.data;
   },
+  updateProfileRequest: async (payload) => {
+    const response = await api.post(`/user/request_update`, payload);
+
+    return response.data;
+  },
 };
