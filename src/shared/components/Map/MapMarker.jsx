@@ -31,15 +31,7 @@ const MapMarker = ({ onClickHandler, selected, location }) => {
             fill={selected ? colors.white : colors.brandPurple}
           />
           <circle cx="41.5" cy="39.5" r="25" fill={selected ? colors.brandPurple : colors.white} />
-          <mask
-            id="mask0"
-            maskType="alpha"
-            maskUnits="userSpaceOnUse"
-            x="16"
-            y="14"
-            width="51"
-            height="51"
-          >
+          <mask id="mask0" maskUnits="userSpaceOnUse" x="16" y="14" width="51" height="51">
             <circle cx="41.5" cy="39.5" r="25" fill="#737373" />
           </mask>
           <g mask="url(#mask0)">

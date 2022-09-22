@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { Fancybox as NativeFancybox } from '@fancyapps/ui/dist/fancybox.esm.js';
+import { Fancybox as NativeFancybox } from '@fancyapps/ui/dist/fancybox.esm';
 import '@fancyapps/ui/dist/fancybox.css';
 
 const Fancybox = ({ delegate, options, children }) => {
