@@ -72,6 +72,12 @@ const MapMarker = ({ onClickHandler, selected, location }) => {
 MapMarker.propTypes = {
   selected: PropTypes.bool.isRequired,
   onClickHandler: PropTypes.func.isRequired,
+  location: PropTypes.shape({
+    address: PropTypes.string,
+    city: PropTypes.string,
+    state: PropTypes.string,
+    zipcode: PropTypes.string,
+  }),
 };
 
 export default MapMarker;

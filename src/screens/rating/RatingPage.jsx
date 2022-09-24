@@ -59,14 +59,14 @@ const RATINGS = [
     value: '4',
     name: 'All Star',
     description:
-      'Walking bucket as the kids say. Ball is life. Played or could have played varsity or ' +
+      'Walking bucket as the kids say. Ball is life. Played varsity or ' +
       "more back in the glory days. Can hang with the best of 'em. Play hard on both ends of " +
       'the court and love to run.',
   },
   {
     value: '5',
     name: 'MVP',
-    description: 'Played D1 or professionally within the last 15 years',
+    description: 'Played D1 or professionally within the last 15 years.',
   },
 ];
 
