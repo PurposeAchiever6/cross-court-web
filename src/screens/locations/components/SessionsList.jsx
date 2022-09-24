@@ -161,7 +161,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           womenOnly,
           skillSession,
           allSkillLevelsAllowed,
-          reservations,
+          reservationsCount,
         } = session;
 
         const URLdate = urlFormattedDate(startTime);
@@ -177,7 +177,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
         const reserveTeamAllowed = reserveTeamReservationAllowed({
           sessionTime: time,
           sessionDate,
-          reservationsCount: reservations.length,
+          reservationsCount,
           isOpenClub,
           past,
           isReserveTeam,
@@ -373,7 +373,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                 </div>
               </div>
             </div>
-            {showRoster && <SessionRoster users={reservations} className="mt-3" />}
+            {showRoster && <SessionRoster sessionId={id} date={sessionDate} className="mt-3" />}
           </div>
         );
       })}

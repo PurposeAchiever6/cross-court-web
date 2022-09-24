@@ -1,10 +1,10 @@
 import api from 'shared/services';
 
 export default {
-  getUserSessionList: async (sessionId, date) => {
+  getUserSessionList: async (sessionId, params) => {
     const response = await api.get(`/sessions/${sessionId}/user_sessions`, {
       data: {},
-      params: { date },
+      params,
     });
 
     return response.data.userSessions;

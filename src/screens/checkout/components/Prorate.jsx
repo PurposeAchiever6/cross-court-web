@@ -15,7 +15,7 @@ const Prorate = ({ prorate }) => {
   const prorateExplanation =
     'Upgrading or downgrading your membership may result in prorated charges. ' +
     'After this first prorated invoice, all charges will show the membership rate.' +
-    'Please note, the billing period will be reseted and you will be charged immediately';
+    'Please note, the billing period will be reset and you will be charged immediately';
 
   return (
     <div className="flex justify-between">
