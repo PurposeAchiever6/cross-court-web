@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import api from 'shared/services';
 
 import { requestFormattedDate } from 'shared/utils/date';

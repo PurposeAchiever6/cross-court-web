@@ -28,7 +28,7 @@ const ProductPlan = ({
   const price = formatPrice(product.priceForUser);
   const sessionPricePerMonth = formatPrice(product.priceForUser / product.credits);
   const isRecurring = product.productType === RECURRING;
-  const label = product.label;
+  const { label } = product;
   const { discountPercentage, discountReason } = productDiscount(product, currentUser);
 
   return (

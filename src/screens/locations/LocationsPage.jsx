@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -44,12 +44,9 @@ const LocationsPage = () => {
 
   const [showingFreeSessionCreditAdded, setShowingFreeSessionCreditAdded] = useState(true);
 
+  const setLocationHandler = (locationId) => dispatch(getSessionsByLocation(locationId));
   const getSessionsByDateHandler = (date) => dispatch(getSessionsByDate(date));
   const setSelectedDateHandler = (date) => dispatch(setSelectedDate(date));
-  const setLocationHandler = useCallback(
-    (locationId) => dispatch(getSessionsByLocation(locationId)),
-    [dispatch]
-  );
 
   const increaseCurrentWeekHandler = () => {
     const nextWeekDate = startOfWeek(add(selectedDate, 1, 'weeks'));
@@ -70,12 +67,6 @@ const LocationsPage = () => {
   };
 
   useEffect(() => {
-    if (availableLocations.length > 0 && !selectedLocation) {
-      setLocationHandler(availableLocations[0].id);
-    }
-  }, [availableLocations, selectedLocation, setLocationHandler]);
-
-  useEffect(() => {
     setShowingFreeSessionCreditAdded(isFirstFreeSessionFlow);
   }, [isFirstFreeSessionFlow]);
 
@@ -83,11 +74,9 @@ const LocationsPage = () => {
     if (isFirstSessionFlow) {
       history.push(ROUTES.LOCATIONSFIRST);
     }
-  }, [history, isFirstSessionFlow]);
 
-  useEffect(() => {
     dispatch(initialLoadInit());
-  }, [dispatch]);
+  }, [dispatch, history, isFirstSessionFlow, userInfo]);
 
   return isPageLoading ? (
     <Loading />

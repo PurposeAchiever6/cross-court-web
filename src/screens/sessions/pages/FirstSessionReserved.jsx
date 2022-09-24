@@ -9,7 +9,7 @@ import blackTextureBgImg from 'shared/images/black-texture-bg.png';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Animation from 'shared/components/Animation';
-import confettiAnimation from 'shared/animations/confetti';
+import confettiAnimation from 'shared/animations/confetti.json';
 
 import FirstSessionBookedSuccessfully from 'screens/sessions/components/FirstSessionsReserved/FirstSessionBookedSuccessfully';
 import HowDidYouHearAboutUs from 'screens/sessions/components/FirstSessionsReserved/HowDidYouHearAboutUs';
@@ -39,7 +39,7 @@ const SessionReserved = () => {
         <div className="bg-cc-purple text-cc-black px-4 py-1 sm:py-2 uppercase text-sm sm:text-lg">
           {`Get ${percentageDiscount}% off your first month if you join today!`}
         </div>
-        <div className="bg-cc-black text-xs sm:text-sm px-2 py-1 border-b border-cc-purple border-opacity-20">
+        <div className="bg-cc-black text-xs sm:text-sm px-2 py-1 border-b border-cc-purple/20">
           Use promo code <span className="text-cc-purple">{promoCode}</span> at checkout for{' '}
           {percentageDiscount}% off your first month!
         </div>

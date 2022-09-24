@@ -12,8 +12,8 @@ import {
   createPurchase,
   createSubscription,
   updateSubscription,
+  subscriptionProrate,
 } from 'screens/checkout/actionCreators';
-import { subscriptionProrate } from 'screens/checkout/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
 import BackButton from 'shared/components/BackButton';
 import MembershipPurchaseConfirmationModal from 'screens/checkout/components/MembershipPurchaseConfirmationModal';

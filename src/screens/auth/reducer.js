@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 import { LOCATION_CHANGE } from 'shared/actions/actionTypes';
 import {

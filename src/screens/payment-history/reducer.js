@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 import { FETCH_PAYMENTS_INIT, FETCH_PAYMENTS_SUCCESS, FETCH_PAYMENTS_FAILURE } from './actionTypes';
 

@@ -2,9 +2,9 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import PropTypes from 'prop-types';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+import styled from 'styled-components';
 import MapMarker from './MapMarker';
 import styles from './styles';
-import styled from 'styled-components';
 
 const LA_CENTER = {
   lat: 34.0688791,
@@ -57,37 +57,35 @@ const LocationsPageContainer = styled.div`
   }
 `;
 
-const Map = ({ locations, selectedLocation, setLocationHandler }) => {
-  return (
-    <LocationsPageContainer className="w-full md:min-h-full">
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
-        center={{
-          lat: LA_CENTER.lat,
-          lng: LA_CENTER.lng,
-        }}
-        yesIWantToUseGoogleMapApiInternals
-        onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, locations)}
-        defaultZoom={14}
-        zoom={14}
-        options={{ styles }}
-      >
-        {locations.map((location) => (
-          <MapMarker
-            key={location.id}
-            lat={location.lat}
-            lng={location.lng}
-            id={location.id}
-            location={location}
-            selected={location.id === selectedLocation}
-            onClickHandler={() => setLocationHandler(location.id)}
-            hoverDistance={100}
-          />
-        ))}
-      </GoogleMapReact>
-    </LocationsPageContainer>
-  );
-};
+const Map = ({ locations, selectedLocation, setLocationHandler }) => (
+  <LocationsPageContainer className="w-full md:min-h-full">
+    <GoogleMapReact
+      bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
+      center={{
+        lat: LA_CENTER.lat,
+        lng: LA_CENTER.lng,
+      }}
+      yesIWantToUseGoogleMapApiInternals
+      onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, locations)}
+      defaultZoom={14}
+      zoom={14}
+      options={{ styles }}
+    >
+      {locations.map((location) => (
+        <MapMarker
+          key={location.id}
+          lat={location.lat}
+          lng={location.lng}
+          id={location.id}
+          location={location}
+          selected={location.id === selectedLocation}
+          onClickHandler={() => setLocationHandler(location.id)}
+          hoverDistance={100}
+        />
+      ))}
+    </GoogleMapReact>
+  </LocationsPageContainer>
+);
 
 Map.propTypes = {
   locations: PropTypes.arrayOf(

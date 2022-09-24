@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-
 import React from 'react';
 import styled from 'styled-components';
 import colors from 'shared/styles/constants';
@@ -60,33 +58,31 @@ const StyledTitle = styled.h1`
   }
 `;
 
-const Rules = () => {
-  return (
-    <div className="flex flex-col p-4 md:p-8">
-      <StyledTitle className="flex flex-col mb-4 md:mb-8">
-        <span className="title">FORMAT &amp;</span>
-        <span className="subtitle">RULES</span>
-      </StyledTitle>
-      <h2 className="font-shapiro95_super_wide text-cc-black text-2xl md:text-4xl">FORMAT</h2>
-      <div className="ml-2">
-        {FORMAT.map((format, index) => (
-          <div key={`format-${index}`} className="flex my-3 md:my-4 md:text-lg items-center">
-            <BasketballSvg className="mr-2 md:mr-4 w-4 md:w-6 h-4 md:h-6" />
-            <p className="w-10/12">{format}</p>
-          </div>
-        ))}
-      </div>
-      <h2 className="font-shapiro95_super_wide text-cc-black text-2xl md:text-4xl mt-8">RULES</h2>
-      <div className="ml-2">
-        {RULES.map((rule, index) => (
-          <div key={`rule-${index}`} className="flex my-3 md:my-4 md:text-lg items-center">
-            <BasketballSvg className="mr-2 md:mr-4 w-4 md:w-6 h-4 md:h-6" />
-            <p className="w-10/12">{rule}</p>
-          </div>
-        ))}
-      </div>
+const Rules = () => (
+  <div className="flex flex-col p-4 md:p-8">
+    <StyledTitle className="flex flex-col mb-4 md:mb-8">
+      <span className="title">FORMAT &amp;</span>
+      <span className="subtitle">RULES</span>
+    </StyledTitle>
+    <h2 className="font-shapiro95_super_wide text-cc-black text-2xl md:text-4xl">FORMAT</h2>
+    <div className="ml-2">
+      {FORMAT.map((format, index) => (
+        <div key={`format-${index}`} className="flex my-3 md:my-4 md:text-lg items-center">
+          <BasketballSvg className="mr-2 md:mr-4 w-4 md:w-6 h-4 md:h-6" />
+          <p className="w-10/12">{format}</p>
+        </div>
+      ))}
     </div>
-  );
-};
+    <h2 className="font-shapiro95_super_wide text-cc-black text-2xl md:text-4xl mt-8">RULES</h2>
+    <div className="ml-2">
+      {RULES.map((rule, index) => (
+        <div key={`rule-${index}`} className="flex my-3 md:my-4 md:text-lg items-center">
+          <BasketballSvg className="mr-2 md:mr-4 w-4 md:w-6 h-4 md:h-6" />
+          <p className="w-10/12">{rule}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 export default Rules;

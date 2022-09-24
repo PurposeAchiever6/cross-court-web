@@ -58,8 +58,8 @@ const WinStreak = ({ setStreak, streak }) => {
       </div>
       <div className="flex items-end z-0 bg-cc-purple w-full h-60 mt-4">
         <div className="bottom-4 ml-4 font-dharma_gothic_cheavy_italic text-10xl ml-24">
-          {[0, 1, 2].map((index) => {
-            return streak.length > index ? (
+          {[0, 1, 2].map((index) =>
+            streak.length > index ? (
               <span key={`win-${index}`} className={`ml-6 text-${streak[index]}`}>
                 W
               </span>
@@ -67,8 +67,8 @@ const WinStreak = ({ setStreak, streak }) => {
               <span key={`win-${index}`} className="ml-6 text-gray-300">
                 W
               </span>
-            );
-          })}
+            )
+          )}
         </div>
       </div>
     </div>

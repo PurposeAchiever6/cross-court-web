@@ -8,14 +8,12 @@ import Routes from './app/Routes';
 
 const { store, persistor } = configureStore();
 
-const Root = () => {
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <Routes />
-      </PersistGate>
-    </Provider>
-  );
-};
+const Root = () => (
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <Routes />
+    </PersistGate>
+  </Provider>
+);
 
 export default Root;

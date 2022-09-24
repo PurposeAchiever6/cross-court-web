@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 
 import { isSameDay } from 'shared/utils/date';
@@ -42,6 +43,7 @@ export default (state = initialState, action) => {
         ...state,
         pageLoading: false,
         availableLocations: [...action.payload.availableLocations],
+        availableSessions: [...action.payload.availableSessions],
       };
     case INITIAL_LOAD_FAILURE:
       return { ...state, error: action.error, pageLoading: false };

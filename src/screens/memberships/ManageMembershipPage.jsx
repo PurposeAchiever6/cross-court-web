@@ -1,15 +1,13 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 import ROUTES from 'shared/constants/routes';
 import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
-import PauseMembershipModal from './components/PauseMembershipModal';
-import UnpauseMembershipModal from './components/UnpauseMembershipModal';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import {
   pauseSubscription,
@@ -17,6 +15,8 @@ import {
   unpauseSubscription,
 } from 'screens/products/actionCreators';
 import { creditsString } from 'screens/products/utils';
+import UnpauseMembershipModal from './components/UnpauseMembershipModal';
+import PauseMembershipModal from './components/PauseMembershipModal';
 
 const ManageMembershipPage = () => {
   const { activeSubscription } = useSelector(getUserProfile);

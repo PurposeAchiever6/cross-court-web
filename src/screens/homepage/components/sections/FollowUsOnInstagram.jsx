@@ -70,7 +70,7 @@ const FollowUsOnInstagram = () => (
       <span className="block">INSTAGRAM</span>
     </section>
     <div className="instafeed">
-      <div className="elfsight-app-65f4b4ad-3836-464b-a390-4922497c4d6d"></div>
+      <div className="elfsight-app-65f4b4ad-3836-464b-a390-4922497c4d6d" />
     </div>
   </Section>
 );

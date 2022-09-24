@@ -1,8 +1,6 @@
 const USER_SOURCE_KEY = 'user-source';
 
-const getUserSource = () => {
-  return localStorage.getItem(USER_SOURCE_KEY);
-};
+const getUserSource = () => localStorage.getItem(USER_SOURCE_KEY);
 
 const setUserSource = (source) => {
   localStorage.setItem(USER_SOURCE_KEY, source);

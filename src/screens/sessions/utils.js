@@ -18,7 +18,8 @@ export const getSessionsMessageContainerText = (
 
   if (isSessionComplete) {
     return 'SESSION COMPLETE';
-  } else if (isSessionFull) {
+  }
+  if (isSessionFull) {
     return 'SESSION FULL';
   }
 

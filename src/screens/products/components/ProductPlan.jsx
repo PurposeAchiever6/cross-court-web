@@ -37,7 +37,7 @@ const ProductPlan = ({
   const price = formatPrice(product.priceForUser);
 
   const isRecurring = product.productType === RECURRING;
-  const label = product.label;
+  const { label } = product;
   const { discountPercentage, discountReason } = productDiscount(product, currentUser);
 
   return (

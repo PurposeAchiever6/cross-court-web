@@ -28,7 +28,7 @@ const InputPhoneField = ({ name, label, labelColor, error, className, ...props }
             />
             <input
               name={name}
-              className="w-full font-shapiro45_welter_extd text-cc-black text-opacity-70 focus:text-opacity-100 bg-cream border border-black border-opacity-50 focus:border-opacity-100 pl-12 md:pl-16 py-2 md:py-3"
+              className="w-full font-shapiro45_welter_extd text-cc-black text-opacity-70 focus:text-opacity-100 bg-cream border border-black/50 focus:border-black/100 pl-12 md:pl-16 py-2 md:py-3"
               autoComplete="off"
               onChange={onChange}
               onBlur={onBlur}

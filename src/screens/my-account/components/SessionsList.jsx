@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { isEmpty, take } from 'ramda';
 import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
-import Session from './Session';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Session from './Session';
 
 const SessionsListContainer = styled.div`
   margin: 2rem auto 1rem;

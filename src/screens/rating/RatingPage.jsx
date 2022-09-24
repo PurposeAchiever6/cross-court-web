@@ -33,36 +33,40 @@ const RATINGS = [
     value: '1',
     name: 'Rookie',
     description:
-      'Lotta heart. Hustler. Not much basketball experience, but ready to do whatever ' +
-      'the team needs to succeed. Here for the vibes, the sweat, and lockdown defense.',
+      'Love the game. Not exactly a difference maker, but always looking to improve my skills ' +
+      'and quiet the non-believers. Can easily hang with average to below average competition. ' +
+      'Here for the vibes, the sweat, and some friendly competition.',
   },
   {
     value: '2',
     name: 'Rising Star',
     description:
-      'Love the game. Not a difference maker yet, but looking to improve my skills and quiet ' +
-      'the non-believers.',
+      'Strong grasp of the fundamentals. Average to below average athleticism, but can hold my ' +
+      'own against relatively standard competition. Would have a tough time creating shots or ' +
+      'putting the team on my back in a more competitive environment. ' +
+      'Show flashes once in a while.',
   },
   {
     value: '3',
     name: 'Vet',
     description:
-      'Show flashes. Little inconsistent due to lack of play, but can hold my own against most ' +
-      'competition. Will be an MVP in no time.',
+      'Can make plays. Might not have played competitively within the last 15 years, ' +
+      'but possess the skill set of a seasoned player. Can keep up with skilled competition ' +
+      'and can turn it on even further when surrounded by above average players or when ' +
+      'things heat up.',
   },
   {
     value: '4',
     name: 'All Star',
     description:
-      'Built different. Played competitively within the last 20 years at a D2/3 university or ' +
-      'was a varsity standout. Playmaker.',
+      'Walking bucket as the kids say. Ball is life. Played or could have played varsity or ' +
+      "more back in the glory days. Can hang with the best of 'em. Play hard on both ends of " +
+      'the court and love to run.',
   },
   {
     value: '5',
     name: 'MVP',
-    description:
-      'Like Mike. Walking bucket as the kids say. Played D1 or professionally within the last ' +
-      '20 years. Ball is/was life.',
+    description: 'Played D1 or professionally within the last 15 years',
   },
 ];
 
@@ -82,12 +86,12 @@ const RatingPage = () => {
 
   const updateSkillRatingAction = () => dispatch(updateSkillRatingInit({ skillRating, isEdit }));
 
+  const updateNeedsReview = () =>
+    isEdit && oldSkillRating < skillRating && skillRatingsForReview.includes(skillRating);
+
   const handleClick = () => {
     updateNeedsReview() ? setShowSkillRatingUpdateRequestModal(true) : updateSkillRatingAction();
   };
-
-  const updateNeedsReview = () =>
-    isEdit && oldSkillRating < skillRating && skillRatingsForReview.includes(skillRating);
 
   useEffect(() => {
     if (!ALLOWED_PATHS.includes(location?.state?.from)) {
@@ -119,7 +123,7 @@ const RatingPage = () => {
                   <span className="w-4 text-center">{rating.value}</span>
                   <span className="hidden sm:block ml-5 uppercase w-32">{rating.name}</span>
                 </div>
-                <div className="flex mx-1 bg-cc-black p-4 text-sm md:text-base w-full">
+                <div className="flex mx-1 bg-cc-black p-4 text-sm md:text-base w-full items-center">
                   {rating.description}
                 </div>
                 <div

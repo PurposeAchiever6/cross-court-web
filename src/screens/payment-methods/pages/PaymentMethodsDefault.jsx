@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
-import { initialLoadInit } from 'screens/payment-methods/actionCreators';
-import { updateCard } from 'screens/payment-methods/actionCreators';
+import { initialLoadInit, updateCard } from 'screens/payment-methods/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getPageLoading, getAvailableCards } from 'screens/payment-methods/reducer';
 import Loading from 'shared/components/Loading';

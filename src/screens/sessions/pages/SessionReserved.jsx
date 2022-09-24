@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SportCharacter from 'shared/images/sport-character.png';
-import confettiAnimation from 'shared/animations/confetti';
+import confettiAnimation from 'shared/animations/confetti.json';
 
 import Animation from 'shared/components/Animation';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';

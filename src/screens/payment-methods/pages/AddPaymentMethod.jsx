@@ -15,7 +15,7 @@ const AddPaymentMethod = () => {
   const env = runtimeEnv();
 
   const STRIPE_API_KEY = env.REACT_APP_STRIPE_API_KEY;
-  const redirectTo = location.state.redirectTo;
+  const { redirectTo } = location.state;
 
   const addCardHandler = (stripe, cardElement) => {
     dispatch(addCard(stripe, cardElement, redirectTo));

@@ -2,7 +2,7 @@ import React from 'react';
 import { useTable } from 'react-table';
 import PropTypes from 'prop-types';
 
-const SHARED_CLASSES = 'border border-cc-black text-sm md:text-base bg-gray-100';
+const SHARED_CLASSES = 'border border-cc-black text-sm md:text-base';
 
 const Table = ({ columns, data, className, headerClassName, initialState }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
@@ -15,10 +15,11 @@ const Table = ({ columns, data, className, headerClassName, initialState }) => {
     <div className={className}>
       <table {...getTableProps({ className: 'w-full' })}>
         <thead>
-          {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
+          {headerGroups.map((headerGroup, k) => (
+            <tr key={`row-header-${k}`} {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column, i) => (
                 <th
+                  key={`header-${i}`}
                   {...column.getHeaderProps({
                     className: `p-2 ${SHARED_CLASSES} ${headerClassName}`,
                   })}
@@ -30,14 +31,15 @@ const Table = ({ columns, data, className, headerClassName, initialState }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {rows.map((row, j) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => (
+              <tr {...row.getRowProps()} key={`row-${j}`}>
+                {row.cells.map((cell, c) => (
                   <td
+                    key={`row-data-${c}`}
                     {...cell.getCellProps({
-                      className: `p-3 ${SHARED_CLASSES} ${
+                      className: `p-3 bg-gray-100 ${SHARED_CLASSES} ${
                         cell.column.className ? cell.column.className : ''
                       }`,
                     })}

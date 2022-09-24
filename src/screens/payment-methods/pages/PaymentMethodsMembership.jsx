@@ -18,7 +18,7 @@ const PaymentMethodsMembership = () => {
   const isLoadingUpdate = useSelector(getUpdateSubscriptionPaymentMethodLoading);
   const availablePaymentMethods = useSelector(getAvailableCards);
   const userProfile = useSelector(getUserProfile);
-  const activeSubscription = userProfile.activeSubscription;
+  const { activeSubscription } = userProfile;
   const loading = isLoadingPage || isLoadingUpdate;
 
   const selectedPaymentMethod = availablePaymentMethods.find((pm) => pm.withActiveSubscription);

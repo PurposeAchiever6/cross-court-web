@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 import { SET_SELECTED_PRODUCT } from 'screens/products/actionTypes';
 import {

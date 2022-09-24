@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 import { CHECK_PROMO_CODE_SUCCESS, CLEAR_DISCOUNT } from 'screens/checkout/actionTypes';
 import {

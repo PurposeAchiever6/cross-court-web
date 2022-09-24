@@ -7,8 +7,8 @@ import {
   CardCvcElement,
 } from 'react-stripe-elements';
 import styled from 'styled-components';
-import { getAddCardLoading } from '../reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { getAddCardLoading } from '../reducer';
 
 const AddCardContainer = styled.div`
   input,

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Info = ({ dataTip, className, imageSrc }) => {
   const image = imageSrc ? (
-    <img alt="" class="tooltip-image" src={imageSrc} />
+    <img alt="" className="tooltip-image" src={imageSrc} />
   ) : (
     <svg
       className={className}

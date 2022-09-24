@@ -10,21 +10,14 @@ export const openContactForm = () => {
   document.querySelector('.open-contact-us-form').click();
 };
 
-export const openContactFormForUser = (user, message = '') => {
-  const { firstName, lastName, phoneNumber, email } = user;
-
-  openContactForm();
-  autoCompleteContactForm({ firstName, lastName, phoneNumber, email, message });
-};
-
 const setNativeValue = (element, value) => {
-  let lastValue = element.value;
+  const lastValue = element.value;
   element.value = value;
-  let event = new Event('input', { target: element, bubbles: true });
+  const event = new Event('input', { target: element, bubbles: true });
   // React 15
   event.simulated = true;
   // React 16
-  let tracker = element._valueTracker;
+  const tracker = element._valueTracker;
   if (tracker) {
     tracker.setValue(lastValue);
   }
@@ -51,9 +44,16 @@ export const autoCompleteContactForm = ({
   if (messageInput) setNativeValue(messageInput, message);
 };
 
+export const openContactFormForUser = (user, message = '') => {
+  const { firstName, lastName, phoneNumber, email } = user;
+
+  openContactForm();
+  autoCompleteContactForm({ firstName, lastName, phoneNumber, email, message });
+};
+
 export const addEventListenerOnSubmitContactUsForm = () => {
   document.addEventListener('click', (e) => {
-    const target = e.target;
+    const { target } = e;
 
     if (
       target &&

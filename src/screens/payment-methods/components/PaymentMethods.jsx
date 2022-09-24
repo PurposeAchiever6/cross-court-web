@@ -35,7 +35,7 @@ const PaymentMethods = ({
 
   const userInfo = useSelector(getUserProfile);
   const deleteCardLoading = useSelector(getDeleteCardLoading);
-  const defaultPaymentMethod = userInfo.defaultPaymentMethod;
+  const { defaultPaymentMethod } = userInfo;
 
   const [cardIdToDelete, setCardIdToDelete] = useState(null);
 
@@ -153,7 +153,6 @@ PaymentMethods.defaultProps = {
   subtitle: null,
   showDefault: true,
   showActiveSubscription: true,
-  initialPaymentMethodSelected: null,
   loading: false,
   className: '',
 };
@@ -163,7 +162,6 @@ PaymentMethods.propTypes = {
   subtitle: PropTypes.string,
   showDefault: PropTypes.bool,
   showActiveSubscription: PropTypes.bool,
-  initialPaymentMethodSelected: PropTypes.shape(),
   availablePaymentMethods: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   submitBtnText: PropTypes.string.isRequired,
   onSelectCard: PropTypes.func.isRequired,

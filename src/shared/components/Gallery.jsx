@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
@@ -6,8 +7,8 @@ import 'pro-gallery/dist/statics/main.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faDownload } from '@fortawesome/free-solid-svg-icons';
 
-import Fancybox from './Fancybox';
 import ccLogo from 'shared/images/cc-logo.png';
+import Fancybox from './Fancybox';
 
 const Gallery = ({ images, hoverEnable, className }) => {
   const containerRef = useRef(null);

@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
-import ReactPlayer from 'react-player';
-import ReactModal from 'react-modal';
 import styled from 'styled-components';
 
-import useWindowSize from 'shared/hooks/useWindowSize';
-import { size } from 'shared/styles/mediaQueries';
+import VideoPlayer from 'shared/components/VideoPlayer';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import theSessionOfficialBgImg from 'screens/careers/images/pick-up-referee-3.jpeg';
@@ -35,30 +32,6 @@ const TheSessionOfficial = () => {
   const SO_LINK = env.REACT_APP_SO_APPLICANT_LINK;
 
   const [showModal, setShowModal] = useState(false);
-  const { width: windowSize } = useWindowSize();
-
-  const modalStyle = {
-    overlay: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'rgba(0, 0, 0, 0.75)',
-      zIndex: 100,
-    },
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      border: 'none',
-      borderRadius: '0',
-      transform: 'translate(-50%, -50%)',
-      background: 'none',
-      padding: 0,
-      width: '80%',
-      height: windowSize < size.desktop ? '25%' : '70%',
-    },
-  };
 
   return (
     <>
@@ -91,7 +64,14 @@ const TheSessionOfficial = () => {
         </div>
       </Section>
 
-      <ReactModal
+      <VideoPlayer
+        url="https://player.vimeo.com/video/438002745?title=0&byline=0&portrait=0&playsinline=0&autopause=0&app_id=122963"
+        playing
+        openOnModal
+        isModalOpen={showModal}
+        closeModalHandler={() => setShowModal(false)}
+      />
+      {/* <ReactModal
         shouldCloseOnOverlayClick
         style={modalStyle}
         onRequestClose={() => setShowModal(false)}
@@ -104,7 +84,7 @@ const TheSessionOfficial = () => {
           height="100%"
           url="https://player.vimeo.com/video/438002745?title=0&byline=0&portrait=0&playsinline=0&autopause=0&app_id=122963"
         />
-      </ReactModal>
+      </ReactModal> */}
     </>
   );
 };

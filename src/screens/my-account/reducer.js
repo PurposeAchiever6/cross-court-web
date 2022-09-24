@@ -1,3 +1,5 @@
+/* eslint-disable no-case-declarations */
+/* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
 import { INITIAL_LOAD_AUTH_SUCCESS as SESSIONS_INITIAL_LOAD } from 'screens/sessions/actionTypes';
 import {

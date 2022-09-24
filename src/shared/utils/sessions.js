@@ -19,7 +19,7 @@ export const reserveTeamReservationAllowed = ({
     'MM/DD/YY HH:MM:SS'
   ).toDate();
 
-  const sessionStartsIn = parseInt(Math.abs(currentDate - formatedSessionDate) / 36e5);
+  const sessionStartsIn = parseInt(Math.abs(currentDate - formatedSessionDate) / 36e5, 10);
 
   if (sessionStartsIn > 5 && sessionStartsIn <= 10 && reservationsCount < 5) {
     return true;

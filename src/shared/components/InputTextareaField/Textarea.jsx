@@ -13,7 +13,7 @@ const Textarea = ({ label, labelColor, error, hint, disabled, rows, className, .
       )}
       <textarea
         rows={rows}
-        className="w-full font-shapiro45_welter_extd text-cc-black text-opacity-70 focus:text-opacity-100 bg-cream border border-cc-black border-opacity-50 focus:border-opacity-100 px-2 py-2 md:py-3"
+        className="w-full font-shapiro45_welter_extd text-cc-black text-opacity-70 focus:text-opacity-100 bg-cream border border-cc-black/50 focus:border-cc-black/100 px-2 py-2 md:py-3"
         disabled={disabled}
         {...props}
       />

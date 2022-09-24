@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Loading from 'shared/components/Loading';
+import Gallery from 'shared/components/Gallery';
 import { getGalleryPhotos, getPageLoading } from './reducer';
 import { getGalleryPhotosInit } from './actionCreators';
-import Gallery from 'shared/components/Gallery';
 
 const GalleryPage = () => {
   const dispatch = useDispatch();

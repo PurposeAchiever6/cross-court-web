@@ -6,9 +6,8 @@ import styled from 'styled-components';
 import SportCharacter from 'shared/images/sport-character.png';
 import ROUTES from 'shared/constants/routes';
 
-import { getPurchaseConfirmed } from '../reducer';
-
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { getPurchaseConfirmed } from '../reducer';
 
 const Title = styled.h2`
   .purchase {

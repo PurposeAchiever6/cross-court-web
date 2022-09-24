@@ -123,7 +123,7 @@ const FreeSessionCreditAdded = ({ onFinishAnimation }) => {
       </div>
       <div className="animate-slide-top fixed bottom-10 inset-x-0 text-center">
         <div className={`scroll ${animationClass}`}>
-          <div className="w-1 h-20 sm:h-24 bg-white inline-block mb-4"></div>
+          <div className="w-1 h-20 sm:h-24 bg-white inline-block mb-4" />
           <div className="font-shapiro95_super_wide text-xs md:text-lg">SCROLL TO BOOK SESSION</div>
         </div>
       </div>

@@ -24,9 +24,7 @@ const getTokens = () => {
   };
 };
 
-const isAuthenticated = () => {
-  return Boolean(localStorage.getItem('isAuthenticated'));
-};
+const isAuthenticated = () => Boolean(localStorage.getItem('isAuthenticated'));
 
 export default {
   setTokens,

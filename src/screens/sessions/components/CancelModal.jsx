@@ -32,21 +32,20 @@ export const CancelModal = ({
       if (Number(unlimitedCreditsCancelFee) > 0) {
         return `You will be charged a $${unlimitedCreditsCancelFee} \
                 late cancellation fee`;
-      } else {
-        return 'You will not be charged a late cancellation fee';
       }
-    } else {
-      if (inCancellationTime) {
-        return 'The credit will be refunded to your account';
-      }
-
-      if (isFreeSession) {
-        return `Your free session credit will remain in your account, but we do charge a \
-                $${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} late cancellation fee`;
-      }
-
-      return 'The credit will not be refunded because of the late cancellation';
+      return 'You will not be charged a late cancellation fee';
     }
+
+    if (inCancellationTime) {
+      return 'The credit will be refunded to your account';
+    }
+
+    if (isFreeSession) {
+      return `Your free session credit will remain in your account, but we do charge a \
+                $${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} late cancellation fee`;
+    }
+
+    return 'The credit will not be refunded because of the late cancellation';
   })();
 
   return (
