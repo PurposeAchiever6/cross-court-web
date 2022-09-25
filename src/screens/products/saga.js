@@ -15,9 +15,9 @@ import {
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_SUCCESS,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_FAILURE,
-  SUBSCRIPTION_FEEDBACK_INIT,
-  SUBSCRIPTION_FEEDBACK_SUCCESS,
-  SUBSCRIPTION_FEEDBACK_FAILURE,
+  SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
+  SUBSCRIPTION_REQUEST_CANCELLATION_SUCCESS,
+  SUBSCRIPTION_REQUEST_CANCELLATION_FAILURE,
   PAUSE_SUBSCRIPTION_INIT,
   PAUSE_SUBSCRIPTION_SUCCESS,
   PAUSE_SUBSCRIPTION_FAILURE,
@@ -95,12 +95,12 @@ export function* updateSubscriptionPaymentMethodFlow(action) {
   }
 }
 
-export function* subscriptionFeedbackFlow({ payload }) {
+export function* createSubscriptionRequestCancellationFlow({ payload }) {
   try {
-    yield call(productsService.subscriptionFeedback, payload);
-    yield put({ type: SUBSCRIPTION_FEEDBACK_SUCCESS });
+    yield call(productsService.createSubscriptionRequestCancellation, payload);
+    yield put({ type: SUBSCRIPTION_REQUEST_CANCELLATION_SUCCESS });
   } catch (err) {
-    yield put({ type: SUBSCRIPTION_FEEDBACK_FAILURE, error: err.response.data.error });
+    yield put({ type: SUBSCRIPTION_REQUEST_CANCELLATION_FAILURE, error: err.response.data.error });
   }
 }
 
@@ -145,7 +145,7 @@ export default function* productsSaga() {
     takeLatest(CANCEL_SUBSCRIPTION_INIT, cancelSubscriptionFlow),
     takeLatest(REACTIVATE_SUBSCRIPTION_INIT, reactivateSubscriptionFlow),
     takeLatest(UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT, updateSubscriptionPaymentMethodFlow),
-    takeLatest(SUBSCRIPTION_FEEDBACK_INIT, subscriptionFeedbackFlow),
+    takeLatest(SUBSCRIPTION_REQUEST_CANCELLATION_INIT, createSubscriptionRequestCancellationFlow),
     takeLatest(PAUSE_SUBSCRIPTION_INIT, pauseSubscriptionFlow),
     takeLatest(CANCEL_PAUSE_SUBSCRIPTION_INIT, cancelPauseSubscriptionFlow),
     takeLatest(UNPAUSE_SUBSCRIPTION_INIT, unpauseSubscriptionFlow),

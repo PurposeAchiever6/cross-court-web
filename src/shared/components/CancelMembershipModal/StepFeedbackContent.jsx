@@ -6,12 +6,12 @@ import Label from 'shared/components/Label';
 import InputTextareaField from 'shared/components/InputTextareaField';
 import StarsRate from 'shared/components/StarsRate';
 
-const StepFeedbackContent = ({ subscriptionFeedback }) => {
+const StepFeedbackContent = ({ createSubscriptionRequestCancellation }) => {
   const [errors, setErrors] = useState({});
   const [experiencieRate, setExperiencieRate] = useState(0);
   const [serviceRate, setServiceRate] = useState(0);
   const [recommendRate, setRecommendRate] = useState(0);
-  const [feedback, setFeedback] = useState('');
+  const [reason, setReason] = useState('');
 
   const validate = () => {
     const newErrors = {};
@@ -25,8 +25,8 @@ const StepFeedbackContent = ({ subscriptionFeedback }) => {
     if (recommendRate === 0) {
       newErrors.recommendRate = true;
     }
-    if (feedback.trim().length < 20) {
-      newErrors.feedback = true;
+    if (reason.trim().length < 20) {
+      newErrors.reason = true;
     }
 
     setErrors(newErrors);
@@ -36,7 +36,12 @@ const StepFeedbackContent = ({ subscriptionFeedback }) => {
 
   const onSubmit = () => {
     if (validate()) {
-      subscriptionFeedback({ experiencieRate, serviceRate, recommendRate, feedback });
+      createSubscriptionRequestCancellation({
+        experiencieRate,
+        serviceRate,
+        recommendRate,
+        reason,
+      });
     }
   };
 
@@ -103,10 +108,10 @@ const StepFeedbackContent = ({ subscriptionFeedback }) => {
         <Label className="mb-1">What is the primary reason(s) for cancelling?</Label>
         <InputTextareaField
           placeholder="Share as many details as you can to help us improve Crosscourt"
-          value={feedback}
-          onChange={(e) => setFeedback(e.target.value)}
+          value={reason}
+          onChange={(e) => setReason(e.target.value)}
           hint="Please include at least 20 characters"
-          error={errors.feedback}
+          error={errors.reason}
           className="mb-6"
           formik={false}
         />
@@ -119,7 +124,7 @@ const StepFeedbackContent = ({ subscriptionFeedback }) => {
 };
 
 StepFeedbackContent.propTypes = {
-  subscriptionFeedback: PropTypes.func.isRequired,
+  createSubscriptionRequestCancellation: PropTypes.func.isRequired,
 };
 
 export default StepFeedbackContent;

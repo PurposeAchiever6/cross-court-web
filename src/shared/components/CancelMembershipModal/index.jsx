@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { subscriptionFeedback } from 'screens/products/actionCreators';
+import { createSubscriptionRequestCancellation } from 'screens/products/actionCreators';
 import Modal from 'shared/components/Modal';
 import StepFeedbackContent from 'shared/components/CancelMembershipModal/StepFeedbackContent';
 import StepCanceledContent from 'shared/components/CancelMembershipModal/StepCanceledContent';
@@ -20,8 +20,8 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => 
 
   const pausesPerYear = activeSubscription?.pausesPerYear;
 
-  const subscriptionFeedbackHandler = (feedback) => {
-    dispatch(subscriptionFeedback(feedback));
+  const createSubscriptionRequestCancellationHandler = (payload) => {
+    dispatch(createSubscriptionRequestCancellation(payload));
     setStep(STEP_CANCELED);
   };
 
@@ -47,7 +47,11 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => 
           title: 'Submit Request for Cancellation',
           subtitle: 'Feedback',
           size: 'xl',
-          content: <StepFeedbackContent subscriptionFeedback={subscriptionFeedbackHandler} />,
+          content: (
+            <StepFeedbackContent
+              createSubscriptionRequestCancellation={createSubscriptionRequestCancellationHandler}
+            />
+          ),
         };
       default:
         return {
@@ -79,6 +83,7 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => 
 CancelMembershipModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
+  activeSubscription: PropTypes.shape(),
 };
 
 export default CancelMembershipModal;

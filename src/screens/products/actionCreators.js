@@ -4,7 +4,7 @@ import {
   CANCEL_SUBSCRIPTION_INIT,
   REACTIVATE_SUBSCRIPTION_INIT,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
-  SUBSCRIPTION_FEEDBACK_INIT,
+  SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
   PAUSE_SUBSCRIPTION_INIT,
   CANCEL_PAUSE_SUBSCRIPTION_INIT,
   UNPAUSE_SUBSCRIPTION_INIT,
@@ -39,8 +39,8 @@ export const updateSubscriptionPaymentMethod = (subscription, paymentMethod) => 
   },
 });
 
-export const subscriptionFeedback = (payload) => ({
-  type: SUBSCRIPTION_FEEDBACK_INIT,
+export const createSubscriptionRequestCancellation = (payload) => ({
+  type: SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
   payload,
 });
 

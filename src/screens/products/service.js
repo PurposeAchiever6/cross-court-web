@@ -37,8 +37,8 @@ export default {
     return response.data;
   },
 
-  subscriptionFeedback: async (payload) => {
-    const response = await api.post('/subscriptions/feedback', payload);
+  createSubscriptionRequestCancellation: async (payload) => {
+    const response = await api.post('/subscriptions/request_cancellation', payload);
 
     return response.data;
   },
