@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -66,12 +66,6 @@ const LocationPicker = ({ availableLocations, selectedLocation, setLocationHandl
   const selectedValue = availableLocations.find((location) => location.id === selectedLocation);
   const locationsWithoutNull = availableLocations.filter((location) => location.id !== null);
   const oneLocation = locationsWithoutNull.length === 1;
-
-  useEffect(() => {
-    if (oneLocation && !selectedLocation) {
-      setLocationHandler(locationsWithoutNull[0].id);
-    }
-  }, [oneLocation, selectedLocation, locationsWithoutNull, setLocationHandler]);
 
   return (
     <LocationPickerContainer>

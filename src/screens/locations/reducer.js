@@ -8,9 +8,9 @@ import {
   REMOVE_VOTE_SESSION_SUCCESS,
 } from 'screens/sessions/actionTypes';
 import {
-  INITIAL_LOAD_INIT,
-  INITIAL_LOAD_SUCCESS,
-  INITIAL_LOAD_FAILURE,
+  GET_LOCATIONS_INIT,
+  GET_LOCATIONS_SUCCESS,
+  GET_LOCATIONS_FAILURE,
   GET_SESSIONS_BY_LOCATION_INIT,
   GET_SESSIONS_BY_LOCATION_SUCCESS,
   GET_SESSIONS_BY_LOCATION_FAILURE,
@@ -32,20 +32,19 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case INITIAL_LOAD_INIT:
+    case GET_LOCATIONS_INIT:
       return {
         ...state,
         pageLoading: true,
         error: '',
       };
-    case INITIAL_LOAD_SUCCESS:
+    case GET_LOCATIONS_SUCCESS:
       return {
         ...state,
         pageLoading: false,
         availableLocations: [...action.payload.availableLocations],
-        availableSessions: [...action.payload.availableSessions],
       };
-    case INITIAL_LOAD_FAILURE:
+    case GET_LOCATIONS_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
     case GET_SESSIONS_BY_LOCATION_INIT:
       return {
