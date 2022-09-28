@@ -67,10 +67,10 @@ const PlayersList = () => {
 
   const getUserSessionsList = useCallback(async () => {
     const currentDate = new Date().toLocaleDateString('en-US');
-    const userSessionsList = await userSessionService.getUserSessionList(
-      selectedSession.id,
-      currentDate
-    );
+    const userSessionsList = await userSessionService.getUserSessionList(selectedSession.id, {
+      date: currentDate,
+      checked_in: true,
+    });
     setUserSessions(userSessionsList);
   }, [selectedSession]);
 
