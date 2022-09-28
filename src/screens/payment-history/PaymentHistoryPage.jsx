@@ -12,10 +12,10 @@ import Pagination from 'shared/components/Pagination';
 import { paymentFormattedDate } from 'shared/utils/date';
 import usePagination from 'shared/hooks/usePagination';
 
-import { fetchPayments } from './actionCreators';
-import { getPageLoading, getPaymentHistory, getPagination } from './reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import ROUTES from 'shared/constants/routes';
+import { fetchPayments } from './actionCreators';
+import { getPageLoading, getPaymentHistory, getPagination } from './reducer';
 
 const SUCCESS = 'success';
 
