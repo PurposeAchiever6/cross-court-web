@@ -87,6 +87,11 @@ const LocationsPage = () => {
 
   useEffect(() => {
     dispatch(getLocations());
+
+    if (selectedLocation) {
+      setLocationHandler(selectedLocation);
+    }
+    // eslint-disable-next-line
   }, [dispatch]);
 
   return isPageLoading ? (
