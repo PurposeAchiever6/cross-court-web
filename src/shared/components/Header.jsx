@@ -45,7 +45,7 @@ const ALWAYS_SCROLLED = [
   '/session',
   '/first-session',
 ];
-const BLACK_BG = [ROUTES.MEMBERSHIPS, ROUTES.GALLERY, ROUTES.FIRSTSESSIONRESERVED];
+const BLACK_BG = [ROUTES.MEMBERSHIPS, ROUTES.GALLERY, ROUTES.FIRSTSESSIONRESERVED, ROUTES.CONTENT];
 
 const Header = () => {
   const { pathname } = useLocation();

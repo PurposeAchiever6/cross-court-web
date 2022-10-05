@@ -14,9 +14,10 @@
     "lint": "npm-run-all lint:code",
     "lint:code": "eslint -c .eslintrc src --color",
     "lint:fix": "eslint --fix src",
-    "start": "npm run tailwind:build && GENERATE_SOURCEMAP=false react-scripts start",
+    "start": "concurrently \"yarn run tailwind:watch\" \"GENERATE_SOURCEMAP=false react-scripts start\"",
     "test": "react-scripts test",
-    "tailwind:build": "npx tailwind build -i ./src/assets/tailwind.css -o ./src/assets/main.css"
+    "tailwind:build": "npx tailwind build -i ./src/assets/tailwind.css -o ./src/assets/main.css",
+    "tailwind:watch": "npx tailwindcss -i ./src/assets/tailwind.css -o ./src/assets/main.css --watch"
   },
   "husky": {
     "hooks": {}
@@ -108,6 +109,7 @@
   },
   "devDependencies": {
     "commitizen": "^3.1.1",
+    "concurrently": "^7.4.0",
     "cz-conventional-changelog": "^2.1.0",
     "eslint": "^8.23.1",
     "eslint-config-airbnb": "^19.0.4",
