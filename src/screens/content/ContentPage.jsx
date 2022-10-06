@@ -165,13 +165,13 @@ const ContentPage = () => (
           your fans to see. If you have any issues or questions, feel free to email us at{' '}
           <span className="font-shapiro95_super_wide">ccteam@cross-court.com</span>.
         </p>
-        <img
-          alt="basket-group"
-          src={playingBasket}
-          className="hidden md:block w-96 absolute -right-8 -top-64"
-        />
       </InstructionItem>
 
+      <img
+        alt="basket-group"
+        src={playingBasket}
+        className="hidden md:block w-96 absolute -right-8 bottom-[31em]"
+      />
       <p className="font-shapiro95_super_wide text-3xl md:text-7xl text-center uppercase mb-10">
         Let's get it!
       </p>
