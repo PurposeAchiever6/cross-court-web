@@ -50,7 +50,19 @@ const SelectContainer = styled.div`
   }
 `;
 
-const Select = ({ name, label, labelColor, error, hint, disabled, className, ...props }) => (
+const Select = ({
+  name,
+  value,
+  options,
+  label,
+  labelColor,
+  error,
+  hint,
+  disabled,
+  placeholder,
+  className,
+  ...props
+}) => (
   <SelectContainer className={className}>
     <div className={disabled ? 'opacity-50 pointer-events-none' : ''}>
       {label && (
@@ -58,7 +70,15 @@ const Select = ({ name, label, labelColor, error, hint, disabled, className, ...
           {label}
         </Label>
       )}
-      <ReactSelect name={name} classNamePrefix="select-field" isDisabled={disabled} {...props} />
+      <ReactSelect
+        name={name}
+        classNamePrefix="select-field"
+        isDisabled={disabled}
+        placeholder={placeholder}
+        value={options.find((option) => option.value === value)}
+        options={options}
+        {...props}
+      />
       {hint && (
         <div
           className={`font-shapiro45_welter_extd text-xs text-right mt-2 ${
@@ -79,20 +99,26 @@ const Select = ({ name, label, labelColor, error, hint, disabled, className, ...
 
 Select.defaultProps = {
   label: null,
+  value: null,
+  options: [],
   labelColor: null,
   error: null,
   hint: null,
   disabled: false,
+  placeholder: '',
   className: '',
 };
 
 Select.propTypes = {
   name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  options: PropTypes.array,
   label: PropTypes.string,
   labelColor: PropTypes.string,
   error: PropTypes.string,
   hint: PropTypes.string,
   disabled: PropTypes.bool,
+  placeholder: PropTypes.string,
   className: PropTypes.string,
 };
 

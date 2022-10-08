@@ -65,6 +65,28 @@ const MyProfile = ({ profile, showTitle = true }) => {
             />
           </div>
           <div className={detailRowClasses}>
+            <span className={titleClasses}>FULL NAME</span>
+            <span className="truncate">{`${profile.firstName} ${profile.lastName}`}</span>
+          </div>
+          <div className={detailRowClasses}>
+            <span className={titleClasses}>PHONE</span>
+            <span className="truncate">
+              {profile.phoneNumber ? formatPhoneNumber(profile.phoneNumber) : 'No phone'}
+            </span>
+          </div>
+          <div className={detailRowClasses}>
+            <span className={titleClasses}>DATE OF BIRTH</span>
+            <span className="truncate">
+              {profile.birthday
+                ? dateOfBirth.toLocaleDateString('en-US', { timeZone: 'UTC' })
+                : '-'}
+            </span>
+          </div>
+          <div className={detailRowClasses}>
+            <span className={titleClasses}>GENDER</span>
+            <span className="truncate">{profile.gender || '-'}</span>
+          </div>
+          <div className={detailRowClasses}>
             <span className={titleClasses}>INSTAGRAM</span>
             <span className="truncate">
               {profile.instagramUsername ? (
@@ -78,24 +100,6 @@ const MyProfile = ({ profile, showTitle = true }) => {
               ) : (
                 '-'
               )}
-            </span>
-          </div>
-          <div className={detailRowClasses}>
-            <span className={titleClasses}>FULL NAME</span>
-            <span className="truncate">{`${profile.firstName} ${profile.lastName}`}</span>
-          </div>
-          <div className={detailRowClasses}>
-            <span className={titleClasses}>DATE OF BIRTH</span>
-            <span className="truncate">
-              {profile.birthday
-                ? dateOfBirth.toLocaleDateString('en-US', { timeZone: 'UTC' })
-                : '-'}
-            </span>
-          </div>
-          <div className={detailRowClasses}>
-            <span className={titleClasses}>PHONE</span>
-            <span className="truncate">
-              {profile.phoneNumber ? formatPhoneNumber(profile.phoneNumber) : 'No phone'}
             </span>
           </div>
           <div className={detailRowClasses}>

@@ -10,6 +10,7 @@ const FormikSelect = ({ name, error, ...props }) => (
       <Select
         {...props}
         name={name}
+        value={field.value}
         onChange={({ value }) => setFieldValue(field.name, value)}
         error={error || formikErrors[field.name]}
       />
