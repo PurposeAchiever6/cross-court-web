@@ -23,7 +23,7 @@ import PixellotLogo from './components/PixelotLogo';
 
 const ContentPage = () => (
   <div className="bg-cc-black p-6 md:p-12 text-white">
-    <h1 className="font-shapiro95_super_wide text-3xl md:text-7xl mb-2">CONTENT</h1>
+    <h1 className="font-shapiro95_super_wide text-3xl md:text-7xl mb-5">CONTENT</h1>
 
     <p className="mb-16 text-sm md:text-lg">
       We have partnered with{' '}
@@ -81,7 +81,7 @@ const ContentPage = () => (
           src={basketGroup}
           className="hidden md:block w-96 absolute -right-20 -top-32"
         />
-        <p className="mb-5 md:max-w-3xl">
+        <p className="mb-5 md:max-w-3xl relative z-10">
           Go through the on screen onboarding flow and find our club by searching for "CrossCourt
           DTLA". Tap <b>ASK TO JOIN</b>.
           <br />
@@ -94,7 +94,7 @@ const ContentPage = () => (
           content. You will see a pending notification until your account is approved. Please allow
           a few hours.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 relative z-10">
           <img alt="instruction-3-img-1" src={instruction3Img1} className="w-64" />
           <img alt="instruction-3-img-2" src={instruction3Img2} className="w-64" />
           <img alt="instruction-3-img-2" src={instruction3Img3} className="w-64" />
@@ -146,7 +146,7 @@ const ContentPage = () => (
         </div>
       </InstructionItem>
 
-      <InstructionItem number="07">
+      <InstructionItem number="07" className="relative z-10">
         <p className="mb-5 md:max-w-2xl">
           Once you’re done clipping your highlights, tap the <b>MY AREA</b> icon in the footer menu
           and then tap <b>MY CLIPS</b> to see all of your saved clips. Tap the three dots in the top
@@ -159,7 +159,7 @@ const ContentPage = () => (
         </div>
       </InstructionItem>
 
-      <InstructionItem number="08">
+      <InstructionItem number="08" className="relative z-10">
         <p className="md:max-w-2xl">
           Show off your highlights! Send to friends, upload to Instagram, or make a mixtape for all
           your fans to see. If you have any issues or questions, feel free to email us at{' '}
@@ -170,12 +170,16 @@ const ContentPage = () => (
       <img
         alt="basket-group"
         src={playingBasket}
-        className="hidden md:block w-96 absolute -right-8 bottom-[31em]"
+        className="hidden md:block w-96 absolute right-0 bottom-[31rem]"
       />
-      <p className="font-shapiro95_super_wide text-3xl md:text-7xl text-center uppercase mb-10">
-        Let's get it!
-      </p>
-      <p className="text-xs md:text-lg text-center uppercase mb-10">"Make sport your lifestyle"</p>
+      <div className="relative z-10">
+        <p className="font-shapiro95_super_wide text-3xl md:text-7xl text-center uppercase mb-10">
+          Let's get it!
+        </p>
+        <p className="text-xs md:text-lg text-center uppercase mb-10">
+          "Make sport your lifestyle"
+        </p>
+      </div>
     </ol>
   </div>
 );
