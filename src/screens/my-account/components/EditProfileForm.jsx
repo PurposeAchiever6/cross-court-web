@@ -61,64 +61,61 @@ const EditProfileForm = ({ editProfileAction, editProfileLoading, profile }) => 
         }}
         validationSchema={validationSchema}
       >
-        {(props) => {
-          const { errors, setFieldValue } = props;
-          return (
-            <Form className="flex flex-col">
-              <InputFileField
-                labelText="Profile Image"
-                name="image"
-                setFieldValue={setFieldValue}
-                accept="image/*"
-              />
-              <InputTextField
-                name="firstName"
-                label="First Name"
-                placeholder="John"
-                error={errors.firstName}
-                className="mb-6"
-              />
-              <InputTextField
-                name="lastName"
-                label="Last Name"
-                placeholder="Doe"
-                error={errors.lastName}
-                className="mb-6"
-              />
-              <InputPhoneField
-                name="phoneNumber"
-                label="Phone"
-                placeholder="(123) 123-4567"
-                error={errors.phoneNumber}
-                className="mb-6"
-              />
-              <InputDateField
-                name="birthday"
-                label="Date of Birth"
-                error={errors.birthday}
-                className="mb-6"
-              />
-              <InputSelectField
-                name="gender"
-                label="Gender"
-                error={errors.gender}
-                options={genderSelectOptions}
-                className="mb-6"
-              />
-              <InputTextField
-                name="instagramUsername"
-                label="Instagram"
-                error={errors.instagramUsername}
-                className="mb-8"
-              />
-              <div className="flex justify-end">
-                <PrimaryButton type="submit" loading={editProfileLoading}>
-                  SAVE
-                </PrimaryButton>
-              </div>
-            </Form>
-          );
-        }}
+        {({ errors, setFieldValue }) => (
+          <Form className="flex flex-col">
+            <InputFileField
+              labelText="Profile Image"
+              name="image"
+              setFieldValue={setFieldValue}
+              accept="image/*"
+            />
+            <InputTextField
+              name="firstName"
+              label="First Name"
+              placeholder="John"
+              error={errors.firstName}
+              className="mb-6"
+            />
+            <InputTextField
+              name="lastName"
+              label="Last Name"
+              placeholder="Doe"
+              error={errors.lastName}
+              className="mb-6"
+            />
+            <InputPhoneField
+              name="phoneNumber"
+              label="Phone"
+              placeholder="(123) 123-4567"
+              error={errors.phoneNumber}
+              className="mb-6"
+            />
+            <InputDateField
+              name="birthday"
+              label="Date of Birth"
+              error={errors.birthday}
+              className="mb-6"
+            />
+            <InputSelectField
+              name="gender"
+              label="Gender"
+              error={errors.gender}
+              options={genderSelectOptions}
+              className="mb-6"
+            />
+            <InputTextField
+              name="instagramUsername"
+              label="Instagram"
+              error={errors.instagramUsername}
+              className="mb-8"
+            />
+            <div className="flex justify-end">
+              <PrimaryButton type="submit" loading={editProfileLoading}>
+                SAVE
+              </PrimaryButton>
+            </div>
+          </Form>
+        )}
       </Formik>
     </EditProfileFormContainer>
   );

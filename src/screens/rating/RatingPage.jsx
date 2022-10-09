@@ -144,7 +144,7 @@ const RatingPage = () => {
             </div>
           ))}
           {!isEdit && skillRatingsForReview.length > 0 && (
-            <div class="bg-cc-purple mt-2 md:mt-3 p-4 text-sm">
+            <div className="bg-cc-purple mt-2 md:mt-3 p-4 text-sm">
               Our advanced sessions are reserved for members only. Once a member, it's possible our
               Experience Team adjusts your skill level based on playstyle and sportsmanship. If your
               skill level isn't adjusted by Crosscourt, you have the ability to request a skill

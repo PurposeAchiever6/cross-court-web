@@ -56,7 +56,7 @@ const Memberships = ({ className }) => {
 
   return (
     <div className={className}>
-      <div className="text-center mb-6 lg:mb-16">
+      <div className="text-center mb-6 lg:mb-20">
         <ToggleButton
           onLabel={`With ${percentageDiscount}% Off`}
           offLabel="Standard Pricing"
@@ -73,7 +73,6 @@ const Memberships = ({ className }) => {
               product={product}
               submitText={applyDiscount ? 'Join Today' : 'Join'}
               handleSubmit={joinMembershipHandler}
-              showFeatures={false}
             />
           </div>
         ))}

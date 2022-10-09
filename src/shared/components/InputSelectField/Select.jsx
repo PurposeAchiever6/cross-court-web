@@ -112,7 +112,7 @@ Select.defaultProps = {
 Select.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  options: PropTypes.array,
+  options: PropTypes.arrayOf(PropTypes.shape()),
   label: PropTypes.string,
   labelColor: PropTypes.string,
   error: PropTypes.string,
