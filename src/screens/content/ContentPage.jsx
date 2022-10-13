@@ -1,49 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import pixellotLogoImg from 'shared/images/pixellot-logo.png';
 import appStoreDownloadImg from 'shared/images/app-store-download.png';
 import playStoreDownloadImg from 'shared/images/play-store-download.png';
-import instruction2Img1 from 'shared/images/content-page/instruction-2_1.png';
-import instruction3Img1 from 'shared/images/content-page/instruction-3_1.png';
-import instruction3Img2 from 'shared/images/content-page/instruction-3_2.png';
-import instruction3Img3 from 'shared/images/content-page/instruction-3_3.png';
-import instruction4Img1 from 'shared/images/content-page/instruction-4_1.png';
-import instruction5Img1 from 'shared/images/content-page/instruction-5_1.png';
-import instruction5Img2 from 'shared/images/content-page/instruction-5_2.png';
-import instruction6Img1 from 'shared/images/content-page/instruction-6_1.png';
-import instruction6Img2 from 'shared/images/content-page/instruction-6_2.png';
-import instruction7Img1 from 'shared/images/content-page/instruction-7_1.png';
-import instruction7Img2 from 'shared/images/content-page/instruction-7_2.png';
-import instruction7Img3 from 'shared/images/content-page/instruction-7_3.png';
+import instruction2Img1 from './images/instruction-2_1.png';
+import instruction3Img1 from './images/instruction-3_1.png';
+import instruction3Img2 from './images/instruction-3_2.png';
+import instruction3Img3 from './images/instruction-3_3.png';
+import instruction4Img1 from './images/instruction-4_1.png';
+import instruction5Img1 from './images/instruction-5_1.png';
+import instruction5Img2 from './images/instruction-5_2.png';
+import instruction6Img1 from './images/instruction-6_1.png';
+import instruction6Img2 from './images/instruction-6_2.png';
+import instruction7Img1 from './images/instruction-7_1.png';
+import instruction7Img2 from './images/instruction-7_2.png';
+import instruction7Img3 from './images/instruction-7_3.png';
+import playingBasket from './images/playing-basket.png';
+import basketGroup from './images/basket-group.png';
 
 import InstructionItem from './components/InstructionItem';
+import PixellotLogo from './components/PixelotLogo';
 
 const ContentPage = () => (
-  <div className="px-4 md:px-12 py-12 max-w-5xl self-center">
-    <h1 className="font-shapiro95_super_wide text-center text-xl md:text-3xl mb-6">CONTENT</h1>
+  <div className="bg-cc-black p-6 md:p-12 text-white">
+    <h1 className="font-shapiro95_super_wide text-3xl md:text-7xl mb-5">CONTENT</h1>
 
-    <p className="mb-6">
+    <p className="mb-16 text-sm md:text-lg">
       We have partnered with{' '}
       <span>
-        <img alt="pixellot-logo" src={pixellotLogoImg} className="inline-block h-4 -mt-1" />
+        <PixellotLogo />
       </span>{' '}
       to bring our members closer to the action. Using the{' '}
       <span>
-        <img alt="pixellot-logo" src={pixellotLogoImg} className="inline-block h-4 -mt-1" />
+        <PixellotLogo />
       </span>{' '}
       app, members can watch, clip, edit, and upload personalized highlights all from their mobile
       devices.
     </p>
 
     <ol className="pl-0 sm:pl-4">
-      <InstructionItem number={1}>
-        <p className="mb-5">
+      <InstructionItem number="01">
+        <p className="mb-5 md:max-w-2xl">
           Download the{' '}
           <span>
-            <img alt="pixellot-logo" src={pixellotLogoImg} className="inline-block h-4 -mt-1" />
+            <PixellotLogo />
           </span>{' '}
-          app from the store.
+          app from the APP Store or Google Play Store.
         </p>
         <div className="flex flex-wrap gap-2">
           <Link
@@ -66,46 +68,60 @@ const ContentPage = () => (
         </div>
       </InstructionItem>
 
-      <InstructionItem number={2}>
-        <p className="mb-5">Tap sign up and create an account.</p>
+      <InstructionItem number="02" className="md:justify-end md:mr-72">
+        <p className="mb-5 md:max-w-2xl">
+          Tap <b>SIGN UP</b> and create an account.
+        </p>
         <img alt="instruction-2-img-1" src={instruction2Img1} className="w-64" />
       </InstructionItem>
 
-      <InstructionItem number={3}>
-        <p className="mb-5">
-          Go through the on screen onboarding flow and find our club by searching for "Crosscourt
-          DTLA". Tap "Ask to join".
+      <InstructionItem number="03">
+        <img
+          alt="basket-group"
+          src={basketGroup}
+          className="hidden md:block w-96 absolute -right-20 -top-32"
+        />
+        <p className="mb-5 md:max-w-3xl relative z-10">
+          Go through the on screen onboarding flow and find our club by searching for "CrossCourt
+          DTLA". Tap <b>ASK TO JOIN</b>.
           <br />
-          <span className="font-shapiro95_super_wide">Please note:</span> only members will be
-          allowed to access pixelot content. You will see a pending notification until your account
-          is approved. Please allow a few hours.
+          <br />
+          <span className="font-shapiro96_inclined_wide">PLEASE NOTE:</span> Only members will be
+          allowed to access{' '}
+          <span>
+            <PixellotLogo />
+          </span>{' '}
+          content. You will see a pending notification until your account is approved. Please allow
+          a few hours.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 relative z-10">
           <img alt="instruction-3-img-1" src={instruction3Img1} className="w-64" />
           <img alt="instruction-3-img-2" src={instruction3Img2} className="w-64" />
           <img alt="instruction-3-img-2" src={instruction3Img3} className="w-64" />
         </div>
       </InstructionItem>
 
-      <InstructionItem number={4}>
-        <p className="mb-5">
-          Once your account is approved, tap "My clubs" at the bottom of the page to access live and
-          pre recorded session content. The "vod" tab is where all of your sessions will be
-          available.
+      <InstructionItem number="04" className="md:justify-end">
+        <p className="mb-5 md:max-w-2xl">
+          Once your account is approved, tap <b>MY CLUBS</b> at the bottom of the page to access
+          live and pre-recorded session content. The <b>VOD</b> tab is where all of your sessions
+          will be available.
         </p>
         <img alt="instruction-4-img-1" src={instruction4Img1} className="w-64" />
       </InstructionItem>
 
-      <InstructionItem number={5}>
-        <p className="mb-5">
+      <InstructionItem number="05">
+        <p className="mb-5 md:max-w-2xl">
           Find your session and tap on it to open the video player. Rotate your mobile device{' '}
-          <span className="font-shapiro95_super_wide">horizontally</span> to access the video player
-          and clipping features.
+          <span className="font-shapiro96_inclined_wide">HORIZONTALLY</span> to access the video
+          player and clipping features.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-wrap gap-4 items-center justify-center md:justify-start md:items-end">
           <img alt="instruction-3-img-1" src={instruction5Img1} className="w-64" />
           <div>
-            <p className="mb-4">Find your highlight then tap "clip" to open clipping tool</p>
+            <p className="mb-4">
+              Find your highlight then tap <b>CLIP</b> to open clipping tool.
+            </p>
             <img
               alt="instruction-3-img-2"
               src={instruction5Img2}
@@ -115,30 +131,26 @@ const ContentPage = () => (
         </div>
       </InstructionItem>
 
-      <InstructionItem number={6}>
-        <p className="mb-5">
-          Tap "start recording" to begin clipping and then tap "stop recording" when your highlight
-          ends. The app will take a few seconds to save your clip.
+      <InstructionItem number="06" className="md:justify-end">
+        <p className="mb-5 md:max-w-2xl">
+          Tap <b>START RECORDING</b> to begin clipping and then tap <b>STOP RECORDING</b> when your
+          highlight ends. The app will take a few seconds to save your clip.
         </p>
-        <div className="md:flex">
+        <div className="flex flex-col">
           <img
             alt="instruction-6-img-1"
             src={instruction6Img1}
-            className="w-100 md:w-1/2 md:pr-2 pb-4 md:pb-0"
+            className="w-100 pb-4 md:pb-0 mb-4"
           />
-          <img
-            alt="instruction-6-img-2"
-            src={instruction6Img2}
-            className="w-100 md:w-1/2 md:pl-2"
-          />
+          <img alt="instruction-6-img-2" src={instruction6Img2} className="w-100" />
         </div>
       </InstructionItem>
 
-      <InstructionItem number={7}>
-        <p className="mb-5">
-          Once you’re done clipping your highlights, tap the "My area" icon in the footer menu and
-          then tap "My clips" to see all of your saved clips. Tap the three dots in the top right of
-          the clip to download your highlight to your camera roll.
+      <InstructionItem number="07" className="relative z-10">
+        <p className="mb-5 md:max-w-2xl">
+          Once you’re done clipping your highlights, tap the <b>MY AREA</b> icon in the footer menu
+          and then tap <b>MY CLIPS</b> to see all of your saved clips. Tap the three dots in the top
+          right of the clip to download your highlight to your camera roll.
         </p>
         <div className="flex flex-wrap gap-4">
           <img alt="instruction-7-img-1" src={instruction7Img1} className="w-64" />
@@ -147,14 +159,26 @@ const ContentPage = () => (
         </div>
       </InstructionItem>
 
-      <InstructionItem number={8}>
-        Show off your highlights! Send to friends, upload to instagram, or make a mixtape for all
-        your fans to see. If you have any issues or questions, feel free to email us at{' '}
-        <span className="font-shapiro95_super_wide">ccteam@cross-court.com</span>.
+      <InstructionItem number="08" className="relative z-10">
+        <p className="md:max-w-2xl">
+          Show off your highlights! Send to friends, upload to Instagram, or make a mixtape for all
+          your fans to see. If you have any issues or questions, feel free to email us at{' '}
+          <span className="font-shapiro95_super_wide">ccteam@cross-court.com</span>.
+        </p>
       </InstructionItem>
 
-      <div className="font-dharma_gothic_cheavy_italic text-7xl text-center uppercase mb-10">
-        Let's get it!
+      <img
+        alt="basket-group"
+        src={playingBasket}
+        className="hidden md:block w-96 absolute right-0 bottom-[31rem]"
+      />
+      <div className="relative z-10">
+        <p className="font-shapiro95_super_wide text-3xl md:text-7xl text-center uppercase mb-10">
+          Let's get it!
+        </p>
+        <p className="text-xs md:text-lg text-center uppercase mb-10">
+          "Make sport your lifestyle"
+        </p>
       </div>
     </ol>
   </div>

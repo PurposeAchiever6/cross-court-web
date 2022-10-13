@@ -1,30 +1,29 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 import PropTypes from 'prop-types';
 
 import { capitalize } from 'shared/utils/helpers';
 import { getUserProfile } from 'screens/my-account/reducer';
 
 const FirstSessionBookedSuccessfully = ({ className }) => {
+  const env = runtimeEnv();
+
   const userProfile = useSelector(getUserProfile);
+
+  const promoCode = env.REACT_APP_FIRST_TIMER_PROMO_CODE;
+  const percentageDiscount = env.REACT_APP_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT;
 
   return (
     <div className={className}>
-      <div className="text-center">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-shapiro95_super_wide uppercase mb-1">
-          {`Thanks ${capitalize(userProfile.firstName)}`}
-        </h1>
-        <h2 className="text-lg sm:text-xl md:text-2xl font-shapiro95_super_wide uppercase mb-6 sm:mb-10">
-          Your first session is booked!
-        </h2>
-        <div>
-          <p className="mb-4">
-            Good to see you're also tired of long waits at the park, arguing over foul calls, and
-            consistently bad experience trying to hoop
-          </p>
-          <p>Congrats on taking the first step in reviving your athletic career!</p>
-        </div>
-      </div>
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-shapiro95_super_wide uppercase text-center mb-6">
+        Thanks {capitalize(userProfile.firstName)}!
+      </h1>
+      <h2 className="text-lg sm:text-xl md:text-2xl">
+        Your first session is booked! Check out this CC INTRO OFFER: Use promo code{' '}
+        <span className="text-cc-purple">{promoCode}</span> at checkout for {percentageDiscount}%
+        off your first month! Choose a membership below.
+      </h2>
     </div>
   );
 };

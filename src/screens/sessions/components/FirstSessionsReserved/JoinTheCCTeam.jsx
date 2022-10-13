@@ -17,16 +17,10 @@ const JoinTheCCTeam = ({ className }) => {
             {`${percentageDiscount}% off your first month`}
           </div>
         </div>
-        <p className="md:pl-8 text-sm md:text-lg max-w-xl md:-mt-6 text-center md:text-left">
-          By Being a Crosscourt member, you're gaining access to the CCTeam - A community that's
-          built for YOU, the modern athlete
+        <p className="font-shapiro96_inclined_wide uppercase text-xl lg:text-3xl max-w-xl text-center md:text-left md:pl-8 md:-mt-6">
+          Offer expires after first session
         </p>
       </div>
-      <p className="md:text-lg">
-        <span className="text-lg md:text-xl font-shapiro95_super_wide uppercase">How it works</span>{' '}
-        Heavily discounted membership that automatically refills your sessions monthly and gives you
-        access to exclusive CC perks
-      </p>
     </div>
   );
 };

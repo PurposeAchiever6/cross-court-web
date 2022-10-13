@@ -12,7 +12,6 @@ import Animation from 'shared/components/Animation';
 import confettiAnimation from 'shared/animations/confetti.json';
 
 import FirstSessionBookedSuccessfully from 'screens/sessions/components/FirstSessionsReserved/FirstSessionBookedSuccessfully';
-import HowDidYouHearAboutUs from 'screens/sessions/components/FirstSessionsReserved/HowDidYouHearAboutUs';
 import JoinTheCCTeam from 'screens/sessions/components/FirstSessionsReserved/JoinTheCCTeam';
 import Memberships from 'screens/sessions/components/FirstSessionsReserved/Memberships';
 import MembershipsFeatures from 'screens/sessions/components/FirstSessionsReserved/MembershipsFeatures';
@@ -21,7 +20,6 @@ import GalleryPhotos from 'screens/sessions/components/FirstSessionsReserved/Gal
 const SessionReserved = () => {
   const env = runtimeEnv();
 
-  const promoCode = env.REACT_APP_FIRST_TIMER_PROMO_CODE;
   const percentageDiscount = env.REACT_APP_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT;
 
   const userProfile = useSelector(getUserProfile);
@@ -36,12 +34,8 @@ const SessionReserved = () => {
       className="bg-no-repeat bg-cover bg-center text-white px-4 sm:px-20 pt-28 pb-10"
     >
       <div className="fixed top-16 inset-x-0 text-center z-20">
-        <div className="bg-cc-purple text-cc-black px-4 py-1 sm:py-2 uppercase text-sm sm:text-lg">
-          {`Get ${percentageDiscount}% off your first month if you join today!`}
-        </div>
-        <div className="bg-cc-black text-xs sm:text-sm px-2 py-1 border-b border-cc-purple/20">
-          Use promo code <span className="text-cc-purple">{promoCode}</span> at checkout for{' '}
-          {percentageDiscount}% off your first month!
+        <div className="bg-cc-purple text-cc-black px-4 py-1 sm:py-2 uppercase text-xs md:text-base">
+          Get {percentageDiscount}% off your first month if you join before first session!
         </div>
       </div>
       <Animation
@@ -50,9 +44,8 @@ const SessionReserved = () => {
         className="absolute inset-x-0 top-28"
       />
       <div className="relative z-10">
-        <div className="max-w-screen-sm mx-auto mb-10">
-          <FirstSessionBookedSuccessfully className="mb-10" />
-          <HowDidYouHearAboutUs />
+        <div className="max-w-screen-lg mx-auto mb-10">
+          <FirstSessionBookedSuccessfully />
         </div>
         <div className="max-w-screen-lg mx-auto mb-14">
           <JoinTheCCTeam />

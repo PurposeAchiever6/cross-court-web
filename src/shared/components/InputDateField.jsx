@@ -5,31 +5,31 @@ import Label from 'shared/components/Label';
 import InputSelectField from 'shared/components/InputSelectField';
 
 const generateArrayOfDays = () => {
-  let days = [];
+  const days = [];
 
-  for (let i = 1; i <= 31; i++) {
-    days.push({ value: i, label: ('0' + i).slice(-2) });
+  for (let i = 1; i <= 31; i += 1) {
+    days.push({ value: i, label: `0${i}`.slice(-2) });
   }
 
   return days;
 };
 
 const generateArrayOfMonths = () => {
-  let months = [];
+  const months = [];
 
-  for (let i = 1; i <= 12; i++) {
-    months.push({ value: i, label: ('0' + i).slice(-2) });
+  for (let i = 1; i <= 12; i += 1) {
+    months.push({ value: i, label: `0${i}`.slice(-2) });
   }
 
   return months;
 };
 
 const generateArrayOfYears = () => {
-  let thisYear = new Date().getFullYear();
-  let min = thisYear - 80;
-  let years = [];
+  const thisYear = new Date().getFullYear();
+  const min = thisYear - 80;
+  const years = [];
 
-  for (let i = thisYear; i >= min; i--) {
+  for (let i = thisYear; i >= min; i -= 1) {
     years.push({ value: i, label: i });
   }
 

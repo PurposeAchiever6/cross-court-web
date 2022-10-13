@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const InstructionItem = ({ number, children }) => (
-  <li className="flex mb-12">
-    <div className="font-dharma_gothic_cheavy_italic text-7xl text-center w-10 mr-3 sm:mr-6 flex-shrink-0">
+const InstructionItem = ({ number, children, className }) => (
+  <li className={`flex mb-12 relative ${className}`}>
+    <div className="font-dharma_gothic_cheavy_italic text-8xl md:text-10xl text-center w-16 mr-3 sm:mr-6 flex-shrink-0 text-cc-purple -mt-3">
       {number}
     </div>
     <div className="w-100">{children}</div>
@@ -11,8 +11,13 @@ const InstructionItem = ({ number, children }) => (
 );
 
 InstructionItem.propTypes = {
-  number: PropTypes.number.isRequired,
+  number: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+};
+
+InstructionItem.defaultProps = {
+  className: '',
 };
 
 export default InstructionItem;

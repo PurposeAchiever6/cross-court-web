@@ -24,3 +24,9 @@ export const capitalize = (string) => {
 
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+export const genderSelectOptions = [
+  { value: 'male', label: 'Male' },
+  { value: 'female', label: 'Female' },
+  { value: 'other', label: 'Other' },
+];

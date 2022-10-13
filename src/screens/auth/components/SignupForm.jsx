@@ -10,14 +10,16 @@ import ROUTES from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
 import InputPhoneField from 'shared/components/InputPhoneField';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
-import { phoneRegExp, zipcodeRegExp } from 'shared/utils/helpers';
+import InputSelectField from 'shared/components/InputSelectField';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { genderSelectOptions, phoneRegExp, zipcodeRegExp } from 'shared/utils/helpers';
 
 const initialValues = {
   firstName: '',
   lastName: '',
   phoneNumber: '',
   zipcode: '',
+  gender: '',
   email: '',
   password: '',
   terms: false,
@@ -33,6 +35,7 @@ const validationSchema = Yup.object().shape({
   zipcode: Yup.string()
     .matches(zipcodeRegExp, 'Please enter a valid zip code')
     .required('Required'),
+  gender: Yup.string().required('Required'),
   email: Yup.string().required('Required'),
   password: Yup.string().required('Required'),
   terms: Yup.bool().oneOf([true], 'Required'),
@@ -81,6 +84,13 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => {
               label="Zip Code*"
               error={errors?.zipcode}
               name="zipcode"
+              className="mb-2 md:mb-5"
+            />
+            <InputSelectField
+              label="Gender*"
+              error={errors?.gender}
+              name="gender"
+              options={genderSelectOptions}
               className="mb-2 md:mb-5"
             />
             <InputTextField
