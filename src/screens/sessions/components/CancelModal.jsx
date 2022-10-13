@@ -9,12 +9,15 @@ export const CancelModal = ({
   isOpen,
   closeHandler,
   cancelSessionAction,
-  inCancellationTime,
+  sessionInfo,
   unlimitedCredits,
-  isFreeSession,
 }) => {
   const env = runtimeEnv();
   const [disableBtn, setDisableBtn] = useState(false);
+
+  const inCancellationTime = sessionInfo?.userSession?.inCancellationTime;
+  const isFreeSession = sessionInfo?.userSession?.isFreeSession;
+  const isOpenClub = sessionInfo?.isOpenClub;
 
   const onCancelClick = () => {
     setDisableBtn(true);
@@ -22,6 +25,10 @@ export const CancelModal = ({
   };
 
   const cancellationText = (() => {
+    if (isOpenClub) {
+      return;
+    }
+
     if (unlimitedCredits) {
       if (inCancellationTime) {
         return null;
@@ -64,11 +71,17 @@ export const CancelModal = ({
 };
 
 CancelModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
   unlimitedCredits: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
   cancelSessionAction: PropTypes.func.isRequired,
-  inCancellationTime: PropTypes.bool,
-  isFreeSession: PropTypes.bool,
+  sessionInfo: PropTypes.shape({
+    isOpenClub: PropTypes.bool.isRequired,
+    userSession: PropTypes.shape({
+      inCancellationTime: PropTypes.bool.isRequired,
+      isFreeSession: PropTypes.bool.isRequired,
+    }),
+  }),
 };
 
 export default CancelModal;

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
-import { isNil } from 'ramda';
 
 import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
@@ -11,6 +10,7 @@ import { isUserInFirstSessionFlow, isUserInLegalAge } from 'shared/utils/user';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 
+import Carousel from 'shared/components/Carousel';
 import { resetLoading, removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
 import {
@@ -23,16 +23,18 @@ import {
   signupBookSession,
 } from 'screens/sessions/actionCreators';
 import { getPageLoading, getSessionInfo, getShowCancelModal } from 'screens/sessions/reducer';
-import CancelModal from 'screens/sessions/components/CancelModal';
-import SessionButtons from 'screens/sessions/components/SessionButtons';
-import SessionHeader from 'screens/sessions/components/SessionHeader';
-import SessionInfo from 'screens/sessions/components/SessionInfo';
-import LegalAgeWarning from 'screens/sessions/components/LegalAgeWarning';
-import SkillLevelWarning from 'screens/sessions/components/SkillLevelWarning';
 
+import CancelModal from 'screens/sessions/components/CancelModal';
+import Sklz from 'screens/sessions/components/Sklz';
+import NormalSession from 'screens/sessions/components/Session';
+import SessionHeader from 'screens/sessions/components/SessionHeader';
+import SessionButtons from 'screens/sessions/components/SessionButtons';
 import SessionOfficials from 'screens/sessions/components/SessionOfficials';
-import Carousel from 'shared/components/Carousel';
-import { getSessionsMessageContainerText } from 'screens/sessions/utils';
+import SklzCoaches from 'screens/sessions/components/SklzCoaches';
+import LegalAgeWarning from 'screens/sessions/components/LegalAgeWarning';
+
+import OpenClub, { SKLZ_IMAGES } from 'screens/sessions/components/open-club/Content';
+import HowOpenClubWorks from 'screens/sessions/components/open-club/HowOpenClubWorks';
 
 const Session = () => {
   const { id, date } = useParams();
@@ -62,9 +64,8 @@ const Session = () => {
   };
 
   const isLegalAge = isUserInLegalAge(userProfile);
-  const isSessionComplete = sessionInfo.past;
-  const isSessionFull = sessionInfo.spotsLeft === 0;
-  const isSkillSession = sessionInfo.skillSession;
+  const { isOpenClub, skillSession } = sessionInfo;
+  const normalSession = !isOpenClub && !skillSession;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -79,7 +80,7 @@ const Session = () => {
     };
   }, [dispatch, id, date, isAuthenticated]);
 
-  if (isNil(id)) {
+  if (!id) {
     return <Redirect to={ROUTES.HOME} />;
   }
 
@@ -87,63 +88,71 @@ const Session = () => {
     return <Loading />;
   }
 
-  if (sessionInfo.isOpenClub) {
-    return <Redirect to={`/session/${id}/${date}/open-club`} />;
-  }
+  const getContent = (sessionInfo) => {
+    if (isOpenClub) {
+      return <OpenClub sessionInfo={sessionInfo} />;
+    }
 
-  if (sessionInfo.skillSession) {
-    return <Redirect to={`/session/${id}/${date}/sklz`} />;
-  }
+    if (skillSession) {
+      return (
+        <Sklz
+          sessionInfo={sessionInfo}
+          isAuthenticated={isAuthenticated}
+          userProfile={userProfile}
+        />
+      );
+    }
+
+    return (
+      <NormalSession
+        sessionInfo={sessionInfo}
+        isAuthenticated={isAuthenticated}
+        userProfile={userProfile}
+      />
+    );
+  };
 
   return (
-    <div className="flex flex-col">
+    <>
+      <div className="flex flex-col">
+        <SessionHeader sessionInfo={sessionInfo} />
+        <div className="flex flex-col-reverse md:flex-row bg-cc-black h-full">
+          <Carousel
+            className="session-carousel carousel-h-full"
+            imagesClassName="w-full md:w-1/2"
+            imageUrls={skillSession ? SKLZ_IMAGES : sessionInfo.location.imageUrls}
+          />
+          <div className="flex w-full flex-col-reverse md:flex-row md:w-1/2">
+            {getContent(sessionInfo)}
+            <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-around items-center px-4 pb-12 md:px-4 md:py-10">
+              {normalSession && <SessionOfficials sessionInfo={sessionInfo} />}
+              {skillSession && <SklzCoaches sessionInfo={sessionInfo} />}
+
+              <div className={`flex flex-col justify-evenly ${isOpenClub ? 'h-full ' : ''}`}>
+                {isOpenClub && <HowOpenClubWorks />}
+                <SessionButtons
+                  session={sessionInfo}
+                  reserveSessionAction={reserveSessionAction}
+                  confirmSessionAction={confirmSessionAction}
+                  showCancelModalAction={showCancelModalAction}
+                  signupBookSessionAction={signupBookSessionAction}
+                  createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
+                  disabled={!isLegalAge}
+                />
+                {(normalSession || skillSession) && !isLegalAge && <LegalAgeWarning />}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <CancelModal
         isOpen={shouldShowCancelModal}
         closeHandler={showCancelModalAction}
         cancelSessionAction={cancelSessionAction}
-        inCancellationTime={sessionInfo?.userSession?.inCancellationTime}
-        isFreeSession={sessionInfo?.userSession?.isFreeSession}
+        sessionInfo={sessionInfo}
         unlimitedCredits={userProfile.unlimitedCredits}
       />
-      <SessionHeader>{sessionInfo.location.name} SESSION</SessionHeader>
-      <div className="flex flex-col-reverse md:flex-row bg-cc-black h-full">
-        <Carousel
-          className="session-carousel carousel-h-full"
-          imagesClassName="w-full md:w-1/2"
-          imageUrls={sessionInfo.location.imageUrls}
-        />
-        <div className="flex w-full flex-col-reverse md:flex-row md:w-1/2">
-          <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
-            {isAuthenticated && (
-              <SkillLevelWarning userProfile={userProfile} sessionInfo={sessionInfo} />
-            )}
-            <SessionInfo date={date} sessionInfo={sessionInfo} />
-            <div className="font-shapiro95_super_wide text-center text-sm max-w-2xs mx-auto">
-              {getSessionsMessageContainerText(
-                isSessionComplete,
-                isSessionFull,
-                isSkillSession,
-                isAuthenticated,
-                userProfile
-              )}
-            </div>
-          </div>
-          <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-around items-center px-4 pb-12 md:px-4 md:py-10">
-            <SessionOfficials sessionInfo={sessionInfo} />
-            <SessionButtons
-              session={sessionInfo}
-              reserveSessionAction={reserveSessionAction}
-              confirmSessionAction={confirmSessionAction}
-              showCancelModalAction={showCancelModalAction}
-              signupBookSessionAction={signupBookSessionAction}
-              createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
-              disabled={!isLegalAge}
-            />
-            {!isLegalAge && <LegalAgeWarning />}
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 

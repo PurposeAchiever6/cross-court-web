@@ -37,8 +37,6 @@ const HowItWorks = lazy(() => import('screens/how-it-works/HowItWorksPage'));
 const CareersPage = lazy(() => import('screens/careers/CareersPage'));
 const Locations = lazy(() => import('screens/locations/LocationsPage'));
 const Session = lazy(() => import('screens/sessions/pages/Session'));
-const OpenClubSession = lazy(() => import('screens/sessions/pages/OpenClub'));
-const SklzSession = lazy(() => import('screens/sessions/pages/Sklz'));
 const SessionConfirmed = lazy(() => import('screens/sessions/pages/SessionConfirmed'));
 const SessionReserved = lazy(() => import('screens/sessions/pages/SessionReserved'));
 const FirstSessionReserved = lazy(() => import('screens/sessions/pages/FirstSessionReserved'));
@@ -312,13 +310,7 @@ const Routes = () => {
         <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFIRST]} exact>
           <Locations />
         </Route>
-        <Route path={ROUTES.OPEN_CLUB_SESSION} exact>
-          <OpenClubSession />
-        </Route>
-        <Route path={ROUTES.SKLZ_SESSION} exact>
-          <SklzSession />
-        </Route>
-        <Route path={ROUTES.SESSION} exact>
+        <Route path={[ROUTES.SKLZ_SESSION, ROUTES.OPEN_CLUB_SESSION, ROUTES.SESSION]} exact>
           <Session />
         </Route>
         <PrivateRoute path={ROUTES.SESSIONRESERVED} exact>
