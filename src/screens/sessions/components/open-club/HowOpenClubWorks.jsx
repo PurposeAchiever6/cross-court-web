@@ -25,7 +25,6 @@ const HowItWorks = () => (
       <p className="font-shapiro95_super_wide text-stroke-width-2 text-white text-stroke-cc-black subtitle">
         CLUB
       </p>
-      <p className="text-cc-purple my-3 md:m-0">MEMBERS ONLY</p>
     </StyledTitle>
     <div className="p-4 md:p-0">
       <div className="flex mb-10">

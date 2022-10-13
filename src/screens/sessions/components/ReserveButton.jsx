@@ -19,6 +19,7 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import CodeOfConductModal from 'screens/sessions/components/CodeOfConductModal';
 import FirstTimersInformationModal from 'screens/sessions/components/FirstTimersInformationModal';
+import OpenClubNonMembersModal from 'screens/sessions/components/OpenClubNonMembersModal';
 
 import { WOMEN_SESSION_TOOLTIP } from 'shared/constants/sessions';
 
@@ -43,15 +44,22 @@ const ReserveButton = ({
 
   const [showCodeOfConductModal, setShowCodeOfConductModal] = useState(false);
   const [showFirstTimersInformationModal, setShowFirstTimersInformationModal] = useState(false);
+  const [showOpenClubNonMembersModal, setShowOpenClubNonMembersModal] = useState(false);
 
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
   const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(userProfile);
+  const userHasActiveSubscription = !!userProfile.activeSubscription;
 
   useEffect(() => {
     dispatch(initialLoadInit());
   }, [dispatch]);
 
   const reservationHandler = () => {
+    if (!userHasActiveSubscription && session?.isOpenClub) {
+      setShowOpenClubNonMembersModal(true);
+      return;
+    }
+
     if (!selectedCard && isFirstFreeSessionFlow) {
       window.localStorage.setItem('redirect', window.location.pathname);
       history.push(ROUTES.PAYMENT_METHODS_SELECT);
@@ -89,6 +97,11 @@ const ReserveButton = ({
     if (!session?.userSession && !session?.full) {
       return (
         <>
+          {session?.isOpenClub && (
+            <p className="text-xs mb-4">
+              Booking Open Club does not take away any of your session credits
+            </p>
+          )}
           <Tooltip
             variant="black"
             place="top"
@@ -133,6 +146,10 @@ const ReserveButton = ({
             onConfirm={onConfirmCodeOfConduct}
             userProfile={userProfile}
           />
+          <OpenClubNonMembersModal
+            isOpen={showOpenClubNonMembersModal}
+            closeHandler={() => setShowOpenClubNonMembersModal(false)}
+          />
           <FirstTimersInformationModal
             isOpen={showFirstTimersInformationModal}
             onConfirm={onConfirmFirstTimersInformation}
@@ -175,6 +192,7 @@ ReserveButton.propTypes = {
   reserveSessionAction: PropTypes.func.isRequired,
   session: PropTypes.object.isRequired,
   signupBookSessionAction: PropTypes.func.isRequired,
+  createAndReserveFreeSessionHandler: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
 };
 

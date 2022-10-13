@@ -28,13 +28,6 @@ const OpenClub = ({ sessionInfo }) => {
   return (
     <div className="md:w-1/2 text-center md:text-left flex flex-col justify-between py-12 px-4 md:p-8 font-shapiro95_super_wide text-white">
       <SessionInfo date={date} sessionInfo={sessionInfo} />
-      <div className="flex flex-col bg-cc-purple p-3 mb-10 md:mb-4 md:-mt-2">
-        <p>HOW IT WORKS</p>
-        <p className="font-shapiro45_welter_extd mt-1">
-          You will only be allowed to access open club hours if you are a member. Show your
-          membership info located in "My Account" to our Session Experience Manager upon arrival.
-        </p>
-      </div>
     </div>
   );
 };

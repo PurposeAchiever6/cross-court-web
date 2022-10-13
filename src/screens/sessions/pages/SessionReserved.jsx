@@ -11,6 +11,7 @@ import Animation from 'shared/components/Animation';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import ReferAFriend from 'shared/components/ReferAFriend';
 import { getUserProfile } from 'screens/my-account/reducer';
+import { getSessionInfo } from 'screens/sessions/reducer';
 
 const SessionBookedContainer = styled.div`
   .title {
@@ -55,13 +56,14 @@ const SessionBookedContainer = styled.div`
 
 const SessionReserved = () => {
   const currentUser = useSelector(getUserProfile) || {};
+  const sessionInfo = useSelector(getSessionInfo);
 
   return (
     <SessionBookedContainer className="relative px-4">
       <Animation animation={confettiAnimation} className="absolute inset-0" />
       <div className="min-h-screen flex flex-col items-center justify-center relative z-10">
         <img className="w-52" src={SportCharacter} alt="Sport Icon" />
-        <p className="title">SESSION BOOKED</p>
+        <p className="title">{sessionInfo?.isOpenClub ? 'OPEN CLUB' : 'SESSION'} BOOKED</p>
         <p className="subtitle">SUCCESSFULLY!</p>
         <ReferAFriend code={currentUser.referralCode} className="text-center my-8" />
         <PrimaryButton bg="transparent" className="black-btn mb-10" to={ROUTES.MYACCOUNT}>
