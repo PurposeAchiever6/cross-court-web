@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
+import { userHasCreditsForSession } from 'shared/utils/user';
 import { reserveTeamReservationAllowed } from 'shared/utils/sessions';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -78,19 +79,19 @@ const SessionButtons = ({
     setCopied(true);
   };
 
-  const onClickJoinWaitlist = (sessionId, sessionDate) => {
-    if (!userProfile.unlimitedCredits && userProfile.totalCredits === 0) {
+  const onClickJoinWaitlist = () => {
+    if (!userHasCreditsForSession(userProfile, session)) {
       return history.push({
         pathname: ROUTES.MEMBERSHIPS,
         state: { showNoCreditsAnimation: true },
       });
     }
 
-    dispatch(joinSessionWaitlistInit(sessionId, sessionDate));
+    dispatch(joinSessionWaitlistInit(session.id, sessionDate));
   };
 
-  const onClickRemoveFromWaitlist = (sessionId, sessionDate) => {
-    dispatch(removeSessionWaitlistInit(sessionId, sessionDate));
+  const onClickRemoveFromWaitlist = () => {
+    dispatch(removeSessionWaitlistInit(session.id, sessionDate));
   };
 
   return (
@@ -126,7 +127,7 @@ const SessionButtons = ({
             <>
               {onWaitlist && (
                 <PrimaryButton
-                  onClick={() => onClickRemoveFromWaitlist(session.id, sessionDate)}
+                  onClick={onClickRemoveFromWaitlist}
                   className="mb-4"
                   disabled={disabled}
                 >
@@ -134,11 +135,7 @@ const SessionButtons = ({
                 </PrimaryButton>
               )}
               {session?.full && !onWaitlist && !reservedOrConfirmed && (
-                <PrimaryButton
-                  onClick={() => onClickJoinWaitlist(session.id, sessionDate)}
-                  className="mb-4"
-                  disabled={disabled}
-                >
+                <PrimaryButton onClick={onClickJoinWaitlist} className="mb-4" disabled={disabled}>
                   JOIN WAITLIST
                 </PrimaryButton>
               )}

@@ -19,7 +19,7 @@ const StyledTitle = styled.div`
 `;
 
 const HowItWorks = () => (
-  <div className="h-full flex flex-col justify-evenly w-full bg-white text-center px-4 pb-12 md:pb-0">
+  <div className="h-full flex flex-col justify-evenly w-full bg-white text-center px-4 pb-6">
     <StyledTitle>
       <p className="font-shapiro95_super_wide title mt-3 md:m-0">CC OPEN</p>
       <p className="font-shapiro95_super_wide text-stroke-width-2 text-white text-stroke-cc-black subtitle">

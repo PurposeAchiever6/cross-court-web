@@ -127,9 +127,9 @@ const Session = () => {
             <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-around items-center px-4 pb-12 md:px-4 md:py-10">
               {normalSession && <SessionOfficials sessionInfo={sessionInfo} />}
               {skillSession && <SklzCoaches sessionInfo={sessionInfo} />}
+              {isOpenClub && <HowOpenClubWorks />}
 
-              <div className={`flex flex-col justify-evenly ${isOpenClub ? 'h-full ' : ''}`}>
-                {isOpenClub && <HowOpenClubWorks />}
+              <div>
                 <SessionButtons
                   session={sessionInfo}
                   reserveSessionAction={reserveSessionAction}
@@ -139,7 +139,11 @@ const Session = () => {
                   createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
                   disabled={!isLegalAge}
                 />
-                {(normalSession || skillSession) && !isLegalAge && <LegalAgeWarning />}
+                {(normalSession || skillSession) && !isLegalAge && (
+                  <div className="inline-block mx-auto">
+                    <LegalAgeWarning />
+                  </div>
+                )}
               </div>
             </div>
           </div>

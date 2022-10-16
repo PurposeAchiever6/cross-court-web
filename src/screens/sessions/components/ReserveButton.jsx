@@ -8,7 +8,11 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import { hasConfirmCodeOfConduct } from 'shared/utils/codeOfConduct';
 import { isPast } from 'shared/utils/date';
-import { isUserInFirstSessionFlow, isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import {
+  isUserInFirstSessionFlow,
+  isUserInFirstFreeSessionFlow,
+  userHasCreditsForSession,
+} from 'shared/utils/user';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -64,7 +68,7 @@ const ReserveButton = ({
       window.localStorage.setItem('redirect', window.location.pathname);
       history.push(ROUTES.PAYMENT_METHODS_SELECT);
     } else {
-      if (!userProfile.unlimitedCredits && userProfile.totalCredits === 0) {
+      if (!userHasCreditsForSession(userProfile, session)) {
         window.localStorage.setItem('redirect', window.location.pathname);
         history.push({
           pathname: ROUTES.MEMBERSHIPS,
@@ -98,7 +102,7 @@ const ReserveButton = ({
       return (
         <>
           {session?.isOpenClub && (
-            <p className="text-xs mb-4">
+            <p className="text-xs mb-6">
               Booking Open Club does not take away any of your session credits
             </p>
           )}

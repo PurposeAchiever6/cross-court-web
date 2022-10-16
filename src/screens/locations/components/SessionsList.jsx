@@ -16,6 +16,7 @@ import {
   isUserInLegalAge,
   isUserInFirstSessionFlow,
   isUserInFirstFreeSessionFlow,
+  userHasCreditsForSession,
 } from 'shared/utils/user';
 import { reserveTeamReservationAllowed } from 'shared/utils/sessions';
 import SessionWarningInfo from 'shared/components/SessionWarningInfo';
@@ -96,19 +97,19 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   );
   const sortedSessions = sortSessionsByDate(sessionList);
 
-  const onClickJoinWaitlist = (sessionId, sessionDate) => {
+  const onClickJoinWaitlist = (session) => {
     if (!isAuthenticated) {
       return history.push(ROUTES.LOGIN);
     }
 
-    if (!currentUser.unlimitedCredits && currentUser.totalCredits === 0) {
+    if (!userHasCreditsForSession(currentUser, session)) {
       return history.push({
         pathname: ROUTES.MEMBERSHIPS,
         state: { showNoCreditsAnimation: true },
       });
     }
 
-    dispatch(joinSessionWaitlistInit(sessionId, sessionDate));
+    dispatch(joinSessionWaitlistInit(session.id, formatSessionDate(session.startTime)));
   };
 
   const onClickRemoveFromWaitlist = (sessionId, sessionDate) => {
@@ -235,7 +236,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
         } else if (full) {
           button = (
             <PrimaryButton
-              onClick={() => onClickJoinWaitlist(id, sessionDate)}
+              onClick={() => onClickJoinWaitlist(session)}
               w="9.5rem"
               fontSize="11px"
               disabled={!isLegalAge || cannotReserveBecauseSkillLevel}
