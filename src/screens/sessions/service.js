@@ -62,4 +62,19 @@ export default {
 
     return response.data;
   },
+  addSessionGuest: async (userSessionId, guestInfo) => {
+    const response = await api.post('/session_guests', {
+      userSessionId,
+      guestInfo,
+    });
+
+    return response.data;
+  },
+  removeSessionGuest: async (userSessionId, sessionGuestId) => {
+    const response = await api.delete(`/session_guests/${sessionGuestId}`, {
+      data: { userSessionId },
+    });
+
+    return response.data;
+  },
 };

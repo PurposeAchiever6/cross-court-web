@@ -21,9 +21,9 @@ import { getSessionDate } from 'screens/sessions/reducer';
 import { initialLoadInit } from 'screens/payment-methods/actionCreators';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
-import CodeOfConductModal from 'screens/sessions/components/CodeOfConductModal';
-import FirstTimersInformationModal from 'screens/sessions/components/FirstTimersInformationModal';
-import OpenClubNonMembersModal from 'screens/sessions/components/OpenClubNonMembersModal';
+import CodeOfConductModal from 'screens/sessions/components/modals/CodeOfConductModal';
+import FirstTimersInformationModal from 'screens/sessions/components/modals/FirstTimersInformationModal';
+import OpenClubNonMembersModal from 'screens/sessions/components/modals/OpenClubNonMembersModal';
 
 import { WOMEN_SESSION_TOOLTIP } from 'shared/constants/sessions';
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 
@@ -24,7 +24,8 @@ import {
 } from 'screens/sessions/actionCreators';
 import { getPageLoading, getSessionInfo, getShowCancelModal } from 'screens/sessions/reducer';
 
-import CancelModal from 'screens/sessions/components/CancelModal';
+import CancelModal from 'screens/sessions/components/modals/CancelModal';
+import AddGuestModal from 'screens/sessions/components/modals/AddGuestModal';
 import Sklz from 'screens/sessions/components/Sklz';
 import NormalSession from 'screens/sessions/components/Session';
 import SessionHeader from 'screens/sessions/components/SessionHeader';
@@ -62,6 +63,8 @@ const Session = () => {
     const redirectTo = ROUTES.FIRSTSESSIONRESERVED;
     dispatch(createAndReserveFreeSessionInit({ sessionId, date, referralCode, redirectTo }));
   };
+
+  const [showAddGuestModal, setShowAddGuestModal] = useState(false);
 
   const isLegalAge = isUserInLegalAge(userProfile);
   const { isOpenClub, skillSession } = sessionInfo;
@@ -138,6 +141,7 @@ const Session = () => {
                   signupBookSessionAction={signupBookSessionAction}
                   createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
                   disabled={!isLegalAge}
+                  setShowAddGuestModal={setShowAddGuestModal}
                 />
                 {(normalSession || skillSession) && !isLegalAge && (
                   <div className="inline-block mx-auto">
@@ -155,6 +159,11 @@ const Session = () => {
         cancelSessionAction={cancelSessionAction}
         sessionInfo={sessionInfo}
         unlimitedCredits={userProfile.unlimitedCredits}
+      />
+      <AddGuestModal
+        userSessionId={sessionInfo?.userSession?.id}
+        showAddGuestModal={showAddGuestModal}
+        setShowAddGuestModal={setShowAddGuestModal}
       />
     </>
   );

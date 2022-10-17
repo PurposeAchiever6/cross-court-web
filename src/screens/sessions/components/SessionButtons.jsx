@@ -20,6 +20,7 @@ import {
 
 import ReserveButton from './ReserveButton';
 import CancelButton from './CancelButton';
+import SessionGuests from './SessionGuests';
 
 const SessionButtons = ({
   session,
@@ -29,6 +30,7 @@ const SessionButtons = ({
   signupBookSessionAction,
   createAndReserveFreeSessionHandler,
   disabled,
+  setShowAddGuestModal,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -140,10 +142,13 @@ const SessionButtons = ({
                 </PrimaryButton>
               )}
               {reservedOrConfirmed && !session?.full && (
-                <PrimaryButton className="mb-4" onClick={copyShareInfoToClipboard}>
-                  <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
-                  {copied ? 'COPIED' : 'INVITE A FRIEND'}
-                </PrimaryButton>
+                <>
+                  <PrimaryButton className="mb-4" onClick={copyShareInfoToClipboard}>
+                    <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
+                    {copied ? 'COPIED' : 'INVITE A FRIEND'}
+                  </PrimaryButton>
+                  <SessionGuests session={session} setShowAddGuestModal={setShowAddGuestModal} />
+                </>
               )}
               {reservedOrConfirmed && <CancelButton modalToggler={showCancelModalAction} />}
             </>
@@ -163,8 +168,10 @@ SessionButtons.propTypes = {
   confirmSessionAction: PropTypes.func.isRequired,
   showCancelModalAction: PropTypes.func.isRequired,
   signupBookSessionAction: PropTypes.func.isRequired,
+  createAndReserveFreeSessionHandler: PropTypes.func.isRequired,
   session: PropTypes.object.isRequired,
   disabled: PropTypes.bool,
+  setShowAddGuestModal: PropTypes.func.isRequired,
 };
 
 export default SessionButtons;

@@ -22,6 +22,9 @@ import {
   REMOVE_SESSION_WAITLIST_INIT,
   REMOVE_SESSION_WAITLIST_SUCCESS,
   REMOVE_SESSION_WAITLIST_FAILURE,
+  ADD_SESSION_GUEST_SUCCESS,
+  ADD_SESSION_GUEST_FAILURE,
+  REMOVE_SESSION_GUEST_SUCCESS,
 } from './actionTypes';
 
 const initialState = {
@@ -33,6 +36,7 @@ const initialState = {
   sessionId: '',
   sessionDate: '',
   sessionWaitlist: {},
+  addSessionGuestError: false,
 };
 
 export default (state = initialState, action) => {
@@ -109,6 +113,41 @@ export default (state = initialState, action) => {
           ...state.sessionsLoadingBtns.filter((id) => id !== action.payload.sessionId),
         ],
       };
+    case ADD_SESSION_GUEST_SUCCESS:
+      return {
+        ...state,
+        addSessionGuestError: false,
+        sessionInfo: {
+          ...state.sessionInfo,
+          userSession: {
+            ...state.sessionInfo.userSession,
+            sessionGuests: [
+              ...state.sessionInfo.userSession.sessionGuests,
+              action.payload.sessionGuest,
+            ],
+          },
+        },
+      };
+    case ADD_SESSION_GUEST_FAILURE:
+      return {
+        ...state,
+        addSessionGuestError: true,
+      };
+    case REMOVE_SESSION_GUEST_SUCCESS:
+      return {
+        ...state,
+        sessionInfo: {
+          ...state.sessionInfo,
+          userSession: {
+            ...state.sessionInfo.userSession,
+            sessionGuests: [
+              ...state.sessionInfo.userSession.sessionGuests.filter(
+                (guest) => guest.id !== action.payload.sessionGuestId
+              ),
+            ],
+          },
+        },
+      };
     case RESET_LOADING:
       return {
         ...state,
@@ -133,4 +172,8 @@ export const getSessionWaitlist = createSelector(getSession, (session) => sessio
 export const getSessionsLoadingBtns = createSelector(
   getSession,
   (session) => session.sessionsLoadingBtns
+);
+export const getAddSessionGuestError = createSelector(
+  getSession,
+  (session) => session.addSessionGuestError
 );
