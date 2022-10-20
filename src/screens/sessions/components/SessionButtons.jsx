@@ -17,6 +17,7 @@ import {
   joinSessionWaitlistInit,
   removeSessionWaitlistInit,
 } from 'screens/sessions/actionCreators';
+import { sessionGuestsAllowed } from 'screens/sessions/utils';
 
 import ReserveButton from './ReserveButton';
 import CancelButton from './CancelButton';
@@ -53,6 +54,8 @@ const SessionButtons = ({
     isReserveTeam: reserveTeam,
     isPrivate,
   });
+
+  const guestsAllowed = sessionGuestsAllowed(session);
 
   const reserveTeamNotAllowed = reserveTeam ? !reserveTeamAllowed : false;
 
@@ -141,15 +144,16 @@ const SessionButtons = ({
                   JOIN WAITLIST
                 </PrimaryButton>
               )}
-              {reservedOrConfirmed && !session?.full && (
-                <>
-                  <PrimaryButton className="mb-4" onClick={copyShareInfoToClipboard}>
+              {reservedOrConfirmed &&
+                !session?.full &&
+                (guestsAllowed ? (
+                  <SessionGuests session={session} setShowAddGuestModal={setShowAddGuestModal} />
+                ) : (
+                  <PrimaryButton inverted className="mb-4" onClick={copyShareInfoToClipboard}>
                     <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
                     {copied ? 'COPIED' : 'INVITE A FRIEND'}
                   </PrimaryButton>
-                  <SessionGuests session={session} setShowAddGuestModal={setShowAddGuestModal} />
-                </>
-              )}
+                ))}
               {reservedOrConfirmed && <CancelButton modalToggler={showCancelModalAction} />}
             </>
           )}

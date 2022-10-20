@@ -5,17 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { removeSessionGuest } from 'screens/sessions/actionCreators';
+import { sessionGuestsAllowed } from 'screens/sessions/utils';
 
 const SessionGuests = ({ className, session, setShowAddGuestModal }) => {
-  const sessionGuests = session?.userSession?.sessionGuests ?? [];
-
   const dispatch = useDispatch();
 
-  const addGuestsAllowed =
-    (session?.isOpenClub || session?.skillSession) &&
-    session?.guestsAllowed > 0 &&
-    session?.guestsAllowed > sessionGuests.length &&
-    session?.guestsAllowedPerUser > sessionGuests.length;
+  const sessionGuests = session?.userSession?.sessionGuests ?? [];
+  const guestsAllowed = sessionGuestsAllowed(session);
 
   const handleRemoveGuest = (sessionGuestId) => {
     dispatch(removeSessionGuest(session?.userSession?.id, sessionGuestId));
@@ -37,13 +33,8 @@ const SessionGuests = ({ className, session, setShowAddGuestModal }) => {
           ))}
         </div>
       )}
-      {addGuestsAllowed && (
-        <PrimaryButton
-          w="100%"
-          className="mb-4"
-          onClick={() => setShowAddGuestModal(true)}
-          inverted
-        >
+      {guestsAllowed && (
+        <PrimaryButton w="100%" className="mb-4" onClick={() => setShowAddGuestModal(true)}>
           + USE FREE GUEST PASS
         </PrimaryButton>
       )}
