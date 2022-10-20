@@ -26,7 +26,7 @@ const AddGuestModal = ({ userSessionId, showAddGuestModal, setShowAddGuestModal 
   const onClose = useCallback(() => {
     setShowAddGuestModal(false);
     setStep(ADD_GUEST_STEP);
-  }, [setShowAddGuestModal]);
+  }, [setShowAddGuestModal, setStep]);
 
   useEffect(() => {
     if (error) {
