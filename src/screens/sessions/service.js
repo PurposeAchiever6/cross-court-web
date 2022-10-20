@@ -22,7 +22,7 @@ export default {
       window.localStorage.removeItem('referralCode');
     }
 
-    return response.data.session;
+    return response.data;
   },
   cancelSession: async (sessionId) => {
     const response = await api.put(`/user_sessions/${sessionId}/cancel`, {});

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
@@ -6,6 +6,9 @@ import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
 import SportCharacter from 'shared/images/sport-character.png';
 import confettiAnimation from 'shared/animations/confetti.json';
+
+import SessionGuests from 'screens/sessions/components/SessionGuests';
+import AddGuestModal from 'screens/sessions/components/modals/AddGuestModal';
 
 import Animation from 'shared/components/Animation';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -58,19 +61,33 @@ const SessionReserved = () => {
   const currentUser = useSelector(getUserProfile) || {};
   const sessionInfo = useSelector(getSessionInfo);
 
+  const [showAddGuestModal, setShowAddGuestModal] = useState(false);
+
   return (
-    <SessionBookedContainer className="relative px-4">
-      <Animation animation={confettiAnimation} className="absolute inset-0" />
-      <div className="min-h-screen flex flex-col items-center justify-center relative z-10">
-        <img className="w-52" src={SportCharacter} alt="Sport Icon" />
-        <p className="title">{sessionInfo?.isOpenClub ? 'OPEN CLUB' : 'SESSION'} BOOKED</p>
-        <p className="subtitle">SUCCESSFULLY!</p>
-        <ReferAFriend code={currentUser.referralCode} className="text-center my-8" />
-        <PrimaryButton bg="transparent" className="black-btn mb-10" to={ROUTES.MYACCOUNT}>
-          DONE
-        </PrimaryButton>
-      </div>
-    </SessionBookedContainer>
+    <>
+      <SessionBookedContainer className="relative px-4">
+        <Animation animation={confettiAnimation} className="absolute inset-0" />
+        <div className="min-h-screen flex flex-col items-center justify-center relative z-10">
+          <img className="w-52" src={SportCharacter} alt="Sport Icon" />
+          <p className="title">{sessionInfo?.isOpenClub ? 'OPEN CLUB' : 'SESSION'} BOOKED</p>
+          <p className="subtitle">SUCCESSFULLY!</p>
+          <ReferAFriend code={currentUser.referralCode} className="text-center" />
+          <SessionGuests
+            session={sessionInfo}
+            setShowAddGuestModal={setShowAddGuestModal}
+            className="flex flex-col items-center w-[24rem] md:w-[34rem]"
+          />
+          <PrimaryButton bg="transparent" className="black-btn mb-10" to={ROUTES.MYACCOUNT}>
+            DONE
+          </PrimaryButton>
+        </div>
+      </SessionBookedContainer>
+      <AddGuestModal
+        userSessionId={sessionInfo?.userSession?.id}
+        showAddGuestModal={showAddGuestModal}
+        setShowAddGuestModal={setShowAddGuestModal}
+      />
+    </>
   );
 };
 

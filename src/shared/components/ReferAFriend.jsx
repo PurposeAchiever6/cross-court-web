@@ -45,7 +45,7 @@ const ReferAFriend = ({ code, className }) => {
         ))}
       </div>
       <div className="w-full">
-        {code && <div className="bg-gray-300 w-full p-2 mb-1 text-center">{code}</div>}
+        {code && <div className="bg-gray-300 w-full p-2 mb-2 text-center">{code}</div>}
         <CopyToClipboard onCopy={() => setCopied(true)} text={referralText(code)}>
           <PrimaryButton w="100%" className="mb-2">
             <FontAwesomeIcon icon={faExternalLinkAlt} /> {copied ? 'Copied' : 'Invite a friend'}

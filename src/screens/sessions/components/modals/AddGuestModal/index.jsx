@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import Modal from 'shared/components/Modal';
@@ -23,16 +23,16 @@ const AddGuestModal = ({ userSessionId, showAddGuestModal, setShowAddGuestModal 
 
   const sessionInformation = sessionData(date, sessionInfo);
 
-  const onClose = () => {
+  const onClose = useCallback(() => {
     setShowAddGuestModal(false);
     setStep(ADD_GUEST_STEP);
-  };
+  }, [setShowAddGuestModal]);
 
   useEffect(() => {
     if (error) {
       onClose();
     }
-  }, [error]);
+  }, [error, onClose]);
 
   const onGuestAdded = (values) => {
     dispatch(addSessionGuest(userSessionId, values));

@@ -87,6 +87,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         pageLoading: false,
+        sessionInfo: {
+          ...state.sessionInfo,
+          userSession: action.payload.userSession,
+        },
       };
     case JOIN_SESSION_WAITLIST_SUCCESS:
       return {

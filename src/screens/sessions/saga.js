@@ -87,7 +87,7 @@ export function* initialLoadAuthFlow({ payload }) {
 
 export function* reserveSessionFlow({ payload }) {
   try {
-    yield call(
+    const userSession = yield call(
       sessionService.reserveSession,
       payload.sessionId,
       payload.date,
@@ -95,6 +95,7 @@ export function* reserveSessionFlow({ payload }) {
     );
     yield put({
       type: RESERVE_SESSION_SUCCESS,
+      payload: { userSession },
     });
     yield put(push(payload.redirectTo || ROUTES.SESSIONRESERVED));
   } catch (err) {
