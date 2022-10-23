@@ -29,6 +29,10 @@ export const isUserInLegalAge = (userProfile) => {
 };
 
 export const userHasCreditsForSession = (userProfile, session) => {
+  if (session.isOpenClub) {
+    return true;
+  }
+
   if (userProfile.unlimitedCredits || userProfile.totalCredits > 0) {
     return true;
   }

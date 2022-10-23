@@ -24,6 +24,7 @@ import OnboardingTour from 'shared/components/OnboardingTour';
 import CodeOfConductModal from 'screens/sessions/components/modals/CodeOfConductModal';
 import FirstTimersInformationModal from 'screens/sessions/components/modals/FirstTimersInformationModal';
 import OpenClubNonMembersModal from 'screens/sessions/components/modals/OpenClubNonMembersModal';
+import OpenClubGoalsModal from 'screens/sessions/components/modals/OpenClubGoalsModal';
 
 import { WOMEN_SESSION_TOOLTIP } from 'shared/constants/sessions';
 
@@ -49,6 +50,8 @@ const ReserveButton = ({
   const [showCodeOfConductModal, setShowCodeOfConductModal] = useState(false);
   const [showFirstTimersInformationModal, setShowFirstTimersInformationModal] = useState(false);
   const [showOpenClubNonMembersModal, setShowOpenClubNonMembersModal] = useState(false);
+  const [showOpenClubGoalsModal, setShowOpenClubGoalsModal] = useState(false);
+  const [openClubGoal, setOpenClubGoal] = useState(null);
 
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
   const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(userProfile);
@@ -58,8 +61,33 @@ const ReserveButton = ({
     dispatch(initialLoadInit());
   }, [dispatch]);
 
+  const reserveSession = ({
+    skipCodeOfConductModal,
+    skipOpenClubGoalsModal,
+    skipFirstTimersInformationModal,
+  } = {}) => {
+    if ((isFirstSessionFlow || !hasConfirmCodeOfConduct(userProfile)) && !skipCodeOfConductModal) {
+      setShowCodeOfConductModal(true);
+      return;
+    }
+
+    if (session.isOpenClub && !skipOpenClubGoalsModal) {
+      setShowOpenClubGoalsModal(true);
+      return;
+    }
+
+    if (isFirstSessionFlow && !skipFirstTimersInformationModal) {
+      setShowFirstTimersInformationModal(true);
+      return;
+    }
+
+    isFirstFreeSessionFlow
+      ? createAndReserveFreeSessionHandler({ goal: openClubGoal })
+      : reserveSessionAction({ goal: openClubGoal });
+  };
+
   const reservationHandler = () => {
-    if (!userHasActiveSubscription && session?.isOpenClub) {
+    if (!userHasActiveSubscription && session.isOpenClub) {
       setShowOpenClubNonMembersModal(true);
       return;
     }
@@ -74,27 +102,29 @@ const ReserveButton = ({
           pathname: ROUTES.MEMBERSHIPS,
           state: { showNoCreditsAnimation: true },
         });
-      } else if (isFirstSessionFlow) {
-        setShowCodeOfConductModal(true);
       } else {
-        hasConfirmCodeOfConduct(userProfile)
-          ? reserveSessionAction()
-          : setShowCodeOfConductModal(true);
+        reserveSession();
       }
     }
   };
 
   const onConfirmCodeOfConduct = () => {
-    if (isFirstSessionFlow) {
-      setShowCodeOfConductModal(false);
-      setShowFirstTimersInformationModal(true);
-    } else {
-      reserveSessionAction();
-    }
+    setShowCodeOfConductModal(false);
+    reserveSession({ skipCodeOfConductModal: true });
+  };
+
+  const onConfirmOpenClubGoal = () => {
+    setShowOpenClubGoalsModal(false);
+    reserveSession({ skipCodeOfConductModal: true, skipOpenClubGoalsModal: true });
   };
 
   const onConfirmFirstTimersInformation = () => {
-    isFirstFreeSessionFlow ? createAndReserveFreeSessionHandler() : reserveSessionAction();
+    setShowFirstTimersInformationModal(false);
+    reserveSession({
+      skipCodeOfConductModal: true,
+      skipOpenClubGoalsModal: true,
+      skipFirstTimersInformationModal: true,
+    });
   };
 
   if (isAuthenticated) {
@@ -144,15 +174,21 @@ const ReserveButton = ({
               },
             ]}
           />
+          <OpenClubNonMembersModal
+            isOpen={showOpenClubNonMembersModal}
+            closeHandler={() => setShowOpenClubNonMembersModal(false)}
+          />
           <CodeOfConductModal
             isOpen={showCodeOfConductModal}
             closeHandler={() => setShowCodeOfConductModal(false)}
             onConfirm={onConfirmCodeOfConduct}
             userProfile={userProfile}
           />
-          <OpenClubNonMembersModal
-            isOpen={showOpenClubNonMembersModal}
-            closeHandler={() => setShowOpenClubNonMembersModal(false)}
+          <OpenClubGoalsModal
+            isOpen={showOpenClubGoalsModal}
+            onConfirm={onConfirmOpenClubGoal}
+            openClubGoal={openClubGoal}
+            setOpenClubGoal={setOpenClubGoal}
           />
           <FirstTimersInformationModal
             isOpen={showFirstTimersInformationModal}

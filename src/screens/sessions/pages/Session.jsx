@@ -39,7 +39,6 @@ import HowOpenClubWorks from 'screens/sessions/components/open-club/HowOpenClubW
 
 const Session = () => {
   const { id, date } = useParams();
-  const referralCode = window.localStorage.getItem('referralCode');
   const dispatch = useDispatch();
 
   const isPageLoading = useSelector(getPageLoading);
@@ -48,48 +47,36 @@ const Session = () => {
   const userProfile = useSelector(getUserProfile);
   const shouldShowCancelModal = useSelector(getShowCancelModal);
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
-
-  const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
-  const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
-  const showCancelModalAction = () => dispatch(showCancelModal());
-  const signupBookSessionAction = () => dispatch(signupBookSession(id, date));
-  const reserveSessionAction = () => {
-    const sessionId = sessionInfo.id;
-    const redirectTo = isFirstSessionFlow ? ROUTES.FIRSTSESSIONRESERVED : ROUTES.SESSIONRESERVED;
-    dispatch(reserveSessionInit({ sessionId, date, referralCode, redirectTo }));
-  };
-  const createAndReserveFreeSessionHandler = () => {
-    const sessionId = sessionInfo.id;
-    const redirectTo = ROUTES.FIRSTSESSIONRESERVED;
-    dispatch(createAndReserveFreeSessionInit({ sessionId, date, referralCode, redirectTo }));
-  };
-
-  const [showAddGuestModal, setShowAddGuestModal] = useState(false);
+  const referralCode = window.localStorage.getItem('referralCode');
 
   const isLegalAge = isUserInLegalAge(userProfile);
   const { isOpenClub, skillSession } = sessionInfo;
   const normalSession = !isOpenClub && !skillSession;
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      dispatch(removeSessionFromStorage());
-      dispatch(initialLoadAuthInit(id, date));
-    } else {
-      dispatch(initialLoadInit(id, date));
-    }
+  const [showAddGuestModal, setShowAddGuestModal] = useState(false);
 
-    return () => {
-      dispatch(resetLoading());
-    };
-  }, [dispatch, id, date, isAuthenticated]);
-
-  if (!id) {
-    return <Redirect to={ROUTES.HOME} />;
-  }
-
-  if (isPageLoading) {
-    return <Loading />;
-  }
+  const confirmSessionAction = () => dispatch(confirmSessionInit(sessionInfo.userSession.id));
+  const cancelSessionAction = () => dispatch(cancelSessionInit(sessionInfo.userSession.id));
+  const showCancelModalAction = () => dispatch(showCancelModal());
+  const signupBookSessionAction = () => dispatch(signupBookSession(id, date));
+  const reserveSessionAction = (payload = {}) => {
+    const sessionId = sessionInfo.id;
+    const redirectTo = isFirstSessionFlow ? ROUTES.FIRSTSESSIONRESERVED : ROUTES.SESSIONRESERVED;
+    dispatch(reserveSessionInit({ sessionId, date, referralCode, redirectTo, ...payload }));
+  };
+  const createAndReserveFreeSessionHandler = (payload = {}) => {
+    const sessionId = sessionInfo.id;
+    const redirectTo = ROUTES.FIRSTSESSIONRESERVED;
+    dispatch(
+      createAndReserveFreeSessionInit({
+        sessionId,
+        date,
+        referralCode,
+        redirectTo,
+        ...payload,
+      })
+    );
+  };
 
   const getContent = (sessionInfo) => {
     if (isOpenClub) {
@@ -114,6 +101,27 @@ const Session = () => {
       />
     );
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(removeSessionFromStorage());
+      dispatch(initialLoadAuthInit(id, date));
+    } else {
+      dispatch(initialLoadInit(id, date));
+    }
+
+    return () => {
+      dispatch(resetLoading());
+    };
+  }, [dispatch, id, date, isAuthenticated]);
+
+  if (!id) {
+    return <Redirect to={ROUTES.HOME} />;
+  }
+
+  if (isPageLoading) {
+    return <Loading />;
+  }
 
   return (
     <>
