@@ -23,14 +23,19 @@ const validationSchema = Yup.object().shape({
 
 const AddGuestStep = ({ sessionInformation, onGuestAdded }) => (
   <div className="flex flex-col">
-    <div className="flex justify-between">
+    <div className="flex justify-between px-4">
       {sessionInformation.map((info, i) => (
         <div className="flex flex-col" key={`modal-info-${i}`}>
-          <p className="uppercase font-shapiro95_super_wide block">{info.title}</p>
+          <p className="uppercase font-shapiro95_super_wide">{info.title}</p>
           <p className="uppercase font-shapiro45_welter_extd text-xs">{info.value}</p>
         </div>
       ))}
     </div>
+    <p className="my-4 text-sm text-center">
+      Easily invite a friend to the session above. Once you enter in your guest's contact
+      information and click ADD, they will receive a text message with a code to show their Session
+      Experience Manager upon arrival.
+    </p>
     <Formik
       validateOnChange={false}
       validateOnBlur={false}
@@ -46,7 +51,7 @@ const AddGuestStep = ({ sessionInformation, onGuestAdded }) => (
           <InputTextField label="Last Name*" name="lastName" className="mb-2 md:mb-5" />
           <InputPhoneField label="Phone Number*" name="phoneNumber" className="mb-2 md:mb-5" />
           <InputTextField label="Email*" name="email" className="mb-2 md:mb-5" />
-          <PrimaryButton loading={isSubmitting} className="text-center" type="submit">
+          <PrimaryButton loading={isSubmitting} className="text-center self-center" type="submit">
             ADD
           </PrimaryButton>
         </Form>
