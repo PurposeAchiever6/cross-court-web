@@ -324,18 +324,20 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     skillSession={skillSession}
                   />
                 </div>
-                <div
-                  className="flex items-center font-shapiro96_inclined_wide text-xs uppercase mt-3 cursor-pointer"
-                  onClick={() => setShowSessionRoster(showRoster ? null : `${id}${sessionDate}`)}
-                >
-                  See Roster
-                  <FontAwesomeIcon
-                    className={`text-cc-purple text-lg ml-2 transition-transform ${
-                      showRoster ? 'transform rotate-180' : ''
-                    }`}
-                    icon={faChevronDown}
-                  />
-                </div>
+                {isAuthenticated && (
+                  <div
+                    className="flex items-center font-shapiro96_inclined_wide text-xs uppercase mt-3 cursor-pointer"
+                    onClick={() => setShowSessionRoster(showRoster ? null : `${id}${sessionDate}`)}
+                  >
+                    See Roster
+                    <FontAwesomeIcon
+                      className={`text-cc-purple text-lg ml-2 transition-transform ${
+                        showRoster ? 'transform rotate-180' : ''
+                      }`}
+                      icon={faChevronDown}
+                    />
+                  </div>
+                )}
               </div>
               <div className="flex flex-col-reverse lg:flex-row items-center pl-8">
                 <div className="flex flex-col items-end">
