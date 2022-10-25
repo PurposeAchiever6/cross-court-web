@@ -2,6 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import darkBasketballSvg from 'shared/images/svgs/dark-basketball.svg';
+import whiteBasketballSvg from 'shared/images/svgs/white-basketball.svg';
+
 const CheckboxInputContainer = styled.div`
   input[type='checkbox'] {
     -webkit-appearance: none;
@@ -29,16 +32,59 @@ const CheckboxInputContainer = styled.div`
     }
   }
 
+  &.cc-ball,
+  &.cc-ball-white {
+    input[type='checkbox'] {
+      width: 1.35em;
+      min-width: 1.35em;
+      height: 1.35em;
+      border-radius: 9999px;
+      border: 1px solid currentColor;
+
+      &::before {
+        width: 0.95em;
+        height: 1em;
+        background-color: unset;
+      }
+
+      &:checked::before {
+        animation: spin infinite 3s;
+      }
+    }
+
+    label {
+      margin-top: 2px;
+      margin-left: 0.875rem;
+    }
+  }
+
+  &.cc-ball {
+    input[type='checkbox'] {
+      &::before {
+        content: url(${darkBasketballSvg});
+      }
+    }
+  }
+
+  &.cc-ball-white {
+    input[type='checkbox'] {
+      &::before {
+        content: url(${whiteBasketballSvg});
+      }
+    }
+  }
+
   label {
     font-size: 0.875em;
+    margin-left: 1rem;
   }
 `;
 
-const Checkbox = ({ name, value, children, error, disabled, className, ...props }) => (
-  <CheckboxInputContainer className={className}>
+const Checkbox = ({ name, value, children, error, disabled, variant, className, ...props }) => (
+  <CheckboxInputContainer className={`${variant} ${className}`}>
     <div className={`flex ${disabled ? 'opacity-50 pointer-events-none' : ''}`}>
       <input id={name} type="checkbox" checked={value} {...props} />
-      <label htmlFor={name} className="cursor-pointer ml-4 select-none">
+      <label htmlFor={name} className="cursor-pointer select-none">
         {children}
       </label>
     </div>
@@ -50,6 +96,7 @@ Checkbox.defaultProps = {
   value: null,
   error: null,
   disabled: false,
+  variant: '',
   className: '',
 };
 
@@ -59,6 +106,7 @@ Checkbox.propTypes = {
   value: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   disabled: PropTypes.bool,
+  variant: PropTypes.string,
   className: PropTypes.string,
 };
 

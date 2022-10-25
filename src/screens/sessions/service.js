@@ -12,17 +12,18 @@ export default {
 
     return response.data.session;
   },
-  reserveSession: async (sessionId, date, referralCode) => {
+  reserveSession: async (sessionId, date, referralCode, goal) => {
     const response = await api.post(`/sessions/${sessionId}/user_sessions`, {
       date: requestFormattedDate(date),
       referralCode,
+      goal,
     });
 
     if (referralCode) {
       window.localStorage.removeItem('referralCode');
     }
 
-    return response.data.session;
+    return response.data;
   },
   cancelSession: async (sessionId) => {
     const response = await api.put(`/user_sessions/${sessionId}/cancel`, {});
@@ -58,6 +59,21 @@ export default {
   removeVoteSession: async (sessionId, date) => {
     const response = await api.delete(`/sessions/${sessionId}/votes`, {
       data: { date: requestFormattedDate(date) },
+    });
+
+    return response.data;
+  },
+  addSessionGuest: async (userSessionId, guestInfo) => {
+    const response = await api.post('/session_guests', {
+      userSessionId,
+      guestInfo,
+    });
+
+    return response.data;
+  },
+  removeSessionGuest: async (userSessionId, sessionGuestId) => {
+    const response = await api.delete(`/session_guests/${sessionGuestId}`, {
+      data: { userSessionId },
     });
 
     return response.data;

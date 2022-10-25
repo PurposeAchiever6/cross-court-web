@@ -163,6 +163,7 @@ const Session = ({
       time,
       durationMinutes,
       skillSession,
+      isOpenClub,
       location: { name: locationName, imageUrls },
     },
   },
@@ -185,6 +186,13 @@ const Session = ({
             className="absolute top-0 right-0 w-24 md:w-32 m-2 md:m-4"
             src={sklzLogoPurple}
           />
+        )}
+        {isOpenClub && (
+          <div className="absolute top-0 right-0 m-2 md:m-4">
+            <span className="text-cc-purple font-shapiro95_super_wide text-xl md:text-2xl text-right uppercase">
+              Open Club
+            </span>
+          </div>
         )}
       </div>
       <div className="details">

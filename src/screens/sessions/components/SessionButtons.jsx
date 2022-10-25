@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
+import { userHasCreditsForSession } from 'shared/utils/user';
 import { reserveTeamReservationAllowed } from 'shared/utils/sessions';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -16,9 +17,11 @@ import {
   joinSessionWaitlistInit,
   removeSessionWaitlistInit,
 } from 'screens/sessions/actionCreators';
+import { sessionGuestsAllowed } from 'screens/sessions/utils';
 
 import ReserveButton from './ReserveButton';
 import CancelButton from './CancelButton';
+import SessionGuests from './SessionGuests';
 
 const SessionButtons = ({
   session,
@@ -28,6 +31,7 @@ const SessionButtons = ({
   signupBookSessionAction,
   createAndReserveFreeSessionHandler,
   disabled,
+  setShowAddGuestModal,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -50,6 +54,8 @@ const SessionButtons = ({
     isReserveTeam: reserveTeam,
     isPrivate,
   });
+
+  const guestsAllowed = sessionGuestsAllowed(session);
 
   const reserveTeamNotAllowed = reserveTeam ? !reserveTeamAllowed : false;
 
@@ -78,19 +84,19 @@ const SessionButtons = ({
     setCopied(true);
   };
 
-  const onClickJoinWaitlist = (sessionId, sessionDate) => {
-    if (!userProfile.unlimitedCredits && userProfile.totalCredits === 0) {
+  const onClickJoinWaitlist = () => {
+    if (!userHasCreditsForSession(userProfile, session)) {
       return history.push({
         pathname: ROUTES.MEMBERSHIPS,
         state: { showNoCreditsAnimation: true },
       });
     }
 
-    dispatch(joinSessionWaitlistInit(sessionId, sessionDate));
+    dispatch(joinSessionWaitlistInit(session.id, sessionDate));
   };
 
-  const onClickRemoveFromWaitlist = (sessionId, sessionDate) => {
-    dispatch(removeSessionWaitlistInit(sessionId, sessionDate));
+  const onClickRemoveFromWaitlist = () => {
+    dispatch(removeSessionWaitlistInit(session.id, sessionDate));
   };
 
   return (
@@ -126,7 +132,7 @@ const SessionButtons = ({
             <>
               {onWaitlist && (
                 <PrimaryButton
-                  onClick={() => onClickRemoveFromWaitlist(session.id, sessionDate)}
+                  onClick={onClickRemoveFromWaitlist}
                   className="mb-4"
                   disabled={disabled}
                 >
@@ -134,20 +140,20 @@ const SessionButtons = ({
                 </PrimaryButton>
               )}
               {session?.full && !onWaitlist && !reservedOrConfirmed && (
-                <PrimaryButton
-                  onClick={() => onClickJoinWaitlist(session.id, sessionDate)}
-                  className="mb-4"
-                  disabled={disabled}
-                >
+                <PrimaryButton onClick={onClickJoinWaitlist} className="mb-4" disabled={disabled}>
                   JOIN WAITLIST
                 </PrimaryButton>
               )}
-              {reservedOrConfirmed && !session?.full && (
-                <PrimaryButton className="mb-4" onClick={copyShareInfoToClipboard}>
-                  <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
-                  {copied ? 'COPIED' : 'INVITE A FRIEND'}
-                </PrimaryButton>
-              )}
+              {reservedOrConfirmed &&
+                !session?.full &&
+                (guestsAllowed ? (
+                  <SessionGuests session={session} setShowAddGuestModal={setShowAddGuestModal} />
+                ) : (
+                  <PrimaryButton inverted className="mb-4" onClick={copyShareInfoToClipboard}>
+                    <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
+                    {copied ? 'COPIED' : 'INVITE A FRIEND'}
+                  </PrimaryButton>
+                ))}
               {reservedOrConfirmed && <CancelButton modalToggler={showCancelModalAction} />}
             </>
           )}
@@ -166,8 +172,10 @@ SessionButtons.propTypes = {
   confirmSessionAction: PropTypes.func.isRequired,
   showCancelModalAction: PropTypes.func.isRequired,
   signupBookSessionAction: PropTypes.func.isRequired,
+  createAndReserveFreeSessionHandler: PropTypes.func.isRequired,
   session: PropTypes.object.isRequired,
   disabled: PropTypes.bool,
+  setShowAddGuestModal: PropTypes.func.isRequired,
 };
 
 export default SessionButtons;

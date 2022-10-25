@@ -27,3 +27,21 @@ export const isUserInLegalAge = (userProfile) => {
 
   return userAge >= 18;
 };
+
+export const userHasCreditsForSession = (userProfile, session) => {
+  if (session.isOpenClub) {
+    return true;
+  }
+
+  if (userProfile.unlimitedCredits || userProfile.totalCredits > 0) {
+    return true;
+  }
+
+  if (!session.skillSession) {
+    return false;
+  }
+
+  return (
+    userProfile.unlimitedSkillSessionCredits || userProfile.subscriptionSkillSessionCredits > 0
+  );
+};

@@ -35,6 +35,12 @@ import {
   REMOVE_VOTE_SESSION_INIT,
   REMOVE_VOTE_SESSION_SUCCESS,
   REMOVE_VOTE_SESSION_FAILURE,
+  ADD_SESSION_GUEST_INIT,
+  ADD_SESSION_GUEST_SUCCESS,
+  ADD_SESSION_GUEST_FAILURE,
+  REMOVE_SESSION_GUEST_INIT,
+  REMOVE_SESSION_GUEST_SUCCESS,
+  REMOVE_SESSION_GUEST_FAILURE,
 } from './actionTypes';
 import sessionService from './service';
 
@@ -81,14 +87,16 @@ export function* initialLoadAuthFlow({ payload }) {
 
 export function* reserveSessionFlow({ payload }) {
   try {
-    yield call(
+    const userSession = yield call(
       sessionService.reserveSession,
       payload.sessionId,
       payload.date,
-      payload.referralCode
+      payload.referralCode,
+      payload.goal
     );
     yield put({
       type: RESERVE_SESSION_SUCCESS,
+      payload: { userSession },
     });
     yield put(push(payload.redirectTo || ROUTES.SESSIONRESERVED));
   } catch (err) {
@@ -207,6 +215,39 @@ export function* removeVoteSessionFlow({ payload }) {
   }
 }
 
+export function* addSessionGuestFlow({ payload }) {
+  try {
+    const sessionGuest = yield call(
+      sessionService.addSessionGuest,
+      payload.userSessionId,
+      payload.guestInfo
+    );
+
+    yield put({
+      type: ADD_SESSION_GUEST_SUCCESS,
+      payload: { sessionGuest },
+    });
+  } catch (err) {
+    const errorMessage = err.response.data.error;
+    yield call(toast.error, errorMessage);
+    yield put({ type: ADD_SESSION_GUEST_FAILURE, error: errorMessage });
+  }
+}
+
+export function* removeSessionGuestFlow({ payload }) {
+  try {
+    yield call(sessionService.removeSessionGuest, payload.userSessionId, payload.sessionGuestId);
+    yield put({
+      type: REMOVE_SESSION_GUEST_SUCCESS,
+      payload: { sessionGuestId: payload.sessionGuestId },
+    });
+  } catch (err) {
+    const errorMessage = err.response.data.error;
+    yield call(toast.error, errorMessage);
+    yield put({ type: REMOVE_SESSION_GUEST_FAILURE, error: errorMessage });
+  }
+}
+
 export default function* rootSessionSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
@@ -220,5 +261,7 @@ export default function* rootSessionSaga() {
     takeLatest(BUY_CREDITS_AND_BOOK_SESSION, buyCreditsAndBookSessionFlow),
     takeLatest(VOTE_SESSION_INIT, voteSessionFlow),
     takeLatest(REMOVE_VOTE_SESSION_INIT, removeVoteSessionFlow),
+    takeLatest(ADD_SESSION_GUEST_INIT, addSessionGuestFlow),
+    takeLatest(REMOVE_SESSION_GUEST_INIT, removeSessionGuestFlow),
   ]);
 }

@@ -11,6 +11,8 @@ import {
   BUY_CREDITS_AND_BOOK_SESSION,
   VOTE_SESSION_INIT,
   REMOVE_VOTE_SESSION_INIT,
+  ADD_SESSION_GUEST_INIT,
+  REMOVE_SESSION_GUEST_INIT,
 } from './actionTypes';
 
 export const initialLoadInit = (sessionId, date) => ({
@@ -97,5 +99,21 @@ export const removeVoteSessionInit = (sessionId, sessionDate) => ({
   payload: {
     sessionId,
     sessionDate,
+  },
+});
+
+export const addSessionGuest = (userSessionId, guestInfo) => ({
+  type: ADD_SESSION_GUEST_INIT,
+  payload: {
+    userSessionId,
+    guestInfo,
+  },
+});
+
+export const removeSessionGuest = (userSessionId, sessionGuestId) => ({
+  type: REMOVE_SESSION_GUEST_INIT,
+  payload: {
+    userSessionId,
+    sessionGuestId,
   },
 });

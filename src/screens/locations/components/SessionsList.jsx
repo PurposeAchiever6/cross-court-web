@@ -16,6 +16,7 @@ import {
   isUserInLegalAge,
   isUserInFirstSessionFlow,
   isUserInFirstFreeSessionFlow,
+  userHasCreditsForSession,
 } from 'shared/utils/user';
 import { reserveTeamReservationAllowed } from 'shared/utils/sessions';
 import SessionWarningInfo from 'shared/components/SessionWarningInfo';
@@ -96,19 +97,19 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   );
   const sortedSessions = sortSessionsByDate(sessionList);
 
-  const onClickJoinWaitlist = (sessionId, sessionDate) => {
+  const onClickJoinWaitlist = (session) => {
     if (!isAuthenticated) {
       return history.push(ROUTES.LOGIN);
     }
 
-    if (!currentUser.unlimitedCredits && currentUser.totalCredits === 0) {
+    if (!userHasCreditsForSession(currentUser, session)) {
       return history.push({
         pathname: ROUTES.MEMBERSHIPS,
         state: { showNoCreditsAnimation: true },
       });
     }
 
-    dispatch(joinSessionWaitlistInit(sessionId, sessionDate));
+    dispatch(joinSessionWaitlistInit(session.id, formatSessionDate(session.startTime)));
   };
 
   const onClickRemoveFromWaitlist = (sessionId, sessionDate) => {
@@ -194,7 +195,12 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           } else if (skillSession && !hasConfirmSkillSession(currentUser)) {
             setShowSkillSessionReservationModal(true);
           } else {
-            history.push(`/session/${id}/${URLdate}`);
+            let path = `/session/${id}/${URLdate}`;
+
+            if (isOpenClub) path += '/open-club';
+            if (skillSession) path += '/sklz';
+
+            history.push(path);
           }
         };
 
@@ -208,17 +214,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
               inverted
             >
               COMING SOON
-            </PrimaryButton>
-          );
-        } else if (isOpenClub) {
-          button = (
-            <PrimaryButton
-              fontSize="12px"
-              w="9.5rem"
-              px="0.5rem"
-              to={`/session/${id}/${URLdate}/open-club`}
-            >
-              OPEN CLUB
             </PrimaryButton>
           );
         } else if (reserved || past) {
@@ -241,7 +236,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
         } else if (full) {
           button = (
             <PrimaryButton
-              onClick={() => onClickJoinWaitlist(id, sessionDate)}
+              onClick={() => onClickJoinWaitlist(session)}
               w="9.5rem"
               fontSize="11px"
               disabled={!isLegalAge || cannotReserveBecauseSkillLevel}
@@ -329,20 +324,18 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     skillSession={skillSession}
                   />
                 </div>
-                {!isOpenClub && (
-                  <div
-                    className="flex items-center font-shapiro96_inclined_wide text-xs uppercase mt-3 cursor-pointer"
-                    onClick={() => setShowSessionRoster(showRoster ? null : `${id}${sessionDate}`)}
-                  >
-                    See Roster
-                    <FontAwesomeIcon
-                      className={`text-cc-purple text-lg ml-2 transition-transform ${
-                        showRoster ? 'transform rotate-180' : ''
-                      }`}
-                      icon={faChevronDown}
-                    />
-                  </div>
-                )}
+                <div
+                  className="flex items-center font-shapiro96_inclined_wide text-xs uppercase mt-3 cursor-pointer"
+                  onClick={() => setShowSessionRoster(showRoster ? null : `${id}${sessionDate}`)}
+                >
+                  See Roster
+                  <FontAwesomeIcon
+                    className={`text-cc-purple text-lg ml-2 transition-transform ${
+                      showRoster ? 'transform rotate-180' : ''
+                    }`}
+                    icon={faChevronDown}
+                  />
+                </div>
               </div>
               <div className="flex flex-col-reverse lg:flex-row items-center pl-8">
                 <div className="flex flex-col items-end">
