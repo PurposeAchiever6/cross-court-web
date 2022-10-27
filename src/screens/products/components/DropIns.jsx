@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ONE_TIME } from 'screens/products/constants';
-import ProductPlan from './ProductPlan';
+import ProductPlan from 'screens/products/components/ProductPlan';
 
 const FREE_SESSION = 'Free Session';
 
 const DropIns = ({ selectProductHandler, availableProducts }) => {
   const products = availableProducts.filter((product) => product.name !== FREE_SESSION);
-  const oneTimeProducts = products.filter((product) => product.productType === ONE_TIME);
+  const oneTimeProducts = products.filter(
+    (product) => product.productType === ONE_TIME && !product.seasonPass
+  );
 
   return (
     <div className="text-white w-full lg:w-1/4 mb-4 md:mb-0">

@@ -44,18 +44,23 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => 
         };
       case STEP_CANCELLATION_FEEDBACK:
         return {
-          title: 'Submit Request for Cancellation',
+          title: 'Submit Request for',
+          titleClasses: '!text-left !mb-10',
           subtitle: 'Feedback',
+          subtitleClasses: 'text-cc-purple',
           size: 'xl',
           content: (
             <StepFeedbackContent
               createSubscriptionRequestCancellation={createSubscriptionRequestCancellationHandler}
+              closeModal={onClose}
             />
           ),
         };
       default:
         return {
-          title: 'Are you sure you want to cancel?',
+          title: 'Are you sure you want to',
+          subtitle: 'cancel?',
+          subtitleClasses: 'font-shapiro96_inclined_wide !text-3xl uppercase md:text-right',
           size: 'xl',
           content: (
             <StepAreYouSureContent
@@ -72,8 +77,10 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => 
       isOpen={isOpen}
       closeHandler={onClose}
       title={modalData.title}
+      titleClasses={modalData.titleClasses}
       size={modalData.size}
       subtitle={modalData.subtitle}
+      subtitleClasses={modalData.subtitleClasses}
     >
       {modalData.content}
     </Modal>

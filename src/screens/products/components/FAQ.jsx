@@ -24,7 +24,12 @@ const QUESTIONS = [
 ];
 
 const FAQ = () => (
-  <section className="px-4 md:px-14 xl:px-24 text-white">
+  <section className="px-4 md:px-14 xl:px-24 text-white mt-20">
+    <div className="w-full flex justify-center mb-16">
+      <h2 className="dharma_gothic_cheavy_italic text-6xl lg:text-8xl text-cc-purple">
+        HAVE A QUESTION? REACH OUT BELOW
+      </h2>
+    </div>
     <div className="max-w-screen-xl mx-auto">
       <h2 className="font-shapiro95_super_wide text-3xl italic mb-8">MEMBERSHIP FAQ</h2>
       <div>
