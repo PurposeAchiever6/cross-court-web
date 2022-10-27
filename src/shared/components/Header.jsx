@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 import DesktopMenu from 'cheeseburger-menu';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
@@ -48,6 +49,10 @@ const ALWAYS_SCROLLED = [
 const BLACK_BG = [ROUTES.MEMBERSHIPS, ROUTES.GALLERY, ROUTES.FIRSTSESSIONRESERVED, ROUTES.CONTENT];
 
 const Header = () => {
+  const env = runtimeEnv();
+  const promoCode = env.REACT_APP_FIRST_TIMER_PROMO_CODE;
+  const percentageDiscount = env.REACT_APP_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT;
+
   const { pathname } = useLocation();
 
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -144,7 +149,8 @@ const Header = () => {
     <>
       {showMembershipPromoBanner && (
         <div className="bg-cc-black z-10 text-white h-12 md:h-8 flex justify-center items-center text-center px-4">
-          Get 25% off your first month. In club only!
+          Get {percentageDiscount}% off your first month if you join today. Use code {promoCode} at
+          checkout. Must be applied before your first session!
         </div>
       )}
       <header
