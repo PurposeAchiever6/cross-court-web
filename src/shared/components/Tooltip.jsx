@@ -5,7 +5,7 @@ import ReactTooltip from 'react-tooltip';
 
 import colors from 'shared/styles/constants';
 
-const Tooltip = ({ children, tooltip, enable, variant, place, className }) => {
+const Tooltip = ({ children, tooltip, enable, variant, place, className, tooltipClassName }) => {
   const tooltipId = (Math.random() + 1).toString(36).substring(2);
 
   const { textColor, backgroundColor } = (() => {
@@ -47,7 +47,7 @@ const Tooltip = ({ children, tooltip, enable, variant, place, className }) => {
             textColor={textColor}
             place={place}
             effect="solid"
-            className={`max-w-xs font-shapiro45_welter_extd leading-normal ${textAlign}`}
+            className={`max-w-xs font-shapiro45_welter_extd leading-normal ${textAlign} ${tooltipClassName}`}
           >
             {tooltip}
           </ReactTooltip>
@@ -64,6 +64,7 @@ Tooltip.defaultProps = {
   className: '',
   enable: true,
   place: 'bottom',
+  tooltipClassName: '',
 };
 
 Tooltip.propTypes = {
@@ -73,6 +74,7 @@ Tooltip.propTypes = {
   className: PropTypes.string,
   enable: PropTypes.bool,
   place: PropTypes.string,
+  tooltipClassName: PropTypes.string,
 };
 
 export default Tooltip;
