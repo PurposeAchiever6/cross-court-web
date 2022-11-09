@@ -52,6 +52,7 @@ const ReserveButton = ({
   const [showOpenClubNonMembersModal, setShowOpenClubNonMembersModal] = useState(false);
   const [showOpenClubGoalsModal, setShowOpenClubGoalsModal] = useState(false);
   const [openClubGoal, setOpenClubGoal] = useState(null);
+  const [shootingMachineId, setShootingMachineId] = useState(null);
 
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
   const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(userProfile);
@@ -82,8 +83,8 @@ const ReserveButton = ({
     }
 
     isFirstFreeSessionFlow
-      ? createAndReserveFreeSessionHandler({ goal: openClubGoal })
-      : reserveSessionAction({ goal: openClubGoal });
+      ? createAndReserveFreeSessionHandler({ goal: openClubGoal, shootingMachineId })
+      : reserveSessionAction({ goal: openClubGoal, shootingMachineId });
   };
 
   const reservationHandler = () => {
@@ -189,6 +190,9 @@ const ReserveButton = ({
             onConfirm={onConfirmOpenClubGoal}
             openClubGoal={openClubGoal}
             setOpenClubGoal={setOpenClubGoal}
+            shootingMachines={session.shootingMachines}
+            shootingMachineId={shootingMachineId}
+            setShootingMachineId={setShootingMachineId}
           />
           <FirstTimersInformationModal
             isOpen={showFirstTimersInformationModal}

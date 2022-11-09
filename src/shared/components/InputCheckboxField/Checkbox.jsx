@@ -35,16 +35,16 @@ const CheckboxInputContainer = styled.div`
   &.cc-ball,
   &.cc-ball-white {
     input[type='checkbox'] {
-      width: 1.5em;
-      min-width: 1.5em;
-      height: 1.5em;
+      width: 1.35em;
+      min-width: 1.35em;
+      height: 1.35em;
       border-radius: 9999px;
       border: 1px solid currentColor;
       margin-right: 0.03em;
 
       &::before {
-        width: 1.4em;
-        height: 1.5em;
+        width: 0.95em;
+        height: 1em;
         background-color: unset;
       }
 

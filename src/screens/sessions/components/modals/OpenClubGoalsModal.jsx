@@ -4,9 +4,22 @@ import PropTypes from 'prop-types';
 import Modal from 'shared/components/Modal';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Collapsible from 'shared/components/Collapsible';
+import Badge from 'shared/components/Badge';
 
-export const CodeOfConductModal = ({ isOpen, onConfirm, openClubGoal, setOpenClubGoal }) => {
+export const OpenClubGoalsModal = ({
+  isOpen,
+  onConfirm,
+  openClubGoal,
+  setOpenClubGoal,
+  shootingMachines,
+  shootingMachineId,
+  setShootingMachineId,
+}) => {
   const handleSelect = (value) => setOpenClubGoal(value);
+  const handleShootingMachineSelect = (newShootingMachineId) => {
+    setShootingMachineId(shootingMachineId === newShootingMachineId ? null : newShootingMachineId);
+  };
 
   const openClubGoals = {
     RUN_PICKUP: 'Run Pickup',
@@ -48,11 +61,41 @@ export const CodeOfConductModal = ({ isOpen, onConfirm, openClubGoal, setOpenClu
           value={openClubGoal === openClubGoals.HANG_OUT}
           onChange={() => handleSelect(openClubGoals.HANG_OUT)}
           variant="cc-ball-white"
-          className="mb-5"
+          className="mb-4"
           formik={false}
         >
           Hang out
         </InputCheckboxField>
+        {shootingMachines.length > 0 && (
+          <Collapsible text="Rent shooting machine" inverse className="mb-8">
+            <div className="pl-5">
+              <ul>
+                {shootingMachines.map(({ id, reserved, price, startTime, endTime }) => (
+                  <li key={id} className="flex items-center">
+                    <InputCheckboxField
+                      name={`shooting-machine-${id}`}
+                      variant="cc-ball-white"
+                      value={shootingMachineId === id}
+                      onChange={() => handleShootingMachineSelect(id)}
+                      disabled={reserved}
+                      formik={false}
+                      className="mb-1"
+                    >
+                      <span className="inline-block w-14">{startTime}</span>-
+                      <span className="inline-block w-14 text-right">{endTime}</span>
+                    </InputCheckboxField>
+                    <span className="font-shapiro95_super_wide text-lg ml-4 -mt-1">${price}</span>
+                    {reserved && (
+                      <Badge size="sm" className="ml-2 -mt-2">
+                        Reserved
+                      </Badge>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Collapsible>
+        )}
         <div className="text-center">
           <PrimaryButton type="submit" onClick={() => onConfirm()} disabled={!openClubGoal}>
             Done
@@ -63,15 +106,19 @@ export const CodeOfConductModal = ({ isOpen, onConfirm, openClubGoal, setOpenClu
   );
 };
 
-CodeOfConductModal.defaultProps = {
+OpenClubGoalsModal.defaultProps = {
   openClubGoal: null,
+  shootingMachineId: null,
 };
 
-CodeOfConductModal.propTypes = {
+OpenClubGoalsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onConfirm: PropTypes.func.isRequired,
   openClubGoal: PropTypes.string,
   setOpenClubGoal: PropTypes.func.isRequired,
+  shootingMachines: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  shootingMachineId: PropTypes.number,
+  setShootingMachineId: PropTypes.func.isRequired,
 };
 
-export default CodeOfConductModal;
+export default OpenClubGoalsModal;

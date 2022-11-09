@@ -190,7 +190,11 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           setSelectedSessionDate(URLdate);
           setSelectedSessionSkillLevel(skillLevel);
 
-          if (outsideOfSkillLevel && !hasConfirmOutsideOfSkillLevelSession(currentUser)) {
+          if (
+            !isOpenClub &&
+            outsideOfSkillLevel &&
+            !hasConfirmOutsideOfSkillLevelSession(currentUser)
+          ) {
             setShowOutsideSkillLevelModal(true);
           } else if (skillSession && !hasConfirmSkillSession(currentUser)) {
             setShowSkillSessionReservationModal(true);

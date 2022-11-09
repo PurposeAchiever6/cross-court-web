@@ -67,6 +67,8 @@ const SessionButtons = ({
     (session?.userSession && ['reserved', 'confirmed'].includes(session.userSession.state)) ||
     false;
 
+  const shootingMachineReservation = session?.userSession?.shootingMachineReservation;
+
   const copyShareInfoToClipboard = () => {
     const input = document.createElement('input');
 
@@ -155,6 +157,12 @@ const SessionButtons = ({
                   </PrimaryButton>
                 ))}
               {reservedOrConfirmed && <CancelButton modalToggler={showCancelModalAction} />}
+              {shootingMachineReservation && (
+                <div className="text-sm">
+                  You have reserved a shooting machine from {shootingMachineReservation.startTime}{' '}
+                  to {shootingMachineReservation.endTime}
+                </div>
+              )}
             </>
           )}
         </>
