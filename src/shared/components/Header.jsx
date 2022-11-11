@@ -148,7 +148,7 @@ const Header = () => {
   return pathname === ROUTES.DASHBOARD ? null : (
     <>
       {showMembershipPromoBanner && (
-        <div className="bg-cc-black z-10 text-white h-12 md:h-8 flex justify-center items-center text-center px-4">
+        <div className="animate-highlight-purple-twice bg-cc-black z-10 text-sm md:text-base text-white flex justify-center items-center text-center px-4 sm:px-6 h-28 sm:h-16 lg:h-14 xl:h-10">
           Get {percentageDiscount}% off your first month if you join today. Use code {promoCode} at
           checkout. Must be applied before your first session!
         </div>
@@ -159,7 +159,9 @@ const Header = () => {
             ? `${
                 isBlackBg ? 'shadow-header-dark' : 'shadow-header-white'
               } ${bgColor} fixed z-50 top-0`
-            : `bg-transparent absolute ${showMembershipPromoBanner ? 'top-12 md:top-8' : 'top-0'}`
+            : `bg-transparent absolute ${
+                showMembershipPromoBanner ? 'top-28 sm:top-16 lg:top-14 xl:top-10' : 'top-0'
+              }`
         }`}
       >
         <MobileMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />

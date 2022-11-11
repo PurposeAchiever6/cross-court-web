@@ -55,6 +55,8 @@ module.exports = {
         fade: 'fade 2500ms linear 800ms 1 backwards',
         'slide-top': 'slide-top 1500ms ease-out 2000ms 1 backwards',
         'spin-slow': 'spin infinite 4s',
+        'highlight-purple-twice':
+          'highlight-purple 3s cubic-bezier(0.78, 0.05, 0.68, 0.79) 0.5s 2;',
       },
       backgroundImage: {
         'cc-ball-logo': "url('../shared/images/new-purple-circular-logo.png')",
@@ -78,6 +80,12 @@ module.exports = {
           },
           '100%': {
             opacity: '1',
+          },
+        },
+        'highlight-purple': {
+          '60%': {
+            backgroundColor: 'rgba(153, 153, 255, 1)',
+            boxShadow: ' 0px 15px 40px rgba(153, 153, 255, 0.6)',
           },
         },
       },
