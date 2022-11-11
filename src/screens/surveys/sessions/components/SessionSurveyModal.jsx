@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import InputTextareaField from 'shared/components/InputTextareaField';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -9,19 +10,20 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
   const [starsSelected, setStarsSelected] = useState(0);
   const [feedbackValue, setFeedbackValue] = useState('');
   const [answeredQuestionIds, setAnsweredQuestionIds] = useState([]);
-  const [allMandatoryAnswered, setAllMandatoryAnswered] = useState(false);
-  const mandatoryIds = questions.filter((q) => q.isMandatory).map((q) => q.id);
 
-  useEffect(() => {
-    if (mandatoryIds.length) {
-      setAllMandatoryAnswered(mandatoryIds.every((elem) => answeredQuestionIds.includes(elem)));
-    }
-  }, [answeredQuestionIds, mandatoryIds]);
+  const mandatoryIds = questions.filter((q) => q.isMandatory).map((q) => q.id);
+  const allMandatoryAnswered = mandatoryIds.every((elem) => answeredQuestionIds.includes(elem));
+  const allowClose = allMandatoryAnswered && starsSelected > 3;
+  const allowSubmit = allMandatoryAnswered && (starsSelected > 3 || feedbackValue.length >= 20);
+  const showHint = starsSelected > 0 && starsSelected < 4;
 
   const starRatingClickHandler = (questionId, answer) => {
     setStarsSelected(answer);
     answerQuestion(questionId, answer);
-    if (answeredQuestionIds.includes(questionId)) return;
+
+    if (answeredQuestionIds.includes(questionId)) {
+      return;
+    }
 
     setAnsweredQuestionIds([...answeredQuestionIds, questionId]);
   };
@@ -32,14 +34,17 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
     if (answer === '') {
       setAnsweredQuestionIds(answeredQuestionIds.filter((id) => id !== questionId));
     } else {
-      if (answeredQuestionIds.includes(questionId)) return;
-
+      if (answeredQuestionIds.includes(questionId)) {
+        return;
+      }
       setAnsweredQuestionIds([...answeredQuestionIds, questionId]);
     }
   };
 
   const submitHandler = (questionId, answer) => {
-    if (answer !== '') answerQuestion(questionId, answer);
+    if (answer !== '') {
+      answerQuestion(questionId, answer);
+    }
     setShowSurveyModal(false);
   };
 
@@ -50,8 +55,8 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
       closeOnOverlayClick={false}
       dark
       size="lg"
-      showCloseButton={allMandatoryAnswered}
-      shouldCloseOnEsc={allMandatoryAnswered}
+      showCloseButton={allowClose}
+      shouldCloseOnEsc={false}
     >
       <div className="flex flex-col items-center text-center">
         {questions.map((question) => {
@@ -80,11 +85,12 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
                     value={feedbackValue}
                     onChange={(e) => openQuestionHandler(question.id, e.target.value)}
                     rows={6}
-                    className="my-5"
+                    className="text-white my-5"
+                    hint={showHint ? 'Please include at least 20 characters' : null}
                     formik={false}
                   />
                   <PrimaryButton
-                    disabled={!allMandatoryAnswered}
+                    disabled={!allowSubmit}
                     onClick={() => submitHandler(question.id, feedbackValue)}
                     inverted
                     bg="transparent"
@@ -99,6 +105,13 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
       </div>
     </Modal>
   );
+};
+
+SessionSurveyModal.propTypes = {
+  showSurveyModal: PropTypes.bool.isRequired,
+  setShowSurveyModal: PropTypes.func.isRequired,
+  questions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  answerQuestion: PropTypes.func.isRequired,
 };
 
 export default SessionSurveyModal;
