@@ -33,40 +33,39 @@ const RATINGS = [
     value: '1',
     name: 'Rookie',
     description:
-      'Love the game. Not exactly a difference maker, but always looking to improve my skills ' +
-      'and quiet the non-believers. Can easily hang with average to below average competition. ' +
-      'Here for the vibes, the sweat, and some friendly competition.',
+      'New to the game/haven’t played in years. Here for the vibes, the sweat, and some ' +
+      'friendly competition. After a few months of Crosscourt experiences, I’ll be moving ' +
+      'up to a 2.',
   },
   {
     value: '2',
     name: 'Rising Star',
     description:
-      'Strong grasp of the fundamentals. Average to below average athleticism, but can hold my ' +
-      'own against relatively standard competition. Would have a tough time creating shots or ' +
-      'putting the team on my back in a more competitive environment. ' +
-      'Show flashes once in a while.',
+      'Developing a foundational skill set. Inconsistent play, conditioning, and/or general ' +
+      'understanding of the game can be improved with more time at Crosscourt. I have a tough ' +
+      'time creating shots or putting the team on my back.',
   },
   {
     value: '3',
     name: 'Vet',
     description:
-      'Can make plays. Might not have played competitively within the last 15 years, ' +
-      'but possess the skill set of a seasoned player. Can keep up with skilled competition ' +
-      'and can turn it on even further when surrounded by above average players or when ' +
-      'things heat up.',
+      'Didn’t play on an organized team at a Varsity level, but I can keep up in your ' +
+      'average session.',
   },
   {
     value: '4',
     name: 'All Star',
     description:
-      'Walking bucket as the kids say. Ball is life. Played varsity or ' +
-      "more back in the glory days. Can hang with the best of 'em. Play hard on both ends of " +
-      'the court and love to run.',
+      'Played at a varsity level or more in the glory days, and can hang on most courts. ' +
+      'Strong understanding of where to be on the court and get there because I grew up with ' +
+      'the game plus I have the cardio to execute. Can hang and add value on most courts.',
   },
   {
     value: '5',
     name: 'MVP',
-    description: 'Played D1 or professionally within the last 15 years.',
+    description:
+      'Played D3 or better in the last 10 years (must submit verification of highest ' +
+      'level played to be a 5)',
   },
 ];
 
