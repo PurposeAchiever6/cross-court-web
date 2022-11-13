@@ -13,12 +13,12 @@ import colors from 'shared/styles/constants';
 import Badge from 'shared/components/Badge';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import {
-  isUserInLegalAge,
   isUserInFirstSessionFlow,
   isUserInFirstFreeSessionFlow,
   userHasCreditsForSession,
+  userOutsideOfSessionSkillLevel,
 } from 'shared/utils/user';
-import { reserveTeamReservationAllowed } from 'shared/utils/sessions';
+import { sessionReservationInfo } from 'shared/utils/sessions';
 import SessionWarningInfo from 'shared/components/SessionWarningInfo';
 
 import {
@@ -89,9 +89,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   const currentUser = useSelector(getUserProfile);
   const sessionsLoadingBtns = useSelector(getSessionsLoadingBtns);
 
-  const isLegalAge = isUserInLegalAge(currentUser);
-  const isReserveTeam = currentUser.reserveTeam;
-
   const sessionList = availableSessions.filter(({ startTime }) =>
     isSameDay(startTime, selectedDate)
   );
@@ -127,8 +124,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
     !showingFreeSessionCreditAdded &&
     (!isAuthenticated || isFirstSessionFlow);
 
-  const userSkillRating = parseInt(currentUser.skillRating, 10);
-
   if (isEmpty(sortedSessions)) {
     return (
       <div className="flex flex-col h-full justify-center">
@@ -151,7 +146,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           full,
           location,
           skillLevel,
-          spotsLeft,
           reserved,
           past,
           isPrivate,
@@ -161,8 +155,6 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           isOpenClub,
           womenOnly,
           skillSession,
-          allSkillLevelsAllowed,
-          reservationsCount,
         } = session;
 
         const URLdate = urlFormattedDate(startTime);
@@ -171,19 +163,9 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
 
         let button;
 
-        const outsideOfSkillLevel =
-          skillLevel && (userSkillRating < skillLevel.min || userSkillRating > skillLevel.max);
-        const cannotReserveBecauseSkillLevel = !allSkillLevelsAllowed && outsideOfSkillLevel;
+        const outsideOfSkillLevel = userOutsideOfSessionSkillLevel(currentUser, session);
 
-        const reserveTeamAllowed = reserveTeamReservationAllowed({
-          sessionTime: time,
-          sessionDate,
-          reservationsCount,
-          isOpenClub,
-          past,
-          isReserveTeam,
-          isPrivate,
-        });
+        const { disabled } = sessionReservationInfo(session, currentUser);
 
         const onClickReserve = () => {
           setSelectedSessionId(id);
@@ -192,6 +174,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
 
           if (
             !isOpenClub &&
+            !skillSession &&
             outsideOfSkillLevel &&
             !hasConfirmOutsideOfSkillLevelSession(currentUser)
           ) {
@@ -243,7 +226,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
               onClick={() => onClickJoinWaitlist(session)}
               w="9.5rem"
               fontSize="11px"
-              disabled={!isLegalAge || cannotReserveBecauseSkillLevel}
+              disabled={disabled}
               loading={sessionsLoadingBtns.includes(id)}
             >
               JOIN WAITLIST
@@ -256,7 +239,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                 id="sessions-list-reserve-btn"
                 w="9.5rem"
                 fontSize="12px"
-                disabled={!isLegalAge || cannotReserveBecauseSkillLevel || !reserveTeamAllowed}
+                disabled={disabled}
                 onClick={onClickReserve}
               >
                 RESERVE
@@ -349,21 +332,11 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     <SessionExtraInformation session={session} className="mt-4 lg:mt-0 lg:mr-3" />
                     {button}
                   </div>
-                  {!isOpenClub && !comingSoon && (
-                    <SessionWarningInfo
-                      isLegalAge={isLegalAge}
-                      reserved={reserved}
-                      onWaitlist={onWaitlist}
-                      cannotReserveBecauseSkillLevel={cannotReserveBecauseSkillLevel}
-                      skillLevelName={skillLevel?.name}
-                      reserveTeamAllowed={reserveTeamAllowed}
-                      isReserveTeam={isReserveTeam}
-                      full={full}
-                      spotsLeft={spotsLeft}
-                      past={past}
-                      className="self-center lg:self-end lg:w-38 mt-3"
-                    />
-                  )}
+                  <SessionWarningInfo
+                    session={session}
+                    userProfile={currentUser}
+                    className="self-center lg:self-end lg:w-38 mt-3"
+                  />
                   {onWaitlist && !past && (
                     <div className="self-center lg:self-end mt-3 whitespace-nowrap">
                       <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{`#${waitlistPlacement} on the waitlist`}</p>

@@ -45,3 +45,14 @@ export const userHasCreditsForSession = (userProfile, session) => {
     userProfile.unlimitedSkillSessionCredits || userProfile.subscriptionSkillSessionCredits > 0
   );
 };
+
+export const userOutsideOfSessionSkillLevel = (userProfile, session) => {
+  if (!userProfile.skillRating) {
+    return false;
+  }
+
+  const { skillLevel } = session;
+  const userSkillRating = parseInt(userProfile.skillRating, 10);
+
+  return skillLevel && (userSkillRating < skillLevel.min || userSkillRating > skillLevel.max);
+};
