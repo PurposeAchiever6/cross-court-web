@@ -30,8 +30,8 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation, closeModal
     if (recommendRate === 0) {
       newErrors.recommendRate = true;
     }
-    if (MANDATORY_DETAILS_REASONS.includes(reason) && reason.trim().length < 20) {
-      newErrors.reason = true;
+    if (MANDATORY_DETAILS_REASONS.includes(reason) && details.trim().length < 20) {
+      newErrors.reason = reason;
     }
 
     setErrors(newErrors);
@@ -57,22 +57,16 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation, closeModal
   };
 
   return (
-    <div className="text-sm relative">
-      <span className="absolute -top-24 right-0 mt-1 text-3xl uppercase font-shapiro96_inclined_wide">
-        cancellation
-      </span>
-      <p className="mb-5">
+    <div>
+      <p className="text-sm mb-5">
         Please share your reason(s) for cancelling, to help make Crosscourt better.
       </p>
       <div className="flex flex-wrap justify-between mb-5">
         <div className="w-full md:w-auto">
-          <Label
-            color="purple"
-            className="text-lg uppercase font-shapiro96_inclined_wide leading-5"
-          >
+          <Label color="purple" className="uppercase">
             Overall experience
           </Label>
-          <div>How was your time as a member?</div>
+          <div className="text-sm">How was your time as a member?</div>
         </div>
         <div>
           <StarsRate
@@ -89,13 +83,10 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation, closeModal
       </div>
       <div className="flex flex-wrap justify-between mb-5">
         <div className="w-full md:w-auto">
-          <Label
-            color="purple"
-            className="text-lg uppercase font-shapiro96_inclined_wide leading-5"
-          >
+          <Label color="purple" className="uppercase">
             Service as described
           </Label>
-          <div>Did the experience meet expectations?</div>
+          <div className="text-sm">Did the experience meet expectations?</div>
         </div>
         <div>
           <StarsRate
@@ -110,15 +101,12 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation, closeModal
           )}
         </div>
       </div>
-      <div className="flex flex-wrap justify-between mb-5">
+      <div className="flex flex-wrap justify-between mb-8">
         <div className="w-full md:w-auto">
-          <Label
-            color="purple"
-            className="text-lg uppercase font-shapiro96_inclined_wide leading-5"
-          >
+          <Label color="purple" className="uppercase">
             Join again or recommend
           </Label>
-          <div>Would you recommend CC to a friend?</div>
+          <div className="text-sm">Would you recommend CC to a friend?</div>
         </div>
         <div>
           <StarsRate
@@ -139,11 +127,9 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation, closeModal
         details={details}
         setDetails={setDetails}
         activeSubscription={currentUser?.activeSubscription}
+        error={errors.reason}
         closeModal={closeModal}
       />
-      {MANDATORY_DETAILS_REASONS.includes(reason) && (
-        <div className="text-red-500 ml-10 text-xs mt-2 mb-4">Include at least 20 characters</div>
-      )}
       <div className="text-center">
         <PrimaryButton onClick={onSubmit}>Submit Request</PrimaryButton>
       </div>

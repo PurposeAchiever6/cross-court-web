@@ -16,6 +16,7 @@ const FeedbackOptions = ({
   details,
   setDetails,
   activeSubscription,
+  error,
   closeModal,
 }) => {
   const history = useHistory();
@@ -49,7 +50,7 @@ const FeedbackOptions = ({
           variant="cc-ball"
           onChange={onChangeReason}
           value={reason === 'too-expensive'}
-          className="my-2 text-lg"
+          className="mb-2"
           formik={false}
         >
           Crosscourt is too expensive
@@ -88,7 +89,7 @@ const FeedbackOptions = ({
           variant="cc-ball"
           onChange={onChangeReason}
           value={reason === 'recurring-subscription'}
-          className="my-2 text-lg"
+          className="mb-2"
           formik={false}
         >
           I don't want a recurring subscription
@@ -122,7 +123,7 @@ const FeedbackOptions = ({
           variant="cc-ball"
           onChange={onChangeReason}
           value={reason === 'moving'}
-          className="my-2 text-lg"
+          className="mb-2"
           formik={false}
         >
           Moved / Moving
@@ -150,7 +151,7 @@ const FeedbackOptions = ({
           variant="cc-ball"
           onChange={onChangeReason}
           value={reason === 'live-far'}
-          className="my-2 text-lg"
+          className="mb-2"
           formik={false}
         >
           Live too far away
@@ -195,7 +196,7 @@ const FeedbackOptions = ({
           variant="cc-ball"
           onChange={onChangeReason}
           value={reason === 'injury'}
-          className="my-2 text-lg"
+          className="mb-2"
           formik={false}
         >
           Injury
@@ -229,7 +230,7 @@ const FeedbackOptions = ({
           variant="cc-ball"
           onChange={onChangeReason}
           value={reason === 'no-time'}
-          className="my-2 text-lg"
+          className="mb-2"
           formik={false}
         >
           Don't have time
@@ -254,6 +255,8 @@ const FeedbackOptions = ({
               value={details}
               onChange={(e) => setDetails(e.target.value)}
               rows={6}
+              hint="Please include at least 20 characters"
+              error={error === 'no-time'}
               className="my-2"
               formik={false}
             />
@@ -266,7 +269,7 @@ const FeedbackOptions = ({
           variant="cc-ball"
           onChange={onChangeReason}
           value={reason === 'did-not-know-is-subscription'}
-          className="my-2 text-lg"
+          className="mb-2"
           formik={false}
         >
           Didn't know I signed up for a membership
@@ -293,7 +296,7 @@ const FeedbackOptions = ({
           variant="cc-ball"
           onChange={onChangeReason}
           value={reason === 'did-not-enjoy'}
-          className="my-2 text-lg"
+          className="mb-2"
           formik={false}
         >
           Didn't enjoy the experience
@@ -304,7 +307,9 @@ const FeedbackOptions = ({
             value={details}
             onChange={(e) => setDetails(e.target.value)}
             rows={6}
-            className="my-2 ml-10"
+            hint="Please include at least 20 characters"
+            error={error === 'did-not-enjoy'}
+            className="my-2 ml-10 text-xs"
             formik={false}
           />
         )}
@@ -315,7 +320,7 @@ const FeedbackOptions = ({
           variant="cc-ball"
           onChange={onChangeReason}
           value={reason === 'other'}
-          className="my-2 text-lg"
+          className="mb-2"
           formik={false}
         >
           Other
@@ -326,7 +331,9 @@ const FeedbackOptions = ({
             value={details}
             onChange={(e) => setDetails(e.target.value)}
             rows={6}
-            className="my-2 ml-10"
+            hint="Please include at least 20 characters"
+            error={error === 'other'}
+            className="my-2 ml-10 text-xs"
             formik={false}
           />
         )}
@@ -349,5 +356,6 @@ FeedbackOptions.propTypes = {
   details: PropTypes.string,
   setDetails: PropTypes.func.isRequired,
   activeSubscription: PropTypes.shape(),
+  error: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   closeModal: PropTypes.func.isRequired,
 };
