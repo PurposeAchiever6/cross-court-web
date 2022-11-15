@@ -4,7 +4,6 @@ import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import CloseButton from 'shared/components/CloseButton';
 import ROUTES from 'shared/constants/routes';
-import { TRIBE_COMMUNITY } from 'shared/constants/urls';
 import { logoutInit } from 'screens/auth/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -37,16 +36,6 @@ const SidebarMenu = ({ menuToggler }) => {
         </NavLink>
         <NavLink className="list-item" exact to={ROUTES.MEMBERSHIPS} onClick={menuToggler}>
           MEMBERSHIPS / PRICING
-        </NavLink>
-        <NavLink
-          className="list-item"
-          exact
-          to={{ pathname: TRIBE_COMMUNITY }}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={menuToggler}
-        >
-          COMMUNITY
         </NavLink>
         <NavLink className="list-item" exact to={ROUTES.CONTENT} onClick={menuToggler}>
           CONTENT

@@ -7,16 +7,16 @@ import ProductPlan from 'screens/products/components/ProductPlan';
 const FREE_SESSION = 'Free Session';
 
 const DropIns = ({ selectProductHandler, availableProducts }) => {
-  const products = availableProducts.filter((product) => product.name !== FREE_SESSION);
-  const oneTimeProducts = products.filter(
-    (product) => product.productType === ONE_TIME && !product.seasonPass
+  const products = availableProducts.filter(
+    (product) =>
+      product.name !== FREE_SESSION && product.productType === ONE_TIME && !product.seasonPass
   );
 
   return (
-    <div className="text-white w-full lg:w-1/4 mb-4 md:mb-0">
-      <h2 className="dharma_gothic_cheavy text-8xl md:h-44 md:mb-10 md:ml-2">DROP IN</h2>
-      {oneTimeProducts.map((product) => (
-        <div key={product.id} className="w-full md:px-4">
+    <div className="text-white w-full lg:w-1/4 mb-6 lg:mb-0">
+      <h2 className="dharma_gothic_cheavy text-8xl lg:h-44 lg:mb-10 lg:ml-2">DROP IN</h2>
+      {products.map((product) => (
+        <div key={product.id} className="w-full lg:px-4">
           <ProductPlan product={product} submitBtnSecondary handleSubmit={selectProductHandler} />
         </div>
       ))}

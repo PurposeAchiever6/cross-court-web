@@ -22,7 +22,7 @@ import Memberships from './components/Memberships';
 import ReserveTeamMemberships from './components/reserve-team/Memberships';
 import ReserveTeamMembershipsFeatures from './components/reserve-team/MembershipsFeatures';
 import DropIns from './components/DropIns';
-import SessionPassPacks from './components/season-pass/SeasonPassPacks';
+import SeasonPass from './components/SeasonPass';
 import FAQ from './components/FAQ';
 import NoSessionCredits from './components/NoSessionCredits';
 import NoFreeSessionInformationModal from './components/NoFreeSessionInformationModal';
@@ -99,7 +99,7 @@ const ProductsPage = () => {
         {showAnimation && <NoSessionCredits />}
         <div className="flex flex-col lg:flex-row p-4">
           {comesFromCancelModal ? (
-            <SessionPassPacks
+            <SeasonPass
               selectProductHandler={selectProductHandler}
               availableProducts={availableProducts}
             />
