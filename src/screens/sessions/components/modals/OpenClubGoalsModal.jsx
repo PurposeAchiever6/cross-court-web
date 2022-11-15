@@ -7,6 +7,8 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Collapsible from 'shared/components/Collapsible';
 import Badge from 'shared/components/Badge';
 
+const SHOOTING_MACHINE_GOAL = 'SM';
+
 export const OpenClubGoalsModal = ({
   isOpen,
   onConfirm,
@@ -16,9 +18,14 @@ export const OpenClubGoalsModal = ({
   shootingMachineId,
   setShootingMachineId,
 }) => {
-  const handleSelect = (value) => setOpenClubGoal(value);
+  const handleSelect = (value) => {
+    setOpenClubGoal(value);
+    setShootingMachineId(null);
+  };
+
   const handleShootingMachineSelect = (newShootingMachineId) => {
-    setShootingMachineId(shootingMachineId === newShootingMachineId ? null : newShootingMachineId);
+    setOpenClubGoal(SHOOTING_MACHINE_GOAL);
+    setShootingMachineId(newShootingMachineId);
   };
 
   const openClubGoals = {
@@ -68,8 +75,8 @@ export const OpenClubGoalsModal = ({
         </InputCheckboxField>
         {shootingMachines.length > 0 && (
           <Collapsible text="Rent shooting machine" inverse className="mb-8">
-            <div className="pl-5">
-              <ul>
+            <div className="sm:pl-5">
+              <ul className="pl-0">
                 {shootingMachines.map(({ id, reserved, price, startTime, endTime }) => (
                   <li key={id} className="flex items-center">
                     <InputCheckboxField
@@ -81,8 +88,13 @@ export const OpenClubGoalsModal = ({
                       formik={false}
                       className="mb-1"
                     >
-                      <span className="inline-block w-14">{startTime}</span>-
-                      <span className="inline-block w-14 text-right">{endTime}</span>
+                      <span className="inline-block text-xs sm:text-sm w-20 sm:w-24">
+                        {startTime}
+                      </span>
+                      -
+                      <span className="inline-block text-xs sm:text-sm w-20 sm:w-24 text-right">
+                        {endTime}
+                      </span>
                     </InputCheckboxField>
                     <span className="font-shapiro95_super_wide text-lg ml-4 -mt-1">${price}</span>
                     {reserved && (
