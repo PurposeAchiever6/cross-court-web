@@ -2,11 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import PropTypes from 'prop-types';
-import currency from 'currency.js';
 
 import { getUserProfile } from 'screens/my-account/reducer';
 import { ONE_TIME, RECURRING, UNLIMITED_VALUE } from 'screens/products/constants';
-import { productDiscount, creditsString } from 'screens/products/utils';
+import { productDiscount, creditsString, formatPrice } from 'screens/products/utils';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const ProductPlan = ({
@@ -20,12 +19,6 @@ const ProductPlan = ({
   const env = runtimeEnv();
 
   const currentUser = useSelector(getUserProfile);
-
-  const formatPrice = (price) =>
-    currency(price, {
-      formatWithSymbol: true,
-      precision: 0,
-    }).format();
 
   const unlimitedCreditsCancelFee = env.REACT_APP_UNLIMITED_CREDITS_CANCELED_OUT_OF_TIME_PRICE;
   const unlimitedHasNoLateCancellationFee = Number(unlimitedCreditsCancelFee) === 0;

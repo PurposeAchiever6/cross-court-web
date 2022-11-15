@@ -143,6 +143,7 @@ const ManageMembershipPage = () => {
             isOpen={showCancelModal}
             closeHandler={() => setShowCancelModal(false)}
             activeSubscription={activeSubscription}
+            setShowPauseModal={setShowPauseModal}
           />
           <PauseMembershipModal
             isOpen={showPauseModal}

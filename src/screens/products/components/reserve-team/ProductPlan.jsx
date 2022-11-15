@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import currency from 'currency.js';
 
 import { getUserProfile } from 'screens/my-account/reducer';
 import { RECURRING } from 'screens/products/constants';
-import { productDiscount } from 'screens/products/utils';
+import { productDiscount, formatPrice } from 'screens/products/utils';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const ProductPlan = ({
@@ -17,12 +16,6 @@ const ProductPlan = ({
   className,
 }) => {
   const currentUser = useSelector(getUserProfile);
-
-  const formatPrice = (price) =>
-    currency(price, {
-      formatWithSymbol: true,
-      precision: 0,
-    }).format();
 
   const isUnlimited = product.credits < 0;
   const price = formatPrice(product.priceForUser);

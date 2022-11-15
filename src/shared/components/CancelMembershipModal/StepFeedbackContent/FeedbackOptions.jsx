@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
+import { formatPrice } from 'screens/products/utils';
 import { MIN_PRODUCT_CREDITS, UNLIMITED_VALUE } from 'screens/products/constants';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
@@ -18,6 +19,8 @@ const FeedbackOptions = ({
   activeSubscription,
   error,
   closeModal,
+  products,
+  setShowPauseModal,
 }) => {
   const history = useHistory();
 
@@ -25,13 +28,16 @@ const FeedbackOptions = ({
     activeSubscription?.product?.credits > MIN_PRODUCT_CREDITS ||
     activeSubscription?.product?.credits === UNLIMITED_VALUE;
 
-  const purchaseSessionPassString = 'purchase 10 session credits for $240 (do not expire)';
+  const purchaseSeasonPassString = (product) =>
+    `purchase ${product.credits} session credits for ${formatPrice(
+      product.price
+    )} (do not expire). Note: Purchasing a Season Pass will automatically cancel your membership at the end of the current billing period.`;
 
-  const downgradeOrPurchaseSessionPassString = `Did you know you have the ability to ${
+  const downgradeOrPurchaseSeasonPassString = `Did you know you have the ability to ${
     canDowngrade ? 'downgrade or' : ''
-  } ${purchaseSessionPassString}?`;
+  } purchase a package of non-expiring credits?`;
 
-  const downgradeOrPauseOrPurchaseSessionPassString = `Did you know you have the ability to skip billing cycles, ${
+  const downgradeOrPauseOrPurchaseSeasonPassString = `Did you know you have the ability to skip billing cycles, ${
     canDowngrade ? 'downgrade your membership,' : ''
   } or purchase a package of non-expiring credits?`;
 
@@ -40,6 +46,35 @@ const FeedbackOptions = ({
       pathname: ROUTES.MEMBERSHIPS,
       state: { comesFromCancelModal: true },
     });
+  };
+
+  const seasonPassProducts = products.filter((product) => product?.seasonPass);
+
+  const buySeasonPassOptions = (
+    <>
+      {seasonPassProducts.map((product) => (
+        <div className="flex items-center mt-2">
+          <PrimaryButton px="0px" py="0px" onClick={handleBuySeasonPass}>
+            SELECT
+          </PrimaryButton>
+          <p className="ml-2 first-letter:capitalize">{purchaseSeasonPassString(product)}</p>
+        </div>
+      ))}
+    </>
+  );
+
+  const downgradeOption = canDowngrade && (
+    <div className="flex items-center mt-2">
+      <PrimaryButton px="0px" py="0px" to={ROUTES.MEMBERSHIPS}>
+        SELECT
+      </PrimaryButton>
+      <p className="ml-2">Downgrade membership</p>
+    </div>
+  );
+
+  const onPauseClick = () => {
+    closeModal();
+    setShowPauseModal(true);
   };
 
   return (
@@ -57,21 +92,9 @@ const FeedbackOptions = ({
         </InputCheckboxField>
         {reason === 'too-expensive' && (
           <div className="ml-10 text-xs">
-            <p>{downgradeOrPurchaseSessionPassString}</p>
-            {canDowngrade && (
-              <div className="flex items-center mt-2">
-                <PrimaryButton px="0px" py="0px" to={ROUTES.MEMBERSHIPS}>
-                  SELECT
-                </PrimaryButton>
-                <p className="ml-2">Downgrade membership</p>
-              </div>
-            )}
-            <div className="flex items-center mt-2">
-              <PrimaryButton px="0px" py="0px" onClick={handleBuySeasonPass}>
-                SELECT
-              </PrimaryButton>
-              <p className="ml-2 first-letter:capitalize">{purchaseSessionPassString}</p>
-            </div>
+            <p>{downgradeOrPurchaseSeasonPassString}</p>
+            {downgradeOption}
+            {buySeasonPassOptions}
             <InputTextareaField
               placeholder="Tell us more... (optional)"
               value={details}
@@ -100,12 +123,7 @@ const FeedbackOptions = ({
               Did you know you have the ability to purchase a package of non-expiring session
               credits?
             </p>
-            <div className="flex items-center mt-2">
-              <PrimaryButton px="0px" py="0px" onClick={handleBuySeasonPass}>
-                SELECT
-              </PrimaryButton>
-              <p className="ml-2 first-letter:capitalize">{purchaseSessionPassString}</p>
-            </div>
+            {buySeasonPassOptions}
             <InputTextareaField
               placeholder="Tell us more... (optional)"
               value={details}
@@ -158,27 +176,15 @@ const FeedbackOptions = ({
         </InputCheckboxField>
         {reason === 'live-far' && (
           <div className="ml-10 text-xs">
-            <p>{downgradeOrPauseOrPurchaseSessionPassString}</p>
-            {canDowngrade && (
-              <div className="flex items-center mt-2">
-                <PrimaryButton px="0px" py="0px" to={ROUTES.MEMBERSHIPS}>
-                  SELECT
-                </PrimaryButton>
-                <p className="ml-2">Downgrade membership</p>
-              </div>
-            )}
+            <p>{downgradeOrPauseOrPurchaseSeasonPassString}</p>
+            {downgradeOption}
             <div className="flex items-center mt-2">
-              <PrimaryButton px="0px" py="0px" onClick={closeModal}>
+              <PrimaryButton px="0px" py="0px" onClick={onPauseClick}>
                 SELECT
               </PrimaryButton>
               <p className="ml-2">Pause my membership for 1 or 2 months</p>
             </div>
-            <div className="flex items-center mt-2">
-              <PrimaryButton px="0px" py="0px" onClick={handleBuySeasonPass}>
-                SELECT
-              </PrimaryButton>
-              <p className="ml-2 first-letter:capitalize">{purchaseSessionPassString}</p>
-            </div>
+            {buySeasonPassOptions}
             <InputTextareaField
               placeholder="Tell us more... (optional)"
               value={details}
@@ -208,7 +214,7 @@ const FeedbackOptions = ({
               getting billed for another month.
             </p>
             <div className="flex items-center mt-2">
-              <PrimaryButton px="0px" py="0px" onClick={closeModal}>
+              <PrimaryButton px="0px" py="0px" onClick={onPauseClick}>
                 SELECT
               </PrimaryButton>
               <p className="ml-2">Pause my membership for 1 or 2 months</p>
@@ -237,19 +243,9 @@ const FeedbackOptions = ({
         </InputCheckboxField>
         {reason === 'no-time' && (
           <div className="ml-10 text-xs">
-            <p>{downgradeOrPauseOrPurchaseSessionPassString}</p>
-            <div className="flex items-center mt-2">
-              <PrimaryButton px="0px" py="0px" to={ROUTES.MEMBERSHIPS}>
-                SELECT
-              </PrimaryButton>
-              <p className="ml-2">Downgrade membership</p>
-            </div>
-            <div className="flex items-center mt-2">
-              <PrimaryButton px="0px" py="0px" onClick={handleBuySeasonPass}>
-                SELECT
-              </PrimaryButton>
-              <p className="ml-2 first-letter:capitalize">{purchaseSessionPassString}</p>
-            </div>
+            <p>{downgradeOrPauseOrPurchaseSeasonPassString}</p>
+            {downgradeOption}
+            {buySeasonPassOptions}
             <InputTextareaField
               placeholder="What times on which days work better for your schedule?"
               value={details}
@@ -281,12 +277,7 @@ const FeedbackOptions = ({
               <a href="mailto:ccteam@cross-court.com">ccteam@cross-court.com</a> with any concerns!
               Would you prefer our "Season Pass" option below?
             </p>
-            <div className="flex items-center mt-2">
-              <PrimaryButton px="0px" py="0px" onClick={handleBuySeasonPass}>
-                SELECT
-              </PrimaryButton>
-              <p className="ml-2 first-letter:capitalize">{purchaseSessionPassString}</p>
-            </div>
+            {buySeasonPassOptions}
           </div>
         )}
       </div>
@@ -348,6 +339,7 @@ FeedbackOptions.defaultProps = {
   activeSubscription: null,
   reason: null,
   details: null,
+  error: [],
 };
 
 FeedbackOptions.propTypes = {
@@ -356,6 +348,8 @@ FeedbackOptions.propTypes = {
   details: PropTypes.string,
   setDetails: PropTypes.func.isRequired,
   activeSubscription: PropTypes.shape(),
-  error: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  error: PropTypes.arrayOf(PropTypes.shape()),
   closeModal: PropTypes.func.isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  setShowPauseModal: PropTypes.func.isRequired,
 };

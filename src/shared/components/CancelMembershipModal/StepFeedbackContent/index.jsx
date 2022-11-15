@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Label from 'shared/components/Label';
 import StarsRate from 'shared/components/StarsRate';
 import { getUserProfile } from 'screens/my-account/reducer';
+import { getAvailableProducts } from 'screens/products/reducer';
+import { initialLoad as fetchProducts } from 'screens/products/actionCreators';
 import FeedbackOptions, { MANDATORY_DETAILS_REASONS } from './FeedbackOptions';
 
-const StepFeedbackContent = ({ createSubscriptionRequestCancellation, closeModal }) => {
+const StepFeedbackContent = ({
+  createSubscriptionRequestCancellation,
+  closeModal,
+  setShowPauseModal,
+}) => {
   const [errors, setErrors] = useState({});
   const [experiencieRate, setExperiencieRate] = useState(0);
   const [serviceRate, setServiceRate] = useState(0);
@@ -16,7 +22,14 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation, closeModal
   const [reason, setReason] = useState('');
   const [details, setDetails] = useState('');
 
+  const dispatch = useDispatch();
+
+  const products = useSelector(getAvailableProducts);
   const currentUser = useSelector(getUserProfile);
+
+  useEffect(() => {
+    if (products.length === 0) dispatch(fetchProducts());
+  }, [dispatch]);
 
   const validate = () => {
     const newErrors = {};
@@ -129,6 +142,8 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation, closeModal
         activeSubscription={currentUser?.activeSubscription}
         error={errors.reason}
         closeModal={closeModal}
+        products={products}
+        setShowPauseModal={setShowPauseModal}
       />
       <div className="text-center">
         <PrimaryButton onClick={onSubmit}>Submit Request</PrimaryButton>
@@ -140,6 +155,7 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation, closeModal
 StepFeedbackContent.propTypes = {
   createSubscriptionRequestCancellation: PropTypes.func.isRequired,
   closeModal: PropTypes.func.isRequired,
+  setShowPauseModal: PropTypes.func.isRequired,
 };
 
 export default StepFeedbackContent;

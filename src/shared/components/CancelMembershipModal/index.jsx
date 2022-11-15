@@ -13,7 +13,7 @@ const STEP_CONFIRMATION = 'confirmation';
 const STEP_CANCELED = 'canceled';
 const STEP_CANCELLATION_FEEDBACK = 'cancellation_feedback';
 
-const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => {
+const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription, setShowPauseModal }) => {
   const dispatch = useDispatch();
 
   const [step, setStep] = useState(STEP_ARE_YOU_SURE);
@@ -52,6 +52,7 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => 
             <StepFeedbackContent
               createSubscriptionRequestCancellation={createSubscriptionRequestCancellationHandler}
               closeModal={onClose}
+              setShowPauseModal={setShowPauseModal}
             />
           ),
         };
@@ -88,6 +89,7 @@ CancelMembershipModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
   activeSubscription: PropTypes.shape(),
+  setShowPauseModal: PropTypes.func.isRequired,
 };
 
 export default CancelMembershipModal;
