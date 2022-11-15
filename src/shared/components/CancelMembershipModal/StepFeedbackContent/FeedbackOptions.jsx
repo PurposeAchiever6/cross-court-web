@@ -275,7 +275,7 @@ const FeedbackOptions = ({
           Didn't know I signed up for a membership
         </InputCheckboxField>
         {reason === 'did-not-know-is-subscription' && (
-          <div className="ml-10 text-xs">
+          <div className="ml-10 mb-4 text-xs">
             <p>
               Sorry if we didn't make it clear! Please email us at{' '}
               <a href="mailto:ccteam@cross-court.com">ccteam@cross-court.com</a> with any concerns!
