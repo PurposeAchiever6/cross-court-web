@@ -53,8 +53,8 @@ const FeedbackOptions = ({
   const buySeasonPassOptions = (
     <>
       {seasonPassProducts.map((product) => (
-        <div className="flex items-center mt-2">
-          <PrimaryButton px="0px" py="0px" onClick={handleBuySeasonPass}>
+        <div key={product.id} className="flex items-center mt-2">
+          <PrimaryButton w="5rem" px="0px" py="0px" fontSize="11px" onClick={handleBuySeasonPass}>
             SELECT
           </PrimaryButton>
           <p className="ml-2 first-letter:capitalize">{purchaseSeasonPassString(product)}</p>
@@ -65,7 +65,7 @@ const FeedbackOptions = ({
 
   const downgradeOption = canDowngrade && (
     <div className="flex items-center mt-2">
-      <PrimaryButton px="0px" py="0px" to={ROUTES.MEMBERSHIPS}>
+      <PrimaryButton w="5rem" px="0px" py="0px" fontSize="11px" to={ROUTES.MEMBERSHIPS}>
         SELECT
       </PrimaryButton>
       <p className="ml-2">Downgrade membership</p>
@@ -179,7 +179,7 @@ const FeedbackOptions = ({
             <p>{downgradeOrPauseOrPurchaseSeasonPassString}</p>
             {downgradeOption}
             <div className="flex items-center mt-2">
-              <PrimaryButton px="0px" py="0px" onClick={onPauseClick}>
+              <PrimaryButton w="5rem" px="0px" py="0px" fontSize="11px" onClick={onPauseClick}>
                 SELECT
               </PrimaryButton>
               <p className="ml-2">Pause my membership for 1 or 2 months</p>
@@ -214,7 +214,7 @@ const FeedbackOptions = ({
               getting billed for another month.
             </p>
             <div className="flex items-center mt-2">
-              <PrimaryButton px="0px" py="0px" onClick={onPauseClick}>
+              <PrimaryButton w="5rem" px="0px" py="0px" fontSize="11px" onClick={onPauseClick}>
                 SELECT
               </PrimaryButton>
               <p className="ml-2">Pause my membership for 1 or 2 months</p>

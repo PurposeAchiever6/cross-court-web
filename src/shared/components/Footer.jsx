@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhoneSquare } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import CheeseburgerMenu from 'cheeseburger-menu';
 
@@ -208,6 +209,10 @@ const Footer = () => {
           >
             <FontAwesomeIcon icon={faInstagram} size="2x" />
           </a>
+          <div className="flex items-center mb-6">
+            <FontAwesomeIcon icon={faPhoneSquare} size="2x" className="mr-3" />
+            323 591 3916
+          </div>
           <Link
             className="w-max hover:opacity-60 transition-opacity duration-300 text-2xs"
             to={ROUTES.TERMS}

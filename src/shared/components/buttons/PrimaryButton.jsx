@@ -37,6 +37,7 @@ const StyledDiv = styled.div`
     position: relative;
     transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
     z-index: 1;
+    width: ${(props) => (props.w ? props.w : '')};
     :hover {
       background-color: ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
       color: ${(props) => (props.inverted ? colors.white : colors.brandPurple)};
