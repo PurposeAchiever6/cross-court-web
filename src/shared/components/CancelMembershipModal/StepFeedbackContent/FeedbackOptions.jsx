@@ -21,6 +21,7 @@ const FeedbackOptions = ({
   closeModal,
   products,
   setShowPauseModal,
+  className,
 }) => {
   const history = useHistory();
 
@@ -42,6 +43,7 @@ const FeedbackOptions = ({
   } or purchase a package of non-expiring credits?`;
 
   const handleBuySeasonPass = () => {
+    closeModal();
     history.push({
       pathname: ROUTES.MEMBERSHIPS,
       state: { comesFromCancelModal: true },
@@ -78,7 +80,7 @@ const FeedbackOptions = ({
   };
 
   return (
-    <>
+    <div className={className}>
       <div className="flex flex-col">
         <InputCheckboxField
           name="too-expensive"
@@ -329,7 +331,7 @@ const FeedbackOptions = ({
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
 
@@ -339,7 +341,8 @@ FeedbackOptions.defaultProps = {
   activeSubscription: null,
   reason: null,
   details: null,
-  error: [],
+  error: null,
+  className: '',
 };
 
 FeedbackOptions.propTypes = {
@@ -348,8 +351,9 @@ FeedbackOptions.propTypes = {
   details: PropTypes.string,
   setDetails: PropTypes.func.isRequired,
   activeSubscription: PropTypes.shape(),
-  error: PropTypes.arrayOf(PropTypes.shape()),
+  error: PropTypes.string,
   closeModal: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   setShowPauseModal: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };

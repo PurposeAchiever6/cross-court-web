@@ -89,6 +89,12 @@ const ProductsPage = () => {
     }
   }, [dispatch, showAnimation]);
 
+  useEffect(() => {
+    if (comesFromCancelModal) {
+      window.scrollTo({ top: 0 });
+    }
+  }, [comesFromCancelModal]);
+
   if (isLoading) {
     return <Loading />;
   }

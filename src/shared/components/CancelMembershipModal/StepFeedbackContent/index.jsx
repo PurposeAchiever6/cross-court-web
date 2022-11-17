@@ -19,7 +19,7 @@ const StepFeedbackContent = ({
   const [experiencieRate, setExperiencieRate] = useState(0);
   const [serviceRate, setServiceRate] = useState(0);
   const [recommendRate, setRecommendRate] = useState(0);
-  const [reason, setReason] = useState('');
+  const [reason, setReason] = useState(null);
   const [details, setDetails] = useState('');
 
   const dispatch = useDispatch();
@@ -43,8 +43,11 @@ const StepFeedbackContent = ({
     if (recommendRate === 0) {
       newErrors.recommendRate = true;
     }
+    if (!reason) {
+      newErrors.reason = true;
+    }
     if (MANDATORY_DETAILS_REASONS.includes(reason) && details.trim().length < 20) {
-      newErrors.reason = reason;
+      newErrors.reasonDetails = reason;
     }
 
     setErrors(newErrors);
@@ -134,16 +137,22 @@ const StepFeedbackContent = ({
           )}
         </div>
       </div>
+      {errors.reason && (
+        <div className="font-shapiro45_welter_extd text-xs text-red-500 mb-4">
+          Please select at least one reason from the list below
+        </div>
+      )}
       <FeedbackOptions
         onChangeReason={onChangeReason}
         reason={reason}
         details={details}
         setDetails={setDetails}
         activeSubscription={currentUser?.activeSubscription}
-        error={errors.reason}
+        error={errors.reasonDetails}
         closeModal={closeModal}
         products={products}
         setShowPauseModal={setShowPauseModal}
+        className="mb-5"
       />
       <div className="text-center">
         <PrimaryButton onClick={onSubmit}>Submit Request</PrimaryButton>
