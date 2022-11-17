@@ -31,12 +31,15 @@ import {
 } from './actionTypes';
 import { RESERVE_SESSION_INIT } from '../sessions/actionTypes';
 import checkoutService from './service';
+import productsService from '../products/service';
 
 export function* createPurchaseFlow({ payload }) {
   try {
     const selectedProduct = yield select(getSelectedProduct);
     const selectedCard = yield select(getSelectedCard);
     const promoCode = yield select(getPromoCode);
+    const userProfile = yield select(getUserProfile);
+    const { activeSubscription } = userProfile;
     const { useCcCash } = payload;
 
     yield call(
@@ -46,6 +49,11 @@ export function* createPurchaseFlow({ payload }) {
       promoCode,
       useCcCash
     );
+
+    if (activeSubscription?.id && selectedProduct.seasonPass) {
+      yield call(productsService.cancelSubscription, activeSubscription.id);
+    }
+
     yield put({ type: CREATE_PURCHASE_SUCCESS });
     yield put({ type: GET_PROFILE_INIT });
     yield put(push(ROUTES.CHECKOUT_CONFIRMED));

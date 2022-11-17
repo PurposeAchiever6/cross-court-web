@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -21,6 +22,7 @@ import Memberships from './components/Memberships';
 import ReserveTeamMemberships from './components/reserve-team/Memberships';
 import ReserveTeamMembershipsFeatures from './components/reserve-team/MembershipsFeatures';
 import DropIns from './components/DropIns';
+import SeasonPass from './components/SeasonPass';
 import FAQ from './components/FAQ';
 import NoSessionCredits from './components/NoSessionCredits';
 import NoFreeSessionInformationModal from './components/NoFreeSessionInformationModal';
@@ -38,6 +40,7 @@ const ProductsPage = () => {
 
   const showNoFreeSessionInformation = state?.showNoFreeSessionInformation;
   const showAnimation = state?.showNoCreditsAnimation;
+  const comesFromCancelModal = state?.comesFromCancelModal;
 
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [watchVideo, setWatchVideo] = useState(false);
@@ -86,6 +89,12 @@ const ProductsPage = () => {
     }
   }, [dispatch, showAnimation]);
 
+  useEffect(() => {
+    if (comesFromCancelModal) {
+      window.scrollTo({ top: 0 });
+    }
+  }, [comesFromCancelModal]);
+
   if (isLoading) {
     return <Loading />;
   }
@@ -95,38 +104,44 @@ const ProductsPage = () => {
       <div className="bg-cc-black pt-16 pb-10">
         {showAnimation && <NoSessionCredits />}
         <div className="flex flex-col lg:flex-row p-4">
-          <DropIns
-            selectProductHandler={selectProductHandler}
-            cancelMembership={cancelMembership}
-            availableProducts={availableProducts}
-            reactivateMembership={reactivateMembership}
-          />
-          {reserveTeam ? (
-            <ReserveTeamMemberships
-              onSubmit={onSubmit}
+          {comesFromCancelModal ? (
+            <SeasonPass
+              selectProductHandler={selectProductHandler}
               availableProducts={availableProducts}
-              activeSubscription={activeSubscription}
-              getSubmitText={getSubmitText}
             />
           ) : (
-            <Memberships
-              onSubmit={onSubmit}
-              availableProducts={availableProducts}
-              activeSubscription={activeSubscription}
-              getSubmitText={getSubmitText}
-            />
+            <>
+              <DropIns
+                selectProductHandler={selectProductHandler}
+                availableProducts={availableProducts}
+              />
+              {reserveTeam ? (
+                <ReserveTeamMemberships
+                  onSubmit={onSubmit}
+                  availableProducts={availableProducts}
+                  activeSubscription={activeSubscription}
+                  getSubmitText={getSubmitText}
+                />
+              ) : (
+                <Memberships
+                  onSubmit={onSubmit}
+                  availableProducts={availableProducts}
+                  activeSubscription={activeSubscription}
+                  getSubmitText={getSubmitText}
+                />
+              )}
+            </>
           )}
         </div>
-        {reserveTeam ? (
-          <ReserveTeamMembershipsFeatures setWatchVideo={setWatchVideo} />
-        ) : (
-          <MembershipsFeatures setWatchSkillsVideo={setWatchVideo} />
+        {!comesFromCancelModal && (
+          <>
+            {reserveTeam ? (
+              <ReserveTeamMembershipsFeatures setWatchVideo={setWatchVideo} />
+            ) : (
+              <MembershipsFeatures setWatchSkillsVideo={setWatchVideo} />
+            )}
+          </>
         )}
-        <div className="w-full flex justify-center mb-16">
-          <h2 className="dharma_gothic_cheavy_italic text-6xl lg:text-8xl text-cc-purple">
-            HAVE A QUESTION? REACH OUT BELOW
-          </h2>
-        </div>
         <FAQ />
       </div>
       <CancelMembershipModal

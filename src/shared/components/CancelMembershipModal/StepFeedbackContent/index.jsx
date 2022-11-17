@@ -1,17 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
 
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Label from 'shared/components/Label';
-import InputTextareaField from 'shared/components/InputTextareaField';
 import StarsRate from 'shared/components/StarsRate';
+import { getUserProfile } from 'screens/my-account/reducer';
+import { getAvailableProducts } from 'screens/products/reducer';
+import { initialLoad as fetchProducts } from 'screens/products/actionCreators';
+import FeedbackOptions, { MANDATORY_DETAILS_REASONS } from './FeedbackOptions';
 
-const StepFeedbackContent = ({ createSubscriptionRequestCancellation }) => {
+const StepFeedbackContent = ({
+  createSubscriptionRequestCancellation,
+  closeModal,
+  setShowPauseModal,
+}) => {
   const [errors, setErrors] = useState({});
   const [experiencieRate, setExperiencieRate] = useState(0);
   const [serviceRate, setServiceRate] = useState(0);
   const [recommendRate, setRecommendRate] = useState(0);
-  const [reason, setReason] = useState('');
+  const [reason, setReason] = useState(null);
+  const [details, setDetails] = useState('');
+
+  const dispatch = useDispatch();
+
+  const products = useSelector(getAvailableProducts);
+  const currentUser = useSelector(getUserProfile);
+
+  useEffect(() => {
+    if (products.length === 0) dispatch(fetchProducts());
+  }, [dispatch]);
 
   const validate = () => {
     const newErrors = {};
@@ -25,8 +43,11 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation }) => {
     if (recommendRate === 0) {
       newErrors.recommendRate = true;
     }
-    if (reason.trim().length < 20) {
+    if (!reason) {
       newErrors.reason = true;
+    }
+    if (MANDATORY_DETAILS_REASONS.includes(reason) && details.trim().length < 20) {
+      newErrors.reasonDetails = reason;
     }
 
     setErrors(newErrors);
@@ -40,20 +61,28 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation }) => {
         experiencieRate,
         serviceRate,
         recommendRate,
-        reason,
+        reason: `${reason}${details.length > 0 ? ` - ${details}` : ''}`,
       });
     }
   };
 
+  const onChangeReason = (e) => {
+    const { checked, id: value } = e.target;
+    setReason(checked ? value : null);
+    setErrors({});
+  };
+
   return (
-    <div className="text-sm">
-      <p className="mb-5">
+    <div>
+      <p className="text-sm mb-5">
         Please share your reason(s) for cancelling, to help make Crosscourt better.
       </p>
       <div className="flex flex-wrap justify-between mb-5">
         <div className="w-full md:w-auto">
-          <Label>Overall experience</Label>
-          <div>How was your time as a member?</div>
+          <Label color="purple" className="uppercase">
+            Overall experience
+          </Label>
+          <div className="text-sm">How was your time as a member?</div>
         </div>
         <div>
           <StarsRate
@@ -70,8 +99,10 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation }) => {
       </div>
       <div className="flex flex-wrap justify-between mb-5">
         <div className="w-full md:w-auto">
-          <Label>Service as described</Label>
-          <div>Did the experience meet expectations?</div>
+          <Label color="purple" className="uppercase">
+            Service as described
+          </Label>
+          <div className="text-sm">Did the experience meet expectations?</div>
         </div>
         <div>
           <StarsRate
@@ -86,10 +117,12 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation }) => {
           )}
         </div>
       </div>
-      <div className="flex flex-wrap justify-between mb-5">
+      <div className="flex flex-wrap justify-between mb-8">
         <div className="w-full md:w-auto">
-          <Label>Join again or recommend</Label>
-          <div>Would you recommend CC to a friend?</div>
+          <Label color="purple" className="uppercase">
+            Join again or recommend
+          </Label>
+          <div className="text-sm">Would you recommend CC to a friend?</div>
         </div>
         <div>
           <StarsRate
@@ -104,18 +137,23 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation }) => {
           )}
         </div>
       </div>
-      <div>
-        <Label className="mb-1">What is the primary reason(s) for cancelling?</Label>
-        <InputTextareaField
-          placeholder="Share as many details as you can to help us improve Crosscourt"
-          value={reason}
-          onChange={(e) => setReason(e.target.value)}
-          hint="Please include at least 20 characters"
-          error={errors.reason}
-          className="mb-6"
-          formik={false}
-        />
-      </div>
+      {errors.reason && (
+        <div className="font-shapiro45_welter_extd text-xs text-red-500 mb-4">
+          Please select at least one reason from the list below
+        </div>
+      )}
+      <FeedbackOptions
+        onChangeReason={onChangeReason}
+        reason={reason}
+        details={details}
+        setDetails={setDetails}
+        activeSubscription={currentUser?.activeSubscription}
+        error={errors.reasonDetails}
+        closeModal={closeModal}
+        products={products}
+        setShowPauseModal={setShowPauseModal}
+        className="mb-5"
+      />
       <div className="text-center">
         <PrimaryButton onClick={onSubmit}>Submit Request</PrimaryButton>
       </div>
@@ -125,6 +163,8 @@ const StepFeedbackContent = ({ createSubscriptionRequestCancellation }) => {
 
 StepFeedbackContent.propTypes = {
   createSubscriptionRequestCancellation: PropTypes.func.isRequired,
+  closeModal: PropTypes.func.isRequired,
+  setShowPauseModal: PropTypes.func.isRequired,
 };
 
 export default StepFeedbackContent;

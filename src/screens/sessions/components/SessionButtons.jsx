@@ -7,9 +7,10 @@ import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import SessionWarningInfo from 'shared/components/SessionWarningInfo';
 import { formatShareSessionDate, formatShareSessionTime } from 'shared/utils/date';
 import { userHasCreditsForSession } from 'shared/utils/user';
-import { reserveTeamReservationAllowed } from 'shared/utils/sessions';
+import { sessionReservationInfo } from 'shared/utils/sessions';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionDate } from 'screens/sessions/reducer';
@@ -30,7 +31,6 @@ const SessionButtons = ({
   showCancelModalAction,
   signupBookSessionAction,
   createAndReserveFreeSessionHandler,
-  disabled,
   setShowAddGuestModal,
 }) => {
   const history = useHistory();
@@ -40,32 +40,23 @@ const SessionButtons = ({
   const userProfile = useSelector(getUserProfile);
   const sessionDate = useSelector(getSessionDate);
 
-  const { activeSubscription, reserveTeam } = userProfile;
+  const { activeSubscription } = userProfile;
   const subscriptionPaused = activeSubscription?.paused;
 
-  const { isOpenClub, past, time, reservationsCount, isPrivate, onWaitlist } = session;
-
-  const reserveTeamAllowed = reserveTeamReservationAllowed({
-    sessionTime: time,
-    sessionDate,
-    reservationsCount,
-    isOpenClub,
-    past,
-    isReserveTeam: reserveTeam,
-    isPrivate,
-  });
+  const { past, time, onWaitlist } = session;
 
   const guestsAllowed = sessionGuestsAllowed(session);
 
-  const reserveTeamNotAllowed = reserveTeam ? !reserveTeamAllowed : false;
-
-  const reservationDisabled = disabled || subscriptionPaused || reserveTeamNotAllowed;
+  const { disabled: disabledReservation } = sessionReservationInfo(session, userProfile);
+  const reservationDisabled = disabledReservation || subscriptionPaused;
 
   const [copied, setCopied] = useState(false);
 
   const reservedOrConfirmed =
     (session?.userSession && ['reserved', 'confirmed'].includes(session.userSession.state)) ||
     false;
+
+  const shootingMachineReservation = session?.userSession?.shootingMachineReservation;
 
   const copyShareInfoToClipboard = () => {
     const input = document.createElement('input');
@@ -101,16 +92,11 @@ const SessionButtons = ({
 
   return (
     <div className="flex flex-col items-center">
-      {(past || (session?.full && !reservedOrConfirmed)) && (
-        <PrimaryButton
-          className="mb-4"
-          onClick={() => history.push(ROUTES.LOCATIONS)}
-          disabled={disabled}
-        >
+      {past ? (
+        <PrimaryButton className="mb-4" onClick={() => history.push(ROUTES.LOCATIONS)}>
           FIND NEW SESSION
         </PrimaryButton>
-      )}
-      {!past && (
+      ) : (
         <>
           <ReserveButton
             reserveSessionAction={reserveSessionAction}
@@ -120,27 +106,19 @@ const SessionButtons = ({
             createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
             disabled={reservationDisabled}
           />
-          {subscriptionPaused && (
-            <p className="text-sm mt-4">
-              You can't reserve when your <br /> membership is paused
-            </p>
-          )}
-          {reserveTeamNotAllowed && !reservedOrConfirmed && !onWaitlist && (
-            <p className="text-sm mt-4">Reserve team restricted</p>
-          )}
           {isAuthenticated && (
             <>
               {onWaitlist && (
-                <PrimaryButton
-                  onClick={onClickRemoveFromWaitlist}
-                  className="mb-4"
-                  disabled={disabled}
-                >
+                <PrimaryButton onClick={onClickRemoveFromWaitlist} className="mb-4">
                   OUT WAITLIST
                 </PrimaryButton>
               )}
               {session?.full && !onWaitlist && !reservedOrConfirmed && (
-                <PrimaryButton onClick={onClickJoinWaitlist} className="mb-4" disabled={disabled}>
+                <PrimaryButton
+                  onClick={onClickJoinWaitlist}
+                  className="mb-4"
+                  disabled={reservationDisabled}
+                >
                   JOIN WAITLIST
                 </PrimaryButton>
               )}
@@ -155,16 +133,26 @@ const SessionButtons = ({
                   </PrimaryButton>
                 ))}
               {reservedOrConfirmed && <CancelButton modalToggler={showCancelModalAction} />}
+              {subscriptionPaused && (
+                <div className="text-sm">
+                  You can't reserve when your <br /> membership is paused
+                </div>
+              )}
+              {!subscriptionPaused && (
+                <SessionWarningInfo session={session} userProfile={userProfile} />
+              )}
+              {shootingMachineReservation && (
+                <div className="text-sm">
+                  You have reserved a shooting machine from {shootingMachineReservation.startTime}{' '}
+                  to {shootingMachineReservation.endTime}
+                </div>
+              )}
             </>
           )}
         </>
       )}
     </div>
   );
-};
-
-SessionButtons.defaultProps = {
-  disabled: false,
 };
 
 SessionButtons.propTypes = {
@@ -174,7 +162,6 @@ SessionButtons.propTypes = {
   signupBookSessionAction: PropTypes.func.isRequired,
   createAndReserveFreeSessionHandler: PropTypes.func.isRequired,
   session: PropTypes.object.isRequired,
-  disabled: PropTypes.bool,
   setShowAddGuestModal: PropTypes.func.isRequired,
 };
 

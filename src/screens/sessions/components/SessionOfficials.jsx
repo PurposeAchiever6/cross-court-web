@@ -28,7 +28,7 @@ const SessionOfficials = ({ sessionInfo }) => (
         )}
 
         <span className="capitalize font-medium">
-          {sessionInfo.sem.name ? sessionInfo.sem.name : 'NOT ASSIGNED'}
+          {sessionInfo.sem.fullName ? sessionInfo.sem.fullName : 'NOT ASSIGNED'}
         </span>
       </div>
       <div className="flex flex-col mb-8 justify-center items-center">
@@ -44,7 +44,7 @@ const SessionOfficials = ({ sessionInfo }) => (
           </div>
         )}
         <span className="capitalize font-medium">
-          {sessionInfo.referee.name ? sessionInfo.referee.name : 'NOT ASSIGNED'}
+          {sessionInfo.referee.fullName ? sessionInfo.referee.fullName : 'NOT ASSIGNED'}
         </span>
       </div>
     </div>

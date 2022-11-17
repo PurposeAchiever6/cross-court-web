@@ -14,7 +14,9 @@ const Modal = ({
   isOpen,
   closeHandler,
   title,
+  titleClasses,
   subtitle,
+  subtitleClasses,
   lockScroll,
   showCloseButton,
   closeOnOverlayClick,
@@ -94,7 +96,7 @@ const Modal = ({
         )}
         {title && (
           <h2
-            className={`font-shapiro95_super_wide text-lg sm:text-2xl text-center uppercase ${
+            className={`font-shapiro95_super_wide text-lg sm:text-2xl text-center uppercase ${titleClasses} ${
               subtitle ? 'mb-1' : 'mb-6'
             } ${dark ? 'text-white' : ''}`}
           >
@@ -103,7 +105,7 @@ const Modal = ({
         )}
         {subtitle && (
           <h3
-            className={`font-shapiro95_super_wide text-sm sm:text-base text-center uppercase mb-6 ${
+            className={`font-shapiro95_super_wide text-sm sm:text-base text-center uppercase mb-6 ${subtitleClasses} ${
               dark ? 'text-white' : ''
             }`}
           >
@@ -119,7 +121,9 @@ const Modal = ({
 Modal.defaultProps = {
   closeHandler: () => null,
   title: null,
+  titleClasses: '',
   subtitle: null,
+  subtitleClasses: '',
   lockScroll: true,
   showCloseButton: true,
   closeOnOverlayClick: true,
@@ -133,7 +137,9 @@ Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func,
   title: PropTypes.string,
+  titleClasses: PropTypes.string,
   subtitle: PropTypes.string,
+  subtitleClasses: PropTypes.string,
   lockScroll: PropTypes.bool,
   showCloseButton: PropTypes.bool,
   closeOnOverlayClick: PropTypes.bool,

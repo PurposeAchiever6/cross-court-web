@@ -2,10 +2,11 @@ import React from 'react';
 import { number, bool, object } from 'prop-types';
 import styled from 'styled-components';
 
-import { ZERO_SKLZ_CREDITS_NOTICE } from 'screens/my-account/constants';
 import ROUTES from 'shared/constants/routes';
 import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Badge from 'shared/components/Badge';
+import { ZERO_SKLZ_CREDITS_NOTICE } from 'screens/my-account/constants';
 
 const MyCreditsContainer = styled.div`
   padding: 1rem;
@@ -41,7 +42,7 @@ const MyCredits = ({
 
   return (
     <MyCreditsContainer>
-      <div className="text-center pt-4 mb-16">
+      <div className="text-center pt-4 mb-10">
         {isUnlimited ? (
           <span className="sessions-left">
             UNLIMITED
@@ -107,6 +108,11 @@ const MyCredits = ({
                   )} - ${subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}`}
                 </div>
               </div>
+              {activeSubscription.canceled && (
+                <Badge variant="black" size="sm" className="inline-block uppercase mt-8 py-2">
+                  Canceled at end of billing period
+                </Badge>
+              )}
             </div>
           </>
         )}

@@ -92,7 +92,8 @@ export function* reserveSessionFlow({ payload }) {
       payload.sessionId,
       payload.date,
       payload.referralCode,
-      payload.goal
+      payload.goal,
+      payload.shootingMachineId
     );
     yield put({
       type: RESERVE_SESSION_SUCCESS,

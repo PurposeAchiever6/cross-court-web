@@ -23,10 +23,10 @@ const validationSchema = Yup.object().shape({
 
 const AddGuestStep = ({ sessionInformation, onGuestAdded }) => (
   <div className="flex flex-col">
-    <div className="flex justify-between px-4">
+    <div className="flex justify-between -mx-1">
       {sessionInformation.map((info, i) => (
-        <div className="flex flex-col" key={`modal-info-${i}`}>
-          <p className="uppercase font-shapiro95_super_wide">{info.title}</p>
+        <div className="px-1" key={`modal-info-${i}`}>
+          <p className="uppercase font-shapiro95_super_wide text-sm">{info.title}</p>
           <p className="uppercase font-shapiro45_welter_extd text-xs">{info.value}</p>
         </div>
       ))}

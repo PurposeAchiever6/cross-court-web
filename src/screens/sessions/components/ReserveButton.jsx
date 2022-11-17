@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
 import { hasConfirmCodeOfConduct } from 'shared/utils/codeOfConduct';
-import { isPast } from 'shared/utils/date';
 import {
   isUserInFirstSessionFlow,
   isUserInFirstFreeSessionFlow,
@@ -17,13 +16,11 @@ import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSelectedCard } from 'screens/payment-methods/reducer';
-import { getSessionDate } from 'screens/sessions/reducer';
 import { initialLoadInit } from 'screens/payment-methods/actionCreators';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import CodeOfConductModal from 'screens/sessions/components/modals/CodeOfConductModal';
 import FirstTimersInformationModal from 'screens/sessions/components/modals/FirstTimersInformationModal';
-import OpenClubNonMembersModal from 'screens/sessions/components/modals/OpenClubNonMembersModal';
 import OpenClubGoalsModal from 'screens/sessions/components/modals/OpenClubGoalsModal';
 
 import { WOMEN_SESSION_TOOLTIP } from 'shared/constants/sessions';
@@ -43,19 +40,17 @@ const ReserveButton = ({
   const history = useHistory();
 
   const isAuthenticated = useSelector(getIsAuthenticated);
-  const sessionDate = useSelector(getSessionDate);
   const userProfile = useSelector(getUserProfile);
   const selectedCard = useSelector(getSelectedCard);
 
   const [showCodeOfConductModal, setShowCodeOfConductModal] = useState(false);
   const [showFirstTimersInformationModal, setShowFirstTimersInformationModal] = useState(false);
-  const [showOpenClubNonMembersModal, setShowOpenClubNonMembersModal] = useState(false);
   const [showOpenClubGoalsModal, setShowOpenClubGoalsModal] = useState(false);
   const [openClubGoal, setOpenClubGoal] = useState(null);
+  const [shootingMachineId, setShootingMachineId] = useState(null);
 
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
   const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(userProfile);
-  const userHasActiveSubscription = !!userProfile.activeSubscription;
 
   useEffect(() => {
     dispatch(initialLoadInit());
@@ -82,16 +77,11 @@ const ReserveButton = ({
     }
 
     isFirstFreeSessionFlow
-      ? createAndReserveFreeSessionHandler({ goal: openClubGoal })
-      : reserveSessionAction({ goal: openClubGoal });
+      ? createAndReserveFreeSessionHandler({ goal: openClubGoal, shootingMachineId })
+      : reserveSessionAction({ goal: openClubGoal, shootingMachineId });
   };
 
   const reservationHandler = () => {
-    if (!userHasActiveSubscription && session.isOpenClub) {
-      setShowOpenClubNonMembersModal(true);
-      return;
-    }
-
     if (!selectedCard && isFirstFreeSessionFlow) {
       window.localStorage.setItem('redirect', window.location.pathname);
       history.push(ROUTES.PAYMENT_METHODS_SELECT);
@@ -139,18 +129,19 @@ const ReserveButton = ({
           <Tooltip
             variant="black"
             place="top"
-            enable={session?.womenOnly}
+            enable={!disabled && session?.womenOnly}
             tooltip={WOMEN_SESSION_TOOLTIP}
           >
             <PrimaryButton
               id="session-confirm-reservation"
               onClick={reservationHandler}
-              disabled={disabled || isPast(sessionDate)}
+              disabled={disabled}
+              className="mb-4"
             >
               CONFIRM RESERVATION
             </PrimaryButton>
           </Tooltip>
-          {session?.womenOnly && (
+          {!disabled && session?.womenOnly && (
             <p className="text-xs md:hidden mt-8 px-8">{WOMEN_SESSION_TOOLTIP}</p>
           )}
           <OnboardingTour
@@ -174,10 +165,6 @@ const ReserveButton = ({
               },
             ]}
           />
-          <OpenClubNonMembersModal
-            isOpen={showOpenClubNonMembersModal}
-            closeHandler={() => setShowOpenClubNonMembersModal(false)}
-          />
           <CodeOfConductModal
             isOpen={showCodeOfConductModal}
             closeHandler={() => setShowCodeOfConductModal(false)}
@@ -189,6 +176,9 @@ const ReserveButton = ({
             onConfirm={onConfirmOpenClubGoal}
             openClubGoal={openClubGoal}
             setOpenClubGoal={setOpenClubGoal}
+            shootingMachines={session.shootingMachines}
+            shootingMachineId={shootingMachineId}
+            setShootingMachineId={setShootingMachineId}
           />
           <FirstTimersInformationModal
             isOpen={showFirstTimersInformationModal}

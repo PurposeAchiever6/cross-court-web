@@ -1,21 +1,20 @@
+import React from 'react';
 import dayjs from 'dayjs';
 
-export const reserveTeamReservationAllowed = ({
-  sessionTime,
-  sessionDate,
-  reservationsCount,
-  isOpenClub,
-  past,
-  isReserveTeam,
-  isPrivate,
-}) => {
-  if (isOpenClub || past || !isReserveTeam || isPrivate) {
+import { formatSessionDate } from 'shared/utils/date';
+import { isUserInLegalAge, userOutsideOfSessionSkillLevel } from 'shared/utils/user';
+
+export const reserveTeamReservationAllowed = (session) => {
+  const { startTime, time, past, isPrivate, isOpenClub, reservationsCount } = session;
+  const sessionDate = formatSessionDate(startTime);
+
+  if (isOpenClub || past || isPrivate) {
     return true;
   }
 
   const currentDate = dayjs().toDate();
   const formatedSessionDate = dayjs(
-    `${sessionDate} ${sessionTime.split('T')[1].split('Z')[0]}`,
+    `${sessionDate} ${time.split('T')[1].split('Z')[0]}`,
     'MM/DD/YY HH:MM:SS'
   ).toDate();
 
@@ -34,4 +33,56 @@ export const reserveTeamReservationAllowed = ({
   }
 
   return false;
+};
+
+export const sessionReservationInfo = (session, userProfile) => {
+  const userHasLegalAge = isUserInLegalAge(userProfile);
+  const { full, spotsLeft, reserved, past, onWaitlist, skillLevel, isOpenClub, comingSoon } =
+    session;
+
+  if (comingSoon || reserved || past || onWaitlist) {
+    return { disabled: false };
+  }
+
+  if (!userHasLegalAge) {
+    return { disabled: true, warning: 'Must be 18+' };
+  }
+
+  if (isOpenClub) {
+    if (!userProfile.activeSubscription) {
+      return { disabled: true, warning: 'Members only' };
+    }
+
+    return { disabled: false };
+  }
+
+  if (!userProfile.activeSubscription && session.membersOnly) {
+    return { disabled: true, warning: 'Members only' };
+  }
+
+  if (userProfile.reserveTeam && !reserveTeamReservationAllowed(session)) {
+    return {
+      disabled: true,
+      warning: (
+        <>
+          Reserve team <br />
+          restricted
+        </>
+      ),
+    };
+  }
+
+  if (!session.allSkillLevelsAllowed && userOutsideOfSessionSkillLevel(userProfile, session)) {
+    return { disabled: true, warning: skillLevel?.name };
+  }
+
+  if (full) {
+    return { disabled: false, warning: 'Session full' };
+  }
+
+  if (spotsLeft <= 5) {
+    return { disabled: false, warning: 'Few spots left' };
+  }
+
+  return { disabled: false };
 };

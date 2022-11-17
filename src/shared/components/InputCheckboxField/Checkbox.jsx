@@ -40,6 +40,7 @@ const CheckboxInputContainer = styled.div`
       height: 1.35em;
       border-radius: 9999px;
       border: 1px solid currentColor;
+      margin-right: 0.03em;
 
       &::before {
         width: 0.95em;

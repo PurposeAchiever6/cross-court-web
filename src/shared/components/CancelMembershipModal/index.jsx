@@ -13,7 +13,7 @@ const STEP_CONFIRMATION = 'confirmation';
 const STEP_CANCELED = 'canceled';
 const STEP_CANCELLATION_FEEDBACK = 'cancellation_feedback';
 
-const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => {
+const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription, setShowPauseModal }) => {
   const dispatch = useDispatch();
 
   const [step, setStep] = useState(STEP_ARE_YOU_SURE);
@@ -44,12 +44,15 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => 
         };
       case STEP_CANCELLATION_FEEDBACK:
         return {
-          title: 'Submit Request for Cancellation',
+          title: 'Submit Request for cancellation',
           subtitle: 'Feedback',
+          subtitleClasses: 'text-cc-purple',
           size: 'xl',
           content: (
             <StepFeedbackContent
               createSubscriptionRequestCancellation={createSubscriptionRequestCancellationHandler}
+              closeModal={onClose}
+              setShowPauseModal={setShowPauseModal}
             />
           ),
         };
@@ -72,8 +75,10 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription }) => 
       isOpen={isOpen}
       closeHandler={onClose}
       title={modalData.title}
+      titleClasses={modalData.titleClasses}
       size={modalData.size}
       subtitle={modalData.subtitle}
+      subtitleClasses={modalData.subtitleClasses}
     >
       {modalData.content}
     </Modal>
@@ -84,6 +89,7 @@ CancelMembershipModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
   activeSubscription: PropTypes.shape(),
+  setShowPauseModal: PropTypes.func.isRequired,
 };
 
 export default CancelMembershipModal;

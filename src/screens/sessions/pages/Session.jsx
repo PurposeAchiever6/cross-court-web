@@ -4,12 +4,9 @@ import { Redirect, useParams } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
-
-import { isUserInFirstSessionFlow, isUserInLegalAge } from 'shared/utils/user';
-
+import { isUserInFirstSessionFlow } from 'shared/utils/user';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-
 import Carousel from 'shared/components/Carousel';
 import { resetLoading, removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
@@ -32,7 +29,6 @@ import SessionHeader from 'screens/sessions/components/SessionHeader';
 import SessionButtons from 'screens/sessions/components/SessionButtons';
 import SessionOfficials from 'screens/sessions/components/SessionOfficials';
 import SklzCoaches from 'screens/sessions/components/SklzCoaches';
-import LegalAgeWarning from 'screens/sessions/components/LegalAgeWarning';
 
 import OpenClub, { SKLZ_IMAGES } from 'screens/sessions/components/open-club/Content';
 import HowOpenClubWorks from 'screens/sessions/components/open-club/HowOpenClubWorks';
@@ -49,7 +45,6 @@ const Session = () => {
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
   const referralCode = window.localStorage.getItem('referralCode');
 
-  const isLegalAge = isUserInLegalAge(userProfile);
   const { isOpenClub, skillSession } = sessionInfo;
   const normalSession = !isOpenClub && !skillSession;
 
@@ -148,14 +143,8 @@ const Session = () => {
                   showCancelModalAction={showCancelModalAction}
                   signupBookSessionAction={signupBookSessionAction}
                   createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
-                  disabled={!isLegalAge}
                   setShowAddGuestModal={setShowAddGuestModal}
                 />
-                {(normalSession || skillSession) && !isLegalAge && (
-                  <div className="inline-block mx-auto">
-                    <LegalAgeWarning />
-                  </div>
-                )}
               </div>
             </div>
           </div>

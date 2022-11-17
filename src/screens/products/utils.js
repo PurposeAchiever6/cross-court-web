@@ -1,3 +1,4 @@
+import currency from 'currency.js';
 import { ONE_TIME, UNLIMITED_VALUE } from 'screens/products/constants';
 
 export const productDiscount = (product, user) => {
@@ -33,3 +34,9 @@ export const productDiscount = (product, user) => {
 };
 
 export const creditsString = (credits) => (credits === UNLIMITED_VALUE ? 'Unlimited' : credits);
+
+export const formatPrice = (price) =>
+  currency(price, {
+    formatWithSymbol: true,
+    precision: 0,
+  }).format();

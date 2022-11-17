@@ -47,7 +47,7 @@ const AddGuestModal = ({ userSessionId, showAddGuestModal, setShowAddGuestModal 
           title: 'Success!',
           subtitle: `${guestName} added to session!`,
           size: 'xl',
-          content: <GuestAddedStep />,
+          content: <GuestAddedStep onDone={onClose} />,
         };
       default:
         return {
