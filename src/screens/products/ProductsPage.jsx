@@ -23,6 +23,7 @@ import ReserveTeamMemberships from './components/reserve-team/Memberships';
 import ReserveTeamMembershipsFeatures from './components/reserve-team/MembershipsFeatures';
 import DropIns from './components/DropIns';
 import SeasonPass from './components/SeasonPass';
+import Scoutings from './components/Scoutings';
 import FAQ from './components/FAQ';
 import NoSessionCredits from './components/NoSessionCredits';
 import NoFreeSessionInformationModal from './components/NoFreeSessionInformationModal';
@@ -41,12 +42,15 @@ const ProductsPage = () => {
   const showNoFreeSessionInformation = state?.showNoFreeSessionInformation;
   const showAnimation = state?.showNoCreditsAnimation;
   const comesFromCancelModal = state?.comesFromCancelModal;
+  const showScouting = state?.showScouting;
 
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [watchVideo, setWatchVideo] = useState(false);
   const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
     !!showNoFreeSessionInformation
   );
+
+  const showMemberships = !comesFromCancelModal && !showScouting;
 
   const selectProductHandler = (product) => {
     dispatch(setSelectedProduct(product));
@@ -104,12 +108,19 @@ const ProductsPage = () => {
       <div className="bg-cc-black pt-16 pb-10">
         {showAnimation && <NoSessionCredits />}
         <div className="flex flex-col lg:flex-row p-4">
-          {comesFromCancelModal ? (
+          {comesFromCancelModal && (
             <SeasonPass
               selectProductHandler={selectProductHandler}
               availableProducts={availableProducts}
             />
-          ) : (
+          )}
+          {showScouting && (
+            <Scoutings
+              selectProductHandler={selectProductHandler}
+              availableProducts={availableProducts}
+            />
+          )}
+          {showMemberships && (
             <>
               <DropIns
                 selectProductHandler={selectProductHandler}
@@ -133,7 +144,7 @@ const ProductsPage = () => {
             </>
           )}
         </div>
-        {!comesFromCancelModal && (
+        {showMemberships && (
           <>
             {reserveTeam ? (
               <ReserveTeamMembershipsFeatures setWatchVideo={setWatchVideo} />

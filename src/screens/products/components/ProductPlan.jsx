@@ -29,7 +29,7 @@ const ProductPlan = ({
 
   const price = formatPrice(product.priceForUser);
 
-  const isDropIn = product.productType === ONE_TIME && !product.seasonPass;
+  const isDropIn = product.productType === ONE_TIME && !product.seasonPass && !product.scouting;
   const isRecurring = product.productType === RECURRING;
   const isSeasonPass = product.seasonPass;
   const { label } = product;

@@ -28,7 +28,10 @@ const StepFeedbackContent = ({
   const currentUser = useSelector(getUserProfile);
 
   useEffect(() => {
-    if (products.length === 0) dispatch(fetchProducts());
+    if (products.length === 0) {
+      dispatch(fetchProducts());
+    }
+    // eslint-disable-next-line
   }, [dispatch]);
 
   const validate = () => {
