@@ -22,7 +22,7 @@ const SidebarMenu = ({ menuToggler }) => {
 
   return (
     <nav className="sidebar-nav flex flex-col h-screen justify-center bg-cc-black shadow-md px-8 relative list-none">
-      <CloseButton className="close-button" onClick={menuToggler} />
+      <CloseButton className="absolute top-6 right-4 md:hidden" onClick={menuToggler} />
 
       <div className="flex flex-col text-white text-lg md:text-2xl items-center md:items-end font-shapiro95_super_wide">
         <NavLink className="list-item" exact to={ROUTES.HOME} onClick={menuToggler}>
