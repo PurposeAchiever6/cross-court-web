@@ -12,11 +12,13 @@ import {
   isUserInFirstFreeSessionFlow,
   userHasCreditsForSession,
 } from 'shared/utils/user';
+import { isNormalSession } from 'shared/utils/sessions';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSelectedCard } from 'screens/payment-methods/reducer';
 import { initialLoadInit } from 'screens/payment-methods/actionCreators';
+import InputCheckboxField from 'shared/components/InputCheckboxField';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import CodeOfConductModal from 'screens/sessions/components/modals/CodeOfConductModal';
@@ -48,6 +50,7 @@ const ReserveButton = ({
   const [showOpenClubGoalsModal, setShowOpenClubGoalsModal] = useState(false);
   const [openClubGoal, setOpenClubGoal] = useState(null);
   const [shootingMachineId, setShootingMachineId] = useState(null);
+  const [scouting, setScouting] = useState(false);
 
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
   const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(userProfile);
@@ -77,8 +80,8 @@ const ReserveButton = ({
     }
 
     isFirstFreeSessionFlow
-      ? createAndReserveFreeSessionHandler({ goal: openClubGoal, shootingMachineId })
-      : reserveSessionAction({ goal: openClubGoal, shootingMachineId });
+      ? createAndReserveFreeSessionHandler({ goal: openClubGoal, shootingMachineId, scouting })
+      : reserveSessionAction({ goal: openClubGoal, shootingMachineId, scouting });
   };
 
   const reservationHandler = () => {
@@ -132,6 +135,18 @@ const ReserveButton = ({
             enable={!disabled && session?.womenOnly}
             tooltip={WOMEN_SESSION_TOOLTIP}
           >
+            {isNormalSession(session) && userProfile.scoutingCredits > 0 && (
+              <InputCheckboxField
+                name="scouting"
+                value={scouting}
+                onChange={() => setScouting(!scouting)}
+                variant="cc-ball"
+                className="font-shapiro95_super_wide uppercase mb-2"
+                formik={false}
+              >
+                Use Scouting Credit
+              </InputCheckboxField>
+            )}
             <PrimaryButton
               id="session-confirm-reservation"
               onClick={reservationHandler}

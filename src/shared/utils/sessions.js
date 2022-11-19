@@ -4,6 +4,8 @@ import dayjs from 'dayjs';
 import { formatSessionDate } from 'shared/utils/date';
 import { isUserInLegalAge, userOutsideOfSessionSkillLevel } from 'shared/utils/user';
 
+export const isNormalSession = (session) => !session.isOpenClub && !session.skillSession;
+
 export const reserveTeamReservationAllowed = (session) => {
   const { startTime, time, past, isPrivate, isOpenClub, reservationsCount } = session;
   const sessionDate = formatSessionDate(startTime);

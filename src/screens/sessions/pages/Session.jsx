@@ -5,6 +5,7 @@ import { Redirect, useParams } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 import { isUserInFirstSessionFlow } from 'shared/utils/user';
+import { isNormalSession } from 'shared/utils/sessions';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import Carousel from 'shared/components/Carousel';
@@ -46,7 +47,7 @@ const Session = () => {
   const referralCode = window.localStorage.getItem('referralCode');
 
   const { isOpenClub, skillSession } = sessionInfo;
-  const normalSession = !isOpenClub && !skillSession;
+  const normalSession = isNormalSession(sessionInfo);
 
   const [showAddGuestModal, setShowAddGuestModal] = useState(false);
 
