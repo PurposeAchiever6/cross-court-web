@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Label from 'shared/components/Label';
 import InputTextareaField from 'shared/components/InputTextareaField';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import ROUTES from 'shared/constants/routes';
+
+const MAX_SKILL_RATING = '5';
 
 const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
+  const history = useHistory();
+
   const [errors, setErrors] = useState({});
   const [reason, setReason] = useState('');
+
+  const maxSkillRating = newSkillRating === MAX_SKILL_RATING;
 
   const validate = () => {
     const newErrors = {};
 
-    if (reason.trim().length < 8) {
+    if (reason.trim().length < 50) {
       newErrors.reason = true;
     }
 
@@ -27,27 +34,58 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
     }
   };
 
+  const onPurchaseScoutingCredit = () => {
+    history.push({
+      pathname: ROUTES.MEMBERSHIPS,
+      state: { showScouting: true },
+    });
+  };
+
   return (
-    <div>
+    <div className="text-sm">
       <div className="mb-8">
-        <p className="mb-5">
-          Please submit a request in order to adjust your skill level to{' '}
-          <strong>level {newSkillRating}</strong> and allow 3-5 business days for the CCteam to
-          review.
+        <p className="mb-2">
+          We believe it is important for our member's success to experience crosscourt with other
+          athletes of similar abilities.
         </p>
-        <Label className="mb-2">What is the reason for wanting to update your skill level?</Label>
+        <p className="mb-5">
+          To update your skill rating to a <strong>{newSkillRating}</strong>, please provide proof
+          of at least varsity level played or book a <strong>scouting session</strong> to have one
+          of our experience members go through our player evaluation form with you during a session.
+        </p>
+        <div className="mb-4">
+          1) Link(s) to team roster, MaxPreps profile, article, YouTube video, social media clips,
+          or image(s) that depict at least{' '}
+          <strong>{maxSkillRating ? 'D3 University' : 'varsity'}</strong> level played.
+        </div>
         <InputTextareaField
-          placeholder="Please add any links to gameplay video or any pages that show highest level of basketball played"
           value={reason}
           onChange={(e) => setReason(e.target.value)}
-          hint="Please include at least 8 characters"
+          hint="Please include at least 50 characters"
           error={errors.reason}
           formik={false}
+          className="mb-6"
         />
+        <div className="text-center">
+          <PrimaryButton onClick={onSubmit}>Submit</PrimaryButton>
+        </div>
       </div>
-      <div className="text-center">
-        <PrimaryButton inverted onClick={onSubmit}>
-          Submit Request
+      <div className="mb-6 md:mb-12">
+        <div className="mb-6">
+          2) If you think you have what it takes, please purchase a <strong>scouting credit</strong>{' '}
+          below. You will be able to apply the scouting credit at your leisure when booking a
+          session.
+        </div>
+        <div className="text-center">
+          <div className="font-shapiro95_super_wide text-xl uppercase mb-6">
+            Purchase scouting credit
+          </div>
+          <PrimaryButton onClick={onPurchaseScoutingCredit}>Purchase Scouting</PrimaryButton>
+        </div>
+      </div>
+      <div className="text-center md:text-left">
+        <PrimaryButton inverted color="black" fontSize="0.675rem" hoverEffect={false} to="/">
+          See Player Evaluation Form
         </PrimaryButton>
       </div>
     </div>

@@ -56,8 +56,6 @@ const SessionButtons = ({
     (session?.userSession && ['reserved', 'confirmed'].includes(session.userSession.state)) ||
     false;
 
-  const shootingMachineReservation = session?.userSession?.shootingMachineReservation;
-
   const copyShareInfoToClipboard = () => {
     const input = document.createElement('input');
 
@@ -132,7 +130,9 @@ const SessionButtons = ({
                     {copied ? 'COPIED' : 'INVITE A FRIEND'}
                   </PrimaryButton>
                 ))}
-              {reservedOrConfirmed && <CancelButton modalToggler={showCancelModalAction} />}
+              {reservedOrConfirmed && (
+                <CancelButton session={session} modalToggler={showCancelModalAction} />
+              )}
               {subscriptionPaused && (
                 <div className="text-sm">
                   You can't reserve when your <br /> membership is paused
@@ -140,12 +140,6 @@ const SessionButtons = ({
               )}
               {!subscriptionPaused && (
                 <SessionWarningInfo session={session} userProfile={userProfile} />
-              )}
-              {shootingMachineReservation && (
-                <div className="text-sm">
-                  You have reserved a shooting machine from {shootingMachineReservation.startTime}{' '}
-                  to {shootingMachineReservation.endTime}
-                </div>
               )}
             </>
           )}

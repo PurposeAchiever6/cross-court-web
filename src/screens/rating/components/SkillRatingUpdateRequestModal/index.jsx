@@ -33,7 +33,7 @@ const SkillRatingUpdateRequestModal = ({ isOpen, closeHandler, newSkillRating })
       case STEP_PROVIDE_REASON:
         return {
           title: 'Skill Rating Update',
-          size: 'md',
+          size: '2xl',
           closeHandler,
           content: (
             <StepProvideReasonContent

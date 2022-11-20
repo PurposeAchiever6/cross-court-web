@@ -3,6 +3,7 @@ import { number, bool, object } from 'prop-types';
 import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
+import { pluralize } from 'shared/utils/helpers';
 import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Badge from 'shared/components/Badge';
@@ -36,9 +37,10 @@ const MyCredits = ({
   isUnlimitedSkillSession,
   skillSessionCredits,
   activeSubscription,
+  scoutingCredits,
 }) => {
-  const sessionPluralize = credits === 1 ? 'SESSION' : 'SESSIONS';
-  const skillSessionPluralize = skillSessionCredits === 1 ? 'SKLZ SESSION' : 'SKLZ SESSIONS';
+  const sessionPluralize = pluralize('SESSION', credits, 'S');
+  const skillSessionPluralize = pluralize('SKLZ SESSION', skillSessionCredits, 'S');
 
   return (
     <MyCreditsContainer>
@@ -115,6 +117,16 @@ const MyCredits = ({
               )}
             </div>
           </>
+        )}
+        {scoutingCredits > 0 && (
+          <div className={`text-sm ${activeSubscription ? 'mt-4' : 'mt-10'}`}>
+            <div className="font-shapiro95_super_wide uppercase whitespace-nowrap mr-2">
+              Scouting Credits:
+            </div>
+            <div>
+              {scoutingCredits} {pluralize('credit', scoutingCredits)}
+            </div>
+          </div>
         )}
       </div>
       <div>

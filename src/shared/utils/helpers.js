@@ -25,6 +25,9 @@ export const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
+export const pluralize = (string, count, suffix = 's') =>
+  count === 1 ? string : `${string}${suffix}`;
+
 export const genderSelectOptions = [
   { value: 'male', label: 'Male' },
   { value: 'female', label: 'Female' },

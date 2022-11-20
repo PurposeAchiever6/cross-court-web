@@ -45,6 +45,7 @@ export const MyAccountPageDesktop = ({
         isUnlimitedSkillSession={userProfile.unlimitedSkillSessionCredits}
         skillSessionCredits={userProfile.subscriptionSkillSessionCredits}
         activeSubscription={userProfile.activeSubscription}
+        scoutingCredits={userProfile.scoutingCredits}
       />
     </div>
     <div className="content-container">
