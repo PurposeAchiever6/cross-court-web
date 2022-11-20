@@ -95,6 +95,7 @@ const PrimaryButton = ({
   type,
   fontSize,
   lineHeight,
+  target,
   hoverEffect = true,
   contentClasses = '',
   ...props
@@ -127,6 +128,7 @@ const PrimaryButton = ({
       style={{ pointerEvents: disabled || loading ? 'none' : '' }}
       to={to}
       className={`primary-button ${className}`}
+      target={target}
     >
       {content}
     </Link>

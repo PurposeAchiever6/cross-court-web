@@ -84,7 +84,14 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
         </div>
       </div>
       <div className="text-center md:text-left">
-        <PrimaryButton inverted color="black" fontSize="0.675rem" hoverEffect={false} to="/">
+        <PrimaryButton
+          inverted
+          color="black"
+          fontSize="0.675rem"
+          hoverEffect={false}
+          to="/player-evaluation-form.pdf"
+          target="_blank"
+        >
           See Player Evaluation Form
         </PrimaryButton>
       </div>
