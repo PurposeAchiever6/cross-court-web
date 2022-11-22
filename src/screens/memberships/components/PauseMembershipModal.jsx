@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Modal from 'shared/components/Modal';
 import InputSelectField from 'shared/components/InputSelectField';
 import InputTextField from 'shared/components/InputTextField';
-import InputCheckboxField from 'shared/components/InputCheckboxField';
+import InputRadioField from 'shared/components/InputRadioField';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Label from 'shared/components/Label';
 import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
@@ -31,8 +31,8 @@ export const PauseMembershipModal = ({
   };
 
   const onChangeReason = (e) => {
-    const { checked, id: value } = e.target;
-    setReason(checked ? value : null);
+    const { value } = e.target;
+    setReason(value);
   };
 
   const onPauseClick = () => {
@@ -79,60 +79,60 @@ export const PauseMembershipModal = ({
         />
         <div className="mb-6">
           <Label className="mb-3">What is the reason for pausing?*</Label>
-          <InputCheckboxField
-            name="financial-reasons"
+          <InputRadioField
+            name="reason"
+            value="financial-reasons"
             variant="cc-ball"
             onChange={onChangeReason}
-            value={reason === 'financial-reasons'}
             className="mb-1"
             formik={false}
           >
             Financial reasons
-          </InputCheckboxField>
-          <InputCheckboxField
-            name="taking-a-break"
+          </InputRadioField>
+          <InputRadioField
+            name="reason"
+            value="taking-a-break"
             variant="cc-ball"
             onChange={onChangeReason}
-            value={reason === 'taking-a-break'}
             className="mb-1"
             formik={false}
           >
             Taking a break
-          </InputCheckboxField>
-          <InputCheckboxField
-            name="traveling"
+          </InputRadioField>
+          <InputRadioField
+            name="reason"
+            value="traveling"
             variant="cc-ball"
             onChange={onChangeReason}
-            value={reason === 'traveling'}
             className="mb-1"
             formik={false}
           >
             Traveling
-          </InputCheckboxField>
-          <InputCheckboxField
-            name="injury"
+          </InputRadioField>
+          <InputRadioField
+            name="reason"
+            value="injury"
             variant="cc-ball"
             onChange={onChangeReason}
-            value={reason === 'injury'}
             className="mb-1"
             formik={false}
           >
             Injury
-          </InputCheckboxField>
-          <InputCheckboxField
-            name="other"
+          </InputRadioField>
+          <InputRadioField
+            name="reason"
+            value="other"
             variant="cc-ball"
             onChange={onChangeReason}
-            value={reason === 'other'}
             formik={false}
           >
             Other
-          </InputCheckboxField>
+          </InputRadioField>
           {reason === 'other' && (
             <InputTextField
-              name="other-open"
+              name="reason"
+              value="other-open"
               variant="shrink"
-              value={reasonOpenAnswer}
               onChange={(e) => setResasonOpenAnswer(e.target.value)}
               className="text-sm mt-3"
               hint="Please include at least 4 characters"

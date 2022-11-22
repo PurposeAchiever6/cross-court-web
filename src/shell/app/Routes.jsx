@@ -67,6 +67,7 @@ const PaymentMethodsMembership = lazy(() =>
 const Gallery = lazy(() => import('screens/gallery/GalleryPage'));
 const Referrals = lazy(() => import('screens/referrals/ReferralsPage'));
 const MembershipConfirm = lazy(() => import('screens/checkout/pages/MembershipConfirm'));
+const AboutYourself = lazy(() => import('screens/about-yourself/AboutYourselfPage'));
 const NotFoundPage = lazy(() => import('screens/not-found/NotFoundPage'));
 
 const AppWrapper = styled.div`
@@ -288,6 +289,9 @@ const Routes = () => {
         </Route>
         <Route path={ROUTES.RATING} exact>
           <Rating />
+        </Route>
+        <Route path={ROUTES.ABOUT_YOURSELF} exact>
+          <AboutYourself />
         </Route>
         <Route path={ROUTES.SIGNUPSUCCESS} exact>
           <SignupSuccess />

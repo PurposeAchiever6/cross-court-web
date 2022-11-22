@@ -70,8 +70,8 @@ const StepFeedbackContent = ({
   };
 
   const onChangeReason = (e) => {
-    const { checked, id: value } = e.target;
-    setReason(checked ? value : null);
+    const { value } = e.target;
+    setReason(value);
     setErrors({});
   };
 

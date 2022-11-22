@@ -2,12 +2,12 @@ import React from 'react';
 import { Field } from 'formik';
 import PropTypes from 'prop-types';
 
-import Checkbox from './Checkbox';
+import Radio from './Radio';
 
-const FormikCheckbox = ({ name, value, error, isGroup, ...props }) => (
-  <Field name={name} value={isGroup ? value : undefined} type="checkbox">
+const FormikRadio = ({ name, value, error, ...props }) => (
+  <Field name={name} value={value} type="radio">
     {({ field, form: { touched, errors: formikErrors } }) => (
-      <Checkbox
+      <Radio
         {...props}
         {...field}
         error={error || (touched[field.name] && formikErrors[field.name])}
@@ -16,17 +16,15 @@ const FormikCheckbox = ({ name, value, error, isGroup, ...props }) => (
   </Field>
 );
 
-FormikCheckbox.defaultProps = {
+FormikRadio.defaultProps = {
   value: null,
   error: null,
-  isGroup: false,
 };
 
-FormikCheckbox.propTypes = {
+FormikRadio.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
-  error: PropTypes.string,
-  isGroup: PropTypes.bool,
+  error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
 };
 
-export default FormikCheckbox;
+export default FormikRadio;

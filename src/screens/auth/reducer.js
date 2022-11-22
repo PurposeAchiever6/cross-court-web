@@ -25,7 +25,10 @@ const initialState = {
   isAuthenticated: false,
   loginError: '',
   signupErrors: {},
-  userEmail: '',
+  user: {
+    firstName: '',
+    email: '',
+  },
   forgotPassError: '',
   passResetError: '',
 };
@@ -51,13 +54,13 @@ export default (state = initialState, action) => {
         ...state,
         signupLoading: true,
         signupErrors: {},
-        userEmail: '',
+        user: { firstName: '', email: '' },
       };
     case SIGN_UP_SUCCESS:
       return {
         ...state,
         signupLoading: false,
-        userEmail: action.payload.email,
+        user: { firstName: action.payload.firstName, email: action.payload.email },
       };
     case SIGN_UP_FAILURE:
       return { ...state, signupErrors: action.payload.errors, signupLoading: false };
@@ -66,13 +69,13 @@ export default (state = initialState, action) => {
         ...state,
         forgotPassLoading: true,
         forgotPassError: '',
-        userEmail: '',
+        user: { firstName: '', email: '' },
       };
     case FORGOT_PASS_SUCCESS:
       return {
         ...state,
         forgotPassLoading: false,
-        userEmail: action.payload.email,
+        user: { email: action.payload.email },
       };
     case FORGOT_PASS_FAILURE:
       return { ...state, forgotPassError: action.error, forgotPassLoading: false };
@@ -114,7 +117,9 @@ export const getSignupLoading = createSelector(getAuth, (auth) => auth.signupLoa
 
 export const getSignupErrors = createSelector(getAuth, (auth) => auth.signupErrors);
 
-export const getUserEmail = createSelector(getAuth, (auth) => auth.userEmail);
+export const getUser = createSelector(getAuth, (auth) => auth.user);
+
+export const getUserEmail = createSelector(getAuth, (auth) => auth.user.email);
 
 export const getForgotPassLoading = createSelector(getAuth, (auth) => auth.forgotPassLoading);
 

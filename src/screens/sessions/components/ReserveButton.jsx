@@ -188,11 +188,11 @@ const ReserveButton = ({
           />
           <OpenClubGoalsModal
             isOpen={showOpenClubGoalsModal}
+            closeHandler={() => setShowOpenClubGoalsModal(false)}
             onConfirm={onConfirmOpenClubGoal}
             openClubGoal={openClubGoal}
             setOpenClubGoal={setOpenClubGoal}
             shootingMachines={session.shootingMachines}
-            shootingMachineId={shootingMachineId}
             setShootingMachineId={setShootingMachineId}
           />
           <FirstTimersInformationModal

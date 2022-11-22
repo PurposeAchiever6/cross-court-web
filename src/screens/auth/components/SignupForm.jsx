@@ -115,8 +115,8 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => {
               }
             />
             <InputCheckboxField name="terms" className="font-shapiro45_welter_extd mb-8">
-              I agree to the{' '}
-              <Link className="text-cc-purple hover:underline" to={ROUTES.TERMS}>
+              I agree to the
+              <Link className="text-cc-purple hover:underline ml-2" to={ROUTES.TERMS}>
                 terms and conditions
               </Link>
             </InputCheckboxField>

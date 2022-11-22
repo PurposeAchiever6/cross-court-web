@@ -85,11 +85,11 @@ const RatingPage = () => {
 
   const updateSkillRatingAction = () => dispatch(updateSkillRatingInit({ skillRating, isEdit }));
 
-  const updateNeedsReview = () =>
+  const updateNeedsReview =
     isEdit && oldSkillRating < skillRating && skillRatingsForReview.includes(skillRating);
 
   const handleClick = () => {
-    updateNeedsReview() ? setShowSkillRatingUpdateRequestModal(true) : updateSkillRatingAction();
+    updateNeedsReview ? setShowSkillRatingUpdateRequestModal(true) : updateSkillRatingAction();
   };
 
   const isRatingDisabled = (rating) => !isEdit && skillRatingsForReview.includes(rating);
@@ -160,7 +160,7 @@ const RatingPage = () => {
             className="my-6"
             onClick={handleClick}
           >
-            {isEdit ? 'SAVE' : 'SIGN UP'}
+            {isEdit ? 'SAVE' : 'NEXT'}
           </PrimaryButton>
         </div>
         {!isEdit && (

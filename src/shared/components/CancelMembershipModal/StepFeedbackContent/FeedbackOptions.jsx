@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { formatPrice } from 'screens/products/utils';
 import { MIN_PRODUCT_CREDITS, UNLIMITED_VALUE } from 'screens/products/constants';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import InputCheckboxField from 'shared/components/InputCheckboxField';
+import InputRadioField from 'shared/components/InputRadioField';
 import InputTextareaField from 'shared/components/InputTextareaField';
 import ROUTES from 'shared/constants/routes';
 
@@ -82,16 +82,16 @@ const FeedbackOptions = ({
   return (
     <div className={className}>
       <div className="flex flex-col">
-        <InputCheckboxField
-          name="too-expensive"
+        <InputRadioField
+          className="mb-1"
+          name="reason"
+          value="too-expensive"
           variant="cc-ball"
           onChange={onChangeReason}
-          value={reason === 'too-expensive'}
-          className="mb-2"
           formik={false}
         >
           Crosscourt is too expensive
-        </InputCheckboxField>
+        </InputRadioField>
         {reason === 'too-expensive' && (
           <div className="ml-10 text-xs">
             <p>{downgradeOrPurchaseSeasonPassString}</p>
@@ -109,16 +109,16 @@ const FeedbackOptions = ({
         )}
       </div>
       <div className="flex flex-col">
-        <InputCheckboxField
-          name="recurring-subscription"
+        <InputRadioField
+          className="mb-1"
+          name="reason"
+          value="recurring-subscription"
           variant="cc-ball"
           onChange={onChangeReason}
-          value={reason === 'recurring-subscription'}
-          className="mb-2"
           formik={false}
         >
           I don't want a recurring subscription
-        </InputCheckboxField>
+        </InputRadioField>
         {reason === 'recurring-subscription' && (
           <div className="ml-10 text-xs">
             <p>
@@ -138,16 +138,16 @@ const FeedbackOptions = ({
         )}
       </div>
       <div className="flex flex-col">
-        <InputCheckboxField
-          name="moving"
+        <InputRadioField
+          className="mb-1"
+          name="reason"
+          value="moving"
           variant="cc-ball"
           onChange={onChangeReason}
-          value={reason === 'moving'}
-          className="mb-2"
           formik={false}
         >
           Moved / Moving
-        </InputCheckboxField>
+        </InputRadioField>
         {reason === 'moving' && (
           <div className="ml-10 text-xs">
             <p>
@@ -166,16 +166,16 @@ const FeedbackOptions = ({
         )}
       </div>
       <div className="flex flex-col">
-        <InputCheckboxField
-          name="live-far"
+        <InputRadioField
+          className="mb-1"
+          name="reason"
+          value="live-far"
           variant="cc-ball"
           onChange={onChangeReason}
-          value={reason === 'live-far'}
-          className="mb-2"
           formik={false}
         >
           Live too far away
-        </InputCheckboxField>
+        </InputRadioField>
         {reason === 'live-far' && (
           <div className="ml-10 text-xs">
             <p>{downgradeOrPauseOrPurchaseSeasonPassString}</p>
@@ -199,16 +199,16 @@ const FeedbackOptions = ({
         )}
       </div>
       <div className="flex flex-col">
-        <InputCheckboxField
-          name="injury"
+        <InputRadioField
+          className="mb-1"
+          name="reason"
+          value="injury"
           variant="cc-ball"
           onChange={onChangeReason}
-          value={reason === 'injury'}
-          className="mb-2"
           formik={false}
         >
           Injury
-        </InputCheckboxField>
+        </InputRadioField>
         {reason === 'injury' && (
           <div className="ml-10 text-xs">
             <p>
@@ -233,16 +233,16 @@ const FeedbackOptions = ({
         )}
       </div>
       <div className="flex flex-col">
-        <InputCheckboxField
-          name="no-time"
+        <InputRadioField
+          className="mb-1"
+          name="reason"
+          value="no-time"
           variant="cc-ball"
           onChange={onChangeReason}
-          value={reason === 'no-time'}
-          className="mb-2"
           formik={false}
         >
           Don't have time
-        </InputCheckboxField>
+        </InputRadioField>
         {reason === 'no-time' && (
           <div className="ml-10 text-xs">
             <p>{downgradeOrPauseOrPurchaseSeasonPassString}</p>
@@ -262,16 +262,16 @@ const FeedbackOptions = ({
         )}
       </div>
       <div className="flex flex-col">
-        <InputCheckboxField
-          name="did-not-know-is-subscription"
+        <InputRadioField
+          className="mb-1"
+          name="reason"
+          value="did-not-know-is-subscription"
           variant="cc-ball"
           onChange={onChangeReason}
-          value={reason === 'did-not-know-is-subscription'}
-          className="mb-2"
           formik={false}
         >
           Didn't know I signed up for a membership
-        </InputCheckboxField>
+        </InputRadioField>
         {reason === 'did-not-know-is-subscription' && (
           <div className="ml-10 mb-4 text-xs">
             <p>
@@ -284,16 +284,16 @@ const FeedbackOptions = ({
         )}
       </div>
       <div className="flex flex-col">
-        <InputCheckboxField
-          name="did-not-enjoy"
+        <InputRadioField
+          className="mb-1"
+          name="reason"
+          value="did-not-enjoy"
           variant="cc-ball"
           onChange={onChangeReason}
-          value={reason === 'did-not-enjoy'}
-          className="mb-2"
           formik={false}
         >
           Didn't enjoy the experience
-        </InputCheckboxField>
+        </InputRadioField>
         {reason === 'did-not-enjoy' && (
           <InputTextareaField
             placeholder="What did you not like about Crosscourt?"
@@ -308,16 +308,15 @@ const FeedbackOptions = ({
         )}
       </div>
       <div className="flex flex-col">
-        <InputCheckboxField
-          name="other"
+        <InputRadioField
+          name="reason"
+          value="other"
           variant="cc-ball"
           onChange={onChangeReason}
-          value={reason === 'other'}
-          className="mb-2"
           formik={false}
         >
           Other
-        </InputCheckboxField>
+        </InputRadioField>
         {reason === 'other' && (
           <InputTextareaField
             placeholder="What is your main reason for cancelling?"

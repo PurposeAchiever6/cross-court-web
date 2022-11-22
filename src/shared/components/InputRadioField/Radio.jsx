@@ -6,19 +6,18 @@ import styled from 'styled-components';
 import darkBasketballSvg from 'shared/images/svgs/dark-basketball.svg';
 import whiteBasketballSvg from 'shared/images/svgs/white-basketball.svg';
 
-const CheckboxInputContainer = styled.div`
-  input[type='checkbox'] {
+const RadioInputContainer = styled.div`
+  input[type='radio'] {
     -webkit-appearance: none;
     width: 1.2em;
     min-width: 1.2em;
     height: 1.2em;
-    border-radius: 1px;
+    border-radius: 100%;
     border: 2px solid currentColor;
     display: grid;
     place-content: center;
     cursor: pointer;
     margin-right: 0.6rem;
-    margin-top: 2px;
 
     &::before {
       content: '';
@@ -27,6 +26,7 @@ const CheckboxInputContainer = styled.div`
       background-color: currentColor;
       opacity: 0;
       transition: 120ms opacity ease-in-out;
+      border-radius: 100%;
     }
 
     &:checked::before {
@@ -36,14 +36,13 @@ const CheckboxInputContainer = styled.div`
 
   &.cc-ball,
   &.cc-ball-white {
-    input[type='checkbox'] {
+    input[type='radio'] {
       width: 1.5em;
       min-width: 1.5em;
       height: 1.5em;
       border-radius: 9999px;
       border: 1px solid currentColor;
       margin-right: 0.6rem;
-      margin-top: 2px;
 
       &::before {
         width: 1.2em;
@@ -58,7 +57,7 @@ const CheckboxInputContainer = styled.div`
   }
 
   &.cc-ball {
-    input[type='checkbox'] {
+    input[type='radio'] {
       &::before {
         content: url(${darkBasketballSvg});
       }
@@ -66,7 +65,7 @@ const CheckboxInputContainer = styled.div`
   }
 
   &.cc-ball-white {
-    input[type='checkbox'] {
+    input[type='radio'] {
       &::before {
         content: url(${whiteBasketballSvg});
       }
@@ -74,21 +73,21 @@ const CheckboxInputContainer = styled.div`
   }
 `;
 
-const Checkbox = ({ name, value, children, error, disabled, variant, className, ...props }) => (
-  <CheckboxInputContainer className={`${variant} ${className}`}>
+const Radio = ({ name, value, children, error, disabled, variant, className, ...props }) => (
+  <RadioInputContainer className={`${variant} ${className}`}>
     <label
       className={`text-sm flex cursor-pointer select-none ${
         disabled ? 'opacity-50 pointer-events-none' : ''
       }`}
     >
-      <input type="checkbox" name={name} value={value} {...props} />
+      <input type="radio" name={name} value={value} {...props} />
       {children}
     </label>
     {error && <div className="block text-xs text-right text-red-500">{error}</div>}
-  </CheckboxInputContainer>
+  </RadioInputContainer>
 );
 
-Checkbox.defaultProps = {
+Radio.defaultProps = {
   value: '',
   error: null,
   disabled: false,
@@ -96,7 +95,7 @@ Checkbox.defaultProps = {
   className: '',
 };
 
-Checkbox.propTypes = {
+Radio.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   children: PropTypes.node.isRequired,
@@ -106,4 +105,4 @@ Checkbox.propTypes = {
   className: PropTypes.string,
 };
 
-export default Checkbox;
+export default Radio;
