@@ -44,6 +44,8 @@ import SessionRoster from 'screens/locations/components/SessionRoster';
 import SessionBadge from 'screens/sessions/components/SessionBadge';
 import OutsideOfSkillLevelModal from 'screens/locations/components/OutsideOfSkillLevelModal';
 import SkillSessionReservationModal from 'screens/locations/components/SkillSessionReservationModal';
+import Tooltip from 'shared/components/Tooltip';
+import SessionThemeInfo from 'screens/sessions/components/SessionThemeInfo';
 
 const NoSessionContainer = styled.div`
   .title {
@@ -155,6 +157,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
           isOpenClub,
           womenOnly,
           skillSession,
+          themeTitle,
         } = session;
 
         const URLdate = urlFormattedDate(startTime);
@@ -311,6 +314,9 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                     skillSession={skillSession}
                   />
                 </div>
+
+                {themeTitle && <SessionThemeInfo session={session} />}
+
                 {isAuthenticated && (
                   <div
                     className="flex items-center font-shapiro96_inclined_wide text-xs uppercase mt-3 cursor-pointer"
