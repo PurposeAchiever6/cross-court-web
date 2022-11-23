@@ -77,7 +77,17 @@ const CheckboxInputContainer = styled.div`
   }
 `;
 
-const Checkbox = ({ name, value, children, error, disabled, variant, className, ...props }) => (
+const Checkbox = ({
+  name,
+  value,
+  children,
+  error,
+  disabled,
+  variant,
+  className,
+  hideError,
+  ...props
+}) => (
   <CheckboxInputContainer className={`${variant} ${className}`}>
     <label
       className={`text-sm flex cursor-pointer select-none ${
@@ -87,7 +97,7 @@ const Checkbox = ({ name, value, children, error, disabled, variant, className, 
       <input type="checkbox" name={name} value={value} {...props} />
       <span>{children}</span>
     </label>
-    {error && <div className="block text-xs text-right text-red-500">{error}</div>}
+    {!hideError && error && <div className="block text-xs text-right text-red-500">{error}</div>}
   </CheckboxInputContainer>
 );
 
@@ -97,6 +107,7 @@ Checkbox.defaultProps = {
   disabled: false,
   variant: '',
   className: '',
+  hideError: false,
 };
 
 Checkbox.propTypes = {
@@ -107,6 +118,7 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   variant: PropTypes.string,
   className: PropTypes.string,
+  hideError: PropTypes.bool,
 };
 
 export default Checkbox;

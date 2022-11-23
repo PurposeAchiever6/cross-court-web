@@ -12,6 +12,7 @@ export default {
   FORGOTPASSWORD: '/forgotpassword',
   FORGOTPASSWORDSUCCESS: '/forgotpassword/success',
   GALLERY: '/gallery',
+  GOALS: '/goals',
   HOME: '/',
   HOWITWORKS: '/how-it-works',
   LOCATIONS: '/locations',

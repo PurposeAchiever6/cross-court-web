@@ -110,7 +110,11 @@ export function* updatePersonalInfoFlow({ payload }) {
 
     yield call(authService.updatePersonalInfo, { email, personalInfo: payload.personalInfo });
     yield put({ type: UPDATE_PERSONAL_INFO_SUCCESS });
-    yield put(push(ROUTES.SIGNUPSUCCESS));
+    yield put(
+      push(payload.from === ROUTES.ABOUT_YOURSELF ? ROUTES.GOALS : ROUTES.SIGNUPSUCCESS, {
+        from: payload.from,
+      })
+    );
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);

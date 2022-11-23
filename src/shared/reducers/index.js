@@ -14,6 +14,7 @@ import checkoutReducer from 'screens/checkout/reducer';
 import sessionsSurveysReducer from 'screens/surveys/sessions/reducer';
 import galleryReducer from 'screens/gallery/reducer';
 import referralsReducer from 'screens/referrals/reducer';
+import goalsReducer from 'screens/goals/reducer';
 
 import { LOGOUT_INIT } from 'screens/auth/actionTypes';
 
@@ -37,6 +38,7 @@ const appReducer = (history) =>
     sessionsSurveys: sessionsSurveysReducer,
     gallery: galleryReducer,
     referrals: referralsReducer,
+    goals: goalsReducer,
   });
 
 export default (history) => (state, action) => {

@@ -68,6 +68,7 @@ const Gallery = lazy(() => import('screens/gallery/GalleryPage'));
 const Referrals = lazy(() => import('screens/referrals/ReferralsPage'));
 const MembershipConfirm = lazy(() => import('screens/checkout/pages/MembershipConfirm'));
 const AboutYourself = lazy(() => import('screens/about-yourself/AboutYourselfPage'));
+const Goals = lazy(() => import('screens/goals/GoalsPage'));
 const NotFoundPage = lazy(() => import('screens/not-found/NotFoundPage'));
 
 const AppWrapper = styled.div`
@@ -292,6 +293,9 @@ const Routes = () => {
         </Route>
         <Route path={ROUTES.ABOUT_YOURSELF} exact>
           <AboutYourself />
+        </Route>
+        <Route path={ROUTES.GOALS} exact>
+          <Goals />
         </Route>
         <Route path={ROUTES.SIGNUPSUCCESS} exact>
           <SignupSuccess />

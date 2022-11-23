@@ -11,6 +11,7 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import InputRadioField from 'shared/components/InputRadioField';
 import { getUser } from 'screens/auth/reducer';
 import { updatePersonalInfo } from 'screens/auth/actionCreators';
+import Loading from 'shared/components/Loading';
 
 const numberRegex = /^[0-9\b]+$/;
 const singleQuote = '’';
@@ -52,14 +53,18 @@ const AboutYourselfPage = () => {
   const history = useHistory();
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
+  const [allowedLoading, setAllowedLoading] = useState(true);
 
   useEffect(() => {
     if (location?.state?.from !== ROUTES.RATING) {
       history.push(ROUTES.HOME);
+    } else {
+      setAllowedLoading(false);
     }
   }, [location, history]);
 
-  const updatePersonalInfoAction = (personalInfo) => dispatch(updatePersonalInfo({ personalInfo }));
+  const updatePersonalInfoAction = (personalInfo) =>
+    dispatch(updatePersonalInfo({ personalInfo, from: ROUTES.ABOUT_YOURSELF }));
 
   const firstName = useSelector(getUser)?.firstName;
 
@@ -141,6 +146,10 @@ const AboutYourselfPage = () => {
     updatePersonalInfoAction(personalInfo);
   };
 
+  if (allowedLoading) {
+    return <Loading />;
+  }
+
   return (
     <div className="max-w-2xl mx-auto p-4 md:p-0 md:py-8">
       {firstName && (
@@ -216,7 +225,7 @@ const AboutYourselfPage = () => {
               </div>
               <div className="text-center">
                 <PrimaryButton type="submit" loading={isSubmitting} className="mb-14">
-                  SUBMIT
+                  NEXT
                 </PrimaryButton>
               </div>
             </Form>
