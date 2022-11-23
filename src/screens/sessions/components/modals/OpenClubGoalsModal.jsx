@@ -82,15 +82,14 @@ export const OpenClubGoalsModal = ({
                       onChange={() => handleShootingMachineSelect(id)}
                       disabled={reserved}
                       formik={false}
-                      className="mb-1"
+                      className="mb-2"
                     >
-                      <span className="inline-block text-xs sm:text-sm w-20 sm:w-24">
-                        {startTime}
-                      </span>
-                      -
-                      <span className="inline-block text-xs sm:text-sm w-20 sm:w-24 text-right">
-                        {endTime}
-                      </span>
+                      <div className="flex -mt-1">
+                        <span className="block text-xs sm:text-sm w-20 sm:w-24">{startTime}</span>-
+                        <span className="block text-xs sm:text-sm w-20 sm:w-24 text-right">
+                          {endTime}
+                        </span>
+                      </div>
                     </InputRadioField>
                     <span className="font-shapiro95_super_wide text-lg ml-4 -mt-1">${price}</span>
                     {reserved && (

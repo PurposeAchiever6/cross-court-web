@@ -83,11 +83,11 @@ const FeedbackOptions = ({
     <div className={className}>
       <div className="flex flex-col">
         <InputRadioField
-          className="mb-1"
           name="reason"
           value="too-expensive"
           variant="cc-ball"
           onChange={onChangeReason}
+          className="mb-2"
           formik={false}
         >
           Crosscourt is too expensive
@@ -110,11 +110,11 @@ const FeedbackOptions = ({
       </div>
       <div className="flex flex-col">
         <InputRadioField
-          className="mb-1"
           name="reason"
           value="recurring-subscription"
           variant="cc-ball"
           onChange={onChangeReason}
+          className="mb-2"
           formik={false}
         >
           I don't want a recurring subscription
@@ -139,11 +139,11 @@ const FeedbackOptions = ({
       </div>
       <div className="flex flex-col">
         <InputRadioField
-          className="mb-1"
           name="reason"
           value="moving"
           variant="cc-ball"
           onChange={onChangeReason}
+          className="mb-2"
           formik={false}
         >
           Moved / Moving
@@ -167,11 +167,11 @@ const FeedbackOptions = ({
       </div>
       <div className="flex flex-col">
         <InputRadioField
-          className="mb-1"
           name="reason"
           value="live-far"
           variant="cc-ball"
           onChange={onChangeReason}
+          className="mb-2"
           formik={false}
         >
           Live too far away
@@ -200,11 +200,11 @@ const FeedbackOptions = ({
       </div>
       <div className="flex flex-col">
         <InputRadioField
-          className="mb-1"
           name="reason"
           value="injury"
           variant="cc-ball"
           onChange={onChangeReason}
+          className="mb-2"
           formik={false}
         >
           Injury
@@ -234,11 +234,11 @@ const FeedbackOptions = ({
       </div>
       <div className="flex flex-col">
         <InputRadioField
-          className="mb-1"
           name="reason"
           value="no-time"
           variant="cc-ball"
           onChange={onChangeReason}
+          className="mb-2"
           formik={false}
         >
           Don't have time
@@ -263,11 +263,11 @@ const FeedbackOptions = ({
       </div>
       <div className="flex flex-col">
         <InputRadioField
-          className="mb-1"
           name="reason"
           value="did-not-know-is-subscription"
           variant="cc-ball"
           onChange={onChangeReason}
+          className="mb-2"
           formik={false}
         >
           Didn't know I signed up for a membership
@@ -285,11 +285,11 @@ const FeedbackOptions = ({
       </div>
       <div className="flex flex-col">
         <InputRadioField
-          className="mb-1"
           name="reason"
           value="did-not-enjoy"
           variant="cc-ball"
           onChange={onChangeReason}
+          className="mb-2"
           formik={false}
         >
           Didn't enjoy the experience

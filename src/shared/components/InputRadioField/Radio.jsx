@@ -18,6 +18,7 @@ const RadioInputContainer = styled.div`
     place-content: center;
     cursor: pointer;
     margin-right: 0.6rem;
+    margin-top: 2px;
 
     &::before {
       content: '';
@@ -37,22 +38,26 @@ const RadioInputContainer = styled.div`
   &.cc-ball,
   &.cc-ball-white {
     input[type='radio'] {
-      width: 1.5em;
-      min-width: 1.5em;
-      height: 1.5em;
+      width: 1.6em;
+      min-width: 1.6em;
+      height: 1.6em;
       border-radius: 9999px;
       border: 1px solid currentColor;
       margin-right: 0.6rem;
 
       &::before {
-        width: 1.2em;
-        height: 1.2em;
+        width: 1.075em;
+        height: 1.075em;
         background-color: unset;
       }
 
       &:checked::before {
-        animation: spin infinite 3s;
+        animation: spin infinite 4s;
       }
+    }
+
+    span {
+      margin-top: 4px;
     }
   }
 
@@ -81,7 +86,7 @@ const Radio = ({ name, value, children, error, disabled, variant, className, ...
       }`}
     >
       <input type="radio" name={name} value={value} {...props} />
-      {children}
+      <span>{children}</span>
     </label>
     {error && <div className="block text-xs text-right text-red-500">{error}</div>}
   </RadioInputContainer>

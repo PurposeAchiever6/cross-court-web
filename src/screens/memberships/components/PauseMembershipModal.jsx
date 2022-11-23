@@ -84,7 +84,7 @@ export const PauseMembershipModal = ({
             value="financial-reasons"
             variant="cc-ball"
             onChange={onChangeReason}
-            className="mb-1"
+            className="mb-2"
             formik={false}
           >
             Financial reasons
@@ -94,7 +94,7 @@ export const PauseMembershipModal = ({
             value="taking-a-break"
             variant="cc-ball"
             onChange={onChangeReason}
-            className="mb-1"
+            className="mb-2"
             formik={false}
           >
             Taking a break
@@ -104,7 +104,7 @@ export const PauseMembershipModal = ({
             value="traveling"
             variant="cc-ball"
             onChange={onChangeReason}
-            className="mb-1"
+            className="mb-2"
             formik={false}
           >
             Traveling
@@ -114,7 +114,7 @@ export const PauseMembershipModal = ({
             value="injury"
             variant="cc-ball"
             onChange={onChangeReason}
-            className="mb-1"
+            className="mb-2"
             formik={false}
           >
             Injury
@@ -130,9 +130,9 @@ export const PauseMembershipModal = ({
           </InputRadioField>
           {reason === 'other' && (
             <InputTextField
-              name="reason"
-              value="other-open"
+              name="other-open"
               variant="shrink"
+              value={reasonOpenAnswer}
               onChange={(e) => setResasonOpenAnswer(e.target.value)}
               className="text-sm mt-3"
               hint="Please include at least 4 characters"

@@ -12,7 +12,6 @@ import {
   isUserInFirstFreeSessionFlow,
   userHasCreditsForSession,
 } from 'shared/utils/user';
-import { isNormalSession } from 'shared/utils/sessions';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -135,13 +134,13 @@ const ReserveButton = ({
             enable={!disabled && session?.womenOnly}
             tooltip={WOMEN_SESSION_TOOLTIP}
           >
-            {isNormalSession(session) && userProfile.scoutingCredits > 0 && (
+            {session.normalSession && userProfile.scoutingCredits > 0 && (
               <InputCheckboxField
                 name="scouting"
                 value={scouting}
                 onChange={() => setScouting(!scouting)}
                 variant="cc-ball"
-                className="font-shapiro95_super_wide uppercase mb-2"
+                className="font-shapiro95_super_wide uppercase mb-3"
                 formik={false}
               >
                 Use Scouting Credit
