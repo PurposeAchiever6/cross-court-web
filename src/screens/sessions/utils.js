@@ -70,12 +70,13 @@ export const sessionData = (date, sessionInfo) => [
 ];
 
 export const sessionGuestsAllowed = (session) => {
+  return (
+    (session?.isOpenClub || session?.skillSession) && session?.guestsAllowed > 0 && !session?.full
+  );
+};
+
+export const sessionGuestsAllowedForUser = (session) => {
   const sessionGuests = session?.userSession?.sessionGuests ?? [];
 
-  return (
-    (session?.isOpenClub || session?.skillSession) &&
-    session?.guestsAllowed > 0 &&
-    session?.guestsAllowed > sessionGuests.length &&
-    session?.guestsAllowedPerUser > sessionGuests.length
-  );
+  return sessionGuestsAllowed(session) && session?.guestsAllowedPerUser > sessionGuests.length;
 };

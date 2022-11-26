@@ -243,6 +243,7 @@ export function* removeSessionGuestFlow({ payload }) {
       type: REMOVE_SESSION_GUEST_SUCCESS,
       payload: { sessionGuestId: payload.sessionGuestId },
     });
+    yield call(toast.success, 'Guest canceled succesfully');
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);

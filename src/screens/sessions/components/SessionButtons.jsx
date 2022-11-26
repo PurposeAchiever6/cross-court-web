@@ -18,11 +18,11 @@ import {
   joinSessionWaitlistInit,
   removeSessionWaitlistInit,
 } from 'screens/sessions/actionCreators';
-import { sessionGuestsAllowed } from 'screens/sessions/utils';
 
 import ReserveButton from './ReserveButton';
 import CancelButton from './CancelButton';
 import SessionGuests from './SessionGuests';
+import { sessionGuestsAllowedForUser } from '../utils';
 
 const SessionButtons = ({
   session,
@@ -45,8 +45,6 @@ const SessionButtons = ({
 
   const { past, time, onWaitlist } = session;
 
-  const guestsAllowed = sessionGuestsAllowed(session);
-
   const { disabled: disabledReservation } = sessionReservationInfo(session, userProfile);
   const reservationDisabled = disabledReservation || subscriptionPaused;
 
@@ -55,6 +53,8 @@ const SessionButtons = ({
   const reservedOrConfirmed =
     (session?.userSession && ['reserved', 'confirmed'].includes(session.userSession.state)) ||
     false;
+
+  const guestsAllowed = sessionGuestsAllowedForUser(session);
 
   const copyShareInfoToClipboard = () => {
     const input = document.createElement('input');
@@ -120,16 +120,17 @@ const SessionButtons = ({
                   JOIN WAITLIST
                 </PrimaryButton>
               )}
-              {reservedOrConfirmed &&
-                !session?.full &&
-                (guestsAllowed ? (
+              {reservedOrConfirmed && (
+                <>
                   <SessionGuests session={session} setShowAddGuestModal={setShowAddGuestModal} />
-                ) : (
-                  <PrimaryButton inverted className="mb-4" onClick={copyShareInfoToClipboard}>
-                    <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
-                    {copied ? 'COPIED' : 'INVITE A FRIEND'}
-                  </PrimaryButton>
-                ))}
+                  {!guestsAllowed && (
+                    <PrimaryButton inverted className="mb-4" onClick={copyShareInfoToClipboard}>
+                      <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
+                      {copied ? 'COPIED' : 'INVITE A FRIEND'}
+                    </PrimaryButton>
+                  )}
+                </>
+              )}
               {reservedOrConfirmed && (
                 <CancelButton session={session} modalToggler={showCancelModalAction} />
               )}
