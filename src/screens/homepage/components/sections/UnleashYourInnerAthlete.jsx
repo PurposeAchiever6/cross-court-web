@@ -5,10 +5,10 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Carousel from 'shared/components/Carousel';
 
 import unleashYourInnerAthleteImg from 'screens/homepage/images/unleash-your-inner-athlete.jpeg';
-import pickupBasketballFacilityImg from 'screens/homepage/images/pickup-basketball-facility.jpeg';
-import pickupBasketballFacility2Img from 'screens/homepage/images/pickup-basketball-facility-2.jpeg';
-import frontDeskImg from 'screens/homepage/images/front-desk.jpeg';
-import pickupBasketballImg from 'screens/homepage/images/pickup-basketball.jpeg';
+import playBasketballImg from 'screens/homepage/images/play-basketball.jpeg';
+import basketballSweatImg from 'screens/homepage/images/basketball-sweat.jpeg';
+import basketballSkillSessionsImg from 'screens/homepage/images/basketball-skill-sessions.jpeg';
+import basketballWarmUpAreaImg from 'screens/homepage/images/basketball-warm-up-area.jpeg';
 
 const UnleashYourInnerAthlete = () => (
   <div className="relative">
@@ -22,10 +22,10 @@ const UnleashYourInnerAthlete = () => (
       arrowsClassName="hidden md:block"
       imageUrls={[
         unleashYourInnerAthleteImg,
-        pickupBasketballFacilityImg,
-        pickupBasketballFacility2Img,
-        frontDeskImg,
-        pickupBasketballImg,
+        playBasketballImg,
+        basketballSweatImg,
+        basketballSkillSessionsImg,
+        basketballWarmUpAreaImg,
       ]}
     />
     <div className="absolute inset-0 bg-cc-black bg-opacity-50">
