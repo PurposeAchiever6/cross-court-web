@@ -44,7 +44,6 @@ import SessionRoster from 'screens/locations/components/SessionRoster';
 import SessionBadge from 'screens/sessions/components/SessionBadge';
 import OutsideOfSkillLevelModal from 'screens/locations/components/OutsideOfSkillLevelModal';
 import SkillSessionReservationModal from 'screens/locations/components/SkillSessionReservationModal';
-import Tooltip from 'shared/components/Tooltip';
 import SessionThemeInfo from 'screens/sessions/components/SessionThemeInfo';
 
 const NoSessionContainer = styled.div`

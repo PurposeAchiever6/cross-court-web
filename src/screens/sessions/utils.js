@@ -69,11 +69,8 @@ export const sessionData = (date, sessionInfo) => [
   },
 ];
 
-export const sessionGuestsAllowed = (session) => {
-  return (
-    (session?.isOpenClub || session?.skillSession) && session?.guestsAllowed > 0 && !session?.full
-  );
-};
+export const sessionGuestsAllowed = (session) =>
+  (session?.isOpenClub || session?.skillSession) && session?.guestsAllowed > 0 && !session?.full;
 
 export const sessionGuestsAllowedForUser = (session) => {
   const sessionGuests = session?.userSession?.sessionGuests ?? [];
