@@ -91,6 +91,7 @@ const AboutYourselfPage = () => {
                   <div role="group" aria-labelledby="checkbox-group">
                     {goals.map((goal) => (
                       <InputCheckboxField
+                        variant="cc-ball"
                         className="mb-1"
                         key={goal.id}
                         name="goals"
@@ -116,6 +117,7 @@ const AboutYourselfPage = () => {
                     {values.goals.map((selectedGoal, i) => (
                       <InputCheckboxField
                         className="mb-1"
+                        variant="cc-ball"
                         key={`selectedGoal-${i}`}
                         name="mainGoal"
                         value={values.mainGoal}

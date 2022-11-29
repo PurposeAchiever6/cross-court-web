@@ -34,14 +34,14 @@ const validationSchema = Yup.object().shape({
       'Leading zero is not allowed',
       (value) => value && !value.startsWith('0')
     ),
-  competitiveBasketballActivity: Yup.string().required('Required').min(5),
-  currentBasketballActivity: Yup.string().required('Required').min(15),
+  competitiveBasketballActivity: Yup.string().required('Required').min(10),
+  currentBasketballActivity: Yup.string().required('Required').min(10),
   position: Yup.string().required('Required'),
 });
 
 const initialValues = {
-  weight: '',
-  height: '',
+  weight: '170',
+  height: `5${singleQuote}10${doubleQuote}`,
   competitiveBasketballActivity: '',
   currentBasketballActivity: '',
   position: '',
@@ -51,8 +51,8 @@ const AboutYourselfPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
-  const [weight, setWeight] = useState('');
-  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('170');
+  const [height, setHeight] = useState(`5${singleQuote}10${doubleQuote}`);
   const [allowedLoading, setAllowedLoading] = useState(true);
 
   useEffect(() => {
@@ -174,7 +174,7 @@ const AboutYourselfPage = () => {
                 onClick={(operation) => onWeightClick(operation, setFieldValue)}
                 onChange={(e) => onWeightChange(e, setFieldValue)}
                 maxLength="3"
-                placeholder="27"
+                placeholder="170"
                 className="mb-4"
                 error={errors.weight}
               />
@@ -194,7 +194,7 @@ const AboutYourselfPage = () => {
                 name="competitiveBasketballActivity"
                 placeholder="Ex Varsity, Foxwood High School 2010-2012"
                 className="text-white my-5"
-                hint="Please provide at least 5 characters"
+                hint="Please provide at least 10 characters"
               />
               <p className="mb-4">
                 What is your current basketball activity? Where do you hoop? How often?
@@ -203,7 +203,7 @@ const AboutYourselfPage = () => {
                 name="currentBasketballActivity"
                 placeholder="Ex Equinox, twice a week for 2 hours"
                 className="text-white my-5"
-                hint="Please provide at least 15 characters"
+                hint="Please provide at least 10 characters"
               />
               <p className="mb-4">What is your preferred position?</p>
               <div role="group" aria-labelledby="checkbox-group" className="mb-10">
