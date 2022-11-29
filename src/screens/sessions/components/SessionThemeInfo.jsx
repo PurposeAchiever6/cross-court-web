@@ -7,6 +7,11 @@ import PropTypes from 'prop-types';
 
 const SessionThemeInfo = ({ session }) => {
   const { themeTitle, themeSweatLevel, themeDescription, themeSubheading } = session;
+  const themeFireArray = themeSweatLevel
+    ? Array(themeSweatLevel)
+        .fill()
+        .map((_, i) => <FireSvg key={i} className="text-cc-black" />)
+    : [];
 
   return (
     <div className="overflow-hidden">
@@ -14,13 +19,10 @@ const SessionThemeInfo = ({ session }) => {
         <p className="pt-1 font-shapiro96_inclined_wide overflow-hidden overflow-ellipsis">
           {themeTitle}
         </p>
-        {themeSweatLevel &&
-          Array(themeSweatLevel)
-            .fill()
-            .map((_, i) => <FireSvg key={i} className="text-cc-black" />)}
+        {themeFireArray.length > 0 && themeFireArray}
         {themeDescription && (
           <Tooltip variant="black" tooltip={themeDescription} place="right">
-            <InfoSvg className="text-cc-black cursor-pointer" />
+            <InfoSvg className="ml-1 text-cc-black cursor-pointer" />
           </Tooltip>
         )}
       </div>
