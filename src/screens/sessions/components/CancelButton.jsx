@@ -13,7 +13,7 @@ const CancelButton = ({ session, modalToggler }) => {
       </PrimaryButton>
       {scouting && (
         <div className="text-sm mt-6">
-          You have requested a <span className="font-semibold uppercase">scouting</span> for this
+          You have requested a <span className="font-semibold uppercase">evaluation</span> for this
           session
         </div>
       )}

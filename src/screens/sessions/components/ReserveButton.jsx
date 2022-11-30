@@ -143,7 +143,7 @@ const ReserveButton = ({
                 className="font-shapiro95_super_wide uppercase mb-3"
                 formik={false}
               >
-                Use Scouting Credit
+                Use Evaluation Credit
               </InputCheckboxField>
             )}
             <PrimaryButton

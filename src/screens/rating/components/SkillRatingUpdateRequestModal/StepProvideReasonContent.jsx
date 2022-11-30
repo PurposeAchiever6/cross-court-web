@@ -24,7 +24,7 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
   const validate = () => {
     const newErrors = {};
 
-    if (reason.trim().length < 50) {
+    if (reason.trim().length < 20) {
       newErrors.reason = true;
     }
 
@@ -57,21 +57,28 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
   return (
     <div>
       {userNotMember && (
-        <div className="font-shapiro95_super_wide uppercase text-xs md:text-sm bg-cc-purple text-center text-white p-4 mb-6">
-          Only members can request a skill rating update
+        <div className="text-center mb-6">
+          <div className="font-shapiro95_super_wide uppercase text-xs md:text-sm bg-cc-purple text-white p-4 mb-4">
+            Only members can request a skill rating update
+          </div>
+          <PrimaryButton inverted to={ROUTES.MEMBERSHIPS} fontSize="0.75rem">
+            See Memberships
+          </PrimaryButton>
         </div>
       )}
       <div className={`text-sm ${userNotMember ? 'opacity-30 pointer-events-none' : ''}`}>
         <div className="mb-8">
-          <p className="mb-2">
-            We believe it is important for our member's success to experience crosscourt with other
-            athletes of similar abilities.
-          </p>
-          <p className="mb-5">
-            To update your skill rating to a <strong>{newSkillRating}</strong>, please provide proof
-            of at least varsity level played or book a <strong>scouting session</strong> to have one
-            of our experience members go through our player evaluation form with you during a
-            session.
+          {userNotMember && (
+            <p className="mb-2">
+              We believe it is important for our member's success to experience crosscourt with
+              other athletes of similar abilities.
+            </p>
+          )}
+          <p className="mb-8">
+            To update your skill rating to a <strong>{newSkillRating}</strong>, please provide{' '}
+            <strong>proof</strong> of at least varsity level played <strong>OR</strong> book a{' '}
+            <strong>evaluation session</strong> to have one of our experience members go through our
+            player evaluation form with you during a session.
           </p>
           <div className="mb-4">
             1) Link(s) to team roster, MaxPreps profile, article, YouTube video, social media clips,
@@ -81,7 +88,7 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
           <InputTextareaField
             value={reason}
             onChange={(e) => setReason(e.target.value)}
-            hint="Please include at least 50 characters"
+            hint="Please include at least 20 characters"
             error={errors.reason}
             formik={false}
             className="mb-6"
@@ -93,14 +100,14 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
         <div className="mb-6 md:mb-12">
           <div className="mb-6">
             2) If you think you have what it takes, please purchase a{' '}
-            <strong>scouting credit</strong> below. You will be able to apply the scouting credit at
-            your leisure when booking a session.
+            <strong>evaluation credit</strong> below. You will be able to apply the evaluation
+            credit at your leisure when booking a session.
           </div>
           <div className="text-center">
             <div className="font-shapiro95_super_wide text-xl uppercase mb-6">
-              Purchase scouting credit
+              Purchase evaluation credit
             </div>
-            <PrimaryButton onClick={onPurchaseScoutingCredit}>Purchase Scouting</PrimaryButton>
+            <PrimaryButton onClick={onPurchaseScoutingCredit}>Purchase Evaluation</PrimaryButton>
           </div>
         </div>
         <div className="text-center md:text-left">

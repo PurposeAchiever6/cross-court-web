@@ -158,7 +158,6 @@ const Session = ({
     inStartTime,
     state,
     date,
-    scouting,
     session: {
       id: sessionId,
       time,
@@ -192,13 +191,6 @@ const Session = ({
           <div className="absolute top-0 right-0 m-2 md:m-4">
             <span className="block text-cc-purple font-shapiro95_super_wide text-xl md:text-2xl text-right uppercase">
               Open Club
-            </span>
-          </div>
-        )}
-        {scouting && (
-          <div className="absolute top-0 right-0 m-2 md:m-4">
-            <span className="block text-cc-purple font-shapiro95_super_wide text-xl md:text-2xl text-right uppercase">
-              Scout
             </span>
           </div>
         )}

@@ -153,7 +153,7 @@ const ProductsPage = () => {
             )}
           </>
         )}
-        <FAQ />
+        {showMemberships && <FAQ />}
       </div>
       <CancelMembershipModal
         isOpen={showCancelModal}

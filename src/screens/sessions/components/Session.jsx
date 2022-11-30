@@ -30,8 +30,8 @@ const Session = ({ sessionInfo, isAuthenticated, userProfile }) => {
         </div>
         {userScoutingCredits > 0 && (
           <div className="mt-4">
-            YOU HAVE {userScoutingCredits} SCOUTING {pluralize('CREDIT', userScoutingCredits, 'S')}{' '}
-            AVAILABLE
+            YOU HAVE {userScoutingCredits} EVALUATION{' '}
+            {pluralize('CREDIT', userScoutingCredits, 'S')} AVAILABLE
           </div>
         )}
       </div>
@@ -46,7 +46,7 @@ Session.propTypes = {
     skillSession: PropTypes.bool,
   }),
   isAuthenticated: PropTypes.bool,
-  userProfile: PropTypes.shape({}),
+  userProfile: PropTypes.shape(),
 };
 
 export default Session;

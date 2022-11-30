@@ -41,7 +41,7 @@ const ProductPlan = ({
         label ? 'pl-14 lg:pl-8' : ''
       }`}
     >
-      <div className="inline-block mb-5 lg:h-9">
+      <div className="inline-block mb-5 lg:h-14">
         <h2 className="inline-block lg:block text-3xl 2xl:text-2xl font-shapiro96_inclined_wide leading-none uppercase">
           {product.name}
           {isDropIn && <span>*</span>}

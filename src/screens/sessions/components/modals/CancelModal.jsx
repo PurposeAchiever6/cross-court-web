@@ -17,6 +17,7 @@ export const CancelModal = ({
 
   const inCancellationTime = sessionInfo?.userSession?.inCancellationTime;
   const isFreeSession = sessionInfo?.userSession?.isFreeSession;
+  const scouting = sessionInfo?.userSession?.scouting;
   const isOpenClub = sessionInfo?.isOpenClub;
 
   const onCancelClick = () => {
@@ -44,7 +45,9 @@ export const CancelModal = ({
     }
 
     if (inCancellationTime) {
-      return 'The credit will be refunded to your account';
+      return scouting
+        ? 'The session and evaluation credits will be refunded to your account'
+        : 'The credit will be refunded to your account';
     }
 
     if (isFreeSession) {
@@ -52,7 +55,9 @@ export const CancelModal = ({
                 $${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} late cancellation fee`;
     }
 
-    return 'The credit will not be refunded because of the late cancellation';
+    return scouting
+      ? 'The session and evaluation credits will not be refunded because of the late cancellation'
+      : 'The credit will not be refunded because of the late cancellation';
   })();
 
   return (
@@ -75,13 +80,7 @@ CancelModal.propTypes = {
   unlimitedCredits: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
   cancelSessionAction: PropTypes.func.isRequired,
-  sessionInfo: PropTypes.shape({
-    isOpenClub: PropTypes.bool.isRequired,
-    userSession: PropTypes.shape({
-      inCancellationTime: PropTypes.bool.isRequired,
-      isFreeSession: PropTypes.bool.isRequired,
-    }),
-  }),
+  sessionInfo: PropTypes.shape(),
 };
 
 export default CancelModal;

@@ -121,7 +121,7 @@ const MyCredits = ({
         {scoutingCredits > 0 && (
           <div className={`text-sm ${activeSubscription ? 'mt-4' : 'mt-10'}`}>
             <div className="font-shapiro95_super_wide uppercase whitespace-nowrap mr-2">
-              Scouting Credits:
+              Evaluation Credits:
             </div>
             <div>
               {scoutingCredits} {pluralize('credit', scoutingCredits)}
@@ -155,6 +155,7 @@ MyCredits.propTypes = {
   isUnlimitedSkillSession: bool.isRequired,
   skillSessionCredits: number.isRequired,
   activeSubscription: object,
+  scoutingCredits: number,
 };
 
 export default MyCredits;

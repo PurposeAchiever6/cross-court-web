@@ -144,12 +144,12 @@ const RatingPage = () => {
           ))}
           {!isEdit && skillRatingsForReview.length > 0 && (
             <div className="bg-cc-purple mt-2 md:mt-3 p-4 text-sm">
-              Our advanced sessions are reserved for members only. Once a member, it's possible our
-              Experience Team adjusts your skill level based on playstyle and sportsmanship. If your
-              skill level isn't adjusted by Crosscourt, you have the ability to request a skill
-              level update through your "My Account" portal. You will be asked to provide the
-              necessary information, ranging from providing information showing at least university
-              level played or referrals from existing members in the skill range selected.
+              To create the best experience for our members, our higher end skill designations are
+              assigned to players that show a proficient ability on the court. Once a member, you
+              will have the ability to request a skill level update by providing proof of at least
+              varsity level played or by undergoing a player evaluation, where our Experience Team
+              will use an Evaluation Form to provide a skill level rating after evaluating your
+              performance during a session.
             </div>
           )}
         </div>

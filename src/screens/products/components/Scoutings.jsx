@@ -8,8 +8,10 @@ const Scoutings = ({ selectProductHandler, availableProducts }) => {
 
   return (
     <div className="text-white w-full">
-      <h1 className="dharma_gothic_cheavy text-8xl text-center uppercase mb-8">Scouting</h1>
-      <div className="flex flex-wrap justify-center lg:-mx-4 mb-2 sm:mb-10">
+      <h1 className="dharma_gothic_cheavy text-8xl text-center uppercase mb-8">
+        Player Evaluation
+      </h1>
+      <div className="flex flex-wrap justify-center lg:-mx-4 mb-2 lg:mb-14">
         {products.map((product) => (
           <div key={product.id} className="w-full lg:w-1/4 lg:px-4 mb-8 lg:mb-0">
             <ProductPlan product={product} handleSubmit={selectProductHandler} />
@@ -21,8 +23,8 @@ const Scoutings = ({ selectProductHandler, availableProducts }) => {
           Can Be Applied To Any Session
         </h2>
         <p className="sm:text-center sm:text-lg">
-          Once a <span className="uppercase text-cc-purple">scouting</span> session is purchased,
-          you will see a <span className="uppercase text-cc-purple">use scouting credit</span>{' '}
+          Once a <span className="uppercase text-cc-purple">player evaluation</span> is purchased,
+          you will see a <span className="uppercase text-cc-purple">use evaluation credit</span>{' '}
           option during the session booking flow on the{' '}
           <span className="uppercase text-cc-purple">confirm reservation</span> page.
         </p>

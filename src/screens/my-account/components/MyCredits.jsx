@@ -166,7 +166,7 @@ const MyCredits = ({
         {scoutingCredits > 0 && (
           <div className="text-sm">
             <span className="font-shapiro95_super_wide uppercase whitespace-nowrap mr-2">
-              Scouting Credits:
+              Evaluation Credits:
             </span>
             <span>
               {scoutingCredits} {pluralize('credit', scoutingCredits)}
