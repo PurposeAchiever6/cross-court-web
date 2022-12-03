@@ -76,9 +76,9 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
           )}
           <p className="mb-8">
             To update your skill rating to a <strong>{newSkillRating}</strong>, please provide{' '}
-            <strong>proof</strong> of at least varsity level played <strong>OR</strong> book a{' '}
-            <strong>evaluation session</strong> to have one of our experience members go through our
-            player evaluation form with you during a session.
+            <strong>proof</strong> of at least varsity level played <strong>OR</strong> book an{' '}
+            <strong>evaluation session</strong> to have one of our Experience Managers go through
+            our player evaluation form with you during a session.
           </p>
           <div className="mb-4">
             1) Link(s) to team roster, MaxPreps profile, article, YouTube video, social media clips,
@@ -99,7 +99,7 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
         </div>
         <div className="mb-6 md:mb-12">
           <div className="mb-6">
-            2) If you think you have what it takes, please purchase a{' '}
+            2) If you think you have what it takes, please purchase an{' '}
             <strong>evaluation credit</strong> below. You will be able to apply the evaluation
             credit at your leisure when booking a session.
           </div>
@@ -116,7 +116,7 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
             color="black"
             fontSize="0.675rem"
             hoverEffect={false}
-            to="/player-evaluation-form.pdf"
+            to="/player-evaluation-form.png"
             target="_blank"
           >
             See Player Evaluation Form

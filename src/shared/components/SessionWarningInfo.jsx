@@ -1,10 +1,8 @@
-/* eslint-disable no-else-return */
-/* eslint-disable no-lonely-if */
 import React from 'react';
 import PropTypes from 'prop-types';
-import WarningTriangle from 'shared/images/warning-triangle.png';
 
 import { sessionReservationInfo } from 'shared/utils/sessions';
+import WarningTriangle from 'shared/images/warning-triangle.png';
 
 const SessionWarningInfo = ({ session, userProfile, className }) => {
   const { warning } = sessionReservationInfo(session, userProfile);
