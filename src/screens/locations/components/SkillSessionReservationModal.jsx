@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import Modal from 'shared/components/Modal';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
 import { confirmSkillSession } from 'shared/utils/skillSessionsConfirmations';
 import VideoPlayer from 'shared/components/VideoPlayer';
+import { getIsAuthenticated } from 'screens/auth/reducer';
 
 const SkillSessionReservationModal = ({ isOpen, closeHandler, onConfirm, userProfile }) => {
   const [dontShowModalAgain, setDontShowModalAgain] = useState(false);
   const [watchVideo, setWatchVideo] = useState(false);
+  const isAuthenticated = useSelector(getIsAuthenticated);
 
   const handleClick = () => {
     if (dontShowModalAgain) {
@@ -30,14 +33,16 @@ const SkillSessionReservationModal = ({ isOpen, closeHandler, onConfirm, userPro
           >
             See video
           </p>
-          <InputCheckboxField
-            name="confirmSkillSessionReservation"
-            onChange={() => setDontShowModalAgain(!dontShowModalAgain)}
-            value={dontShowModalAgain}
-            formik={false}
-          >
-            Don't show me this again
-          </InputCheckboxField>
+          {isAuthenticated && (
+            <InputCheckboxField
+              name="confirmSkillSessionReservation"
+              onChange={() => setDontShowModalAgain(!dontShowModalAgain)}
+              value={dontShowModalAgain}
+              formik={false}
+            >
+              Don't show me this again
+            </InputCheckboxField>
+          )}
         </div>
         <div className="text-center">
           <PrimaryButton inverted onClick={handleClick}>
