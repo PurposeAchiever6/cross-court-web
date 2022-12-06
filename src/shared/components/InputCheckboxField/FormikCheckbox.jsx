@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import Checkbox from './Checkbox';
 
-const FormikCheckbox = ({ name, error, ...props }) => (
-  <Field name={name}>
+const FormikCheckbox = ({ name, value, error, isGroup, ...props }) => (
+  <Field name={name} value={isGroup ? value : undefined} type="checkbox">
     {({ field, form: { touched, errors: formikErrors } }) => (
       <Checkbox
         {...props}
@@ -17,12 +17,16 @@ const FormikCheckbox = ({ name, error, ...props }) => (
 );
 
 FormikCheckbox.defaultProps = {
+  value: null,
   error: null,
+  isGroup: false,
 };
 
 FormikCheckbox.propTypes = {
   name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   error: PropTypes.string,
+  isGroup: PropTypes.bool,
 };
 
 export default FormikCheckbox;

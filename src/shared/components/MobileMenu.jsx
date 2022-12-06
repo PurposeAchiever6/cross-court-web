@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
 
 import useScrollBlock from 'shared/hooks/useScrollBlock';
 import ReactDOM from 'react-dom';
@@ -8,19 +7,6 @@ import SidebarMenu from './SidebarMenu';
 
 const modalRoot = document.querySelector('#modal-root');
 const element = document.createElement('div');
-
-const MobileMenuContainer = styled.div`
-  display: none;
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-
-  @media (max-width: 768px) {
-    display: ${({ open }) => (open ? 'block' : 'none')};
-  }
-`;
 
 const MobileMenu = ({ menuOpen, toggleMenu }) => {
   const [blockScroll, allowScroll] = useScrollBlock();
@@ -37,9 +23,9 @@ const MobileMenu = ({ menuOpen, toggleMenu }) => {
   }, [menuOpen, blockScroll, allowScroll]);
 
   return ReactDOM.createPortal(
-    <MobileMenuContainer open={menuOpen}>
+    <div className={`fixed inset-0 md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
       <SidebarMenu menuToggler={toggleMenu} />
-    </MobileMenuContainer>,
+    </div>,
     element
   );
 };

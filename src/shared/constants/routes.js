@@ -1,5 +1,6 @@
 export default {
   NOT_FOUND: '/404',
+  ABOUT_YOURSELF: '/about-yourself',
   CAREERS: '/careers',
   CHECKOUT: '/checkout',
   CHECKOUT_CONFIRMED: '/checkout/confirmed',
@@ -11,6 +12,7 @@ export default {
   FORGOTPASSWORD: '/forgotpassword',
   FORGOTPASSWORDSUCCESS: '/forgotpassword/success',
   GALLERY: '/gallery',
+  GOALS: '/goals',
   HOME: '/',
   HOWITWORKS: '/how-it-works',
   LOCATIONS: '/locations',

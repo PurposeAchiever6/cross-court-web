@@ -30,6 +30,9 @@ import {
   UPDATE_SKILL_RATING_INIT,
   UPDATE_SKILL_RATING_SUCCESS,
   UPDATE_SKILL_RATING_FAILURE,
+  UPDATE_PERSONAL_INFO_INIT,
+  UPDATE_PERSONAL_INFO_SUCCESS,
+  UPDATE_PERSONAL_INFO_FAILURE,
   UPDATE_PROFILE_REQUEST_INIT,
   UPDATE_PROFILE_REQUEST_SUCCESS,
   UPDATE_PROFILE_REQUEST_FAILURE,
@@ -93,11 +96,29 @@ export function* updateSkillRatingFlow({ payload }) {
 
     yield call(authService.updateSkillRating, { email, skillRating: payload.skillRating });
     yield put({ type: UPDATE_SKILL_RATING_SUCCESS });
-    yield put(push(isEdit ? ROUTES.MYACCOUNT : ROUTES.SIGNUPSUCCESS));
+    yield put(push(isEdit ? ROUTES.MYACCOUNT : ROUTES.ABOUT_YOURSELF, { from: ROUTES.RATING }));
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);
     yield put({ type: UPDATE_SKILL_RATING_FAILURE, error: errorMessage });
+  }
+}
+
+export function* updatePersonalInfoFlow({ payload }) {
+  try {
+    const email = yield select(getUserEmail);
+
+    yield call(authService.updatePersonalInfo, { email, personalInfo: payload.personalInfo });
+    yield put({ type: UPDATE_PERSONAL_INFO_SUCCESS });
+    yield put(
+      push(payload.from === ROUTES.ABOUT_YOURSELF ? ROUTES.GOALS : ROUTES.SIGNUPSUCCESS, {
+        from: payload.from,
+      })
+    );
+  } catch (err) {
+    const errorMessage = err.response.data.error;
+    yield call(toast.error, errorMessage);
+    yield put({ type: UPDATE_PERSONAL_INFO_FAILURE, error: errorMessage });
   }
 }
 
@@ -149,6 +170,7 @@ export default function* rootLoginSaga() {
     takeLatest(PASS_RESET_INIT, passResetFlow),
     takeLatest(AUTO_LOGIN_INIT, autoLoginFlow),
     takeLatest(UPDATE_SKILL_RATING_INIT, updateSkillRatingFlow),
+    takeLatest(UPDATE_PERSONAL_INFO_INIT, updatePersonalInfoFlow),
     takeLatest(UPDATE_PROFILE_REQUEST_INIT, updateRequestFlow),
   ]);
 }

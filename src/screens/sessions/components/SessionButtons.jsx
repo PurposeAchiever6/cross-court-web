@@ -18,11 +18,11 @@ import {
   joinSessionWaitlistInit,
   removeSessionWaitlistInit,
 } from 'screens/sessions/actionCreators';
-import { sessionGuestsAllowed } from 'screens/sessions/utils';
 
 import ReserveButton from './ReserveButton';
 import CancelButton from './CancelButton';
 import SessionGuests from './SessionGuests';
+import { sessionGuestsAllowedForUser } from '../utils';
 
 const SessionButtons = ({
   session,
@@ -45,8 +45,6 @@ const SessionButtons = ({
 
   const { past, time, onWaitlist } = session;
 
-  const guestsAllowed = sessionGuestsAllowed(session);
-
   const { disabled: disabledReservation } = sessionReservationInfo(session, userProfile);
   const reservationDisabled = disabledReservation || subscriptionPaused;
 
@@ -56,7 +54,7 @@ const SessionButtons = ({
     (session?.userSession && ['reserved', 'confirmed'].includes(session.userSession.state)) ||
     false;
 
-  const shootingMachineReservation = session?.userSession?.shootingMachineReservation;
+  const guestsAllowed = sessionGuestsAllowedForUser(session);
 
   const copyShareInfoToClipboard = () => {
     const input = document.createElement('input');
@@ -122,17 +120,20 @@ const SessionButtons = ({
                   JOIN WAITLIST
                 </PrimaryButton>
               )}
-              {reservedOrConfirmed &&
-                !session?.full &&
-                (guestsAllowed ? (
+              {reservedOrConfirmed && (
+                <>
                   <SessionGuests session={session} setShowAddGuestModal={setShowAddGuestModal} />
-                ) : (
-                  <PrimaryButton inverted className="mb-4" onClick={copyShareInfoToClipboard}>
-                    <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
-                    {copied ? 'COPIED' : 'INVITE A FRIEND'}
-                  </PrimaryButton>
-                ))}
-              {reservedOrConfirmed && <CancelButton modalToggler={showCancelModalAction} />}
+                  {!guestsAllowed && (
+                    <PrimaryButton inverted className="mb-4" onClick={copyShareInfoToClipboard}>
+                      <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
+                      {copied ? 'COPIED' : 'INVITE A FRIEND'}
+                    </PrimaryButton>
+                  )}
+                </>
+              )}
+              {reservedOrConfirmed && (
+                <CancelButton session={session} modalToggler={showCancelModalAction} />
+              )}
               {subscriptionPaused && (
                 <div className="text-sm">
                   You can't reserve when your <br /> membership is paused
@@ -140,12 +141,6 @@ const SessionButtons = ({
               )}
               {!subscriptionPaused && (
                 <SessionWarningInfo session={session} userProfile={userProfile} />
-              )}
-              {shootingMachineReservation && (
-                <div className="text-sm">
-                  You have reserved a shooting machine from {shootingMachineReservation.startTime}{' '}
-                  to {shootingMachineReservation.endTime}
-                </div>
               )}
             </>
           )}

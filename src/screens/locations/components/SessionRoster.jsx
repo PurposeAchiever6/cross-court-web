@@ -25,16 +25,17 @@ const SessionRoster = ({ sessionId, date, className }) => {
     }
   }, [sessionId, date]);
 
-  if (loading)
+  if (loading) {
     return (
-      <div className="flex items-center text-sm">
+      <div className="flex items-center text-sm mt-2">
         <p className="mr-2">Loading</p>
         <Spinner />
       </div>
     );
+  }
 
   if (!loading && userSessions.length === 0) {
-    return <div className="text-sm">No reservations yet</div>;
+    return <div className="text-sm mt-2">No reservations yet</div>;
   }
 
   return (

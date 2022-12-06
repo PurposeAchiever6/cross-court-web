@@ -37,6 +37,8 @@ const ALWAYS_SCROLLED = [
   ROUTES.SIGNUP,
   ROUTES.TERMS,
   ROUTES.RATING,
+  ROUTES.ABOUT_YOURSELF,
+  ROUTES.GOALS,
   ROUTES.CHECKOUT,
   ROUTES.PAYMENT_HISTORY,
   ROUTES.MANAGE_MEMBERSHIP,
@@ -176,7 +178,11 @@ const Header = () => {
           <SidebarMenu menuToggler={toggleMenu} />
         </DesktopMenu>
         <div className="header-content flex items-center h-full justify-between pr-4">
-          <div className="flex items-center h-full z-1005">
+          <div
+            className={`flex items-center h-full z-1005 ${
+              showMembershipPromoBanner && menuOpen ? '-mt-56 sm:-mt-32 md:mt-0' : ''
+            }`}
+          >
             <div className="flex h-full w-16 justify-center" data-active={menuOpen}>
               <button
                 className="flex items-center justify-center"

@@ -13,6 +13,7 @@ import rootSessionsSurveysSaga from 'screens/surveys/sessions/saga';
 import rootFirstTimersSurveysSaga from 'screens/surveys/firstTimers/saga';
 import rootGallerySaga from 'screens/gallery/saga';
 import rootReferralsSaga from 'screens/referrals/saga';
+import rootGoalsSaga from 'screens/goals/saga';
 
 export default function* rootSaga() {
   yield all([
@@ -29,5 +30,6 @@ export default function* rootSaga() {
     rootFirstTimersSurveysSaga(),
     rootGallerySaga(),
     rootReferralsSaga(),
+    rootGoalsSaga(),
   ]);
 }

@@ -158,6 +158,7 @@ const Session = ({
     inStartTime,
     state,
     date,
+    scouting,
     session: {
       id: sessionId,
       time,
@@ -183,14 +184,23 @@ const Session = ({
         {skillSession && (
           <img
             alt="sklz-logo"
-            className="absolute top-0 right-0 w-24 md:w-32 m-2 md:m-4"
+            className="absolute top-0 right-0 w-20 md:w-24 m-2 md:m-4"
             src={sklzLogoPurple}
           />
         )}
         {isOpenClub && (
           <div className="absolute top-0 right-0 m-2 md:m-4">
-            <span className="text-cc-purple font-shapiro95_super_wide text-xl md:text-2xl text-right uppercase">
+            <span className="block text-cc-purple font-shapiro95_super_wide md:text-xl text-right uppercase">
               Open Club
+            </span>
+          </div>
+        )}
+        {scouting && (
+          <div className="absolute top-0 right-0 m-2 md:m-4">
+            <span className="block text-cc-purple font-shapiro95_super_wide md:text-xl text-right uppercase">
+              Evalua
+              <br className="sm:hidden" />
+              tion
             </span>
           </div>
         )}

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -8,14 +9,15 @@ import whiteBasketballSvg from 'shared/images/svgs/white-basketball.svg';
 const CheckboxInputContainer = styled.div`
   input[type='checkbox'] {
     -webkit-appearance: none;
-    width: 1.15em;
-    min-width: 1.15em;
-    height: 1.15em;
+    width: 1.2em;
+    min-width: 1.2em;
+    height: 1.2em;
     border-radius: 1px;
     border: 2px solid currentColor;
     display: grid;
     place-content: center;
     cursor: pointer;
+    margin-right: 0.6rem;
     margin-top: 2px;
 
     &::before {
@@ -35,27 +37,26 @@ const CheckboxInputContainer = styled.div`
   &.cc-ball,
   &.cc-ball-white {
     input[type='checkbox'] {
-      width: 1.35em;
-      min-width: 1.35em;
-      height: 1.35em;
+      width: 1.5em;
+      min-width: 1.5em;
+      height: 1.5em;
       border-radius: 9999px;
       border: 1px solid currentColor;
-      margin-right: 0.03em;
+      margin-right: 0.6rem;
 
       &::before {
-        width: 0.95em;
-        height: 1em;
+        width: 1.05em;
+        height: 1.1em;
         background-color: unset;
       }
 
       &:checked::before {
-        animation: spin infinite 3s;
+        animation: spin infinite 4s;
       }
     }
 
-    label {
-      margin-top: 2px;
-      margin-left: 0.875rem;
+    span {
+      margin-top: 4px;
     }
   }
 
@@ -74,41 +75,50 @@ const CheckboxInputContainer = styled.div`
       }
     }
   }
-
-  label {
-    font-size: 0.875em;
-    margin-left: 1rem;
-  }
 `;
 
-const Checkbox = ({ name, value, children, error, disabled, variant, className, ...props }) => (
+const Checkbox = ({
+  name,
+  value,
+  children,
+  error,
+  disabled,
+  variant,
+  className,
+  hideError,
+  ...props
+}) => (
   <CheckboxInputContainer className={`${variant} ${className}`}>
-    <div className={`flex ${disabled ? 'opacity-50 pointer-events-none' : ''}`}>
-      <input id={name} type="checkbox" checked={value} {...props} />
-      <label htmlFor={name} className="cursor-pointer select-none">
-        {children}
-      </label>
-    </div>
-    {error && <div className="block text-xs text-right text-red-500">{error}</div>}
+    <label
+      className={`text-sm flex cursor-pointer select-none ${
+        disabled ? 'opacity-50 pointer-events-none' : ''
+      }`}
+    >
+      <input type="checkbox" name={name} value={value} {...props} />
+      <span>{children}</span>
+    </label>
+    {!hideError && error && <div className="block text-xs text-right text-red-500">{error}</div>}
   </CheckboxInputContainer>
 );
 
 Checkbox.defaultProps = {
-  value: null,
+  value: '',
   error: null,
   disabled: false,
   variant: '',
   className: '',
+  hideError: false,
 };
 
 Checkbox.propTypes = {
   name: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   children: PropTypes.node.isRequired,
-  value: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   disabled: PropTypes.bool,
   variant: PropTypes.string,
   className: PropTypes.string,
+  hideError: PropTypes.bool,
 };
 
 export default Checkbox;

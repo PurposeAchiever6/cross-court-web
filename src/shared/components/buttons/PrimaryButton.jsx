@@ -1,8 +1,10 @@
 /* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
 import colors from 'shared/styles/constants';
+
 import Spinner from '../Spinner';
 
 const StyledDiv = styled.div`
@@ -38,11 +40,16 @@ const StyledDiv = styled.div`
     transition: 500ms background-color ease, 500ms border-color ease, 500ms color ease;
     z-index: 1;
     width: ${(props) => (props.w ? props.w : '')};
-    :hover {
-      background-color: ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
-      color: ${(props) => (props.inverted ? colors.white : colors.brandPurple)};
-      border: 3px solid ${(props) => (props.inverted ? colors.white : colors.brandPurple)};
-    }
+    ${(props) =>
+      props.hoverEffect &&
+      css`
+        :hover {
+          background-color: ${(props) => (props.inverted ? colors.brandPurple : colors.white)};
+          color: ${(props) => (props.inverted ? colors.white : colors.brandPurple)};
+          border: 3px solid ${(props) => (props.inverted ? colors.white : colors.brandPurple)};
+        }
+      `}
+
   }
 
   .double-drop {
@@ -88,6 +95,8 @@ const PrimaryButton = ({
   type,
   fontSize,
   lineHeight,
+  target,
+  hoverEffect = true,
   contentClasses = '',
   ...props
 }) => {
@@ -105,6 +114,7 @@ const PrimaryButton = ({
       double={double}
       fontSize={fontSize}
       lineHeight={lineHeight}
+      hoverEffect={hoverEffect}
       className={contentClasses}
       {...props}
     >
@@ -118,6 +128,7 @@ const PrimaryButton = ({
       style={{ pointerEvents: disabled || loading ? 'none' : '' }}
       to={to}
       className={`primary-button ${className}`}
+      target={target}
     >
       {content}
     </Link>

@@ -9,7 +9,10 @@ const FREE_SESSION = 'Free Session';
 const DropIns = ({ selectProductHandler, availableProducts }) => {
   const products = availableProducts.filter(
     (product) =>
-      product.name !== FREE_SESSION && product.productType === ONE_TIME && !product.seasonPass
+      product.productType === ONE_TIME &&
+      product.name !== FREE_SESSION &&
+      !product.seasonPass &&
+      !product.scouting
   );
 
   return (

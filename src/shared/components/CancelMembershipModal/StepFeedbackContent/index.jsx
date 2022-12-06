@@ -28,7 +28,10 @@ const StepFeedbackContent = ({
   const currentUser = useSelector(getUserProfile);
 
   useEffect(() => {
-    if (products.length === 0) dispatch(fetchProducts());
+    if (products.length === 0) {
+      dispatch(fetchProducts());
+    }
+    // eslint-disable-next-line
   }, [dispatch]);
 
   const validate = () => {
@@ -67,8 +70,8 @@ const StepFeedbackContent = ({
   };
 
   const onChangeReason = (e) => {
-    const { checked, id: value } = e.target;
-    setReason(checked ? value : null);
+    const { value } = e.target;
+    setReason(value);
     setErrors({});
   };
 

@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { pluralize } from 'shared/utils/helpers';
 import { longSessionDate, hourRange } from 'shared/utils/date';
 
 export const getSessionsMessageContainerText = (
@@ -34,9 +36,11 @@ export const getSessionsMessageContainerText = (
 
     const totalSkillSessionCredits = totalCredits + subscriptionSkillSessionCredits;
 
-    return `YOU HAVE ${totalSkillSessionCredits} SKLZ SESSION${
-      totalSkillSessionCredits === 1 ? '' : 'S'
-    } LEFT THIS MONTH`;
+    return `YOU HAVE ${totalSkillSessionCredits} SKLZ ${pluralize(
+      'SESSION',
+      totalSkillSessionCredits,
+      'S'
+    )} LEFT THIS MONTH`;
   }
 
   if (unlimitedCredits) {
@@ -44,7 +48,7 @@ export const getSessionsMessageContainerText = (
   }
 
   if (totalCredits) {
-    return `YOU HAVE ${totalCredits} SESSION${totalCredits === 1 ? '' : 'S'} ${
+    return `YOU HAVE ${totalCredits} ${pluralize('SESSION', totalCredits, 'S')} ${
       activeSubscription ? 'LEFT THIS MONTH' : 'AVAILABLE'
     }`;
   }
@@ -65,13 +69,11 @@ export const sessionData = (date, sessionInfo) => [
   },
 ];
 
-export const sessionGuestsAllowed = (session) => {
+export const sessionGuestsAllowed = (session) =>
+  (session?.isOpenClub || session?.skillSession) && session?.guestsAllowed > 0 && !session?.full;
+
+export const sessionGuestsAllowedForUser = (session) => {
   const sessionGuests = session?.userSession?.sessionGuests ?? [];
 
-  return (
-    (session?.isOpenClub || session?.skillSession) &&
-    session?.guestsAllowed > 0 &&
-    session?.guestsAllowed > sessionGuests.length &&
-    session?.guestsAllowedPerUser > sessionGuests.length
-  );
+  return sessionGuestsAllowed(session) && session?.guestsAllowedPerUser > sessionGuests.length;
 };

@@ -93,7 +93,8 @@ export function* reserveSessionFlow({ payload }) {
       payload.date,
       payload.referralCode,
       payload.goal,
-      payload.shootingMachineId
+      payload.shootingMachineId,
+      payload.scouting
     );
     yield put({
       type: RESERVE_SESSION_SUCCESS,
@@ -242,6 +243,7 @@ export function* removeSessionGuestFlow({ payload }) {
       type: REMOVE_SESSION_GUEST_SUCCESS,
       payload: { sessionGuestId: payload.sessionGuestId },
     });
+    yield call(toast.success, 'Guest canceled succesfully');
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);

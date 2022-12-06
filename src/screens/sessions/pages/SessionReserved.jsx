@@ -15,7 +15,7 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import ReferAFriend from 'shared/components/ReferAFriend';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionInfo } from 'screens/sessions/reducer';
-import { sessionGuestsAllowed } from 'screens/sessions/utils';
+import { sessionGuestsAllowed, sessionGuestsAllowedForUser } from 'screens/sessions/utils';
 
 const SessionBookedContainer = styled.div`
   .title {
@@ -23,6 +23,9 @@ const SessionBookedContainer = styled.div`
     color: ${colors.brandBlack};
     font-size: 24px;
     line-height: 24px;
+    text-transform: uppercase;
+    max-width: 40rem;
+    text-align: center;
     @media (min-width: 992px) {
       font-size: 33px;
       line-height: 33px;
@@ -64,7 +67,27 @@ const SessionReserved = () => {
 
   const [showAddGuestModal, setShowAddGuestModal] = useState(false);
 
+  const isOpenClub = sessionInfo?.isOpenClub;
+  const isSkillSession = sessionInfo?.skillSession;
+  const scouting = sessionInfo?.userSession?.scouting;
   const guestsAllowed = sessionGuestsAllowed(sessionInfo);
+  const guestsAllowedForUser = sessionGuestsAllowedForUser(sessionInfo);
+
+  const title = (() => {
+    if (isOpenClub) {
+      return 'Open Club Booked';
+    }
+
+    if (isSkillSession) {
+      return 'SKLZ Session Booked';
+    }
+
+    if (scouting) {
+      return 'Session And Player Evaluation Booked';
+    }
+
+    return 'Session Booked';
+  })();
 
   return (
     <>
@@ -72,18 +95,22 @@ const SessionReserved = () => {
         <Animation animation={confettiAnimation} className="absolute inset-0" />
         <div className="min-h-screen flex flex-col items-center justify-center relative z-10">
           <img className="w-52" src={SportCharacter} alt="Sport Icon" />
-          <p className="title">{sessionInfo?.isOpenClub ? 'OPEN CLUB' : 'SESSION'} BOOKED</p>
+          <p className="title">{title}</p>
           <p className="subtitle">SUCCESSFULLY!</p>
-          {guestsAllowed ? (
+          {guestsAllowed && (
             <>
-              <p className="my-6 text-lg">Easily invite a friend to your session below:</p>
+              {guestsAllowedForUser && (
+                <p className="my-6 text-lg">Easily invite a friend to your session below:</p>
+              )}
               <SessionGuests
                 session={sessionInfo}
                 setShowAddGuestModal={setShowAddGuestModal}
                 className="flex flex-col items-center w-[24rem] md:w-[34rem]"
               />
+              <div className="border-t border-gray-400 w-20 py-2" />
             </>
-          ) : (
+          )}
+          {!guestsAllowedForUser && (
             <ReferAFriend code={currentUser.referralCode} className="text-center" />
           )}
 

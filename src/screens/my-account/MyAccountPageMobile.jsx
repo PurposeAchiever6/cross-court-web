@@ -35,6 +35,7 @@ export const MyAccountPageMobile = ({
           isUnlimitedSkillSession={userProfile.unlimitedSkillSessionCredits}
           skillSessionCredits={userProfile.subscriptionSkillSessionCredits}
           activeSubscription={userProfile.activeSubscription}
+          scoutingCredits={userProfile.scoutingCredits}
         />
       </div>
     </Tabs>

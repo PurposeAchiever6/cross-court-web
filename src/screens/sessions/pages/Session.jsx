@@ -45,8 +45,7 @@ const Session = () => {
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
   const referralCode = window.localStorage.getItem('referralCode');
 
-  const { isOpenClub, skillSession } = sessionInfo;
-  const normalSession = !isOpenClub && !skillSession;
+  const { normalSession, isOpenClub, skillSession } = sessionInfo;
 
   const [showAddGuestModal, setShowAddGuestModal] = useState(false);
 

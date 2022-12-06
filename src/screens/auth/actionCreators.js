@@ -7,6 +7,7 @@ import {
   PASS_RESET_INIT,
   AUTO_LOGIN_INIT,
   UPDATE_SKILL_RATING_INIT,
+  UPDATE_PERSONAL_INFO_INIT,
   UPDATE_PROFILE_REQUEST_INIT,
 } from './actionTypes';
 
@@ -31,6 +32,11 @@ export const sendConfirmationEmailInit = () => ({
 
 export const updateSkillRatingInit = (payload) => ({
   type: UPDATE_SKILL_RATING_INIT,
+  payload,
+});
+
+export const updatePersonalInfo = (payload) => ({
+  type: UPDATE_PERSONAL_INFO_INIT,
   payload,
 });
 

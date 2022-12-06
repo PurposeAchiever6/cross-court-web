@@ -48,6 +48,8 @@ const Modal = ({
         return '35rem';
       case 'xl':
         return '40rem';
+      case '2xl':
+        return '45rem';
       case 'full':
         return '100%';
       default:
