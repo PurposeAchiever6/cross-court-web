@@ -100,12 +100,14 @@ const SessionReserved = () => {
           {guestsAllowed && (
             <>
               {guestsAllowedForUser && (
-                <p className="my-6 text-lg">Easily invite a friend to your session below:</p>
+                <p className="mt-6 mb-3 text-center">
+                  Easily invite a friend to your session below:
+                </p>
               )}
               <SessionGuests
                 session={sessionInfo}
                 setShowAddGuestModal={setShowAddGuestModal}
-                className="flex flex-col items-center w-[24rem] md:w-[34rem]"
+                className="flex flex-col items-center mb-4"
               />
               <div className="border-t border-gray-400 w-20 py-2" />
             </>

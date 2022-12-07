@@ -5,10 +5,15 @@ import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const GuestAddedStep = ({ onDone }) => (
   <div className="text-center">
+    <p className="mb-3">
+      Your guest will receive a text message confirming their invite to join you.
+    </p>
+    <p className="mb-3">
+      The message will include an <strong>access code</strong> that will need to be presented to one
+      of our Experience Manager's upon arrival.
+    </p>
     <p className="mb-6">
-      Your guest will receive a text message confirming their invite to join you. The message will
-      include an access code that will need to be presented to one of our Experience Manager's upon
-      arrival. Guests can be added/removed through the session details page found in "My Account".
+      Guests can be added/removed through the session details page found in "My Account".
     </p>
     <PrimaryButton onClick={onDone}>Done</PrimaryButton>
   </div>

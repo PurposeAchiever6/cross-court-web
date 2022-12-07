@@ -122,7 +122,11 @@ const SessionButtons = ({
               )}
               {reservedOrConfirmed && (
                 <>
-                  <SessionGuests session={session} setShowAddGuestModal={setShowAddGuestModal} />
+                  <SessionGuests
+                    session={session}
+                    setShowAddGuestModal={setShowAddGuestModal}
+                    className="mb-4"
+                  />
                   {!guestsAllowed && (
                     <PrimaryButton inverted className="mb-4" onClick={copyShareInfoToClipboard}>
                       <FontAwesomeIcon className="mr-1" icon={faExternalLinkAlt} />
