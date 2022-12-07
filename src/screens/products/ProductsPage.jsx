@@ -17,6 +17,7 @@ import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import MembershipsFeatures from 'shared/components/MembershipsFeatures';
 import VideoPlayer from 'shared/components/VideoPlayer';
+import MembershipIsPausedModal from 'screens/memberships/components/MembershipIsPausedModal';
 
 import Memberships from './components/Memberships';
 import ReserveTeamMemberships from './components/reserve-team/Memberships';
@@ -50,6 +51,8 @@ const ProductsPage = () => {
     !!showNoFreeSessionInformation
   );
 
+  const [showMembershipIsPausedModal, setShowMembershipIsPausedModal] = useState(false);
+
   const showMemberships = !comesFromCancelModal && !showScouting;
 
   const selectProductHandler = (product) => {
@@ -60,6 +63,16 @@ const ProductsPage = () => {
     }
 
     history.push(ROUTES.PAYMENT_METHODS_SELECT);
+  };
+
+  const selectProductDropInHandler = (product) => {
+    const subscriptionPaused = activeSubscription?.paused;
+
+    if (subscriptionPaused) {
+      setShowMembershipIsPausedModal(true);
+    } else {
+      selectProductHandler(product);
+    }
   };
 
   const cancelMembership = () => {
@@ -123,7 +136,7 @@ const ProductsPage = () => {
           {showMemberships && (
             <>
               <DropIns
-                selectProductHandler={selectProductHandler}
+                selectProductHandler={selectProductDropInHandler}
                 availableProducts={availableProducts}
               />
               {reserveTeam ? (
@@ -155,6 +168,10 @@ const ProductsPage = () => {
         )}
         {showMemberships && <FAQ />}
       </div>
+      <MembershipIsPausedModal
+        isOpen={showMembershipIsPausedModal}
+        closeHandler={() => setShowMembershipIsPausedModal(false)}
+      />
       <CancelMembershipModal
         isOpen={showCancelModal}
         closeHandler={() => setShowCancelModal(false)}
