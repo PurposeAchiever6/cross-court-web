@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import BasketballSvg from 'shared/components/svg/BasketballSvg';
 
-const StepAreYouSureContent = ({ areYouSureHandler, pausesPerYear }) => (
+const StepAreYouSureContent = ({ areYouSureHandler, freePausesPerYear }) => (
   <div className="text-sm">
     <p className="mb-6">We're sad to see you go, but here's what you need to know:</p>
     <div className="mb-6">
@@ -40,8 +40,9 @@ const StepAreYouSureContent = ({ areYouSureHandler, pausesPerYear }) => (
       <div className="text-cc-black uppercase font-shapiro95_super_wide border-2 border-cc-purple p-2">
         Instead, you do have the ability to{' '}
         <span className="font-shapiro96_inclined_wide text-cc-purple">pause your membership</span>{' '}
-        for 1 - 2 months up to {pausesPerYear} times per year free of charge (you will not be able
-        to book during this period and credits will not be accumulated). You can unpause any time!
+        for 1 - 2 months up to {freePausesPerYear} times per year free of charge (you will not be
+        able to book during this period and credits will not be accumulated). You can unpause any
+        time!
       </div>
     </div>
     <div className="text-center">
@@ -53,12 +54,12 @@ const StepAreYouSureContent = ({ areYouSureHandler, pausesPerYear }) => (
 );
 
 StepAreYouSureContent.defaultProps = {
-  pausesPerYear: '2',
+  freePausesPerYear: '2',
 };
 
 StepAreYouSureContent.propTypes = {
   areYouSureHandler: PropTypes.func.isRequired,
-  pausesPerYear: PropTypes.string,
+  freePausesPerYear: PropTypes.string,
 };
 
 export default StepAreYouSureContent;
