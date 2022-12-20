@@ -30,7 +30,11 @@ const ManageMembershipPage = () => {
   const paused = activeSubscription?.paused;
   const product = activeSubscription?.product;
   const willPause = activeSubscription?.willPause;
-  const canPause = active && activeSubscription?.canPause;
+  const canFreePause = activeSubscription?.canFreePause;
+  const thisYearFreeFinishedSubscriptionPauses =
+    activeSubscription?.thisYearSubscriptionPauses?.filter(
+      (subscriptionPause) => subscriptionPause.status === 'finished' && !subscriptionPause.paid
+    )?.length ?? 0;
 
   const productsCreditsString = creditsString(product?.credits);
 
@@ -115,15 +119,11 @@ const ManageMembershipPage = () => {
                     className="mb-1"
                     fontSize="0.75rem"
                     onClick={() => setShowPauseModal(true)}
-                    disabled={!canPause}
                   >
                     Pause Membership
                   </PrimaryButton>
                 )}
               </>
-            )}
-            {!canPause && !willPause && (
-              <p className="mb-2">You can't pause your membership anymore for this year.</p>
             )}
             {willPause && (
               <p className="mb-2">{`Your membership will be paused from ${subscriptionPeriodFormattedDate(
@@ -150,6 +150,8 @@ const ManageMembershipPage = () => {
             closeHandler={() => setShowPauseModal(false)}
             activeSubscription={activeSubscription}
             pauseSubscriptionAction={pauseSubscriptionAction}
+            canFreePause={canFreePause}
+            thisYearFreeFinishedSubscriptionPauses={thisYearFreeFinishedSubscriptionPauses}
           />
           <UnpauseMembershipModal
             isOpen={showUnpauseModal}

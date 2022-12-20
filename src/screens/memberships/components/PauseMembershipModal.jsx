@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
+import { getUserProfile } from 'screens/my-account/reducer';
 import Modal from 'shared/components/Modal';
 import InputSelectField from 'shared/components/InputSelectField';
 import InputTextField from 'shared/components/InputTextField';
@@ -19,13 +21,17 @@ export const PauseMembershipModal = ({
   closeHandler,
   activeSubscription,
   pauseSubscriptionAction,
+  canFreePause,
+  thisYearFreeFinishedSubscriptionPauses,
 }) => {
   const [months, setMonths] = useState(null);
   const [reason, setReason] = useState(null);
   const [reasonOpenAnswer, setResasonOpenAnswer] = useState('');
+  const currentUser = useSelector(getUserProfile);
 
   const onClose = () => {
     setReason(null);
+    setMonths(null);
     setResasonOpenAnswer('');
     closeHandler();
   };
@@ -54,18 +60,35 @@ export const PauseMembershipModal = ({
   };
 
   return (
-    <Modal isOpen={isOpen} closeHandler={onClose} title="Enter Offseason">
+    <Modal isOpen={isOpen} closeHandler={onClose} title="Enter Offseason" size="lg">
       <div>
+        {!canFreePause && (
+          <p className="mb-4">
+            Hey {currentUser.firstName}, looks like your {activeSubscription.freePausesPerYear} free
+            membership pauses this year have been used.
+          </p>
+        )}
         <p className="mb-4">
-          You may freeze your membership for a minimum of 1 month or a maximum of 2 months up to{' '}
-          {activeSubscription.pausesPerYear} times per year. Once the freeze period ends, your
-          membership will revert to regular monthly billing. No payments will be made during the
-          freeze period.
+          You can freeze your membership for a minimum of 1 month or a maximum of 2 months up to{' '}
+          {activeSubscription.freePausesPerYear} times per year. Once the freeze period ends, your
+          membership will revert to regular monthly billing.
+        </p>
+        <p className="mb-4">
+          Once you have used your {activeSubscription.freePausesPerYear} free pauses, you can then
+          pause your membership for a minimum of 1 month or a maximum of 2 months for $
+          {activeSubscription.paidSubscriptionPausePrice} per month. During the paid freeze period,
+          you will be charged a monthly suspend fee on the regular autopay date.
         </p>
         <p className="mb-4">
           Your membership will freeze at the end of your current billing period,{' '}
           {subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}.
         </p>
+        {canFreePause && (
+          <p className="mb-4">
+            You have {activeSubscription.freePausesPerYear - thisYearFreeFinishedSubscriptionPauses}{' '}
+            free pause(s) remaining this year.
+          </p>
+        )}
         <p className="mb-4">
           Please note, you will not be able to reserve a session once your membership pause starts.
         </p>
@@ -155,6 +178,8 @@ PauseMembershipModal.propTypes = {
   closeHandler: PropTypes.func.isRequired,
   activeSubscription: PropTypes.shape().isRequired,
   pauseSubscriptionAction: PropTypes.func.isRequired,
+  canFreePause: PropTypes.bool.isRequired,
+  thisYearFreeFinishedSubscriptionPauses: PropTypes.number.isRequired,
 };
 
 export default PauseMembershipModal;

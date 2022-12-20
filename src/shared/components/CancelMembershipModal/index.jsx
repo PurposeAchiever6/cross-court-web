@@ -18,7 +18,7 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription, setSh
 
   const [step, setStep] = useState(STEP_ARE_YOU_SURE);
 
-  const pausesPerYear = activeSubscription?.pausesPerYear;
+  const freePausesPerYear = activeSubscription?.freePausesPerYear;
 
   const createSubscriptionRequestCancellationHandler = (payload) => {
     dispatch(createSubscriptionRequestCancellation(payload));
@@ -63,7 +63,7 @@ const CancelMembershipModal = ({ isOpen, closeHandler, activeSubscription, setSh
           content: (
             <StepAreYouSureContent
               areYouSureHandler={areYouSureHandler}
-              pausesPerYear={pausesPerYear}
+              freePausesPerYear={freePausesPerYear}
             />
           ),
         };
