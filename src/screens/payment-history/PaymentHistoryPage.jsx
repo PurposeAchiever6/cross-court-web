@@ -43,7 +43,7 @@ const PaymentHistoryPage = () => {
     row.status === SUCCESS ? (
       <FontAwesomeIcon icon={faCheckCircle} color="green" />
     ) : (
-      <Tooltip tooltip={row.errorMessage}>
+      <Tooltip enable={row.errorMessage} tooltip={row.errorMessage}>
         <FontAwesomeIcon icon={faTimesCircle} color="red" />
       </Tooltip>
     );

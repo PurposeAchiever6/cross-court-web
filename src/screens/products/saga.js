@@ -1,6 +1,8 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
+import { push } from 'connected-react-router';
 
+import ROUTES from 'shared/constants/routes';
 import { INITIAL_LOAD_INIT as INITIAL_PAYMENT_METHODS_LOAD_INIT } from 'screens/payment-methods/actionTypes';
 import {
   INITIAL_LOAD_INIT,
@@ -136,7 +138,9 @@ export function* unpauseSubscriptionFlow({ payload }) {
 
     yield put({ type: UNPAUSE_SUBSCRIPTION_SUCCESS, payload: { subscription } });
   } catch (err) {
+    yield call(toast.error, err.response.data.error);
     yield put({ type: UNPAUSE_SUBSCRIPTION_FAILURE, error: err.response.data.error });
+    yield put(push(ROUTES.MYACCOUNT));
   }
 }
 

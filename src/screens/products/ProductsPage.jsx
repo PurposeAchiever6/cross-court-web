@@ -7,17 +7,20 @@ import ROUTES from 'shared/constants/routes';
 import { startedCheckout } from 'shared/utils/activeCampaign';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getAvailableProducts, getPageLoading } from 'screens/products/reducer';
+import { thisYearFreeFinishedSubscriptionPauses } from 'screens/products/utils';
 import { getUserProfile } from 'screens/my-account/reducer';
 import {
   initialLoad,
   setSelectedProduct,
   reactivateSubscription,
+  pauseSubscription,
 } from 'screens/products/actionCreators';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import MembershipsFeatures from 'shared/components/MembershipsFeatures';
 import VideoPlayer from 'shared/components/VideoPlayer';
 import MembershipIsPausedModal from 'screens/memberships/components/MembershipIsPausedModal';
+import PauseMembershipModal from 'screens/memberships/components/PauseMembershipModal';
 
 import Memberships from './components/Memberships';
 import ReserveTeamMemberships from './components/reserve-team/Memberships';
@@ -45,6 +48,7 @@ const ProductsPage = () => {
   const comesFromCancelModal = state?.comesFromCancelModal;
   const showScouting = state?.showScouting;
 
+  const [showPauseModal, setShowPauseModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
   const [watchVideo, setWatchVideo] = useState(false);
   const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
@@ -54,6 +58,11 @@ const ProductsPage = () => {
   const [showMembershipIsPausedModal, setShowMembershipIsPausedModal] = useState(false);
 
   const showMemberships = !comesFromCancelModal && !showScouting;
+  const canFreePause = activeSubscription?.canFreePause;
+  const thisYearFreeFinishedPauses = thisYearFreeFinishedSubscriptionPauses(activeSubscription);
+
+  const pauseSubscriptionAction = (months, reason) =>
+    dispatch(pauseSubscription(activeSubscription, months, reason));
 
   const selectProductHandler = (product) => {
     dispatch(setSelectedProduct(product));
@@ -176,10 +185,19 @@ const ProductsPage = () => {
         isOpen={showCancelModal}
         closeHandler={() => setShowCancelModal(false)}
         activeSubscription={activeSubscription}
+        setShowPauseModal={setShowPauseModal}
       />
       <NoFreeSessionInformationModal
         isOpen={showNoFreeSessionInformationModal}
         closeHandler={() => setShowNoFreeSessionInformationModal(false)}
+      />
+      <PauseMembershipModal
+        isOpen={showPauseModal}
+        closeHandler={() => setShowPauseModal(false)}
+        activeSubscription={activeSubscription}
+        pauseSubscriptionAction={pauseSubscriptionAction}
+        canFreePause={canFreePause}
+        thisYearFreeFinishedPauses={thisYearFreeFinishedPauses}
       />
       <VideoPlayer
         url="/skill-sessions.mp4"
