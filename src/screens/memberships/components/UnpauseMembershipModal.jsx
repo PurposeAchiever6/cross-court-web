@@ -22,8 +22,7 @@ export const UnpauseMembershipModal = ({ isOpen, closeHandler, unpauseSubscripti
           immediately billed so we can issue your session credits. You'll have 1 month until next
           billing from the time you unpause.
         </p>
-        <p className="mb-4">If vou're sure you'd like to unpause your membership, confirm below.</p>
-
+        <p className="mb-4">If you're sure you'd like to unpause your membership, confirm below.</p>
         <PrimaryButton onClick={onUnpauseClick}>Unpause Membership</PrimaryButton>
       </div>
     </Modal>

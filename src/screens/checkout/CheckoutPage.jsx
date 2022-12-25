@@ -32,13 +32,25 @@ const CheckoutPage = () => {
 
   const productId = productDetails?.id;
   const userHasActiveSubscription = !!userProfile.activeSubscription;
+  const userActiveSubscriptionNotPaused = !userProfile.activeSubscription?.paused;
   const isSubscription = productDetails?.productType === RECURRING;
 
   useEffect(() => {
-    if (isSubscription && productId && userHasActiveSubscription) {
+    if (
+      isSubscription &&
+      productId &&
+      userHasActiveSubscription &&
+      userActiveSubscriptionNotPaused
+    ) {
       dispatch(subscriptionProrate(productId));
     }
-  }, [userHasActiveSubscription, dispatch, isSubscription, productId]);
+  }, [
+    dispatch,
+    isSubscription,
+    productId,
+    userHasActiveSubscription,
+    userActiveSubscriptionNotPaused,
+  ]);
 
   if (isNil(productDetails) || isNil(paymentMethod)) {
     return <Redirect to={ROUTES.LOCATIONS} />;

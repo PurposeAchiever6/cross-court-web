@@ -14,7 +14,7 @@ const Prorate = ({ prorate }) => {
 
   const prorateExplanation =
     'Upgrading or downgrading your membership may result in prorated charges. ' +
-    'After this first prorated invoice, all charges will show the membership rate.' +
+    'After this first prorated invoice, all charges will show the membership rate. ' +
     'Please note, the billing period will be reset and you will be charged immediately';
 
   return (
