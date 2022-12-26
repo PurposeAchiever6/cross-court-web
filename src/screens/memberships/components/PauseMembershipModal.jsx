@@ -22,7 +22,7 @@ export const PauseMembershipModal = ({
   activeSubscription,
   pauseSubscriptionAction,
   canFreePause,
-  thisYearFreeFinishedSubscriptionPauses,
+  thisYearFreeFinishedPauses,
 }) => {
   const [months, setMonths] = useState(null);
   const [reason, setReason] = useState(null);
@@ -64,28 +64,28 @@ export const PauseMembershipModal = ({
       <div>
         {!canFreePause && (
           <p className="mb-4">
-            Hey {currentUser.firstName}, looks like your {activeSubscription.freePausesPerYear} free
-            membership pauses this year have been used.
+            Hey {currentUser.firstName}, looks like your {activeSubscription?.freePausesPerYear}{' '}
+            free membership pauses this year have been used.
           </p>
         )}
         <p className="mb-4">
           You can freeze your membership for a minimum of 1 month or a maximum of 2 months up to{' '}
-          {activeSubscription.freePausesPerYear} times per year. Once the freeze period ends, your
+          {activeSubscription?.freePausesPerYear} times per year. Once the freeze period ends, your
           membership will revert to regular monthly billing.
         </p>
         <p className="mb-4">
-          Once you have used your {activeSubscription.freePausesPerYear} free pauses, you can then
+          Once you have used your {activeSubscription?.freePausesPerYear} free pauses, you can then
           pause your membership for a minimum of 1 month or a maximum of 2 months for $
-          {activeSubscription.paidSubscriptionPausePrice} per month. During the paid freeze period,
+          {activeSubscription?.paidSubscriptionPausePrice} per month. During the paid freeze period,
           you will be charged a monthly suspend fee on the regular autopay date.
         </p>
         <p className="mb-4">
           Your membership will freeze at the end of your current billing period,{' '}
-          {subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}.
+          {subscriptionPeriodFormattedDate(activeSubscription?.currentPeriodEnd)}.
         </p>
         {canFreePause && (
           <p className="mb-4">
-            You have {activeSubscription.freePausesPerYear - thisYearFreeFinishedSubscriptionPauses}{' '}
+            You have {(activeSubscription?.freePausesPerYear ?? 2) - thisYearFreeFinishedPauses}{' '}
             free pause(s) remaining this year.
           </p>
         )}
@@ -179,7 +179,7 @@ PauseMembershipModal.propTypes = {
   activeSubscription: PropTypes.shape().isRequired,
   pauseSubscriptionAction: PropTypes.func.isRequired,
   canFreePause: PropTypes.bool.isRequired,
-  thisYearFreeFinishedSubscriptionPauses: PropTypes.number.isRequired,
+  thisYearFreeFinishedPauses: PropTypes.number.isRequired,
 };
 
 export default PauseMembershipModal;

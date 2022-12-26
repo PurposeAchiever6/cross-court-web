@@ -14,7 +14,7 @@ import {
   cancelPauseSubscription,
   unpauseSubscription,
 } from 'screens/products/actionCreators';
-import { creditsString } from 'screens/products/utils';
+import { creditsString, thisYearFreeFinishedSubscriptionPauses } from 'screens/products/utils';
 import UnpauseMembershipModal from './components/UnpauseMembershipModal';
 import PauseMembershipModal from './components/PauseMembershipModal';
 
@@ -31,10 +31,7 @@ const ManageMembershipPage = () => {
   const product = activeSubscription?.product;
   const willPause = activeSubscription?.willPause;
   const canFreePause = activeSubscription?.canFreePause;
-  const thisYearFreeFinishedSubscriptionPauses =
-    activeSubscription?.thisYearSubscriptionPauses?.filter(
-      (subscriptionPause) => subscriptionPause.status === 'finished' && !subscriptionPause.paid
-    )?.length ?? 0;
+  const thisYearFreeFinishedPauses = thisYearFreeFinishedSubscriptionPauses(activeSubscription);
 
   const productsCreditsString = creditsString(product?.credits);
 
@@ -126,9 +123,9 @@ const ManageMembershipPage = () => {
               </>
             )}
             {willPause && (
-              <p className="mb-2">{`Your membership will be paused from ${subscriptionPeriodFormattedDate(
+              <p className="mb-2 mt-1">{`Your membership will be paused from ${subscriptionPeriodFormattedDate(
                 activeSubscription?.pausedFrom
-              )} until ${subscriptionPeriodFormattedDate(activeSubscription?.pausedUntil)}`}</p>
+              )} until ${subscriptionPeriodFormattedDate(activeSubscription?.pausedUntil)}.`}</p>
             )}
             <PrimaryButton
               className="mt-1"
@@ -151,7 +148,7 @@ const ManageMembershipPage = () => {
             activeSubscription={activeSubscription}
             pauseSubscriptionAction={pauseSubscriptionAction}
             canFreePause={canFreePause}
-            thisYearFreeFinishedSubscriptionPauses={thisYearFreeFinishedSubscriptionPauses}
+            thisYearFreeFinishedPauses={thisYearFreeFinishedPauses}
           />
           <UnpauseMembershipModal
             isOpen={showUnpauseModal}

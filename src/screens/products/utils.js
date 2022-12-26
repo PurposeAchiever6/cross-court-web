@@ -40,3 +40,8 @@ export const formatPrice = (price) =>
     formatWithSymbol: true,
     precision: 0,
   }).format();
+
+export const thisYearFreeFinishedSubscriptionPauses = (activeSubscription) =>
+  activeSubscription?.thisYearSubscriptionPauses?.filter(
+    (subscriptionPause) => subscriptionPause.status === 'finished' && !subscriptionPause.paid
+  )?.length ?? 0;

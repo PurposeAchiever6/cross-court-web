@@ -20,6 +20,7 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
 
   const userNotMember = !currentUser.activeSubscription;
   const maxSkillRating = newSkillRating === MAX_SKILL_RATING;
+  const proofRequested = maxSkillRating ? 'D3 University' : 'varsity';
 
   const validate = () => {
     const newErrors = {};
@@ -76,14 +77,14 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
           )}
           <p className="mb-8">
             To update your skill rating to a <strong>{newSkillRating}</strong>, please provide{' '}
-            <strong>proof</strong> of at least varsity level played <strong>OR</strong> book an{' '}
-            <strong>evaluation session</strong> to have one of our Experience Managers go through
-            our player evaluation form with you during a session.
+            <strong>proof</strong> of at least {proofRequested} level played <strong>OR</strong>{' '}
+            book an <strong>evaluation session</strong> to have one of our Experience Managers go
+            through our player evaluation form with you during a session.
           </p>
           <div className="mb-4">
             1) Link(s) to team roster, MaxPreps profile, article, YouTube video, social media clips,
-            or image(s) that depict at least{' '}
-            <strong>{maxSkillRating ? 'D3 University' : 'varsity'}</strong> level played.
+            or image(s) that depict at least <strong>{proofRequested}</strong> level played within
+            the last 10 years.
           </div>
           <InputTextareaField
             value={reason}
