@@ -8,6 +8,7 @@ import SportCharacter from 'shared/images/sport-character.png';
 import confettiAnimation from 'shared/animations/confetti.json';
 
 import SessionGuests from 'screens/sessions/components/SessionGuests';
+import Disclaimer from 'screens/sessions/components/Disclaimer';
 import AddGuestModal from 'screens/sessions/components/modals/AddGuestModal';
 
 import Animation from 'shared/components/Animation';
@@ -115,10 +116,10 @@ const SessionReserved = () => {
           {!guestsAllowedForUser && (
             <ReferAFriend code={currentUser.referralCode} className="text-center" />
           )}
-
           <PrimaryButton bg="transparent" className="black-btn mb-10" to={ROUTES.MYACCOUNT}>
             DONE
           </PrimaryButton>
+          <Disclaimer />
         </div>
       </SessionBookedContainer>
       <AddGuestModal
