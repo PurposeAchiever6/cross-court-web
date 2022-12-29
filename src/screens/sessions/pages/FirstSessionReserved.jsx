@@ -16,6 +16,7 @@ import JoinTheCCTeam from 'screens/sessions/components/FirstSessionsReserved/Joi
 import Memberships from 'screens/sessions/components/FirstSessionsReserved/Memberships';
 import MembershipsFeatures from 'screens/sessions/components/FirstSessionsReserved/MembershipsFeatures';
 import GalleryPhotos from 'screens/sessions/components/FirstSessionsReserved/GalleryPhotos';
+import Disclaimer from 'screens/sessions/components/Disclaimer';
 
 const SessionReserved = () => {
   const env = runtimeEnv();
@@ -61,6 +62,7 @@ const SessionReserved = () => {
       <div className="text-center">
         <PrimaryButton to={ROUTES.MYACCOUNT}>DONE</PrimaryButton>
       </div>
+      <Disclaimer />
     </LazyBackgroundImage>
   );
 };

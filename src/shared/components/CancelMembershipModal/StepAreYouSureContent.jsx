@@ -19,7 +19,7 @@ const StepAreYouSureContent = ({ areYouSureHandler, freePausesPerYear }) => (
           <BasketballSvg className="w-10 h-10 text-cc-purple" />
         </div>
         Any unused sessions that have been accumulated during rollover periods will be lost. The
-        credits you currently have saved up will dissapear after cancellation.
+        credits you currently have saved up will disappear after cancellation.
       </div>
       <div className="flex items-center mb-4">
         <div className="w-10 h-10 mr-4">
