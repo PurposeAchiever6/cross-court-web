@@ -12,9 +12,9 @@ const SessionWarningInfo = ({ session, userProfile, className }) => {
   }
 
   return (
-    <div className={`flex justify-center items-center whitespace-nowrap ${className}`}>
+    <div className={`flex justify-center items-center ${className}`}>
       <img alt="warning-icon" className="w-4 h-4" src={WarningTriangle} />
-      <p className="text-2xs sm:text-xs uppercase mt-1 ml-2">{warning}</p>
+      <p className="text-2xs sm:text-xs text-center uppercase mt-1 ml-2">{warning}</p>
     </div>
   );
 };
