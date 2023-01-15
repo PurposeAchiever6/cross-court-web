@@ -7,7 +7,7 @@ import ROUTES from 'shared/constants/routes';
 import { startedCheckout } from 'shared/utils/activeCampaign';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getAvailableProducts, getPageLoading } from 'screens/products/reducer';
-import { thisYearFreeFinishedSubscriptionPauses } from 'screens/products/utils';
+import { dropInProducts, thisYearFreeFinishedSubscriptionPauses } from 'screens/products/utils';
 import { getUserProfile } from 'screens/my-account/reducer';
 import {
   initialLoad,
@@ -47,6 +47,8 @@ const ProductsPage = () => {
   const showAnimation = state?.showNoCreditsAnimation;
   const comesFromCancelModal = state?.comesFromCancelModal;
   const showScouting = state?.showScouting;
+  const priceForFirstTimersNoFreeSession =
+    dropInProducts(availableProducts)[0]?.priceForFirstTimersNoFreeSession;
 
   const [showPauseModal, setShowPauseModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
@@ -188,6 +190,7 @@ const ProductsPage = () => {
         setShowPauseModal={setShowPauseModal}
       />
       <NoFreeSessionInformationModal
+        price={priceForFirstTimersNoFreeSession}
         isOpen={showNoFreeSessionInformationModal}
         closeHandler={() => setShowNoFreeSessionInformationModal(false)}
       />

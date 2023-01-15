@@ -1,19 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { ONE_TIME } from 'screens/products/constants';
 import ProductPlan from 'screens/products/components/ProductPlan';
-
-const FREE_SESSION = 'Free Session';
+import { dropInProducts } from 'screens/products/utils';
 
 const DropIns = ({ selectProductHandler, availableProducts }) => {
-  const products = availableProducts.filter(
-    (product) =>
-      product.productType === ONE_TIME &&
-      product.name !== FREE_SESSION &&
-      !product.seasonPass &&
-      !product.scouting
-  );
+  const products = dropInProducts(availableProducts);
 
   return (
     <div className="text-white w-full lg:w-1/4 mb-6 lg:mb-0">
