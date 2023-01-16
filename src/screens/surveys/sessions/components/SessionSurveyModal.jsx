@@ -10,16 +10,17 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
   const [starsSelected, setStarsSelected] = useState(0);
   const [feedbackValue, setFeedbackValue] = useState('');
   const [answeredQuestionIds, setAnsweredQuestionIds] = useState([]);
+  const [answers, setAnswers] = useState({});
 
   const mandatoryIds = questions.filter((q) => q.isMandatory).map((q) => q.id);
   const allMandatoryAnswered = mandatoryIds.every((elem) => answeredQuestionIds.includes(elem));
-  const allowClose = allMandatoryAnswered && starsSelected > 3;
+  const showHint = starsSelected > 0 && starsSelected < 4 && feedbackValue.length < 20;
+
   const allowSubmit = allMandatoryAnswered && (starsSelected > 3 || feedbackValue.length >= 20);
-  const showHint = starsSelected > 0 && starsSelected < 4;
 
   const starRatingClickHandler = (questionId, answer) => {
     setStarsSelected(answer);
-    answerQuestion(questionId, answer);
+    setAnswers((prevAnswers) => ({ ...prevAnswers, [questionId]: answer }));
 
     if (answeredQuestionIds.includes(questionId)) {
       return;
@@ -30,6 +31,7 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
 
   const openQuestionHandler = (questionId, answer) => {
     setFeedbackValue(answer);
+    setAnswers((prevAnswers) => ({ ...prevAnswers, [questionId]: answer }));
 
     if (answer === '') {
       setAnsweredQuestionIds(answeredQuestionIds.filter((id) => id !== questionId));
@@ -41,10 +43,13 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
     }
   };
 
-  const submitHandler = (questionId, answer) => {
-    if (answer !== '') {
-      answerQuestion(questionId, answer);
-    }
+  const submitHandler = () => {
+    Object.entries(answers).forEach(([questionId, answerValue]) => {
+      if (answerValue !== '') {
+        answerQuestion(questionId, answerValue);
+      }
+    });
+
     setShowSurveyModal(false);
   };
 
@@ -55,7 +60,7 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
       closeOnOverlayClick={false}
       dark
       size="lg"
-      showCloseButton={allowClose}
+      showCloseButton={false}
       shouldCloseOnEsc={false}
     >
       <div className="flex flex-col items-center text-center">
@@ -91,7 +96,7 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
                   />
                   <PrimaryButton
                     disabled={!allowSubmit}
-                    onClick={() => submitHandler(question.id, feedbackValue)}
+                    onClick={submitHandler}
                     inverted
                     bg="transparent"
                   >
