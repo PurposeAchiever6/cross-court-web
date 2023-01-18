@@ -14,7 +14,6 @@ const TermsAndConditions = () => (
       <br />
       <div className="py-2 md:pl-14">A. Must Be 18 Years Old</div>
       <br />
-      <br />
       You must be at least 18 years old to sign up, purchase and/or participate in any session.
       Crosscourt does not accept the registration of minors and has the right to refuse the sessions
       to any person who has signed up and/or purchased a session and is later revealed to be a
@@ -22,7 +21,6 @@ const TermsAndConditions = () => (
       <br />
       <br />
       <div className="py-2 md:pl-14">B. Crosscourt Sessions</div>
-      <br />
       <br />
       Crosscourt hosts a one-hour, high intensity, team sport based fitness experience (
       <b>“sessions”</b>) that is made available for registration through the Website. You may
@@ -44,7 +42,6 @@ const TermsAndConditions = () => (
       <br />
       <div className="py-2 md:pl-14">C. Cancellation Policy for Reservations</div>
       <br />
-      <br />
       In order to cancel a Reservation and return your purchased session to your account, you must
       cancel your Reservation at least 5 hours prior to the start time of such Reservation. Once
       your Reservation is cancelled, your purchased session will be returned to your account to be
@@ -55,7 +52,6 @@ const TermsAndConditions = () => (
       <br />
       <br />
       <div className="py-2 md:pl-14">D. Items to Note</div>
-      <br />
       <br />
       Please note, in fairness to all session participants, WE DO NOT GUARANTEE THE ABILITY TO WARM
       UP/SHOOT AROUND PRIOR TO THE SESSION.
@@ -73,7 +69,6 @@ const TermsAndConditions = () => (
       <br />
       <div className="py-2 md:pl-14">E. Assumption of Risk</div>
       <br />
-      <br />
       YOU ACKNOWLEDGE AND UNDERSTAND THAT YOU WILL BE VOLUNTARILY SIGNING UP FOR, PARTICIPATING IN
       AND/OR ATTENDING SESSIONS (THE <b>“ACTIVITIES”</b>) AND USING THE PREMISES, FACILITIES AND
       EQUIPMENT ASSOCIATED THEREWITH (THE <b>“FACILITIES”</b>), WHICH INVOLVE INHERENT RISKS THAT
@@ -90,7 +85,6 @@ const TermsAndConditions = () => (
       <br />
       <div className="py-2 md:pl-14">F. Compliance with Safety Instructions and Rules</div>
       <br />
-      <br />
       You have read and thoroughly understand the Safety Instructions and Rules that are posted on
       the Website. At all times, you shall comply with the Safety Instructions and Rules and all
       rules and verbal instructions given to you by the Crosscourt Experience Team. You agree and
@@ -100,7 +94,6 @@ const TermsAndConditions = () => (
       <br />
       <br />
       <div className="py-2 md:pl-14">G. Ability to Participate in Activities</div>
-      <br />
       <br />
       You hereby acknowledge (i) that you are physically, emotionally and mentally able to
       participate in the Activities and use the Facilities; and (ii) that you know of no medical
@@ -116,7 +109,6 @@ const TermsAndConditions = () => (
       <br />
       <br />
       <div className="py-2 md:pl-14">H. Waiver and Release</div>
-      <br />
       <br />
       You hereby (1) agree to assume full responsibility for any and all injuries or damage which
       are sustained or aggravated by you in relation to your participation in the Activities and
@@ -138,7 +130,6 @@ const TermsAndConditions = () => (
       <br />
       <div className="py-2 md:pl-14">I. Permission to Use Name and Likeness.</div>
       <br />
-      <br />
       You hereby irrevocably permit, authorize, grant, and license Crosscourt the rights to display,
       publicly perform, exhibit, transmit, broadcast, reproduce, record, photograph, digitize,
       modify, alter, edit, adapt, create derivative works, exploit, sell, rent, license, otherwise
@@ -154,7 +145,6 @@ const TermsAndConditions = () => (
       <br />
       <br />
       <div className="py-2 md:pl-14">J. Waiver and Release for Use of Name and Likeness.</div>
-      <br />
       <br />
       You, for yourself and on behalf of the Releasing Parties, hereby irrevocably waive and release
       all actions, claims, or demands that you or any Releasing Party may have or may hereafter
@@ -172,7 +162,6 @@ const TermsAndConditions = () => (
       <br />
       <br />
       <div className="py-2 md:pl-14">K. Waiver of California Civil Code Section 1542.</div>
-      <br />
       <br />
       You, on behalf of yourself and on behalf of the Releasing Parties, understand and agree that
       the releases set forth in Sections I and K shall include a release of all Released Claims
@@ -192,7 +181,6 @@ const TermsAndConditions = () => (
       <br />
       <div className="py-2 md:pl-14">L. Links/Third Party Websites</div>
       <br />
-      <br />
       Crosscourt has not reviewed all the sites linked to the Website, and is not responsible for
       the content or any off-site pages or other linked sites. Although a third party website and/or
       app may contain the Crosscourt logos, please understand that it is independent from
@@ -202,7 +190,6 @@ const TermsAndConditions = () => (
       <br />
       <br />
       <div className="py-2 md:pl-14">M. Texts and Calls</div>
-      <br />
       <br />
       By registering with Crosscourt, you are giving us permission to send texts, push
       notifications, and make calls in connection with our services. By registering with Crosscourt,
@@ -223,7 +210,6 @@ const TermsAndConditions = () => (
       <br />
       <br />
       <div className="py-2 md:pl-14">N. Intellectual Property Rights</div>
-      <br />
       <br />
       The trademarks and trade dress of Crosscourt are proprietary to Crosscourt and may not be used
       by you for any reasons other than as expressly permitted by these Terms. All Website and App
@@ -249,7 +235,6 @@ const TermsAndConditions = () => (
       <br />
       <div className="py-2 md:pl-14">O. Not Authorized to Perform Data Mining</div>
       <br />
-      <br />
       You are not authorized without the prior written permission of Crosscourt to use any computer
       code, data mining software, “robot”, “bot”, “spider”, “scraper” or other automatic device, or
       program, algorithm or methodology having similar processes or functionality, or any manual
@@ -263,7 +248,6 @@ const TermsAndConditions = () => (
       <div className="py-2 md:pl-14">
         P. Not Authorized to Use the Website for Commercial Purposes
       </div>
-      <br />
       <br />
       Users are not authorized to sell, reproduce, distribute, modify, display, publicly perform,
       report or otherwise prepare derivative or second hand works based on any of Crosscourt’s
@@ -284,8 +268,7 @@ const TermsAndConditions = () => (
       regulations and statutes.
       <br />
       <br />
-      <div className="py-2 md:pl-14">Q. WARRANTY DISCLAIMER AND LIMITATION OF LIABILITY</div>
-      <br />
+      <div className="py-2 md:pl-14">Q. Warranty Disclaimer And Limitation Of Liability</div>
       <br />
       IN NO EVENT WILL CROSSCOURT OR ANY OF THE RELEASED PARTIES BE LIABLE UNDER THESE TERMS TO YOU
       OR ANY THIRD PARTY FOR ANY CONSEQUENTIAL, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE,
@@ -304,7 +287,6 @@ const TermsAndConditions = () => (
       <br />
       <br />
       <div className="py-2 md:pl-14">R. COVID-19 Liabilities Disclaimer</div>
-      <br />
       <br />
       The novel coronavirus, COVID-19, has been declared a worldwide pandemic by the World Health
       Organization. COVID-19 is extremely contagious and is believed to spread mainly from
@@ -348,7 +330,6 @@ const TermsAndConditions = () => (
       <br />
       <div className="py-2 md:pl-14">S. Acceptance of Terms</div>
       <br />
-      <br />
       By using the Website, purchasing a session, making a Reservation, participating in the
       Activities or using the Facilities, you signify your acceptance of these Terms. If you do not
       agree to this, please refrain from using the Website or App, purchasing a Session, making a
@@ -364,11 +345,14 @@ const TermsAndConditions = () => (
       <br />
       <div className="py-2 md:pl-14">T. Membership Cancellation and Refund Policy</div>
       <br />
-      <br />
       You can cancel your Crosscourt membership at any time in person, via email, or phone. You need
       to cancel your Crosscourt membership at least 30 days before your last renewal date. You will
       be charged for one more month after the cancellation and can go to unused sessions during this
       period.
+      <br />
+      <br />
+      To cancel, you must submit a cancellation request through your “My Account” portal and book a
+      5 minute cancellation call with one of our Experience Managers.
       <br />
       <br />
       Crosscourt promises to refund full initial monthly membership if you are not satisfied with
@@ -377,8 +361,45 @@ const TermsAndConditions = () => (
       local studio within 30 days from the start date of your membership.
       <br />
       <br />
-      <div className="py-2 md:pl-14">U. Contact Us</div>
+      You (or your estate) may cancel your membership if you die or become totally disabled. XCourt,
+      Inc may require that the disability be confirmed by an examination of a physician agreeable to
+      you and Crosscourt. In case of disability or injury, you must prove such disability by a
+      doctor's certificate.
       <br />
+      <br />
+      If you become disabled or severely injured (more than 2 months recovery) and, as a result,
+      cannot physically participate in a session or experience you have purchased, and your
+      condition is verified by a doctor, Crosscourt will refund you the purchase price of your
+      unused session, sessions, or membership.
+      <br />
+      <br />
+      You may cancel your membership if you move your permanent residence to a location more than 25
+      miles from a Crosscourt Club. XCourt, Inc may require reasonable evidence of relocation. If,
+      at the time of purchasing a membership requiring payment of a membership fee, you lived more
+      than 25 miles from a Crosscourt Club, you may cancel only if you move an additional 5 miles or
+      more from a Crosscourt Club.
+      <br />
+      <br />
+      If the membership extends more than one year or you have purchased a membership for one year
+      in full upfront, you may cancel the contract for any reason upon 30 days' written notice to
+      the Club.
+      <br />
+      <br />
+      If the Club is permanently closed and comparable facilities owned and operated by the seller
+      are not made available within a ten-mile radius of the closed facility, you have a right to
+      cancel. If a facility, construction, or improvement is not completed by the date represented
+      by the contract; you have the right to cancel.
+      <br />
+      <br />
+      If the contract for Crosscourt services was sold prior to the opening of the facility, you may
+      cancel within the first five business days the facility opens for use of the buyer and the
+      Club begins to provide the agreed upon health studio services.
+      <br />
+      <br />
+      Crosscourt reserves the right to increase or decrease the price of a membership at any time.
+      <br />
+      <br />
+      <div className="py-2 md:pl-14">U. Contact Us</div>
       <br />
       If you have any questions about these Terms you can reach us at{' '}
       <a href="mailto:ccteam@cross-court.com">ccteam@cross-court.com</a>
