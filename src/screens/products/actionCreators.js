@@ -44,11 +44,10 @@ export const createSubscriptionRequestCancellation = (payload) => ({
   payload,
 });
 
-export const pauseSubscription = (subscription, months, reason) => ({
+export const pauseSubscription = (subscription, reason) => ({
   type: PAUSE_SUBSCRIPTION_INIT,
   payload: {
     subscription,
-    months,
     reason,
   },
 });

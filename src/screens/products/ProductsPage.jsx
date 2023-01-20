@@ -63,8 +63,8 @@ const ProductsPage = () => {
   const canFreePause = activeSubscription?.canFreePause;
   const thisYearFreeFinishedPauses = thisYearFreeFinishedSubscriptionPauses(activeSubscription);
 
-  const pauseSubscriptionAction = (months, reason) =>
-    dispatch(pauseSubscription(activeSubscription, months, reason));
+  const pauseSubscriptionAction = (reason) =>
+    dispatch(pauseSubscription(activeSubscription, reason));
 
   const selectProductHandler = (product) => {
     dispatch(setSelectedProduct(product));
