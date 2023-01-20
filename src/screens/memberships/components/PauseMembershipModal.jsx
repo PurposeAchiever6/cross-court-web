@@ -158,12 +158,17 @@ export const PauseMembershipModal = ({
   );
 };
 
+PauseMembershipModal.defaultProps = {
+  activeSubscription: null,
+  canFreePause: false,
+};
+
 PauseMembershipModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
-  activeSubscription: PropTypes.shape().isRequired,
+  activeSubscription: PropTypes.shape(),
   pauseSubscriptionAction: PropTypes.func.isRequired,
-  canFreePause: PropTypes.bool.isRequired,
+  canFreePause: PropTypes.bool,
   thisYearFreeFinishedPauses: PropTypes.number.isRequired,
 };
 
