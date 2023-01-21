@@ -97,13 +97,18 @@ const Faq = () => {
         question="What happens if I forget to cancel outside the cancellation window or don't show up?"
         className="mb-8"
       >
-        Forgetting to cancel before the cancellation window (less than 5 hours before your session)
-        will result in a lost session credit and will not result in a refund. No showing as a member
-        will also result in lost session credit, or no show fee if you are an unlimited member. The
-        fee for not showing up for your first free session is $
-        {env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE}. If this happens twice, your account
-        will be flagged. The other players in the session are relying on your attendance, so not
-        showing up will affect the entire groups experience.
+        In order to cancel a reservation and return your purchased session to your account, you must
+        cancel your reservation at least 5 hours prior to the start time of such reservation. Once
+        your reservation is cancelled on time, your session credit will be returned to your account
+        to be used at a future date. If you haven’t cancelled by the deadline listed above, your
+        session credit will be used for the reservation and will no longer be shown in your account.
+        Any individual who cancels inside the 5 hour cancellation window will be automatically
+        charged a ${env.REACT_APP_CANCELED_OUT_OF_TIME_PRICE} penalty in addition to losing a
+        session credit. In case you're cancelling your first free session out of time, your session
+        credit will be returned to your account for later use, but you will be charged a $
+        {env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} fee. Booking a reservation and "no
+        showing" without cancelling a session you are signed up for, will result in a lost of the
+        session credit and a ${env.REACT_APP_NO_SHOW_UP_FEE} no show penalty.
       </QuestionAnswer>
       <QuestionAnswer question="How early should I arrive?" className="mb-8">
         We suggest arriving at least 10 minutes early since the first 10 players checked into our
