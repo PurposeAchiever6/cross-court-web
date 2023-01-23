@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useHistory, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
@@ -44,8 +44,6 @@ const JoinWaitlistContainer = styled.div`
 `;
 
 const JoinWaitlist = () => {
-  const history = useHistory();
-
   const sessionWaitlist = useSelector(getSessionWaitlist);
   const userProfile = useSelector(getUserProfile);
 
@@ -105,7 +103,7 @@ const JoinWaitlist = () => {
         <PrimaryButton
           bg="transparent"
           className="black-btn border-2 border-cc-black"
-          onClick={() => history.goBack()}
+          to={ROUTES.LOCATIONS}
         >
           DONE
         </PrimaryButton>
