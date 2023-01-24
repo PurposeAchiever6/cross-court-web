@@ -15,6 +15,7 @@ import {
   reactivateSubscription,
   pauseSubscription,
 } from 'screens/products/actionCreators';
+import PageLayout from 'shared/components/layout/PageLayout';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import MembershipsFeatures from 'shared/components/MembershipsFeatures';
@@ -129,7 +130,7 @@ const ProductsPage = () => {
 
   return (
     <>
-      <div className="bg-cc-black pt-16 pb-10">
+      <PageLayout>
         {showAnimation && <NoSessionCredits />}
         <div className="flex flex-col lg:flex-row p-4">
           {comesFromCancelModal && (
@@ -178,7 +179,7 @@ const ProductsPage = () => {
           </>
         )}
         {showMemberships && <FAQ />}
-      </div>
+      </PageLayout>
       <MembershipIsPausedModal
         isOpen={showMembershipIsPausedModal}
         closeHandler={() => setShowMembershipIsPausedModal(false)}

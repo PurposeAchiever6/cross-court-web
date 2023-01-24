@@ -16,6 +16,13 @@ module.exports = {
       colors: {
         'cc-black': '#1a1a1a',
         'cc-purple': '#9999FF',
+        'cc-blue': {
+          100: '#2E2E4D',
+          300: '#262640',
+          500: '#1F1F33',
+          700: '#171726',
+          900: '#0F0F1A',
+        },
         cream: '#fbf7f3',
       },
       fontSize: {
