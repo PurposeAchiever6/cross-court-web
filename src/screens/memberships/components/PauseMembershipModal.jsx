@@ -4,17 +4,11 @@ import { useSelector } from 'react-redux';
 
 import { getUserProfile } from 'screens/my-account/reducer';
 import Modal from 'shared/components/Modal';
-import InputSelectField from 'shared/components/InputSelectField';
 import InputTextField from 'shared/components/InputTextField';
 import InputRadioField from 'shared/components/InputRadioField';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import Label from 'shared/components/Label';
 import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
-
-const OPTIONS = [
-  { value: 1, label: '1' },
-  { value: 2, label: '2' },
-];
 
 export const PauseMembershipModal = ({
   isOpen,
@@ -24,14 +18,12 @@ export const PauseMembershipModal = ({
   canFreePause,
   thisYearFreeFinishedPauses,
 }) => {
-  const [months, setMonths] = useState(null);
   const [reason, setReason] = useState(null);
   const [reasonOpenAnswer, setResasonOpenAnswer] = useState('');
   const currentUser = useSelector(getUserProfile);
 
   const onClose = () => {
     setReason(null);
-    setMonths(null);
     setResasonOpenAnswer('');
     closeHandler();
   };
@@ -43,7 +35,7 @@ export const PauseMembershipModal = ({
 
   const onPauseClick = () => {
     const pauseReason = reason === 'other' ? reasonOpenAnswer : reason;
-    pauseSubscriptionAction(months, pauseReason);
+    pauseSubscriptionAction(pauseReason);
     onClose();
   };
 
@@ -69,15 +61,15 @@ export const PauseMembershipModal = ({
           </p>
         )}
         <p className="mb-4">
-          You can freeze your membership for a minimum of 1 month or a maximum of 2 months up to{' '}
-          {activeSubscription?.freePausesPerYear} times per year. Once the freeze period ends, your
-          membership will revert to regular monthly billing.
+          You can freeze your membership for 1 month up to {activeSubscription?.freePausesPerYear}{' '}
+          times per year. Once the freeze period ends, your membership will revert to regular
+          monthly billing.
         </p>
         <p className="mb-4">
           Once you have used your {activeSubscription?.freePausesPerYear} free pauses, you can then
-          pause your membership for a minimum of 1 month or a maximum of 2 months for $
-          {activeSubscription?.paidSubscriptionPausePrice} per month. During the paid freeze period,
-          you will be charged a monthly suspend fee on the regular autopay date.
+          pause your membership for 1 month for ${activeSubscription?.paidSubscriptionPausePrice}{' '}
+          per month. During the paid freeze period, you will be charged a monthly suspend fee on the
+          regular autopay date.
         </p>
         <p className="mb-4">
           Your membership will freeze at the end of your current billing period,{' '}
@@ -90,16 +82,9 @@ export const PauseMembershipModal = ({
           </p>
         )}
         <p className="mb-4">
-          Please note, you will not be able to reserve a session once your membership pause starts.
+          Please note, you will not be able to reserve a session once your membership pause starts
+          or be able to purchase a drop in credit.
         </p>
-        <InputSelectField
-          name="subscription-pause-months"
-          placeholder="Months"
-          options={OPTIONS}
-          onChange={({ value }) => setMonths(value)}
-          className="w-1/2 sm:w-2/5 mx-auto mb-6"
-          formik={false}
-        />
         <div className="mb-6">
           <Label className="mb-3">What is the reason for pausing?*</Label>
           <InputRadioField
@@ -164,7 +149,7 @@ export const PauseMembershipModal = ({
           )}
         </div>
         <div className="text-center">
-          <PrimaryButton disabled={!months || !isReasonSet()} onClick={onPauseClick}>
+          <PrimaryButton disabled={!isReasonSet()} onClick={onPauseClick}>
             Pause Membership
           </PrimaryButton>
         </div>
@@ -173,12 +158,17 @@ export const PauseMembershipModal = ({
   );
 };
 
+PauseMembershipModal.defaultProps = {
+  activeSubscription: null,
+  canFreePause: false,
+};
+
 PauseMembershipModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
-  activeSubscription: PropTypes.shape().isRequired,
+  activeSubscription: PropTypes.shape(),
   pauseSubscriptionAction: PropTypes.func.isRequired,
-  canFreePause: PropTypes.bool.isRequired,
+  canFreePause: PropTypes.bool,
   thisYearFreeFinishedPauses: PropTypes.number.isRequired,
 };
 

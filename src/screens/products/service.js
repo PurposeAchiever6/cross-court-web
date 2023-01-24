@@ -43,8 +43,8 @@ export default {
     return response.data;
   },
 
-  pauseSubscription: async (subscriptionId, months, reason) => {
-    const response = await api.put(`/subscriptions/${subscriptionId}/pause`, { months, reason });
+  pauseSubscription: async (subscriptionId, reason) => {
+    const response = await api.put(`/subscriptions/${subscriptionId}/pause`, { reason });
 
     return response.data;
   },

@@ -184,7 +184,7 @@ const FeedbackOptions = ({
               <PrimaryButton w="5rem" px="0px" py="0px" fontSize="11px" onClick={onPauseClick}>
                 SELECT
               </PrimaryButton>
-              <p className="ml-2">Pause my membership for 1 or 2 months</p>
+              <p className="ml-2">Pause my membership</p>
             </div>
             {buySeasonPassOptions}
             <InputTextareaField
@@ -219,7 +219,7 @@ const FeedbackOptions = ({
               <PrimaryButton w="5rem" px="0px" py="0px" fontSize="11px" onClick={onPauseClick}>
                 SELECT
               </PrimaryButton>
-              <p className="ml-2">Pause my membership for 1 or 2 months</p>
+              <p className="ml-2">Pause my membership</p>
             </div>
             <InputTextareaField
               placeholder="Tell us more... (optional)"

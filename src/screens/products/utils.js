@@ -1,5 +1,5 @@
 import currency from 'currency.js';
-import { ONE_TIME, UNLIMITED_VALUE } from 'screens/products/constants';
+import { ONE_TIME, FREE_SESSION, UNLIMITED_VALUE } from 'screens/products/constants';
 
 export const productDiscount = (product, user) => {
   const userHasActiveSubscription = !!user.activeSubscription;
@@ -45,3 +45,12 @@ export const thisYearFreeFinishedSubscriptionPauses = (activeSubscription) =>
   activeSubscription?.thisYearSubscriptionPauses?.filter(
     (subscriptionPause) => subscriptionPause.status === 'finished' && !subscriptionPause.paid
   )?.length ?? 0;
+
+export const dropInProducts = (products) =>
+  products.filter(
+    (product) =>
+      product.productType === ONE_TIME &&
+      product.name !== FREE_SESSION &&
+      !product.seasonPass &&
+      !product.scouting
+  );

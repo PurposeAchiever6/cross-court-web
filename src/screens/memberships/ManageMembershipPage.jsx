@@ -35,8 +35,8 @@ const ManageMembershipPage = () => {
 
   const productsCreditsString = creditsString(product?.credits);
 
-  const pauseSubscriptionAction = (months, reason) =>
-    dispatch(pauseSubscription(activeSubscription, months, reason));
+  const pauseSubscriptionAction = (reason) =>
+    dispatch(pauseSubscription(activeSubscription, reason));
   const cancelPauseSubscriptionAction = () => dispatch(cancelPauseSubscription(activeSubscription));
   const unpauseSubscriptionAction = () => dispatch(unpauseSubscription(activeSubscription));
 

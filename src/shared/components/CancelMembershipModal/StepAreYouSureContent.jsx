@@ -40,9 +40,8 @@ const StepAreYouSureContent = ({ areYouSureHandler, freePausesPerYear }) => (
       <div className="text-cc-black uppercase font-shapiro95_super_wide border-2 border-cc-purple p-2">
         Instead, you do have the ability to{' '}
         <span className="font-shapiro96_inclined_wide text-cc-purple">pause your membership</span>{' '}
-        for 1 - 2 months up to {freePausesPerYear} times per year free of charge (you will not be
-        able to book during this period and credits will not be accumulated). You can unpause any
-        time!
+        up to {freePausesPerYear} times per year free of charge (you will not be able to book during
+        this period and credits will not be accumulated). You can unpause any time!
       </div>
     </div>
     <div className="text-center">

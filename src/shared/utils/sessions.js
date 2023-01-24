@@ -56,8 +56,33 @@ export const sessionReservationInfo = (session, userProfile) => {
     return { disabled: false };
   }
 
-  if (!userProfile.activeSubscription && session.membersOnly) {
-    return { disabled: true, warning: 'Members only' };
+  if (session.membersOnly) {
+    if (!userProfile.activeSubscription) {
+      return { disabled: true, warning: 'Members only' };
+    }
+
+    if (session.allowedProducts) {
+      const userSubscriptionProductId = userProfile.activeSubscription.product.id;
+      const allowedProductIds = session.allowedProducts.map(
+        (allowedProduct) => allowedProduct.productId
+      );
+
+      if (!allowedProductIds.includes(userSubscriptionProductId)) {
+        const allowedProductsNames = session.allowedProducts
+          .map((allowedProduct) => allowedProduct.name)
+          .join(' & ');
+
+        return {
+          disabled: true,
+          warning: (
+            <>
+              {allowedProductsNames} <br />
+              members only
+            </>
+          ),
+        };
+      }
+    }
   }
 
   if (userProfile.reserveTeam && !reserveTeamReservationAllowed(session)) {

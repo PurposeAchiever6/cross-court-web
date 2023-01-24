@@ -111,7 +111,6 @@ export function* pauseSubscriptionFlow({ payload }) {
     const subscription = yield call(
       productsService.pauseSubscription,
       payload.subscription.id,
-      payload.months,
       payload.reason
     );
     yield put({ type: PAUSE_SUBSCRIPTION_SUCCESS, payload: { subscription } });

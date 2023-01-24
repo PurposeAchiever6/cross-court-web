@@ -146,6 +146,7 @@ export function* joinSessionWaitlistFlow({ payload }) {
       payload: { sessionWaitlist, sessionId: payload.sessionId },
     });
     yield put(push(ROUTES.SESSIONJOINWAITLIST));
+    yield call(toast.success, 'You have been added to the waitlist');
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({
