@@ -55,7 +55,7 @@ module.exports = {
       },
       boxShadow: {
         'header-white': '0px 1px 6px #9999FF',
-        'header-dark': '0px -2px 7px #9999FF',
+        'header-dark': '0px -2px 8px #9999FF',
         'all-around-purple': '0px 0px 15px rgba(153, 153, 255, 0.4)',
       },
       animation: {

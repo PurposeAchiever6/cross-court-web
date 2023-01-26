@@ -48,7 +48,12 @@ const ALWAYS_SCROLLED = [
   '/session',
   '/first-session',
 ];
-const BLACK_BG = [ROUTES.MEMBERSHIPS, ROUTES.GALLERY, ROUTES.FIRSTSESSIONRESERVED, ROUTES.CONTENT];
+
+const CC_BLACK_BG = [ROUTES.GALLERY, ROUTES.FIRSTSESSIONRESERVED, ROUTES.CONTENT];
+
+const BLACK_BG = [ROUTES.MEMBERSHIPS];
+
+const SHOW_NAVBAR = [ROUTES.HOME, ROUTES.MEMBERSHIPS];
 
 const Header = () => {
   const env = runtimeEnv();
@@ -141,9 +146,11 @@ const Header = () => {
   };
 
   const showMembershipPromoBanner = pathname === ROUTES.HOME && !userInfo.activeSubscription;
-  const showNavItems = pathname === ROUTES.HOME;
-  const isBlackBg = BLACK_BG.includes(pathname);
-  const bgColor = isBlackBg ? 'bg-cc-black' : 'bg-white';
+  const showNavItems = SHOW_NAVBAR.includes(pathname);
+  const blackBg = BLACK_BG.includes(pathname);
+  const ccBlackBg = CC_BLACK_BG.includes(pathname);
+  const isBlackBg = blackBg || ccBlackBg;
+  const bgColor = blackBg ? 'bg-black' : ccBlackBg ? 'bg-cc-black' : 'bg-white';
   const logoColor =
     menuOpen || isBlackBg ? colors.white : scrolled ? colors.brandPurple : colors.white;
 
@@ -160,7 +167,7 @@ const Header = () => {
           scrolled
             ? `${
                 isBlackBg ? 'shadow-header-dark' : 'shadow-header-white'
-              } ${bgColor} fixed z-50 top-0`
+              } ${bgColor} border-b border-b-cc-purple fixed z-50 top-0`
             : `bg-transparent absolute ${
                 showMembershipPromoBanner ? 'top-28 sm:top-16 lg:top-14 xl:top-10' : 'top-0'
               }`
@@ -198,16 +205,16 @@ const Header = () => {
             </Link>
           </div>
           {showNavItems && (
-            <div className="hidden lg:flex lg:justify-end w-full z-10 mr-5 xl:mr-12">
+            <div className="hidden lg:flex lg:justify-center w-full z-10">
               <Navbar scrolled={scrolled} dark={isBlackBg} isAuthenticated={isAuthenticated} />
             </div>
           )}
           <PrimaryButton
             id="header-btn"
-            className="italic"
             px="4px"
             py="6px"
             fontSize="12px"
+            textColor="black"
             to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP}
             onClick={exitHeaderOnboardingTour}
           >
