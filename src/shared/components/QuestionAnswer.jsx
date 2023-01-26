@@ -7,25 +7,27 @@ const QuestionAnswer = ({ question, collapsable, dark, className, children }) =>
   const [collapse, setCollapse] = useState(true);
 
   const toggleCollapse = () => {
-    setCollapse(!collapse);
+    if (collapsable) {
+      setCollapse(!collapse);
+    }
   };
 
   return (
     <div
-      className={`${
-        dark ? 'bg-cc-blue-900 text-white' : 'border border-cc-blue-900 text-black'
+      onClick={toggleCollapse}
+      className={`${dark ? 'bg-cc-blue-900 text-white' : 'border border-cc-blue-900 text-black'} ${
+        collapsable ? 'cursor-pointer' : ''
       } p-6 ${className}`}
     >
       <div className="relative pr-8">
         {question}
         {collapsable && (
           <FontAwesomeIcon
-            className={`absolute top-0 right-0 cursor-pointer ${
-              collapse ? '' : 'trasform rotate-45 transition-all'
+            className={`absolute top-0 right-0 ${
+              collapse ? '' : 'trasform rotate-45 transition-all duration-300'
             }`}
             icon={faPlus}
             size="lg"
-            onClick={toggleCollapse}
           />
         )}
       </div>
