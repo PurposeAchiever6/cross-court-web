@@ -58,7 +58,7 @@ StepAreYouSureContent.defaultProps = {
 
 StepAreYouSureContent.propTypes = {
   areYouSureHandler: PropTypes.func.isRequired,
-  freePausesPerYear: PropTypes.string,
+  freePausesPerYear: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default StepAreYouSureContent;

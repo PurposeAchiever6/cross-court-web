@@ -31,6 +31,45 @@
   direction: rtl;
 }
 
+.clip-corner-top-left {
+  clip-path: polygon(30% 0, 100% 0, 100% 100%, 0 100%, 0 30%);
+}
+
+.clip-corner-top-right {
+  clip-path: polygon(70% 0, 100% 30%, 100% 100%, 0 100%, 0 0);
+}
+
+.clip-corner-bottom-left {
+  clip-path: polygon(100% 0, 100% 100%, 30% 100%, 0 70%, 0 0);
+}
+
+.clip-corner-bottom-right {
+  clip-path: polygon(100% 0, 100% 70%, 70% 100%, 0 100%, 0 0);
+}
+
+.clip-trapezoid {
+  clip-path: polygon(7% 0%, 100% 0, 93% 100%, 0% 100%);
+}
+
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.absolute-center-x {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.absolute-center-y {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 @media (min-width: 768px) {
   .md\:text-stroke-width-1 {
     -webkit-text-stroke-width: 1px;

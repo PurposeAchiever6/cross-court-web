@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { equals } from 'ramda';
 
-import sklzLogoPurple from 'shared/images/sklz-logo-purple.png';
+import sklzLogoPurple from 'shared/images/logos/sklz-purple.png';
 import colors from 'shared/styles/constants';
 import { urlFormattedDate, shortSessionDate, hourRange } from 'shared/utils/date';
 import CheckCircle from 'shared/components/svg/CheckCircleSvg';

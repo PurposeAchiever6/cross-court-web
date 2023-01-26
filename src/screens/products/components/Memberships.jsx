@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { RECURRING, FREE_SESSION } from 'screens/products/constants';
-import Ball from 'shared/images/white-circular-logo.png';
+import Ball from 'shared/images/logos/cc-ball-white.png';
 import ProductPlan from './ProductPlan';
 
 const Memberships = ({ onSubmit, availableProducts, activeSubscription, getSubmitText }) => {

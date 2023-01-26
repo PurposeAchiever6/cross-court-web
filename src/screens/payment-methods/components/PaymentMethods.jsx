@@ -9,7 +9,7 @@ import ROUTES from 'shared/constants/routes';
 import { deleteCard } from 'screens/payment-methods/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getDeleteCardLoading } from 'screens/payment-methods/reducer';
-import CrossCourtLogo from 'shared/images/cc-logo.png';
+import CrossCourtLogo from 'shared/images/logos/cc-white.png';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import CCIcon from 'shared/components/CCIcon';
 import Badge from 'shared/components/Badge';

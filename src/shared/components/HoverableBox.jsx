@@ -26,7 +26,7 @@ const HoverableBox = ({
   </div>
 );
 
-HoverableBox.propTypes = {
+HoverableBox.defaultProps = {
   className: '',
   linkOnClick: null,
   linkDescription: null,
@@ -39,6 +39,7 @@ HoverableBox.propTypes = {
   linkOnClick: PropTypes.func,
   linkDescription: PropTypes.string,
   linkHref: PropTypes.string,
+  className: PropTypes.string,
 };
 
 export default HoverableBox;

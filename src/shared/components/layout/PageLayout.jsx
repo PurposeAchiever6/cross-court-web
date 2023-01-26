@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const PageLayout = ({ dark, children }) => (
   <div className={dark ? 'bg-black text-white' : ''}>
-    <div className="max-w-screen-2xl mx-auto pt-28 pb-20">{children}</div>
+    <div className="max-w-screen-2xl mx-auto pt-28 pb-24">{children}</div>
   </div>
 );
 

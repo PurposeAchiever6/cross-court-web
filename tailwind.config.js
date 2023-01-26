@@ -66,7 +66,7 @@ module.exports = {
           'highlight-purple 3s cubic-bezier(0.78, 0.05, 0.68, 0.79) 0.5s 2;',
       },
       backgroundImage: {
-        'cc-ball-logo': "url('../shared/images/new-purple-circular-logo.png')",
+        'cc-ball-logo': "url('../shared/images/logos/cc-ball-purple.png')",
       },
       transitionDelay: {
         0: '0ms',

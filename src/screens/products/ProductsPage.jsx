@@ -18,20 +18,19 @@ import {
 import PageLayout from 'shared/components/layout/PageLayout';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
-import MembershipsFeatures from 'shared/components/MembershipsFeatures';
 import VideoPlayer from 'shared/components/VideoPlayer';
 import MembershipIsPausedModal from 'screens/memberships/components/MembershipIsPausedModal';
 import PauseMembershipModal from 'screens/memberships/components/PauseMembershipModal';
-
-import Memberships from './components/Memberships';
-import ReserveTeamMemberships from './components/reserve-team/Memberships';
-import ReserveTeamMembershipsFeatures from './components/reserve-team/MembershipsFeatures';
-import DropIns from './components/DropIns';
-import SeasonPass from './components/SeasonPass';
-import Scoutings from './components/Scoutings';
-import FAQ from './components/FAQ';
-import NoSessionCredits from './components/NoSessionCredits';
-import NoFreeSessionInformationModal from './components/NoFreeSessionInformationModal';
+import Memberships from 'screens/products/components/Memberships';
+import ReserveTeamMemberships from 'screens/products/components/reserve-team/Memberships';
+import ReserveTeamMembershipsFeatures from 'screens/products/components/reserve-team/MembershipsFeatures';
+import MembershipsFeatures from 'screens/products/components/MembershipsFeatures';
+import DropIns from 'screens/products/components/DropIns';
+import SeasonPass from 'screens/products/components/SeasonPass';
+import Scoutings from 'screens/products/components/Scoutings';
+import FAQ from 'screens/products/components/FAQ';
+import NoSessionCredits from 'screens/products/components/NoSessionCredits';
+import NoFreeSessionInformationModal from 'screens/products/components/NoFreeSessionInformationModal';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
@@ -174,7 +173,7 @@ const ProductsPage = () => {
             {reserveTeam ? (
               <ReserveTeamMembershipsFeatures setWatchVideo={setWatchVideo} />
             ) : (
-              <MembershipsFeatures setWatchSkillsVideo={setWatchVideo} />
+              <MembershipsFeatures />
             )}
           </>
         )}

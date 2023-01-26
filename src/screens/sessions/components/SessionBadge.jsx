@@ -6,8 +6,8 @@ import Tooltip from 'shared/components/Tooltip';
 import InfoSvg from 'shared/components/svg/InfoSvg';
 import BadgeWithInfo from 'shared/components/BadgeWithInfo';
 import VideoPlayer from 'shared/components/VideoPlayer';
-import sklzLogoWhite from 'shared/images/sklz-logo-white.png';
-import sklzLogoBlack from 'shared/images/sklz-logo-black.png';
+import sklzLogoWhite from 'shared/images/logos/sklz-white.png';
+import sklzLogoBlack from 'shared/images/logos/sklz-black.png';
 
 const SessionBadge = ({ skillLevel, isOpenClub, womenOnly, skillSession, variant }) => {
   const [watchVideo, setWatchVideo] = useState(false);

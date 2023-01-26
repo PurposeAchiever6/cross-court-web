@@ -207,7 +207,7 @@ body .loader-wrapper .ball {
   height: 100px;
   border-radius: 50%;
   left: 0;
-  background: transparent url('../../shared/images/new-purple-circular-logo.png') no-repeat 0 0;
+  background: transparent url('../../shared/images/logos/cc-ball-purple.png') no-repeat 0 0;
   background-size: contain;
   position: absolute;
   bottom: 4px;
