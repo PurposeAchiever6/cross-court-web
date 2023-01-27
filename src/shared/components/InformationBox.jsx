@@ -54,7 +54,7 @@ const InformationBox = ({
         )}
         <div className="absolute top-0 right-0 m-3 px-2 py-1 bg-cc-blue-500 text-white z-10">
           <FontAwesomeIcon
-            className={`mt-1 ${open ? 'trasform rotate-45 transition-all' : ''}`}
+            className={`mt-1 trasform transition-all ${open ? 'rotate-45' : 'rotate-0'}`}
             icon={faPlus}
           />
         </div>

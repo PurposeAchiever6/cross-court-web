@@ -9,10 +9,9 @@ const DropIns = ({ selectProductHandler, availableProducts }) => {
 
   return (
     <div className="text-white w-full lg:w-1/4 mb-6 lg:mb-0">
-      <h2 className="dharma_gothic_cheavy text-8xl lg:h-44 lg:mb-10 lg:ml-2">DROP IN</h2>
       {products.map((product) => (
         <div key={product.id} className="w-full lg:px-4">
-          <ProductPlan product={product} submitBtnSecondary handleSubmit={selectProductHandler} />
+          <ProductPlan product={product} handleSubmit={selectProductHandler} />
         </div>
       ))}
     </div>

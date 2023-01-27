@@ -23,7 +23,7 @@ module.exports = {
           700: '#171726',
           900: '#0F0F1A',
         },
-        cream: '#fbf7f3',
+        cream: '#FBF7F3',
       },
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '1rem' }],

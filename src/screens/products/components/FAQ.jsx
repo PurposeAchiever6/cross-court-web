@@ -2,7 +2,7 @@ import React from 'react';
 
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import BackgroundSquare from 'shared/components/BackgroundSquare';
-import QuestionAnswer from 'shared/components/QuestionAnswer';
+import Accordion from 'shared/components/Accordion';
 
 const QUESTIONS = [
   {
@@ -77,9 +77,9 @@ const FAQ = () => (
         </h2>
         <div className="max-w-5xl mx-auto">
           {QUESTIONS.map(({ question, answer }, index) => (
-            <QuestionAnswer key={index} question={question} className="mb-2">
+            <Accordion key={index} title={question} className="mb-2">
               {answer}
-            </QuestionAnswer>
+            </Accordion>
           ))}
         </div>
       </div>

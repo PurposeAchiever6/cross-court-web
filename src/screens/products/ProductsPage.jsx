@@ -16,6 +16,7 @@ import {
   pauseSubscription,
 } from 'screens/products/actionCreators';
 import PageLayout from 'shared/components/layout/PageLayout';
+import SectionLayout from 'shared/components/layout/SectionLayout';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import VideoPlayer from 'shared/components/VideoPlayer';
@@ -127,47 +128,68 @@ const ProductsPage = () => {
     return <Loading />;
   }
 
+  const pageTitle = (() => {
+    if (comesFromCancelModal) {
+      return 'Season Pass';
+    }
+
+    if (showScouting) {
+      return 'Player Evaluation';
+    }
+
+    if (reserveTeam) {
+      return 'Reserve Team Memberships';
+    }
+
+    return 'Memberships';
+  })();
+
   return (
     <>
       <PageLayout>
         {showAnimation && <NoSessionCredits />}
-        <div className="flex flex-col lg:flex-row p-4">
-          {comesFromCancelModal && (
-            <SeasonPass
-              selectProductHandler={selectProductHandler}
-              availableProducts={availableProducts}
-            />
-          )}
-          {showScouting && (
-            <Scoutings
-              selectProductHandler={selectProductHandler}
-              availableProducts={availableProducts}
-            />
-          )}
-          {showMemberships && (
-            <>
-              <DropIns
-                selectProductHandler={selectProductDropInHandler}
+        <SectionLayout className="mt-28">
+          <h2 className="font-shapiro95_super_wide uppercase text-3xl sm:text-4xl mb-6 sm:mb-10">
+            {pageTitle}
+          </h2>
+          <div className="flex flex-col lg:flex-row">
+            {comesFromCancelModal && (
+              <SeasonPass
+                selectProductHandler={selectProductHandler}
                 availableProducts={availableProducts}
               />
-              {reserveTeam ? (
-                <ReserveTeamMemberships
-                  onSubmit={onSubmit}
+            )}
+            {showScouting && (
+              <Scoutings
+                selectProductHandler={selectProductHandler}
+                availableProducts={availableProducts}
+              />
+            )}
+            {showMemberships && (
+              <>
+                <DropIns
+                  selectProductHandler={selectProductDropInHandler}
                   availableProducts={availableProducts}
-                  activeSubscription={activeSubscription}
-                  getSubmitText={getSubmitText}
                 />
-              ) : (
-                <Memberships
-                  onSubmit={onSubmit}
-                  availableProducts={availableProducts}
-                  activeSubscription={activeSubscription}
-                  getSubmitText={getSubmitText}
-                />
-              )}
-            </>
-          )}
-        </div>
+                {reserveTeam ? (
+                  <ReserveTeamMemberships
+                    onSubmit={onSubmit}
+                    availableProducts={availableProducts}
+                    activeSubscription={activeSubscription}
+                    getSubmitText={getSubmitText}
+                  />
+                ) : (
+                  <Memberships
+                    onSubmit={onSubmit}
+                    availableProducts={availableProducts}
+                    activeSubscription={activeSubscription}
+                    getSubmitText={getSubmitText}
+                  />
+                )}
+              </>
+            )}
+          </div>
+        </SectionLayout>
         {showMemberships && (
           <>
             {reserveTeam ? (
