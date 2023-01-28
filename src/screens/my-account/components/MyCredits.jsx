@@ -89,6 +89,7 @@ const MyCredits = ({
 }) => {
   const sessionPluralize = pluralize('SESSION', credits, 'S');
   const skillSessionPluralize = pluralize('SKLZ SESSION', skillSessionCredits, 'S');
+  const subscriptionSkillSessionsCreditsPerMonth = activeSubscription?.product.skillSessionCredits;
 
   return (
     <MyCreditsContainer className="my-credits">
@@ -118,23 +119,29 @@ const MyCredits = ({
         )}
         {activeSubscription && (
           <>
-            {isUnlimitedSkillSession ? (
+            {(subscriptionSkillSessionsCreditsPerMonth !== 0 || skillSessionCredits !== 0) && (
               <div className="mb-6">
-                <span className="unlimited-title-1">UNLIMITED</span>
-                <span className="unlimited-skill-title-2">SKLZ SESSIONS</span>
-              </div>
-            ) : (
-              <div className="flex mb-6">
-                <span className="session-number">{skillSessionCredits}</span>
-                <span>
-                  <span className="subscription-title-1">{`${skillSessionPluralize} LEFT`}</span>
-                  <span>
-                    <div className="subscription-title-2">THIS MONTH</div>
-                    {skillSessionCredits === 0 && (
-                      <div className="text-xs font-semibold mt-2">{ZERO_SKLZ_CREDITS_NOTICE}</div>
-                    )}
-                  </span>
-                </span>
+                {isUnlimitedSkillSession ? (
+                  <div>
+                    <span className="unlimited-title-1">UNLIMITED</span>
+                    <span className="unlimited-skill-title-2">SKLZ SESSIONS</span>
+                  </div>
+                ) : (
+                  <div className="flex">
+                    <span className="session-number">{skillSessionCredits}</span>
+                    <span>
+                      <span className="subscription-title-1">{`${skillSessionPluralize} LEFT`}</span>
+                      <span>
+                        <div className="subscription-title-2">THIS MONTH</div>
+                        {skillSessionCredits === 0 && (
+                          <div className="text-xs font-semibold mt-2">
+                            {ZERO_SKLZ_CREDITS_NOTICE}
+                          </div>
+                        )}
+                      </span>
+                    </span>
+                  </div>
+                )}
               </div>
             )}
             <div className="text-sm mt-4">
