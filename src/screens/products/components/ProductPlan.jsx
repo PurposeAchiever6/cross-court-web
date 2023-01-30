@@ -38,6 +38,7 @@ const ProductPlan = ({
     waitlistPriority,
     freeJerseyRental,
     freeTowelRental,
+    highlighted,
   } = product;
 
   const isDropIn = product.productType === ONE_TIME && !seasonPass && !scouting;
@@ -59,7 +60,9 @@ const ProductPlan = ({
 
   return (
     <div
-      className={`relative bg-cc-blue-900 text-white text-center transform lg:hover:scale-105 transition-transform duration-300 pt-10 ${className}`}
+      className={`relative ${
+        highlighted ? 'bg-cc-blue-300' : 'bg-cc-blue-900'
+      } text-white text-center transform lg:hover:scale-105 transition-transform duration-300 pt-10 ${className}`}
     >
       <div className="inline-block mb-5 lg:h-14">
         <h2 className="text-2xl font-shapiro95_super_wide uppercase">{name}</h2>
@@ -101,7 +104,9 @@ const ProductPlan = ({
             title={isDesktop ? undefined : 'VIEW DETAILS'}
             titleContainerClassName="font-shapiro95_super_wide my-2 text-left"
             collapsable={!isDesktop}
-            className="px-2 py-4 lg:py-1 lg:h-64 !bg-cc-blue-700 border-t-2 border-black md:border-0"
+            className={`px-2 py-4 lg:py-1 lg:h-64 ${
+              highlighted ? '!bg-cc-blue-100' : '!bg-cc-blue-700'
+            } border-t-2 border-black md:border-0`}
             icon={isDesktop ? undefined : faChevronDown}
             iconRotationDegrees={isDesktop ? undefined : 180}
           >
@@ -129,7 +134,11 @@ const ProductPlan = ({
         )}
       </div>
       {label && (
-        <div className="lg:block text-xs absolute px-4 right-0 top-0 bg-cream bg-opacity-25 shapiro95_super_wide text-white py-1 uppercase">
+        <div
+          className={`lg:block text-xs absolute px-4 right-0 top-0 bg-cream ${
+            highlighted ? 'bg-opacity-100 text-black' : 'bg-opacity-25 text-white'
+          } shapiro95_super_wide py-1 uppercase`}
+        >
           {label}
         </div>
       )}
