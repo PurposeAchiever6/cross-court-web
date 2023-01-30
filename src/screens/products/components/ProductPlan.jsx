@@ -33,6 +33,11 @@ const ProductPlan = ({
     maxRolloverCredits,
     freePausesPerYear,
     scouting,
+    description,
+    highlights,
+    waitlistPriority,
+    freeJerseyRental,
+    freeTowelRental,
   } = product;
 
   const isDropIn = product.productType === ONE_TIME && !seasonPass && !scouting;
@@ -48,6 +53,10 @@ const ProductPlan = ({
   const { width: windowSize } = useWindowSize();
   const isDesktop = windowSize >= breakpoints.desktop;
 
+  let freeRental = [];
+  freeJerseyRental && (freeRental = [...freeRental, 'Jersey']);
+  freeTowelRental && (freeRental = [...freeRental, 'Towel']);
+
   return (
     <div
       className={`relative bg-cc-blue-900 text-white text-center transform lg:hover:scale-105 transition-transform duration-300 pt-10 ${className}`}
@@ -62,12 +71,12 @@ const ProductPlan = ({
           <span className="uppercase text-sm">{isRecurring ? '/ Month' : '1 Credit'}</span>
         </div>
         {discountPercentage > 0 && (
-          <div className="shapiro95_super_wide bg-cc-purple text-cc-black text-xs -mt-2 md:mt-0 2xl:text-sm lg:-mx-2 p-2 rounded-sm">
+          <div className="shapiro95_super_wide bg-cc-purple text-cc-black text-xs my-4 p-2 rounded-sm">
             {`${discountPercentage}% discount for ${discountReason}`}
           </div>
         )}
         {seasonPass && showFeatures && (
-          <div className="text-xs font-shapiro96_inclined_wide text-left uppercase mt-2">
+          <div className="text-xs font-shapiro96_inclined_wide text-left uppercase my-4 p-2">
             <div className="mb-4">Does not expire</div>
             <div className="mb-4">Excludes membership perks such as:</div>
             <div className=" text-cc-purple">
@@ -86,12 +95,13 @@ const ProductPlan = ({
         >
           {submitText}
         </PrimaryButton>
+        <p className="text-xs h-24 md:h-30 md:text-left px-4">{description}</p>
         {isRecurring && showFeatures && (
           <Accordion
             title={isDesktop ? undefined : 'VIEW DETAILS'}
             titleContainerClassName="font-shapiro95_super_wide my-2 text-left"
             collapsable={!isDesktop}
-            className="px-6 py-4 lg:py-1 lg:h-72 !bg-cc-blue-700 border-t-2 border-black md:border-0"
+            className="px-2 py-4 lg:py-1 lg:h-64 !bg-cc-blue-700 border-t-2 border-black md:border-0"
             icon={isDesktop ? undefined : faChevronDown}
             iconRotationDegrees={isDesktop ? undefined : 180}
           >
@@ -99,9 +109,15 @@ const ProductPlan = ({
               <li>
                 {sessionsCreditsString} Credits (refill monthly). Can be used for SESSIONS or SKLZ
               </li>
+              {highlights && <li className="mt-2">Highlights</li>}
+              {freeRental.length > 0 && (
+                <li className="mt-2">Free {`${freeRental.join(' & ')}`} Rental</li>
+              )}
               {!isUnlimited && <li className="mt-2">{maxRolloverCredits} Rollover Credit</li>}
-              <li className="mt-2">{skillSessionCreditsString} sklz sessions per month</li>
-              <li className="mt-2">Free Jersey & Towel Rental</li>
+              {waitlistPriority && <li className="mt-2">{waitlistPriority} Waitlist Priority</li>}
+              {skillSessionCredits > 0 && (
+                <li className="mt-2">{skillSessionCreditsString} SKLZ sessions per month</li>
+              )}
               {freePausesPerYear > 0 && (
                 <li className="mt-2">
                   {freePausesPerYear} {pluralize('Month', freePausesPerYear)} Free Membership Freeze
