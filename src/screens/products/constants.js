@@ -32,6 +32,7 @@ export const MEMBERSHIPS_EXPERIENCES = [
     clipCorner: 'top-left',
     backgroundImage: sessionsBgImg,
     darkenBackground: true,
+    iconClassName: 'h-9',
   },
   {
     icon: skillSessionsLogo,
@@ -40,6 +41,7 @@ export const MEMBERSHIPS_EXPERIENCES = [
     label: 'Requires Credit',
     backgroundImage: skillSessionsBgImg,
     darkenBackground: true,
+    iconClassName: 'h-9',
   },
   {
     icon: openClubLogo,
@@ -48,6 +50,7 @@ export const MEMBERSHIPS_EXPERIENCES = [
     label: 'Included',
     backgroundImage: openClubBgImg,
     darkenBackground: true,
+    iconClassName: 'h-10',
   },
   {
     icon: activationsLogo,
@@ -56,6 +59,7 @@ export const MEMBERSHIPS_EXPERIENCES = [
     label: 'Included',
     backgroundImage: activationsBgImg,
     darkenBackground: true,
+    iconClassName: 'h-8',
   },
   {
     icon: privateTrainingLogo,
@@ -64,6 +68,7 @@ export const MEMBERSHIPS_EXPERIENCES = [
     label: 'A La Carte',
     backgroundImage: privateTrainingBgImg,
     darkenBackground: true,
+    iconClassName: 'h-9',
   },
   {
     icon: ccLeagueLogo,
@@ -72,6 +77,7 @@ export const MEMBERSHIPS_EXPERIENCES = [
     clipCorner: 'bottom-right',
     backgroundImage: ccLeagueBgImg,
     darkenBackground: true,
+    iconClassName: 'h-9',
   },
 ];
 

@@ -68,7 +68,7 @@ const QUESTIONS = [
 ];
 
 const FAQ = () => (
-  <SectionLayout className="mt-20">
+  <SectionLayout className="pt-8">
     <div className="relative">
       <BackgroundSquare className="-mt-8 trasform -translate-x-20 lg:translate-x-24" />
       <div className="relative z-10">

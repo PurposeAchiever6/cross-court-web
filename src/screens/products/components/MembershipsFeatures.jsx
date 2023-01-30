@@ -7,16 +7,25 @@ import InformationBox from 'shared/components/InformationBox';
 import ccBasketballBallsImg from 'shared/images/membership-features/cc-basketball-balls.jpeg';
 
 const MembershipsFeatures = () => (
-  <SectionLayout className="relative mt-28">
-    <BackgroundSquare className="-mt-8 trasform -translate-x-20 lg:translate-x-24" />
-    <div className="relative mb-28">
+  <SectionLayout className="relative pt-8 mb-24">
+    <BackgroundSquare className="-mt-8 trasform -translate-x-20 lg:translate-x-60" />
+    <div className="relative mb-32">
       <h2 className="font-shapiro95_super_wide uppercase text-3xl sm:text-4xl mb-6 sm:mb-10">
         Experiences
       </h2>
       <div className="flex flex-wrap sm:-m-2">
         {MEMBERSHIPS_EXPERIENCES.map(
           (
-            { skip, icon, description, label, clipCorner, backgroundImage, darkenBackground },
+            {
+              skip,
+              icon,
+              description,
+              label,
+              clipCorner,
+              backgroundImage,
+              darkenBackground,
+              iconClassName,
+            },
             index
           ) => (
             <div
@@ -31,6 +40,7 @@ const MembershipsFeatures = () => (
                   clipCorner={clipCorner}
                   backgroundImage={backgroundImage}
                   darkenBackground={darkenBackground}
+                  iconClassName={iconClassName}
                   className="h-72"
                 />
               )}

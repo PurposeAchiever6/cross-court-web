@@ -68,13 +68,13 @@ const ProductPlan = ({
         <h2 className="text-2xl font-shapiro95_super_wide uppercase">{name}</h2>
         <span className="uppercase text-sm">{isDropIn && 'One-Time Session'}</span>
       </div>
-      <div className="mb-6 lg:mb-10">
+      <div>
         <div className="mb-3 lg:mb-5 flex flex-col">
           <span className="font-dharma_gothic_cheavy text-10xl">{price}</span>
           <span className="uppercase text-sm">{isRecurring ? '/ Month' : '1 Credit'}</span>
         </div>
         {discountPercentage > 0 && (
-          <div className="shapiro95_super_wide bg-cc-purple text-cc-black text-xs my-4 p-2 rounded-sm">
+          <div className="shapiro95_super_wide bg-cc-purple text-cc-black text-xs my-4 p-2">
             {`${discountPercentage}% discount for ${discountReason}`}
           </div>
         )}
@@ -95,6 +95,7 @@ const ProductPlan = ({
           bg={submitBtnSecondary && 'transparent'}
           onClick={() => handleSubmit(product)}
           className="mb-6"
+          textColor={submitBtnSecondary ? null : 'black'}
         >
           {submitText}
         </PrimaryButton>

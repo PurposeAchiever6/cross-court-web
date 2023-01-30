@@ -13,6 +13,7 @@ const InformationBox = ({
   clipCorner,
   backgroundImage,
   darkenBackground,
+  iconClassName,
   className,
 }) => {
   const [open, setOpen] = useState(false);
@@ -64,7 +65,11 @@ const InformationBox = ({
           }`}
         >
           {icon ? (
-            <img src={icon} alt="icon" className="group-hover:opacity-50 transition-all h-10" />
+            <img
+              src={icon}
+              alt="icon"
+              className={`group-hover:opacity-50 transition-all ${iconClassName}`}
+            />
           ) : (
             <span className="group-hover:opacity-50 transition-all font-shapiro95_super_wide text-xl uppercase">
               {title}
@@ -95,6 +100,7 @@ InformationBox.defaultProps = {
   backgroundImage: null,
   darkenBackground: false,
   clipCorner: null,
+  iconClassName: '',
   className: '',
 };
 
@@ -106,6 +112,7 @@ InformationBox.propTypes = {
   backgroundImage: PropTypes.string,
   darkenBackground: PropTypes.bool,
   clipCorner: PropTypes.string,
+  iconClassName: PropTypes.string,
   className: PropTypes.string,
 };
 

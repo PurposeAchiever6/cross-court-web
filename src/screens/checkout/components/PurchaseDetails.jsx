@@ -52,8 +52,7 @@ const PurchaseDetails = ({
           <Label color="purple" className="mb-2">
             YOUR PURCHASE
           </Label>
-          <div className="text-xl">{productDetails.name}</div>
-          <div>{productDetails.description}</div>
+          <div className="font-shapiro95_super_wide uppercase">{productDetails.name}</div>
         </div>
 
         <div className="mb-8">

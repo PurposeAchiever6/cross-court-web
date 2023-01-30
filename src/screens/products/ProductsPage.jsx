@@ -148,7 +148,7 @@ const ProductsPage = () => {
     <>
       <PageLayout>
         {showAnimation && <NoSessionCredits />}
-        <SectionLayout className="mt-28">
+        <SectionLayout className="mt-12 mb-24">
           <h2 className="font-shapiro95_super_wide uppercase text-3xl sm:text-4xl mb-6 sm:mb-10">
             {pageTitle}
           </h2>
