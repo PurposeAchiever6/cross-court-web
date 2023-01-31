@@ -50,7 +50,7 @@ const Accordion = ({
             <FontAwesomeIcon
               className={`${
                 open ? `${rotationClassName}` : 'rotate-0'
-              } trasform transition-all duration-500 absolute top-0 right-0`}
+              } trasform transition-all duration-150 absolute top-0 right-0`}
               icon={icon}
               size="lg"
             />
@@ -59,7 +59,7 @@ const Accordion = ({
       )}
       {collapsable ? (
         <div
-          className={`block text-sm overflow-hidden transition-all duration-500 ease ${
+          className={`block text-sm overflow-hidden transition-all duration-150 ease ${
             open ? 'block mt-6 text-sm' : 'hidden'
           }`}
         >

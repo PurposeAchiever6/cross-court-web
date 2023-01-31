@@ -77,7 +77,7 @@ const FAQ = () => (
         </h2>
         <div className="max-w-5xl mx-auto">
           {QUESTIONS.map(({ question, answer }, index) => (
-            <Accordion key={index} title={question} className="mb-2">
+            <Accordion key={index} title={question} className="mb-2 hover:!bg-cc-blue-700">
               {answer}
             </Accordion>
           ))}

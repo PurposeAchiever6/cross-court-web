@@ -129,6 +129,8 @@ PurchaseDetails.defaultProps = {
 };
 
 PurchaseDetails.propTypes = {
+  prorate: PropTypes.number.isRequired,
+  prorateLoading: PropTypes.bool.isRequired,
   paymentMethod: PropTypes.object.isRequired,
   productDetails: PropTypes.object.isRequired,
   checkoutHandler: PropTypes.func.isRequired,
