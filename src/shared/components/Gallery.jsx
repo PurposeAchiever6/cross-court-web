@@ -7,7 +7,7 @@ import 'pro-gallery/dist/statics/main.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faDownload } from '@fortawesome/free-solid-svg-icons';
 
-import ccLogo from 'shared/images/cc-logo.png';
+import ccLogo from 'shared/images/logos/cc-white.png';
 import Fancybox from './Fancybox';
 
 const Gallery = ({ images, hoverEnable, className }) => {

@@ -16,7 +16,14 @@ module.exports = {
       colors: {
         'cc-black': '#1a1a1a',
         'cc-purple': '#9999FF',
-        cream: '#fbf7f3',
+        'cc-blue': {
+          100: '#2E2E4D',
+          300: '#262640',
+          500: '#1F1F33',
+          700: '#171726',
+          900: '#0F0F1A',
+        },
+        cream: '#FBF7F3',
       },
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '1rem' }],
@@ -48,7 +55,7 @@ module.exports = {
       },
       boxShadow: {
         'header-white': '0px 1px 6px #9999FF',
-        'header-dark': '0px -2px 7px #9999FF',
+        'header-dark': '0px -2px 8px #9999FF',
         'all-around-purple': '0px 0px 15px rgba(153, 153, 255, 0.4)',
       },
       animation: {
@@ -59,7 +66,7 @@ module.exports = {
           'highlight-purple 3s cubic-bezier(0.78, 0.05, 0.68, 0.79) 0.5s 2;',
       },
       backgroundImage: {
-        'cc-ball-logo': "url('../shared/images/new-purple-circular-logo.png')",
+        'cc-ball-logo': "url('../shared/images/logos/cc-ball-purple.png')",
       },
       transitionDelay: {
         0: '0ms',

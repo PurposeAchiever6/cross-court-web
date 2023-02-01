@@ -7,6 +7,10 @@ const LazyBackgroundImage = ({ as: HTMLTag, img, backgroundColor, children, ...p
   const containerRef = useRef();
 
   useEffect(() => {
+    if (!img) {
+      return;
+    }
+
     containerRef.current.style.backgroundColor = backgroundColor;
 
     const onIntersection = (entries, observer) => {
@@ -38,13 +42,14 @@ LazyBackgroundImage.defaultProps = {
   as: 'div',
   children: null,
   backgroundColor: colors.brandBlack,
+  img: null,
 };
 
 LazyBackgroundImage.propTypes = {
   as: PropTypes.string,
   children: PropTypes.node,
   backgroundColor: PropTypes.string,
-  img: PropTypes.string.isRequired,
+  img: PropTypes.string,
 };
 
 export default LazyBackgroundImage;

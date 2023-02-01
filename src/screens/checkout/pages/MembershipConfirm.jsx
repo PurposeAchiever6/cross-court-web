@@ -31,7 +31,7 @@ const MembershipConfirm = () => {
         animation={confettiAnimation}
         className="absolute inset-0 bottom-1/2 md:bottom-0"
       />
-      <div className="container md:text-lg flex flex-col px-4 pt-10 sm:pt-24 pb-10 md:pb-20 mx-auto relative">
+      <div className="md:text-lg flex flex-col px-4 pt-10 sm:pt-24 pb-10 md:pb-20 max-w-screen-md mx-auto relative">
         <div className="text-center">
           <h1 className="uppercase font-shapiro95_super_wide md:text-2xl">
             HEY {currentUser.firstName}. WELCOME TO THE CCTEAM!

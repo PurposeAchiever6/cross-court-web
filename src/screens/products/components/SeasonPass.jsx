@@ -8,7 +8,6 @@ const SeasonPass = ({ selectProductHandler, availableProducts }) => {
 
   return (
     <div className="text-white w-full">
-      <h1 className="dharma_gothic_cheavy text-8xl text-center uppercase mb-8">Season Pass</h1>
       <div className="flex flex-wrap justify-center lg:-mx-4">
         {products.map((product) => (
           <div key={product.id} className="w-full lg:w-1/4 lg:px-4 mb-8 lg:mb-0">

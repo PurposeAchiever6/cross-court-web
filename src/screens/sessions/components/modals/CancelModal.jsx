@@ -45,17 +45,18 @@ export const CancelModal = ({
       );
     }
 
+    const lateCancelFee = env.REACT_APP_CANCELED_OUT_OF_TIME_PRICE;
+    const hasLateCancelFee = Number(lateCancelFee);
+
     if (unlimitedCredits) {
       if (inCancellationTime) {
         return null;
       }
 
-      const unlimitedCreditsCancelFee = env.REACT_APP_UNLIMITED_CREDITS_CANCELED_OUT_OF_TIME_PRICE;
-
-      if (Number(unlimitedCreditsCancelFee) > 0) {
-        return `You will be charged a $${unlimitedCreditsCancelFee} \
-                late cancellation fee`;
+      if (hasLateCancelFee) {
+        return `You will be charged a $${lateCancelFee} late cancellation fee`;
       }
+
       return 'You will not be charged a late cancellation fee';
     }
 
@@ -70,9 +71,15 @@ export const CancelModal = ({
                 $${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} late cancellation fee`;
     }
 
-    return scouting
+    let message = scouting
       ? 'The session and evaluation credits will not be refunded because of the late cancellation'
       : 'The credit will not be refunded because of the late cancellation';
+
+    if (Number(lateCancelFee) > 0) {
+      message += `. You will also be charged a $${lateCancelFee} late cancellation fee`;
+    }
+
+    return message;
   })();
 
   return (

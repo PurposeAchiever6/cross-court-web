@@ -33,7 +33,8 @@ const StyledDiv = styled.div`
             ? colors.brandPurple
             : colors.white
           : props.color || colors.brandPurple};
-    color: ${(props) => props.color || (props.inverted ? colors.brandPurple : colors.white)};
+    color: ${(props) =>
+      props.textColor || props.color || (props.inverted ? colors.brandPurple : colors.white)};
     padding: ${(props) => (props.py ? props.py : '8px')} ${(props) =>
   props.px ? props.px : '15px'}
     position: relative;
@@ -92,6 +93,7 @@ const PrimaryButton = ({
   px,
   py,
   color,
+  textColor,
   type,
   fontSize,
   lineHeight,
@@ -106,6 +108,7 @@ const PrimaryButton = ({
       inverted={inverted}
       disabled={disabled}
       color={color}
+      textColor={textColor}
       bg={bg}
       w={w}
       h={h}

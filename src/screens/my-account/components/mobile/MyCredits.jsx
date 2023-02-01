@@ -41,6 +41,7 @@ const MyCredits = ({
 }) => {
   const sessionPluralize = pluralize('SESSION', credits, 'S');
   const skillSessionPluralize = pluralize('SKLZ SESSION', skillSessionCredits, 'S');
+  const subscriptionSkillSessionsCreditsPerMonth = activeSubscription?.product.skillSessionCredits;
 
   return (
     <MyCreditsContainer>
@@ -71,29 +72,31 @@ const MyCredits = ({
         )}
         {activeSubscription && (
           <>
-            <div className="mt-4">
-              {isUnlimitedSkillSession ? (
-                <span className="sessions-left">
-                  UNLIMITED
-                  <br />
-                  SKLZ SESSIONS
-                </span>
-              ) : (
-                <>
-                  <span className="session-number">{skillSessionCredits}</span>
+            {(subscriptionSkillSessionsCreditsPerMonth !== 0 || skillSessionCredits !== 0) && (
+              <div className="mt-4">
+                {isUnlimitedSkillSession ? (
                   <span className="sessions-left">
-                    {skillSessionPluralize}
+                    UNLIMITED
                     <br />
-                    <span className="whitespace-nowrap">LEFT THIS MONTH</span>
+                    SKLZ SESSIONS
                   </span>
-                  {skillSessionCredits === 0 && (
-                    <div className="text-xs font-semibold mt-4 max-w-sm mx-auto">
-                      {ZERO_SKLZ_CREDITS_NOTICE}
-                    </div>
-                  )}
-                </>
-              )}
-            </div>
+                ) : (
+                  <>
+                    <span className="session-number">{skillSessionCredits}</span>
+                    <span className="sessions-left">
+                      {skillSessionPluralize}
+                      <br />
+                      <span className="whitespace-nowrap">LEFT THIS MONTH</span>
+                    </span>
+                    {skillSessionCredits === 0 && (
+                      <div className="text-xs font-semibold mt-4 max-w-sm mx-auto">
+                        {ZERO_SKLZ_CREDITS_NOTICE}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            )}
             <div className="text-sm mt-10">
               <div className="mb-4">
                 <div className="font-shapiro95_super_wide uppercase mr-2">Current Membership</div>

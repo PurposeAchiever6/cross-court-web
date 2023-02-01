@@ -10,8 +10,13 @@ import InputCheckboxField from 'shared/components/InputCheckboxField';
 const MembershipPurchaseConfirmationModal = ({ isOpen, closeHandler, onConfirm }) => {
   const [termsAccepted, setTermsAccepted] = useState(false);
 
+  const onCloseHandler = () => {
+    setTermsAccepted(false);
+    closeHandler();
+  };
+
   return (
-    <Modal isOpen={isOpen} closeHandler={closeHandler} title="Membership Purchase" size="sm">
+    <Modal isOpen={isOpen} closeHandler={onCloseHandler} title="Membership Purchase" size="sm">
       <div className="mb-8">
         I understand I am purchasing a monthly subscription that will auto charge me on a monthly
         basis unless my membership is paused or canceled.

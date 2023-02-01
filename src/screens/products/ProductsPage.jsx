@@ -15,22 +15,23 @@ import {
   reactivateSubscription,
   pauseSubscription,
 } from 'screens/products/actionCreators';
+import PageLayout from 'shared/components/layout/PageLayout';
+import SectionLayout from 'shared/components/layout/SectionLayout';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
-import MembershipsFeatures from 'shared/components/MembershipsFeatures';
 import VideoPlayer from 'shared/components/VideoPlayer';
 import MembershipIsPausedModal from 'screens/memberships/components/MembershipIsPausedModal';
 import PauseMembershipModal from 'screens/memberships/components/PauseMembershipModal';
-
-import Memberships from './components/Memberships';
-import ReserveTeamMemberships from './components/reserve-team/Memberships';
-import ReserveTeamMembershipsFeatures from './components/reserve-team/MembershipsFeatures';
-import DropIns from './components/DropIns';
-import SeasonPass from './components/SeasonPass';
-import Scoutings from './components/Scoutings';
-import FAQ from './components/FAQ';
-import NoSessionCredits from './components/NoSessionCredits';
-import NoFreeSessionInformationModal from './components/NoFreeSessionInformationModal';
+import Memberships from 'screens/products/components/Memberships';
+import ReserveTeamMemberships from 'screens/products/components/reserve-team/Memberships';
+import ReserveTeamMembershipsFeatures from 'screens/products/components/reserve-team/MembershipsFeatures';
+import MembershipsFeatures from 'screens/products/components/MembershipsFeatures';
+import DropIns from 'screens/products/components/DropIns';
+import SeasonPass from 'screens/products/components/SeasonPass';
+import Scoutings from 'screens/products/components/Scoutings';
+import FAQ from 'screens/products/components/FAQ';
+import NoSessionCredits from 'screens/products/components/NoSessionCredits';
+import NoFreeSessionInformationModal from 'screens/products/components/NoFreeSessionInformationModal';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
@@ -127,58 +128,79 @@ const ProductsPage = () => {
     return <Loading />;
   }
 
+  const pageTitle = (() => {
+    if (comesFromCancelModal) {
+      return 'Season Pass';
+    }
+
+    if (showScouting) {
+      return 'Player Evaluation';
+    }
+
+    if (reserveTeam) {
+      return 'Reserve Team Memberships';
+    }
+
+    return 'Memberships';
+  })();
+
   return (
     <>
-      <div className="bg-cc-black pt-16 pb-10">
+      <PageLayout>
         {showAnimation && <NoSessionCredits />}
-        <div className="flex flex-col lg:flex-row p-4">
-          {comesFromCancelModal && (
-            <SeasonPass
-              selectProductHandler={selectProductHandler}
-              availableProducts={availableProducts}
-            />
-          )}
-          {showScouting && (
-            <Scoutings
-              selectProductHandler={selectProductHandler}
-              availableProducts={availableProducts}
-            />
-          )}
-          {showMemberships && (
-            <>
-              <DropIns
-                selectProductHandler={selectProductDropInHandler}
+        <SectionLayout className="mt-12 mb-24">
+          <h2 className="font-shapiro95_super_wide uppercase text-3xl sm:text-4xl mb-6 sm:mb-10">
+            {pageTitle}
+          </h2>
+          <div className="flex flex-col lg:flex-row">
+            {comesFromCancelModal && (
+              <SeasonPass
+                selectProductHandler={selectProductHandler}
                 availableProducts={availableProducts}
               />
-              {reserveTeam ? (
-                <ReserveTeamMemberships
-                  onSubmit={onSubmit}
+            )}
+            {showScouting && (
+              <Scoutings
+                selectProductHandler={selectProductHandler}
+                availableProducts={availableProducts}
+              />
+            )}
+            {showMemberships && (
+              <>
+                <DropIns
+                  selectProductHandler={selectProductDropInHandler}
                   availableProducts={availableProducts}
-                  activeSubscription={activeSubscription}
-                  getSubmitText={getSubmitText}
                 />
-              ) : (
-                <Memberships
-                  onSubmit={onSubmit}
-                  availableProducts={availableProducts}
-                  activeSubscription={activeSubscription}
-                  getSubmitText={getSubmitText}
-                />
-              )}
-            </>
-          )}
-        </div>
+                {reserveTeam ? (
+                  <ReserveTeamMemberships
+                    onSubmit={onSubmit}
+                    availableProducts={availableProducts}
+                    activeSubscription={activeSubscription}
+                    getSubmitText={getSubmitText}
+                  />
+                ) : (
+                  <Memberships
+                    onSubmit={onSubmit}
+                    availableProducts={availableProducts}
+                    activeSubscription={activeSubscription}
+                    getSubmitText={getSubmitText}
+                  />
+                )}
+              </>
+            )}
+          </div>
+        </SectionLayout>
         {showMemberships && (
           <>
             {reserveTeam ? (
               <ReserveTeamMembershipsFeatures setWatchVideo={setWatchVideo} />
             ) : (
-              <MembershipsFeatures setWatchSkillsVideo={setWatchVideo} />
+              <MembershipsFeatures />
             )}
           </>
         )}
         {showMemberships && <FAQ />}
-      </div>
+      </PageLayout>
       <MembershipIsPausedModal
         isOpen={showMembershipIsPausedModal}
         closeHandler={() => setShowMembershipIsPausedModal(false)}

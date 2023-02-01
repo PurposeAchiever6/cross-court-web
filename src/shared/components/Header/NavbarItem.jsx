@@ -12,7 +12,7 @@ const NavbarItemLink = styled(Link)`
     display: block;
     content: '';
     background-color: currentColor;
-    height: 2px;
+    height: 1px;
     width: 0px;
     margin-top: 1px;
   }
@@ -29,7 +29,7 @@ const NavbarItem = ({ name, link, enable, color }) => {
 
   const active = pathname === link;
 
-  let classes = 'text-sm uppercase transition duration-300';
+  let classes = 'text-xs 2xl:text-base uppercase transition duration-300';
 
   if (active) classes += ' active';
 

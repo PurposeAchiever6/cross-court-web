@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhoneSquare } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import CheeseburgerMenu from 'cheeseburger-menu';
+import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
 import { validateEmail } from 'shared/utils/helpers';
@@ -15,7 +16,7 @@ import { getUserProfile } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { logoutInit } from 'screens/auth/actionCreators';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import ccLogo from 'shared/images/cc-logo.png';
+import ccLogo from 'shared/images/logos/cc-white.png';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 import ArrowRightSvg from 'shared/components/svg/ArrowRightSvg';
 
@@ -28,6 +29,14 @@ const Copyright = ({ className }) => (
     <img alt="" className="w-12" src={ccLogo} />
   </div>
 );
+
+Copyright.defaultProps = {
+  className: '',
+};
+
+Copyright.propTypes = {
+  className: PropTypes.string,
+};
 
 const Footer = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
