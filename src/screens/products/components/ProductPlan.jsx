@@ -119,10 +119,17 @@ const ProductPlan = ({
               {freeRental.length > 0 && (
                 <li className="mt-2">Free {`${freeRental.join(' & ')}`} Rental</li>
               )}
-              {!isUnlimited && <li className="mt-2">{maxRolloverCredits} Rollover Credit</li>}
+              {!isUnlimited && (
+                <li className="mt-2">
+                  {maxRolloverCredits} Rollover {pluralize('Credit', maxRolloverCredits)}
+                </li>
+              )}
               {waitlistPriority && <li className="mt-2">{waitlistPriority} Waitlist Priority</li>}
               {skillSessionCredits > 0 && (
-                <li className="mt-2">{skillSessionCreditsString} SKLZ sessions per month</li>
+                <li className="mt-2">
+                  {skillSessionCreditsString} SKLZ {pluralize('Session', skillSessionCredits)} Per
+                  Month
+                </li>
               )}
               {freePausesPerYear > 0 && (
                 <li className="mt-2">

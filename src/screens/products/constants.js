@@ -55,7 +55,7 @@ export const MEMBERSHIPS_EXPERIENCES = [
   {
     icon: activationsLogo,
     description:
-      'Members only social events or team-sport based pop up experience that takes place at the Club or off site. Designed to build relationships on & off the court and provide a unique experience only available to our members. Ranging from a 3 on 3 tournament to a finals watch party to an off site happy hour.',
+      'Members only social events or team-sport based pop up experience that take place at the Club or off site. Designed to build relationships on & off the court and provide a unique experience only available to our members. Ranging from a 3 on 3 tournament to a finals watch party to an off site happy hour.',
     label: 'Included',
     backgroundImage: activationsBgImg,
     darkenBackground: true,
