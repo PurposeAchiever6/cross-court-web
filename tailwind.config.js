@@ -15,7 +15,12 @@ module.exports = {
       },
       colors: {
         'cc-black': '#1a1a1a',
-        'cc-purple': '#9999FF',
+        'cc-purple': {
+          300: '#AAAFF3',
+          DEFAULT: '#9999FF',
+          500: '#9999FF',
+          700: '#7070FF',
+        },
         'cc-blue': {
           100: '#2E2E4D',
           300: '#262640',
@@ -52,6 +57,9 @@ module.exports = {
       zIndex: {
         '-1': -1,
         1005: 1005,
+      },
+      borderWidth: {
+        3: '3px',
       },
       boxShadow: {
         'header-white': '0px 1px 6px #9999FF',

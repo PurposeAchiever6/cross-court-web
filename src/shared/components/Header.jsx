@@ -11,7 +11,7 @@ import useScrollBlock from 'shared/hooks/useScrollBlock';
 import MenuSvg from 'shared/components/svg/MenuSvg';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 import Navbar from 'shared/components/Header/Navbar';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import OnboardingTour from 'shared/components/OnboardingTour';
 import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
 import { getIsAuthenticated } from 'screens/auth/reducer';
@@ -209,17 +209,14 @@ const Header = () => {
               <Navbar scrolled={scrolled} dark={isBlackBg} isAuthenticated={isAuthenticated} />
             </div>
           )}
-          <PrimaryButton
+          <Button
             id="header-btn"
-            px="4px"
-            py="6px"
-            fontSize="12px"
-            textColor="black"
             to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP}
             onClick={exitHeaderOnboardingTour}
+            className="z-10"
           >
             {buttonText}
-          </PrimaryButton>
+          </Button>
           <OnboardingTour
             id={onboardingTourId}
             enabled={isHeaderOnboardingTourEnable}
