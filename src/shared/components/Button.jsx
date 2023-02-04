@@ -42,7 +42,7 @@ const Button = ({
   ...props
 }) => {
   let btnClassName =
-    'font-shapiro95_super_wide uppercase transition-all duration-300 px-6 py-2 outline-none focus:outline focus:outline-offset-1 focus:outline-cc-purple-300';
+    'font-shapiro95_super_wide uppercase transition-all duration-300 text-center whitespace-nowrap px-6 py-2 outline-none focus:outline focus:outline-offset-1 focus:outline-cc-purple-300';
 
   btnClassName += ` ${getVariantClasses(variant)}`;
 
