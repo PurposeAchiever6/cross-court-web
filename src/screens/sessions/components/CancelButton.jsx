@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
 const CancelButton = ({ session, modalToggler }) => {
-  const { scouting, shootingMachineReservation } = session.userSession;
+  const { scouting, shootingMachineReservations } = session.userSession;
 
   return (
     <div className="mb-4">
@@ -17,11 +17,15 @@ const CancelButton = ({ session, modalToggler }) => {
           session
         </div>
       )}
-      {shootingMachineReservation && (
+      {shootingMachineReservations.length > 0 && (
         <div className="text-sm mt-6">
-          You have reserved a shooting machine from{' '}
-          <span className="font-semibold">{shootingMachineReservation.startTime}</span> to{' '}
-          <span className="font-semibold">{shootingMachineReservation.endTime}</span>
+          {shootingMachineReservations?.map((shootingMachineReservation) => (
+            <div key={shootingMachineReservation.id} className="mt-2">
+              You have reserved a shooting machine from{' '}
+              <span className="font-semibold">{shootingMachineReservation.startTime}</span> to{' '}
+              <span className="font-semibold">{shootingMachineReservation.endTime}</span>
+            </div>
+          ))}
         </div>
       )}
     </div>

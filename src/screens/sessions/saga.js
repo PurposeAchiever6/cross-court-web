@@ -93,7 +93,7 @@ export function* reserveSessionFlow({ payload }) {
       payload.date,
       payload.referralCode,
       payload.goal,
-      payload.shootingMachineId,
+      payload.shootingMachineIds,
       payload.scouting
     );
     yield put({
