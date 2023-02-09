@@ -28,6 +28,8 @@ import { WOMEN_SESSION_TOOLTIP } from 'shared/constants/sessions';
 
 import Tooltip from 'shared/components/Tooltip';
 
+const SHOOTING_MACHINE = 'SM';
+
 const ReserveButton = ({
   reserveSessionAction,
   session,
@@ -48,15 +50,40 @@ const ReserveButton = ({
   const [showFirstTimersInformationModal, setShowFirstTimersInformationModal] = useState(false);
   const [showOpenClubGoalsModal, setShowOpenClubGoalsModal] = useState(false);
   const [openClubGoal, setOpenClubGoal] = useState(null);
-  const [shootingMachineId, setShootingMachineId] = useState(null);
+  const [shootingMachineIds, setShootingMachineIds] = useState([]);
   const [scouting, setScouting] = useState(false);
 
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
   const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(userProfile);
+  const shootingMachines = session.shootingMachines.map((shootingMachine) => ({
+    ...shootingMachine,
+    inputChecked: shootingMachineIds.includes(shootingMachine.id),
+  }));
 
   useEffect(() => {
     dispatch(initialLoadInit());
   }, [dispatch]);
+
+  const setShootingMachine = (shootingMachineId) => {
+    if (!shootingMachineId) {
+      setShootingMachineIds([]);
+      return;
+    }
+
+    if (shootingMachineIds.includes(shootingMachineId)) {
+      const newShootingMachineIds = shootingMachineIds.filter(
+        (currentShootingMachineId) => currentShootingMachineId !== shootingMachineId
+      );
+
+      if (!newShootingMachineIds.length) {
+        setOpenClubGoal(null);
+      }
+      setShootingMachineIds(newShootingMachineIds);
+    } else {
+      setOpenClubGoal(SHOOTING_MACHINE);
+      setShootingMachineIds([...shootingMachineIds, shootingMachineId]);
+    }
+  };
 
   const reserveSession = ({
     skipCodeOfConductModal,
@@ -79,8 +106,8 @@ const ReserveButton = ({
     }
 
     isFirstFreeSessionFlow
-      ? createAndReserveFreeSessionHandler({ goal: openClubGoal, shootingMachineId, scouting })
-      : reserveSessionAction({ goal: openClubGoal, shootingMachineId, scouting });
+      ? createAndReserveFreeSessionHandler({ goal: openClubGoal, shootingMachineIds, scouting })
+      : reserveSessionAction({ goal: openClubGoal, shootingMachineIds, scouting });
   };
 
   const reservationHandler = () => {
@@ -191,8 +218,8 @@ const ReserveButton = ({
             onConfirm={onConfirmOpenClubGoal}
             openClubGoal={openClubGoal}
             setOpenClubGoal={setOpenClubGoal}
-            shootingMachines={session.shootingMachines}
-            setShootingMachineId={setShootingMachineId}
+            shootingMachines={shootingMachines}
+            setShootingMachineId={setShootingMachine}
           />
           <FirstTimersInformationModal
             isOpen={showFirstTimersInformationModal}

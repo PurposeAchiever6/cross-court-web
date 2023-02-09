@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import currency from 'currency.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faArrowRotateLeft, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import Loading from 'shared/components/Loading';
 import BackButton from 'shared/components/BackButton';
@@ -17,7 +17,9 @@ import ROUTES from 'shared/constants/routes';
 import { fetchPayments } from './actionCreators';
 import { getPageLoading, getPaymentHistory, getPagination } from './reducer';
 
-const SUCCESS = 'success';
+const ERROR = 'error';
+const REFUNDED = 'refunded';
+const PARTIALLY_REFUNDED = 'partially_refunded';
 
 const PaymentHistoryPage = () => {
   const dispatch = useDispatch();
@@ -39,14 +41,30 @@ const PaymentHistoryPage = () => {
     }
   }, [totalRecords, setTotalRecords]);
 
-  const status = (row) =>
-    row.status === SUCCESS ? (
-      <FontAwesomeIcon icon={faCheckCircle} color="green" />
-    ) : (
-      <Tooltip enable={row.errorMessage} tooltip={row.errorMessage}>
-        <FontAwesomeIcon icon={faTimesCircle} color="red" />
-      </Tooltip>
-    );
+  const status = (row) => {
+    switch (row.status) {
+      case ERROR:
+        return (
+          <Tooltip enable={row.errorMessage} tooltip={row.errorMessage}>
+            <FontAwesomeIcon icon={faTimesCircle} className="text-red-500" />
+          </Tooltip>
+        );
+      case REFUNDED:
+        return (
+          <Tooltip tooltip="This payment has been refunded">
+            <FontAwesomeIcon icon={faArrowRotateLeft} className="text-yellow-600" />
+          </Tooltip>
+        );
+      case PARTIALLY_REFUNDED:
+        return (
+          <Tooltip tooltip="This payment has been partially refunded">
+            <FontAwesomeIcon icon={faArrowRotateLeft} className="text-yellow-600" />
+          </Tooltip>
+        );
+      default:
+        return <FontAwesomeIcon icon={faCheckCircle} className="text-green-600" />;
+    }
+  };
 
   const columns = useMemo(
     () => [
@@ -61,7 +79,7 @@ const PaymentHistoryPage = () => {
       {
         Header: 'Amount',
         accessor: (row) =>
-          `$ ${currency(row.amount, {
+          `$${currency(row.totalAmount, {
             symbol: '$',
             precision: 2,
           })}`,
@@ -69,7 +87,7 @@ const PaymentHistoryPage = () => {
       {
         Header: 'Discount',
         accessor: (row) =>
-          `$ ${currency(row.discount, {
+          `$${currency(row.discount, {
             symbol: '$',
             precision: 2,
           })}`,
@@ -77,7 +95,23 @@ const PaymentHistoryPage = () => {
       {
         Header: 'CC Cash',
         accessor: (row) =>
-          `$ ${currency(row.ccCash, {
+          `$${currency(row.ccCash, {
+            symbol: '$',
+            precision: 2,
+          })}`,
+      },
+      {
+        Header: 'Charged',
+        accessor: (row) =>
+          `$${currency(row.amount, {
+            symbol: '$',
+            precision: 2,
+          })}`,
+      },
+      {
+        Header: 'Refunded',
+        accessor: (row) =>
+          `$${currency(row.amountRefunded, {
             symbol: '$',
             precision: 2,
           })}`,

@@ -12,12 +12,12 @@ export default {
 
     return response.data.session;
   },
-  reserveSession: async (sessionId, date, referralCode, goal, shootingMachineId, scouting) => {
+  reserveSession: async (sessionId, date, referralCode, goal, shootingMachineIds, scouting) => {
     const response = await api.post(`/sessions/${sessionId}/user_sessions`, {
       date: requestFormattedDate(date),
       referralCode,
       goal,
-      shootingMachineId,
+      shootingMachineIds,
       scouting,
     });
 

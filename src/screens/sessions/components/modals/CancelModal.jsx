@@ -18,7 +18,7 @@ export const CancelModal = ({
   const inCancellationTime = sessionInfo?.userSession?.inCancellationTime;
   const isFreeSession = sessionInfo?.userSession?.isFreeSession;
   const scouting = sessionInfo?.userSession?.scouting;
-  const shootingMachineReservation = sessionInfo.userSession?.shootingMachineReservation;
+  const shootingMachineReservations = sessionInfo.userSession?.shootingMachineReservations;
   const isOpenClub = sessionInfo?.isOpenClub;
 
   const onCancelClick = () => {
@@ -28,21 +28,26 @@ export const CancelModal = ({
 
   const cancellationText = (() => {
     if (isOpenClub) {
-      if (!shootingMachineReservation) {
+      if (!shootingMachineReservations?.length) {
         return;
       }
 
-      if (shootingMachineReservation.charged) {
+      const shootingMachineReservationsPrice = shootingMachineReservations.reduce(
+        (totalPrice, shootingMachineReservation) =>
+          shootingMachineReservation.charged
+            ? totalPrice + shootingMachineReservation.price
+            : totalPrice,
+        0
+      );
+
+      if (shootingMachineReservationsPrice > 0) {
         return (
-          `Due to the late cancellation, the $${shootingMachineReservation.price} ` +
-          'shooting machine rental price will not be refunded'
+          `Due to the late cancellation, the $${shootingMachineReservationsPrice} ` +
+          'shooting machine(s) rental price will not be refunded'
         );
       }
 
-      return (
-        `You will not be charged the $${shootingMachineReservation.price} for the ` +
-        'shooting machine rental'
-      );
+      return 'You will not be charged for the shooting machine(s) rental';
     }
 
     const lateCancelFee = env.REACT_APP_CANCELED_OUT_OF_TIME_PRICE;

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { ONE_TIME, RECURRING, UNLIMITED_VALUE } from 'screens/products/constants';
 import { productDiscount, creditsString, formatPrice } from 'screens/products/utils';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import { pluralize } from 'shared/utils/helpers';
 import Accordion from 'shared/components/Accordion';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
@@ -90,15 +90,13 @@ const ProductPlan = ({
             </div>
           </div>
         )}
-        <PrimaryButton
-          inverted={submitBtnSecondary}
-          bg={submitBtnSecondary && 'transparent'}
+        <Button
+          variant={submitBtnSecondary ? 'outline-purple' : 'purple'}
           onClick={() => handleSubmit(product)}
-          className="mb-6"
-          textColor={submitBtnSecondary ? null : 'black'}
+          className="w-36 mb-6"
         >
           {submitText}
-        </PrimaryButton>
+        </Button>
         <p className="text-xs h-24 md:h-30 md:text-left px-4">{description}</p>
         {isRecurring && showFeatures && (
           <Accordion
@@ -119,10 +117,17 @@ const ProductPlan = ({
               {freeRental.length > 0 && (
                 <li className="mt-2">Free {`${freeRental.join(' & ')}`} Rental</li>
               )}
-              {!isUnlimited && <li className="mt-2">{maxRolloverCredits} Rollover Credit</li>}
+              {!isUnlimited && (
+                <li className="mt-2">
+                  {maxRolloverCredits} Rollover {pluralize('Credit', maxRolloverCredits)}
+                </li>
+              )}
               {waitlistPriority && <li className="mt-2">{waitlistPriority} Waitlist Priority</li>}
               {skillSessionCredits > 0 && (
-                <li className="mt-2">{skillSessionCreditsString} SKLZ sessions per month</li>
+                <li className="mt-2">
+                  {skillSessionCreditsString} SKLZ {pluralize('Session', skillSessionCredits)} Per
+                  Month
+                </li>
               )}
               {freePausesPerYear > 0 && (
                 <li className="mt-2">

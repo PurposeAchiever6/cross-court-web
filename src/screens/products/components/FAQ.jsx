@@ -23,7 +23,7 @@ const QUESTIONS = [
   {
     question: 'How much is it to rent a jersey? Can I buy a jersey instead?',
     answer:
-      'Our VET and MVP memberships include free rental of a jersey and a towel for each session at no extra cost. Jerseys can be rented for $5 and towels for $3 for ROOKIE members/non-members or jerseys can purchased in club for $59.',
+      'Our VET and MVP memberships include free rental of a jersey and a towel for each session at no extra cost. Jerseys can be rented for $5 and towels for $3 for ROOKIE members/non-members or jerseys can purchased in club for $50.',
   },
   {
     question: 'How does the waitlist work?',
