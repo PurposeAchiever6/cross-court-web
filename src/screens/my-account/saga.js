@@ -1,4 +1,5 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 
 import {
   INITIAL_LOAD_INIT,
@@ -39,6 +40,7 @@ export function* editProfileFlow(action) {
       type: EDIT_PROFILE_SUCCESS,
       payload: editProfilePayload,
     });
+    yield call(toast.success, 'Changes were successfully saved');
   } catch (err) {
     yield put({ type: EDIT_PROFILE_FAILURE, error: err.response.data.error });
   }

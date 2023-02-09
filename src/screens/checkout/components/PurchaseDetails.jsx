@@ -126,10 +126,11 @@ const PurchaseDetails = ({
 
 PurchaseDetails.defaultProps = {
   className: '',
+  prorate: null,
 };
 
 PurchaseDetails.propTypes = {
-  prorate: PropTypes.number.isRequired,
+  prorate: PropTypes.number,
   prorateLoading: PropTypes.bool.isRequired,
   paymentMethod: PropTypes.object.isRequired,
   productDetails: PropTypes.object.isRequired,
