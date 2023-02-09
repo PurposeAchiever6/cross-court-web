@@ -144,12 +144,13 @@ const RatingPage = () => {
           ))}
           {!isEdit && skillRatingsForReview.length > 0 && (
             <div className="bg-cc-purple mt-2 md:mt-3 p-4 text-sm">
-              To create the best experience for our members, our higher end skill designations are
-              assigned to players that show a proficient ability on the court. Once a member, you
+              To create the best experience for our members, our higher tiered sessions are
+              available to members that display strong offensive and defensive skill, along with an
+              ability to run up and down the court consistently with high energy. Once a member, you
               will have the ability to request a skill level update by providing proof of at least
               varsity level played or by undergoing a player evaluation, where our Experience Team
-              will use an Evaluation Form to provide a skill level rating after evaluating your
-              performance during a session.
+              will use an Evaluation Form to provide a rating after evaluating your performance and
+              hustle during a live session.
             </div>
           )}
         </div>
