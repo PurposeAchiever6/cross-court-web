@@ -126,11 +126,13 @@ const LocationsPage = () => {
           )}
         </div>
         <div className="w-full md:w-1/2">
-          <Map
-            setLocationHandler={setLocationHandler}
-            selectedLocation={selectedLocation}
-            locations={availableLocations}
-          />
+          <div className="h-[50vh] md:h-full md:min-h-screen">
+            <Map
+              setLocationHandler={setLocationHandler}
+              selectedLocation={selectedLocation}
+              locations={availableLocations}
+            />
+          </div>
         </div>
       </div>
     </>

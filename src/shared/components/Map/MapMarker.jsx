@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import colors from 'shared/styles/constants';
 
-const MapMarker = ({ onClickHandler, selected, location }) => {
+const MapMarker = ({ onClickHandler, selected, location, showLocationInfo }) => {
   const LocationInfo = () => (
     <div className="absolute bottom-20 -left-14 flex flex-col bg-cc-black text-white shadow-lg rounded-sm p-2 w-48 justify-center">
       <p className="font-shapiro95_super_wide truncate">ADDRESS</p>
@@ -14,7 +14,7 @@ const MapMarker = ({ onClickHandler, selected, location }) => {
 
   return (
     <div className="absolute -translate-x-1/2 -translate-y-1/2 -top-12 -left-9">
-      <LocationInfo />
+      {showLocationInfo && <LocationInfo />}
       <svg
         onClick={onClickHandler}
         width="83"
@@ -69,9 +69,15 @@ const MapMarker = ({ onClickHandler, selected, location }) => {
   );
 };
 
+MapMarker.defaultProps = {
+  showLocationInfo: true,
+  location: {},
+};
+
 MapMarker.propTypes = {
   selected: PropTypes.bool.isRequired,
   onClickHandler: PropTypes.func.isRequired,
+  showLocationInfo: PropTypes.bool,
   location: PropTypes.shape({
     address: PropTypes.string,
     city: PropTypes.string,

@@ -42,18 +42,16 @@ const ALWAYS_SCROLLED = [
   ROUTES.CHECKOUT,
   ROUTES.PAYMENT_HISTORY,
   ROUTES.MANAGE_MEMBERSHIP,
-  ROUTES.FIRSTSESSIONRESERVED,
   ROUTES.PRIVACY_POLICY,
   ROUTES.NOT_FOUND,
   '/session',
-  '/first-session',
 ];
 
-const CC_BLACK_BG = [ROUTES.GALLERY, ROUTES.FIRSTSESSIONRESERVED, ROUTES.CONTENT];
+const CC_BLACK_BG = [ROUTES.GALLERY, ROUTES.CONTENT];
 
-const BLACK_BG = [ROUTES.MEMBERSHIPS];
+const BLACK_BG = [ROUTES.MEMBERSHIPS, ROUTES.FIRSTSESSIONRESERVED];
 
-const SHOW_NAVBAR = [ROUTES.HOME, ROUTES.MEMBERSHIPS];
+const SHOW_NAVBAR = [ROUTES.HOME, ROUTES.MEMBERSHIPS, ROUTES.FIRSTSESSIONRESERVED];
 
 const Header = () => {
   const env = runtimeEnv();
@@ -168,7 +166,7 @@ const Header = () => {
             ? `${
                 isBlackBg ? 'shadow-header-dark' : 'shadow-header-white'
               } ${bgColor} border-b border-b-cc-purple fixed z-50 top-0`
-            : `bg-transparent absolute ${
+            : `${isBlackBg ? bgColor : 'bg-transparent'} absolute ${
                 showMembershipPromoBanner ? 'top-28 sm:top-16 lg:top-14 xl:top-10' : 'top-0'
               }`
         }`}

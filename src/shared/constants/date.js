@@ -1,7 +1,9 @@
 export const FORMAT_SESSION_DATE = 'ddd. MM/DD';
 export const FORMAT_SESSION_DATE_LONG = 'ddd MMM D, YYYY';
+export const FORMAT_SESSION_DATE_EXTRA_LONG = 'dddd, MMMM D, YYYY';
 export const FORMAT_URL = 'YYYY-MM-DD';
 export const FORMAT_HOUR = 'h:mm A';
+export const FORMAT_HOUR_24 = 'HH:mm';
 export const FORMAT_DATE_MM_DD_YY = 'MM/DD/YY';
 export const FORMAT_DATE_SUBSCRIPTION = 'MM/DD/YYYY';
 export const FORMAT_DATE_REQUEST = 'DD/MM/YYYY';
