@@ -98,17 +98,13 @@ const setPageNameOnBodyClass = (pathname) => {
 
   body.setAttribute('data-page', pageName);
 
-  if (window.localStorage.getItem('currentPage') !== pageName) {
+  if (window.localStorage.getItem('currentPage') !== pathname) {
     window.localStorage.setItem('previousPage', window.localStorage.getItem('currentPage'));
-    window.localStorage.setItem('currentPage', pageName);
+    window.localStorage.setItem('currentPage', pathname);
   }
 };
 const setScrollClasses = () => {
-  if (
-    body.getAttribute('data-page') === 'no-session-credits' ||
-    (body.getAttribute('data-page') === 'memberships' &&
-      window.location.search === '?testanimation')
-  ) {
+  if (body.getAttribute('data-page') === 'no-session-credits') {
     const bigTitle = document.querySelector('.no-session-credits .title');
     const scroll = document.querySelector('.no-session-credits .scroll');
 
@@ -254,6 +250,10 @@ setPageNameOnBodyClass(window.location.pathname);
 window.addEventListener('scroll', setScrollClasses);
 window.setTimeout(setScrollClasses, 1000);
 toggleActiveCampaignChat();
+
+window.onpopstate = () => {
+  history.replace(window.localStorage.getItem('previousPage'));
+};
 
 const Routes = () => {
   const dispatch = useDispatch();
