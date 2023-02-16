@@ -47,6 +47,13 @@ const MyProfile = ({ profile, showTitle = true }) => {
     editProfileAction({ applyCcCashToSubscription: value });
   };
 
+  const ccCashTooltip = `
+    Only one discount can apply to an invoice; it’s not possible to stack two or more discounts.
+    If a discount is already being applied to your membership, CC CA$H discount will not be applied.
+    The maximum amount of CC CA$H that can be applied to a subscription is
+    ${profile.maxCcCashSubscriptionDiscount}
+  `;
+
   return (
     <div className="relative p-8">
       <button type="button" onClick={showEditProfileAction} className="absolute right-8 top-10">
@@ -172,11 +179,7 @@ const MyProfile = ({ profile, showTitle = true }) => {
                 <span className={`${titleClasses} text-sm`}>
                   APPLY CC CA$H TO <br /> NEXT MONTH'S INVOICE
                 </span>
-                <Tooltip
-                  variant="purple"
-                  tooltip="Only one discount can apply to an invoice; it’s not possible to stack two or more discounts. If a discount is already being applied to your membership, CC CA$H discount will not be applied"
-                  className="ml-3"
-                >
+                <Tooltip variant="purple" tooltip={ccCashTooltip} className="ml-3">
                   <FontAwesomeIcon icon={faInfoCircle} className="text-cc-purple cursor-pointer" />
                 </Tooltip>
               </div>
