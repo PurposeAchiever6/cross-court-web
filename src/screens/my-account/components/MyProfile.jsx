@@ -51,7 +51,7 @@ const MyProfile = ({ profile, showTitle = true }) => {
     Only one discount can apply to an invoice; it’s not possible to stack two or more discounts.
     If a discount is already being applied to your membership, CC CA$H discount will not be applied.
     The maximum amount of CC CA$H that can be applied to a subscription is
-    ${profile.maxCcCashSubscriptionDiscount}
+    $${profile.maxCcCashSubscriptionDiscount}
   `;
 
   return (
