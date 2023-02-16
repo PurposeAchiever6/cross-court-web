@@ -8,6 +8,7 @@ import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { addCard } from 'screens/payment-methods/actionCreators';
 import Loading from 'shared/components/Loading';
 import AddCardStripe from 'screens/payment-methods/components/AddCard';
+import ROUTES from 'shared/constants/routes';
 
 const AddPaymentMethod = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const AddPaymentMethod = () => {
   const env = runtimeEnv();
 
   const STRIPE_API_KEY = env.REACT_APP_STRIPE_API_KEY;
-  const { redirectTo } = location.state;
+  const redirectTo = location.state?.redirectTo ?? ROUTES.MEMBERSHIPS;
 
   const addCardHandler = (stripe, cardElement) => {
     dispatch(addCard(stripe, cardElement, redirectTo));

@@ -8,8 +8,10 @@ import { sort } from 'ramda';
 import {
   FORMAT_SESSION_DATE,
   FORMAT_SESSION_DATE_LONG,
+  FORMAT_SESSION_DATE_EXTRA_LONG,
   FORMAT_URL,
   FORMAT_HOUR,
+  FORMAT_HOUR_24,
   FORMAT_DATE_MM_DD_YY,
   FORMAT_DATE_SUBSCRIPTION,
   FORMAT_DATE_REQUEST,
@@ -35,6 +37,9 @@ export const shortSessionDate = (date) => getUTCDate(date).format(FORMAT_SESSION
 
 export const longSessionDate = (date) => getUTCDate(date).format(FORMAT_SESSION_DATE_LONG);
 
+export const extraLongSessionDate = (date) =>
+  getUTCDate(date).format(FORMAT_SESSION_DATE_EXTRA_LONG);
+
 export const urlFormattedDate = (date) => getUTCDate(date).format(FORMAT_URL);
 
 export const startOfWeek = (date) => getUTCDate(date).startOf('week');
@@ -46,6 +51,13 @@ export const hourRange = (time, durationInMinutes = 60) => {
   const endTimeHour = getUTCDate(time).add(durationInMinutes, 'minutes').format(FORMAT_HOUR);
 
   return `${startTimeHour} - ${endTimeHour}`;
+};
+
+export const timeRange24 = (time, durationInMinutes = 60) => {
+  const startTimeHour = getUTCDate(time).format(FORMAT_HOUR_24);
+  const endTimeHour = getUTCDate(time).add(durationInMinutes, 'minutes').format(FORMAT_HOUR_24);
+
+  return [startTimeHour, endTimeHour];
 };
 
 export const weekRangeTitle = (date) =>

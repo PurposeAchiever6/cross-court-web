@@ -2,7 +2,6 @@ import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import PropTypes from 'prop-types';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
-import styled from 'styled-components';
 import MapMarker from './MapMarker';
 import styles from './styles';
 
@@ -49,16 +48,8 @@ const apiIsLoaded = (map, maps, locations) => {
 const env = runtimeEnv();
 const GOOGLE_MAPS_API_KEY = env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-const LocationsPageContainer = styled.div`
-  height: 40vh;
-
-  @media (min-width: 768px) {
-    height: calc(100vh - 4rem);
-  }
-`;
-
-const Map = ({ locations, selectedLocation, setLocationHandler }) => (
-  <LocationsPageContainer className="w-full md:min-h-full">
+const Map = ({ locations, selectedLocation, setLocationHandler, showLocationInfo }) => (
+  <div className="w-full h-full">
     <GoogleMapReact
       bootstrapURLKeys={{ key: GOOGLE_MAPS_API_KEY }}
       center={{
@@ -78,14 +69,20 @@ const Map = ({ locations, selectedLocation, setLocationHandler }) => (
           lng={location.lng}
           id={location.id}
           location={location}
+          showLocationInfo={showLocationInfo}
           selected={location.id === selectedLocation}
           onClickHandler={() => setLocationHandler(location.id)}
           hoverDistance={100}
         />
       ))}
     </GoogleMapReact>
-  </LocationsPageContainer>
+  </div>
 );
+
+Map.defaultProps = {
+  setLocationHandler: () => null,
+  showLocationInfo: true,
+};
 
 Map.propTypes = {
   locations: PropTypes.arrayOf(
@@ -96,7 +93,8 @@ Map.propTypes = {
     })
   ),
   selectedLocation: PropTypes.number,
-  setLocationHandler: PropTypes.func.isRequired,
+  setLocationHandler: PropTypes.func,
+  showLocationInfo: PropTypes.bool,
 };
 
 export default Map;

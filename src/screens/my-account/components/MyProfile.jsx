@@ -12,6 +12,7 @@ import { formatPhoneNumber } from 'shared/utils/helpers';
 import missingProfileImg from 'shared/images/missing-profile-image.png';
 import EditIcon from 'shared/components/svg/EditIcon.svg';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import ToggleButton from 'shared/components/ToggleButton';
 
 import { referralText } from 'shared/constants/referrals';
 import { editProfileInit, showEditProfile } from '../actionCreators';
@@ -27,6 +28,9 @@ const MyProfile = ({ profile, showTitle = true }) => {
   const location = useLocation();
 
   const [inviteFriendTextCopied, setInviteFriendTextCopied] = useState(false);
+  const [applyCCCashToSubscription, setApplyCCCashToSubscription] = useState(
+    profile.applyCcCashToSubscription
+  );
 
   const editProfileAction = (values) => dispatch(editProfileInit(values));
   const showEditProfileAction = () => dispatch(showEditProfile());
@@ -36,6 +40,19 @@ const MyProfile = ({ profile, showTitle = true }) => {
 
   const dateOfBirth = new Date(profile.birthday);
   const { defaultPaymentMethod } = profile;
+
+  const handleApplyCCCashToSubscriptionChange = () => {
+    const value = !applyCCCashToSubscription;
+    setApplyCCCashToSubscription(value);
+    editProfileAction({ applyCcCashToSubscription: value });
+  };
+
+  const ccCashTooltip = `
+    Only one discount can apply to an invoice; it’s not possible to stack two or more discounts.
+    If a discount is already being applied to your membership, CC CA$H discount will not be applied.
+    The maximum amount of CC CA$H that can be applied to a subscription is
+    $${profile.maxCcCashSubscriptionDiscount}
+  `;
 
   return (
     <div className="relative p-8">
@@ -156,6 +173,24 @@ const MyProfile = ({ profile, showTitle = true }) => {
               profile.ccCash
             )}`}</span>
           </div>
+          {profile.activeSubscription && (
+            <>
+              <div className="flex items-center">
+                <span className={`${titleClasses} text-sm`}>
+                  APPLY CC CA$H TO <br /> NEXT MONTH'S INVOICE
+                </span>
+                <Tooltip variant="purple" tooltip={ccCashTooltip} className="ml-3">
+                  <FontAwesomeIcon icon={faInfoCircle} className="text-cc-purple cursor-pointer" />
+                </Tooltip>
+              </div>
+              <ToggleButton
+                size="4xl"
+                value={applyCCCashToSubscription}
+                onChange={handleApplyCCCashToSubscriptionChange}
+                className="uppercase text-xs sm:text-sm md:text-xl mb-5"
+              />
+            </>
+          )}
           <CopyToClipboard
             onCopy={() => setInviteFriendTextCopied(true)}
             text={referralText(profile.referralCode)}

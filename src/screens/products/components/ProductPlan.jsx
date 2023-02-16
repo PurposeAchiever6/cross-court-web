@@ -93,7 +93,7 @@ const ProductPlan = ({
         <Button
           variant={submitBtnSecondary ? 'outline-purple' : 'purple'}
           onClick={() => handleSubmit(product)}
-          className="w-36 mb-6"
+          className="min-w-[9rem] mb-6"
         >
           {submitText}
         </Button>

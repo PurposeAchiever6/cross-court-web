@@ -30,7 +30,7 @@ const ToggleButton = ({ offLabel, onLabel, size, value, onChange, className }) =
           {!value && (
             <FontAwesomeIcon
               icon={faToggleOn}
-              className={`${getSize} text-cc-purple cursor-pointer`}
+              className={`${getSize} text-cc-purple text-opacity-60 cursor-pointer`}
               rotation={180}
               onClick={() => onChange(true)}
             />

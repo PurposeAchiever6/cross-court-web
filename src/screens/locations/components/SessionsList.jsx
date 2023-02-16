@@ -128,7 +128,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
   if (isEmpty(sortedSessions)) {
     return (
       <div className="flex flex-col h-full justify-center">
-        <NoSessionContainer className="py-4 text-center">
+        <NoSessionContainer className="px-4 py-12 text-center">
           <p className="title">NO SESSIONS SCHEDULED</p>
           <p className="subtitle">FOR THIS DATE</p>
         </NoSessionContainer>
