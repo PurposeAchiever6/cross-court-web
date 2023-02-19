@@ -340,7 +340,7 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
                   <SessionWarningInfo
                     session={session}
                     userProfile={currentUser}
-                    className="whitespace-nowrap self-center lg:self-end lg:w-40 mt-3"
+                    className="whitespace-nowrap self-center lg:self-end lg:min-w-[9.5rem] mt-3"
                   />
                   {onWaitlist && !past && (
                     <div className="self-center lg:self-end mt-3 whitespace-nowrap">

@@ -17,6 +17,7 @@ import {
 import { getUserProfile } from 'screens/my-account/reducer';
 import BackButton from 'shared/components/BackButton';
 import MembershipPurchaseConfirmationModal from 'screens/checkout/components/MembershipPurchaseConfirmationModal';
+import MembershipPromoCodeAlert from 'screens/checkout/components/MembershipPromoCodeAlert';
 import PurchaseDetails from 'screens/checkout/components/PurchaseDetails';
 
 const CheckoutPage = () => {
@@ -33,7 +34,10 @@ const CheckoutPage = () => {
   const productId = productDetails?.id;
   const userHasActiveSubscription = !!userProfile.activeSubscription;
   const userActiveSubscriptionNotPaused = !userProfile.activeSubscription?.paused;
+  const userHasPlayedAnySession = !!userProfile.lastCheckedInUserSession;
   const isSubscription = productDetails?.productType === RECURRING;
+  const showMembershipPromoCodeAlert =
+    isSubscription && !userHasActiveSubscription && !userHasPlayedAnySession;
 
   useEffect(() => {
     if (
@@ -52,10 +56,6 @@ const CheckoutPage = () => {
     userActiveSubscriptionNotPaused,
   ]);
 
-  if (isNil(productDetails) || isNil(paymentMethod)) {
-    return <Redirect to={ROUTES.LOCATIONS} />;
-  }
-
   const checkoutHandler = (params = {}) => {
     if (isSubscription && userHasActiveSubscription) {
       dispatch(updateSubscription());
@@ -71,20 +71,26 @@ const CheckoutPage = () => {
     dispatch(createSubscription());
   };
 
+  if (isNil(productDetails) || isNil(paymentMethod)) {
+    return <Redirect to={ROUTES.LOCATIONS} />;
+  }
+
   return (
     <>
       <BackButton className="mt-10 w-max" />
       <div className="flex flex-col items-center justify-center py-20 px-4">
         <h1 className="font-shapiro95_super_wide text-2xl mb-8">PURCHASE DETAILS</h1>
-        <PurchaseDetails
-          prorate={prorate}
-          prorateLoading={prorateLoading}
-          productDetails={productDetails}
-          paymentMethod={paymentMethod}
-          checkoutHandler={checkoutHandler}
-          userProfile={userProfile}
-          className="w-full max-w-screen-md"
-        />
+        <div className="w-full max-w-screen-md">
+          {showMembershipPromoCodeAlert && <MembershipPromoCodeAlert className="mb-2" />}
+          <PurchaseDetails
+            prorate={prorate}
+            prorateLoading={prorateLoading}
+            productDetails={productDetails}
+            paymentMethod={paymentMethod}
+            checkoutHandler={checkoutHandler}
+            userProfile={userProfile}
+          />
+        </div>
       </div>
       <MembershipPurchaseConfirmationModal
         isOpen={showMembershipConfirmationModal}

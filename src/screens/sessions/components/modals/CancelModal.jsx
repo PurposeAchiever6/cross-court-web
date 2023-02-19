@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 import PropTypes from 'prop-types';
 
+import { pluralize } from 'shared/utils/helpers';
 import Modal from 'shared/components/Modal';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
@@ -18,8 +19,9 @@ export const CancelModal = ({
   const inCancellationTime = sessionInfo?.userSession?.inCancellationTime;
   const isFreeSession = sessionInfo?.userSession?.isFreeSession;
   const scouting = sessionInfo?.userSession?.scouting;
-  const shootingMachineReservations = sessionInfo.userSession?.shootingMachineReservations;
+  const shootingMachineReservations = sessionInfo?.userSession?.shootingMachineReservations;
   const isOpenClub = sessionInfo?.isOpenClub;
+  const costCredits = sessionInfo?.costCredits;
 
   const onCancelClick = () => {
     setDisableBtn(true);
@@ -66,9 +68,13 @@ export const CancelModal = ({
     }
 
     if (inCancellationTime) {
+      if (costCredits === 0) {
+        return scouting ? 'The evaluation credit will be refunded to your account' : null;
+      }
+
       return scouting
         ? 'The session and evaluation credits will be refunded to your account'
-        : 'The credit will be refunded to your account';
+        : `The ${pluralize('credit', costCredits)} will be refunded to your account`;
     }
 
     if (isFreeSession) {
@@ -76,11 +82,32 @@ export const CancelModal = ({
                 $${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} late cancellation fee`;
     }
 
+    if (costCredits === 0) {
+      if (scouting) {
+        let message = 'The evaluation credit will not be refunded because of the late cancellation';
+
+        if (hasLateCancelFee) {
+          message += `. You will also be charged a $${lateCancelFee} late cancellation fee`;
+        }
+
+        return message;
+      }
+
+      if (hasLateCancelFee) {
+        return `You will be charged a $${lateCancelFee} late cancellation fee`;
+      }
+
+      return null;
+    }
+
     let message = scouting
       ? 'The session and evaluation credits will not be refunded because of the late cancellation'
-      : 'The credit will not be refunded because of the late cancellation';
+      : `The ${pluralize(
+          'credit',
+          costCredits
+        )} will not be refunded because of the late cancellation`;
 
-    if (Number(lateCancelFee) > 0) {
+    if (hasLateCancelFee) {
       message += `. You will also be charged a $${lateCancelFee} late cancellation fee`;
     }
 

@@ -29,11 +29,13 @@ export const isUserInLegalAge = (userProfile) => {
 };
 
 export const userHasCreditsForSession = (userProfile, session) => {
+  const { costCredits } = session;
+
   if (session.isOpenClub) {
     return true;
   }
 
-  if (userProfile.unlimitedCredits || userProfile.totalCredits > 0) {
+  if (userProfile.unlimitedCredits || userProfile.totalCredits >= costCredits) {
     return true;
   }
 
@@ -42,7 +44,8 @@ export const userHasCreditsForSession = (userProfile, session) => {
   }
 
   return (
-    userProfile.unlimitedSkillSessionCredits || userProfile.subscriptionSkillSessionCredits > 0
+    userProfile.unlimitedSkillSessionCredits ||
+    userProfile.subscriptionSkillSessionCredits >= costCredits
   );
 };
 
