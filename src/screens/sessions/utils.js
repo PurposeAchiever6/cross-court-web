@@ -56,6 +56,20 @@ export const getSessionsMessageContainerText = (
   return '';
 };
 
+export const getSessionCostCreditsText = (sessionInfo) => {
+  const { costCredits } = sessionInfo;
+
+  if (costCredits === 0) {
+    return 'No credit required';
+  }
+
+  if (costCredits > 1) {
+    return `Session cost ${costCredits} credits`;
+  }
+
+  return null;
+};
+
 export const sessionData = (date, sessionInfo) => [
   { title: 'DATE', value: longSessionDate(date) },
   { title: 'TIME', value: hourRange(sessionInfo.time, sessionInfo.durationMinutes) },

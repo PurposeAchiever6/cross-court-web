@@ -5,10 +5,10 @@ import colors from 'shared/styles/constants';
 const NoSessionsCreditsContainer = styled.div`
   background: linear-gradient(
     0deg,
-    ${colors.brandBlack} 0%,
-    #3f3738 15%,
-    #312b2c 30%,
-    ${colors.brandBlack} 50%
+    black 0%,
+    ${colors.brandBlack} 15%,
+    ${colors.brandBlack} 30%,
+    black 50%
   );
   height: 200vh;
 `;
