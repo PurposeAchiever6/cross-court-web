@@ -1,112 +1,63 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import InputTextareaField from 'shared/components/InputTextareaField';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { createSessionSurvey } from 'screens/surveys/sessions/actionCreators';
 import Modal from 'shared/components/Modal';
 import StarsRate from 'shared/components/StarsRate';
+import InputTextareaField from 'shared/components/InputTextareaField';
+import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 
-const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, answerQuestion }) => {
+const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal }) => {
+  const dispatch = useDispatch();
+
   const [starsSelected, setStarsSelected] = useState(0);
   const [feedbackValue, setFeedbackValue] = useState('');
-  const [answeredQuestionIds, setAnsweredQuestionIds] = useState([]);
-  const [answers, setAnswers] = useState({});
 
-  const mandatoryIds = questions.filter((q) => q.isMandatory).map((q) => q.id);
-  const allMandatoryAnswered = mandatoryIds.every((elem) => answeredQuestionIds.includes(elem));
-  const showHint = starsSelected > 0 && starsSelected < 4 && feedbackValue.length < 20;
+  const showHint = starsSelected > 0 && starsSelected <= 3;
+  const allowSubmit = starsSelected >= 4 || feedbackValue.length >= 20;
 
-  const allowSubmit = allMandatoryAnswered && (starsSelected > 3 || feedbackValue.length >= 20);
-
-  const starRatingClickHandler = (questionId, answer) => {
-    setStarsSelected(answer);
-    setAnswers((prevAnswers) => ({ ...prevAnswers, [questionId]: answer }));
-
-    if (answeredQuestionIds.includes(questionId)) {
-      return;
-    }
-
-    setAnsweredQuestionIds([...answeredQuestionIds, questionId]);
-  };
-
-  const openQuestionHandler = (questionId, answer) => {
-    setFeedbackValue(answer);
-    setAnswers((prevAnswers) => ({ ...prevAnswers, [questionId]: answer }));
-
-    if (answer === '') {
-      setAnsweredQuestionIds(answeredQuestionIds.filter((id) => id !== questionId));
-    } else {
-      if (answeredQuestionIds.includes(questionId)) {
-        return;
-      }
-      setAnsweredQuestionIds([...answeredQuestionIds, questionId]);
-    }
-  };
+  const title =
+    starsSelected > 0
+      ? 'Thanks for your feedback!'
+      : 'Thanks for coming out! Rate your last session';
 
   const submitHandler = () => {
-    Object.entries(answers).forEach(([questionId, answerValue]) => {
-      if (answerValue !== '') {
-        answerQuestion(questionId, answerValue);
-      }
-    });
-
+    dispatch(createSessionSurvey({ rate: starsSelected, feedback: feedbackValue }));
     setShowSurveyModal(false);
   };
 
   return (
     <Modal
-      isOpen={questions.length > 0 && showSurveyModal}
+      isOpen={showSurveyModal}
       closeHandler={() => setShowSurveyModal(false)}
       closeOnOverlayClick={false}
       dark
       size="lg"
       showCloseButton={false}
       shouldCloseOnEsc={false}
+      title={title}
     >
-      <div className="flex flex-col items-center text-center">
-        {questions.map((question) => {
-          const { isEnabled, type } = question;
-
-          return (
-            <div key={question.id} className="w-full">
-              {isEnabled && type === 'rate' && (
-                <>
-                  <h2 className="font-shapiro95_super_wide text-sm md:text-2xl text-white uppercase mb-5">
-                    {allMandatoryAnswered ? 'Thanks for your feedback!' : question.question}
-                  </h2>
-                  <StarsRate
-                    size="2xl"
-                    rate={starsSelected}
-                    onClick={(rate) => starRatingClickHandler(question.id, rate)}
-                    className="inline-block mb-4"
-                    showEmptyStars
-                  />
-                </>
-              )}
-              {isEnabled && type === 'open' && (
-                <>
-                  <InputTextareaField
-                    placeholder={question.question}
-                    value={feedbackValue}
-                    onChange={(e) => openQuestionHandler(question.id, e.target.value)}
-                    rows={6}
-                    className="text-white my-5"
-                    hint={showHint ? 'Please include at least 20 characters' : null}
-                    formik={false}
-                  />
-                  <PrimaryButton
-                    disabled={!allowSubmit}
-                    onClick={submitHandler}
-                    inverted
-                    bg="transparent"
-                  >
-                    SUBMIT
-                  </PrimaryButton>
-                </>
-              )}
-            </div>
-          );
-        })}
+      <div className="text-center">
+        <StarsRate
+          size="2xl"
+          rate={starsSelected}
+          onClick={(rate) => setStarsSelected(rate)}
+          className="inline-block mb-8"
+          showEmptyStars
+        />
+        <InputTextareaField
+          placeholder="What is the most important reason for your score?"
+          value={feedbackValue}
+          onChange={(e) => setFeedbackValue(e.target.value)}
+          rows={6}
+          className="text-white mb-8"
+          hint={showHint ? 'Please include at least 20 characters' : null}
+          formik={false}
+        />
+        <PrimaryButton disabled={!allowSubmit} onClick={submitHandler} inverted bg="transparent">
+          SUBMIT
+        </PrimaryButton>
       </div>
     </Modal>
   );
@@ -115,8 +66,6 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, questions, an
 SessionSurveyModal.propTypes = {
   showSurveyModal: PropTypes.bool.isRequired,
   setShowSurveyModal: PropTypes.func.isRequired,
-  questions: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  answerQuestion: PropTypes.func.isRequired,
 };
 
 export default SessionSurveyModal;

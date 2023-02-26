@@ -180,7 +180,7 @@ const Session = ({
   return (
     <SessionContainer className="session-container">
       <div className="relative image">
-        <img src={imageUrls[0]} className="location-img" alt="Session" />
+        {imageUrls && <img src={imageUrls[0]} className="location-img" alt="Session" />}
         {skillSession && (
           <img
             alt="sklz-logo"

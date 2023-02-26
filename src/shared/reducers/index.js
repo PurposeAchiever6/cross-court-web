@@ -11,7 +11,6 @@ import myAccountReducer from 'screens/my-account/reducer';
 import paymentHistoryReducer from 'screens/payment-history/reducer';
 import paymentMethodsReducer from 'screens/payment-methods/reducer';
 import checkoutReducer from 'screens/checkout/reducer';
-import sessionsSurveysReducer from 'screens/surveys/sessions/reducer';
 import galleryReducer from 'screens/gallery/reducer';
 import referralsReducer from 'screens/referrals/reducer';
 import goalsReducer from 'screens/goals/reducer';
@@ -35,7 +34,6 @@ const appReducer = (history) =>
     paymentHistory: paymentHistoryReducer,
     paymentMethods: paymentMethodsReducer,
     checkout: checkoutReducer,
-    sessionsSurveys: sessionsSurveysReducer,
     gallery: galleryReducer,
     referrals: referralsReducer,
     goals: goalsReducer,
