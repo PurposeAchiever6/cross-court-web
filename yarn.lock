@@ -1287,10 +1287,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@fancyapps/ui@^4.0.26":
-  version "4.0.31"
-  resolved "https://registry.yarnpkg.com/@fancyapps/ui/-/ui-4.0.31.tgz#cf187b0ffe41ec1f44fd2ba2c2237f5cf7914619"
-  integrity sha512-D7+PMIloxSOFJyY+lXcNlVDhmssOmDT6PT5fqQUIiws2hT7PH29r0EKZxERmACSQpm6qrFkP7rSguzXWvRJduQ==
+"@fancyapps/ui@^5.0.6":
+  version "5.0.6"
+  resolved "https://registry.yarnpkg.com/@fancyapps/ui/-/ui-5.0.6.tgz#68ddd76c8c8496fd0c781ed4e5c68e00f78092c6"
+  integrity sha512-VMWZwdeTfyA4nBCg/O9XXiKRi+FCDU3jaxqe+wMgcZg6E74fpxP2wgJMV1TmwzKvBAE67QSODrOVZs0Pu51ntA==
 
 "@fortawesome/fontawesome-common-types@6.2.1":
   version "6.2.1"
@@ -2346,14 +2346,6 @@
   dependencies:
     "@typescript-eslint/types" "5.37.0"
     eslint-visitor-keys "^3.3.0"
-
-"@vimeo/player@2.8.2":
-  version "2.8.2"
-  resolved "https://registry.yarnpkg.com/@vimeo/player/-/player-2.8.2.tgz#0e69e34ad9c9da4805a6dfa04ac833949de8be23"
-  integrity sha512-OVD+WLW7mP9R7h+QZ5qeVJsTa3uvQ83nQE2rLFQkhhJ2zl5CnSWr3ctFedn4ggZrykyve6zbovZ8f6Xc0EIJHw==
-  dependencies:
-    native-promise-only "0.8.1"
-    weakmap-polyfill "2.0.0"
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
@@ -5025,7 +5017,7 @@ eventemitter3@^1.1.0:
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
   integrity sha512-DOFqA1MF46fmZl2xtzXR3MPCRsXqgoFqdXcrCVYM3JNnfUeHTm/fh/v/iU7gBFpwkuBmoJPAm5GuhdDfSEJMJA==
 
-eventemitter3@^4.0.0, eventemitter3@^4.0.3:
+eventemitter3@^4.0.0:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
   integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
@@ -5974,14 +5966,6 @@ history@^4.10.1, history@^4.9.0:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
     value-equal "^1.0.1"
-
-hls.js@^0.14.12:
-  version "0.14.17"
-  resolved "https://registry.yarnpkg.com/hls.js/-/hls.js-0.14.17.tgz#0127cff2ec2f994a54eb955fe669ef6153a8e317"
-  integrity sha512-25A7+m6qqp6UVkuzUQ//VVh2EEOPYlOBg32ypr34bcPO7liBMOkKFvbjbCBfiPAOTA/7BSx1Dujft3Th57WyFg==
-  dependencies:
-    eventemitter3 "^4.0.3"
-    url-toolkit "^2.1.6"
 
 hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.0, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
@@ -8063,11 +8047,6 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-native-promise-only@0.8.1:
-  version "0.8.1"
-  resolved "https://registry.yarnpkg.com/native-promise-only/-/native-promise-only-0.8.1.tgz#20a318c30cb45f71fe7adfbf7b21c99c1472ef11"
-  integrity sha512-zkVhZUA3y8mbz652WrL5x0fB0ehrBkulWT3TomAQ9iDtyXZvzKeEA6GPxAItBYeNYl5yngKRX612qHOhvMkDeg==
-
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
@@ -9359,29 +9338,6 @@ pretty-format@^28.1.3:
     ansi-styles "^5.0.0"
     react-is "^18.0.0"
 
-pro-gallery-lib@3.1.37:
-  version "3.1.37"
-  resolved "https://registry.yarnpkg.com/pro-gallery-lib/-/pro-gallery-lib-3.1.37.tgz#82b19e61e4e33294c089bd77346d7478b2ba9ea8"
-  integrity sha512-pNJxzOSg90JQ08J8+uPwM/HMoM78BTffAUtr4Cd0hIbCen/JKfCwlDmcGIpS1/FElgLLVIYAOJpodtBuM4WWEg==
-  dependencies:
-    pro-layouts "3.1.37"
-
-pro-gallery@^3.1.38:
-  version "3.1.38"
-  resolved "https://registry.yarnpkg.com/pro-gallery/-/pro-gallery-3.1.38.tgz#8bd4f9485a7cfd62b36f3000ab036d3bbc009f76"
-  integrity sha512-z1tKRoOHXfg6Z4TwbVu2umrlyaSYeLr+w0Xl8Pxxwi7MwPr0JKpXbZaqc31GFtXcF3PII22G86KXeWFPlUl+Jg==
-  dependencies:
-    "@vimeo/player" "2.8.2"
-    hls.js "^0.14.12"
-    pro-gallery-lib "3.1.37"
-    pro-layouts "3.1.37"
-    react-player "^2.6.2"
-
-pro-layouts@3.1.37:
-  version "3.1.37"
-  resolved "https://registry.yarnpkg.com/pro-layouts/-/pro-layouts-3.1.37.tgz#27c47f2fd8bde2b434311b2a898f54d294551bf7"
-  integrity sha512-VOnnqjKRsObyXEAUGYAZF/VyxuNWzym7kiSQX8tyOy5qrNO6Vx9SHfqHKuJ82kFbZ3CnVbMXv7UpHWOXRXRGRw==
-
 process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
@@ -9713,7 +9669,7 @@ react-modal@^3.11.2:
     react-lifecycles-compat "^3.0.0"
     warning "^4.0.3"
 
-react-player@^2.11.0, react-player@^2.6.2:
+react-player@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/react-player/-/react-player-2.11.0.tgz#9afc75314eb915238e8d6615b2891fbe7170aeaa"
   integrity sha512-fIrwpuXOBXdEg1FiyV9isKevZOaaIsAAtZy5fcjkQK9Nhmk1I2NXzY/hkPos8V0zb/ZX416LFy8gv7l/1k3a5w==
@@ -11783,11 +11739,6 @@ url-parse@^1.5.3:
     querystringify "^2.1.1"
     requires-port "^1.0.0"
 
-url-toolkit@^2.1.6:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/url-toolkit/-/url-toolkit-2.2.5.tgz#58406b18e12c58803e14624df5e374f638b0f607"
-  integrity sha512-mtN6xk+Nac+oyJ/PrI7tzfmomRVNFIWKUbG8jdYFt52hxbiReFAXIjYskvu64/dvuW71IcB7lV8l0HvZMac6Jg==
-
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
@@ -11911,11 +11862,6 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   integrity sha512-O84QOnr0icsbFGLS0O3bI5FswxzRr8/gHwWkDlQFskhSPryQXvrTMxjxGP4+iWYoauLoBvfDpkrOauZ+0iZpDA==
   dependencies:
     minimalistic-assert "^1.0.0"
-
-weakmap-polyfill@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/weakmap-polyfill/-/weakmap-polyfill-2.0.0.tgz#8f28f935e3853896ad40747e5258db578d9dc8de"
-  integrity sha512-5K5BwBUm1p+a6KLqlvub3Rv6FkJ7EXa0BbHqjFVl20nCxUX5uABekv5lvXyudI1/foOIQsqF01dPghpP9PIksA==
 
 webidl-conversions@^4.0.2:
   version "4.0.2"
