@@ -1,13 +1,13 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import ROUTES from 'shared/constants/routes';
 import confettiAnimation from 'shared/animations/confetti.json';
 import Animation from 'shared/components/Animation';
 import { getUserProfile } from 'screens/my-account/reducer';
+import Steps from 'shared/components/Steps';
 import { getPurchaseConfirmed } from '../reducer';
 import basketImg from '../images/basket.jpg';
 import basketballImg from '../images/basketball.jpg';
@@ -16,10 +16,26 @@ import playImg from '../images/play.jpg';
 import runImg from '../images/run.jpg';
 import kGoldn from '../images/24kGoldn.jpg';
 
+const STEPS = [
+  {
+    title: 'A QUICK WELCOME MESSAGE',
+  },
+  {
+    title: 'YOUR NEW MEMBER HANDBOOK WHICH INCLUDES ALL YOU NEED TO KNOW AS A CC MEMBER',
+  },
+  {
+    title:
+      'A LINK TO JOIN OUR COMMUNITY DISCORD WHERE YOU CAN ENGAGE WITH OTHER MEMBERS AND STAY UP TO DATE ON ALL THINGS CC',
+  },
+  {
+    title:
+      'A LINK TO SCHEDULE AN OPTIONAL KICK OFF CALL WITH ONE OF OUR MEMBERSHIP EXPERIENCE MANAGERS SHOULD YOU HAVE ANY QUESTIONS',
+  },
+];
+
 const MembershipConfirm = () => {
   const purchaseConfirmed = useSelector(getPurchaseConfirmed);
   const currentUser = useSelector(getUserProfile);
-  const env = runtimeEnv();
 
   if (!purchaseConfirmed) {
     return <Redirect to={ROUTES.LOCATIONS} />;
@@ -33,38 +49,15 @@ const MembershipConfirm = () => {
       />
       <div className="md:text-lg flex flex-col px-4 pt-10 sm:pt-24 pb-10 md:pb-20 max-w-screen-md mx-auto relative">
         <div className="text-center">
-          <h1 className="uppercase font-shapiro95_super_wide md:text-2xl">
+          <h1 className="uppercase font-shapiro95_super_wide md:text-2xl mb-2">
             HEY {currentUser.firstName}. WELCOME TO THE CCTEAM!
           </h1>
-          <p className="mt-2">
-            We understand you might be asking yourself <b>"now what?"</b> or{' '}
-            <b>"what did I just get myself into?"</b>. Don't worry, if you're{' '}
-            <b>
-              ready to level up your life and willing to put the work in, you came to the right
-              place.
-            </b>{' '}
-            We know joining the <b>ccteam</b> can be overwhelming or confusing if you're not
-            properly onboarded.
-          </p>
-          <p className="font-shapiro96_inclined_wide mt-10">
-            ONE OF OUR MEMBERSHIP EXPERIENCE MANAGERS WILL HELP GET YOU UP TO SPEED AND BE YOUR
-            POINT OF CONTACT MOVING FORWARD.
-          </p>
-          <p className="mt-2">
-            SCHEDULE YOUR 5 MINUTE KICK OFF CALL TO MEET YOUR EXPERIENCE MANAGER, GET THE LOW DOWN,
-            AND HAVE ANY QUESTIONS ANSWERED.
-          </p>
+          <p className="font-shapiro96_inclined_wide uppercase">Next steps!</p>
+          <p className="font-shapiro96_inclined_wide uppercase">Check your email for</p>
+          <Steps steps={STEPS} className="text-left" />
         </div>
       </div>
       <div className="text-center mb-20">
-        <PrimaryButton
-          to={{ pathname: env.REACT_APP_CALENDLY_LINK }}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mr-2 sm:mr-3"
-        >
-          BOOK CALL
-        </PrimaryButton>
         <PrimaryButton inverted to={ROUTES.LOCATIONS}>
           See Schedule
         </PrimaryButton>

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import { referralText } from 'shared/constants/referrals';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Steps from 'shared/components/Steps';
 
 const STEPS = [
   {
@@ -30,20 +31,7 @@ const ReferAFriend = ({ code, className }) => {
     <div className={className}>
       <p className="font-shapiro95_super_wide text-2xl">REFER A FRIEND</p>
       <p>Give 50% off, get CC CA$H</p>
-      <div className="my-4 text-sm md:text-base">
-        {STEPS.map((step, i) => (
-          <div key={`step-${i}`} className="flex items-center mb-1">
-            <div className="bg-cc-purple rounded-full flex items-center justify-center w-8 h-8 md:w-10 md:h-10 m-4 font-dharma_gothic_cheavy_italic text-2xl md:text-3xl text-white">
-              {i + 1}
-            </div>
-            <div className="flex flex-col w-3/4">
-              <p>{step.title}</p>
-              <p>{step.subtitle}</p>
-              {step.note && <p className="text-xs">{step.note}</p>}
-            </div>
-          </div>
-        ))}
-      </div>
+      <Steps steps={STEPS} />
       <div className="w-full">
         {code && <div className="bg-gray-300 w-full p-2 mb-2 text-center">{code}</div>}
         <CopyToClipboard onCopy={() => setCopied(true)} text={referralText(code)}>
