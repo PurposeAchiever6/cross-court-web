@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Star from 'shared/components/Star';
+import useWindowSize from 'shared/hooks/useWindowSize';
+import { size as breakpoints } from 'shared/styles/mediaQueries';
 
 const StarsRate = ({ rate, maxRate, showEmptyStars, size, onClick, fadeEffect, className }) => {
   const [hoverRate, setHoverRate] = useState(0);
+  const { width: windowSize } = useWindowSize();
+  const isDesktop = windowSize >= breakpoints.desktop;
 
   const sizeClasses = (() => {
     switch (size) {
@@ -32,9 +36,9 @@ const StarsRate = ({ rate, maxRate, showEmptyStars, size, onClick, fadeEffect, c
                 key={`star-icon-${index}`}
                 alt={`star-icon-${index}`}
                 full={index + 1 <= hoverRate || index + 1 <= rate}
-                onClick={onClick && (() => onClick(index + 1))}
-                onMouseEnter={onClick && (() => setHoverRate(index + 1))}
-                onMouseLeave={onClick && (() => setHoverRate(null))}
+                onClick={onClick ? () => onClick(index + 1) : undefined}
+                onMouseEnter={isDesktop && onClick ? () => setHoverRate(index + 1) : undefined}
+                onMouseLeave={isDesktop && onClick ? () => setHoverRate(null) : undefined}
                 className={`pr-1 ${sizeClasses} ${onClick ? 'cursor-pointer' : ''}`}
                 fadeEffect={fadeEffect}
               />
@@ -44,7 +48,7 @@ const StarsRate = ({ rate, maxRate, showEmptyStars, size, onClick, fadeEffect, c
                 key={`star-icon-${index}`}
                 alt={`star-icon-${index}`}
                 full
-                onClick={onClick && (() => onClick(index + 1))}
+                onClick={onClick ? () => onClick(index + 1) : undefined}
                 className={`mr-1 ${sizeClasses} ${onClick ? 'cursor-pointer' : ''}`}
               />
             ))}

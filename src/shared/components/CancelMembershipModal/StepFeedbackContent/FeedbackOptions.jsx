@@ -66,8 +66,14 @@ const FeedbackOptions = ({
   );
 
   const downgradeOption = canDowngrade && (
-    <div className="flex items-center mt-2">
-      <PrimaryButton w="5rem" px="0px" py="0px" fontSize="11px" to={ROUTES.MEMBERSHIPS}>
+    <div className="flex items-center justify-start mt-2">
+      <PrimaryButton
+        w="5rem"
+        px="0px"
+        py="0px"
+        fontSize="11px"
+        onClick={() => history.push(ROUTES.MEMBERSHIPS)}
+      >
         SELECT
       </PrimaryButton>
       <p className="ml-2">Downgrade membership</p>
