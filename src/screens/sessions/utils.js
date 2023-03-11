@@ -40,7 +40,7 @@ export const getSessionsMessageContainerText = (
       'SESSION',
       totalSkillSessionCredits,
       'S'
-    )} LEFT THIS MONTH`;
+    )} ${activeSubscription ? 'LEFT THIS MONTH' : 'AVAILABLE'}`;
   }
 
   if (unlimitedCredits) {
