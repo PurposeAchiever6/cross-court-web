@@ -76,7 +76,12 @@ const RatingPage = () => {
   const history = useHistory();
 
   const SKILL_RATINGS_FOR_REVIEW = env.REACT_APP_SKILL_RATINGS_FOR_REVIEW;
+  const SKILL_RATINGS_FOR_REVIEW_ON_EDIT = env.REACT_APP_SKILL_RATINGS_FOR_REVIEW_ON_EDIT;
+
   const skillRatingsForReview = SKILL_RATINGS_FOR_REVIEW ? SKILL_RATINGS_FOR_REVIEW.split(',') : [];
+  const skillRatingsForReviewOnEdit = SKILL_RATINGS_FOR_REVIEW_ON_EDIT
+    ? SKILL_RATINGS_FOR_REVIEW_ON_EDIT.split(',')
+    : [];
 
   const [isEdit, setIsEdit] = useState(false);
   const [skillRating, setSkillRating] = useState(null);
@@ -86,7 +91,7 @@ const RatingPage = () => {
   const updateSkillRatingAction = () => dispatch(updateSkillRatingInit({ skillRating, isEdit }));
 
   const updateNeedsReview =
-    isEdit && oldSkillRating < skillRating && skillRatingsForReview.includes(skillRating);
+    isEdit && oldSkillRating < skillRating && skillRatingsForReviewOnEdit.includes(skillRating);
 
   const handleClick = () => {
     updateNeedsReview ? setShowSkillRatingUpdateRequestModal(true) : updateSkillRatingAction();
