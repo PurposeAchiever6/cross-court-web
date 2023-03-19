@@ -7,12 +7,15 @@ import {
 } from './actionTypes';
 import galleryService from './service';
 
-export function* getGalleryPhotosFlow() {
+export function* getGalleryPhotosFlow({ payload }) {
   try {
-    const galleryPhotosPayload = yield call(galleryService.getGalleryPhotos);
+    const galleryPhotosPayload = yield call(galleryService.getGalleryPhotos, payload);
     yield put({
       type: GET_GALLERY_PHOTOS_SUCCESS,
-      payload: { galleryPhotos: galleryPhotosPayload },
+      payload: {
+        galleryPhotos: galleryPhotosPayload.galleryPhotos,
+        pagination: galleryPhotosPayload.pagination,
+      },
     });
   } catch (err) {
     yield put({ type: GET_GALLERY_PHOTOS_FAILURE, error: err.response.data.error });

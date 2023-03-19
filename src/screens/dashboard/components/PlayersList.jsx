@@ -14,7 +14,7 @@ import {
 } from 'screens/locations/actionCreators';
 import { isToday, formatSessionTime, formatSessionDate } from 'shared/utils/date';
 
-import userSessionService from 'screens/userSessions/service';
+import userSessionService from 'screens/user-sessions/service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import missingProfileImg from 'shared/images/missing-profile-image.png';
