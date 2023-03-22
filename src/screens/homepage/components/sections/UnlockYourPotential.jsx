@@ -49,7 +49,7 @@ const UnlockYourPotential = () => (
             <Button to={ROUTES.MEMBERSHIPS} className="mr-5">
               Join
             </Button>
-            <Button to={ROUTES.HOWITWORKS} variant="outline-purple">
+            <Button to={ROUTES.WHY_JOIN} variant="outline-purple">
               Why Join?
             </Button>
           </div>

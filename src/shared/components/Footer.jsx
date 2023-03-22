@@ -87,7 +87,7 @@ const Footer = () => {
                     <Link to={ROUTES.HOME} className={`${LINK_CLASS} block w-max mb-3`}>
                       Home
                     </Link>
-                    <Link to={ROUTES.HOWITWORKS} className={`${LINK_CLASS} block w-max mb-3`}>
+                    <Link to={ROUTES.WHY_JOIN} className={`${LINK_CLASS} block w-max mb-3`}>
                       Why Join
                     </Link>
                     <Link to={ROUTES.MEMBERSHIPS} className={`${LINK_CLASS} block w-max mb-3`}>

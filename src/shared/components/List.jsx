@@ -20,7 +20,7 @@ List.defaultProps = {
 
 List.propTypes = {
   className: PropTypes.string,
-  items: PropTypes.array.isRequired,
+  items: PropTypes.shape().isRequired,
 };
 
 export default List;

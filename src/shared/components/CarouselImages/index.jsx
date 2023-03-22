@@ -46,7 +46,13 @@ const ImagesCarousel = ({
     )}
   >
     {imageUrls.map((image, index) => (
-      <img className={imagesClassName} src={image} alt={`carousel-${index}`} key={index} />
+      <img
+        className={imagesClassName}
+        src={image}
+        alt={`carousel-${index}`}
+        key={index}
+        loading="lazy"
+      />
     ))}
   </ReactResponsiveCarousel>
 );

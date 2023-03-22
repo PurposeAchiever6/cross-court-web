@@ -33,7 +33,7 @@ const ForgotPassSuccess = lazy(() => import('screens/auth/pages/ForgotPassSucces
 const PassReset = lazy(() => import('screens/auth/pages/PassResetPage'));
 const PassResetSuccess = lazy(() => import('screens/auth/pages/PassResetSuccess'));
 const Dashboard = lazy(() => import('screens/dashboard/DashboardPage'));
-const HowItWorks = lazy(() => import('screens/how-it-works/HowItWorksPage'));
+const WhyJoin = lazy(() => import('screens/why-join/WhyJoinPage'));
 const CareersPage = lazy(() => import('screens/careers/CareersPage'));
 const Locations = lazy(() => import('screens/locations/LocationsPage'));
 const Session = lazy(() => import('screens/sessions/pages/Session'));
@@ -330,8 +330,8 @@ const Routes = () => {
         <Route path={ROUTES.SESSIONCONFIRMED} exact>
           <SessionConfirmed />
         </Route>
-        <Route path={ROUTES.HOWITWORKS} exact>
-          <HowItWorks />
+        <Route path={ROUTES.WHY_JOIN} exact>
+          <WhyJoin />
         </Route>
         <Route path={ROUTES.MEMBERSHIPS} exact>
           <ProductsPage />

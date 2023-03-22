@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -39,6 +40,7 @@ const Button = ({
   to,
   className,
   children,
+  isExternal,
   ...props
 }) => {
   let btnClassName =
@@ -66,9 +68,15 @@ const Button = ({
   };
 
   return to ? (
-    <Link to={to} className={btnClassName} {...props}>
-      {loading ? <Spinner /> : children}
-    </Link>
+    isExternal ? (
+      <a rel="noreferrer" href={to} className={btnClassName} {...props}>
+        {children}
+      </a>
+    ) : (
+      <Link to={to} className={btnClassName} {...props}>
+        {children}
+      </Link>
+    )
   ) : (
     <button
       className={btnClassName}
@@ -91,6 +99,7 @@ Button.defaultProps = {
   onClick: () => null,
   to: null,
   className: '',
+  isExternal: false,
 };
 
 Button.propTypes = {
@@ -103,6 +112,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   to: PropTypes.string,
   className: PropTypes.string,
+  isExternal: PropTypes.bool,
 };
 
 export default Button;

@@ -75,6 +75,9 @@ module.exports = {
       },
       backgroundImage: {
         'cc-ball-logo': "url('../shared/images/logos/cc-ball-purple.png')",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'space-with-radial-gradient':
+          "radial-gradient(circle,black 5%,rgba(0,0,0,0.6)),url('../shared/images/backgrounds/space.jpeg')",
       },
       transitionDelay: {
         0: '0ms',
