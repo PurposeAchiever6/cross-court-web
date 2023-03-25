@@ -47,6 +47,7 @@ export const sessionReservationInfo = (session, userProfile) => {
     isOpenClub,
     comingSoon,
     costCredits,
+    backToBackRestricted,
   } = session;
 
   if (comingSoon || reserved || past || onWaitlist) {
@@ -114,6 +115,19 @@ export const sessionReservationInfo = (session, userProfile) => {
 
   if (full) {
     return { disabled: false, warningIcon: true, text: 'Session full' };
+  }
+
+  if (backToBackRestricted) {
+    return {
+      disabled: true,
+      warningIcon: true,
+      text: (
+        <>
+          Back to back <br />
+          restricted
+        </>
+      ),
+    };
   }
 
   if (costCredits === 0) {
