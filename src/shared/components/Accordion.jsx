@@ -44,7 +44,7 @@ const Accordion = ({
       } p-6 ${className}`}
     >
       {title && (
-        <div className={`relative pr-8 ${titleContainerClassName}`}>
+        <div className={`relative text-sm md:text-base pr-8 ${titleContainerClassName}`}>
           {title}
           {collapsable && icon && (
             <FontAwesomeIcon
@@ -66,7 +66,7 @@ const Accordion = ({
           {children}
         </div>
       ) : (
-        <div className="mt-6 text-xs">{children}</div>
+        <div className="mt-6 text-sm">{children}</div>
       )}
     </div>
   );

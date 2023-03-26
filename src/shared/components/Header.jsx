@@ -49,7 +49,7 @@ const ALWAYS_SCROLLED = [
 
 const CC_BLACK_BG = [ROUTES.GALLERY, ROUTES.CONTENT];
 
-const BLACK_BG = [ROUTES.MEMBERSHIPS, ROUTES.FIRSTSESSIONRESERVED];
+const BLACK_BG = [ROUTES.HOME, ROUTES.MEMBERSHIPS, ROUTES.FIRSTSESSIONRESERVED];
 
 const SHOW_NAVBAR = [ROUTES.HOME, ROUTES.MEMBERSHIPS, ROUTES.FIRSTSESSIONRESERVED];
 
@@ -161,7 +161,7 @@ const Header = () => {
         </div>
       )}
       <header
-        className={`header w-full h-16 transition duration-700 ${
+        className={`header z-10 w-full h-16 transition duration-700 ${
           scrolled
             ? `${
                 isBlackBg ? 'shadow-header-dark' : 'shadow-header-white'
