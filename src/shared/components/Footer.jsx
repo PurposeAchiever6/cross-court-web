@@ -1,78 +1,169 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhoneSquare } from '@fortawesome/free-solid-svg-icons';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import CheeseburgerMenu from 'cheeseburger-menu';
-import PropTypes from 'prop-types';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
-import { validateEmail } from 'shared/utils/helpers';
 import { openContactFormForUser } from 'shared/utils/contactForm';
-import { stayInTheLoop } from 'shared/utils/activeCampaign';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { logoutInit } from 'screens/auth/actionCreators';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import ccLogo from 'shared/images/logos/cc-white.png';
+import PageLayout from 'shared/components/layout/PageLayout';
+import SectionLayout from 'shared/components/layout/SectionLayout';
+import LineDashed from 'shared/components/LineDashed';
 import LogoSvg from 'shared/components/svg/LogoSvg';
-import ArrowRightSvg from 'shared/components/svg/ArrowRightSvg';
 
-const Copyright = ({ className }) => (
-  <div className={`flex mt-6 md:mt-10 justify-between items-end ${className}`}>
-    <div className="flex flex-col text-2xs md:text-xs">
-      <p>Copyright &reg; {`${new Date().getFullYear()}`} Crosscourt</p>
-      <p>333 N. Mission Rd Los Angeles CA 90033</p>
-    </div>
-    <img alt="" className="w-12" src={ccLogo} />
-  </div>
-);
-
-Copyright.defaultProps = {
-  className: '',
-};
-
-Copyright.propTypes = {
-  className: PropTypes.string,
-};
+const FOOTER_DISABLED = [ROUTES.DASHBOARD];
+const LINK_CLASS = 'hover:opacity-60 transition-opacity duration-300';
 
 const Footer = () => {
-  const isAuthenticated = useSelector(getIsAuthenticated);
   const env = runtimeEnv();
-  const { pathname } = useLocation();
-  const currentUser = useSelector(getUserProfile) || {};
-  const [email, setEmail] = useState('');
-  const [contactUsOpen, setContactUsOpen] = useState(false);
-  const [showError, setShowError] = useState(false);
-  const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
-  const logoutAction = () => dispatch(logoutInit());
+  const { pathname } = useLocation();
 
-  const INSTAGRAM_LINK = env.REACT_APP_INSTAGRAM_LINK;
+  const isAuthenticated = useSelector(getIsAuthenticated);
+  const currentUser = useSelector(getUserProfile) || {};
 
-  const tourMessage = (isAuthenticated) =>
-    `Hi Crosscourt, \n\rI would like to visit the club on [DATE] at [TIME (ANYTIME BETWEEN 8PM-10PM M-THU, 6-8PM FRI, 10AM-NOON SAT/SUN)]. Please let me know if that works for your team. \n\rThank you${
-      isAuthenticated ? `, \n\r${currentUser.firstName}` : ''
-    }`;
+  const [contactUsOpen, setContactUsOpen] = useState(false);
 
-  const addUserToKlaviyo = () => {
-    if (email) {
-      const isValid = validateEmail(email);
-      setShowError(!isValid);
-      if (isValid) {
-        stayInTheLoop({ email });
-        setShowError(!isValid);
-        setSuccess(true);
-      }
-    }
-  };
-
+  const instagramLink = env.REACT_APP_INSTAGRAM_LINK;
+  const discordLink = env.REACT_APP_DISCORD_LINK;
+  const ccPhoneNumber = env.REACT_APP_CC_PHONE_NUMBER;
+  const ccAddress = env.REACT_APP_CC_ADDRESS;
   const windowSize = document.documentElement.clientWidth;
 
-  return pathname === ROUTES.DASHBOARD ? null : (
+  const logoutAction = () => dispatch(logoutInit());
+  const tourMessage =
+    'Hi Crosscourt, \n\rI would like to visit the club on [DATE] at [TIME (ANYTIME BETWEEN 8PM-10PM M-THU, 6-8PM FRI, 10AM-NOON SAT/SUN)]. \n\rPlease let me know if that works for your team. \n\rThank you';
+
+  if (FOOTER_DISABLED.includes(pathname)) {
+    return null;
+  }
+
+  return (
     <>
+      <PageLayout noPadding>
+        <footer className="bg-cc-blue-900 relative">
+          <LineDashed className="text-cc-purple absolute top-0 right-0 w-full md:w-1/2" />
+          <SectionLayout as="div" className="pt-20 pb-10 sm:pb-20">
+            <div className="lg:flex">
+              <div className="w-full mb-10 lg:mb-0">
+                <LogoSvg className="w-72 mb-8" />
+                <div>
+                  <a
+                    href={discordLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${LINK_CLASS} mr-5`}
+                  >
+                    <FontAwesomeIcon icon={faDiscord} size="2x" />
+                  </a>
+                  <a
+                    href={instagramLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={LINK_CLASS}
+                  >
+                    <FontAwesomeIcon icon={faInstagram} size="2x" />
+                  </a>
+                </div>
+              </div>
+              <div className="w-full">
+                <a
+                  href="/crosscourt-member-handbook.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${LINK_CLASS} block w-max font-shapiro95_super_wide text-2xl mb-6`}
+                >
+                  Download Member Handbook
+                  <FontAwesomeIcon icon={faFileArrowDown} className="text-2xl ml-3" />
+                </a>
+                <div className="md:flex w-full text-sm">
+                  <div className="w-full mb-8 md:mb-0">
+                    <Link to={ROUTES.HOME} className={`${LINK_CLASS} block w-max mb-3`}>
+                      Home
+                    </Link>
+                    <Link to={ROUTES.HOWITWORKS} className={`${LINK_CLASS} block w-max mb-3`}>
+                      Why Join
+                    </Link>
+                    <Link to={ROUTES.MEMBERSHIPS} className={`${LINK_CLASS} block w-max mb-3`}>
+                      Memberships
+                    </Link>
+                    {isAuthenticated ? (
+                      <span
+                        onClick={() => logoutAction()}
+                        className={`${LINK_CLASS} block w-max cursor-pointer`}
+                      >
+                        Logout
+                      </span>
+                    ) : (
+                      <Link to={ROUTES.LOGIN} className={`${LINK_CLASS} block w-max`}>
+                        Login
+                      </Link>
+                    )}
+                  </div>
+                  <div className="w-full mb-8 md:mb-0">
+                    <span
+                      onClick={() => openContactFormForUser(currentUser)}
+                      className={`${LINK_CLASS} block w-max cursor-pointer mb-3`}
+                    >
+                      Contact
+                    </span>
+                    <Link to={ROUTES.CAREERS} className={`${LINK_CLASS} block w-max mb-3`}>
+                      Join the Team
+                    </Link>
+                    <Link to={ROUTES.CONTENT} className={`${LINK_CLASS} block w-max mb-3`}>
+                      How to use Pixellot
+                    </Link>
+                    <span
+                      onClick={() => openContactFormForUser(currentUser)}
+                      className={`${LINK_CLASS} block w-max cursor-pointer mb-3`}
+                    >
+                      Private Rentals
+                    </span>
+                    <Link to={ROUTES.FAQ} className={`${LINK_CLASS} block w-max`}>
+                      FAQ
+                    </Link>
+                  </div>
+                  <div className="w-full">
+                    <span
+                      onClick={() => openContactFormForUser(currentUser, tourMessage)}
+                      className={`${LINK_CLASS} block w-max cursor-pointer mb-3`}
+                    >
+                      Schedule Tour
+                    </span>
+                    <a
+                      href={`sms:+1${ccPhoneNumber.replace(/-|\s|\(|\)/g, '')}`}
+                      className={LINK_CLASS}
+                    >
+                      Text {ccPhoneNumber}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SectionLayout>
+          <SectionLayout as="div" className="bg-black text-center text-xs py-6">
+            <span className="block md:inline-block mb-1 md:mb-0">
+              {`${new Date().getFullYear()}`} &reg; Crosscourt
+            </span>
+            <span className="hidden md:inline-block mx-2">/</span>
+            <span className="block md:inline-block mb-1 md:mb-0">{ccAddress}</span>
+            <span className="hidden md:inline-block mx-2">/</span>
+            <Link to={ROUTES.TERMS} className="text-cc-purple hover:underline">
+              Terms and conditions
+            </Link>
+            <span className="mx-2">/</span>
+            <Link to={ROUTES.PRIVACY_POLICY} className="text-cc-purple hover:underline">
+              Privacy policy
+            </Link>
+          </SectionLayout>
+        </footer>
+      </PageLayout>
       <CheeseburgerMenu
         width={windowSize < 768 ? windowSize : windowSize / 3}
         right
@@ -84,159 +175,6 @@ const Footer = () => {
           <div className="elfsight-app-0ed6048f-8715-4cd0-a3b0-1da4299c9136" />
         </div>
       </CheeseburgerMenu>
-      <footer className="flex flex-col md:flex-row-reverse justify-evenly md:justify-between bg-cc-black px-4 py-8 md:p-12 text-white h-164 md:h-124 border-t border-gray-400/20">
-        <div className="md:w-1/2 flex flex-col h-full justify-evenly md:justify-between">
-          <LogoSvg className="w-72" />
-          {!isAuthenticated && (
-            <>
-              <p className="font-shapiro95_super_wide">
-                {success ? "YOU'RE IN!" : 'STAY IN THE LOOP'}
-              </p>
-              {!success && (
-                <div className="flex border border-white p-2 md:w-4/5 justify-between">
-                  <input
-                    type="text"
-                    className="bg-cc-black w-full px-2 text-xs md:text-sm"
-                    placeholder="ENTER YOUR EMAIL ADDRESS"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                  />
-                  <div
-                    className="bg-cc-purple p-3 cursor-pointer"
-                    onClick={() => addUserToKlaviyo()}
-                  >
-                    <ArrowRightSvg className="text-white w-6" />
-                  </div>
-                </div>
-              )}
-              {success && (
-                <div className="flex">
-                  <PrimaryButton
-                    bg="transparent"
-                    className="mr-4"
-                    contentClasses="text-2xs md:text-sm"
-                    onClick={() =>
-                      openContactFormForUser(
-                        isAuthenticated ? currentUser : { email },
-                        tourMessage(isAuthenticated)
-                      )
-                    }
-                  >
-                    SCHEDULE TOUR
-                  </PrimaryButton>
-                  <PrimaryButton contentClasses="text-2xs md:text-sm" to={ROUTES.LOCATIONS}>
-                    FIRST FREE
-                  </PrimaryButton>
-                </div>
-              )}
-            </>
-          )}
-          <div className="relative">
-            {showError && (
-              <p className="text-xs text-red-500 absolute -bottom-1 md:bottom-auto">
-                Email address is not valid
-              </p>
-            )}
-          </div>
-          <Copyright className="hidden md:flex mt-8" />
-        </div>
-        <div className="flex flex-col justify-between text-sm md:text-base">
-          <Link className="w-max hover:opacity-60 transition-opacity duration-300" to={ROUTES.FAQ}>
-            FAQ
-          </Link>
-          <Link
-            className="w-max hover:opacity-60 transition-opacity duration-300"
-            to={ROUTES.CONTENT}
-          >
-            CONTENT
-          </Link>
-          <Link
-            className="w-max hover:opacity-60 transition-opacity duration-300"
-            to={ROUTES.HOWITWORKS}
-          >
-            HOW IT WORKS
-          </Link>
-          <Link
-            className="w-max hover:opacity-60 transition-opacity duration-300"
-            to={ROUTES.CAREERS}
-          >
-            JOIN THE TEAM
-          </Link>
-          <p
-            className="cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
-            onClick={() => openContactFormForUser(currentUser)}
-          >
-            CONTACT US
-          </p>
-          <p
-            className="cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
-            onClick={() => openContactFormForUser(currentUser)}
-          >
-            PRIVATE SESSIONS / CLUB RENTALS
-          </p>
-          <p
-            className="cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
-            onClick={() => openContactFormForUser(currentUser)}
-          >
-            TOUR THE CLUB
-          </p>
-          <Link
-            className="w-max hover:opacity-60 transition-opacity duration-300"
-            to={ROUTES.GALLERY}
-          >
-            GALLERY
-          </Link>
-          {isAuthenticated ? (
-            <p
-              className="mt-4 cursor-pointer w-max hover:opacity-60 transition-opacity duration-300"
-              onClick={() => logoutAction()}
-            >
-              LOGOUT
-            </p>
-          ) : (
-            <>
-              <Link
-                className="mt-4 w-max hover:opacity-60 transition-opacity duration-300"
-                to={ROUTES.SIGNUP}
-              >
-                SIGN UP
-              </Link>
-              <Link
-                className="w-max hover:opacity-60 transition-opacity duration-300"
-                to={ROUTES.LOGIN}
-              >
-                LOGIN
-              </Link>
-            </>
-          )}
-
-          <a
-            className="my-8 w-max hover:opacity-60 transition-opacity duration-300 h-full"
-            href={INSTAGRAM_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FontAwesomeIcon icon={faInstagram} size="2x" />
-          </a>
-          <div className="flex items-center mb-6">
-            <FontAwesomeIcon icon={faPhoneSquare} size="2x" className="mr-3" />
-            323 591 3916
-          </div>
-          <Link
-            className="w-max hover:opacity-60 transition-opacity duration-300 text-2xs"
-            to={ROUTES.TERMS}
-          >
-            TERMS AND CONDITIONS
-          </Link>
-          <Link
-            className="w-max hover:opacity-60 transition-opacity duration-300 text-2xs"
-            to={ROUTES.PRIVACY_POLICY}
-          >
-            PRIVACY POLICY
-          </Link>
-          <Copyright className="md:hidden" />
-        </div>
-      </footer>
     </>
   );
 };
