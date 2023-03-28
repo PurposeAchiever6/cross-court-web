@@ -5,8 +5,8 @@ import ROUTES from 'shared/constants/routes';
 import Button from 'shared/components/Button';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
-import LineDashed from 'shared/components/LineDashed';
-import CircleDashed from 'shared/components/CircleDashed';
+import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
+import CircleDashedSvg from 'shared/components/svg/CircleDashedSvg';
 
 import unlockYourPotentialImg from 'screens/homepage/images/unlock-your-potential.png';
 
@@ -60,8 +60,8 @@ const UnlockYourPotential = () => (
       xlBreakpoint={false}
       className="bg-cc-blue-700 px-6 sm:px-16 py-16 relative"
     >
-      <LineDashed className="absolute left-0 top-0 w-1/2 text-cc-purple" />
-      <CircleDashed className="absolute-center-x top-0 -mt-8 w-16 h-16 text-cc-purple" />
+      <LineDashedSvg className="absolute left-0 top-0 w-1/2 text-cc-purple" />
+      <CircleDashedSvg className="absolute-center-x top-0 -mt-8 w-16 h-16 text-cc-purple" />
       <div className="max-w-lg mx-auto text-center">
         <p className="font-shapiro95_super_wide mb-4">
           Are you consistently looking for places, people, and perspectives that will bring out the

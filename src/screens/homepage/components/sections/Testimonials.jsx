@@ -2,7 +2,7 @@ import React from 'react';
 
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import Testimonial from 'shared/components/Testimonial';
-import CircleDashed from 'shared/components/CircleDashed';
+import CircleDashedSvg from 'shared/components/svg/CircleDashedSvg';
 import Carousel from 'shared/components/Carousel/index';
 
 const TESTIMONIALS_DATA = [
@@ -40,9 +40,9 @@ const TESTIMONIALS_DATA = [
 
 const Testimonials = () => (
   <SectionLayout className="relative bg-cc-blue-900 pt-12 md:pt-32 pb-10 md:pb-48 mb-12 md:mb-0">
-    <CircleDashed className="absolute-center w-[17rem] h-[17rem] mt-0 md:mt-12 text-cc-purple" />
-    <CircleDashed className="absolute-center w-[24rem] h-[24rem] mt-0 md:mt-12 text-cc-purple text-opacity-50" />
-    <CircleDashed className="absolute-center w-[32rem] h-[32rem] mt-0 md:mt-12 text-cc-purple text-opacity-25" />
+    <CircleDashedSvg className="absolute-center w-[17rem] h-[17rem] mt-0 md:mt-12 text-cc-purple" />
+    <CircleDashedSvg className="absolute-center w-[24rem] h-[24rem] mt-0 md:mt-12 text-cc-purple text-opacity-50" />
+    <CircleDashedSvg className="absolute-center w-[32rem] h-[32rem] mt-0 md:mt-12 text-cc-purple text-opacity-25" />
     <div className="relative max-w-screen-sm mx-auto">
       <h2 className="text-center md:text-left font-shapiro95_super_wide text-3xl sm:text-4xl mb-6 sm:mb-10">
         Helping our members elevate{' '}

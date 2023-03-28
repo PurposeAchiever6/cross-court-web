@@ -3,7 +3,7 @@ import React from 'react';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import InformationBox from 'shared/components/InformationBox';
 import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
-import LineDashed from 'shared/components/LineDashed';
+import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
 import platformForProgressImg from 'screens/homepage/images/platform-for-progress.png';
 import connectImg from 'screens/homepage/images/connect.jpeg';
 import createImg from 'screens/homepage/images/create.jpeg';
@@ -59,7 +59,7 @@ const PlatformForProgress = () => (
         </div>
       </ExpandedLayout>
     </div>
-    <LineDashed className="text-cc-purple mb-16" />
+    <LineDashedSvg className="text-cc-purple mb-16" />
     <div className="md:flex">
       <h2 className="font-shapiro95_super_wide text-4xl lg:text-5xl xl:text-6xl md:max-w-md md:mr-10 xl:mr-20 mb-4 md:mb-0">
         Team Sport Mirrors Life

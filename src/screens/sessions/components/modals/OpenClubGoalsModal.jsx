@@ -73,7 +73,7 @@ export const OpenClubGoalsModal = ({
         {shootingMachines.length > 0 && (
           <Collapsible text="Rent shooting machine" inverse className="mb-8">
             <div className="sm:pl-5">
-              <ul className="pl-0">
+              <ul>
                 {shootingMachines.map(
                   ({ id, reserved, price, startTime, endTime, inputChecked }) => (
                     <li key={id} className="flex items-center">

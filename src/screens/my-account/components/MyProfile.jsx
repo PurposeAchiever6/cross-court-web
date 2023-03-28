@@ -10,7 +10,7 @@ import Tooltip from 'shared/components/Tooltip';
 import ROUTES from 'shared/constants/routes';
 import { formatPhoneNumber } from 'shared/utils/helpers';
 import missingProfileImg from 'shared/images/missing-profile-image.png';
-import EditIcon from 'shared/components/svg/EditIcon.svg';
+import EditSvg from 'shared/components/svg/EditSvg';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import ToggleButton from 'shared/components/ToggleButton';
 
@@ -57,7 +57,7 @@ const MyProfile = ({ profile, showTitle = true }) => {
   return (
     <div className="relative p-8">
       <button type="button" onClick={showEditProfileAction} className="absolute right-8 top-10">
-        <EditIcon />
+        <EditSvg />
       </button>
       {showTitle && <h3 className="font-shapiro95_super_wide mb-3 text-3xl">MY ACCOUNT</h3>}
 

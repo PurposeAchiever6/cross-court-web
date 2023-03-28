@@ -14,7 +14,7 @@ import { getIsAuthenticated } from 'screens/auth/reducer';
 import { logoutInit } from 'screens/auth/actionCreators';
 import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
-import LineDashed from 'shared/components/LineDashed';
+import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 
 const FOOTER_DISABLED = [ROUTES.DASHBOARD];
@@ -48,7 +48,7 @@ const Footer = () => {
     <>
       <PageLayout noPadding>
         <footer className="bg-cc-blue-900 relative">
-          <LineDashed className="text-cc-purple absolute top-0 right-0 w-full md:w-1/2" />
+          <LineDashedSvg className="text-cc-purple absolute top-0 right-0 w-full md:w-1/2" />
           <SectionLayout as="div" className="pt-20 pb-10 sm:pb-20">
             <div className="lg:flex">
               <div className="w-full mb-10 lg:mb-0">
