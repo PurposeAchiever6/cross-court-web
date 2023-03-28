@@ -77,7 +77,7 @@ const Footer = () => {
                   href="/crosscourt-member-handbook.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`${LINK_CLASS} block w-max font-shapiro95_super_wide text-2xl mb-6`}
+                  className={`${LINK_CLASS} block sm:w-max font-shapiro95_super_wide text-2xl mb-6`}
                 >
                   Download Member Handbook
                   <FontAwesomeIcon icon={faFileArrowDown} className="text-2xl ml-3" />
