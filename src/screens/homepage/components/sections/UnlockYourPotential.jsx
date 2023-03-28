@@ -23,34 +23,36 @@ const DotColorEffect = styled.div`
 `;
 
 const UnlockYourPotential = () => (
-  <SectionLayout className="relative py-12 sm:py-20">
+  <SectionLayout className="relative pb-12 md:pt-20 md:pb-20">
     <div className="hidden md:block absolute top-0 right-0 w-1/3 h-2/3 -mt-28 blur-2xl">
       <GradientColorEffect className="w-full h-full" />
     </div>
     <div className="relative pb-10 md:pb-28">
       <DotColorEffect className="hidden md:block absolute right-1/2 bottom-8 transform translate-x-32 2xl:translate-x-48 w-56 h-56" />
-      <img
-        alt="unlock-your-potential-img"
-        src={unlockYourPotentialImg}
-        className="md:absolute right-12 -bottom-20 w-[35rem]"
-      />
-      <div className="relative md:w-1/2 mb-10 md:mb-0">
-        <h1 className="font-shapiro95_super_wide text-3xl md:text-4xl xl:text-5xl mb-3">
-          Unlock your potential through team sport.
-        </h1>
-        <p className="leading-6 mb-3">
-          A basketball inspired social club built around thoughtfully designed spaces, a community
-          bonded by team-sport, and member driven experiences that enable professionals in the game
-          of life to elevate personally and professionally.
-        </p>
-        <h3 className="font-shapiro95_super_wide uppercase mb-3">Trust The Progress</h3>
-        <div>
-          <Button to={ROUTES.MEMBERSHIPS} className="mr-5">
-            Join
-          </Button>
-          <Button to={ROUTES.HOWITWORKS} variant="outline-purple">
-            Why Join?
-          </Button>
+      <div className="flex flex-col-reverse">
+        <img
+          alt="unlock-your-potential-img"
+          src={unlockYourPotentialImg}
+          className="md:absolute right-12 -bottom-20 w-[35rem]"
+        />
+        <div className="relative md:w-1/2 mb-10 md:mb-0">
+          <h1 className="font-shapiro95_super_wide text-3xl md:text-4xl xl:text-5xl mb-3">
+            Unlock your potential through team sport.
+          </h1>
+          <p className="leading-6 mb-3">
+            A basketball inspired social club built around thoughtfully designed spaces, a community
+            bonded by team-sport, and member driven experiences that enable professionals in the
+            game of life to elevate personally and professionally.
+          </p>
+          <h3 className="font-shapiro95_super_wide uppercase mb-3">Trust The Progress</h3>
+          <div>
+            <Button to={ROUTES.MEMBERSHIPS} className="mr-5">
+              Join
+            </Button>
+            <Button to={ROUTES.HOWITWORKS} variant="outline-purple">
+              Why Join?
+            </Button>
+          </div>
         </div>
       </div>
     </div>

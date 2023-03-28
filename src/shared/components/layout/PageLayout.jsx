@@ -5,7 +5,7 @@ import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 
 const PageLayout = ({ dark, backgroundImage, noPadding, children }) => (
   <LazyBackgroundImage img={backgroundImage} className={dark ? 'bg-black text-white' : ''}>
-    <div className={`max-w-screen-2xl mx-auto ${noPadding ? '' : 'pt-14 md:pt-28 pb-24'}`}>
+    <div className={`max-w-screen-2xl mx-auto ${noPadding ? '' : 'pt-24 md:pt-28 pb-24'}`}>
       {children}
     </div>
   </LazyBackgroundImage>
