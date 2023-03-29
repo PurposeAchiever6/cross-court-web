@@ -3,7 +3,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, Link } from 'react-router-dom';
 import DesktopMenu from 'cheeseburger-menu';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import colors from 'shared/styles/constants';
@@ -18,6 +17,7 @@ import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { isOnboardingTourEnable, disableOnboardingTour } from 'shared/utils/onboardingTour';
 
+import HeaderPromoBanner from 'shared/components/HeaderPromoBanner';
 import SidebarMenu from './SidebarMenu';
 import MobileMenu from './MobileMenu';
 
@@ -53,10 +53,6 @@ const BLACK_BG = [ROUTES.HOME, ROUTES.MEMBERSHIPS, ROUTES.FIRSTSESSIONRESERVED, 
 const SHOW_NAVBAR = [ROUTES.HOME, ROUTES.MEMBERSHIPS, ROUTES.FIRSTSESSIONRESERVED, ROUTES.FAQ];
 
 const Header = () => {
-  const env = runtimeEnv();
-  const promoCode = env.REACT_APP_FIRST_TIMER_PROMO_CODE;
-  const percentageDiscount = env.REACT_APP_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT;
-
   const { pathname } = useLocation();
 
   const isAuthenticated = useSelector(getIsAuthenticated);
@@ -64,6 +60,8 @@ const Header = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showMembershipPromoBanner, setShowMembershipPromoBanner] = useState(false);
+
   const [blockScroll, allowScroll] = useScrollBlock();
 
   const changeBg = useCallback(
@@ -79,6 +77,10 @@ const Header = () => {
   document.addEventListener('scroll', () => {
     changeBg();
   });
+
+  useEffect(() => {
+    setShowMembershipPromoBanner(pathname === ROUTES.HOME && !userInfo.activeSubscription);
+  }, [pathname, userInfo.activeSubscription]);
 
   useEffect(() => {
     changeBg();
@@ -142,7 +144,6 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const showMembershipPromoBanner = pathname === ROUTES.HOME && !userInfo.activeSubscription;
   const showNavItems = SHOW_NAVBAR.includes(pathname);
   const blackBg = BLACK_BG.includes(pathname);
   const ccBlackBg = CC_BLACK_BG.includes(pathname);
@@ -154,10 +155,7 @@ const Header = () => {
   return pathname === ROUTES.DASHBOARD ? null : (
     <>
       {showMembershipPromoBanner && (
-        <div className="animate-highlight-purple-twice bg-cc-black z-10 text-sm md:text-base text-white flex justify-center items-center text-center px-4 sm:px-6 h-28 sm:h-16 lg:h-14 xl:h-10">
-          Get {percentageDiscount}% off your first month if you join today. Use code {promoCode} at
-          checkout. Must be applied before your first session!
-        </div>
+        <HeaderPromoBanner onClose={() => setShowMembershipPromoBanner(false)} />
       )}
       <header
         className={`header z-10 w-full h-16 transition duration-700 ${
@@ -166,7 +164,7 @@ const Header = () => {
                 isBlackBg ? 'shadow-header-dark' : 'shadow-header-white'
               } ${bgColor} border-b border-b-cc-purple fixed z-50 top-0`
             : `${isBlackBg ? bgColor : 'bg-transparent'} absolute ${
-                showMembershipPromoBanner ? 'top-28 sm:top-16 lg:top-14 xl:top-10' : 'top-0'
+                showMembershipPromoBanner ? 'top-16 sm:top-10' : 'top-0'
               }`
         }`}
       >
