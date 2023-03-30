@@ -52,12 +52,10 @@ const Create = () => {
               <div className="flex flex-col md:ml-32">
                 <img alt="sklz-logo" className="w-32 mt-4 md:mt-0" src={openClubLogoWhite} />
                 <p className="mt-4 max-w-2xl text-lg">
-                  The Club is wide open for “Office Hours” during the work day and then “Open Club”
-                  in the afternoon. Use the space to accomplish whatever it is you’re focused on.
-                  Collaborate with other members on your next idea or throw in some headphones if
-                  you need to get some work done or get a workout in. Open Club is the best time to
-                  get some shots up with the shooting machine, organize games with other members, or
-                  just come to hang out. Make yourself at home.
+                  We’re open for “Office Hours” during the work day and then “Open Club” in the
+                  afternoon. Use the space as you wish. Get some work done or hit a workout. Put
+                  some shots up with the shooting machine, organize games with other members, or
+                  just come to hang out.
                 </p>
               </div>
             </div>
