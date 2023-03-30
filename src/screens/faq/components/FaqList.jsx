@@ -72,7 +72,11 @@ const FaqList = ({ showInBatches, className }) => {
     <div className={className}>
       {QUESTIONS.map(({ question, answer }, index) =>
         index < questionsShown ? (
-          <Accordion key={index} title={question} className="whitespace-pre-line mb-2">
+          <Accordion
+            key={index}
+            title={question}
+            className="hover:bg-cc-blue-700 transition-all duration-300 whitespace-pre-line mb-2"
+          >
             {answer}
           </Accordion>
         ) : null
