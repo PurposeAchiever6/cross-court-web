@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons';
@@ -16,9 +16,9 @@ import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
 import LogoSvg from 'shared/components/svg/LogoSvg';
+import Link from 'shared/components/Link';
 
-const FOOTER_DISABLED = [ROUTES.DASHBOARD];
-const LINK_CLASS = 'hover:opacity-60 transition-opacity duration-300';
+const FOOTER_DISABLED_ROUTES = [ROUTES.DASHBOARD];
 
 const Footer = () => {
   const env = runtimeEnv();
@@ -32,7 +32,7 @@ const Footer = () => {
 
   const instagramLink = env.REACT_APP_INSTAGRAM_LINK;
   const discordLink = env.REACT_APP_DISCORD_LINK;
-  const ccPhoneNumber = env.REACT_APP_CC_PHONE_NUMBER;
+  const ccEmail = env.REACT_APP_CC_EMAIL;
   const ccAddress = env.REACT_APP_CC_ADDRESS;
   const windowSize = document.documentElement.clientWidth;
 
@@ -40,7 +40,7 @@ const Footer = () => {
   const tourMessage =
     'Hi Crosscourt, \n\rI would like to visit the club on [DATE] at [TIME (ANYTIME BETWEEN 8PM-10PM M-THU, 6-8PM FRI, 10AM-NOON SAT/SUN)]. \n\rPlease let me know if that works for your team. \n\rThank you';
 
-  if (FOOTER_DISABLED.includes(pathname)) {
+  if (FOOTER_DISABLED_ROUTES.includes(pathname)) {
     return null;
   }
 
@@ -52,96 +52,105 @@ const Footer = () => {
           <SectionLayout as="div" className="pt-20 pb-10 sm:pb-20">
             <div className="lg:flex">
               <div className="w-full mb-10 lg:mb-0">
-                <LogoSvg className="w-72 mb-8" />
+                <LogoSvg className="w-64 mb-3" />
+                <Link to={`mailto:${ccEmail}`} isExternal className="text-sm inline-block mb-5">
+                  {ccEmail}
+                </Link>
                 <div>
-                  <a
-                    href={discordLink}
+                  <Link
+                    to={discordLink}
+                    variant="white-opacity"
+                    isExternal
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${LINK_CLASS} mr-5`}
+                    rel="noreferrer"
+                    className="mr-5"
                   >
                     <FontAwesomeIcon icon={faDiscord} size="2x" />
-                  </a>
-                  <a
-                    href={instagramLink}
+                  </Link>
+                  <Link
+                    to={instagramLink}
+                    variant="white-opacity"
+                    isExternal
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className={LINK_CLASS}
+                    rel="noreferrer"
                   >
                     <FontAwesomeIcon icon={faInstagram} size="2x" />
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="w-full">
-                <a
-                  href="/crosscourt-member-handbook.pdf"
+                <Link
+                  to="/crosscourt-member-handbook.pdf"
+                  variant="white-opacity"
                   target="_blank"
-                  rel="noopener noreferrer"
-                  className={`${LINK_CLASS} block sm:w-max font-shapiro95_super_wide text-2xl mb-6`}
+                  rel="noreferrer"
+                  className="block sm:w-max font-shapiro95_super_wide text-2xl mb-6"
                 >
                   Download Member Handbook
                   <FontAwesomeIcon icon={faFileArrowDown} className="text-2xl ml-3" />
-                </a>
+                </Link>
                 <div className="md:flex w-full text-sm">
                   <div className="w-full mb-8 md:mb-0">
-                    <Link to={ROUTES.HOME} className={`${LINK_CLASS} block w-max mb-3`}>
+                    <Link to={ROUTES.HOME} variant="white-opacity" className="block w-max mb-3">
                       Home
                     </Link>
-                    <Link to={ROUTES.WHY_JOIN} className={`${LINK_CLASS} block w-max mb-3`}>
+                    <Link to={ROUTES.WHY_JOIN} variant="white-opacity" className="block w-max mb-3">
                       Why Join
                     </Link>
-                    <Link to={ROUTES.MEMBERSHIPS} className={`${LINK_CLASS} block w-max mb-3`}>
+                    <Link
+                      to={ROUTES.MEMBERSHIPS}
+                      variant="white-opacity"
+                      className="block w-max mb-3"
+                    >
                       Memberships
                     </Link>
                     {isAuthenticated ? (
-                      <span
+                      <Link
+                        variant="white-opacity"
                         onClick={() => logoutAction()}
-                        className={`${LINK_CLASS} block w-max cursor-pointer`}
+                        className="block w-max"
                       >
                         Logout
-                      </span>
+                      </Link>
                     ) : (
-                      <Link to={ROUTES.LOGIN} className={`${LINK_CLASS} block w-max`}>
+                      <Link to={ROUTES.LOGIN} variant="white-opacity" className="block w-max">
                         Login
                       </Link>
                     )}
                   </div>
                   <div className="w-full mb-8 md:mb-0">
-                    <span
-                      onClick={() => openContactFormForUser(currentUser)}
-                      className={`${LINK_CLASS} block w-max cursor-pointer mb-3`}
-                    >
-                      Contact
-                    </span>
-                    <Link to={ROUTES.CAREERS} className={`${LINK_CLASS} block w-max mb-3`}>
+                    <Link to={ROUTES.CAREERS} variant="white-opacity" className="block w-max mb-3">
                       Join the Team
                     </Link>
-                    <Link to={ROUTES.CONTENT} className={`${LINK_CLASS} block w-max mb-3`}>
+                    <Link to={ROUTES.CONTENT} variant="white-opacity" className="block w-max mb-3">
                       How to use Pixellot
                     </Link>
-                    <span
+                    <Link
+                      variant="white-opacity"
                       onClick={() => openContactFormForUser(currentUser)}
-                      className={`${LINK_CLASS} block w-max cursor-pointer mb-3`}
+                      className="block w-max mb-3"
                     >
                       Private Rentals
-                    </span>
-                    <Link to={ROUTES.FAQ} className={`${LINK_CLASS} block w-max`}>
+                    </Link>
+                    <Link to={ROUTES.FAQ} variant="white-opacity" className="block w-max">
                       FAQ
                     </Link>
                   </div>
                   <div className="w-full">
-                    <span
+                    <Link
+                      variant="white-opacity"
                       onClick={() => openContactFormForUser(currentUser, tourMessage)}
-                      className={`${LINK_CLASS} block w-max cursor-pointer mb-3`}
+                      className="block w-max mb-3"
                     >
                       Schedule Tour
-                    </span>
-                    <a
-                      href={`sms:+1${ccPhoneNumber.replace(/-|\s|\(|\)/g, '')}`}
-                      className={LINK_CLASS}
+                    </Link>
+                    <Link
+                      variant="white-opacity"
+                      onClick={() => openContactFormForUser(currentUser)}
+                      className="block w-max"
                     >
-                      Text {ccPhoneNumber}
-                    </a>
+                      Contact Us
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -154,13 +163,9 @@ const Footer = () => {
             <span className="hidden md:inline-block mx-2">/</span>
             <span className="block md:inline-block mb-1 md:mb-0">{ccAddress}</span>
             <span className="hidden md:inline-block mx-2">/</span>
-            <Link to={ROUTES.TERMS} className="text-cc-purple hover:underline">
-              Terms and conditions
-            </Link>
+            <Link to={ROUTES.TERMS}>Terms and conditions</Link>
             <span className="mx-2">/</span>
-            <Link to={ROUTES.PRIVACY_POLICY} className="text-cc-purple hover:underline">
-              Privacy policy
-            </Link>
+            <Link to={ROUTES.PRIVACY_POLICY}>Privacy policy</Link>
           </SectionLayout>
         </footer>
       </PageLayout>
