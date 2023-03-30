@@ -39,7 +39,7 @@ const Create = () => {
                 competence, confidence, connections, character, and caring.
               </p>
             </div>
-            <DashedCrossSvg className="w-44 md:w-72 h-44 md:h-72 mt-4 md:mt-0 self-center" />
+            <DashedCrossSvg className="hidden md:block w-44 md:w-72 h-44 md:h-72 mt-4 md:mt-0 self-center" />
           </div>
           <img
             src={dotsBgImg}
@@ -47,6 +47,20 @@ const Create = () => {
             className="md:w-[625px] md:h-[568px] hidden md:block absolute"
           />
           <div className="px-6 md:px-28 relative pb-6 md:pb-24">
+            <div className="flex flex-col md:flex-row items-center mt-4 md:mt-2">
+              <img alt="open-club" src={openClub} />
+              <div className="flex flex-col md:ml-32">
+                <img alt="sklz-logo" className="w-32 mt-4 md:mt-0" src={openClubLogoWhite} />
+                <p className="mt-4 max-w-2xl text-lg">
+                  The Club is wide open for “Office Hours” during the work day and then “Open Club”
+                  in the afternoon. Use the space to accomplish whatever it is you’re focused on.
+                  Collaborate with other members on your next idea or throw in some headphones if
+                  you need to get some work done or get a workout in. Open Club is the best time to
+                  get some shots up with the shooting machine, organize games with other members, or
+                  just come to hang out. Make yourself at home.
+                </p>
+              </div>
+            </div>
             <div className="flex flex-col md:flex-row items-center">
               <img alt="sklz" src={sklz} />
               <div className="flex flex-col md:ml-32">
@@ -62,17 +76,6 @@ const Create = () => {
                 >
                   WATCH VIDEO
                 </Button>
-              </div>
-            </div>
-            <div className="flex flex-col md:flex-row items-center mt-4 md:mt-2">
-              <img alt="open-club" src={openClub} />
-              <div className="flex flex-col md:ml-32">
-                <img alt="sklz-logo" className="w-32 mt-4 md:mt-0" src={openClubLogoWhite} />
-                <p className="mt-4 max-w-2xl text-lg">
-                  Throw some headphones in, shoot around solo, strength train, hang out, or organize
-                  games with other members. <br />
-                  Create time for yourself.
-                </p>
               </div>
             </div>
           </div>

@@ -29,6 +29,8 @@ const ImagesCarousel = ({
   swipeable,
 }) => (
   <ReactResponsiveCarousel
+    preventMovementUntilSwipeScrollTolerance
+    swipeScrollTolerance={80}
     className={className}
     infiniteLoop={infiniteLoop}
     showArrows={showArrows}
@@ -62,6 +64,7 @@ Arrow.propTypes = {
   prevClickHandler: PropTypes.func,
   nextClickHandler: PropTypes.func,
   className: PropTypes.string,
+  label: PropTypes.string,
 };
 
 Arrow.defaultProps = {
@@ -69,6 +72,7 @@ Arrow.defaultProps = {
   prevClickHandler: null,
   nextClickHandler: null,
   className: '',
+  label: '',
 };
 
 ImagesCarousel.defaultProps = {
@@ -87,7 +91,7 @@ ImagesCarousel.defaultProps = {
 };
 
 ImagesCarousel.propTypes = {
-  imageUrls: PropTypes.array,
+  imageUrls: PropTypes.arrayOf(PropTypes.shape()),
   className: PropTypes.string,
   imagesClassName: PropTypes.string,
   arrowsClassName: PropTypes.string,

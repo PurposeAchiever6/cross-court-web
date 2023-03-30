@@ -6,6 +6,7 @@ import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
 import ReadyImg from 'screens/why-join/images/ready.png';
 import Button from 'shared/components/Button';
 import ROUTES from 'shared/constants/routes';
+import Link from 'shared/components/Link';
 
 const Ready = () => (
   <SectionLayout className="mt-8 md:mt-20 border-t-2 border-b-2 border-cc-purple pt-8 md:pt-24">
@@ -53,7 +54,9 @@ const Ready = () => (
             3
           </div>
           <div className="p-6 flex flex-col justify-center">
-            <p className="text-cc-purple font-shapiro95_super_wide text-2xl">Create Your Account</p>
+            <p className="text-cc-purple font-shapiro95_super_wide text-2xl">
+              Unlock Your Potential
+            </p>
             <p className="text-sm">Book an experience</p>
             <Button to={ROUTES.LOCATIONS} className="w-min mt-4">
               SCHEDULE
@@ -63,8 +66,8 @@ const Ready = () => (
       </div>
     </div>
     <p className="text-white my-24 text-center text-sm">
-      Not ready to become a member? Try Crosscourt out by booking a{' '}
-      <span className="text-cc-purple">drop-in session.</span>
+      Not ready to become a member? Try Crosscourt out by booking a “day pass”{' '}
+      <Link to={ROUTES.MEMBERSHIPS}>drop-in session.</Link>
     </p>
   </SectionLayout>
 );

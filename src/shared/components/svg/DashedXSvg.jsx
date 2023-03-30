@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DashedCrossSvg = ({ ...props }) => (
+const DashedXSvg = ({ ...props }) => (
   <svg
     width="354"
     height="221"
@@ -33,4 +33,4 @@ const DashedCrossSvg = ({ ...props }) => (
   </svg>
 );
 
-export default DashedCrossSvg;
+export default DashedXSvg;

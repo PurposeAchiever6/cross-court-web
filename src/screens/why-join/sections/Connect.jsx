@@ -35,7 +35,7 @@ const Connect = () => {
               discovering new connections to people and their purpose.
             </p>
           </div>
-          <DashedCircleSvg className="w-44 h-44 md:w-80 md:h-80 self-center md:self-start mt-4 md:mt-0 mb-8 md:mb-0" />
+          <DashedCircleSvg className="hidden md:block w-44 h-44 md:w-80 md:h-80 self-center md:self-start mt-4 md:mt-0 mb-8 md:mb-0" />
         </div>
       </ExpandedLayout>
       <ExpandedLayout

@@ -49,7 +49,7 @@ const Compete = () => {
                 better is tied to the success of the person standing next to them.
               </p>
             </div>
-            <DashedXSvg className="w-44 md:w-72 h-44 md:h-72 mt-4 md:mt-0 self-center" />
+            <DashedXSvg className="hidden md:block w-44 md:w-72 h-44 md:h-72 mt-4 md:mt-0 self-center" />
           </div>
           <img src={dotsBgImg} alt="dots" className="md:w-[40rem] hidden md:block absolute" />
           <img
