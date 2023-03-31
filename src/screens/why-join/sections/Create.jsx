@@ -6,8 +6,8 @@ import SectionLayout from 'shared/components/layout/SectionLayout';
 import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
 import VideoPlayer from 'shared/components/VideoPlayer';
 
+import highFive from 'screens/why-join/images/high-five-2.jpg';
 import dotsBgImg from 'shared/images/backgrounds/dots.png';
-import highFive from 'screens/why-join/images/high-five-2.png';
 import sklz from 'screens/why-join/images/sklz.png';
 import openClub from 'screens/why-join/images/open-club.png';
 import phone from 'screens/why-join/images/phone.png';

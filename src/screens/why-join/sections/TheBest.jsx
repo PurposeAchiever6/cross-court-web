@@ -11,7 +11,7 @@ const TheBest = () => (
       <span className="text-cc-purple">OUR best</span>, not THE best.
     </h2>
     <ExpandedLayout mdBreakpoint={false} lgBreakpoint={false} xlBreakpoint={false}>
-      <img src={HighFive} alt="High Five" loading="lazy" />
+      <img src={HighFive} alt="High Five" />
     </ExpandedLayout>
   </SectionLayout>
 );
