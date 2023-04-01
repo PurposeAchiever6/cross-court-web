@@ -28,6 +28,7 @@ const CrosscourtGoal = () => (
           team-sport is the best catalyst for social, mental and physical growth.
         </h2>
         <List
+          align="center"
           className="md:max-w-lg text-sm mb-8"
           items={[
             'Deepen your human connection through shared experiences with others on the same journey',

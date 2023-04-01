@@ -2,28 +2,27 @@ import React, { useState } from 'react';
 
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
-
-import DashedXSvg from 'shared/components/svg/DashedXSvg';
 import Button from 'shared/components/Button';
+import Link from 'shared/components/Link';
 import VideoPlayer from 'shared/components/VideoPlayer';
+import RulesAndFormatModal from 'screens/why-join/components/RulesAndFormatModal';
 
+import activationsLogoWhite from 'shared/images/logos/activations-white.png';
+import challengesLogoWhite from 'shared/images/logos/challenges-white.png';
+import sznsLogoWhite from 'shared/images/logos/cc-league-white.png';
+import sessionsLogoWhite from 'shared/images/logos/sessions-white.png';
 import dotsBgImg from 'shared/images/backgrounds/dots.png';
+import DashedXSvg from 'shared/components/svg/DashedXSvg';
 import compete from 'screens/why-join/images/compete.png';
-
 import session from 'screens/why-join/images/session.png';
 import activation from 'screens/why-join/images/activation.png';
 import challenges from 'screens/why-join/images/challenges.png';
 import szns from 'screens/why-join/images/szns.png';
-import sessionsLogoWhite from 'shared/images/logos/sessions-white.png';
-import activationsLogoWhite from 'shared/images/logos/activations-white.png';
-import challengesLogoWhite from 'shared/images/logos/challenges-white.png';
-import sznsLogoWhite from 'shared/images/logos/cc-league-white.png';
-import Link from 'shared/components/Link';
-import ROUTES from 'shared/constants/routes';
 
 const Compete = () => {
   const [videoName, setVideoName] = useState('');
   const [watchVideo, setWatchVideo] = useState(false);
+  const [openRulesAndFormatModal, setOpenRulesAndFormatModal] = useState(false);
 
   return (
     <>
@@ -77,7 +76,7 @@ const Compete = () => {
                   >
                     WATCH VIDEO
                   </Button>
-                  <Link to={ROUTES.RULES} className="ml-4">
+                  <Link onClick={() => setOpenRulesAndFormatModal(true)} className="ml-4">
                     Rules &amp; Format
                   </Link>
                 </div>
@@ -137,6 +136,10 @@ const Compete = () => {
           </div>
         </ExpandedLayout>
       </SectionLayout>
+      <RulesAndFormatModal
+        isOpen={openRulesAndFormatModal}
+        closeHandler={() => setOpenRulesAndFormatModal(false)}
+      />
       <VideoPlayer
         url={`/${videoName}.mp4`}
         playing
