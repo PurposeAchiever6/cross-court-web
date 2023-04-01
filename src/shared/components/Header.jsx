@@ -170,7 +170,7 @@ const Header = () => {
         <HeaderPromoBanner onClose={() => setShowMembershipPromoBanner(false)} />
       )}
       <header
-        className={`header z-10 w-full h-16 transition duration-700 ${
+        className={`header h-16 z-10 inset-x-0 transition duration-700 ${
           scrolled
             ? `${
                 isBlackBg ? 'shadow-header-dark' : 'shadow-header-white'
@@ -191,39 +191,35 @@ const Header = () => {
         >
           <SidebarMenu menuToggler={toggleMenu} />
         </DesktopMenu>
-        <div className="header-content flex items-center h-full justify-between pr-4">
+        <div className="max-w-screen-2xl mx-auto flex justify-between items-center h-full px-4 2xl:px-0">
           <div
             className={`flex items-center h-full z-1005 ${
               showMembershipPromoBanner && menuOpen ? '-mt-56 sm:-mt-32 md:mt-0' : ''
             }`}
           >
-            <div className="flex h-full w-16 justify-center" data-active={menuOpen}>
-              <button
-                className="flex items-center justify-center"
-                aria-label="Menu Button"
-                type="button"
-                onClick={toggleMenu}
-              >
-                <MenuSvg color={logoColor} />
-              </button>
-            </div>
+            <button aria-label="Menu Button" type="button" onClick={toggleMenu} className="mr-4">
+              <MenuSvg color={logoColor} />
+            </button>
             <Link to={ROUTES.HOME}>
               <LogoSvg className="w-32 md:w-52 h-6" color={logoColor} />
             </Link>
           </div>
-          {showNavItems && (
-            <div className="hidden lg:flex lg:justify-center w-full z-10">
-              <Navbar scrolled={scrolled} dark={isBlackBg} isAuthenticated={isAuthenticated} />
-            </div>
-          )}
-          <Button
-            id="header-btn"
-            to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP}
-            onClick={exitHeaderOnboardingTour}
-            className="z-10"
-          >
-            {buttonText}
-          </Button>
+          <div className="flex items-center">
+            {showNavItems && (
+              <div className="hidden lg:block w-full z-10 mr-6 xl:mr-8 2xl:mr-10">
+                <Navbar scrolled={scrolled} dark={isBlackBg} isAuthenticated={isAuthenticated} />
+              </div>
+            )}
+            <Button
+              id="header-btn"
+              to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP}
+              onClick={exitHeaderOnboardingTour}
+              size="sm"
+              className="z-10"
+            >
+              {buttonText}
+            </Button>
+          </div>
           <OnboardingTour
             id={onboardingTourId}
             enabled={isHeaderOnboardingTourEnable}
