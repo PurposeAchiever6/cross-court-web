@@ -66,8 +66,8 @@ const Ready = () => (
       </div>
     </div>
     <p className="text-white my-24 text-center text-sm">
-      Not ready to become a member? Try Crosscourt out by booking a “day pass”{' '}
-      <Link to={ROUTES.MEMBERSHIPS}>drop-in session.</Link>
+      Not ready to become a member? Try Crosscourt out by booking a{' '}
+      <Link to={ROUTES.MEMBERSHIPS}>day pass</Link>
     </p>
   </SectionLayout>
 );

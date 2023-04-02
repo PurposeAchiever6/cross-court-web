@@ -72,7 +72,7 @@ const PlatformForProgress = () => (
           <p className="mb-4">
             We use the court to practice life. Who you are as a teammate on the court is a
             reflection of who you are as a person off it. From how you condition yourself to how you
-            show for others up to how you communicate when the game is on the line—the arena of team
+            show up for others to how you communicate when the game is on the line—the arena of team
             sport is used to help you progress as a human.
           </p>
           <p>
