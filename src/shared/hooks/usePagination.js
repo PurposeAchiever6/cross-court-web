@@ -3,10 +3,10 @@ import { useState } from 'react';
 export const FIRST_PAGE = 1;
 const DEFAULT_PER_PAGE = 25;
 
-const usePagination = () => {
+const usePagination = (perPage = DEFAULT_PER_PAGE) => {
   const [totalRecords, setTotalRecords] = useState(0);
   const [currentPage, setCurrentPage] = useState(FIRST_PAGE);
-  const [itemsPerPage, setItemsPerPage] = useState(DEFAULT_PER_PAGE);
+  const [itemsPerPage, setItemsPerPage] = useState(perPage);
 
   const maxPage = Math.ceil(totalRecords / itemsPerPage);
 

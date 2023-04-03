@@ -7,7 +7,7 @@ import Loading from 'shared/components/Loading';
 import { isUserInFirstSessionFlow } from 'shared/utils/user';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import Carousel from 'shared/components/Carousel';
+import CarouselImages from 'shared/components/CarouselImages';
 import { resetLoading, removeSessionFromStorage } from 'shared/actions/actionCreators';
 import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
 import {
@@ -122,7 +122,7 @@ const Session = () => {
       <div className="flex flex-col">
         <SessionHeader sessionInfo={sessionInfo} />
         <div className="flex flex-col-reverse md:flex-row bg-cc-black h-full">
-          <Carousel
+          <CarouselImages
             className="session-carousel carousel-h-full"
             imagesClassName="w-full md:w-1/2"
             imageUrls={skillSession ? SKLZ_IMAGES : sessionInfo.location.imageUrls}

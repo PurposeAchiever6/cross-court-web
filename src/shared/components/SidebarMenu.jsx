@@ -28,8 +28,8 @@ const SidebarMenu = ({ menuToggler }) => {
         <NavLink className="list-item" exact to={ROUTES.HOME} onClick={menuToggler}>
           HOME
         </NavLink>
-        <NavLink className="list-item" exact to={ROUTES.HOWITWORKS} onClick={menuToggler}>
-          {isAuthenticated ? 'LEARN MORE' : 'FIRST TIME?'}
+        <NavLink className="list-item" exact to={ROUTES.WHY_JOIN} onClick={menuToggler}>
+          WHY JOIN?
         </NavLink>
         <NavLink className="list-item" exact to={ROUTES.LOCATIONS} onClick={menuToggler}>
           SCHEDULE

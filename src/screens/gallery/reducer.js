@@ -10,6 +10,10 @@ const initialState = {
   pageLoading: false,
   galleryPhotos: [],
   error: null,
+  pagination: {
+    totalPages: '',
+    totalRecords: '',
+  },
 };
 
 export default (state = initialState, action) => {
@@ -24,6 +28,7 @@ export default (state = initialState, action) => {
         pageLoading: false,
         galleryPhotos: action.payload.galleryPhotos,
         error: null,
+        pagination: { ...action.payload.pagination },
       };
     case GET_GALLERY_PHOTOS_FAILURE:
       return {
@@ -43,3 +48,5 @@ export const getPageLoading = createSelector(getGallery, (gallery) => gallery.pa
 export const getError = createSelector(getGallery, (gallery) => gallery.error);
 
 export const getGalleryPhotos = createSelector(getGallery, (gallery) => gallery.galleryPhotos);
+
+export const getPagination = createSelector(getGallery, (gallery) => gallery.pagination);

@@ -7,21 +7,12 @@ const env = runtimeEnv();
 const APP_URL = env.REACT_APP_URL;
 
 const HIDE_CHATS_FOR_PATHS = [ROUTES.DASHBOARD];
-const STAY_IN_THE_LOOP_EVENT = 'Stay In The Loop';
 const STARTED_CHECKOUT_EVENT = 'Started Checkout';
 
 const contactUrl = `${APP_URL}?openForm=true`;
 
 export const contactUsForm = async (userParams) => {
   await activeCampaignService.createContact(userParams);
-};
-
-export const stayInTheLoop = async ({ email }) => {
-  const response = await activeCampaignService.createContact({ email });
-  await activeCampaignService.createDeal(STAY_IN_THE_LOOP_EVENT, [], {
-    email,
-    contactId: response.contact.id,
-  });
 };
 
 export const startedCheckout = async ({ product }) => {

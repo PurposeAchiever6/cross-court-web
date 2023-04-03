@@ -23,8 +23,8 @@ export const MyAccountPageMobile = ({
   upcomingSessions,
   semUpcomingSessions,
 }) => (
-  <MyAccountPageContainer className="my-account-mobile">
-    <Tabs>
+  <MyAccountPageContainer className="my-account-mobile pt-12">
+    <Tabs alignLabels="center">
       <div label="MY ACCOUNT">
         <MyProfile profile={userProfile} showTitle={false} />
       </div>
@@ -41,7 +41,7 @@ export const MyAccountPageMobile = ({
     </Tabs>
 
     {userProfile.isSem || userProfile.isReferee ? (
-      <Tabs>
+      <Tabs alignLabels="center">
         <div label="As ETM">
           <SessionsList title="UPCOMING SESSIONS" sessions={semUpcomingSessions} isSem />
         </div>

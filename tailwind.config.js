@@ -19,7 +19,7 @@ module.exports = {
           300: '#AAAFF3',
           DEFAULT: '#9999FF',
           500: '#9999FF',
-          700: '#7070FF',
+          700: '#6666FF',
         },
         'cc-blue': {
           100: '#2E2E4D',
@@ -75,6 +75,9 @@ module.exports = {
       },
       backgroundImage: {
         'cc-ball-logo': "url('../shared/images/logos/cc-ball-purple.png')",
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'space-with-radial-gradient':
+          "radial-gradient(circle,black 5%,rgba(0,0,0,0.6)),url('../shared/images/backgrounds/space.jpeg')",
       },
       transitionDelay: {
         0: '0ms',
@@ -99,8 +102,7 @@ module.exports = {
         },
         'highlight-purple': {
           '60%': {
-            backgroundColor: 'rgba(153, 153, 255, 1)',
-            boxShadow: ' 0px 15px 40px rgba(153, 153, 255, 0.6)',
+            backgroundColor: 'rgba(102, 102, 255, 0.80)',
           },
         },
       },

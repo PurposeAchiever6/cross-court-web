@@ -1,56 +1,68 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import colors from 'shared/styles/constants';
 
-const TabsContainer = styled.div`
-  .tabs {
-    display: flex;
-    justify-content: space-around;
-    font-size: 1.7rem;
-    margin-top: 1rem;
-    font-weight: 200;
-    color: ${colors.grey};
-  }
-
-  span {
-    cursor: pointer;
-  }
-
-  .selected {
-    font-weight: 500;
-    color: ${colors.black};
-  }
-`;
-
-const Tabs = ({ children }) => {
+const Tabs = ({ variant, alignLabels, className, children }) => {
   const [activeTab, setActiveTab] = useState(children[0].props.label);
 
+  const variantClasses = (active) => {
+    switch (variant) {
+      case 'opacity-underline':
+        return active ? 'opacity-100 border-b-2 border-b-current' : 'opacity-60 hover:opacity-100';
+      case 'opacity':
+      default:
+        return active ? 'opacity-100' : 'opacity-50 hover:opacity-100';
+    }
+  };
+
+  const alignLabelsClasses = (() => {
+    switch (alignLabels) {
+      case 'right':
+        return 'justify-end';
+      case 'center':
+        return 'justify-center';
+      case 'around':
+        return 'justify-around';
+      case 'between':
+        return 'justify-between';
+      case 'left':
+      default:
+        return '';
+    }
+  })();
+
   return (
-    <TabsContainer>
-      <div className="tabs">
+    <div className={className}>
+      <div className={`flex gap-8 mb-6 ${alignLabelsClasses}`}>
         {children.map(({ props: { label } }) => (
           <span
             key={label}
-            className={activeTab === label ? 'selected' : undefined}
+            className={`text-2xl font-shapiro95_super_wide cursor-pointer transition-all duration-300 ${variantClasses(
+              activeTab === label
+            )}`}
             onClick={() => setActiveTab(label)}
           >
             {label}
           </span>
         ))}
       </div>
-      <div className="tab-content">
-        {children.map((child) => {
-          if (child.props.label !== activeTab) return undefined;
-          return child.props.children;
-        })}
+      <div>
+        {children.map((child) => (child.props.label == activeTab ? child.props.children : null))}
       </div>
-    </TabsContainer>
+    </div>
   );
 };
 
+Tabs.defaultProps = {
+  variant: 'opacity',
+  alignLabels: 'left',
+  className: '',
+};
+
 Tabs.propTypes = {
-  children: PropTypes.instanceOf(Array).isRequired,
+  variant: PropTypes.string,
+  alignLabels: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default Tabs;

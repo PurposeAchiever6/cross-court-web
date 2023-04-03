@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faDownload } from '@fortawesome/free-solid-svg-icons';
 
 import ccLogo from 'shared/images/logos/cc-white.png';
-import Fancybox from './Fancybox';
+import Fancybox from 'shared/components/Fancybox';
 
 const toDataURL = (url) =>
   fetch(url)

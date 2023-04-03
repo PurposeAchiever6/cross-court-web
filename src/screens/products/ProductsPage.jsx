@@ -19,7 +19,6 @@ import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import Loading from 'shared/components/Loading';
 import CancelMembershipModal from 'shared/components/CancelMembershipModal';
-import VideoPlayer from 'shared/components/VideoPlayer';
 import MembershipIsPausedModal from 'screens/memberships/components/MembershipIsPausedModal';
 import PauseMembershipModal from 'screens/memberships/components/PauseMembershipModal';
 import Memberships from 'screens/products/components/Memberships';
@@ -53,7 +52,6 @@ const ProductsPage = () => {
 
   const [showPauseModal, setShowPauseModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
-  const [watchVideo, setWatchVideo] = useState(false);
   const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
     !!showNoFreeSessionInformation
   );
@@ -148,7 +146,7 @@ const ProductsPage = () => {
     <>
       <PageLayout>
         {showAnimation && <NoSessionCredits />}
-        <SectionLayout className="mt-12 mb-24">
+        <SectionLayout className="md:mt-12 mb-24">
           <h2 className="font-shapiro95_super_wide uppercase text-3xl sm:text-4xl mb-6 sm:mb-10">
             {pageTitle}
           </h2>
@@ -191,13 +189,7 @@ const ProductsPage = () => {
           </div>
         </SectionLayout>
         {showMemberships && (
-          <>
-            {reserveTeam ? (
-              <ReserveTeamMembershipsFeatures setWatchVideo={setWatchVideo} />
-            ) : (
-              <MembershipsFeatures />
-            )}
-          </>
+          <>{reserveTeam ? <ReserveTeamMembershipsFeatures /> : <MembershipsFeatures />}</>
         )}
         {showMemberships && <FAQ />}
       </PageLayout>
@@ -223,13 +215,6 @@ const ProductsPage = () => {
         pauseSubscriptionAction={pauseSubscriptionAction}
         canFreePause={canFreePause}
         thisYearFreeFinishedPauses={thisYearFreeFinishedPauses}
-      />
-      <VideoPlayer
-        url="/skill-sessions.mp4"
-        playing
-        openOnModal
-        isModalOpen={watchVideo}
-        closeModalHandler={() => setWatchVideo(false)}
       />
     </>
   );

@@ -8,8 +8,13 @@ import { openContactForm, openContactFormForUser } from 'shared/utils/contactFor
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import SessionSurveyModal from 'screens/surveys/sessions/components/SessionSurveyModal';
-
-import Landing from './components/Landing';
+import PageLayout from 'shared/components/layout/PageLayout';
+import UnlockYourPotential from 'screens/homepage/sections/UnlockYourPotential';
+import CrosscourtGoal from 'screens/homepage/sections/CrosscourtGoal';
+import PlatformForProgress from 'screens/homepage/sections/PlatformForProgress';
+import Testimonials from 'screens/homepage/sections/Testimonials';
+import TrustTheProgress from 'screens/homepage/sections/TrustTheProgress';
+import Faq from 'screens/homepage/sections/Faq';
 
 const HomePage = () => {
   const { search } = useLocation();
@@ -50,7 +55,14 @@ const HomePage = () => {
 
   return (
     <>
-      <Landing />
+      <PageLayout>
+        <UnlockYourPotential />
+        <CrosscourtGoal />
+        <PlatformForProgress />
+        <Testimonials />
+        <TrustTheProgress />
+        <Faq />
+      </PageLayout>
       <SessionSurveyModal
         showSurveyModal={showSurveyModal}
         setShowSurveyModal={setShowSurveyModal}

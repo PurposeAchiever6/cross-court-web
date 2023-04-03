@@ -3,7 +3,7 @@ import React from 'react';
 import { MEMBERSHIPS_EXPERIENCES, MEMBERSHIPS_PERKS } from 'screens/products/constants';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import BackgroundSquare from 'shared/components/BackgroundSquare';
-import InformationBox from 'shared/components/InformationBox';
+import ClickableInformationBox from 'shared/components/ClickableInformationBox';
 import ccBasketballBallsImg from 'shared/images/membership-features/cc-basketball-balls.jpeg';
 
 const MembershipsFeatures = () => (
@@ -33,7 +33,7 @@ const MembershipsFeatures = () => (
               className={`w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 ${skip ? '' : 'mb-4 sm:mb-0 sm:p-2'}`}
             >
               {!skip && (
-                <InformationBox
+                <ClickableInformationBox
                   icon={icon}
                   description={description}
                   label={label}
@@ -67,7 +67,7 @@ const MembershipsFeatures = () => (
               className={`w-full sm:w-1/2 xl:w-1/4 ${skip ? '' : 'mb-4 sm:mb-0 sm:p-2'}`}
             >
               {!skip && (
-                <InformationBox
+                <ClickableInformationBox
                   title={name}
                   description={description}
                   clipCorner={clipCorner}

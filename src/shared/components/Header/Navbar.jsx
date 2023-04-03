@@ -4,24 +4,18 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import NavItem from 'shared/components/Header/NavbarItem';
 
-const Navbar = ({ scrolled, dark, isAuthenticated }) => {
-  const color = dark || !scrolled ? 'white' : 'purple';
-
-  return (
-    <nav className="flex gap-5 xl:gap-12">
-      <NavItem name="First Time?" link={ROUTES.HOWITWORKS} color={color} />
-      <NavItem name="Schedule" link={ROUTES.LOCATIONS} color={color} />
-      <NavItem name="Memberships / Pricing" link={ROUTES.MEMBERSHIPS} color={color} />
-      <NavItem name="Content" link={ROUTES.CONTENT} color={color} />
-      <NavItem name="My Account" link={ROUTES.MYACCOUNT} color={color} enable={isAuthenticated} />
-      <NavItem name="Log In" link={ROUTES.LOGIN} color={color} enable={!isAuthenticated} />
-    </nav>
-  );
-};
+const Navbar = ({ isAuthenticated }) => (
+  <nav className="flex gap-6 xl:gap-8 2xl:gap-10">
+    <NavItem name="Home" link={ROUTES.HOME} />
+    <NavItem name="Why Join?" link={ROUTES.WHY_JOIN} />
+    <NavItem name="Schedule" link={ROUTES.LOCATIONS} />
+    <NavItem name="Memberships" link={ROUTES.MEMBERSHIPS} />
+    <NavItem name="My Account" link={ROUTES.MYACCOUNT} enable={isAuthenticated} />
+    <NavItem name="Login" link={ROUTES.LOGIN} enable={!isAuthenticated} />
+  </nav>
+);
 
 Navbar.propTypes = {
-  scrolled: PropTypes.bool.isRequired,
-  dark: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };
 

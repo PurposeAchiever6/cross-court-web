@@ -50,7 +50,7 @@ export const MyAccountPageDesktop = ({
     </div>
     <div className="content-container">
       {userProfile.isSem || userProfile.isReferee ? (
-        <Tabs>
+        <Tabs alignLabels="around" className="mt-10">
           <div label="As ETM">
             <SessionsList title="UPCOMING SESSIONS" sessions={semUpcomingSessions} isSem />
           </div>

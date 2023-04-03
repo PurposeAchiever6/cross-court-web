@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import userSessionService from 'screens/userSessions/service';
+import userSessionService from 'screens/user-sessions/service';
 import Spinner from 'shared/components/Spinner';
 import missingProfileImg from 'shared/images/missing-profile-image.png';
 

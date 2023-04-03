@@ -14,7 +14,7 @@ export default {
   GALLERY: '/gallery',
   GOALS: '/goals',
   HOME: '/',
-  HOWITWORKS: '/how-it-works',
+  WHY_JOIN: '/why-join',
   LOCATIONS: '/locations',
   LOCATIONSFIRST: '/locations-first',
   LOGIN: '/login',

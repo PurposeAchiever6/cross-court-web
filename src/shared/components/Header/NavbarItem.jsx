@@ -1,70 +1,36 @@
 import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
-const NavbarItemLink = styled(Link)`
-  &.active {
-    pointer-events: none;
-  }
+import Link from 'shared/components/Link';
 
-  &::after {
-    display: block;
-    content: '';
-    background-color: currentColor;
-    height: 1px;
-    width: 0px;
-    margin-top: 1px;
-  }
-
-  &.active::after,
-  &:hover::after {
-    width: 100%;
-    transition: width 0.3s;
-  }
-`;
-
-const NavbarItem = ({ name, link, enable, color }) => {
+const NavbarItem = ({ name, link, enable }) => {
   const { pathname } = useLocation();
-
   const active = pathname === link;
-
-  let classes = 'text-xs 2xl:text-base uppercase transition duration-300';
-
-  if (active) classes += ' active';
-
-  switch (color) {
-    case 'purple':
-      classes += ' text-cc-purple';
-      break;
-    case 'white':
-      classes += ' text-white';
-      break;
-    default:
-      break;
-  }
 
   if (!enable) {
     return null;
   }
 
   return (
-    <NavbarItemLink to={link} className={classes}>
+    <Link
+      to={link}
+      variant="white-opacity"
+      className={`text-xs 2xl:text-sm uppercase ${active ? 'pointer-events-none opacity-50' : ''}`}
+    >
       {name}
-    </NavbarItemLink>
+    </Link>
   );
 };
 
 NavbarItem.defaultProps = {
   enable: true,
-  color: 'white',
 };
 
 NavbarItem.propTypes = {
   name: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   enable: PropTypes.bool,
-  color: PropTypes.string,
 };
 
 export default NavbarItem;

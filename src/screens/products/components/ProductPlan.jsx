@@ -109,7 +109,7 @@ const ProductPlan = ({
             icon={isDesktop ? undefined : faChevronDown}
             iconRotationDegrees={isDesktop ? undefined : 180}
           >
-            <ul className="text-xs text-left marker:text-cc-purple marker:text-sm list-outside list-disc ml-2">
+            <ul className="text-xs text-left marker:text-cc-purple marker:text-sm list-outside list-disc ml-6">
               <li>
                 {sessionsCreditsString} Credits (refill monthly). Can be used for SESSIONS or SKLZ
               </li>
