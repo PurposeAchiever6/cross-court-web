@@ -11,6 +11,7 @@ import {
   GET_PROFILE_INIT,
   GET_PROFILE_SUCCESS,
   GET_PROFILE_FAILURE,
+  SEND_MEMBERSHIP_HANDBOOK_INIT,
 } from './actionTypes';
 
 import myAccountService from './service';
@@ -61,10 +62,20 @@ export function* getUserProfileFlow() {
   }
 }
 
+export function* sendMembershipHandbookFlow(action) {
+  try {
+    yield call(myAccountService.sendMembershipHandbook, action.payload.email);
+    yield call(toast.success, 'Membership handbook sent successfully');
+  } catch (error) {
+    yield call(toast.error, 'Unexpected error. Please try again later');
+  }
+}
+
 export default function* myAccountSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
     takeLatest(EDIT_PROFILE_INIT, editProfileFlow),
     takeLatest(GET_PROFILE_INIT, getUserProfileFlow),
+    takeLatest(SEND_MEMBERSHIP_HANDBOOK_INIT, sendMembershipHandbookFlow),
   ]);
 }

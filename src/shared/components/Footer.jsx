@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFileArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import CheeseburgerMenu from 'cheeseburger-menu';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
+import { validateEmail } from 'shared/utils/helpers';
 import { openContactFormForUser } from 'shared/utils/contactForm';
+import { sendMembershipHandbook } from 'screens/my-account/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { logoutInit } from 'screens/auth/actionCreators';
@@ -17,6 +18,7 @@ import SectionLayout from 'shared/components/layout/SectionLayout';
 import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 import Link from 'shared/components/Link';
+import InputTextField from 'shared/components/InputTextField';
 
 const FOOTER_DISABLED_ROUTES = [ROUTES.DASHBOARD];
 
@@ -29,6 +31,8 @@ const Footer = () => {
   const currentUser = useSelector(getUserProfile) || {};
 
   const [contactUsOpen, setContactUsOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState(null);
 
   const instagramLink = env.REACT_APP_INSTAGRAM_LINK;
   const discordLink = env.REACT_APP_DISCORD_LINK;
@@ -36,7 +40,18 @@ const Footer = () => {
   const ccAddress = env.REACT_APP_CC_ADDRESS;
   const windowSize = document.documentElement.clientWidth;
 
-  const logoutAction = () => dispatch(logoutInit());
+  const logoutUser = () => dispatch(logoutInit());
+
+  const sendMembershipHandbookToUser = () => {
+    if (!validateEmail(email)) {
+      setEmailError('Please enter a valid email');
+    } else {
+      setEmail('');
+      setEmailError(null);
+      dispatch(sendMembershipHandbook({ email }));
+    }
+  };
+
   const tourMessage =
     'Hi Crosscourt, \n\rI would like to visit the club on [DATE] at [TIME (ANYTIME BETWEEN 8PM-10PM M-THU, 6-8PM FRI, 10AM-NOON SAT/SUN)]. \n\rPlease let me know if that works for your team. \n\rThank you';
 
@@ -79,16 +94,32 @@ const Footer = () => {
                 </div>
               </div>
               <div className="w-full">
-                <Link
-                  to="/crosscourt-member-handbook.pdf"
-                  variant="white-opacity"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block sm:w-max font-shapiro95_super_wide text-2xl mb-6"
-                >
+                <h4 className="font-shapiro95_super_wide text-2xl mb-2">
                   Download Member Handbook
-                  <FontAwesomeIcon icon={faFileArrowDown} className="text-2xl ml-3" />
-                </Link>
+                </h4>
+                <p className="text-sm mb-2">
+                  Enter your email to receive an inside look at our Member Handbook.
+                </p>
+                <InputTextField
+                  name="email"
+                  variant="expanded"
+                  placeholder="Your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  formik={false}
+                  error={emailError}
+                  dark
+                  rightIcon
+                  icon={
+                    <span
+                      onClick={sendMembershipHandbookToUser}
+                      className="text-cc-purple hover:text-cc-purple/75 cursor-pointer"
+                    >
+                      Submit
+                    </span>
+                  }
+                  className="mb-6"
+                />
                 <div className="md:flex w-full text-sm">
                   <div className="w-full mb-8 md:mb-0">
                     <Link to={ROUTES.HOME} variant="white-opacity" className="block w-max mb-3">
@@ -107,7 +138,7 @@ const Footer = () => {
                     {isAuthenticated ? (
                       <Link
                         variant="white-opacity"
-                        onClick={() => logoutAction()}
+                        onClick={() => logoutUser()}
                         className="block w-max"
                       >
                         Logout
