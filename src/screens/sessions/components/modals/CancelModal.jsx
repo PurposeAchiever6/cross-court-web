@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
+
 import PropTypes from 'prop-types';
 
 import { pluralize } from 'shared/utils/helpers';
@@ -13,7 +13,6 @@ export const CancelModal = ({
   sessionInfo,
   unlimitedCredits,
 }) => {
-  const env = runtimeEnv();
   const [disableBtn, setDisableBtn] = useState(false);
 
   const inCancellationTime = sessionInfo?.userSession?.inCancellationTime;
@@ -52,7 +51,7 @@ export const CancelModal = ({
       return 'You will not be charged for the shooting machine(s) rental';
     }
 
-    const lateCancelFee = env.REACT_APP_CANCELED_OUT_OF_TIME_PRICE;
+    const lateCancelFee = import.meta.env.VITE_CANCELED_OUT_OF_TIME_PRICE;
     const hasLateCancelFee = Number(lateCancelFee);
 
     if (unlimitedCredits) {
@@ -79,7 +78,9 @@ export const CancelModal = ({
 
     if (isFreeSession) {
       return `Your free session credit will remain in your account, but we do charge a \
-                $${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} late cancellation fee`;
+                $${
+                  import.meta.env.VITE_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE
+                } late cancellation fee`;
     }
 
     if (costCredits === 0) {

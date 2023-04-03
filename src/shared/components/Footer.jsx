@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import CheeseburgerMenu from 'cheeseburger-menu';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import { validateEmail } from 'shared/utils/helpers';
@@ -23,7 +22,6 @@ import InputTextField from 'shared/components/InputTextField';
 const FOOTER_DISABLED_ROUTES = [ROUTES.DASHBOARD];
 
 const Footer = () => {
-  const env = runtimeEnv();
   const dispatch = useDispatch();
   const { pathname } = useLocation();
 
@@ -34,10 +32,10 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState(null);
 
-  const instagramLink = env.REACT_APP_INSTAGRAM_LINK;
-  const discordLink = env.REACT_APP_DISCORD_LINK;
-  const ccEmail = env.REACT_APP_CC_EMAIL;
-  const ccAddress = env.REACT_APP_CC_ADDRESS;
+  const instagramLink = import.meta.env.VITE_INSTAGRAM_LINK;
+  const discordLink = import.meta.env.VITE_DISCORD_LINK;
+  const ccEmail = import.meta.env.VITE_CC_EMAIL;
+  const ccAddress = import.meta.env.VITE_CC_ADDRESS;
   const windowSize = document.documentElement.clientWidth;
 
   const logoutUser = () => dispatch(logoutInit());

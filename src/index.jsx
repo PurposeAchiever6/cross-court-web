@@ -1,7 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import ReactGA from 'react-ga';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import App from 'shell/Root';
 import * as serviceWorker from './serviceWorker';
@@ -9,7 +8,6 @@ import * as serviceWorker from './serviceWorker';
 import './assets/main.css';
 import 'shared/utils/eventListeners';
 import 'shared/styles/fonts.css';
-import 'shared/styles/bootstrap.scss';
 import 'shared/styles/index.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -18,8 +16,7 @@ import 'external-tools/hotjar';
 import 'external-tools/activeCampaign';
 import 'external-tools/activeCampaignModal';
 
-const env = runtimeEnv();
-const GOOGLE_ANALYTICS_CODE = env.REACT_APP_GOOGLE_ANALYTICS_CODE;
+const GOOGLE_ANALYTICS_CODE = import.meta.env.VITE_GOOGLE_ANALYTICS_CODE;
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 

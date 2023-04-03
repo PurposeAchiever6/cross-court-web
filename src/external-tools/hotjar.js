@@ -1,11 +1,8 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable func-names */
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
-const env = runtimeEnv();
-
-if (env.REACT_APP_HOTJAR_ENABLED === 'true') {
+if (import.meta.env.VITE_HOTJAR_ENABLED === 'true') {
   (function (h, o, t, j, a, r) {
     h.hj =
       h.hj ||

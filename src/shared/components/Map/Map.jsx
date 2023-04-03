@@ -1,7 +1,7 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
 import PropTypes from 'prop-types';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
+
 import MapMarker from './MapMarker';
 import styles from './styles';
 
@@ -45,8 +45,7 @@ const apiIsLoaded = (map, maps, locations) => {
   }
 };
 
-const env = runtimeEnv();
-const GOOGLE_MAPS_API_KEY = env.REACT_APP_GOOGLE_MAPS_API_KEY;
+const GOOGLE_MAPS_API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
 const Map = ({ locations, selectedLocation, setLocationHandler, showLocationInfo }) => (
   <div className="w-full h-full">

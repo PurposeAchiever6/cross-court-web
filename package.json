@@ -7,15 +7,14 @@
   },
   "scripts": {
     "heroku-prebuild": "npm install -g serve",
-    "build": "npm run tailwind:build && react-scripts build",
+    "serve": "vite preview",
+    "build": "npm run tailwind:build && vite build",
     "commit": "git-cz",
-    "eject": "react-scripts eject",
     "format": "prettier --write '{src,__{tests,mocks}__}/**/*.{js,jsx,json,scss}'",
     "lint": "npm-run-all lint:code",
     "lint:code": "eslint -c .eslintrc src --color",
     "lint:fix": "eslint --fix src",
-    "start": "concurrently \"yarn run tailwind:watch\" \"GENERATE_SOURCEMAP=false react-scripts start\"",
-    "test": "react-scripts test",
+    "start": "concurrently \"yarn run tailwind:watch\" \"GENERATE_SOURCEMAP=false vite\"",
     "tailwind:build": "npx tailwind build -i ./src/assets/tailwind.css -o ./src/assets/main.css",
     "tailwind:watch": "npx tailwindcss -i ./src/assets/tailwind.css -o ./src/assets/main.css --watch"
   },
@@ -51,12 +50,10 @@
     "@fortawesome/free-brands-svg-icons": "^5.13.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.1.11",
-    "@mars/heroku-js-runtime-env": "^3.0.2",
     "@react-hook/window-scroll": "^1.3.0",
     "add-to-calendar-button": "1.18.8",
     "autoprefixer": "^10.4.11",
     "axios": "^0.19.0",
-    "bootstrap": "^4.5.0",
     "cheeseburger-menu": "^0.0.13",
     "connected-react-router": "^6.8.0",
     "currency.js": "^1.2.2",
@@ -88,7 +85,6 @@
     "react-redux": "^7.2.0",
     "react-responsive-carousel": "^3.2.11",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^5.0.1",
     "react-select": "^3.1.0",
     "react-share": "^4.2.1",
     "react-spinners": "^0.6.1",
@@ -109,6 +105,7 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^3.1.0",
     "commitizen": "^3.1.1",
     "concurrently": "^7.4.0",
     "cz-conventional-changelog": "^2.1.0",
@@ -123,6 +120,7 @@
     "husky": "^2.4.0",
     "lint-staged": "^8.2.0",
     "npm-run-all": "4.1.3",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "vite": "^4.2.1"
   }
 }

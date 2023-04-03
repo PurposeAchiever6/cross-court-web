@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
+
 import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
@@ -37,7 +37,8 @@ const ReserveButton = ({
   createAndReserveFreeSessionHandler,
   disabled,
 }) => {
-  const env = runtimeEnv();
+  const SESSION_CANCELED_OUT_OF_TIME_PRICE = import.meta.env
+    .VITE_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE;
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -196,7 +197,7 @@ const ReserveButton = ({
                 element: '#session-confirm-reservation',
                 intro: `You’re s’close. Press <strong>CONFIRM RESERVATION</strong> to hold your spot. ${
                   isFirstFreeSessionFlow
-                    ? `First you'll need to enter your payment info and then you'll be ready to book your first session! Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${env.REACT_APP_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`
+                    ? `First you'll need to enter your payment info and then you'll be ready to book your first session! Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`
                     : `${
                         userProfile.totalCredits === 0
                           ? 'Due to your location, you are not eligible for a free trial session, but because is your first time, you can buy a session at a discounted price.'

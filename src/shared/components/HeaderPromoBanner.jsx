@@ -1,5 +1,5 @@
 import React from 'react';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
+
 import PropTypes from 'prop-types';
 
 import PageLayout from 'shared/components/layout/PageLayout';
@@ -9,9 +9,8 @@ import roughDarkBgImg from 'shared/images/backgrounds/rough-dark.jpeg';
 import CrossSvg from 'shared/components/svg/CrossSvg';
 
 const HeaderPromoBanner = ({ onClose }) => {
-  const env = runtimeEnv();
-  const promoCode = env.REACT_APP_FIRST_TIMER_PROMO_CODE;
-  const percentageDiscount = env.REACT_APP_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT;
+  const promoCode = import.meta.env.VITE_FIRST_TIMER_PROMO_CODE;
+  const percentageDiscount = import.meta.env.VITE_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT;
 
   return (
     <PageLayout noPadding>
