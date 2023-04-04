@@ -6,7 +6,6 @@
     "node": "14.x"
   },
   "scripts": {
-    "heroku-prebuild": "npm install -g serve",
     "serve": "vite preview",
     "build": "npm run tailwind:build && vite build",
     "commit": "git-cz",
