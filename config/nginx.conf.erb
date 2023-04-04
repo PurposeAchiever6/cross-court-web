@@ -35,7 +35,7 @@ http {
 		listen <%= ENV["PORT"] %>;
 		server_name _;
 		keepalive_timeout 5;
-    root /app/dist;
+    root /app/build;
 
     location = /index.html {
       add_header Cache-Control "no-store, no-cache";
