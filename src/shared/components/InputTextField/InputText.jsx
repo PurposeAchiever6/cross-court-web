@@ -6,8 +6,8 @@ import Label from 'shared/components/Label';
 
 const InputTextContainer = styled.div`
   input {
-    padding-left: ${(props) => (props.leftIconWidth ? `${props.leftIconWidth}px` : '0.5rem')};
-    padding-right: ${(props) => (props.rightIconWidth ? `${props.rightIconWidth}px` : '0.5rem')};
+    padding-left: ${(props) => (props.leftIconWidth ? `${props.leftIconWidth}px` : '')};
+    padding-right: ${(props) => (props.rightIconWidth ? `${props.rightIconWidth}px` : '')};
   }
 `;
 
@@ -21,6 +21,7 @@ function InputText({
   icon,
   leftIcon,
   rightIcon,
+  dark,
   variant,
   className,
   ...props
@@ -29,19 +30,36 @@ function InputText({
   const [rightIconWidth, setRightIconWidth] = useState(null);
 
   useEffect(() => {
-    const leftIconWidth = document.getElementById('left-icon')?.offsetWidth;
-    const rightIconWidth = document.getElementById('right-icon')?.offsetWidth;
+    setTimeout(() => {
+      const leftIconWidth = document.getElementById('left-icon')?.offsetWidth;
+      const rightIconWidth = document.getElementById('right-icon')?.offsetWidth;
 
-    if (leftIconWidth) setLeftIconWidth(leftIconWidth + 30);
-    if (rightIconWidth) setRightIconWidth(rightIconWidth + 30);
+      if (leftIconWidth) {
+        setLeftIconWidth(leftIconWidth + 30);
+      }
+      if (rightIconWidth) {
+        setRightIconWidth(rightIconWidth + 30);
+      }
+    }, 100);
   }, []);
+
+  const darkClasses = (() => {
+    if (dark) {
+      return 'text-cream bg-cc-blue-500 border border-cc-blue-500 focus:border-cream/10';
+    }
+
+    return 'text-cc-black bg-cream border border-cc-black/50 focus:border-cc-black/100';
+  })();
 
   const inputClasses = (() => {
     switch (variant) {
       case 'shrink':
-        return 'py-1';
+        return 'px-2 py-1';
+      case 'expanded':
+        return 'px-4 py-5';
+      case 'normal':
       default:
-        return 'py-2 md:py-3';
+        return 'px-2 py-2 md:py-3';
     }
   })();
 
@@ -67,7 +85,7 @@ function InputText({
             </div>
           )}
           <input
-            className={`w-full font-shapiro45_welter_extd text-cc-black text-opacity-70 focus:text-opacity-100 bg-cream border border-cc-black/50 focus:border-cc-black/100 ${inputClasses}`}
+            className={`w-full font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 ${darkClasses} ${inputClasses}`}
             autoComplete="off"
             name={name}
             disabled={disabled}
@@ -110,7 +128,8 @@ InputText.defaultProps = {
   disabled: false,
   leftIcon: false,
   rightIcon: false,
-  variant: null,
+  dark: false,
+  variant: 'normal',
   className: '',
 };
 
@@ -124,6 +143,7 @@ InputText.propTypes = {
   icon: PropTypes.shape(),
   leftIcon: PropTypes.bool,
   rightIcon: PropTypes.bool,
+  dark: PropTypes.bool,
   variant: PropTypes.string,
   className: PropTypes.string,
 };

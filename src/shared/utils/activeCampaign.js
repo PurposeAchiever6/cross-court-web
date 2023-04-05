@@ -1,10 +1,7 @@
-import runtimeEnv from '@mars/heroku-js-runtime-env';
-
 import ROUTES from 'shared/constants/routes';
 import activeCampaignService from 'shared/services/activeCampaign';
 
-const env = runtimeEnv();
-const APP_URL = env.REACT_APP_URL;
+const APP_URL = import.meta.env.VITE_URL;
 
 const HIDE_CHATS_FOR_PATHS = [ROUTES.DASHBOARD];
 const STARTED_CHECKOUT_EVENT = 'Started Checkout';

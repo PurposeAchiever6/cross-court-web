@@ -19,4 +19,10 @@ export default {
     });
     return response.data.user;
   },
+  sendMembershipHandbook: async (email) => {
+    const response = await api.post(`user/send_membership_handbook`, {
+      email,
+    });
+    return response.data;
+  },
 };

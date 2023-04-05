@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
+
 import styled from 'styled-components';
 
 import VideoPlayer from 'shared/components/VideoPlayer';
@@ -28,8 +28,7 @@ const Section = styled.section`
 `;
 
 const TheSessionOfficial = () => {
-  const env = runtimeEnv();
-  const SO_LINK = env.REACT_APP_SO_APPLICANT_LINK;
+  const SO_LINK = import.meta.env.VITE_SO_APPLICANT_LINK;
 
   const [showModal, setShowModal] = useState(false);
 

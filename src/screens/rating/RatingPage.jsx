@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
+
 import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
@@ -70,13 +70,12 @@ const RATINGS = [
 ];
 
 const RatingPage = () => {
-  const env = runtimeEnv();
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
 
-  const SKILL_RATINGS_FOR_REVIEW = env.REACT_APP_SKILL_RATINGS_FOR_REVIEW;
-  const SKILL_RATINGS_FOR_REVIEW_ON_EDIT = env.REACT_APP_SKILL_RATINGS_FOR_REVIEW_ON_EDIT;
+  const SKILL_RATINGS_FOR_REVIEW = import.meta.env.VITE_SKILL_RATINGS_FOR_REVIEW;
+  const SKILL_RATINGS_FOR_REVIEW_ON_EDIT = import.meta.env.VITE_SKILL_RATINGS_FOR_REVIEW_ON_EDIT;
 
   const skillRatingsForReview = SKILL_RATINGS_FOR_REVIEW ? SKILL_RATINGS_FOR_REVIEW.split(',') : [];
   const skillRatingsForReviewOnEdit = SKILL_RATINGS_FOR_REVIEW_ON_EDIT

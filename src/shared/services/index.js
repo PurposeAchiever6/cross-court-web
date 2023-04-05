@@ -1,11 +1,9 @@
 import axios from 'axios';
 import humps from 'humps';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import AuthUtils from 'shared/utils/auth';
 
-const env = runtimeEnv();
-const API_URL = env.REACT_APP_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 const ServiceInstance = axios.create({
   baseURL: API_URL,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
+
 import styled from 'styled-components';
 
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -30,8 +30,7 @@ const Section = styled.section`
 `;
 
 const SessionExperienceManager = () => {
-  const env = runtimeEnv();
-  const SEM_LINK = env.REACT_APP_SEM_APPLICANT_LINK;
+  const SEM_LINK = import.meta.env.VITE_SEM_APPLICANT_LINK;
   const currentUser = useSelector(getUserProfile) || {};
 
   return (

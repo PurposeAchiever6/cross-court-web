@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import SportCharacter from 'shared/images/sport-character.png';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
@@ -15,8 +14,7 @@ const SessionConfirmed = () => {
   const sessionDate = useSelector(getSessionDate);
   const [copied, setCopied] = useState(false);
 
-  const env = runtimeEnv();
-  const APP_URL = env.REACT_APP_URL;
+  const APP_URL = import.meta.env.VITE_URL;
   const SHARE_URL = `${APP_URL}/session/${sessionId}/${sessionDate}`;
   return (
     <div className="session-confirmed">

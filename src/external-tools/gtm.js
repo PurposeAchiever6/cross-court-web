@@ -1,9 +1,6 @@
 /* eslint-disable func-names */
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
-const env = runtimeEnv();
-
-if (env.REACT_APP_GTM_ENABLED === 'true') {
+if (import.meta.env.VITE_GTM_ENABLED === 'true') {
   (function (w, d, s, l, i) {
     w[l] = w[l] || [];
     w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -13,5 +10,5 @@ if (env.REACT_APP_GTM_ENABLED === 'true') {
     j.async = true;
     j.src = `https://www.googletagmanager.com/gtm.js?id=${i}${dl}`;
     f.parentNode.insertBefore(j, f);
-  })(window, document, 'script', 'dataLayer', env.REACT_APP_GTM_ID);
+  })(window, document, 'script', 'dataLayer', import.meta.env.VITE_GTM_ID);
 }

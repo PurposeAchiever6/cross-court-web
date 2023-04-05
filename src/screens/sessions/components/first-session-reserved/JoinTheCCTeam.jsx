@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 import ROUTES from 'shared/constants/routes';
 import theSessionOfficialBgImg from 'screens/sessions/images/first-session-reserved/join-the-cc-team-bg-image.jpeg';
@@ -9,10 +8,8 @@ import SectionLayout from 'shared/components/layout/SectionLayout';
 import Button from 'shared/components/Button';
 
 const JoinTheCCTeam = () => {
-  const env = runtimeEnv();
-
-  const promoCode = env.REACT_APP_FIRST_TIMER_PROMO_CODE;
-  const percentageDiscount = env.REACT_APP_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT;
+  const promoCode = import.meta.env.VITE_FIRST_TIMER_PROMO_CODE;
+  const percentageDiscount = import.meta.env.VITE_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT;
 
   return (
     <SectionLayout
