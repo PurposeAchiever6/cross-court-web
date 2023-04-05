@@ -3,25 +3,26 @@ import React from 'react';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
 
-import ReadyImg from 'screens/why-join/images/ready.png';
+import ReadyImg from 'screens/why-join/images/ready.jpg';
 import Button from 'shared/components/Button';
 import ROUTES from 'shared/constants/routes';
 import Link from 'shared/components/Link';
 
 const Ready = () => (
   <SectionLayout className="mt-8 md:mt-20 border-t-2 border-b-2 border-cc-purple pt-8 md:pt-24">
-    <div className="md:flex md:items-center">
+    <div className="md:flex md:gap-10 md:items-center">
       <ExpandedLayout
-        className="md:w-full"
+        className="md:w-1/2"
         mdBreakpoint={false}
         lgBreakpoint={false}
         xlBreakpoint={false}
       >
-        <img className="md:mr-28" src={ReadyImg} alt="Ready" loading="lazy" />
+        <img src={ReadyImg} alt="Ready" loading="lazy" />
       </ExpandedLayout>
-      <div className="md:w-full">
+      <div className="md:w-1/2">
         <h2 className="font-shapiro95_super_wide text-3xl md:text-5xl mt-3 md:mt-0">
-          Connect. <br className="md:hidden" /> Create. <br />
+          Connect. <br />
+          Create. <br />
           Compete.
         </h2>
         <h4 className="font-shapiro95_super_wide mt-4">Ready to join?</h4>
