@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { isEmpty } from 'ramda';
 import Loading from 'shared/components/Loading';
-import MyAcccountPageDesktop from './MyAccountPageDesktop';
-import MyAcccountPageMobile from './MyAccountPageMobile';
+import PageLayout from 'shared/components/layout/PageLayout';
+
+import MyProfile from './components/MyProfile';
 import { initialLoadInit } from './actionCreators';
 import {
   getPageLoading,
@@ -12,6 +13,8 @@ import {
   getUpcomingSessions,
   getSemUpcomingSessions,
 } from './reducer';
+import MySessions from './components/MySessions';
+import MyInfo from './components/MyInfo';
 
 export const MyAccountPage = () => {
   const dispatch = useDispatch();
@@ -31,20 +34,16 @@ export const MyAccountPage = () => {
   }
 
   return (
-    <>
-      <MyAcccountPageMobile
-        userProfile={userProfile}
+    <PageLayout>
+      <MyProfile profile={userProfile} />
+      <MySessions
+        profile={userProfile}
         previousSessions={previousSessions}
         upcomingSessions={upcomingSessions}
         semUpcomingSessions={semUpcomingSessions}
       />
-      <MyAcccountPageDesktop
-        userProfile={userProfile}
-        previousSessions={previousSessions}
-        upcomingSessions={upcomingSessions}
-        semUpcomingSessions={semUpcomingSessions}
-      />
-    </>
+      <MyInfo profile={userProfile} />
+    </PageLayout>
   );
 };
 

@@ -8,7 +8,7 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
 export default defineConfig(() => ({
-  server: { port: 3000 },
+  server: { port: 3000, open: true },
   plugins: [viteCommonjs(), react()],
   build: {
     outDir: 'build',
