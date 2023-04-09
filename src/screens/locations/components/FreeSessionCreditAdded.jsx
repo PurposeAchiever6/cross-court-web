@@ -1,20 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-import colors from 'shared/styles/constants';
-
-const FreeSessionCreditAddedContainer = styled.div`
-  background: linear-gradient(
-    0deg,
-    white 0%,
-    rgba(91, 91, 91, 0.25) 5%,
-    rgba(65, 65, 65, 0.5) 15%,
-    rgb(39, 39, 39, 0.75) 25%,
-    ${colors.brandBlack} 50%
-  );
-  height: 200vh;
-`;
 
 const FreeSessionCreditAdded = ({ onFinishAnimation }) => {
   const [animationEnabled, setAnimationEnabled] = useState(true);
@@ -112,7 +97,7 @@ const FreeSessionCreditAdded = ({ onFinishAnimation }) => {
   }
 
   return (
-    <FreeSessionCreditAddedContainer className="free-session-credit-added relative text-white">
+    <div className="free-session-credit-added relative text-white h-[200vh] bg-gradient-to-b from-black via-cc-black to-black">
       <div className="animate-fade fixed inset-x-0 top-1/2 transform -translate-y-1/2 text-center text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-none px-5">
         <div className={`title whitespace-pre-wrap sm:whitespace-normal ${animationClass}`}>
           <div className="font-shapiro95_super_wide tracking-wide md:pl-2 mb-1">
@@ -127,7 +112,7 @@ const FreeSessionCreditAdded = ({ onFinishAnimation }) => {
           <div className="font-shapiro95_super_wide text-xs md:text-lg">SCROLL TO BOOK SESSION</div>
         </div>
       </div>
-    </FreeSessionCreditAddedContainer>
+    </div>
   );
 };
 

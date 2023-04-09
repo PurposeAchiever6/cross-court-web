@@ -1,61 +1,64 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+import { formatSessionDate } from 'shared/utils/date';
 import userSessionService from 'screens/user-sessions/service';
 import Spinner from 'shared/components/Spinner';
-import missingProfileImg from 'shared/images/missing-profile-image.png';
+import Avatar from 'shared/components/Avatar';
 
-const SessionRoster = ({ sessionId, date, className }) => {
-  const [loading, setLoading] = useState(false);
+const SessionRoster = ({ session, className }) => {
+  const [loadingUserSessions, setLoadingUserSessions] = useState(false);
   const [userSessions, setUserSessions] = useState([]);
+
+  const { id, startTime } = session;
+  const date = formatSessionDate(startTime);
 
   useEffect(() => {
     const fetchUserSessions = async () => {
-      setLoading(true);
+      setLoadingUserSessions(true);
 
-      const userSessions = await userSessionService.getUserSessionList(sessionId, {
+      const userSessions = await userSessionService.getUserSessionList(id, {
         date: new Date(date).toLocaleDateString('en-US'),
       });
 
       setUserSessions(userSessions);
-      setLoading(false);
+      setLoadingUserSessions(false);
     };
 
-    if (sessionId) {
+    if (id) {
       fetchUserSessions();
     }
-  }, [sessionId, date]);
+  }, [id, date]);
 
-  if (loading) {
+  if (loadingUserSessions) {
     return (
-      <div className="flex items-center text-sm mt-2">
-        <p className="mr-2">Loading</p>
-        <Spinner />
+      <div className={className}>
+        <div className="flex justify-center items-center text-sm">
+          <span className="mr-2">Loading</span>
+          <Spinner />
+        </div>
       </div>
     );
   }
 
-  if (!loading && userSessions.length === 0) {
-    return <div className="text-sm mt-2">No reservations yet</div>;
-  }
-
   return (
     <div className={className}>
-      {userSessions.map(({ user, goal }, index) => (
-        <div className="flex items-center mb-2" key={user.id}>
-          <span className="font-shapiro95_super_wide w-6 text-right inline-block mr-3">
-            {index + 1}
-          </span>
-          <img
-            className="w-6 h-6 object-cover rounded-full mr-2"
-            src={user.imageUrl ? user.imageUrl : missingProfileImg}
-            alt="profile-img"
-          />
-          <div>
-            <span className="capitalize">{`${user.firstName} ${user.lastName}`}</span>
-            {goal && <span className="ml-2 text-sm">({goal})</span>}
-          </div>
-        </div>
-      ))}
+      <div className="flex md:flex-wrap justify-center gap-2 overflow-y-auto md:overflow-y-visible">
+        {userSessions.length === 0 ? (
+          <div className="text-xs md:text-sm">No reservations yet</div>
+        ) : (
+          userSessions.map(({ isFirstSession, user, goal }) => (
+            <Avatar
+              key={user.id}
+              img={user.imageUrl}
+              size="sm"
+              badge={isFirstSession ? 'New' : null}
+              tooltip={`${user.firstName} ${user.lastName} ${goal ? `(${goal})` : ''}`}
+              className="shrink-0"
+            />
+          ))
+        )}
+      </div>
     </div>
   );
 };
@@ -65,8 +68,7 @@ SessionRoster.defaultProps = {
 };
 
 SessionRoster.propTypes = {
-  sessionId: PropTypes.number.isRequired,
-  date: PropTypes.string.isRequired,
+  session: PropTypes.shape().isRequired,
   className: PropTypes.string,
 };
 

@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Modal from 'shared/components/Modal';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
+import Link from 'shared/components/Link';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
 import { confirmSkillSession } from 'shared/utils/skillSessionsConfirmations';
 import VideoPlayer from 'shared/components/VideoPlayer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 
 const SkillSessionReservationModal = ({ isOpen, closeHandler, onConfirm, userProfile }) => {
+  const isAuthenticated = useSelector(getIsAuthenticated);
+
   const [dontShowModalAgain, setDontShowModalAgain] = useState(false);
   const [watchVideo, setWatchVideo] = useState(false);
-  const isAuthenticated = useSelector(getIsAuthenticated);
 
   const handleClick = () => {
     if (dontShowModalAgain) {
@@ -26,28 +28,22 @@ const SkillSessionReservationModal = ({ isOpen, closeHandler, onConfirm, userPro
     <>
       <Modal isOpen={isOpen} closeHandler={closeHandler} title="SKLZ Session" size="sm">
         <div className="mb-8">
-          <p>Please notice you are booking a SKLZ session.</p>
-          <p
-            onClick={() => setWatchVideo(true)}
-            className="mt-2 mb-5 hover:underline cursor-pointer"
-          >
-            See video
-          </p>
+          <p className="mb-4">Please notice you are booking a SKLZ session.</p>
+          <Link onClick={() => setWatchVideo(true)}>See video</Link>
           {isAuthenticated && (
             <InputCheckboxField
               name="confirmSkillSessionReservation"
               onChange={() => setDontShowModalAgain(!dontShowModalAgain)}
               value={dontShowModalAgain}
               formik={false}
+              className="mt-4"
             >
               Don't show me this again
             </InputCheckboxField>
           )}
         </div>
         <div className="text-center">
-          <PrimaryButton inverted onClick={handleClick}>
-            I understand
-          </PrimaryButton>
+          <Button onClick={handleClick}>I understand</Button>
         </div>
       </Modal>
       <VideoPlayer

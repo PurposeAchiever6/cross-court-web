@@ -26,6 +26,8 @@ import {
   JOIN_SESSION_WAITLIST_INIT,
   JOIN_SESSION_WAITLIST_SUCCESS,
   JOIN_SESSION_WAITLIST_FAILURE,
+  SHOW_WAITLIST_MODAL,
+  CLOSE_WAITLIST_MODAL,
   REMOVE_SESSION_WAITLIST_INIT,
   REMOVE_SESSION_WAITLIST_SUCCESS,
   REMOVE_SESSION_WAITLIST_FAILURE,
@@ -136,17 +138,23 @@ export function* confirmSessionFlow({ payload }) {
 
 export function* joinSessionWaitlistFlow({ payload }) {
   try {
-    const sessionWaitlist = yield call(
+    const response = yield call(
       sessionService.joinSessionWaitlist,
       payload.sessionId,
       payload.sessionDate
     );
     yield put({
       type: JOIN_SESSION_WAITLIST_SUCCESS,
-      payload: { sessionWaitlist, sessionId: payload.sessionId },
+      payload: {
+        sessionId: payload.sessionId,
+        sessionDate: payload.sessionDate,
+        waitlistPlacement: response.waitlistPlacement,
+      },
     });
-    yield put(push(ROUTES.SESSIONJOINWAITLIST));
-    yield call(toast.success, 'You have been added to the waitlist');
+    yield put({
+      type: SHOW_WAITLIST_MODAL,
+      payload: { sessionId: payload.sessionId },
+    });
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({
@@ -164,6 +172,7 @@ export function* removeSessionWaitlistFlow({ payload }) {
       type: REMOVE_SESSION_WAITLIST_SUCCESS,
       payload: { sessionId: payload.sessionId, sessionDate: payload.sessionDate },
     });
+    yield put({ type: CLOSE_WAITLIST_MODAL });
     yield call(toast.success, 'You have been removed from the waitlist successfully');
   } catch (err) {
     const errorMessage = err.response.data.error;
@@ -197,6 +206,7 @@ export function* voteSessionFlow({ payload }) {
       type: VOTE_SESSION_SUCCESS,
       payload: { sessionId: payload.sessionId, sessionDate: payload.sessionDate },
     });
+    yield call(toast.success, 'Session voted successfully');
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);
@@ -211,6 +221,7 @@ export function* removeVoteSessionFlow({ payload }) {
       type: REMOVE_VOTE_SESSION_SUCCESS,
       payload: { sessionId: payload.sessionId, sessionDate: payload.sessionDate },
     });
+    yield call(toast.success, 'Session vote removed successfully');
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);

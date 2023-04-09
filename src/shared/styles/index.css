@@ -122,6 +122,8 @@ body .mobile-hide-inline {
 
 /* MAIN */
 body[data-page='home'] main,
+body[data-page='locations'] main,
+body[data-page='locations-first'] main,
 body[data-page='why-join'] main,
 body[data-page='free-session-credit-added'] main,
 body[data-page='no-session-credits'] main,

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import Tooltip from 'shared/components/Tooltip';
 import ROUTES from 'shared/constants/routes';
 import { formatPhoneNumber } from 'shared/utils/helpers';
-import missingProfileImg from 'shared/images/missing-profile-image.png';
+import missingProfileImg from 'shared/images/missing-profile-image.jpg';
 import EditSvg from 'shared/components/svg/EditSvg';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import ToggleButton from 'shared/components/ToggleButton';

@@ -60,10 +60,16 @@ export const timeRange24 = (time, durationInMinutes = 60) => {
   return [startTimeHour, endTimeHour];
 };
 
-export const weekRangeTitle = (date) =>
-  ` WEEK ${startOfWeek(date).format(FORMAT_MONTH)} ${startOfWeek(date).date()} - ${endOfWeek(
-    date
-  ).format(FORMAT_MONTH)} ${endOfWeek(date).date()}`;
+export const weekRangeTitle = (date) => {
+  const startMonth = startOfWeek(date).format(FORMAT_MONTH);
+  const endMonth = endOfWeek(date).format(FORMAT_MONTH);
+
+  if (startMonth !== endMonth) {
+    return `${startMonth} ${startOfWeek(date).date()} - ${endMonth} ${endOfWeek(date).date()}`;
+  }
+
+  return `${startMonth} ${startOfWeek(date).date()} - ${endOfWeek(date).date()}`;
+};
 
 export const paymentFormattedDate = (date) => getUTCDate(date).format(FORMAT_DATE_MM_DD_YY);
 
@@ -107,6 +113,8 @@ export const sortSessionsByDate = (sessions) =>
   sort((a, b) => (dayjs(new Date(a.time)).isAfter(dayjs(new Date(b.time))) ? 1 : -1), sessions);
 
 export const formatSessionTime = (time) => getUTCDate(time).format(FORMAT_HOUR);
+export const formatSessionEndTime = (time, durationInMinutes) =>
+  getUTCDate(time).add(durationInMinutes, 'minutes').format(FORMAT_HOUR);
 export const formatSessionDate = (time) => getUTCDate(time).format(FORMAT_DATE_MM_DD_YY);
 
 export const formatShareSessionDate = (date) => getUTCDate(date).format(FORMAT_SHARE_SESSION_DATE);

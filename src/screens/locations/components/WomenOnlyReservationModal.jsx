@@ -6,27 +6,27 @@ import Modal from 'shared/components/Modal';
 import Button from 'shared/components/Button';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
 import { getIsAuthenticated } from 'screens/auth/reducer';
-import { confirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
+import { confirmWomenOnlySessions } from 'shared/utils/womenOnlySessionsConfirmations';
 
-const OutsideOfSkillLevelModal = ({ isOpen, closeHandler, onConfirm, level, userProfile }) => {
+const WomenOnlyReservationModal = ({ isOpen, closeHandler, onConfirm, userProfile }) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const [dontShowModalAgain, setDontShowModalAgain] = useState(false);
 
   const handleClick = () => {
     if (dontShowModalAgain) {
-      confirmOutsideOfSkillLevelSession(userProfile);
+      confirmWomenOnlySessions(userProfile);
     }
 
     onConfirm();
   };
 
   return (
-    <Modal isOpen={isOpen} closeHandler={closeHandler} title={`${level} session`} size="sm">
+    <Modal isOpen={isOpen} closeHandler={closeHandler} title="Women Session" size="sm">
       <div className="mb-8">
-        <p>This session is for {level.toLowerCase()} players.</p>
+        <p>Please notice you are booking a women only session.</p>
         {isAuthenticated && (
           <InputCheckboxField
-            name="confirmOutsideSkillLevel"
+            name="confirmWomenOnly"
             onChange={() => setDontShowModalAgain(!dontShowModalAgain)}
             value={dontShowModalAgain}
             formik={false}
@@ -43,16 +43,11 @@ const OutsideOfSkillLevelModal = ({ isOpen, closeHandler, onConfirm, level, user
   );
 };
 
-OutsideOfSkillLevelModal.defaultProps = {
-  level: '',
-};
-
-OutsideOfSkillLevelModal.propTypes = {
+WomenOnlyReservationModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
-  level: PropTypes.string,
 };
 
-export default OutsideOfSkillLevelModal;
+export default WomenOnlyReservationModal;

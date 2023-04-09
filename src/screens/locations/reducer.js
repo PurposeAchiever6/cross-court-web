@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 
 import { isSameDay } from 'shared/utils/date';
 import {
+  JOIN_SESSION_WAITLIST_SUCCESS,
   REMOVE_SESSION_WAITLIST_SUCCESS,
   VOTE_SESSION_SUCCESS,
   REMOVE_VOTE_SESSION_SUCCESS,
@@ -68,13 +69,23 @@ export default (state = initialState, action) => {
       return { ...state, selectedDate: action.payload.date, sessionsLoading: true };
     case SET_SELECTED_DATE:
       return { ...state, selectedDate: action.payload.date };
+    case JOIN_SESSION_WAITLIST_SUCCESS:
+      return {
+        ...state,
+        availableSessions: state.availableSessions.map((session) =>
+          session.id === action.payload.sessionId &&
+          isSameDay(session.startTime, action.payload.sessionDate)
+            ? { ...session, onWaitlist: true, waitlistPlacement: action.payload.waitlistPlacement }
+            : session
+        ),
+      };
     case REMOVE_SESSION_WAITLIST_SUCCESS:
       return {
         ...state,
         availableSessions: state.availableSessions.map((session) =>
           session.id === action.payload.sessionId &&
           isSameDay(session.startTime, action.payload.sessionDate)
-            ? { ...session, onWaitlist: false }
+            ? { ...session, onWaitlist: false, waitlistPlacement: null }
             : session
         ),
       };

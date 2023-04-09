@@ -28,6 +28,22 @@ export const capitalize = (string) => {
 export const pluralize = (string, count, suffix = 's') =>
   count === 1 ? string : `${string}${suffix}`;
 
+export const ordinalSuffix = (number) => {
+  let suffix = '';
+
+  if (number === 1) {
+    suffix = 'st';
+  } else if (number === 2) {
+    suffix = 'nd';
+  } else if (number === 3) {
+    suffix = 'rd';
+  } else {
+    suffix = 'th';
+  }
+
+  return `${number}${suffix}`;
+};
+
 export const genderSelectOptions = [
   { value: 'male', label: 'Male' },
   { value: 'female', label: 'Female' },

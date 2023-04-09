@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 
 import { formatSessionDate } from 'shared/utils/date';
 import { isUserInLegalAge, userOutsideOfSessionSkillLevel } from 'shared/utils/user';
+import InfoTooltip from 'shared/components/InfoTooltip';
 
 export const reserveTeamReservationAllowed = (session) => {
   const { startTime, time, past, isPrivate, isOpenClub, reservationsCount } = session;
@@ -150,4 +151,96 @@ export const sessionReservationInfo = (session, userProfile) => {
   }
 
   return { disabled: false };
+};
+
+export const sessionInformation = (session) => {
+  const information = [];
+
+  const {
+    costCredits,
+    allowBackToBackReservations,
+    allSkillLevelsAllowed,
+    guestsAllowed,
+    ccCashEarned,
+  } = session;
+
+  const sessionCcCashEarned = Number(ccCashEarned);
+
+  if (costCredits === 0) {
+    information.push('No Credit Required');
+  }
+
+  if (costCredits > 1) {
+    information.push(`${costCredits} Credits Required`);
+  }
+
+  if (allowBackToBackReservations) {
+    information.push('Back To Back Eligible');
+  }
+
+  if (allSkillLevelsAllowed) {
+    information.push('All Levels Eligible');
+  }
+
+  if (guestsAllowed && guestsAllowed > 0) {
+    information.push('Guest Pass Eligible');
+  }
+
+  if (sessionCcCashEarned > 0) {
+    information.push(
+      <>
+        Earn ${sessionCcCashEarned}
+        <InfoTooltip
+          place="bottom"
+          info={`Receive $${sessionCcCashEarned} in CC Cash when you attend this session`}
+          className="ml-2"
+        />
+      </>
+    );
+  }
+
+  return information;
+};
+
+export const sessionRestrictions = (session) => {
+  const restrictions = [];
+  const {
+    isOpenClub,
+    membersOnly,
+    womenOnly,
+    backToBackRestricted,
+    allSkillLevelsAllowed,
+    skillLevel,
+    isPrivate,
+  } = session;
+
+  if (isOpenClub || membersOnly) {
+    if (session.allowedProducts) {
+      const allowedProductsNames = session.allowedProducts
+        .map((allowedProduct) => allowedProduct.name)
+        .join(' & ');
+
+      restrictions.push(`${allowedProductsNames} Members Only`);
+    } else {
+      restrictions.push('Members Only');
+    }
+  }
+
+  if (womenOnly) {
+    restrictions.push('Women Only');
+  }
+
+  if (backToBackRestricted) {
+    restrictions.push('Back To Back Restricted');
+  }
+
+  if (!allSkillLevelsAllowed && skillLevel) {
+    restrictions.push(`${skillLevel.name} Players Only`);
+  }
+
+  if (isPrivate) {
+    restrictions.push('Private');
+  }
+
+  return restrictions;
 };

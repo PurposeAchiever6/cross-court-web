@@ -9,9 +9,9 @@ import Spinner from 'shared/components/Spinner';
 const getVariantClasses = (variant) => {
   switch (variant) {
     case 'outline-purple':
-      return 'border-3 border-cc-purple-500 text-cc-purple-500 hover:border-cc-purple-700 hover:text-cc-purple-700';
+      return 'border-2 border-cc-purple-500 text-cc-purple-500 hover:border-cc-purple-700 hover:text-cc-purple-700';
     case 'outline-black':
-      return 'border-3 border-cc-black text-cc-black hover:border-cc-black/75 hover:text-cc-black/75';
+      return 'border-2 border-cc-black text-cc-black hover:border-cc-black/75 hover:text-cc-black/75';
     case 'purple':
     default:
       return 'bg-cc-purple-500 border-3 border-cc-purple-500 text-black shadow-md hover:bg-cc-purple-700 hover:border-cc-purple-700';

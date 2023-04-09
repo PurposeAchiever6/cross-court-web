@@ -7,6 +7,8 @@ import {
   JOIN_SESSION_WAITLIST_INIT,
   REMOVE_SESSION_WAITLIST_INIT,
   SHOW_CANCEL_MODAL,
+  SHOW_WAITLIST_MODAL,
+  CLOSE_WAITLIST_MODAL,
   SIGNUP_BOOK_SESSION,
   BUY_CREDITS_AND_BOOK_SESSION,
   VOTE_SESSION_INIT,
@@ -68,6 +70,15 @@ export const removeSessionWaitlistInit = (sessionId, sessionDate) => ({
 
 export const showCancelModal = () => ({
   type: SHOW_CANCEL_MODAL,
+});
+
+export const showWaitlistModal = (sessionId) => ({
+  type: SHOW_WAITLIST_MODAL,
+  payload: { sessionId },
+});
+
+export const closeWaitlistModal = () => ({
+  type: CLOSE_WAITLIST_MODAL,
 });
 
 export const signupBookSession = (id, date) => ({

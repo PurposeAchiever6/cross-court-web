@@ -40,7 +40,6 @@ const Session = lazy(() => import('screens/sessions/pages/Session'));
 const SessionConfirmed = lazy(() => import('screens/sessions/pages/SessionConfirmed'));
 const SessionReserved = lazy(() => import('screens/sessions/pages/SessionReserved'));
 const FirstSessionReserved = lazy(() => import('screens/sessions/pages/FirstSessionReserved'));
-const SessionJoinWaitlist = lazy(() => import('screens/sessions/pages/JoinWaitlist'));
 const Checkout = lazy(() => import('screens/checkout/CheckoutPage'));
 const ProductsPage = lazy(() => import('screens/products/ProductsPage'));
 const ManageMembershipPage = lazy(() => import('screens/memberships/ManageMembershipPage'));
@@ -388,9 +387,6 @@ const Routes = () => {
         </Route>
         <PrivateRoute path={ROUTES.DASHBOARD} exact>
           <Dashboard />
-        </PrivateRoute>
-        <PrivateRoute path={ROUTES.SESSIONJOINWAITLIST} exact>
-          <SessionJoinWaitlist />
         </PrivateRoute>
         <Route path={ROUTES.GALLERY} exact>
           <Gallery />

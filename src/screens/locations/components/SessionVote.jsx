@@ -1,55 +1,56 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleUp, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import ROUTES from 'shared/constants/routes';
+import { getIsAuthenticated } from 'screens/auth/reducer';
 import { voteSessionInit, removeVoteSessionInit } from 'screens/sessions/actionCreators';
-import Tooltip from 'shared/components/Tooltip';
+import UpvoteSvg from 'shared/components/svg/UpvoteSvg';
+import Button from 'shared/components/Button';
 
-const SessionVote = ({ sessionId, sessionDate, votes, voted, className }) => {
+const SessionVote = ({ session, className }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
+  const isAuthenticated = useSelector(getIsAuthenticated);
+
+  const { id, votes, voted, startTime, past } = session;
+
   const onClickHandle = () => {
+    if (!isAuthenticated) {
+      return history.push(ROUTES.SIGNUP);
+    }
+
     if (voted) {
-      dispatch(removeVoteSessionInit(sessionId, sessionDate));
+      dispatch(removeVoteSessionInit(id, startTime));
     } else {
-      dispatch(voteSessionInit(sessionId, sessionDate));
+      dispatch(voteSessionInit(id, startTime));
     }
   };
 
   return (
     <div className={className}>
-      <div className="flex items-center">
-        {!voted && (
-          <Tooltip
-            variant="purple"
-            tooltip='Each week, if a "Coming Soon" session gets 15 or more upvotes, it will become availabe for booking'
-            className="mr-2 mt-1"
-          >
-            <FontAwesomeIcon
-              icon={faInfoCircle}
-              className="text-2xl text-cc-purple cursor-pointer"
-            />
-          </Tooltip>
-        )}
+      <div className="bg-cc-blue-900 flex justify-between items-center p-4">
         <div>
-          <div
-            onClick={onClickHandle}
-            className={`rounded-full border border-cc-purple flex flex-col justify-center items-center w-10 h-10 mx-auto cursor-pointer relative transition-all duration-200 ${
-              voted ? 'text-white bg-cc-purple' : 'text-cc-purple bg-white'
-            }`}
-          >
-            <FontAwesomeIcon
-              icon={faAngleUp}
-              className={`transition-transform delay-300 duration-200 text-lg absolute mx-auto ${
-                voted ? 'transform rotate-180 bottom-0' : 'top-0'
-              }`}
-            />
-            <span className={voted ? '-mt-1' : 'mt-2'}>{votes}</span>
-          </div>
-          {voted && <div className="mt-1 text-2xs uppercase lg:hidden">Votes</div>}
+          <span className="block text-cc-purple text-sm mb-1">
+            {voted
+              ? 'Thanks for your vote'
+              : 'This session becomes available one it hits 15 upvotes.'}
+          </span>
+          <span className="block text-white text-opacity-60 text-sm">{votes} upvotes</span>
         </div>
+        <Button
+          onClick={onClickHandle}
+          variant={voted ? 'outline-purple' : 'purple'}
+          disabled={past}
+        >
+          <UpvoteSvg
+            className={`w-6 transition-transform duration-300 ${
+              voted ? 'transform rotate-180' : ''
+            }`}
+          />
+        </Button>
       </div>
     </div>
   );
@@ -60,8 +61,7 @@ SessionVote.defaultProps = {
 };
 
 SessionVote.propTypes = {
-  votes: PropTypes.number.isRequired,
-  voted: PropTypes.bool.isRequired,
+  session: PropTypes.shape().isRequired,
   className: PropTypes.string,
 };
 
