@@ -1,7 +1,7 @@
 import { put, all, takeLatest, call, select } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import { head } from 'ramda';
-import { toast } from 'react-toastify';
+import toast from 'shared/utils/toast';
 
 import ROUTES from 'shared/constants/routes';
 import AuthUtils from 'shared/utils/auth';

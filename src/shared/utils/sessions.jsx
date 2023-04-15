@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 
 import { formatSessionDate } from 'shared/utils/date';
 import { isUserInLegalAge, userOutsideOfSessionSkillLevel } from 'shared/utils/user';
+import { titleize } from 'shared/utils/helpers';
 import InfoTooltip from 'shared/components/InfoTooltip';
 
 export const reserveTeamReservationAllowed = (session) => {
@@ -153,6 +154,71 @@ export const sessionReservationInfo = (session, userProfile) => {
   return { disabled: false };
 };
 
+export const validateBooking = (session, currentUser) => {
+  const userHasLegalAge = isUserInLegalAge(currentUser);
+  const {
+    skillLevel,
+    allSkillLevelsAllowed,
+    membersOnly,
+    allowedProducts,
+    isOpenClub,
+    backToBackRestricted,
+  } = session;
+
+  if (!userHasLegalAge) {
+    return {
+      canBook: false,
+      errorTitle: '18+',
+      errorDescription: 'Must be 18 or older to book a session.',
+    };
+  }
+
+  if (isOpenClub || membersOnly) {
+    let errorDescription = 'This session can not be booked.';
+
+    if (allowedProducts) {
+      const allowedProductsNames = allowedProducts
+        .map((allowedProduct) => titleize(allowedProduct.name))
+        .join(' and ');
+
+      errorDescription = `This session can not be booked. ${allowedProductsNames} membership allowed only.`;
+    }
+
+    return {
+      canBook: false,
+      errorTitle: 'Members Only',
+      errorDescription,
+    };
+  }
+
+  if (currentUser.reserveTeam && !reserveTeamReservationAllowed(session)) {
+    return {
+      canBook: false,
+      errorTitle: 'Reserve Team Restriced',
+      errorDescription: 'This session can not be booked by the reserve team.',
+    };
+  }
+
+  if (!allSkillLevelsAllowed && userOutsideOfSessionSkillLevel(currentUser, session)) {
+    return {
+      canBook: false,
+      errorTitle: 'Outside Skill Level',
+      errorDescription: `This session is reserved for level ${skillLevel.min}-${skillLevel.max} players.`,
+    };
+  }
+
+  if (backToBackRestricted) {
+    return {
+      canBook: false,
+      errorTitle: 'Session Not Available',
+      errorDescription:
+        'This session is not eligible for back-to-back bookings. Tap Show More to see which sessions are back-to-back eligible.',
+    };
+  }
+
+  return { canBook: true };
+};
+
 export const sessionInformation = (session) => {
   const information = [];
 
@@ -207,6 +273,7 @@ export const sessionRestrictions = (session) => {
   const {
     isOpenClub,
     membersOnly,
+    allowedProducts,
     womenOnly,
     backToBackRestricted,
     allSkillLevelsAllowed,
@@ -215,8 +282,8 @@ export const sessionRestrictions = (session) => {
   } = session;
 
   if (isOpenClub || membersOnly) {
-    if (session.allowedProducts) {
-      const allowedProductsNames = session.allowedProducts
+    if (allowedProducts) {
+      const allowedProductsNames = allowedProducts
         .map((allowedProduct) => allowedProduct.name)
         .join(' & ');
 

@@ -1,7 +1,7 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
-import { toast } from 'react-toastify';
 import { push } from 'connected-react-router';
 
+import toast from 'shared/utils/toast';
 import ROUTES from 'shared/constants/routes';
 import { INITIAL_LOAD_INIT as INITIAL_PAYMENT_METHODS_LOAD_INIT } from 'screens/payment-methods/actionTypes';
 import {

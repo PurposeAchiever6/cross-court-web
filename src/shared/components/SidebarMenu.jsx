@@ -1,12 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import CloseButton from 'shared/components/CloseButton';
+import { NavLink, Link, useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import ROUTES from 'shared/constants/routes';
-import { logoutInit } from 'screens/auth/actionCreators';
 import { getIsAuthenticated } from 'screens/auth/reducer';
+import { logoutInit } from 'screens/auth/actionCreators';
 import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import CrossSvg from 'shared/components/svg/CrossSvg';
 
 const SidebarMenu = ({ menuToggler }) => {
   const dispatch = useDispatch();
@@ -22,7 +23,9 @@ const SidebarMenu = ({ menuToggler }) => {
 
   return (
     <nav className="sidebar-nav flex flex-col h-screen justify-center bg-cc-black shadow-md px-8 relative list-none">
-      <CloseButton className="absolute top-6 right-4 md:hidden" onClick={menuToggler} />
+      <button className="absolute top-6 right-4 md:hidden" onClick={menuToggler} type="button">
+        <CrossSvg className="text-white w-4" />
+      </button>
 
       <div className="flex flex-col text-white text-lg md:text-2xl items-center md:items-end font-shapiro95_super_wide">
         <NavLink className="list-item" exact to={ROUTES.HOME} onClick={menuToggler}>

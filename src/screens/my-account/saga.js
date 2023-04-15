@@ -1,5 +1,5 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
-import { toast } from 'react-toastify';
+import toast from 'shared/utils/toast';
 
 import {
   INITIAL_LOAD_INIT,

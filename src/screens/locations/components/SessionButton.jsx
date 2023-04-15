@@ -12,6 +12,8 @@ import {
   isUserInFirstSessionFlow,
   isUserInFirstFreeSessionFlow,
 } from 'shared/utils/user';
+import toast from 'shared/utils/toast';
+import { validateBooking } from 'shared/utils/sessions';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { hasConfirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
 import { hasConfirmSkillSession } from 'shared/utils/skillSessionsConfirmations';
@@ -119,6 +121,12 @@ const SessionButton = ({ session, showingFreeSessionCreditAdded, className }) =>
       !skipSkillSessionReservationModal && skillSession && !hasConfirmSkillSession(currentUser);
 
     setOnboardingTourEnable(false);
+    const { canBook, errorTitle, errorDescription } = validateBooking(session, currentUser);
+
+    if (!canBook) {
+      toast.error({ title: errorTitle, description: errorDescription });
+      return;
+    }
 
     if (shouldShowWomenOnlyReservationModal) {
       setShowWomenOnlyReservationlModal(true);

@@ -22,8 +22,14 @@ export const capitalize = (string) => {
     return null;
   }
 
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
+
+export const titleize = (string) =>
+  string
+    .split(' ')
+    .map((word) => capitalize(word))
+    .join(' ');
 
 export const pluralize = (string, count, suffix = 's') =>
   count === 1 ? string : `${string}${suffix}`;

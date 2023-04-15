@@ -1,6 +1,6 @@
 import { put, takeLatest, call, select, all } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-import { toast } from 'react-toastify';
+import toast from 'shared/utils/toast';
 import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/products/reducer';
 import { getSelectedCard } from 'screens/payment-methods/reducer';

@@ -6,7 +6,7 @@ import useScrollBlock from 'shared/hooks/useScrollBlock';
 import colors from 'shared/styles/constants';
 import useWindowSize from 'shared/hooks/useWindowSize';
 import { size as breakpoints } from 'shared/styles/mediaQueries';
-import CrossSvg from './svg/CrossSvg';
+import CrossSvg from 'shared/components/svg/CrossSvg';
 
 ReactModal.setAppElement('#root');
 
@@ -93,7 +93,7 @@ const Modal = ({
       <div className={`p-2 ${showCloseButton ? 'pt-5' : ''}`}>
         {showCloseButton && (
           <button className="absolute top-0 right-0 p-4" onClick={closeHandler} type="button">
-            <CrossSvg color={dark ? 'white' : 'black'} />
+            <CrossSvg className={`w-4 ${dark ? 'text-white' : 'text-black'}`} />
           </button>
         )}
         {title && (

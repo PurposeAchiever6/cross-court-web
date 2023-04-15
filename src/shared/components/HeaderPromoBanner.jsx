@@ -23,7 +23,7 @@ const HeaderPromoBanner = ({ onClose }) => {
             onClick={onClose}
             className="absolute inset-y-0 right-0 bg-black bg-opacity-70 hover:bg-opacity-80 transition-all w-12 sm:w-10 flex justify-center items-center cursor-pointer"
           >
-            <CrossSvg color="white" className="w-3" />
+            <CrossSvg className="w-3" />
           </div>
           <span className="font-shapiro95_super_wide uppercase text-sm sm:text-base sm:mt-1 mr-3">
             {percentageDiscount}% off

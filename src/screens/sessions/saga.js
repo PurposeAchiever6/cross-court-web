@@ -1,7 +1,7 @@
 import { put, all, takeLatest, call } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import ROUTES from 'shared/constants/routes';
-import { toast } from 'react-toastify';
+import toast from 'shared/utils/toast';
 
 import myAccountService from 'screens/my-account/service';
 import { SAVE_SESSION_TO_STORAGE } from 'shared/actions/actionTypes';
@@ -61,7 +61,7 @@ export function* initialLoadFlow({ payload }) {
       },
     });
   } catch (err) {
-    yield call(toast.error, err.response.data.error, { autoClose: false, closeButton: true });
+    yield call(toast.error, err.response.data.error);
     yield put(push(ROUTES.LOCATIONS));
     yield put({ type: INITIAL_LOAD_FAILURE, error: err.response.data.error });
   }
@@ -81,7 +81,7 @@ export function* initialLoadAuthFlow({ payload }) {
       },
     });
   } catch (err) {
-    yield call(toast.error, err.response.data.error, { autoClose: false, closeButton: true });
+    yield call(toast.error, err.response.data.error);
     yield put(push(ROUTES.LOCATIONS));
     yield put({ type: INITIAL_LOAD_AUTH_FAILURE, error: err.response.data.error });
   }
@@ -116,7 +116,7 @@ export function* cancelSessionFlow({ payload }) {
     yield put({
       type: CANCEL_SESSION_SUCCESS,
     });
-    yield call(toast.success, 'Session successfully canceled!');
+    yield call(toast.success, 'Session successfully canceled.');
     yield put(push(ROUTES.MYACCOUNT));
   } catch (err) {
     yield put({ type: CANCEL_SESSION_FAILURE, error: err.response.data.error });
@@ -173,7 +173,7 @@ export function* removeSessionWaitlistFlow({ payload }) {
       payload: { sessionId: payload.sessionId, sessionDate: payload.sessionDate },
     });
     yield put({ type: CLOSE_WAITLIST_MODAL });
-    yield call(toast.success, 'You have been removed from the waitlist successfully');
+    yield call(toast.success, 'You have been removed from the waitlist successfully.');
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield put({
@@ -206,7 +206,7 @@ export function* voteSessionFlow({ payload }) {
       type: VOTE_SESSION_SUCCESS,
       payload: { sessionId: payload.sessionId, sessionDate: payload.sessionDate },
     });
-    yield call(toast.success, 'Session voted successfully');
+    yield call(toast.success, 'Session voted successfully.');
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);
@@ -221,7 +221,7 @@ export function* removeVoteSessionFlow({ payload }) {
       type: REMOVE_VOTE_SESSION_SUCCESS,
       payload: { sessionId: payload.sessionId, sessionDate: payload.sessionDate },
     });
-    yield call(toast.success, 'Session vote removed successfully');
+    yield call(toast.success, 'Session vote removed successfully.');
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);
@@ -255,7 +255,7 @@ export function* removeSessionGuestFlow({ payload }) {
       type: REMOVE_SESSION_GUEST_SUCCESS,
       payload: { sessionGuestId: payload.sessionGuestId },
     });
-    yield call(toast.success, 'Guest canceled succesfully');
+    yield call(toast.success, 'Guest canceled succesfully.');
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);

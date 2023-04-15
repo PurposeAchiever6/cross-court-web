@@ -7,7 +7,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import HttpsRedirect from 'react-https-redirect';
 import ReactGA from 'react-ga';
-import { ToastContainer, Zoom } from 'react-toastify';
+import { ToastContainer, Bounce } from 'react-toastify';
 import styled from 'styled-components';
 
 import { initialAppLoad } from 'shared/actions/actionCreators';
@@ -409,9 +409,9 @@ const Routes = () => {
       <HtmlHead />
       <AppWrapper>
         <ToastContainer
-          transition={Zoom}
+          transition={Bounce}
           position="top-right"
-          autoClose={3500}
+          autoClose={false}
           hideProgressBar
           newestOnTop
           closeOnClick
