@@ -34,6 +34,7 @@ const Footer = () => {
 
   const instagramLink = import.meta.env.VITE_INSTAGRAM_LINK;
   const discordLink = import.meta.env.VITE_DISCORD_LINK;
+  const scheduleTourLink = import.meta.env.VITE_SCHEDULE_TOUR_LINK;
   const ccEmail = import.meta.env.VITE_CC_EMAIL;
   const ccAddress = import.meta.env.VITE_CC_ADDRESS;
   const windowSize = document.documentElement.clientWidth;
@@ -49,9 +50,6 @@ const Footer = () => {
       dispatch(sendMembershipHandbook({ email }));
     }
   };
-
-  const tourMessage =
-    'Hi Crosscourt, \n\rI would like to visit the club on [DATE] at [TIME (ANYTIME BETWEEN 8PM-10PM M-THU, 6-8PM FRI, 10AM-NOON SAT/SUN)]. \n\rPlease let me know if that works for your team. \n\rThank you';
 
   if (FOOTER_DISABLED_ROUTES.includes(pathname)) {
     return null;
@@ -168,7 +166,10 @@ const Footer = () => {
                   <div className="w-full">
                     <Link
                       variant="white-opacity"
-                      onClick={() => openContactFormForUser(currentUser, tourMessage)}
+                      isExternal
+                      target="_blank"
+                      rel="noreferrer"
+                      to={scheduleTourLink}
                       className="block w-max mb-3"
                     >
                       Schedule Tour
