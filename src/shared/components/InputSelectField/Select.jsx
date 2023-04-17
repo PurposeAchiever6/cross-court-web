@@ -4,49 +4,134 @@ import ReactSelect from 'react-select';
 import styled from 'styled-components';
 import Label from 'shared/components/Label';
 
-const SelectContainer = styled.div`
-  .select-field__control {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    color: rgba(0, 0, 0, 0.5);
-    border-radius: 0;
-    font-family: shapiro45_welter_extd;
-    background-color: #fbf7f3;
-    padding: 0.5rem 0.5rem;
+const menuDarkStyles = (dark) => {
+  if (dark) {
+    return `
+      background-color: rgb(31 31 51 / 1); // bg-cc-blue-500
+      color: rgb(251 247 243 / 0.7); // text-cream/70
+      .select-field__menu-list {
+        .select-field__option {
+          &--is-focused {
+            background-color: rgb(251 247 243 / 1); // bg-cream
+            color: rgb(26 26 26 / 0.7); // text-cc-black/70
+          }
+
+          &--is-selected {
+            background-color: rgb(251 247 243 / 1); // bg-cream
+            color: rgb(26 26 26 / 0.7); // text-cc-black/70
+          }
+        }
+      }
+    `;
+  }
+
+  return `
+    background-color: rgb(251 247 243 / 1); // bg-cream
+    color: rgb(26 26 26 / 0.7); // text-cc-black/70
+  `;
+};
+
+const darkStyles = (dark) => {
+  if (dark) {
+    return `
+      background-color: rgb(31 31 51 / 1); // bg-cc-blue-500
+      border-width: 1px; // border
+      border-color: rgb(31 31 51 / 1); // border-cc-blue-500
+      &:hover {
+        border-color: rgb(31 31 51 / 1); // border-cc-blue-500
+      }
+
+      &--is-focused {
+        box-shadow: none;
+        border-color: rgb(251 247 243 / 0.1) !important; // focus:border-cream/10
+      }
+
+      .select-field__single-value {
+        color: rgb(251 247 243 / 0.7); // text-cream/70
+      }
+    `;
+  }
+
+  return `
+    background-color: rgb(251 247 243 / 1); // bg-cream
+    border-width: 1px; // border
+    border-color: rgb(26 26 26 / 0.5); // border-cc-black/50
+    &:hover {
+      border-color: rgb(26 26 26 / 0.5); // border-cc-black/50
+    }
 
     &--is-focused {
       box-shadow: none;
-      border-color: rgba(0, 0, 0, 1) !important;
-
-      .select-field__single-value {
-        color: rgba(0, 0, 0, 1);
-      }
+      border-color: rgb(26 26 26 / 1) !important; // focus:border-cc-black/100
     }
 
-    &:hover {
-      border-color: unset;
+    .select-field__single-value {
+      color: rgb(26 26 26 / 0.7); // text-cc-black/70
     }
+  `;
+};
 
-    @media (max-width: 768px) {
-      padding: 0 0.5rem;
-    }
+const inputClasses = (variant) => {
+  switch (variant) {
+    case 'shrink':
+      return `
+        padding-left: 0.5rem; // px-2
+        padding-right: 0.5rem;
+        padding-top: 0.25rem; //py-1
+        padding-bottom: 0.25rem;
+      `;
+    case 'expanded':
+      return `
+        padding-left: 1rem; // px-4
+        padding-right: 1rem;
+        padding-top: 1.25rem; // py-5
+        padding-bottom: 1.25rem;
+      `;
+    case 'normal':
+    default:
+      return `
+        padding-left: 0.5rem; // px-2
+        padding-right: 0.5rem;
+        padding-top: 0.5rem; //py-2
+        padding-bottom: 0.5rem;
+        @media (min-width: 768px) {
+          padding-top: 0.75rem; // md:py-3
+          padding-bottom: 0.75rem;
+        }
+      `;
+  }
+};
+
+const SelectContainer = styled.div`
+  .select-field__control {
+    border-radius: 0;
+    ${(props) => darkStyles(props.dark)}
+    ${(props) => inputClasses(props.variant)}
+  }
+
+  .select-field__indicator-separator {
+    display: none;
   }
 
   .select-field__value-container {
-    padding-left: 0;
-  }
-
-  .select-field__single-value {
-    color: rgba(0, 0, 0, 0.5);
+    padding: 0;
+    margin-top: -0.25rem;
+    margin-bottom: -0.25rem;
   }
 
   .select-field__indicator {
-    padding: 0.3rem;
+    padding: 0;
+    padding-left: 0.3rem;
+    margin-top: -0.25rem;
+    margin-bottom: -0.25rem;
   }
 
   .select-field__menu {
+    border-radius: 0;
     z-index: 1000;
     display: block;
     font-family: shapiro45_welter_extd;
+    ${(props) => menuDarkStyles(props.dark)}
   }
 `;
 
@@ -61,9 +146,11 @@ const Select = ({
   disabled,
   placeholder,
   className,
+  dark,
+  variant,
   ...props
 }) => (
-  <SelectContainer className={className}>
+  <SelectContainer className={className} dark={dark} variant={variant}>
     <div className={disabled ? 'opacity-50 pointer-events-none' : ''}>
       {label && (
         <Label className="mb-1 uppercase text-sm md:text-base" color={labelColor} htmlFor={name}>
@@ -107,6 +194,8 @@ Select.defaultProps = {
   disabled: false,
   placeholder: '',
   className: '',
+  dark: false,
+  variant: 'normal',
 };
 
 Select.propTypes = {
@@ -120,6 +209,8 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
   className: PropTypes.string,
+  dark: PropTypes.bool,
+  variant: PropTypes.oneOf(['normal', 'shrink', 'expanded']),
 };
 
 export default Select;

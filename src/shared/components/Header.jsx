@@ -55,6 +55,7 @@ const BLACK_BG = [
   ROUTES.WHY_JOIN,
   ROUTES.FAQ,
   ROUTES.MYACCOUNT,
+  ROUTES.SETTINGS,
 ];
 
 const SHOW_NAVBAR = [
@@ -67,6 +68,7 @@ const SHOW_NAVBAR = [
   ROUTES.WHY_JOIN,
   ROUTES.FAQ,
   ROUTES.MYACCOUNT,
+  ROUTES.SETTINGS,
 ];
 
 const Header = () => {

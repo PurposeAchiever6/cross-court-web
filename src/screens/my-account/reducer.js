@@ -15,7 +15,6 @@ import {
   EDIT_PROFILE_INIT,
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAILURE,
-  SHOW_EDIT_PROFILE,
   GET_PROFILE_SUCCESS,
 } from 'screens/my-account/actionTypes';
 import {
@@ -94,11 +93,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editProfileLoading: false,
-      };
-    case SHOW_EDIT_PROFILE:
-      return {
-        ...state,
-        showEditProfile: !state.showEditProfile,
       };
     case SESSIONS_INITIAL_LOAD:
     case INITIAL_APP_LOAD_SUCCESS:

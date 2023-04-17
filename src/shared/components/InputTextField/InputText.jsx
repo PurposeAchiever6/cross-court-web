@@ -30,6 +30,10 @@ function InputText({
   const [rightIconWidth, setRightIconWidth] = useState(null);
 
   useEffect(() => {
+    if (!leftIcon && !rightIcon) {
+      return;
+    }
+
     setTimeout(() => {
       const leftIconWidth = document.getElementById('left-icon')?.offsetWidth;
       const rightIconWidth = document.getElementById('right-icon')?.offsetWidth;
@@ -41,7 +45,7 @@ function InputText({
         setRightIconWidth(rightIconWidth + 30);
       }
     }, 100);
-  }, []);
+  }, [leftIcon, rightIcon]);
 
   const darkClasses = (() => {
     if (dark) {
@@ -144,7 +148,7 @@ InputText.propTypes = {
   leftIcon: PropTypes.bool,
   rightIcon: PropTypes.bool,
   dark: PropTypes.bool,
-  variant: PropTypes.string,
+  variant: PropTypes.oneOf(['normal', 'shrink', 'expanded']),
   className: PropTypes.string,
 };
 

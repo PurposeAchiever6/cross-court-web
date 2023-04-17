@@ -10,6 +10,4 @@ export const GET_PROFILE_INIT = '@myAccount/GET_PROFILE_INIT';
 export const GET_PROFILE_SUCCESS = '@myAccount/GET_PROFILE_SUCCESS';
 export const GET_PROFILE_FAILURE = '@myAccount/GET_PROFILE_FAILURE';
 
-export const SHOW_EDIT_PROFILE = '@myAccount/SHOW_EDIT_PROFILE';
-
 export const SEND_MEMBERSHIP_HANDBOOK_INIT = '@myAccount/SEND_MEMBERSHIP_HANDBOOK_INIT';

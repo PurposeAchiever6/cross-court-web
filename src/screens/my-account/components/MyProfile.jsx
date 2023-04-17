@@ -113,13 +113,7 @@ const MyProfile = ({ profile }) => {
           </div>
         </div>
         <div className="flex flex-col md:items-end gap-2 mt-4 md:mt-0">
-          <Button
-            className="w-full md:w-auto"
-            variant="outline-purple"
-            onClick={() => {
-              // TODO: handle settings
-            }}
-          >
+          <Button className="w-full md:w-auto" variant="outline-purple" to={ROUTES.SETTINGS}>
             SETTINGS
           </Button>
           <Link
@@ -189,7 +183,7 @@ const MyProfile = ({ profile }) => {
                   </>
                 )}
                 <span className="text-sm mt-2">
-                  <Link to={ROUTES.MEMBERSHIPS}>Manage membership</Link>
+                  <Link to={ROUTES.MANAGE_MEMBERSHIP}>Manage membership</Link>
                 </span>
               </>
             )}

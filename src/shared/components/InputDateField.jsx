@@ -51,6 +51,8 @@ const InputDateField = ({
   monthOptions,
   yearOptions,
   className,
+  dark,
+  variant,
 }) => (
   <div className={className}>
     {label && (
@@ -65,6 +67,8 @@ const InputDateField = ({
         options={monthOptions}
         placeholder="Month"
         className="mr-1 flex-grow"
+        dark={dark}
+        variant={variant}
       />
       <InputSelectField
         name={`${name}Day`}
@@ -72,6 +76,8 @@ const InputDateField = ({
         options={dayOptions}
         placeholder="Day"
         className="mr-1 flex-grow"
+        dark={dark}
+        variant={variant}
       />
       <InputSelectField
         name={`${name}Year`}
@@ -79,6 +85,8 @@ const InputDateField = ({
         options={yearOptions}
         placeholder="Year"
         className="flex-grow"
+        dark={dark}
+        variant={variant}
       />
     </div>
     {hint && (
@@ -106,6 +114,8 @@ InputDateField.defaultProps = {
   monthOptions: MONTH_OPTS,
   yearOptions: YEAR_OPTS,
   className: '',
+  dark: false,
+  variant: 'normal',
 };
 
 InputDateField.propTypes = {
@@ -119,6 +129,8 @@ InputDateField.propTypes = {
   monthOptions: PropTypes.arrayOf(PropTypes.shape()),
   yearOptions: PropTypes.arrayOf(PropTypes.shape()),
   className: PropTypes.string,
+  dark: PropTypes.bool,
+  variant: PropTypes.oneOf(['normal', 'shrink', 'expanded']),
 };
 
 export default InputDateField;

@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const TabContainer = styled.div`
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
 
 const Tabs = ({ variant, alignLabels, className, children }) => {
   const [activeTab, setActiveTab] = useState(children[0].props.label);
@@ -32,7 +40,7 @@ const Tabs = ({ variant, alignLabels, className, children }) => {
 
   return (
     <div className={className}>
-      <div className={`flex gap-8 mb-6 ${alignLabelsClasses}`}>
+      <TabContainer className={`flex gap-8 mb-6 overflow-x-auto ${alignLabelsClasses}`}>
         {children.map(({ props: { label } }) => (
           <span
             key={label}
@@ -44,7 +52,7 @@ const Tabs = ({ variant, alignLabels, className, children }) => {
             {label}
           </span>
         ))}
-      </div>
+      </TabContainer>
       <div>
         {children.map((child) => (child.props.label == activeTab ? child.props.children : null))}
       </div>

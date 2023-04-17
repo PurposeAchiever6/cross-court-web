@@ -39,6 +39,7 @@ export default {
   SESSION: '/session/:id/:date',
   SESSIONCONFIRMED: '/session/confirmed',
   SESSIONRESERVED: '/session/reserved',
+  SETTINGS: '/settings',
   SIGNUP: '/signup',
   SIGNUPCONFIRMATION: '/signup/confirmation',
   SIGNUPSUCCESS: '/signup/success',

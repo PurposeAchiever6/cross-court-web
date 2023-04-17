@@ -68,6 +68,7 @@ const MembershipConfirm = lazy(() => import('screens/checkout/pages/MembershipCo
 const AboutYourself = lazy(() => import('screens/about-yourself/AboutYourselfPage'));
 const Goals = lazy(() => import('screens/goals/GoalsPage'));
 const NotFoundPage = lazy(() => import('screens/not-found/NotFoundPage'));
+const SettingsPage = lazy(() => import('screens/settings/SettingsPage'));
 
 const AppWrapper = styled.div`
   display: flex;
@@ -393,6 +394,9 @@ const Routes = () => {
         </Route>
         <PrivateRoute path={ROUTES.REFERRALS} exact>
           <Referrals />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.SETTINGS} exact>
+          <SettingsPage />
         </PrivateRoute>
         <Route path={ROUTES.NOT_FOUND} exact>
           <NotFoundPage />
