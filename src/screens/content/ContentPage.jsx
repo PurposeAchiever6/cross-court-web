@@ -82,7 +82,7 @@ const ContentPage = () => (
           className="hidden md:block w-96 absolute -right-20 -top-32"
         />
         <p className="mb-5 md:max-w-3xl relative z-10">
-          Go through the on screen onboarding flow and find our club by searching for "CrossCourt
+          Go through the on screen onboarding flow and find our club by searching for "Crosscourt
           DTLA". Tap <b>ASK TO JOIN</b>.
           <br />
           <br />
