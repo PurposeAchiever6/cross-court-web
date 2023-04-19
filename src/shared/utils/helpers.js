@@ -25,11 +25,16 @@ export const capitalize = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
-export const titleize = (string) =>
-  string
+export const titleize = (string) => {
+  if (!string) {
+    return;
+  }
+
+  return string
     .split(' ')
     .map((word) => capitalize(word))
     .join(' ');
+};
 
 export const pluralize = (string, count, suffix = 's') =>
   count === 1 ? string : `${string}${suffix}`;

@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import { formatSessionDate } from 'shared/utils/date';
+import { requestFormattedDate } from 'shared/utils/date';
 import userSessionService from 'screens/user-sessions/service';
 import Spinner from 'shared/components/Spinner';
 import Avatar from 'shared/components/Avatar';
+import UserCard from 'screens/sessions/components/UserCard';
+import ShowMore from 'shared/components/ShowMore';
 
-const SessionRoster = ({ session, className }) => {
+const SessionRoster = ({ session, date, showExpanded, className }) => {
   const [loadingUserSessions, setLoadingUserSessions] = useState(false);
   const [userSessions, setUserSessions] = useState([]);
+  const [usersShown, setUsersShow] = useState(4);
 
-  const { id, startTime } = session;
-  const date = formatSessionDate(startTime);
+  const { id } = session;
 
   useEffect(() => {
     const fetchUserSessions = async () => {
       setLoadingUserSessions(true);
 
       const userSessions = await userSessionService.getUserSessionList(id, {
-        date: new Date(date).toLocaleDateString('en-US'),
+        date: requestFormattedDate(date),
       });
 
       setUserSessions(userSessions);
@@ -41,13 +43,32 @@ const SessionRoster = ({ session, className }) => {
     );
   }
 
+  if (userSessions.length === 0) {
+    return (
+      <div className={className}>
+        <div className="text-xs md:text-sm">No reservations yet</div>
+      </div>
+    );
+  }
+
   return (
     <div className={className}>
-      <div className="flex md:flex-wrap justify-center gap-2 overflow-y-auto md:overflow-y-visible">
-        {userSessions.length === 0 ? (
-          <div className="text-xs md:text-sm">No reservations yet</div>
-        ) : (
-          userSessions.map(({ isFirstSession, user, goal }) => (
+      {showExpanded ? (
+        <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {userSessions.map(({ isFirstSession, user }, index) =>
+              index + 1 > usersShown ? null : (
+                <UserCard key={user.id} user={user} newLabel={isFirstSession} />
+              )
+            )}
+          </div>
+          {usersShown < userSessions.length && (
+            <ShowMore onClick={() => setUsersShow(usersShown + 4)} className="mt-6" />
+          )}
+        </div>
+      ) : (
+        <div className="flex md:flex-wrap justify-center gap-2 overflow-y-auto md:overflow-y-visible">
+          {userSessions.map(({ isFirstSession, user, goal }) => (
             <Avatar
               key={user.id}
               img={user.imageUrl}
@@ -56,19 +77,22 @@ const SessionRoster = ({ session, className }) => {
               tooltip={`${user.firstName} ${user.lastName} ${goal ? `(${goal})` : ''}`}
               className="shrink-0"
             />
-          ))
-        )}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
 SessionRoster.defaultProps = {
+  showExpanded: false,
   className: '',
 };
 
 SessionRoster.propTypes = {
   session: PropTypes.shape().isRequired,
+  date: PropTypes.string.isRequired,
+  showExpanded: PropTypes.bool,
   className: PropTypes.string,
 };
 

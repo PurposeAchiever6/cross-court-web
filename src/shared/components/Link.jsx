@@ -12,8 +12,12 @@ const getVariantClasses = (variant) => {
   }
 };
 
-const Link = ({ to, onClick, variant, isExternal, children, className, ...props }) => {
-  const linkClassName = `${getVariantClasses(variant)} ${className}`;
+const Link = ({ to, onClick, variant, isExternal, disabled, children, className, ...props }) => {
+  let linkClassName = `${getVariantClasses(variant)} ${className}`;
+
+  if (disabled) {
+    linkClassName += ' pointer-events-none opacity-50';
+  }
 
   if (isExternal) {
     return (
@@ -43,6 +47,7 @@ Link.defaultProps = {
   onClick: null,
   variant: 'purple-underline',
   isExternal: false,
+  disabled: false,
   className: '',
 };
 
@@ -52,6 +57,7 @@ Link.propTypes = {
   onClick: PropTypes.func,
   variant: PropTypes.string,
   isExternal: PropTypes.bool,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
 };
 

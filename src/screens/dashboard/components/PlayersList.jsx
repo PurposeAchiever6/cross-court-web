@@ -12,7 +12,12 @@ import {
   getSessionsByLocation,
   setSelectedDate,
 } from 'screens/locations/actionCreators';
-import { isToday, formatSessionTime, formatSessionDate } from 'shared/utils/date';
+import {
+  isToday,
+  formatSessionTime,
+  formatSessionDate,
+  requestFormattedDate,
+} from 'shared/utils/date';
 
 import userSessionService from 'screens/user-sessions/service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -68,7 +73,7 @@ const PlayersList = () => {
   const getUserSessionsList = useCallback(async () => {
     const currentDate = new Date().toLocaleDateString('en-US');
     const userSessionsList = await userSessionService.getUserSessionList(selectedSession.id, {
-      date: currentDate,
+      date: requestFormattedDate(currentDate),
       checked_in: true,
     });
     setUserSessions(userSessionsList);

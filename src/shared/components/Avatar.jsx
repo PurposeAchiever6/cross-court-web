@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Tooltip from 'shared/components/Tooltip';
+import Badge from 'shared/components/Badge';
 import missingProfileImg from 'shared/images/missing-profile-image.jpg';
 
 const Avatar = ({ img, size, badge, tooltip, className }) => {
@@ -11,7 +12,7 @@ const Avatar = ({ img, size, badge, tooltip, className }) => {
         return 'w-12 h-12';
       case 'md':
       default:
-        return 'w-24 h-24';
+        return 'w-20 h-20';
     }
   })();
 
@@ -31,8 +32,10 @@ const Avatar = ({ img, size, badge, tooltip, className }) => {
             alt="profile-img"
           />
           {badge && (
-            <div className="absolute right-1/2 bottom-0 transform translate-x-1/2 bg-white text-black font-shapiro95_super_wide uppercase text-2xs px-1">
-              {badge}
+            <div className="absolute right-1/2 -bottom-1 transform translate-x-1/2">
+              <Badge variant="white" shrink size="sm">
+                {badge}
+              </Badge>
             </div>
           )}
         </div>

@@ -40,7 +40,6 @@ const ALWAYS_SCROLLED = [
   ROUTES.MANAGE_MEMBERSHIP,
   ROUTES.PRIVACY_POLICY,
   ROUTES.NOT_FOUND,
-  '/session',
 ];
 
 const CC_BLACK_BG = [ROUTES.GALLERY, ROUTES.CONTENT];
@@ -56,6 +55,7 @@ const BLACK_BG = [
   ROUTES.FAQ,
   ROUTES.MYACCOUNT,
   ROUTES.SETTINGS,
+  '/session',
 ];
 
 const SHOW_NAVBAR = [
@@ -69,6 +69,7 @@ const SHOW_NAVBAR = [
   ROUTES.FAQ,
   ROUTES.MYACCOUNT,
   ROUTES.SETTINGS,
+  '/session',
 ];
 
 const Header = () => {
@@ -163,8 +164,8 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const showNavItems = SHOW_NAVBAR.includes(pathname);
-  const blackBg = BLACK_BG.includes(pathname);
+  const showNavItems = SHOW_NAVBAR.includes(`/${pathname.split(/[/_]/)[1]}`);
+  const blackBg = BLACK_BG.includes(`/${pathname.split(/[/_]/)[1]}`);
   const ccBlackBg = CC_BLACK_BG.includes(pathname);
   const isBlackBg = blackBg || ccBlackBg;
   const bgColor = blackBg ? 'bg-black' : ccBlackBg ? 'bg-cc-black' : 'bg-white';

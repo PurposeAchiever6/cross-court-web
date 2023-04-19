@@ -6,9 +6,7 @@ import PropTypes from 'prop-types';
 import { formatSessionTime, formatSessionEndTime } from 'shared/utils/date';
 import { pluralize } from 'shared/utils/helpers';
 import SignalBarsSvg from 'shared/components/svg/SignalBarsSvg';
-import sklzLogoWhite from 'shared/images/logos/sklz-white.png';
-import openClubLogoWhite from 'shared/images/logos/open-club-white.png';
-import sessionsLogoWhite from 'shared/images/logos/sessions-white.png';
+import SessionLogo from 'screens/sessions/components/SessionLogo';
 import SessionButton from 'screens/locations/components/SessionButton';
 import SessionVote from 'screens/locations/components/SessionVote';
 import SessionShowMore from 'screens/locations/components/SessionShowMore';
@@ -26,18 +24,6 @@ const Session = ({ session, showingFreeSessionCreditAdded, className }) => {
     themeTitle,
     themeSubheading,
   } = session;
-
-  const sessionLogo = (() => {
-    if (session.isOpenClub) {
-      return { src: openClubLogoWhite, alt: 'open-club-logo', className: 'w-24' };
-    }
-
-    if (session.skillSession) {
-      return { src: sklzLogoWhite, alt: 'skill-session-logo', className: 'w-24' };
-    }
-
-    return { src: sessionsLogoWhite, alt: 'session-logo', className: 'w-24' };
-  })();
 
   const spotsLeftText = (() => {
     if (comingSoon) {
@@ -69,7 +55,7 @@ const Session = ({ session, showingFreeSessionCreditAdded, className }) => {
             </div>
           )}
           <div className="md:flex md:items-center mb-6 mb:mb-4">
-            <img alt={sessionLogo.alt} className={sessionLogo.className} src={sessionLogo.src} />
+            <SessionLogo session={session} className="w-24" />
             <div className="border-t md:border-t-0 mt-6 pt-6 md:mt-0 md:pt-0 md:ml-6 md:pl-6 md:border-l border-cc-blue-100 md:w-full">
               <div className="md:flex md:justify-between md:items-start md:w-full">
                 <div className="md:self-center mb-6 md:mb-0">

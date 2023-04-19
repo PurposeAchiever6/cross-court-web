@@ -165,6 +165,8 @@ export const validateBooking = (session, currentUser) => {
     backToBackRestricted,
   } = session;
 
+  const { activeSubscription, reserveTeam } = currentUser;
+
   if (!userHasLegalAge) {
     return {
       canBook: false,
@@ -173,7 +175,7 @@ export const validateBooking = (session, currentUser) => {
     };
   }
 
-  if (isOpenClub || membersOnly) {
+  if ((isOpenClub || membersOnly) && !activeSubscription) {
     let errorDescription = 'This session can not be booked.';
 
     if (allowedProducts) {
@@ -191,7 +193,7 @@ export const validateBooking = (session, currentUser) => {
     };
   }
 
-  if (currentUser.reserveTeam && !reserveTeamReservationAllowed(session)) {
+  if (reserveTeam && !reserveTeamReservationAllowed(session)) {
     return {
       canBook: false,
       errorTitle: 'Reserve Team Restriced',

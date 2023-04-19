@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 import { sessionInformation, sessionRestrictions } from 'shared/utils/sessions';
 import LockSvg from 'shared/components/svg/LockSvg';
-import SessionRoster from 'screens/locations/components/SessionRoster';
+import SessionRoster from 'screens/sessions/components/SessionRoster';
 
 const SessionShowMore = ({ session, className }) => {
-  const { comingSoon } = session;
+  const { startTime, comingSoon } = session;
 
   const informations = sessionInformation(session);
   const restrictions = sessionRestrictions(session);
@@ -26,7 +26,9 @@ const SessionShowMore = ({ session, className }) => {
           <div className="text-center text-sm">Session information will be updated later on</div>
         ) : (
           <>
-            {showRoster && <SessionRoster session={session} />}
+            {showRoster && (
+              <SessionRoster session={session} date={startTime} className="text-center" />
+            )}
             {showInformations && (
               <div
                 className={`flex flex-wrap justify-center -mr-2 sm:-mr-3 text-xs md:text-sm ${

@@ -71,6 +71,7 @@ const Tooltip = ({
 };
 
 Tooltip.defaultProps = {
+  tooltip: null,
   variant: 'black',
   className: '',
   enable: true,
@@ -81,7 +82,7 @@ Tooltip.defaultProps = {
 };
 
 Tooltip.propTypes = {
-  tooltip: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  tooltip: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   children: PropTypes.node.isRequired,
   variant: PropTypes.string,
   className: PropTypes.string,

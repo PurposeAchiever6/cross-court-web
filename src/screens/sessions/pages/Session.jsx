@@ -2,6 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 
+import { pluralize } from 'shared/utils/helpers';
+import { sessionInformation, sessionRestrictions } from 'shared/utils/sessions';
+import LockSvg from 'shared/components/svg/LockSvg';
+import PageLayout from 'shared/components/layout/PageLayout';
+import SectionLayout from 'shared/components/layout/SectionLayout';
+import UserCreditsLeft from 'screens/sessions/components/UserCreditsLeft';
+import SessionInformation from 'screens/sessions/components/SessionInformation';
+import SessionRoster from 'screens/sessions/components/SessionRoster';
+import SessionOfficials from 'screens/sessions/components/SessionOfficials';
+
+// TODO fix all this file. To avoid creating a PR too big, I will leave it for the next commit
+// where I will create a `header layout component` and `header action component` with cancel and
+// confirm buttons. In this case, book session or cancel reservation if already booked.
+
 import ROUTES from 'shared/constants/routes';
 import Loading from 'shared/components/Loading';
 import { isUserInFirstSessionFlow } from 'shared/utils/user';
@@ -27,7 +41,6 @@ import Sklz from 'screens/sessions/components/Sklz';
 import NormalSession from 'screens/sessions/components/Session';
 import SessionHeader from 'screens/sessions/components/SessionHeader';
 import SessionButtons from 'screens/sessions/components/SessionButtons';
-import SessionOfficials from 'screens/sessions/components/SessionOfficials';
 import SklzCoaches from 'screens/sessions/components/SklzCoaches';
 
 import OpenClub, { SKLZ_IMAGES } from 'screens/sessions/components/open-club/Content';
@@ -45,7 +58,7 @@ const Session = () => {
   const isFirstSessionFlow = isUserInFirstSessionFlow(userProfile);
   const referralCode = window.localStorage.getItem('referralCode');
 
-  const { normalSession, isOpenClub, skillSession } = sessionInfo;
+  const { spotsLeft, maxCapacity, themeTitle } = sessionInfo;
 
   const [showAddGuestModal, setShowAddGuestModal] = useState(false);
 
@@ -72,30 +85,6 @@ const Session = () => {
     );
   };
 
-  const getContent = (sessionInfo) => {
-    if (isOpenClub) {
-      return <OpenClub sessionInfo={sessionInfo} />;
-    }
-
-    if (skillSession) {
-      return (
-        <Sklz
-          sessionInfo={sessionInfo}
-          isAuthenticated={isAuthenticated}
-          userProfile={userProfile}
-        />
-      );
-    }
-
-    return (
-      <NormalSession
-        sessionInfo={sessionInfo}
-        isAuthenticated={isAuthenticated}
-        userProfile={userProfile}
-      />
-    );
-  };
-
   useEffect(() => {
     if (isAuthenticated) {
       dispatch(removeSessionFromStorage());
@@ -119,36 +108,59 @@ const Session = () => {
 
   return (
     <>
-      <div className="flex flex-col">
-        <SessionHeader sessionInfo={sessionInfo} />
-        <div className="flex flex-col-reverse md:flex-row bg-cc-black h-full">
-          <CarouselImages
-            className="session-carousel carousel-h-full"
-            imagesClassName="w-full md:w-1/2"
-            imageUrls={skillSession ? SKLZ_IMAGES : sessionInfo.location.imageUrls}
-          />
-          <div className="flex w-full flex-col-reverse md:flex-row md:w-1/2">
-            {getContent(sessionInfo)}
-            <div className="w-full md:w-1/2 flex flex-col bg-white text-center justify-around items-center px-4 pb-12 md:px-4 md:py-10">
-              {normalSession && <SessionOfficials sessionInfo={sessionInfo} />}
-              {skillSession && <SklzCoaches sessionInfo={sessionInfo} />}
-              {isOpenClub && <HowOpenClubWorks />}
-
-              <div>
-                <SessionButtons
-                  session={sessionInfo}
-                  reserveSessionAction={reserveSessionAction}
-                  confirmSessionAction={confirmSessionAction}
-                  showCancelModalAction={showCancelModalAction}
-                  signupBookSessionAction={signupBookSessionAction}
-                  createAndReserveFreeSessionHandler={createAndReserveFreeSessionHandler}
-                  setShowAddGuestModal={setShowAddGuestModal}
-                />
-              </div>
+      <PageLayout>
+        <SectionLayout>
+          <div className="sm:flex sm:justify-between sm:items-center mb-5 sm:mb-8">
+            <h1 className="font-shapiro95_super_wide text-3xl sm:text-4xl mb-3 sm:mb-0">
+              Session Details
+            </h1>
+            <UserCreditsLeft session={sessionInfo} className="sm:text-right" />
+          </div>
+          <div className="sm:flex sm:justify-between sm:items-center mb-6">
+            <div>
+              {themeTitle && (
+                <div className="mb-5 sm:mb-0">
+                  <h3 className="font-shapiro95_super_wide text-lg sm:text-xl">Cross-Court</h3>
+                  <div className="text-white text-opacity-80 mt-1">{themeTitle}</div>
+                </div>
+              )}
+            </div>
+            <div>
+              {sessionRestrictions(sessionInfo).map((restriction, index) => (
+                <div key={index} className="flex items-center text-sm mb-1">
+                  <LockSvg className="shrink-0 w-4 mr-2" />
+                  {restriction}
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </div>
+          <SessionInformation session={sessionInfo} date={date} className="mb-4" />
+          <div className="flex flex-wrap justify-center -mr-2 text-xs md:text-sm">
+            {sessionInformation(sessionInfo).map((information, index) => (
+              <div
+                key={index}
+                className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 shrink-0 grow pr-2 pb-2"
+              >
+                <div className="bg-cc-blue-500 h-full flex justify-center items-center text-center p-3">
+                  {information}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8">
+            <h3 className="font-shapiro95_super_wide text-xl mb-1">
+              Roster {maxCapacity ? `${maxCapacity - spotsLeft}/${maxCapacity}` : ''}
+            </h3>
+            {spotsLeft && (
+              <div className="font-shapiro95_super_wide text-cc-purple text-sm mb-3">
+                {`${spotsLeft} ${pluralize('spot', spotsLeft)} left${spotsLeft <= 5 ? '!' : ''}`}
+              </div>
+            )}
+            <SessionRoster session={sessionInfo} date={date} showExpanded className="mb-12" />
+            <SessionOfficials session={sessionInfo} />
+          </div>
+        </SectionLayout>
+      </PageLayout>
       <CancelModal
         isOpen={shouldShowCancelModal}
         closeHandler={showCancelModalAction}

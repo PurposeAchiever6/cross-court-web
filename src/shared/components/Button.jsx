@@ -12,6 +12,8 @@ const getVariantClasses = (variant) => {
       return 'border-2 border-cc-purple-500 text-cc-purple-500 hover:border-cc-purple-700 hover:text-cc-purple-700';
     case 'outline-black':
       return 'border-2 border-cc-black text-cc-black hover:border-cc-black/75 hover:text-cc-black/75';
+    case 'outline-white':
+      return 'border-2 border-white text-white hover:border-white/60 hover:text-white/60';
     case 'purple':
     default:
       return 'bg-cc-purple-500 border-3 border-cc-purple-500 text-black shadow-md hover:bg-cc-purple-700 hover:border-cc-purple-700';
@@ -104,7 +106,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(['purple', 'outline-purple', 'outline-black']),
+  variant: PropTypes.oneOf(['purple', 'outline-purple', 'outline-black', 'outline-white']),
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   disabled: PropTypes.bool,
   type: PropTypes.string,
