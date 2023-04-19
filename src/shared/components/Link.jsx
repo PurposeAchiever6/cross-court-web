@@ -21,7 +21,7 @@ const Link = ({ to, onClick, variant, isExternal, disabled, children, className,
 
   if (isExternal) {
     return (
-      <a href={to} className={linkClassName} {...props}>
+      <a href={disabled ? undefined : to} className={linkClassName} {...props}>
         {children}
       </a>
     );
@@ -29,14 +29,18 @@ const Link = ({ to, onClick, variant, isExternal, disabled, children, className,
 
   if (onClick) {
     return (
-      <span onClick={onClick} className={`${linkClassName} cursor-pointer`} {...props}>
+      <span
+        onClick={disabled ? undefined : onClick}
+        className={`${linkClassName} cursor-pointer`}
+        {...props}
+      >
         {children}
       </span>
     );
   }
 
   return (
-    <RRLink to={to} className={linkClassName} {...props}>
+    <RRLink to={disabled ? undefined : to} className={linkClassName} {...props}>
       {children}
     </RRLink>
   );

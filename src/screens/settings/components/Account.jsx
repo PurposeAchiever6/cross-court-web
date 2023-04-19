@@ -6,11 +6,10 @@ import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
-import Loading from 'shared/components/Loading';
-
 import { initialLoadInit, editProfileInit } from 'screens/my-account/actionCreators';
 import { getPageLoading, getUserProfile, getEditProfileLoading } from 'screens/my-account/reducer';
 
+import Loader from 'screens/settings/components/Loader';
 import Button from 'shared/components/Button';
 import missingProfileImg from 'shared/images/missing-profile-image.jpg';
 import InputTextField from 'shared/components/InputTextField';
@@ -44,7 +43,7 @@ const Account = () => {
   }, [dispatch]);
 
   if (isLoading || isEmpty(profile)) {
-    return <Loading />;
+    return <Loader />;
   }
 
   const editProfileAction = (values) => dispatch(editProfileInit(values));

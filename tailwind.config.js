@@ -71,6 +71,7 @@ module.exports = {
         fade: 'fade 2500ms linear 800ms 1 backwards',
         'slide-top': 'slide-top 1500ms ease-out 2000ms 1 backwards',
         'spin-slow': 'spin infinite 4s',
+        'spin-quick': 'spin 0.6s linear infinite',
         'highlight-purple-twice':
           'highlight-purple 3s cubic-bezier(0.78, 0.05, 0.68, 0.79) 0.5s 2;',
       },

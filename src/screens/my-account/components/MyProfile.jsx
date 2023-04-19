@@ -219,7 +219,7 @@ const MyProfile = ({ profile }) => {
               {defaultPaymentMethod ? `Card ending in ${defaultPaymentMethod.last4}` : 'Not set'}
             </span>
             {defaultPaymentMethod && (
-              <Link className="text-sm" to={ROUTES.PAYMENT_METHODS_DEFAULT}>
+              <Link className="text-sm" to={ROUTES.BILLING}>
                 Edit
               </Link>
             )}

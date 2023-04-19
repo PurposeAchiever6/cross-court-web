@@ -1,3 +1,7 @@
+import { TAB_QUERY_PARAM } from 'shared/components/Tabs';
+
+import { BILLING_TAB } from './tabs';
+
 export default {
   NOT_FOUND: '/404',
   ABOUT_YOURSELF: '/about-yourself',
@@ -25,8 +29,6 @@ export default {
   SKLZ_SESSION: '/session/:id/:date/sklz',
   PAYMENT_METHODS: '/payment-methods',
   PAYMENT_METHODS_ADD: '/payment-methods/add',
-  PAYMENT_METHODS_DEFAULT: '/payment-methods/default',
-  PAYMENT_METHODS_MEMBERSHIP: '/payment-methods/membership',
   PAYMENT_METHODS_SELECT: '/payment-methods/select',
   PRIVACY_POLICY: '/privacy-policy',
   PAYMENT_HISTORY: '/payment-history',
@@ -40,6 +42,7 @@ export default {
   SESSIONCONFIRMED: '/session/confirmed',
   SESSIONRESERVED: '/session/reserved',
   SETTINGS: '/settings',
+  BILLING: `/settings?${TAB_QUERY_PARAM}=${BILLING_TAB}`,
   SIGNUP: '/signup',
   SIGNUPCONFIRMATION: '/signup/confirmation',
   SIGNUPSUCCESS: '/signup/success',

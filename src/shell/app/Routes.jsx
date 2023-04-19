@@ -56,12 +56,6 @@ const AddPaymentMethod = lazy(() => import('screens/payment-methods/pages/AddPay
 const PaymentMethodsSelect = lazy(() =>
   import('screens/payment-methods/pages/PaymentMethodsSelect')
 );
-const PaymentMethodsDefault = lazy(() =>
-  import('screens/payment-methods/pages/PaymentMethodsDefault')
-);
-const PaymentMethodsMembership = lazy(() =>
-  import('screens/payment-methods/pages/PaymentMethodsMembership')
-);
 const Gallery = lazy(() => import('screens/gallery/GalleryPage'));
 const Referrals = lazy(() => import('screens/referrals/ReferralsPage'));
 const MembershipConfirm = lazy(() => import('screens/checkout/pages/MembershipConfirm'));
@@ -358,12 +352,6 @@ const Routes = () => {
         </PrivateRoute>
         <PrivateRoute path={[ROUTES.PAYMENT_METHODS_SELECT]} exact>
           <PaymentMethodsSelect />
-        </PrivateRoute>
-        <PrivateRoute path={[ROUTES.PAYMENT_METHODS_DEFAULT]} exact>
-          <PaymentMethodsDefault />
-        </PrivateRoute>
-        <PrivateRoute path={[ROUTES.PAYMENT_METHODS_MEMBERSHIP]} exact>
-          <PaymentMethodsMembership />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.PAYMENT_METHODS_ADD} exact>
           <AddPaymentMethod />

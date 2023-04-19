@@ -52,6 +52,11 @@ export default (state = initialState, action) => {
         addCardLoading: true,
       };
     case ADD_CARD_SUCCESS:
+      return {
+        ...state,
+        availableCards: [action.payload.paymentMethod, ...state.availableCards],
+        addCardLoading: false,
+      };
     case ADD_CARD_FAILURE:
       return {
         ...state,

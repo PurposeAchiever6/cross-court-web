@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const TabContainer = styled.div`
   scrollbar-width: none;
@@ -9,8 +10,22 @@ const TabContainer = styled.div`
   }
 `;
 
+export const TAB_QUERY_PARAM = 'tab';
+
 const Tabs = ({ variant, alignLabels, className, children }) => {
-  const [activeTab, setActiveTab] = useState(children[0].props.label);
+  const { search } = useLocation();
+  const history = useHistory();
+  const searchParams = new URLSearchParams(search);
+  const [activeTab, setActiveTab] = useState(
+    searchParams.get(TAB_QUERY_PARAM) || children[0].props.label
+  );
+
+  useEffect(() => {
+    searchParams.set(TAB_QUERY_PARAM, activeTab);
+    history.replace({
+      search: searchParams.toString(),
+    });
+  }, [activeTab]);
 
   const variantClasses = (active) => {
     switch (variant) {
@@ -40,7 +55,9 @@ const Tabs = ({ variant, alignLabels, className, children }) => {
 
   return (
     <div className={className}>
-      <TabContainer className={`flex gap-8 mb-6 overflow-x-auto ${alignLabelsClasses}`}>
+      <TabContainer
+        className={`flex gap-8 mb-6 overflow-y-hidden overflow-x-auto ${alignLabelsClasses}`}
+      >
         {children.map(({ props: { label } }) => (
           <span
             key={label}

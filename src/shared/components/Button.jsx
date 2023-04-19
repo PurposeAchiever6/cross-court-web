@@ -46,7 +46,7 @@ const Button = ({
   ...props
 }) => {
   let btnClassName =
-    'font-shapiro95_super_wide uppercase inline-block transition-all duration-300 text-center whitespace-nowrap px-6 py-2 outline-none focus:outline focus:outline-offset-1 focus:outline-cc-purple-300';
+    'relative font-shapiro95_super_wide uppercase inline-block transition-all duration-300 text-center whitespace-nowrap px-6 py-2 outline-none focus:outline focus:outline-offset-1 focus:outline-cc-purple-300';
 
   btnClassName += ` ${getVariantClasses(variant)}`;
 
@@ -66,7 +66,7 @@ const Button = ({
 
   const onClickBtn = (e) => {
     e.target.blur();
-    onClick();
+    onClick(e);
   };
 
   return to ? (
@@ -87,7 +87,8 @@ const Button = ({
       onClick={onClickBtn}
       {...props}
     >
-      {loading ? <Spinner /> : children}
+      <Spinner className={`absolute mx-auto left-0 right-0 ${loading ? 'block' : 'hidden'}`} />
+      <span className={loading ? 'text-transparent' : ''}>{children}</span>
     </button>
   );
 };

@@ -13,7 +13,7 @@ const successToast = (options) => {
   const { title, description, showIcon, ...rest } = getOptions(options);
 
   toast(<Toast variant="success" title={title} description={description} showIcon={showIcon} />, {
-    autoClose: 4000,
+    autoClose: 6000,
     ...rest,
   });
 };
