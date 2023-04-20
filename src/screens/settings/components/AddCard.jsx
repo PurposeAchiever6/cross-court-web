@@ -9,6 +9,7 @@ import {
 import styled from 'styled-components';
 import Button from 'shared/components/Button';
 import { getAddCardLoading } from 'screens/payment-methods/reducer';
+import theme from '~/tailwind.theme';
 
 const AddCardContainer = styled.div`
   input,
@@ -18,18 +19,18 @@ const AddCardContainer = styled.div`
     padding-right: 1rem;
     padding-top: 1.25rem; // py-5
     padding-bottom: 1.25rem;
-    background-color: rgb(31 31 51 / 1); // bg-cc-blue-500
+    background-color: ${theme.colors['cc-blue']['500']};
     border-width: 1px; // border
-    border-color: rgb(31 31 51 / 1); // border-cc-blue-500
+    border-color: ${theme.colors['cc-blue']['500']};
     &:hover {
-      border-color: rgb(31 31 51 / 1); // border-cc-blue-500
+      border-color: ${theme.colors['cc-blue']['500']};
     }
     outline: 0;
     border-radius: 0;
   }
 `;
 
-const elementsStyle = { base: { fontSize: '16px', color: '#FBF7F3' } };
+const elementsStyle = { base: { fontSize: '16px', color: theme.colors.cream } };
 
 const AddCard = ({ stripe, elements, addCardHandler }) => {
   const addCardLoading = useSelector(getAddCardLoading);

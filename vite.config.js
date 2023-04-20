@@ -43,6 +43,7 @@ export default defineConfig(() => ({
         replacement: fileURLToPath(new URL('./src/screens', import.meta.url)),
       },
       { find: 'assets', replacement: fileURLToPath(new URL('./src/assets', import.meta.url)) },
+      { find: '~', replacement: fileURLToPath(new URL('.', import.meta.url)) },
     ],
   },
 }));

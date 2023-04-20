@@ -3,22 +3,24 @@ import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 import styled from 'styled-components';
 import Label from 'shared/components/Label';
+import { hexToRgb } from 'shared/utils/colors';
+import theme from '~/tailwind.theme';
 
 const menuDarkStyles = (dark) => {
   if (dark) {
     return `
-      background-color: rgb(31 31 51 / 1); // bg-cc-blue-500
-      color: rgb(251 247 243 / 0.7); // text-cream/70
+      background-color: ${theme.colors['cc-blue']['500']};
+      color: ${hexToRgb(theme.colors.cream, '0.7')}; // text-cream/70
       .select-field__menu-list {
         .select-field__option {
           &--is-focused {
-            background-color: rgb(251 247 243 / 1); // bg-cream
-            color: rgb(26 26 26 / 0.7); // text-cc-black/70
+            background-color: ${theme.colors.cream};
+            color: ${hexToRgb(theme.colors['cc-black'], '0.7')}; // text-cc-black/70
           }
 
           &--is-selected {
-            background-color: rgb(251 247 243 / 1); // bg-cream
-            color: rgb(26 26 26 / 0.7); // text-cc-black/70
+            background-color: ${theme.colors.cream};
+            color: ${hexToRgb(theme.colors['cc-black'], '0.7')}; // text-cc-black/70
           }
         }
       }
@@ -26,47 +28,47 @@ const menuDarkStyles = (dark) => {
   }
 
   return `
-    background-color: rgb(251 247 243 / 1); // bg-cream
-    color: rgb(26 26 26 / 0.7); // text-cc-black/70
+    background-color: ${theme.colors.cream};
+    color: ${hexToRgb(theme.colors['cc-black'], '0.7')}; // text-cc-black/70
   `;
 };
 
 const darkStyles = (dark) => {
   if (dark) {
     return `
-      background-color: rgb(31 31 51 / 1); // bg-cc-blue-500
+      background-color: ${theme.colors['cc-blue']['500']};
       border-width: 1px; // border
-      border-color: rgb(31 31 51 / 1); // border-cc-blue-500
+      border-color: ${theme.colors['cc-blue']['500']};
       &:hover {
-        border-color: rgb(31 31 51 / 1); // border-cc-blue-500
+        border-color: ${theme.colors['cc-blue']['500']};
       }
 
       &--is-focused {
         box-shadow: none;
-        border-color: rgb(251 247 243 / 0.1) !important; // focus:border-cream/10
+        border-color: ${hexToRgb(theme.colors.cream, '0.1')} !important; // focus:border-cream/10
       }
 
       .select-field__single-value {
-        color: rgb(251 247 243 / 0.7); // text-cream/70
+        color: ${hexToRgb(theme.colors.cream, '0.7')}; // text-cream/70
       }
     `;
   }
 
   return `
-    background-color: rgb(251 247 243 / 1); // bg-cream
+    background-color: ${theme.colors.cream};
     border-width: 1px; // border
-    border-color: rgb(26 26 26 / 0.5); // border-cc-black/50
+    border-color: ${hexToRgb(theme.colors['cc-black'], '0.5')}; // border-cc-black/50
     &:hover {
-      border-color: rgb(26 26 26 / 0.5); // border-cc-black/50
+      border-color: ${hexToRgb(theme.colors['cc-black'], '0.5')}; // border-cc-black/50
     }
 
     &--is-focused {
       box-shadow: none;
-      border-color: rgb(26 26 26 / 1) !important; // focus:border-cc-black/100
+      border-color: ${theme.colors['cc-black']} !important;
     }
 
     .select-field__single-value {
-      color: rgb(26 26 26 / 0.7); // text-cc-black/70
+      color: ${hexToRgb(theme.colors['cc-black'], '0.7')}; // text-cc-black/70
     }
   `;
 };
