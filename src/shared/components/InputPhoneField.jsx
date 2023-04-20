@@ -16,7 +16,7 @@ const InputPhoneField = ({
   variant,
   ...props
 }) => {
-  const darkClasses = (() => {
+  const colorClasses = (() => {
     if (dark) {
       return 'text-cream bg-cc-blue-500 border border-cc-blue-500 focus:border-cream/10';
     }
@@ -24,7 +24,7 @@ const InputPhoneField = ({
     return 'text-cc-black bg-cream border border-cc-black/50 focus:border-cc-black/100';
   })();
 
-  const inputClasses = (() => {
+  const variantClasses = (() => {
     switch (variant) {
       case 'shrink':
         return 'pr-2 py-1';
@@ -58,7 +58,7 @@ const InputPhoneField = ({
               />
               <input
                 name={name}
-                className={`w-full pl-12 md:pl-16 font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 ${darkClasses} ${inputClasses}`}
+                className={`w-full pl-12 md:pl-16 font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 ${colorClasses} ${variantClasses}`}
                 autoComplete="off"
                 onChange={onChange}
                 onBlur={onBlur}

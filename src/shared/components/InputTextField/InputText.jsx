@@ -47,7 +47,7 @@ function InputText({
     }, 100);
   }, [leftIcon, rightIcon]);
 
-  const darkClasses = (() => {
+  const colorClasses = (() => {
     if (dark) {
       return 'text-cream bg-cc-blue-500 border border-cc-blue-500 focus:border-cream/10';
     }
@@ -55,7 +55,7 @@ function InputText({
     return 'text-cc-black bg-cream border border-cc-black/50 focus:border-cc-black/100';
   })();
 
-  const inputClasses = (() => {
+  const variantClasses = (() => {
     switch (variant) {
       case 'shrink':
         return 'px-2 py-1';
@@ -89,7 +89,7 @@ function InputText({
             </div>
           )}
           <input
-            className={`w-full font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 ${darkClasses} ${inputClasses}`}
+            className={`w-full font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 ${colorClasses} ${variantClasses}`}
             autoComplete="off"
             name={name}
             disabled={disabled}
