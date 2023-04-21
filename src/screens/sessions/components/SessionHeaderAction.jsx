@@ -48,6 +48,8 @@ const SessionHeaderAction = ({ session, date }) => {
   const {
     id,
     normalSession,
+    isOpenClub,
+    userSession,
     past,
     reserved,
     onWaitlist,
@@ -124,7 +126,7 @@ const SessionHeaderAction = ({ session, date }) => {
   };
 
   const cancelSession = () => {
-    dispatch(cancelSessionInit(session.userSession.id));
+    dispatch(cancelSessionInit(userSession.id));
   };
 
   const bookSession = ({
@@ -157,7 +159,7 @@ const SessionHeaderAction = ({ session, date }) => {
       return;
     }
 
-    if (session.isOpenClub && !skipOpenClubGoalsModal) {
+    if (isOpenClub && !skipOpenClubGoalsModal) {
       setShowOpenClubGoalsModal(true);
       return;
     }
@@ -287,9 +289,9 @@ const SessionHeaderAction = ({ session, date }) => {
           steps={[
             {
               element: '#session-confirm-reservation',
-              intro: `You’re s’close. Press <strong>CONFIRM RESERVATION</strong> to hold your spot. ${
+              intro: `You're s'close. Press <strong>CONFIRM RESERVATION</strong> to hold your spot. ${
                 isFirstFreeSessionFlow
-                  ? `First you'll need to enter your payment info and then you'll be ready to book your first session! Don’t worry, your card won’t be charged unless you miss your session or cancel within 5 hours of your session starting ($${SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`
+                  ? `First you'll need to enter your payment info and then you'll be ready to book your first session! Don't worry, your card won't be charged unless you miss your session or cancel within 5 hours of your session starting ($${SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`
                   : `${
                       currentUser.totalCredits === 0
                         ? 'Due to your location, you are not eligible for a free trial session, but because is your first time, you can buy a session at a discounted price.'
@@ -350,9 +352,9 @@ const SessionHeaderAction = ({ session, date }) => {
       <CancelModal
         isOpen={showCancelModal}
         closeHandler={() => setShowCancelModal(false)}
-        cancelSessionAction={cancelSession}
-        sessionInfo={session}
-        unlimitedCredits={currentUser.unlimitedCredits}
+        cancelSession={cancelSession}
+        session={session}
+        user={currentUser}
       />
     </>
   );

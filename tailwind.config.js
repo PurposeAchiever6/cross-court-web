@@ -60,7 +60,6 @@ module.exports = {
       zIndex: {
         '-1': -1,
         1005: 1005,
-        9999: 9999,
       },
       borderWidth: {
         3: '3px',

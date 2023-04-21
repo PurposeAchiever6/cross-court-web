@@ -64,7 +64,7 @@ const Session = () => {
           <div>
             {themeTitle && (
               <div className="mb-5 sm:mb-0">
-                <h3 className="font-shapiro95_super_wide text-lg sm:text-xl">Cross-Court</h3>
+                <h3 className="font-shapiro95_super_wide text-lg sm:text-xl">Crosscourt</h3>
                 <div className="text-white text-opacity-80 mt-1">{themeTitle}</div>
               </div>
             )}

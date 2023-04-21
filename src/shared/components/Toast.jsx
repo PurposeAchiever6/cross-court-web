@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CheckmarkSvg from 'shared/components/svg/CheckmarkSvg';
 import ExclamationSvg from 'shared/components/svg/ExclamationSvg';
 import CrossSvg from 'shared/components/svg/CrossSvg';
 
@@ -11,8 +12,10 @@ const Toast = ({ variant, title, description, showIcon, closeToast }) => {
     }
 
     switch (variant) {
+      case 'success':
+        return <CheckmarkSvg className="w-6 shrink-0 mr-3" />;
       case 'error':
-        return <ExclamationSvg className="w-6 shrink-0 mr-4" />;
+        return <ExclamationSvg className="w-6 shrink-0 mr-3" />;
       default:
     }
   })();

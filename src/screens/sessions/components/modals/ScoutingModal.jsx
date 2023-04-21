@@ -14,7 +14,7 @@ export const ScoutingModal = ({ isOpen, closeHandler, scouting, setScouting, onC
   };
 
   return (
-    <Modal title="Wants Evauation?" isOpen={isOpen} closeHandler={closeHandler}>
+    <Modal title="Player Evauation" isOpen={isOpen} closeHandler={closeHandler}>
       <div>
         <p className="text-sm mb-4">
           Our Experience Team will go through our player evaluation form with you to provide a
