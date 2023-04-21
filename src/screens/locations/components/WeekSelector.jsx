@@ -66,8 +66,10 @@ const WeekSelector = ({
             key={day}
             type="button"
             onClick={() => setSelectedDateHandler(day)}
-            className={`bg-cc-blue-900 w-full text-center text-sm px-4 py-2 mx-1 transition-all duration-300 sm:hover:bg-cc-blue-700 ${
-              isSameDay(day, selectedDate) ? 'bg-white text-cc-blue-900 pointer-events-none' : ''
+            className={`w-full text-center text-sm px-4 py-2 mx-1 transition-all duration-300 sm:hover:bg-cc-blue-700 ${
+              isSameDay(day, selectedDate)
+                ? 'bg-white text-cc-blue-900 pointer-events-none'
+                : 'bg-cc-blue-900'
             } ${isPast(day) ? 'opacity-50 pointer-events-none' : ''}`}
           >
             <span className="block font-shapiro95_super_wide uppercase">{dayShort(day)}</span>
