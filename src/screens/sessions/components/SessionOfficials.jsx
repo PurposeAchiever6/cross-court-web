@@ -47,7 +47,7 @@ const SessionOfficials = ({ session, className }) => {
                 </div>
               )}
               {skillSession && (
-                <div className="bg-cc-blue-100 p-4 relative w-full">
+                <div className="bg-cc-blue-100 p-4 relative">
                   <span className="font-shapiro95_super_wide text-xs md:text-sm">
                     {titleize(coach?.fullName) || 'Not Assigned'}
                   </span>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { sessionInformation, sessionRestrictions } from 'shared/utils/sessions';
+import { sessionInformation, sessionRestrictions } from 'screens/sessions/utils';
 import LockSvg from 'shared/components/svg/LockSvg';
 import SessionRoster from 'screens/sessions/components/SessionRoster';
 

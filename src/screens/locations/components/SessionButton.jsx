@@ -13,11 +13,11 @@ import {
   isUserInFirstFreeSessionFlow,
 } from 'shared/utils/user';
 import toast from 'shared/utils/toast';
-import { validateBooking } from 'shared/utils/sessions';
 import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { hasConfirmOutsideOfSkillLevelSession } from 'shared/utils/outsideOfSkillLevel';
 import { hasConfirmSkillSession } from 'shared/utils/skillSessionsConfirmations';
 import { hasConfirmWomenOnlySessions } from 'shared/utils/womenOnlySessionsConfirmations';
+import { validateBooking } from 'screens/sessions/utils';
 import {
   joinSessionWaitlistInit,
   removeSessionWaitlistInit,
@@ -33,7 +33,7 @@ import OnboardingTour from 'shared/components/OnboardingTour';
 import WomenOnlyReservationModal from 'screens/locations/components/WomenOnlyReservationModal';
 import OutsideOfSkillLevelModal from 'screens/locations/components/OutsideOfSkillLevelModal';
 import SkillSessionReservationModal from 'screens/locations/components/SkillSessionReservationModal';
-import WaitlistModal from 'screens/locations/components/WaitlistModal';
+import WaitlistModal from 'screens/sessions/components/modals/WaitlistModal';
 
 const SessionButton = ({ session, showingFreeSessionCreditAdded, className }) => {
   const history = useHistory();
@@ -121,6 +121,7 @@ const SessionButton = ({ session, showingFreeSessionCreditAdded, className }) =>
       !skipSkillSessionReservationModal && skillSession && !hasConfirmSkillSession(currentUser);
 
     setOnboardingTourEnable(false);
+
     const { canBook, errorTitle, errorDescription } = validateBooking(session, currentUser);
 
     if (!canBook) {
@@ -149,7 +150,7 @@ const SessionButton = ({ session, showingFreeSessionCreditAdded, className }) =>
         variant: 'outline-purple',
         additionalInfo: (
           <div className="flex justify-center items-center">
-            <CheckSvg className="w-4 text-green-300 mr-2" />
+            <CheckSvg className="w-4 text-success mr-2" />
             Booked
           </div>
         ),
@@ -170,7 +171,13 @@ const SessionButton = ({ session, showingFreeSessionCreditAdded, className }) =>
       return { text: 'Join Waitlist', variant: 'outline-purple', onClick: joinWaitlist };
     }
 
-    return { text: 'Book', variant: 'purple', onClick: bookSession, showOnboardingTour: true };
+    return {
+      text: 'Book',
+      variant: 'purple',
+      onClick: bookSession,
+      showOnboardingTour: true,
+      id: 'sessions-list-reserve-btn',
+    };
   })();
 
   if (comingSoon || past) {
@@ -181,7 +188,7 @@ const SessionButton = ({ session, showingFreeSessionCreditAdded, className }) =>
     <>
       <div>
         <Button
-          id="sessions-list-reserve-btn"
+          id={buttonData.id}
           variant={buttonData.variant}
           onClick={buttonData.onClick}
           loading={loading}

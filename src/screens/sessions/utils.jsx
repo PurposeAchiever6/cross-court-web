@@ -1,73 +1,209 @@
 import React from 'react';
+import dayjs from 'dayjs';
 
-import { pluralize } from 'shared/utils/helpers';
-import { longSessionDate, hourRange } from 'shared/utils/date';
+import { titleize } from 'shared/utils/helpers';
+import { isUserInLegalAge, userOutsideOfSessionSkillLevel } from 'shared/utils/user';
+import { formatSessionDate, longSessionDate, hourRange } from 'shared/utils/date';
+import InfoTooltip from 'shared/components/InfoTooltip';
 
-export const getSessionsMessageContainerText = (
-  isSessionComplete,
-  isSessionFull,
-  isSkillSession,
-  isAuthenticated,
-  userProfile
-) => {
-  const {
-    activeSubscription,
-    totalCredits,
-    subscriptionSkillSessionCredits,
-    unlimitedCredits,
-    unlimitedSkillSessionCredits,
-  } = userProfile;
+export const reserveTeamReservationAllowed = (session) => {
+  const { startTime, time, past, isPrivate, isOpenClub, reservationsCount } = session;
+  const sessionDate = formatSessionDate(startTime);
 
-  if (isSessionComplete) {
-    return 'SESSION COMPLETE';
-  }
-  if (isSessionFull) {
-    return 'SESSION FULL';
+  if (isOpenClub || past || isPrivate) {
+    return true;
   }
 
-  if (!isAuthenticated) {
-    return '';
+  const currentDate = dayjs().toDate();
+  const formatedSessionDate = dayjs(
+    `${sessionDate} ${time.split('T')[1].split('Z')[0]}`,
+    'MM/DD/YY HH:MM:SS'
+  ).toDate();
+
+  const sessionStartsIn = parseInt(Math.abs(currentDate - formatedSessionDate) / 36e5, 10);
+
+  if (sessionStartsIn > 5 && sessionStartsIn <= 10 && reservationsCount < 5) {
+    return true;
   }
 
-  if (isSkillSession) {
-    if (unlimitedCredits || unlimitedSkillSessionCredits) {
-      return 'YOU HAVE UNLIMITED SKLZ SESSIONS';
-    }
-
-    const totalSkillSessionCredits = totalCredits + subscriptionSkillSessionCredits;
-
-    return `YOU HAVE ${totalSkillSessionCredits} SKLZ ${pluralize(
-      'SESSION',
-      totalSkillSessionCredits,
-      'S'
-    )} ${activeSubscription ? 'LEFT THIS MONTH' : 'AVAILABLE'}`;
+  if (sessionStartsIn > 1 && sessionStartsIn <= 5 && reservationsCount < 10) {
+    return true;
   }
 
-  if (unlimitedCredits) {
-    return 'YOU HAVE UNLIMITED SESSIONS';
+  if (sessionStartsIn <= 1 && reservationsCount < 13) {
+    return true;
   }
 
-  if (totalCredits) {
-    return `YOU HAVE ${totalCredits} ${pluralize('SESSION', totalCredits, 'S')} ${
-      activeSubscription ? 'LEFT THIS MONTH' : 'AVAILABLE'
-    }`;
-  }
-
-  return '';
+  return false;
 };
 
-export const getSessionCostCreditsText = (sessionInfo) => {
-  const { costCredits } = sessionInfo;
+export const validateBooking = (session, currentUser) => {
+  const userHasLegalAge = isUserInLegalAge(currentUser);
+  const {
+    skillLevel,
+    allSkillLevelsAllowed,
+    membersOnly,
+    allowedProducts,
+    isOpenClub,
+    backToBackRestricted,
+  } = session;
 
-  if (costCredits === 0) {
-    return 'No credit required';
+  const { activeSubscription, reserveTeam } = currentUser;
+
+  if (!userHasLegalAge) {
+    return {
+      canBook: false,
+      errorTitle: '18+',
+      errorDescription: 'Must be 18 or older to book a session.',
+    };
+  }
+
+  if (activeSubscription?.paused) {
+    return {
+      canBook: false,
+      errorTitle: 'Paused Membership',
+      errorDescription: "You can't reserve when your membership is paused.",
+    };
+  }
+
+  if ((isOpenClub || membersOnly) && !activeSubscription) {
+    let errorDescription = 'This session can not be booked.';
+
+    if (allowedProducts) {
+      const allowedProductsNames = allowedProducts
+        .map((allowedProduct) => titleize(allowedProduct.name))
+        .join(' and ');
+
+      errorDescription = `This session can not be booked. ${allowedProductsNames} membership allowed only.`;
+    }
+
+    return {
+      canBook: false,
+      errorTitle: 'Members Only',
+      errorDescription,
+    };
+  }
+
+  if (reserveTeam && !reserveTeamReservationAllowed(session)) {
+    return {
+      canBook: false,
+      errorTitle: 'Reserve Team Restriced',
+      errorDescription: 'This session can not be booked by the reserve team.',
+    };
+  }
+
+  if (!allSkillLevelsAllowed && userOutsideOfSessionSkillLevel(currentUser, session)) {
+    return {
+      canBook: false,
+      errorTitle: 'Outside Skill Level',
+      errorDescription: `This session is reserved for level ${skillLevel.min}-${skillLevel.max} players.`,
+    };
+  }
+
+  if (backToBackRestricted) {
+    return {
+      canBook: false,
+      errorTitle: 'Session Not Available',
+      errorDescription:
+        'This session is not eligible for back-to-back bookings. Tap Show More to see which sessions are back-to-back eligible.',
+    };
+  }
+
+  return { canBook: true };
+};
+
+export const sessionInformation = (session) => {
+  const information = [];
+
+  const {
+    isOpenClub,
+    costCredits,
+    allowBackToBackReservations,
+    allSkillLevelsAllowed,
+    guestsAllowed,
+    ccCashEarned,
+  } = session;
+
+  const sessionCcCashEarned = Number(ccCashEarned);
+
+  if (costCredits === 0 || isOpenClub) {
+    information.push('No Credit Required');
   }
 
   if (costCredits > 1) {
-    return `Session cost ${costCredits} credits`;
+    information.push(`${costCredits} Credits Required`);
   }
 
-  return null;
+  if (allowBackToBackReservations) {
+    information.push('Back To Back Eligible');
+  }
+
+  if (allSkillLevelsAllowed) {
+    information.push('All Levels Eligible');
+  }
+
+  if (guestsAllowed && guestsAllowed > 0) {
+    information.push('Guest Pass Eligible');
+  }
+
+  if (sessionCcCashEarned > 0) {
+    information.push(
+      <>
+        Earn ${sessionCcCashEarned}
+        <InfoTooltip
+          place="bottom"
+          info={`Receive $${sessionCcCashEarned} in CC Cash when you attend this session`}
+          className="ml-2"
+        />
+      </>
+    );
+  }
+
+  return information;
+};
+
+export const sessionRestrictions = (session) => {
+  const restrictions = [];
+  const {
+    isOpenClub,
+    membersOnly,
+    allowedProducts,
+    womenOnly,
+    backToBackRestricted,
+    allSkillLevelsAllowed,
+    skillLevel,
+    isPrivate,
+  } = session;
+
+  if (isOpenClub || membersOnly) {
+    if (allowedProducts) {
+      const allowedProductsNames = allowedProducts
+        .map((allowedProduct) => allowedProduct.name)
+        .join(' & ');
+
+      restrictions.push(`${allowedProductsNames} Members Only`);
+    } else {
+      restrictions.push('Members Only');
+    }
+  }
+
+  if (womenOnly) {
+    restrictions.push('Women Only');
+  }
+
+  if (backToBackRestricted) {
+    restrictions.push('Back To Back Restricted');
+  }
+
+  if (!allSkillLevelsAllowed && skillLevel) {
+    restrictions.push(`${skillLevel.name} Players Only`);
+  }
+
+  if (isPrivate) {
+    restrictions.push('Private');
+  }
+
+  return restrictions;
 };
 
 export const sessionData = (date, sessionInfo) => [

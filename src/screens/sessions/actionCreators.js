@@ -3,10 +3,8 @@ import {
   INITIAL_LOAD_AUTH_INIT,
   RESERVE_SESSION_INIT,
   CANCEL_SESSION_INIT,
-  CONFIRM_SESSION_INIT,
   JOIN_SESSION_WAITLIST_INIT,
   REMOVE_SESSION_WAITLIST_INIT,
-  SHOW_CANCEL_MODAL,
   SHOW_WAITLIST_MODAL,
   CLOSE_WAITLIST_MODAL,
   SIGNUP_BOOK_SESSION,
@@ -45,13 +43,6 @@ export const cancelSessionInit = (sessionId) => ({
   },
 });
 
-export const confirmSessionInit = (sessionId) => ({
-  type: CONFIRM_SESSION_INIT,
-  payload: {
-    sessionId,
-  },
-});
-
 export const joinSessionWaitlistInit = (sessionId, sessionDate) => ({
   type: JOIN_SESSION_WAITLIST_INIT,
   payload: {
@@ -66,10 +57,6 @@ export const removeSessionWaitlistInit = (sessionId, sessionDate) => ({
     sessionId,
     sessionDate,
   },
-});
-
-export const showCancelModal = () => ({
-  type: SHOW_CANCEL_MODAL,
 });
 
 export const showWaitlistModal = (sessionId) => ({

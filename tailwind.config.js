@@ -29,6 +29,9 @@ module.exports = {
           900: '#0F0F1A',
         },
         cream: '#FBF7F3',
+        success: '#A3F5B0',
+        notice: '#FFDC99',
+        warning: '#FF8F8F',
       },
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '1rem' }],

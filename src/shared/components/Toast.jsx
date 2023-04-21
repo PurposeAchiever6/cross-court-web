@@ -37,14 +37,15 @@ Toast.defaultProps = {
   title: null,
   showIcon: true,
   variant: null,
+  closeToast: () => null,
 };
 
 Toast.propTypes = {
   title: PropTypes.string,
   showIcon: PropTypes.bool,
   variant: PropTypes.string,
+  closeToast: PropTypes.func,
   description: PropTypes.string.isRequired,
-  closeToast: PropTypes.func.isRequired,
 };
 
 export default Toast;

@@ -18,9 +18,6 @@ import {
   CANCEL_SESSION_INIT,
   CANCEL_SESSION_SUCCESS,
   CANCEL_SESSION_FAILURE,
-  CONFIRM_SESSION_INIT,
-  CONFIRM_SESSION_SUCCESS,
-  CONFIRM_SESSION_FAILURE,
   SIGNUP_BOOK_SESSION,
   BUY_CREDITS_AND_BOOK_SESSION,
   JOIN_SESSION_WAITLIST_INIT,
@@ -100,12 +97,16 @@ export function* reserveSessionFlow({ payload }) {
     );
     yield put({
       type: RESERVE_SESSION_SUCCESS,
-      payload: { userSession },
+      payload: { userSession, sessionId: payload.sessionId },
     });
     yield put(push(payload.redirectTo || ROUTES.SESSIONRESERVED));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
-    yield put({ type: RESERVE_SESSION_FAILURE, error: err.response.data.error });
+    yield put({
+      type: RESERVE_SESSION_FAILURE,
+      error: err.response.data.error,
+      payload: { sessionId: payload.sessionId },
+    });
   }
 }
 
@@ -120,19 +121,6 @@ export function* cancelSessionFlow({ payload }) {
     yield put(push(ROUTES.MYACCOUNT));
   } catch (err) {
     yield put({ type: CANCEL_SESSION_FAILURE, error: err.response.data.error });
-  }
-}
-
-export function* confirmSessionFlow({ payload }) {
-  try {
-    yield call(sessionService.confirmSession, payload.sessionId);
-    yield put({
-      type: CONFIRM_SESSION_SUCCESS,
-    });
-    yield put(push(ROUTES.SESSIONCONFIRMED));
-  } catch (err) {
-    yield call(toast.error, err.response.data.error);
-    yield put({ type: CONFIRM_SESSION_FAILURE, error: err.response.data.error });
   }
 }
 
@@ -269,7 +257,6 @@ export default function* rootSessionSaga() {
     takeLatest(INITIAL_LOAD_AUTH_INIT, initialLoadAuthFlow),
     takeLatest(RESERVE_SESSION_INIT, reserveSessionFlow),
     takeLatest(CANCEL_SESSION_INIT, cancelSessionFlow),
-    takeLatest(CONFIRM_SESSION_INIT, confirmSessionFlow),
     takeLatest(JOIN_SESSION_WAITLIST_INIT, joinSessionWaitlistFlow),
     takeLatest(REMOVE_SESSION_WAITLIST_INIT, removeSessionWaitlistFlow),
     takeLatest(SIGNUP_BOOK_SESSION, signupBookSessionFlow),
