@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import LocationSvg from 'shared/components/svg/LocationSvg';
 import InputSelectField from 'shared/components/InputSelectField';
-import MapModal from 'screens/locations/components/MapModal';
+import MapModal from 'screens/locations/components/modals/MapModal';
 
 const LocationPicker = ({ availableLocations, selectedLocationId, setLocationHandler }) => {
   const [showMapModal, setShowMapModal] = useState(false);

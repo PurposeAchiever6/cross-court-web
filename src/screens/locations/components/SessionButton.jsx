@@ -30,9 +30,9 @@ import { getSessionsLoadingBtns, getShowWaitlistModal } from 'screens/sessions/r
 import CheckSvg from 'shared/components/svg/CheckSvg';
 import Button from 'shared/components/Button';
 import OnboardingTour from 'shared/components/OnboardingTour';
-import WomenOnlyReservationModal from 'screens/locations/components/WomenOnlyReservationModal';
-import OutsideOfSkillLevelModal from 'screens/locations/components/OutsideOfSkillLevelModal';
-import SkillSessionReservationModal from 'screens/locations/components/SkillSessionReservationModal';
+import WomenOnlyReservationModal from 'screens/locations/components/modals/WomenOnlyReservationModal';
+import OutsideOfSkillLevelModal from 'screens/locations/components/modals/OutsideOfSkillLevelModal';
+import SkillSessionReservationModal from 'screens/locations/components/modals/SkillSessionReservationModal';
 import WaitlistModal from 'screens/sessions/components/modals/WaitlistModal';
 
 const SessionButton = ({ session, showingFreeSessionCreditAdded, className }) => {
