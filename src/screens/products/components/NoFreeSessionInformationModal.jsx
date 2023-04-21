@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from 'shared/components/Modal';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 
 export const NoFreeSessionInformationModal = ({ isOpen, closeHandler, price }) => (
   <Modal title="Please Note" isOpen={isOpen} closeHandler={closeHandler}>
@@ -19,7 +19,7 @@ export const NoFreeSessionInformationModal = ({ isOpen, closeHandler, price }) =
         </p>
       </div>
       <div className="text-center">
-        <PrimaryButton onClick={closeHandler}>Done</PrimaryButton>
+        <Button onClick={closeHandler}>Done</Button>
       </div>
     </div>
   </Modal>

@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import InputIncrementDecrement, { OPERATIONS } from 'shared/components/InputIncrementDecrement';
 import ROUTES from 'shared/constants/routes';
 import InputTextareaField from 'shared/components/InputTextareaField';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import InputRadioField from 'shared/components/InputRadioField';
 import { getUser } from 'screens/auth/reducer';
 import { updatePersonalInfo } from 'screens/auth/actionCreators';
@@ -224,9 +224,9 @@ const AboutYourselfPage = () => {
                 </InputRadioField>
               </div>
               <div className="text-center">
-                <PrimaryButton type="submit" loading={isSubmitting} className="mb-14">
+                <Button type="submit" loading={isSubmitting} className="mb-14">
                   NEXT
-                </PrimaryButton>
+                </Button>
               </div>
             </Form>
           )}

@@ -1,3 +1,4 @@
+import React from 'react';
 import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 
@@ -7,6 +8,7 @@ import { BILLING_TAB } from 'shared/constants/tabs';
 import Account from 'screens/settings/components/Account';
 import Billing from 'screens/settings/components/Billing';
 import Bio from 'screens/settings/components/Bio';
+import SkillRating from 'screens/settings/components/SkillRating';
 
 const SettingsPage = () => (
   <PageLayout>
@@ -23,8 +25,9 @@ const SettingsPage = () => (
           <div label="Bio">
             <Bio />
           </div>
-          <div label="Skill Rating"></div>
-          <div label="Q&amp;A"></div>
+          <div label="Skill Rating">
+            <SkillRating />
+          </div>
         </Tabs>
       </div>
     </SectionLayout>

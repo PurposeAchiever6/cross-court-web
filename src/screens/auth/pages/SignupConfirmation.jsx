@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import useQuery from 'shared/hooks/useQuery';
 
 import ROUTES from 'shared/constants/routes';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import CheckIcon from 'shared/images/check-icon.png';
 import WarningIcon from 'shared/images/warning-triangle.png';
 import StorageUtils from 'shared/utils/storage';
@@ -60,7 +60,7 @@ const SignupConfirmationPage = () => {
         className="inline-block w-24 mb-12"
       />
       <p className="mb-12">{success ? 'Your e-mail was successfully verified!' : error}</p>
-      <PrimaryButton onClick={onClickAction}>{success ? 'Continue' : 'Log In'}</PrimaryButton>
+      <Button onClick={onClickAction}>{success ? 'Continue' : 'Log In'}</Button>
     </div>
   );
 };

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
 import InputTextField from 'shared/components/InputTextField';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 
 const initialValues = {
   password: '',
@@ -51,9 +51,9 @@ const PasswordResetForm = ({ error, passResetHandler, isLoading }) => (
               className="mb-6"
             />
             {!isEmpty(error) && <div className="alert-error mb-2">{error}</div>}
-            <PrimaryButton type="submit" loading={isLoading} w="100%" className="mb-10">
+            <Button type="submit" loading={isLoading} className="w-full mb-10">
               Set New Password
-            </PrimaryButton>
+            </Button>
             <div className="text-center">
               <Link to={ROUTES.LOGIN} className="font-bold hover:underline">
                 Back to Log in

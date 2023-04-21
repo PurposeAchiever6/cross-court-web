@@ -96,7 +96,12 @@ export function* updateSkillRatingFlow({ payload }) {
 
     yield call(authService.updateSkillRating, { email, skillRating: payload.skillRating });
     yield put({ type: UPDATE_SKILL_RATING_SUCCESS });
-    yield put(push(isEdit ? ROUTES.MYACCOUNT : ROUTES.ABOUT_YOURSELF, { from: ROUTES.RATING }));
+
+    if (isEdit) {
+      yield call(toast.success, 'Skill rating updated successfully');
+    } else {
+      yield put(push(ROUTES.ABOUT_YOURSELF, { from: ROUTES.RATING }));
+    }
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);

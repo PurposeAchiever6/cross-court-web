@@ -7,7 +7,7 @@ import { string, func, bool } from 'prop-types';
 
 import InputTextField from 'shared/components/InputTextField';
 import ROUTES from 'shared/constants/routes';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required('Required'),
@@ -55,9 +55,9 @@ const LoginForm = ({ error, loginHandler, isLoading }) => (
               />
             </div>
             {isEmpty(error) ? null : <div className="alert-error mb-2">{error}</div>}
-            <PrimaryButton type="submit" loading={isLoading} w="100%" className="mb-14">
+            <Button type="submit" loading={isLoading} className="w-full mb-14">
               LOG IN
-            </PrimaryButton>
+            </Button>
             <div className="text-center mb-14">
               <Link to={ROUTES.FORGOTPASSWORD} className="font-bold hover:underline">
                 Forgot your password?

@@ -11,7 +11,7 @@ import InputTextField from 'shared/components/InputTextField';
 import InputPhoneField from 'shared/components/InputPhoneField';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
 import InputSelectField from 'shared/components/InputSelectField';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import { genderSelectOptions, phoneRegExp, zipcodeRegExp } from 'shared/utils/helpers';
 
 const initialValues = {
@@ -116,9 +116,9 @@ const SignupForm = ({ signupHandler, isLoading, errors }) => {
                 terms and conditions
               </Link>
             </InputCheckboxField>
-            <PrimaryButton loading={isLoading} w="100%" type="submit">
+            <Button loading={isLoading} className="w-full" type="submit">
               SUBMIT
-            </PrimaryButton>
+            </Button>
             <div className="login font-shapiro45_welter_extd my-2">
               <span className="flex flex-col text-center mt-4 cursor-pointer hover:underline">
                 Already have an account?
