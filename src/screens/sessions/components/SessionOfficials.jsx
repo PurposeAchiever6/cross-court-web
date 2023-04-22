@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { titleize } from 'shared/utils/helpers';
-import Avatar from 'shared/components/Avatar';
+import EmployeeCard from 'screens/sessions/components/EmployeeCard';
 import trustTheProgressImg from 'screens/sessions/images/trust-the-progress.jpeg';
 import trustTheProgressShapeImg from 'shared/images/trust-the-progress-shape.png';
 
@@ -28,32 +27,11 @@ const SessionOfficials = ({ session, className }) => {
             <div className="mb-20 xl:mb-0">
               {normalSession && (
                 <div className="md:flex">
-                  <div className="bg-cc-blue-100 p-4 relative w-full md:mr-3 mb-10 md:mb-0">
-                    <span className="font-shapiro95_super_wide text-xs md:text-sm">
-                      {titleize(sem?.fullName) || 'Not Assigned'}
-                    </span>
-                    <Avatar img={sem?.imageUrl} size="md" className="absolute-center-y right-4" />
-                  </div>
-                  <div className="bg-cc-blue-100 p-4 relative w-full md:ml-3">
-                    <span className="font-shapiro95_super_wide text-xs md:text-sm">
-                      {titleize(referee?.fullName) || 'Not Assigned'}
-                    </span>
-                    <Avatar
-                      img={referee?.imageUrl}
-                      size="md"
-                      className="absolute-center-y right-4"
-                    />
-                  </div>
+                  <EmployeeCard user={sem} className="w-full md:mr-3 mb-10 md:mb-0" />
+                  <EmployeeCard user={referee} className="w-full md:ml-3" />
                 </div>
               )}
-              {skillSession && (
-                <div className="bg-cc-blue-100 p-4 relative">
-                  <span className="font-shapiro95_super_wide text-xs md:text-sm">
-                    {titleize(coach?.fullName) || 'Not Assigned'}
-                  </span>
-                  <Avatar img={coach?.imageUrl} size="md" className="absolute-center-y right-4" />
-                </div>
-              )}
+              {skillSession && <EmployeeCard user={coach} />}
             </div>
           )}
         </div>
