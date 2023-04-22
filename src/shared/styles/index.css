@@ -135,6 +135,7 @@ body[data-page='my-account'] main,
 body[data-page='faq'] main,
 body[data-page='settings'] main,
 body[data-page^='session-'] main,
+body[data-page='first-session-reserved'] main,
 body[data-page='gallery'] main {
   padding-top: 0;
 }

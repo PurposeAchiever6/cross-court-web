@@ -127,9 +127,12 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
           Are you sure you want to cancel your booking?
         </h2>
         <div className="mb-8">
-          <span>{longSessionDate(date)}</span>
-          <span className="mx-2">@</span>
-          <span>{formatSessionTime(time)}</span>
+          <div className="flex justify-center items-center">
+            <span className="w-3 h-3 bg-cc-purple mr-3" />
+            <span>{longSessionDate(date)}</span>
+            <span className="mx-2">@</span>
+            <span>{formatSessionTime(time)}</span>
+          </div>
           {cancellationText && <div className="text-sm mt-5 font-bold">{cancellationText}</div>}
         </div>
         <Button onClick={onCancelClick} disabled={disableBtn} className="mr-2">

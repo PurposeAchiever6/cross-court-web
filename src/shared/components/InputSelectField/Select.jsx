@@ -9,18 +9,19 @@ import theme from '~/tailwind.theme';
 const menuDarkStyles = (dark) => {
   if (dark) {
     return `
-      background-color: ${theme.colors['cc-blue']['500']};
+      background-color: ${theme.colors['cc-blue']['500']}; //bg-blue-500
       color: ${hexToRgb(theme.colors.cream, '0.7')}; // text-cream/70
+
       .select-field__menu-list {
         .select-field__option {
           &--is-focused {
-            background-color: ${theme.colors.cream};
-            color: ${hexToRgb(theme.colors['cc-black'], '0.7')}; // text-cc-black/70
+            background-color: ${theme.colors['cc-blue']['100']}; //bg-blue-100
+            color: ${hexToRgb(theme.colors.cream, '0.7')}; // text-cc-black/70
           }
 
           &--is-selected {
-            background-color: ${theme.colors.cream};
-            color: ${hexToRgb(theme.colors['cc-black'], '0.7')}; // text-cc-black/70
+            background-color: ${theme.colors['cc-blue']['100']}; //bg-blue-100
+            color: ${hexToRgb(theme.colors.cream, '0.7')}; // text-cc-black/70
           }
         }
       }
@@ -28,8 +29,22 @@ const menuDarkStyles = (dark) => {
   }
 
   return `
-    background-color: ${theme.colors.cream};
+    background-color: ${theme.colors['cc-gray']['400']};
     color: ${hexToRgb(theme.colors['cc-black'], '0.7')}; // text-cc-black/70
+
+    .select-field__menu-list {
+        .select-field__option {
+          &--is-focused {
+            background-color: ${theme.colors['cc-gray']['600']}; //bg-cc-gray-600
+            color: ${hexToRgb(theme.colors['cc-black'], '0.7')}; // text-cc-black/70
+          }
+
+          &--is-selected {
+            background-color: ${theme.colors['cc-gray']['600']}; //bg-cc-gray-600
+            color: ${hexToRgb(theme.colors['cc-black'], '0.7')}; // text-cc-black/70
+          }
+        }
+      }
   `;
 };
 
@@ -55,16 +70,16 @@ const darkStyles = (dark) => {
   }
 
   return `
-    background-color: ${theme.colors.cream};
+    background-color: ${theme.colors['cc-gray']['400']}; // bg-cc-gray-400
     border-width: 1px; // border
-    border-color: ${hexToRgb(theme.colors['cc-black'], '0.5')}; // border-cc-black/50
+    border-color: ${theme.colors['cc-gray']['400']}; // border-cc-gray-400
     &:hover {
-      border-color: ${hexToRgb(theme.colors['cc-black'], '0.5')}; // border-cc-black/50
+      border-color: ${theme.colors['cc-gray']['400']}; // border-cc-gray-400
     }
 
     &--is-focused {
       box-shadow: none;
-      border-color: ${theme.colors['cc-black']} !important;
+      border-color: ${theme.colors['cc-gray']['600']} !important; // border-cc-gray-600
     }
 
     .select-field__single-value {
@@ -106,6 +121,8 @@ const inputClasses = (variant) => {
 
 const SelectContainer = styled.div`
   .select-field__control {
+    font-size: 0.875rem;
+    font-family: shapiro45_welter_extd;
     border-radius: 0;
     ${(props) => darkStyles(props.dark)}
     ${(props) => inputClasses(props.variant)}
@@ -129,11 +146,17 @@ const SelectContainer = styled.div`
   }
 
   .select-field__menu {
+    font-size: 0.875rem;
     border-radius: 0;
     z-index: 1000;
     display: block;
     font-family: shapiro45_welter_extd;
     ${(props) => menuDarkStyles(props.dark)}
+  }
+
+  .select-field__placeholder {
+    font-size: 0.875rem;
+    color: ${theme.colors.gray['400']}; // text-gray-400
   }
 `;
 
@@ -155,7 +178,7 @@ const Select = ({
   <SelectContainer className={className} dark={dark} variant={variant}>
     <div className={disabled ? 'opacity-50 pointer-events-none' : ''}>
       {label && (
-        <Label className="mb-1 uppercase text-sm md:text-base" color={labelColor} htmlFor={name}>
+        <Label forInput color={labelColor} htmlFor={name}>
           {label}
         </Label>
       )}

@@ -10,6 +10,8 @@ import {
   INITIAL_LOAD_AUTH_FAILURE,
   SHOW_WAITLIST_MODAL,
   CLOSE_WAITLIST_MODAL,
+  SHOW_ADD_GUEST_MODAL,
+  CLOSE_ADD_GUEST_MODAL,
   RESERVE_SESSION_INIT,
   RESERVE_SESSION_SUCCESS,
   RESERVE_SESSION_FAILURE,
@@ -19,6 +21,7 @@ import {
   REMOVE_SESSION_WAITLIST_INIT,
   REMOVE_SESSION_WAITLIST_SUCCESS,
   REMOVE_SESSION_WAITLIST_FAILURE,
+  ADD_SESSION_GUEST_INIT,
   ADD_SESSION_GUEST_SUCCESS,
   ADD_SESSION_GUEST_FAILURE,
   REMOVE_SESSION_GUEST_SUCCESS,
@@ -28,12 +31,13 @@ const initialState = {
   error: null,
   pageLoading: true,
   sessionsLoadingBtns: [],
+  addGuestLoading: false,
   removeSessionWaitlistLoading: false,
   showWaitlistModal: false,
+  showAddGuestModal: false,
   sessionInfo: {},
   sessionId: '',
   sessionDate: '',
-  addSessionGuestError: false,
 };
 
 export default (state = initialState, action) => {
@@ -69,6 +73,10 @@ export default (state = initialState, action) => {
       return { ...state, showWaitlistModal: action.payload.sessionId };
     case CLOSE_WAITLIST_MODAL:
       return { ...state, showWaitlistModal: false };
+    case SHOW_ADD_GUEST_MODAL:
+      return { ...state, showAddGuestModal: true };
+    case CLOSE_ADD_GUEST_MODAL:
+      return { ...state, showAddGuestModal: false };
     case RESERVE_SESSION_INIT:
       return {
         ...state,
@@ -92,6 +100,7 @@ export default (state = initialState, action) => {
         ],
         sessionInfo: {
           ...state.sessionInfo,
+          reserved: true,
           userSession: action.payload.userSession,
         },
       };
@@ -120,10 +129,15 @@ export default (state = initialState, action) => {
         error: action.error,
         removeSessionWaitlistLoading: false,
       };
+    case ADD_SESSION_GUEST_INIT:
+      return {
+        ...state,
+        addGuestLoading: true,
+      };
     case ADD_SESSION_GUEST_SUCCESS:
       return {
         ...state,
-        addSessionGuestError: false,
+        addGuestLoading: false,
         sessionInfo: {
           ...state.sessionInfo,
           userSession: {
@@ -138,7 +152,7 @@ export default (state = initialState, action) => {
     case ADD_SESSION_GUEST_FAILURE:
       return {
         ...state,
-        addSessionGuestError: true,
+        addGuestLoading: false,
       };
     case REMOVE_SESSION_GUEST_SUCCESS:
       return {
@@ -182,11 +196,12 @@ export const getShowWaitlistModal = createSelector(
   getSession,
   (session) => session.showWaitlistModal
 );
+export const getShowAddGuestModal = createSelector(
+  getSession,
+  (session) => session.showAddGuestModal
+);
 export const getSessionsLoadingBtns = createSelector(
   getSession,
   (session) => session.sessionsLoadingBtns
 );
-export const getAddSessionGuestError = createSelector(
-  getSession,
-  (session) => session.addSessionGuestError
-);
+export const getAddGuestLoading = createSelector(getSession, (session) => session.addGuestLoading);

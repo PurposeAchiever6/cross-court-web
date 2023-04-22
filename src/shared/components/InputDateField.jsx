@@ -56,7 +56,7 @@ const InputDateField = ({
 }) => (
   <div className={className}>
     {label && (
-      <Label className="mb-1 uppercase text-sm md:text-base" htmlFor={name} color={labelColor}>
+      <Label forInput htmlFor={name} color={labelColor}>
         {label}
       </Label>
     )}

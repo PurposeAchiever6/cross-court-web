@@ -48,6 +48,7 @@ const BLACK_BG = [
   ROUTES.MYACCOUNT,
   ROUTES.SETTINGS,
   '/session',
+  '/first-session',
 ];
 
 const SHOW_NAVBAR = [
@@ -62,6 +63,7 @@ const SHOW_NAVBAR = [
   ROUTES.MYACCOUNT,
   ROUTES.SETTINGS,
   '/session',
+  '/first-session',
 ];
 
 const Header = () => {

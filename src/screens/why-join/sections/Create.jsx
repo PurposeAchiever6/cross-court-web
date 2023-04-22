@@ -77,7 +77,7 @@ const Create = () => {
               </div>
             </div>
           </div>
-          <div className="bg-space-with-radial-gradient px-2">
+          <div className="bg-space-dots-with-radial-gradient px-2">
             <div className="flex flex-col items-center justify-center py-14">
               <img alt="phone" src={phone} />
               <h3 className="font-shapiro95_super_wide text-center text-3xl">

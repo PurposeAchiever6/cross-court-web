@@ -73,7 +73,7 @@ const Modal = ({
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       width: windowSize < breakpoints.desktop ? '100%' : getWidthBySize,
-      maxWidth: '90%',
+      maxWidth: '93%',
       maxHeight: '95%',
       overflowY: 'auto',
       backgroundColor: dark ? colors.brandBlack : 'white',
@@ -90,7 +90,7 @@ const Modal = ({
       shouldCloseOnOverlayClick={closeOnOverlayClick}
       style={modalStyle}
     >
-      <div className={`p-2 ${showCloseButton ? 'pt-5' : ''}`}>
+      <div className={`sm:p-2 ${showCloseButton ? 'pt-5' : ''}`}>
         {showCloseButton && (
           <button className="absolute top-0 right-0 p-4" onClick={closeHandler} type="button">
             <CrossSvg className={`w-4 ${dark ? 'text-white' : 'text-black'}`} />

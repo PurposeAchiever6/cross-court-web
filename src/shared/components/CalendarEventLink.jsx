@@ -59,7 +59,9 @@ const CalendarEventLink = ({
 }`;
 
   return (
-    <Container className={`text-cc-purple inline-block cursor-pointer ${className}`}>
+    <Container
+      className={`text-cc-purple hover:underline inline-block cursor-pointer ${className}`}
+    >
       <div className="atcb">{atcbString}</div>
     </Container>
   );
@@ -68,6 +70,7 @@ const CalendarEventLink = ({
 CalendarEventLink.defaultProps = {
   description: '',
   location: '',
+  iCalFileName: '',
   className: '',
 };
 
@@ -81,7 +84,7 @@ CalendarEventLink.propTypes = {
   location: PropTypes.string,
   calendarProvider: PropTypes.oneOf(['Google', 'Apple']).isRequired,
   timeZone: PropTypes.string.isRequired,
-  iCalFileName: PropTypes.string.isRequired,
+  iCalFileName: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.string.isRequired,
 };

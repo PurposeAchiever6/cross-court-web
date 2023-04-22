@@ -15,6 +15,7 @@ import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import SessionHeaderAction from 'screens/sessions/components/SessionHeaderAction';
 import UserCreditsLeft from 'screens/sessions/components/UserCreditsLeft';
+import SessionGuests from 'screens/sessions/components/SessionGuests';
 import SessionInformation from 'screens/sessions/components/SessionInformation';
 import SessionRoster from 'screens/sessions/components/SessionRoster';
 import SessionOfficials from 'screens/sessions/components/SessionOfficials';
@@ -60,22 +61,25 @@ const Session = () => {
           </h1>
           <UserCreditsLeft session={session} className="sm:text-right" />
         </div>
-        <div className="sm:flex sm:justify-between sm:items-center mb-6">
+        <div className="md:flex md:justify-between md:items-center mb-6">
           <div>
             {themeTitle && (
-              <div className="mb-5 sm:mb-0">
+              <div className="mb-6 md:mb-0">
                 <h3 className="font-shapiro95_super_wide text-lg sm:text-xl">Crosscourt</h3>
                 <div className="text-white text-opacity-80 mt-1">{themeTitle}</div>
               </div>
             )}
           </div>
-          <div>
-            {sessionRestrictions(session).map((restriction, index) => (
-              <div key={index} className="flex items-center text-sm mb-1">
-                <LockSvg className="shrink-0 w-4 mr-2" />
-                {restriction}
-              </div>
-            ))}
+          <div className="md:flex md:items-end">
+            <div>
+              {sessionRestrictions(session).map((restriction, index) => (
+                <div key={index} className="flex items-center text-sm mb-1">
+                  <LockSvg className="shrink-0 w-4 mr-2" />
+                  {restriction}
+                </div>
+              ))}
+            </div>
+            <SessionGuests session={session} className="mt-6 md:mt-0 md:ml-8" />
           </div>
         </div>
         <SessionInformation session={session} date={date} className="mb-4" />

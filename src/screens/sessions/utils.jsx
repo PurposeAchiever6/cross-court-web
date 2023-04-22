@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 
 import { titleize } from 'shared/utils/helpers';
 import { isUserInLegalAge, userOutsideOfSessionSkillLevel } from 'shared/utils/user';
-import { formatSessionDate, longSessionDate, hourRange } from 'shared/utils/date';
+import { formatSessionDate } from 'shared/utils/date';
 import InfoTooltip from 'shared/components/InfoTooltip';
 
 export const reserveTeamReservationAllowed = (session) => {
@@ -206,24 +206,18 @@ export const sessionRestrictions = (session) => {
   return restrictions;
 };
 
-export const sessionData = (date, sessionInfo) => [
-  { title: 'DATE', value: longSessionDate(date) },
-  { title: 'TIME', value: hourRange(sessionInfo.time, sessionInfo.durationMinutes) },
-  {
-    title: 'LOCATION',
-    value: [
-      `${sessionInfo?.location?.address}`,
-      <br key="br" />,
-      `${sessionInfo?.location?.city}, ${sessionInfo?.location?.state} ${sessionInfo?.location?.zipcode}`,
-    ],
-  },
-];
-
 export const sessionGuestsAllowed = (session) =>
-  (session?.isOpenClub || session?.skillSession) && session?.guestsAllowed > 0 && !session?.full;
+  session.guestsAllowed > 0 &&
+  !session.full &&
+  session.reserved &&
+  session.guestsAllowedPerUser !== 0;
 
 export const sessionGuestsAllowedForUser = (session) => {
-  const sessionGuests = session?.userSession?.sessionGuests ?? [];
+  const { userSession, guestsAllowedPerUser } = session;
+  const sessionGuests = userSession?.sessionGuests ?? [];
 
-  return sessionGuestsAllowed(session) && session?.guestsAllowedPerUser > sessionGuests.length;
+  return (
+    sessionGuestsAllowed(session) &&
+    (!guestsAllowedPerUser || guestsAllowedPerUser > sessionGuests.length)
+  );
 };

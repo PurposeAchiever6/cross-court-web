@@ -28,6 +28,10 @@ module.exports = {
           700: '#171726',
           900: '#0F0F1A',
         },
+        'cc-gray': {
+          400: '#E6E6E6',
+          600: '#B3B3B3',
+        },
         cream: '#FBF7F3',
         success: '#A3F5B0',
         notice: '#FFDC99',
@@ -80,8 +84,8 @@ module.exports = {
       backgroundImage: {
         'cc-ball-logo': "url('../shared/images/logos/cc-ball-purple.png')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'space-with-radial-gradient':
-          "radial-gradient(circle,black 5%,rgba(0,0,0,0.6)),url('../shared/images/backgrounds/space.jpeg')",
+        'space-dots-with-radial-gradient':
+          "radial-gradient(circle,black 5%,rgba(0,0,0,0.6)),url('../shared/images/backgrounds/space-dots.jpeg')",
       },
       transitionDelay: {
         0: '0ms',

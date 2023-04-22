@@ -52,7 +52,7 @@ function InputText({
       return 'text-cream bg-cc-blue-500 border border-cc-blue-500 focus:border-cream/10';
     }
 
-    return 'text-cc-black bg-cream border border-cc-black/50 focus:border-cc-black/100';
+    return 'text-cc-black bg-cc-gray-400 border border-cc-gray-400 focus:border-cc-gray-600 placeholder:text-gray-400';
   })();
 
   const variantClasses = (() => {
@@ -75,7 +75,7 @@ function InputText({
         rightIconWidth={rightIconWidth}
       >
         {label && (
-          <Label className="mb-1 uppercase text-sm md:text-base" htmlFor={name} color={labelColor}>
+          <Label forInput htmlFor={name} color={labelColor}>
             {label}
           </Label>
         )}
@@ -89,7 +89,7 @@ function InputText({
             </div>
           )}
           <input
-            className={`w-full font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 ${colorClasses} ${variantClasses}`}
+            className={`w-full font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 text-sm ${colorClasses} ${variantClasses}`}
             autoComplete="off"
             name={name}
             disabled={disabled}

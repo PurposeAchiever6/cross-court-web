@@ -1,13 +1,12 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 import { hourRange, timeRange24, extraLongSessionDate } from 'shared/utils/date';
-import dotsBgImg from 'shared/images/backgrounds/dots.png';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import Map from 'shared/components/Map/Map';
 import CalendarEventLink from 'shared/components/CalendarEventLink';
+import CheckmarkSvg from 'shared/components/svg/CheckmarkSvg';
+import dotsBgImg from 'shared/images/backgrounds/dots.png';
 
 const SessionInformation = ({ session }) => {
   const {
@@ -43,14 +42,14 @@ const SessionInformation = ({ session }) => {
   })();
 
   return (
-    <SectionLayout className="relative h-full pt-10 lg:pt-16 pb-4 lg:pb-16">
+    <SectionLayout className="relative h-full pt-10 lg:pt-16 pb-4 lg:pb-16 bg-white text-black">
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/99 to-white" />
         <img src={dotsBgImg} alt="cc-basketball-balls" className="w-full" />
       </div>
       <div className="relative max-w-screen-sm mx-auto">
         <h1 className="font-shapiro95_super_wide text-4xl uppercase flex items-center mb-6">
-          <FontAwesomeIcon icon={faCheckCircle} className="text-5xl mr-2" />
+          <CheckmarkSvg className="w-12 -mt-1 mr-2" />
           Booked
         </h1>
         <div className="mb-5">
@@ -82,7 +81,7 @@ const SessionInformation = ({ session }) => {
             Google
           </CalendarEventLink>
         </div>
-        <div className="bg-cc-purple-300 p-8">
+        <div className="bg-cream p-8">
           <div className="lg:flex mb-6">
             <div className="font-shapiro95_super_wide text-xl uppercase lg:text-right w-28 mb-1 lg:mb-0 lg:mr-5">
               When
@@ -92,7 +91,7 @@ const SessionInformation = ({ session }) => {
               <span className="block text-xs">{hourRange(time, durationMinutes)}</span>
             </div>
           </div>
-          <div className="lg:flex">
+          <div className="lg:flex mb-6">
             <div className="font-shapiro95_super_wide text-xl uppercase lg:text-right w-28 mb-1 lg:mb-0 lg:mr-5">
               Where
             </div>
@@ -102,8 +101,12 @@ const SessionInformation = ({ session }) => {
               <span className="block text-xs">{`${locationCity}, ${locationState} ${locationZipcode}`}</span>
             </div>
           </div>
+          <p className="text-cc-black/95 text-sm">
+            Please note: Plan to arrive at the club at least 20 minutes before your session starts.
+            Late entry beyond 5 minutes will not be permitted at this time. Thank you.
+          </p>
         </div>
-        <div className="hidden lg:block h-[30rem]">
+        <div className="h-[18rem] lg:h-[30rem]">
           <Map selectedLocation={locationId} locations={[location]} showLocationInfo={false} />
         </div>
       </div>
