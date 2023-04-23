@@ -46,8 +46,10 @@ export function* loginFlow({ payload }) {
     yield call(AuthUtils.setTokens, loginPayload);
     yield put({ type: LOGIN_SUCCESS, payload: loginPayload.user });
     yield put(push(ROUTES.HOME));
+    yield call(toast.success, 'Login successful. Welcome!');
   } catch (err) {
     yield put({ type: LOGIN_FAILURE, error: err.response.data.error });
+    yield call(toast.error, err.response.data.error);
   }
 }
 

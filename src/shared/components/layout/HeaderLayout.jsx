@@ -16,7 +16,7 @@ const SCROLL_LIMIT = 50;
 const HeaderLayout = ({ dark, alwaysScrolled, showBanner, children }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [showMembershipPromoBanner, setShowMembershipPromoBanner] = useState(showBanner);
+  const [showMembershipPromoBanner, setShowMembershipPromoBanner] = useState(false);
 
   const textColorClass = dark || menuOpen ? 'text-white' : 'text-cc-purple';
 
@@ -32,13 +32,17 @@ const HeaderLayout = ({ dark, alwaysScrolled, showBanner, children }) => {
     setScrolled(alwaysScrolled);
   }, [alwaysScrolled]);
 
+  useEffect(() => {
+    setShowMembershipPromoBanner(showBanner);
+  }, [showBanner]);
+
   return (
     <>
       {showMembershipPromoBanner && (
         <HeaderPromoBanner onClose={() => setShowMembershipPromoBanner(false)} />
       )}
       <header
-        className={`header h-16 z-10 inset-x-0 transition-bg duration-700 ${textColorClass} ${
+        className={`header h-16 z-10 inset-x-0 ${textColorClass} ${
           dark ? 'bg-black' : 'bg-white'
         } ${
           scrolled

@@ -1,89 +1,82 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { isEmpty } from 'ramda';
-import { string, func, bool } from 'prop-types';
+import PropTypes from 'prop-types';
 
-import InputTextField from 'shared/components/InputTextField';
 import ROUTES from 'shared/constants/routes';
+import { loginInit } from 'screens/auth/actionCreators';
+import { getLoginLoading } from 'screens/auth/reducer';
 import Button from 'shared/components/Button';
+import Link from 'shared/components/Link';
+import InputTextField from 'shared/components/InputTextField';
+import EnvelopeSvg from 'shared/components/svg/EnvelopeSvg';
+import PasswordSvg from 'shared/components/svg/PasswordSvg';
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().required('Required'),
-  password: Yup.string().required('Required'),
-});
+const LoginForm = ({ className }) => {
+  const dispatch = useDispatch();
 
-const initialValues = {
-  email: '',
-  password: '',
-};
+  const isLoading = useSelector(getLoginLoading);
+  const loginUser = (credentials) => dispatch(loginInit(credentials));
 
-const LoginForm = ({ error, loginHandler, isLoading }) => (
-  <div>
-    <Formik
-      validateOnChange={false}
-      validateOnBlur={false}
-      initialValues={initialValues}
-      onSubmit={(values) => {
-        loginHandler({ ...values });
-      }}
-      validationSchema={validationSchema}
-    >
-      {(props) => {
-        const { errors } = props;
-        return (
+  const initialValues = {
+    email: '',
+    password: '',
+  };
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required('Required'),
+    password: Yup.string().required('Required'),
+  });
+
+  return (
+    <div className={className}>
+      <Formik
+        validateOnChange={false}
+        validateOnBlur={false}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={loginUser}
+      >
+        {() => (
           <Form>
-            <h1 className="font-shapiro95_super_wide text-center text-4xl uppercase mb-12">
-              LOG IN
-            </h1>
-            <div className="mb-10">
+            <div className="mb-8">
               <InputTextField
-                label="Email"
-                error={errors.username}
                 name="email"
-                placeholder="example@crosscourt.com"
-                className="text-lg mb-5"
+                label="Email Address"
+                icon={<EnvelopeSvg className="w-5" />}
+                leftIcon
+                className="mb-4"
               />
               <InputTextField
+                name="password"
                 type="password"
                 label="Password"
-                error={errors.password}
-                name="password"
-                placeholder="Type password"
-                className="text-lg"
+                icon={<PasswordSvg className="w-5" />}
+                leftIcon
               />
             </div>
-            {isEmpty(error) ? null : <div className="alert-error mb-2">{error}</div>}
-            <Button type="submit" loading={isLoading} className="w-full mb-14">
-              LOG IN
-            </Button>
-            <div className="text-center mb-14">
-              <Link to={ROUTES.FORGOTPASSWORD} className="font-bold hover:underline">
-                Forgot your password?
+            <div className="flex justify-between items-center">
+              <Link variant="purple-dark" to={ROUTES.FORGOTPASSWORD} className="text-sm">
+                Forgot Password
               </Link>
-            </div>
-            <div className="text-center">
-              If you are a new player
-              <Link to={ROUTES.SIGNUP} className="block font-bold hover:underline">
-                Sign up here
-              </Link>
+              <Button type="submit" loading={isLoading}>
+                Log In
+              </Button>
             </div>
           </Form>
-        );
-      }}
-    </Formik>
-  </div>
-);
+        )}
+      </Formik>
+    </div>
+  );
+};
 
 LoginForm.defaultProps = {
-  error: null,
+  className: '',
 };
 
 LoginForm.propTypes = {
-  error: string,
-  loginHandler: func.isRequired,
-  isLoading: bool.isRequired,
+  className: PropTypes.string,
 };
 
 export default LoginForm;

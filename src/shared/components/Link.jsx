@@ -4,9 +4,13 @@ import PropTypes from 'prop-types';
 
 const getVariantClasses = (variant) => {
   switch (variant) {
+    case 'none':
+      return '';
     case 'white-opacity':
       return 'text-white hover:opacity-60 transition-opacity duration-300';
-    case 'purple-underline':
+    case 'purple-dark':
+      return 'text-cc-purple-900 hover:underline';
+    case 'purple-light':
     default:
       return 'text-cc-purple hover:underline';
   }
@@ -49,7 +53,7 @@ const Link = ({ to, onClick, variant, isExternal, disabled, children, className,
 Link.defaultProps = {
   to: null,
   onClick: null,
-  variant: 'purple-underline',
+  variant: 'purple-light',
   isExternal: false,
   disabled: false,
   className: '',

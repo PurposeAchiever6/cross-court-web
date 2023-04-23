@@ -19,7 +19,7 @@ import LogoSvg from 'shared/components/svg/LogoSvg';
 import Link from 'shared/components/Link';
 import InputTextField from 'shared/components/InputTextField';
 
-const FOOTER_DISABLED_ROUTES = [ROUTES.DASHBOARD];
+const FOOTER_DISABLED_ROUTES = [ROUTES.DASHBOARD, ROUTES.LOGIN];
 
 const Footer = () => {
   const dispatch = useDispatch();
@@ -111,7 +111,7 @@ const Footer = () => {
                   icon={
                     <span
                       onClick={sendMembershipHandbookToUser}
-                      className="text-cc-purple hover:text-cc-purple/75 cursor-pointer"
+                      className="text-cc-purple hover:text-cc-purple-700 cursor-pointer"
                     >
                       Submit
                     </span>

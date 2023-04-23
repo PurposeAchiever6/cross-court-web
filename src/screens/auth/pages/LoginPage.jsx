@@ -1,27 +1,34 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import LoginForm from 'screens/auth/components/LoginForm';
-import { useSelector, useDispatch } from 'react-redux';
-import { loginInit } from 'screens/auth/actionCreators';
-import { getLoginLoading, getLoginError, getIsAuthenticated } from 'screens/auth/reducer';
+
 import ROUTES from 'shared/constants/routes';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import OnboardingPageLayout from 'shared/components/layout/OnboardingPageLayout';
+import Link from 'shared/components/Link';
+import LoginForm from 'screens/auth/components/LoginForm';
+import loginImg from 'screens/auth/images/login.jpeg';
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
   const isAuthenticated = useSelector(getIsAuthenticated);
-
-  const isLoading = useSelector(getLoginLoading);
-  const error = useSelector(getLoginError);
-  const loginAction = (credentials) => dispatch(loginInit(credentials));
 
   if (isAuthenticated) {
     return <Redirect to={ROUTES.HOME} />;
   }
 
   return (
-    <div className="w-full max-w-md mx-auto px-4 py-20">
-      <LoginForm loginHandler={loginAction} isLoading={isLoading} error={error} />
-    </div>
+    <OnboardingPageLayout image={loginImg}>
+      <div className="md:absolute md:top-0 md:right-0 text-center text-sm mb-6">
+        <span className="mr-2">New to Crosscourt?</span>
+        <Link variant="purple-dark" to={ROUTES.SIGNUP}>
+          Sign Up
+        </Link>
+      </div>
+      <h1 className="font-shapiro95_super_wide text-center text-3xl md:text-4xl mb-8">
+        Welcome Back
+      </h1>
+      <LoginForm />
+    </OnboardingPageLayout>
   );
 };
 

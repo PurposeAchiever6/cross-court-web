@@ -1,6 +1,5 @@
 /* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
-import { LOCATION_CHANGE } from 'shared/actions/actionTypes';
 import {
   LOGIN_INIT,
   LOGIN_SUCCESS,
@@ -23,7 +22,6 @@ const initialState = {
   forgotPassLoading: false,
   passResetLoading: false,
   isAuthenticated: false,
-  loginError: '',
   signupErrors: {},
   user: {
     firstName: '',
@@ -39,7 +37,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loginLoading: true,
-        loginError: '',
       };
     case LOGIN_SUCCESS:
       return {
@@ -48,7 +45,7 @@ export default (state = initialState, action) => {
         isAuthenticated: true,
       };
     case LOGIN_FAILURE:
-      return { ...state, loginError: action.error, loginLoading: false };
+      return { ...state, loginLoading: false };
     case SIGN_UP_INIT:
       return {
         ...state,
@@ -92,11 +89,6 @@ export default (state = initialState, action) => {
       };
     case PASS_RESET_FAILURE:
       return { ...state, passResetError: action.error, passResetLoading: false };
-    case LOCATION_CHANGE:
-      return {
-        ...state,
-        loginError: '',
-      };
     case AUTO_LOGIN_SUCCESS:
       return {
         ...state,
@@ -110,8 +102,6 @@ export default (state = initialState, action) => {
 const getAuth = (state) => state.auth;
 
 export const getLoginLoading = createSelector(getAuth, (auth) => auth.loginLoading);
-
-export const getLoginError = createSelector(getAuth, (auth) => auth.loginError);
 
 export const getSignupLoading = createSelector(getAuth, (auth) => auth.signupLoading);
 

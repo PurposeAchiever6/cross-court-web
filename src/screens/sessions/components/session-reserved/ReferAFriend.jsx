@@ -30,7 +30,7 @@ const ReferAFriend = () => {
           <span className="block text-5xl">Friend</span>
         </h1>
         <div className="font-shapiro95_super_wide text-center border-t border-b border-cc-purple py-4 mb-6">
-          <span className="block text-3xl">Give 50% Off</span>
+          <span className="block text-3xl">Give {REFERRAL_CODE_PERCENTAGE_DISCOUNT}% Off</span>
           <span className="block text-xl">Get CC Cash!</span>
         </div>
         <CheckmarkList

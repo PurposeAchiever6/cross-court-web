@@ -17,7 +17,6 @@ import OnboardingTour from 'shared/components/OnboardingTour';
 const ALWAYS_SCROLLED = [
   ROUTES.FORGOTPASSWORD,
   ROUTES.RESETPASSWORD,
-  ROUTES.LOGIN,
   ROUTES.DASHBOARD,
   ROUTES.CONTENT,
   ROUTES.PAYMENT_METHODS,
@@ -65,6 +64,8 @@ const SHOW_NAVBAR = [
   '/session',
   '/first-session',
 ];
+
+const HEADER_DISABLED_ROUTES = [ROUTES.DASHBOARD, ROUTES.LOGIN];
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -125,7 +126,7 @@ const Header = () => {
     blockScroll();
   }
 
-  if (pathname === ROUTES.DASHBOARD) {
+  if (HEADER_DISABLED_ROUTES.includes(pathname)) {
     return null;
   }
 
