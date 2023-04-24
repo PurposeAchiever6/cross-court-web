@@ -13,6 +13,7 @@ export default defineConfig(() => ({
   build: {
     outDir: 'build',
     commonjsOptions: {
+      include: ['tailwind.config.js', 'node_modules/**'],
       defaultIsModuleExports(id) {
         try {
           const module = require(id);
@@ -26,6 +27,9 @@ export default defineConfig(() => ({
       },
       transformMixedEsModules: true,
     },
+  },
+  optimizeDeps: {
+    include: ['tailwind.config.js'],
   },
   resolve: {
     alias: [
