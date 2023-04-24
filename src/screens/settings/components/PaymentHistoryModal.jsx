@@ -1,34 +1,34 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import currency from 'currency.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faArrowRotateLeft, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import Loading from 'shared/components/Loading';
-import BackButton from 'shared/components/BackButton';
 import Table from 'shared/components/Table';
 import Tooltip from 'shared/components/Tooltip';
 import Pagination from 'shared/components/Pagination';
 import { paymentFormattedDate } from 'shared/utils/date';
 import usePagination from 'shared/hooks/usePagination';
-
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Modal from 'shared/components/Modal';
+import Button from 'shared/components/Button';
 import ROUTES from 'shared/constants/routes';
-import { fetchPayments } from './actionCreators';
-import { getPageLoading, getPaymentHistory, getPagination } from './reducer';
+import { fetchPayments } from 'screens/payment-history/actionCreators';
+import { getPageLoading, getPaymentHistory, getPagination } from 'screens/payment-history/reducer';
 
 const ERROR = 'error';
 const REFUNDED = 'refunded';
 const PARTIALLY_REFUNDED = 'partially_refunded';
 
-const PaymentHistoryPage = () => {
+const PaymentHistoryModal = ({ isOpen, closeHandler }) => {
   const dispatch = useDispatch();
 
   const [firstLoad, setFirstLoad] = useState(true);
   const isLoading = useSelector(getPageLoading);
   const paymentHistory = useSelector(getPaymentHistory);
   const { totalRecords } = useSelector(getPagination);
-  const { nextPage, prevPage, currentPage, maxPage, setTotalRecords } = usePagination();
+  const { nextPage, prevPage, currentPage, maxPage, setTotalRecords } = usePagination(10);
 
   useEffect(() => {
     dispatch(fetchPayments(currentPage));
@@ -45,7 +45,7 @@ const PaymentHistoryPage = () => {
     switch (row.status) {
       case ERROR:
         return (
-          <Tooltip enable={row.errorMessage} tooltip={row.errorMessage}>
+          <Tooltip enable={!!row.errorMessage} tooltip={row.errorMessage}>
             <FontAwesomeIcon icon={faTimesCircle} className="text-red-500" />
           </Tooltip>
         );
@@ -93,7 +93,7 @@ const PaymentHistoryPage = () => {
           })}`,
       },
       {
-        Header: 'CC Cash',
+        Header: 'CC CA$H',
         accessor: (row) =>
           `$${currency(row.ccCash, {
             symbol: '$',
@@ -123,6 +123,7 @@ const PaymentHistoryPage = () => {
       {
         Header: 'Status',
         accessor: (row) => status(row),
+        className: 'text-center',
       },
     ],
     []
@@ -133,16 +134,13 @@ const PaymentHistoryPage = () => {
   }
 
   return (
-    <>
-      <BackButton className="my-6 md:mt-0 ml-0 max-w-max px-4 py-10" />
+    <Modal isOpen={isOpen} closeHandler={closeHandler} size="full" title="Payment History">
       {paymentHistory?.length > 0 ? (
         <div className="px-4 flex flex-col items-center">
-          <h2 className="text-center font-shapiro95_super_wide mb-4">PAYMENT HISTORY</h2>
           <Table
             columns={columns}
             data={paymentHistory}
-            className="w-full lg:max-w-screen-lg text-center font-bold mx-auto overflow-y-auto"
-            headerClassName="bg-cc-black text-white"
+            className="w-full mx-auto overflow-y-auto"
           />
           <Pagination
             className="my-8"
@@ -153,23 +151,25 @@ const PaymentHistoryPage = () => {
           />
         </div>
       ) : (
-        <div className="md:mt-6 md:mb-24 items-center">
-          <h1 className="font-shapiro95_super_wide text-2xl md:text-3xl text-cc-black text-center uppercase mb-6">
-            PAYMENT HISTORY
-          </h1>
-          <div className="text-center mb-6">
+        <div>
+          <div className="text-center">
             <p className="mb-6 md:pt-4">
               It looks like you haven't made any purchases.
-              <strong className="block">Check out our memberships?</strong>
+              <strong className="block mt-2">Check out our memberships</strong>
             </p>
-            <PrimaryButton type="button" to={ROUTES.MEMBERSHIPS}>
+            <Button type="button" to={ROUTES.MEMBERSHIPS}>
               Memberships
-            </PrimaryButton>
+            </Button>
           </div>
         </div>
       )}
-    </>
+    </Modal>
   );
 };
 
-export default PaymentHistoryPage;
+PaymentHistoryModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  closeHandler: PropTypes.func.isRequired,
+};
+
+export default PaymentHistoryModal;

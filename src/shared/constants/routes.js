@@ -31,7 +31,6 @@ export default {
   PAYMENT_METHODS_ADD: '/payment-methods/add',
   PAYMENT_METHODS_SELECT: '/payment-methods/select',
   PRIVACY_POLICY: '/privacy-policy',
-  PAYMENT_HISTORY: '/payment-history',
   PWA: '/app',
   RATING: '/rating',
   REFERRALS: '/my-account/referrals',

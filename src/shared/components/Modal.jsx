@@ -7,6 +7,7 @@ import colors from 'shared/styles/constants';
 import useWindowSize from 'shared/hooks/useWindowSize';
 import { size as breakpoints } from 'shared/styles/mediaQueries';
 import CrossSvg from 'shared/components/svg/CrossSvg';
+import { titleize } from 'shared/utils/helpers';
 
 ReactModal.setAppElement('#root');
 
@@ -98,20 +99,20 @@ const Modal = ({
         )}
         {title && (
           <h2
-            className={`font-shapiro95_super_wide text-lg sm:text-2xl text-center uppercase ${titleClasses} ${
+            className={`font-shapiro95_super_wide text-lg sm:text-2xl text-center ${titleClasses} ${
               subtitle ? 'mb-1' : 'mb-6'
             } ${dark ? 'text-white' : ''}`}
           >
-            {title}
+            {titleize(title)}
           </h2>
         )}
         {subtitle && (
           <h3
-            className={`font-shapiro95_super_wide text-sm sm:text-base text-center uppercase mb-6 ${subtitleClasses} ${
+            className={`font-shapiro95_super_wide text-sm sm:text-base text-center mb-6 ${subtitleClasses} ${
               dark ? 'text-white' : ''
             }`}
           >
-            {subtitle}
+            {titleize(subtitle)}
           </h3>
         )}
         {children}
