@@ -85,15 +85,15 @@ const Session = ({ session, showingFreeSessionCreditAdded, className }) => {
               onClick={() => setShowMore(!showMore)}
               className="flex items-center text-sm cursor-pointer group"
             >
-              <span className="text-cc-purple transition-all duration-300 group-hover:text-cc-purple-300 mr-2">
-                {showMore ? 'Show Less' : 'Show More'}
+              <span className="text-cc-purple transition-all duration-300 group-hover:text-cc-purple-700 mr-2">
+                {showMore ? 'Show less' : 'Show more'}
               </span>
-              <FontAwesomeIcon
-                className={`bg-cc-blue-500 group-hover:bg-cc-blue-300 p-2 trasform transition-all duration-150 ${
-                  showMore ? 'rotate-180' : ''
-                }`}
-                icon={faChevronDown}
-              />
+              <span className="bg-cc-blue-500 p-2">
+                <FontAwesomeIcon
+                  className={`trasform transition-all duration-150 ${showMore ? 'rotate-180' : ''}`}
+                  icon={faChevronDown}
+                />
+              </span>
             </div>
           </div>
           {showMore && <SessionShowMore session={session} className="mt-4" />}

@@ -9,6 +9,12 @@ import {
   UPDATE_SKILL_RATING_INIT,
   UPDATE_PERSONAL_INFO_INIT,
   UPDATE_PROFILE_REQUEST_INIT,
+  SHOW_FORGOT_PASSWORD_MODAL,
+  CLOSE_FORGOT_PASSWORD_MODAL,
+  SHOW_FORGOT_PASSWORD_EMAIL_SENT_MODAL,
+  CLOSE_FORGOT_PASSWORD_EMAIL_SENT_MODAL,
+  SHOW_RESET_PASSWORD_MODAL,
+  CLOSE_RESET_PASSWORD_MODAL,
 } from './actionTypes';
 
 export const loginInit = (payload) => ({
@@ -45,12 +51,12 @@ export const updateProfileRequestInit = (payload) => ({
   payload,
 });
 
-export const forgotPassInit = (payload) => ({
+export const forgotPasswordInit = (payload) => ({
   type: FORGOT_PASS_INIT,
   payload,
 });
 
-export const passResetInit = (payload) => ({
+export const passwordResetInit = (payload) => ({
   type: PASS_RESET_INIT,
   payload,
 });
@@ -60,4 +66,28 @@ export const autoLogin = (headers) => ({
   payload: {
     headers,
   },
+});
+
+export const showForgotPasswordModal = () => ({
+  type: SHOW_FORGOT_PASSWORD_MODAL,
+});
+
+export const closeForgotPasswordModal = () => ({
+  type: CLOSE_FORGOT_PASSWORD_MODAL,
+});
+
+export const showForgotPasswordEmailSentModal = () => ({
+  type: SHOW_FORGOT_PASSWORD_EMAIL_SENT_MODAL,
+});
+
+export const closeForgotPasswordEmailSentModal = () => ({
+  type: CLOSE_FORGOT_PASSWORD_EMAIL_SENT_MODAL,
+});
+
+export const showResetPasswordModal = () => ({
+  type: SHOW_RESET_PASSWORD_MODAL,
+});
+
+export const closeResetPasswordModal = () => ({
+  type: CLOSE_RESET_PASSWORD_MODAL,
 });

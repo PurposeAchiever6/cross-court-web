@@ -14,6 +14,12 @@ import {
   PASS_RESET_SUCCESS,
   PASS_RESET_FAILURE,
   AUTO_LOGIN_SUCCESS,
+  SHOW_FORGOT_PASSWORD_MODAL,
+  CLOSE_FORGOT_PASSWORD_MODAL,
+  SHOW_FORGOT_PASSWORD_EMAIL_SENT_MODAL,
+  CLOSE_FORGOT_PASSWORD_EMAIL_SENT_MODAL,
+  SHOW_RESET_PASSWORD_MODAL,
+  CLOSE_RESET_PASSWORD_MODAL,
 } from './actionTypes';
 
 const initialState = {
@@ -22,13 +28,14 @@ const initialState = {
   forgotPassLoading: false,
   passResetLoading: false,
   isAuthenticated: false,
+  showForgotPasswordModal: false,
+  showForgotPasswordEmailSentModal: false,
+  showResetPasswordModal: false,
   signupErrors: {},
   user: {
     firstName: '',
     email: '',
   },
-  forgotPassError: '',
-  passResetError: '',
 };
 
 export default (state = initialState, action) => {
@@ -45,7 +52,10 @@ export default (state = initialState, action) => {
         isAuthenticated: true,
       };
     case LOGIN_FAILURE:
-      return { ...state, loginLoading: false };
+      return {
+        ...state,
+        loginLoading: false,
+      };
     case SIGN_UP_INIT:
       return {
         ...state,
@@ -60,12 +70,15 @@ export default (state = initialState, action) => {
         user: { firstName: action.payload.firstName, email: action.payload.email },
       };
     case SIGN_UP_FAILURE:
-      return { ...state, signupErrors: action.payload.errors, signupLoading: false };
+      return {
+        ...state,
+        signupErrors: action.payload.errors,
+        signupLoading: false,
+      };
     case FORGOT_PASS_INIT:
       return {
         ...state,
         forgotPassLoading: true,
-        forgotPassError: '',
         user: { firstName: '', email: '' },
       };
     case FORGOT_PASS_SUCCESS:
@@ -75,12 +88,14 @@ export default (state = initialState, action) => {
         user: { email: action.payload.email },
       };
     case FORGOT_PASS_FAILURE:
-      return { ...state, forgotPassError: action.error, forgotPassLoading: false };
+      return {
+        ...state,
+        forgotPassLoading: false,
+      };
     case PASS_RESET_INIT:
       return {
         ...state,
         passResetLoading: true,
-        passResetError: '',
       };
     case PASS_RESET_SUCCESS:
       return {
@@ -88,11 +103,46 @@ export default (state = initialState, action) => {
         passResetLoading: false,
       };
     case PASS_RESET_FAILURE:
-      return { ...state, passResetError: action.error, passResetLoading: false };
+      return {
+        ...state,
+        passResetLoading: false,
+      };
     case AUTO_LOGIN_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
+      };
+    case SHOW_FORGOT_PASSWORD_MODAL:
+      return {
+        ...state,
+        showForgotPasswordModal: true,
+      };
+    case CLOSE_FORGOT_PASSWORD_MODAL:
+      return {
+        ...state,
+        showForgotPasswordModal: false,
+      };
+    case SHOW_FORGOT_PASSWORD_EMAIL_SENT_MODAL:
+      return {
+        ...state,
+        showForgotPasswordEmailSentModal: true,
+      };
+    case CLOSE_FORGOT_PASSWORD_EMAIL_SENT_MODAL:
+      return {
+        ...state,
+        showForgotPasswordEmailSentModal: false,
+      };
+    case SHOW_RESET_PASSWORD_MODAL:
+      return {
+        ...state,
+        showForgotPasswordModal: false,
+        showForgotPasswordEmailSentModal: false,
+        showResetPasswordModal: true,
+      };
+    case CLOSE_RESET_PASSWORD_MODAL:
+      return {
+        ...state,
+        showResetPasswordModal: false,
       };
     default:
       return state;
@@ -113,10 +163,21 @@ export const getUserEmail = createSelector(getAuth, (auth) => auth.user.email);
 
 export const getForgotPassLoading = createSelector(getAuth, (auth) => auth.forgotPassLoading);
 
-export const getForgotPassError = createSelector(getAuth, (auth) => auth.forgotPassError);
-
 export const getPassResetLoading = createSelector(getAuth, (auth) => auth.passResetLoading);
 
-export const getPassResetError = createSelector(getAuth, (auth) => auth.passResetError);
-
 export const getIsAuthenticated = createSelector(getAuth, (auth) => auth.isAuthenticated);
+
+export const getShowForgotPasswordModal = createSelector(
+  getAuth,
+  (auth) => auth.showForgotPasswordModal
+);
+
+export const getShowForgotPasswordEmailSentModal = createSelector(
+  getAuth,
+  (auth) => auth.showForgotPasswordEmailSentModal
+);
+
+export const getShowResetPasswordModal = createSelector(
+  getAuth,
+  (auth) => auth.showResetPasswordModal
+);

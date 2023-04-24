@@ -28,10 +28,6 @@ const Login = lazy(() => import('screens/auth/pages/LoginPage'));
 const Signup = lazy(() => import('screens/auth/pages/SignupPage'));
 const SignupSuccess = lazy(() => import('screens/auth/pages/SignupSuccess'));
 const SignupConfirmation = lazy(() => import('screens/auth/pages/SignupConfirmation'));
-const ForgotPass = lazy(() => import('screens/auth/pages/ForgotPassPage'));
-const ForgotPassSuccess = lazy(() => import('screens/auth/pages/ForgotPassSuccess'));
-const PassReset = lazy(() => import('screens/auth/pages/PassResetPage'));
-const PassResetSuccess = lazy(() => import('screens/auth/pages/PassResetSuccess'));
 const Dashboard = lazy(() => import('screens/dashboard/DashboardPage'));
 const WhyJoin = lazy(() => import('screens/why-join/WhyJoinPage'));
 const CareersPage = lazy(() => import('screens/careers/CareersPage'));
@@ -294,18 +290,6 @@ const Routes = () => {
         </Route>
         <Route path={ROUTES.SIGNUPCONFIRMATION} exact>
           <SignupConfirmation />
-        </Route>
-        <Route path={ROUTES.FORGOTPASSWORD} exact>
-          <ForgotPass />
-        </Route>
-        <Route path={ROUTES.FORGOTPASSWORDSUCCESS} exact>
-          <ForgotPassSuccess />
-        </Route>
-        <Route path={ROUTES.RESETPASSWORD} exact>
-          <PassReset />
-        </Route>
-        <Route path={ROUTES.RESETPASSWORDSUCCESS} exact>
-          <PassResetSuccess />
         </Route>
         <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFIRST]} exact>
           <Locations />

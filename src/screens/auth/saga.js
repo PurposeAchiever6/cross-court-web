@@ -36,6 +36,9 @@ import {
   UPDATE_PROFILE_REQUEST_INIT,
   UPDATE_PROFILE_REQUEST_SUCCESS,
   UPDATE_PROFILE_REQUEST_FAILURE,
+  CLOSE_FORGOT_PASSWORD_MODAL,
+  SHOW_FORGOT_PASSWORD_EMAIL_SENT_MODAL,
+  CLOSE_RESET_PASSWORD_MODAL,
 } from './actionTypes';
 import authService from './service';
 import { getUserEmail } from './reducer';
@@ -138,23 +141,31 @@ export function* updateRequestFlow({ payload }) {
   }
 }
 
-export function* forgotPassFlow({ payload }) {
+export function* forgotPasswordFlow({ payload }) {
   try {
     yield call(authService.forgotPassword, payload);
     yield put({ type: FORGOT_PASS_SUCCESS, payload: { email: payload.email } });
-    yield put(push(ROUTES.FORGOTPASSWORDSUCCESS));
+    yield put({ type: CLOSE_FORGOT_PASSWORD_MODAL });
+    yield put({ type: SHOW_FORGOT_PASSWORD_EMAIL_SENT_MODAL });
   } catch (err) {
+    yield call(toast.error, err.response.data.error);
     yield put({ type: FORGOT_PASS_FAILURE, error: err.response.data.error });
   }
 }
 
-export function* passResetFlow({ payload }) {
+export function* passwordResetFlow({ payload }) {
   try {
     yield call(authService.resetPassword, payload);
     yield put({ type: PASS_RESET_SUCCESS });
-    yield put(push(ROUTES.RESETPASSWORDSUCCESS));
+    yield put({ type: CLOSE_RESET_PASSWORD_MODAL });
+    yield call(
+      toast.success,
+      'Your password has been reset. You can now login using your new password.'
+    );
   } catch (err) {
-    yield put({ type: PASS_RESET_FAILURE, error: head(err.response.data.errors.fullMessages) });
+    const errorMsg = head(err.response.data.errors.fullMessages);
+    yield call(toast.error, errorMsg);
+    yield put({ type: PASS_RESET_FAILURE, error: errorMsg });
   }
 }
 
@@ -173,8 +184,8 @@ export default function* rootLoginSaga() {
     takeLatest(LOGOUT_INIT, logoutFlow),
     takeLatest(SIGN_UP_INIT, signupFlow),
     takeLatest(SEND_CONFIRMATION_EMAIL_INIT, sendConfirmationEmailFlow),
-    takeLatest(FORGOT_PASS_INIT, forgotPassFlow),
-    takeLatest(PASS_RESET_INIT, passResetFlow),
+    takeLatest(FORGOT_PASS_INIT, forgotPasswordFlow),
+    takeLatest(PASS_RESET_INIT, passwordResetFlow),
     takeLatest(AUTO_LOGIN_INIT, autoLoginFlow),
     takeLatest(UPDATE_SKILL_RATING_INIT, updateSkillRatingFlow),
     takeLatest(UPDATE_PERSONAL_INFO_INIT, updatePersonalInfoFlow),

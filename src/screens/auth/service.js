@@ -52,7 +52,7 @@ export default {
   forgotPassword: async ({ email }) => {
     const response = await api.post(`/users/password`, {
       email,
-      redirect_url: `${APP_URL}${ROUTES.RESETPASSWORD}`,
+      redirect_url: `${APP_URL}${ROUTES.LOGIN}`,
     });
 
     return response.data;
