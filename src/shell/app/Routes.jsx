@@ -26,8 +26,11 @@ import HtmlHead from './HtmlHead';
 const Home = lazy(() => import('screens/homepage/HomePage'));
 const Login = lazy(() => import('screens/auth/pages/LoginPage'));
 const Signup = lazy(() => import('screens/auth/pages/SignupPage'));
-const SignupSuccess = lazy(() => import('screens/auth/pages/SignupSuccess'));
-const SignupConfirmation = lazy(() => import('screens/auth/pages/SignupConfirmation'));
+const SignupVerification = lazy(() => import('screens/auth/pages/SignupVerificationPage'));
+const SignupConfirmation = lazy(() => import('screens/auth/pages/SignupConfirmationPage'));
+const OnboardingPersonalDetails = lazy(() =>
+  import('screens/onboarding/pages/OnboardingPersonalDetailsPage')
+);
 const Dashboard = lazy(() => import('screens/dashboard/DashboardPage'));
 const WhyJoin = lazy(() => import('screens/why-join/WhyJoinPage'));
 const CareersPage = lazy(() => import('screens/careers/CareersPage'));
@@ -276,6 +279,15 @@ const Routes = () => {
         <Route path={ROUTES.SIGNUP} exact>
           <Signup />
         </Route>
+        <Route path={ROUTES.SIGNUP_VERIFICATION} exact>
+          <SignupVerification />
+        </Route>
+        <Route path={ROUTES.SIGNUP_CONFIRMATION} exact>
+          <SignupConfirmation />
+        </Route>
+        <PrivateRoute path={ROUTES.ONBOARDING_PERSONAL_DETAILS} exact>
+          <OnboardingPersonalDetails />
+        </PrivateRoute>
         <Route path={ROUTES.RATING} exact>
           <Rating />
         </Route>
@@ -284,12 +296,6 @@ const Routes = () => {
         </Route>
         <Route path={ROUTES.GOALS} exact>
           <Goals />
-        </Route>
-        <Route path={ROUTES.SIGNUPSUCCESS} exact>
-          <SignupSuccess />
-        </Route>
-        <Route path={ROUTES.SIGNUPCONFIRMATION} exact>
-          <SignupConfirmation />
         </Route>
         <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFIRST]} exact>
           <Locations />

@@ -66,16 +66,16 @@ export function* signupFlow({ payload }) {
   try {
     const signupPayload = yield call(authService.signup, payload);
     yield put({ type: SIGN_UP_SUCCESS, payload: signupPayload });
-    yield put(push(ROUTES.RATING, { from: ROUTES.SIGNUP }));
+    yield put(push(ROUTES.SIGNUP_VERIFICATION));
   } catch (err) {
     if (err.response.data.error) {
       yield call(toast.error, err.response.data.error);
     }
+    if (err.response.data.errors) {
+      yield call(toast.error, head(err.response.data.errors.fullMessages));
+    }
     yield put({
       type: SIGN_UP_FAILURE,
-      payload: {
-        errors: err.response.data.errors,
-      },
     });
   }
 }
@@ -85,7 +85,7 @@ export function* sendConfirmationEmailFlow() {
     const userEmail = yield select(getUserEmail);
     yield call(authService.sendConfirmationEmail, userEmail);
     yield put({ type: SEND_CONFIRMATION_EMAIL_SUCCESS });
-    yield call(toast.success, 'Confirmation email sent successfully');
+    yield call(toast.success, 'Confirmation email sent.');
   } catch (err) {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);

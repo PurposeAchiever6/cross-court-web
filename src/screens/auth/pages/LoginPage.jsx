@@ -11,7 +11,7 @@ import {
   showResetPasswordModal as showResetPasswordModalAction,
   closeResetPasswordModal as closeResetPasswordModalAction,
 } from 'screens/auth/actionCreators';
-import OnboardingPageLayout from 'shared/components/layout/OnboardingPageLayout';
+import AuthPageLayout from 'shared/components/layout/AuthPageLayout';
 import Link from 'shared/components/Link';
 import LoginForm from 'screens/auth/components/LoginForm';
 import ResetPasswordModal from 'screens/auth/components/modals/ResetPasswordModal';
@@ -46,18 +46,18 @@ const LoginPage = () => {
 
   return (
     <>
-      <OnboardingPageLayout image={loginImg}>
-        <div className="md:absolute md:top-0 md:right-0 text-center text-sm mb-6">
+      <AuthPageLayout image={loginImg}>
+        <div className="md:absolute md:top-0 md:right-0 text-right text-sm mb-8">
           <span className="mr-2">New to Crosscourt?</span>
           <Link variant="purple-dark" to={ROUTES.SIGNUP}>
             Sign Up
           </Link>
         </div>
-        <h1 className="font-shapiro95_super_wide text-center text-3xl md:text-4xl mb-8">
+        <h1 className="font-shapiro95_super_wide text-3xl md:text-4xl xl:text-5xl mb-4">
           Welcome Back
         </h1>
         <LoginForm />
-      </OnboardingPageLayout>
+      </AuthPageLayout>
       <ResetPasswordModal
         isOpen={showResetPasswordModal}
         closeHandler={() => setShowResetPasswordModal(false)}

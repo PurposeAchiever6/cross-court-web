@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
 import { passwordResetInit } from 'screens/auth/actionCreators';
-import { getPassResetLoading } from 'screens/auth/reducer';
+import { getResetPasswordLoading } from 'screens/auth/reducer';
 import Modal from 'shared/components/Modal';
 import Button from 'shared/components/Button';
 import InputTextField from 'shared/components/InputTextField';
@@ -14,7 +14,7 @@ import PasswordSvg from 'shared/components/svg/PasswordSvg';
 export const ResetPasswordModal = ({ isOpen, closeHandler }) => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(getPassResetLoading);
+  const isLoading = useSelector(getResetPasswordLoading);
 
   const resetPassword = (credentials) => dispatch(passwordResetInit(credentials));
 

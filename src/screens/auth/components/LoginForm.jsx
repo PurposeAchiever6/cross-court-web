@@ -50,7 +50,7 @@ const LoginForm = ({ className }) => {
       >
         {() => (
           <Form>
-            <div className="mb-8">
+            <div className="mb-6">
               <InputTextField
                 name="email"
                 label="Email Address"
@@ -67,6 +67,9 @@ const LoginForm = ({ className }) => {
               />
             </div>
             <div className="flex justify-between items-center">
+              <Button type="submit" loading={isLoading}>
+                Log In
+              </Button>
               <Link
                 variant="purple-dark"
                 onClick={() => setShowForgotPasswordModal(true)}
@@ -74,9 +77,6 @@ const LoginForm = ({ className }) => {
               >
                 Forgot Password
               </Link>
-              <Button type="submit" loading={isLoading}>
-                Log In
-              </Button>
             </div>
           </Form>
         )}

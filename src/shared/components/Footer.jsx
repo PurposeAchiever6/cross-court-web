@@ -19,7 +19,14 @@ import LogoSvg from 'shared/components/svg/LogoSvg';
 import Link from 'shared/components/Link';
 import InputTextField from 'shared/components/InputTextField';
 
-const FOOTER_DISABLED_ROUTES = [ROUTES.DASHBOARD, ROUTES.LOGIN];
+const FOOTER_DISABLED_ROUTES = [
+  ROUTES.DASHBOARD,
+  ROUTES.LOGIN,
+  ROUTES.ONBOARDING_PERSONAL_DETAILS,
+  ROUTES.SIGNUP,
+  ROUTES.SIGNUP_CONFIRMATION,
+  ROUTES.SIGNUP_VERIFICATION,
+];
 
 const Footer = () => {
   const dispatch = useDispatch();

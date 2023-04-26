@@ -6,7 +6,7 @@ import Link from 'shared/components/Link';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 
-const OnboardingPageLayout = ({ image, children }) => (
+const AuthPageLayout = ({ image, children }) => (
   <div className="md:flex">
     <LazyBackgroundImage
       img={image}
@@ -27,9 +27,9 @@ const OnboardingPageLayout = ({ image, children }) => (
   </div>
 );
 
-OnboardingPageLayout.propTypes = {
+AuthPageLayout.propTypes = {
   image: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 };
 
-export default OnboardingPageLayout;
+export default AuthPageLayout;

@@ -6,7 +6,10 @@ import {
   forgotPasswordInit,
   closeForgotPasswordEmailSentModal as closeForgotPasswordEmailSentModalAction,
 } from 'screens/auth/actionCreators';
-import { getForgotPassLoading, getShowForgotPasswordEmailSentModal } from 'screens/auth/reducer';
+import {
+  getForgotPasswordLoading,
+  getShowForgotPasswordEmailSentModal,
+} from 'screens/auth/reducer';
 import Modal from 'shared/components/Modal';
 import Button from 'shared/components/Button';
 import InputTextField from 'shared/components/InputTextField';
@@ -16,7 +19,7 @@ import ForgotPasswordEmailSentModal from 'screens/auth/components/modals/ForgotP
 export const ForgotPasswordModal = ({ isOpen, closeHandler }) => {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(getForgotPassLoading);
+  const isLoading = useSelector(getForgotPasswordLoading);
   const showForgotPasswordEmailSentModal = useSelector(getShowForgotPasswordEmailSentModal);
 
   const [email, setEmail] = useState('');
