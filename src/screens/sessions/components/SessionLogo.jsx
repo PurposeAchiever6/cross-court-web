@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import sklzLogoWhite from 'shared/images/logos/sklz-white.png';
 import openClubLogoWhite from 'shared/images/logos/open-club-white.png';
-import sessionsLogoWhite from 'shared/images/logos/sessions-white.png';
+import sessionLogoWhite from 'shared/images/logos/session-white.png';
 
 const SessionLogo = ({ session, className }) => {
   const { isOpenClub, skillSession } = session;
@@ -17,7 +17,7 @@ const SessionLogo = ({ session, className }) => {
       return { src: sklzLogoWhite, alt: 'skill-session-logo' };
     }
 
-    return { src: sessionsLogoWhite, alt: 'session-logo' };
+    return { src: sessionLogoWhite, alt: 'session-logo' };
   })();
 
   return <img alt={logo.alt} src={logo.src} className={className} />;

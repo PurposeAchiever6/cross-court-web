@@ -95,7 +95,7 @@ export const validateBooking = (session, currentUser) => {
   if (!allSkillLevelsAllowed && userOutsideOfSessionSkillLevel(currentUser, session)) {
     return {
       canBook: false,
-      errorTitle: 'Outside Skill Level',
+      errorTitle: 'Outside Intensity Level',
       errorDescription: `This session is reserved for level ${skillLevel.min}-${skillLevel.max} players.`,
     };
   }

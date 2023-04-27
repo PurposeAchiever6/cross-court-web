@@ -48,10 +48,16 @@ const WaitlistModal = ({ isOpen, closeHandler, waitlistPlacement, removeFromWait
         <p>Thank you</p>
       </div>
       <LineDashedSvg strokeWidth="3" strokeDashArray="6" className="mb-6" />
-      <div className="text-center">
-        <Button loading={buttonLoading} onClick={removeFromWaitlist}>
+      <div className="text-right">
+        <Button
+          variant="outline-purple"
+          loading={buttonLoading}
+          onClick={removeFromWaitlist}
+          className="mr-4"
+        >
           Leave Waitlist
         </Button>
+        <Button onClick={closeHandler}>Done</Button>
       </div>
     </Modal>
   );

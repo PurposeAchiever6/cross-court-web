@@ -20,8 +20,13 @@ const SessionInformation = ({ session, date, className }) => {
     isOpenClub,
     themeTitle,
     themeDescription,
+    userSession,
   } = session;
   const { name, address, city, state, zipcode } = location;
+  const { scouting, shootingMachineReservations } = userSession || {};
+  const hasShootingMachineReservations = shootingMachineReservations?.length > 0;
+
+  const hasAdditionalReservations = scouting || hasShootingMachineReservations;
 
   const sessionDescription = (() => {
     if (isOpenClub) {
@@ -39,14 +44,14 @@ const SessionInformation = ({ session, date, className }) => {
     <>
       <div className={className}>
         <div className="flex flex-wrap">
-          <div className="w-full lg:w-1/5 shrink-0 grow border border-white border-opacity-30 p-4">
+          <div className="w-full xl:w-1/6 shrink-0 grow border border-white border-opacity-30 p-4">
             <div className="font-shapiro95_super_wide text-lg mb-1">When</div>
             <div className="text-white text-opacity-80 text-sm">
               <div>{longSessionDate(date)}</div>
               <div>{hourRange(time, durationMinutes)}</div>
             </div>
           </div>
-          <div className="w-full lg:w-1/5 shrink-0 grow border border-t-0 lg:border-t lg:border-l-0 border-white border-opacity-30 p-4">
+          <div className="w-full xl:w-1/6 shrink-0 grow border border-t-0 xl:border-t xl:border-l-0 border-white border-opacity-30 p-4">
             <div className="font-shapiro95_super_wide text-lg mb-1">Where</div>
             <div className="text-white text-opacity-80 text-sm">
               <div>{`Crosscourt ${name}`}</div>
@@ -55,7 +60,7 @@ const SessionInformation = ({ session, date, className }) => {
               <Link onClick={() => setShowMapModal(true)}>Google Maps</Link>
             </div>
           </div>
-          <div className="w-full lg:w-1/5 shrink-0 grow border border-t-0 lg:border-t lg:border-l-0 border-white border-opacity-30 p-4">
+          <div className="w-full xl:w-1/6 shrink-0 grow border border-t-0 xl:border-t xl:border-l-0 border-white border-opacity-30 p-4">
             <SessionLogo
               session={session}
               className={`${normalSession ? 'w-24 mt-1' : 'w-20'} mb-3`}
@@ -63,7 +68,7 @@ const SessionInformation = ({ session, date, className }) => {
             <div className="text-white text-opacity-80 text-sm">{sessionDescription}</div>
           </div>
           {skillLevel && (
-            <div className="w-full lg:w-1/5 shrink-0 grow border border-t-0 lg:border-t lg:border-l-0 border-white border-opacity-30 p-4">
+            <div className="w-full xl:w-1/6 shrink-0 grow border border-t-0 xl:border-t xl:border-l-0 border-white border-opacity-30 p-4">
               <div className="flex mb-1">
                 <SignalBarsSvg className="w-5 -mt-1 mr-2" />
                 <span className="font-shapiro95_super_wide text-lg">{`${skillLevel.min} - ${skillLevel.max}`}</span>
@@ -72,9 +77,38 @@ const SessionInformation = ({ session, date, className }) => {
             </div>
           )}
           {themeDescription && (
-            <div className="w-full lg:w-1/5 shrink-0 grow border border-t-0 lg:border-t lg:border-l-0 border-white border-opacity-30 p-4">
+            <div className="w-full xl:w-1/6 shrink-0 grow border border-t-0 xl:border-t xl:border-l-0 border-white border-opacity-30 p-4">
               <div className="font-shapiro95_super_wide text-lg mb-1">{themeTitle}</div>
               <div className="text-white text-opacity-80 text-sm">{themeDescription}</div>
+            </div>
+          )}
+          {hasAdditionalReservations && (
+            <div className="w-full xl:w-1/6 shrink-0 grow border border-t-0 xl:border-t xl:border-l-0 border-white border-opacity-30 p-4">
+              <div className="font-shapiro95_super_wide text-lg mb-1">Additional Reservations</div>
+              <div className="text-white text-opacity-80 text-sm">
+                {hasShootingMachineReservations && (
+                  <div>
+                    <div className="mb-2">Shooting Machine Rental</div>
+                    {shootingMachineReservations.map(({ id, startTime, endTime }, index) => (
+                      <div
+                        key={id}
+                        className={`text-sm flex items-center ${
+                          index + 1 < shootingMachineReservations.length ? 'mb-1' : ''
+                        }`}
+                      >
+                        <span className="w-3 h-3 shrink-0 bg-cc-purple mr-2" />
+                        {`${startTime} - ${endTime}`}
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {scouting && (
+                  <div className="text-sm flex items-center">
+                    <span className="w-3 h-3 shrink-0 bg-cc-purple mr-2" />
+                    Evaluation
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>

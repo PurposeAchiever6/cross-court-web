@@ -16,6 +16,7 @@ import SectionLayout from 'shared/components/layout/SectionLayout';
 import SessionHeaderAction from 'screens/sessions/components/SessionHeaderAction';
 import UserCreditsLeft from 'screens/sessions/components/UserCreditsLeft';
 import SessionGuests from 'screens/sessions/components/SessionGuests';
+import SessionAlert from 'screens/sessions/components/SessionAlert';
 import SessionInformation from 'screens/sessions/components/SessionInformation';
 import SessionRoster from 'screens/sessions/components/SessionRoster';
 import SessionOfficials from 'screens/sessions/components/SessionOfficials';
@@ -82,6 +83,7 @@ const Session = () => {
             <SessionGuests session={session} className="mt-6 md:mt-0 md:ml-8" />
           </div>
         </div>
+        <SessionAlert session={session} className="mb-4" />
         <SessionInformation session={session} date={date} className="mb-4" />
         <div className="flex flex-wrap justify-center -mr-2 text-xs md:text-sm">
           {sessionInformation(session).map((information, index) => (

@@ -10,7 +10,7 @@ const UserCreditsLeft = ({ session, className }) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
 
-  const { skillSession } = session;
+  const { skillSession, isOpenClub, costCredits } = session;
   const {
     activeSubscription,
     totalCredits,
@@ -20,6 +20,10 @@ const UserCreditsLeft = ({ session, className }) => {
   } = currentUser;
 
   if (!isAuthenticated) {
+    return null;
+  }
+
+  if (isOpenClub || costCredits === 0) {
     return null;
   }
 
@@ -40,7 +44,7 @@ const UserCreditsLeft = ({ session, className }) => {
       heading = 'Unlimited sessions';
     }
 
-    heading = `${totalCredits || 'No'} ${pluralize('credit', totalCredits)}`;
+    heading = `${totalCredits || 'No'} session ${pluralize('credit', totalCredits)}`;
     subheading = activeSubscription ? 'Left this month' : 'Available';
   }
 

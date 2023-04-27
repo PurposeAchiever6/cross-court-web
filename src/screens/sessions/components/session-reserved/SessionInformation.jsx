@@ -14,7 +14,7 @@ const SessionInformation = ({ session }) => {
     skillSession,
     time,
     durationMinutes,
-    userSession: { date },
+    userSession: { date, scouting, shootingMachineReservations },
     location,
     location: {
       id: locationId,
@@ -81,7 +81,7 @@ const SessionInformation = ({ session }) => {
             Google
           </CalendarEventLink>
         </div>
-        <div className="bg-cream p-8">
+        <div className="bg-cream px-4 py-8 sm:px-8">
           <div className="lg:flex mb-6">
             <div className="font-shapiro95_super_wide text-xl uppercase lg:text-right w-28 mb-1 lg:mb-0 lg:mr-5">
               When
@@ -101,6 +101,31 @@ const SessionInformation = ({ session }) => {
               <span className="block text-xs">{`${locationCity}, ${locationState} ${locationZipcode}`}</span>
             </div>
           </div>
+          {shootingMachineReservations.length > 0 && (
+            <div className="border border-black bg-white p-4 mb-6">
+              <div className="font-shapiro95_super_wide mb-2">Shooting Machine Rental</div>
+              {shootingMachineReservations.map(({ id, startTime, endTime }, index) => (
+                <div
+                  key={id}
+                  className={`text-sm flex items-center ${
+                    index + 1 < shootingMachineReservations.length ? 'mb-1' : ''
+                  }`}
+                >
+                  <span className="w-3 h-3 shrink-0 bg-cc-purple mr-2" />
+                  {`${startTime} - ${endTime}`}
+                </div>
+              ))}
+            </div>
+          )}
+          {scouting && (
+            <div className="border border-black bg-white p-4 mb-6">
+              <div className="font-shapiro95_super_wide mb-2">You've Requested</div>
+              <div className="text-sm flex items-center">
+                <span className="w-3 h-3 shrink-0 bg-cc-purple mr-2" />
+                Evaluation
+              </div>
+            </div>
+          )}
           <p className="text-cc-black/95 text-sm">
             Please note: Plan to arrive at the club at least 20 minutes before your session starts.
             Late entry beyond 5 minutes will not be permitted at this time. Thank you.
