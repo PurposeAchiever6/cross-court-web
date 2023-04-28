@@ -69,7 +69,7 @@ export function* reactivateSubscriptionFlow(action) {
       type: REACTIVATE_SUBSCRIPTION_SUCCESS,
       payload: { subscription },
     });
-    yield call(toast.success, 'Your subscription has been reactivated successfully');
+    yield call(toast.success, 'Your subscription has been reactivated.');
   } catch (err) {
     const { error } = err.response.data;
     yield put({ type: REACTIVATE_SUBSCRIPTION_FAILURE, error });
@@ -89,7 +89,7 @@ export function* updateSubscriptionPaymentMethodFlow(action) {
       payload: { subscription },
     });
     yield put({ type: INITIAL_PAYMENT_METHODS_LOAD_INIT });
-    yield call(toast.success, 'You have updated your membership payment method successfully');
+    yield call(toast.success, 'You have updated your membership payment method.');
   } catch (err) {
     const { error } = err.response.data;
     yield put({ type: UPDATE_SUBSCRIPTION_PAYMENT_METHOD_FAILURE, error });
@@ -136,6 +136,7 @@ export function* unpauseSubscriptionFlow({ payload }) {
     const subscription = yield call(productsService.unpauseSubscription, payload.subscription.id);
 
     yield put({ type: UNPAUSE_SUBSCRIPTION_SUCCESS, payload: { subscription } });
+    yield call(toast.success, 'Your subscription has been unpaused.');
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({ type: UNPAUSE_SUBSCRIPTION_FAILURE, error: err.response.data.error });

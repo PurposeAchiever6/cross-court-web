@@ -1,44 +1,131 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
+import PageLayout from 'shared/components/layout/PageLayout';
+import SectionLayout from 'shared/components/layout/SectionLayout';
+import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
+
 import ROUTES from 'shared/constants/routes';
-import { subscriptionPeriodFormattedDate } from 'shared/utils/date';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import { subscriptionPeriodFormattedDate, shortMonthDayFullYear } from 'shared/utils/date';
 import Loading from 'shared/components/Loading';
-import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import {
-  pauseSubscription,
   cancelPauseSubscription,
   unpauseSubscription,
+  reactivateSubscription,
 } from 'screens/products/actionCreators';
-import { creditsString, thisYearFreeFinishedSubscriptionPauses } from 'screens/products/utils';
-import UnpauseMembershipModal from './components/UnpauseMembershipModal';
-import PauseMembershipModal from './components/PauseMembershipModal';
+import { creditsString } from 'screens/products/utils';
+import { getUnpauseLoading, getReactivateLoading } from 'screens/products/reducer';
+import UnpauseMembershipModal from 'screens/memberships/components/UnpauseMembershipModal';
+import Button from 'shared/components/Button';
+import manageMembershipImg from 'screens/memberships/images/manage-membership.jpg';
+import { pluralize } from 'shared/utils/helpers';
+import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
+import trustTheProgressShapeImg from 'shared/images/trust-the-progress-shape.png';
+import EndMembershipModal from 'shared/components/EndMembershipModal';
 
 const ManageMembershipPage = () => {
   const { activeSubscription } = useSelector(getUserProfile);
+  const unpauseLoading = useSelector(getUnpauseLoading);
+  const reactivateLoading = useSelector(getReactivateLoading);
+
   const loading = useSelector(getPageLoading);
   const dispatch = useDispatch();
-  const [showCancelModal, setShowCancelModal] = useState(false);
-  const [showPauseModal, setShowPauseModal] = useState(false);
   const [showUnpauseModal, setShowUnpauseModal] = useState(false);
+  const [showEndMembershipModal, setShowEndMembershipModal] = useState(false);
 
   const active = !activeSubscription?.canceled;
   const paused = activeSubscription?.paused;
   const product = activeSubscription?.product;
   const willPause = activeSubscription?.willPause;
-  const canFreePause = activeSubscription?.canFreePause;
-  const thisYearFreeFinishedPauses = thisYearFreeFinishedSubscriptionPauses(activeSubscription);
 
   const productsCreditsString = creditsString(product?.credits);
 
-  const pauseSubscriptionAction = (reason) =>
-    dispatch(pauseSubscription(activeSubscription, reason));
   const cancelPauseSubscriptionAction = () => dispatch(cancelPauseSubscription(activeSubscription));
   const unpauseSubscriptionAction = () => dispatch(unpauseSubscription(activeSubscription));
+  const reactivateSubscriptionAction = () => {
+    dispatch(reactivateSubscription(activeSubscription));
+  };
+
+  const statusText = (() => {
+    if (paused) {
+      return (
+        <>
+          <span className="mb-2 block">
+            Your membership is currently <span className="text-notice font-bold">paused</span>
+          </span>
+          until {subscriptionPeriodFormattedDate(activeSubscription?.pausedUntil)}.
+        </>
+      );
+    }
+
+    if (willPause) {
+      return (
+        <>
+          <span className="mb-2 block">
+            Your membership will be <span className="text-notice font-bold">paused</span>
+          </span>
+          from {subscriptionPeriodFormattedDate(activeSubscription?.pausedFrom)} until{' '}
+          {subscriptionPeriodFormattedDate(activeSubscription?.pausedUntil)}.
+        </>
+      );
+    }
+
+    if (active) {
+      return 'Pause or cancel your membership';
+    }
+
+    return (
+      <>
+        <span className="mb-2 block">
+          Your membership will be <span className="text-warning font-bold">canceled</span> on{' '}
+          {subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}.
+        </span>
+        You can reactivate your membership anytime until then.
+      </>
+    );
+  })();
+
+  const actionButton = (() => {
+    if (paused) {
+      return (
+        <Button
+          className="w-full"
+          onClick={() => setShowUnpauseModal(true)}
+          loading={unpauseLoading}
+        >
+          Unpause
+        </Button>
+      );
+    }
+
+    if (willPause) {
+      return (
+        <Button className="w-full" onClick={() => cancelPauseSubscriptionAction()}>
+          Cancel Pause
+        </Button>
+      );
+    }
+
+    if (active) {
+      return (
+        <Button className="w-full" onClick={() => setShowEndMembershipModal(true)}>
+          End Membership
+        </Button>
+      );
+    }
+
+    return (
+      <Button
+        className="w-full"
+        onClick={() => reactivateSubscriptionAction()}
+        loading={reactivateLoading}
+      >
+        Reactivate
+      </Button>
+    );
+  })();
 
   if (loading) {
     return <Loading />;
@@ -49,129 +136,69 @@ const ManageMembershipPage = () => {
   }
 
   return (
-    <div className="min-h-screen p-12">
-      <h1 className="font-shapiro95_super_wide text-3xl text-cc-black uppercase mb-6">
-        Membership
-      </h1>
-
-      <h3 className="font-shapiro95_super_wide text-xl text-cc-black uppercase">Status</h3>
-      {active ? (
-        <>
-          <p className="mb-1 capitalize">{activeSubscription?.status}</p>
-          {paused && (
-            <p className="mb-8">{`Your membership is paused until ${subscriptionPeriodFormattedDate(
-              activeSubscription?.pausedUntil
-            )}.`}</p>
-          )}
-
-          <h3 className="font-shapiro95_super_wide text-xl text-cc-black uppercase">Billing</h3>
-          <div className="mb-3">
-            {!paused &&
-              `Your current membership price is $${
-                product.price
-              } + tax and your next bill is due on ${subscriptionPeriodFormattedDate(
-                activeSubscription.currentPeriodEnd
-              )}.`}
+    <>
+      <PageLayout>
+        <SectionLayout className="mb-28">
+          <h2 className="font-shapiro95_super_wide text-3xl md:text-5xl mb-12">Manage</h2>
+          <div className="md:flex border border-white/30">
+            <div className="flex flex-col justify-between md:w-1/3 p-4 border-b md:border-r md:border-b-0 border-white/30 min-h-[12rem]">
+              <div>
+                <span className="font-shapiro95_super_wide text-lg mb-2 block">Billing</span>
+                <span className="block mb-2">Current Membership ${product?.price} + tax.</span>
+                <span className="block">
+                  Next bill due: {shortMonthDayFullYear(activeSubscription.currentPeriodEnd)}.
+                </span>
+              </div>
+              <Button className="w-full" to={ROUTES.BILLING}>
+                EDIT CARDS
+              </Button>
+            </div>
+            <div className="flex flex-col justify-between md:w-1/3 p-4 border-b md:border-r md:border-b-0 border-white/30 min-h-[12rem]">
+              <div>
+                <span className="font-shapiro95_super_wide text-lg mb-2 block">Current Plan</span>
+                <span className="block mb-2">{product?.name}</span>
+                <span className="block mb-4">
+                  {productsCreditsString} {pluralize('credit', product?.credits)}/month.
+                </span>
+              </div>
+              <Button className="w-full" to={ROUTES.MEMBERSHIPS}>
+                CHANGE PLAN
+              </Button>
+            </div>
+            <div className="flex flex-col justify-between md:w-1/3 p-4 min-h-[12rem]">
+              <div>
+                <span className="font-shapiro95_super_wide text-lg mb-2 block">Status</span>
+                <span className="block mb-4">{statusText}</span>
+              </div>
+              {actionButton}
+            </div>
           </div>
-          <PrimaryButton
-            fontSize="0.75rem"
-            className="block mb-8 w-max"
-            to={ROUTES.PAYMENT_METHODS_MEMBERSHIP}
-          >
-            Edit
-          </PrimaryButton>
-
-          <h3 className="font-shapiro95_super_wide text-xl text-cc-black uppercase">
-            Current Membership
-          </h3>
-          <div className="mb-2">{`${product?.name} - ${productsCreditsString} credits/month`}</div>
-          <PrimaryButton fontSize="0.75rem" className="w-max block mb-8" to={ROUTES.MEMBERSHIPS}>
-            Change Membership
-          </PrimaryButton>
-
-          <h3 className="font-shapiro95_super_wide text-xl text-cc-black uppercase mb-3">
-            Manage Membership
-          </h3>
-          <div className="flex flex-col items-start">
-            {willPause ? (
-              <PrimaryButton
-                className="mb-1"
-                fontSize="0.75rem"
-                onClick={() => cancelPauseSubscriptionAction()}
-              >
-                Cancel pause
-              </PrimaryButton>
-            ) : (
-              <>
-                {paused ? (
-                  <PrimaryButton
-                    className="mb-1"
-                    fontSize="0.75rem"
-                    onClick={() => setShowUnpauseModal(true)}
-                  >
-                    Unpause Membership
-                  </PrimaryButton>
-                ) : (
-                  <PrimaryButton
-                    className="mb-1"
-                    fontSize="0.75rem"
-                    onClick={() => setShowPauseModal(true)}
-                  >
-                    Pause Membership
-                  </PrimaryButton>
-                )}
-              </>
-            )}
-            {willPause && (
-              <p className="mb-2 mt-1">{`Your membership will be paused from ${subscriptionPeriodFormattedDate(
-                activeSubscription?.pausedFrom
-              )} until ${subscriptionPeriodFormattedDate(activeSubscription?.pausedUntil)}.`}</p>
-            )}
-            <PrimaryButton
-              className="mt-1"
-              inverted
-              fontSize="0.75rem"
-              onClick={() => setShowCancelModal(true)}
+        </SectionLayout>
+        <SectionLayout className="mx-auto">
+          <ExpandedLayout mdBreakpoint={false} lgBreakpoint={false} xlBreakpoint={false}>
+            <LazyBackgroundImage
+              img={manageMembershipImg}
+              className="relative bg-no-repeat bg-cover object-center bg-center min-h-[50rem]"
             >
-              Cancel Membership
-            </PrimaryButton>
-          </div>
-          <CancelMembershipModal
-            isOpen={showCancelModal}
-            closeHandler={() => setShowCancelModal(false)}
-            activeSubscription={activeSubscription}
-            setShowPauseModal={setShowPauseModal}
-          />
-          <PauseMembershipModal
-            isOpen={showPauseModal}
-            closeHandler={() => setShowPauseModal(false)}
-            activeSubscription={activeSubscription}
-            pauseSubscriptionAction={pauseSubscriptionAction}
-            canFreePause={canFreePause}
-            thisYearFreeFinishedPauses={thisYearFreeFinishedPauses}
-          />
-          <UnpauseMembershipModal
-            isOpen={showUnpauseModal}
-            closeHandler={() => setShowUnpauseModal(false)}
-            unpauseSubscriptionAction={unpauseSubscriptionAction}
-          />
-        </>
-      ) : (
-        <>
-          <div className="mb-1">Canceled</div>
-          <div className="mb-8">
-            {`Billing period ends on ${subscriptionPeriodFormattedDate(
-              activeSubscription.currentPeriodEnd
-            )}.`}
-            <br />
-            Your membership can be reactivated at any point prior to that date.
-          </div>
-          <PrimaryButton fontSize="0.75rem" to={ROUTES.MEMBERSHIPS}>
-            Reactivate
-          </PrimaryButton>
-        </>
-      )}
-    </div>
+              <img
+                alt="trust-the-progress-shape-img"
+                src={trustTheProgressShapeImg}
+                className="absolute -top-16 right-20 md:right-52 max-w-2xs"
+              />
+            </LazyBackgroundImage>
+          </ExpandedLayout>
+        </SectionLayout>
+      </PageLayout>
+      <EndMembershipModal
+        isOpen={showEndMembershipModal}
+        closeHandler={() => setShowEndMembershipModal(false)}
+      />
+      <UnpauseMembershipModal
+        isOpen={showUnpauseModal}
+        closeHandler={() => setShowUnpauseModal(false)}
+        unpauseSubscriptionAction={unpauseSubscriptionAction}
+      />
+    </>
   );
 };
 

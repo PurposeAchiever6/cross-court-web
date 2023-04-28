@@ -22,6 +22,7 @@ import {
   FORMAT_SHARE_SESSION_TIME,
   FORMAT_DATETIME,
   FORMAT_SHORT_MONTH_FULL_YEAR,
+  SHORT_MONTH_DAY_FULL_YEAR,
 } from 'shared/constants/date';
 
 dayjs.extend(utc);
@@ -78,6 +79,9 @@ export const requestFormattedDate = (date) => getUTCDate(date).format(FORMAT_DAT
 
 export const subscriptionPeriodFormattedDate = (date) =>
   getUTCDate(date).local().format(FORMAT_DATE_SUBSCRIPTION);
+
+export const shortMonthDayFullYear = (date) =>
+  getUTCDate(date).local().format(SHORT_MONTH_DAY_FULL_YEAR);
 
 export const formatDateShortYear = (date) => getUTCDate(date).local().format(FORMAT_DATE_MM_DD_YY);
 

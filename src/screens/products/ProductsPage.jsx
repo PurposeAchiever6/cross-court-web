@@ -7,20 +7,17 @@ import ROUTES from 'shared/constants/routes';
 import { startedCheckout } from 'shared/utils/activeCampaign';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getAvailableProducts, getPageLoading } from 'screens/products/reducer';
-import { dropInProducts, thisYearFreeFinishedSubscriptionPauses } from 'screens/products/utils';
+import { dropInProducts } from 'screens/products/utils';
 import { getUserProfile } from 'screens/my-account/reducer';
 import {
   initialLoad,
   setSelectedProduct,
   reactivateSubscription,
-  pauseSubscription,
 } from 'screens/products/actionCreators';
 import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import Loading from 'shared/components/Loading';
-import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import MembershipIsPausedModal from 'screens/memberships/components/MembershipIsPausedModal';
-import PauseMembershipModal from 'screens/memberships/components/PauseMembershipModal';
 import Memberships from 'screens/products/components/Memberships';
 import ReserveTeamMemberships from 'screens/products/components/reserve-team/Memberships';
 import ReserveTeamMembershipsFeatures from 'screens/products/components/reserve-team/MembershipsFeatures';
@@ -31,6 +28,7 @@ import Scoutings from 'screens/products/components/Scoutings';
 import FAQ from 'screens/products/components/FAQ';
 import NoSessionCredits from 'screens/products/components/NoSessionCredits';
 import NoFreeSessionInformationModal from 'screens/products/components/NoFreeSessionInformationModal';
+import EndMembershipModal from 'shared/components/EndMembershipModal';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
@@ -50,8 +48,7 @@ const ProductsPage = () => {
   const priceForFirstTimersNoFreeSession =
     dropInProducts(availableProducts)[0]?.priceForFirstTimersNoFreeSession;
 
-  const [showPauseModal, setShowPauseModal] = useState(false);
-  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [showEndMembershipModal, setShowEndMembershipModal] = useState(false);
   const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
     !!showNoFreeSessionInformation
   );
@@ -59,11 +56,6 @@ const ProductsPage = () => {
   const [showMembershipIsPausedModal, setShowMembershipIsPausedModal] = useState(false);
 
   const showMemberships = !comesFromCancelModal && !showScouting;
-  const canFreePause = activeSubscription?.canFreePause;
-  const thisYearFreeFinishedPauses = thisYearFreeFinishedSubscriptionPauses(activeSubscription);
-
-  const pauseSubscriptionAction = (reason) =>
-    dispatch(pauseSubscription(activeSubscription, reason));
 
   const selectProductHandler = (product) => {
     dispatch(setSelectedProduct(product));
@@ -86,7 +78,7 @@ const ProductsPage = () => {
   };
 
   const cancelMembership = () => {
-    setShowCancelModal(true);
+    setShowEndMembershipModal(true);
   };
 
   const reactivateMembership = () => {
@@ -197,24 +189,14 @@ const ProductsPage = () => {
         isOpen={showMembershipIsPausedModal}
         closeHandler={() => setShowMembershipIsPausedModal(false)}
       />
-      <CancelMembershipModal
-        isOpen={showCancelModal}
-        closeHandler={() => setShowCancelModal(false)}
-        activeSubscription={activeSubscription}
-        setShowPauseModal={setShowPauseModal}
+      <EndMembershipModal
+        isOpen={showEndMembershipModal}
+        closeHandler={() => setShowEndMembershipModal(false)}
       />
       <NoFreeSessionInformationModal
         price={priceForFirstTimersNoFreeSession}
         isOpen={showNoFreeSessionInformationModal}
         closeHandler={() => setShowNoFreeSessionInformationModal(false)}
-      />
-      <PauseMembershipModal
-        isOpen={showPauseModal}
-        closeHandler={() => setShowPauseModal(false)}
-        activeSubscription={activeSubscription}
-        pauseSubscriptionAction={pauseSubscriptionAction}
-        canFreePause={canFreePause}
-        thisYearFreeFinishedPauses={thisYearFreeFinishedPauses}
       />
     </>
   );

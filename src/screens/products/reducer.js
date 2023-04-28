@@ -9,6 +9,12 @@ import {
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_SUCCESS,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_FAILURE,
+  UNPAUSE_SUBSCRIPTION_INIT,
+  UNPAUSE_SUBSCRIPTION_SUCCESS,
+  UNPAUSE_SUBSCRIPTION_FAILURE,
+  REACTIVATE_SUBSCRIPTION_INIT,
+  REACTIVATE_SUBSCRIPTION_SUCCESS,
+  REACTIVATE_SUBSCRIPTION_FAILURE,
 } from './actionTypes';
 
 const initialState = {
@@ -17,6 +23,8 @@ const initialState = {
   availableProducts: [],
   selectedProduct: null,
   error: '',
+  unpauseLoading: false,
+  reactivateLoading: false,
 };
 
 export default (state = initialState, action) => {
@@ -77,6 +85,28 @@ export default (state = initialState, action) => {
           price: state.priceBeforeDiscount,
         },
       };
+    case UNPAUSE_SUBSCRIPTION_INIT:
+      return {
+        ...state,
+        unpauseLoading: true,
+      };
+    case UNPAUSE_SUBSCRIPTION_SUCCESS:
+    case UNPAUSE_SUBSCRIPTION_FAILURE:
+      return {
+        ...state,
+        unpauseLoading: false,
+      };
+    case REACTIVATE_SUBSCRIPTION_INIT:
+      return {
+        ...state,
+        reactivateLoading: true,
+      };
+    case REACTIVATE_SUBSCRIPTION_SUCCESS:
+    case REACTIVATE_SUBSCRIPTION_FAILURE:
+      return {
+        ...state,
+        reactivateLoading: false,
+      };
     default:
       return state;
   }
@@ -101,4 +131,11 @@ export const getAvailableProducts = createSelector(
 export const getSelectedProduct = createSelector(
   getProducts,
   (products) => products.selectedProduct
+);
+
+export const getUnpauseLoading = createSelector(getProducts, (products) => products.unpauseLoading);
+
+export const getReactivateLoading = createSelector(
+  getProducts,
+  (products) => products.reactivateLoading
 );

@@ -47,6 +47,7 @@ const BLACK_BG = [
   ROUTES.SETTINGS,
   '/session',
   '/first-session',
+  ROUTES.MANAGE_MEMBERSHIP,
 ];
 
 const SHOW_NAVBAR = [

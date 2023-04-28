@@ -14,3 +14,4 @@ export const FORMAT_SHORT_MONTH_FULL_YEAR = 'MMM YYYY';
 export const FORMAT_SHARE_SESSION_DATE = 'MM/DD';
 export const FORMAT_SHARE_SESSION_TIME = 'h A';
 export const FORMAT_DATETIME = 'MM/DD/YYYY H:mm';
+export const SHORT_MONTH_DAY_FULL_YEAR = 'MMM D, YYYY';

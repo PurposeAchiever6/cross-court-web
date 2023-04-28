@@ -41,7 +41,7 @@ export function* editProfileFlow(action) {
       type: EDIT_PROFILE_SUCCESS,
       payload: editProfilePayload,
     });
-    yield call(toast.success, 'Changes were successfully saved');
+    yield call(toast.success, 'Changes were saved.');
   } catch (err) {
     yield put({ type: EDIT_PROFILE_FAILURE, error: err.response.data.error });
   }
@@ -65,7 +65,7 @@ export function* getUserProfileFlow() {
 export function* sendMembershipHandbookFlow(action) {
   try {
     yield call(myAccountService.sendMembershipHandbook, action.payload.email);
-    yield call(toast.success, 'Membership handbook sent successfully');
+    yield call(toast.success, 'Membership handbook sent.');
   } catch (error) {
     yield call(toast.error, 'Unexpected error. Please try again later');
   }

@@ -97,7 +97,7 @@ export function* deletePaymentMethodFlow(action) {
         availableCards: paymentMethodsPayload,
       },
     });
-    yield call(toast.success, 'Card successfully deleted');
+    yield call(toast.success, 'Card deleted.');
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({ type: DELETE_CARD_FAILURE, error: err.response.data.error });

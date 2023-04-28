@@ -99,7 +99,7 @@ const Modal = ({
         )}
         {title && (
           <h2
-            className={`font-shapiro95_super_wide text-lg sm:text-2xl text-center ${titleClasses} ${
+            className={`font-shapiro95_super_wide text-lg sm:text-2xl ${titleClasses} ${
               subtitle ? 'mb-1' : 'mb-6'
             } ${dark ? 'text-white' : ''}`}
           >
@@ -108,7 +108,7 @@ const Modal = ({
         )}
         {subtitle && (
           <h3
-            className={`font-shapiro95_super_wide text-sm sm:text-base text-center mb-6 ${subtitleClasses} ${
+            className={`font-shapiro95_super_wide text-sm sm:text-base mb-6 ${subtitleClasses} ${
               dark ? 'text-white' : ''
             }`}
           >

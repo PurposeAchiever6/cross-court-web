@@ -103,7 +103,7 @@ export function* updateSkillRatingFlow({ payload }) {
     yield put({ type: UPDATE_SKILL_RATING_SUCCESS });
 
     if (isEdit) {
-      yield call(toast.success, 'Skill rating updated successfully');
+      yield call(toast.success, 'Skill rating updated.');
     } else {
       yield put(push(ROUTES.ABOUT_YOURSELF, { from: ROUTES.RATING }));
     }

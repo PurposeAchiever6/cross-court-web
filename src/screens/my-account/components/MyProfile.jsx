@@ -135,7 +135,7 @@ const MyProfile = ({ profile }) => {
                 ? 'Unl Sessions left'
                 : `${totalCredits} ${pluralize('Session', totalCredits)} left`}
             </span>
-            <span className="opacity-60">{activeSubscription ? 'This month' : 'Left'}</span>
+            {activeSubscription && <span className="opacity-60">This month</span>}
             {activeSubscription && (
               <>
                 <span className="text-xs mt-4">
