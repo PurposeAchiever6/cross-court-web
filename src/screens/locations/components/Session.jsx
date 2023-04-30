@@ -11,7 +11,7 @@ import SessionButton from 'screens/locations/components/SessionButton';
 import SessionVote from 'screens/locations/components/SessionVote';
 import SessionShowMore from 'screens/locations/components/SessionShowMore';
 
-const Session = ({ session, showingFreeSessionCreditAdded, className }) => {
+const Session = ({ session, className }) => {
   const [showMore, setShowMore] = useState(false);
 
   const {
@@ -70,11 +70,7 @@ const Session = ({ session, showingFreeSessionCreditAdded, className }) => {
                     </div>
                   )}
                 </div>
-                <SessionButton
-                  session={session}
-                  showingFreeSessionCreditAdded={showingFreeSessionCreditAdded}
-                  className="w-full md:w-auto"
-                />
+                <SessionButton session={session} className="w-full md:w-auto" />
               </div>
               {comingSoon && <SessionVote session={session} className="mt-4" />}
             </div>
@@ -105,12 +101,10 @@ const Session = ({ session, showingFreeSessionCreditAdded, className }) => {
 
 Session.defaultProps = {
   className: '',
-  showingFreeSessionCreditAdded: false,
 };
 
 Session.propTypes = {
   session: PropTypes.shape().isRequired,
-  showingFreeSessionCreditAdded: PropTypes.bool,
   className: PropTypes.string,
 };
 

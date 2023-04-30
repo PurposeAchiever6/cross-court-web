@@ -9,7 +9,6 @@ const HeaderAction = ({
   confirmText,
   onConfirm,
   confirmVariant,
-  confirmId,
   confirmLoading,
   cancelText,
   onCancel,
@@ -20,13 +19,7 @@ const HeaderAction = ({
       <Link variant={cancelVariant} onClick={onCancel} className="text-sm mr-3 sm:mr-6">
         {cancelText}
       </Link>
-      <Button
-        id={confirmId}
-        size="sm"
-        variant={confirmVariant}
-        loading={confirmLoading}
-        onClick={onConfirm}
-      >
+      <Button size="sm" variant={confirmVariant} loading={confirmLoading} onClick={onConfirm}>
         {confirmText}
       </Button>
     </div>
@@ -36,7 +29,6 @@ const HeaderAction = ({
 HeaderAction.defaultProps = {
   confirmText: 'Confirm',
   confirmVariant: 'purple',
-  confirmId: null,
   confirmLoading: false,
   cancelText: 'Cancel',
   cancelVariant: 'white-opacity',
@@ -46,7 +38,6 @@ HeaderAction.propTypes = {
   confirmText: PropTypes.string,
   onConfirm: PropTypes.func.isRequired,
   confirmVariant: PropTypes.string,
-  confirmId: PropTypes.string,
   confirmLoading: PropTypes.bool,
   cancelText: PropTypes.string,
   onCancel: PropTypes.func.isRequired,

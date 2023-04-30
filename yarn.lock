@@ -3272,11 +3272,6 @@ interpret@^1.0.0:
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.4.0.tgz#665ab8bc4da27a774a40584e812e3e0fa45b1a1e"
   integrity sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==
 
-intro.js-react@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/intro.js-react/-/intro.js-react-0.5.0.tgz#d4e67a4f6e4726bee803222ff09d6deacb4598c8"
-  integrity sha512-tr9uhoy/aRgcdZxpqYC/TPSVlJ/Gt9Kx4mpI7clCdFa7c3SG8reJugIa1U5XnWlDLRNMc+e8egb8Jf186yvc1A==
-
 intro.js@^4.2.2:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/intro.js/-/intro.js-4.3.0.tgz#39d072e638eae9c8491e225b8565ad63b6aaf1f7"

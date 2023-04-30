@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -43,8 +43,6 @@ const LocationsPage = () => {
   const isFirstSessionFlow = isUserInFirstSessionFlow(userInfo);
   const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(userInfo);
 
-  const [showingFreeSessionCreditAdded, setShowingFreeSessionCreditAdded] = useState(true);
-
   const getSessionsByDateHandler = (date) => dispatch(getSessionsByDate(date));
   const setSelectedDateHandler = (date) => dispatch(setSelectedDate(date));
   const setLocationHandler = useCallback(
@@ -77,10 +75,6 @@ const LocationsPage = () => {
   }, [availableLocations, selectedLocation, setLocationHandler]);
 
   useEffect(() => {
-    setShowingFreeSessionCreditAdded(isFirstFreeSessionFlow);
-  }, [isFirstFreeSessionFlow]);
-
-  useEffect(() => {
     if (isFirstSessionFlow) {
       history.push(ROUTES.LOCATIONSFIRST);
     }
@@ -99,9 +93,7 @@ const LocationsPage = () => {
     <Loading />
   ) : (
     <PageLayout>
-      {isFirstFreeSessionFlow && (
-        <FreeSessionCreditAdded onFinishAnimation={() => setShowingFreeSessionCreditAdded(false)} />
-      )}
+      {isFirstFreeSessionFlow && <FreeSessionCreditAdded />}
       <SectionLayout>
         <div className="sm:flex sm:justify-between sm:items-center mb-4">
           <h1 className="font-shapiro95_super_wide text-3xl md:text-4xl mb-3 sm:mb-0">Schedule</h1>
@@ -122,11 +114,7 @@ const LocationsPage = () => {
         {isSessionsLoading ? (
           <Loading />
         ) : (
-          <SessionsList
-            availableSessions={availableSessions}
-            selectedDate={selectedDate}
-            showingFreeSessionCreditAdded={showingFreeSessionCreditAdded}
-          />
+          <SessionsList availableSessions={availableSessions} selectedDate={selectedDate} />
         )}
       </SectionLayout>
     </PageLayout>

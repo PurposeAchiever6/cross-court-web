@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
 import toast from 'shared/utils/toast';
-import { isOnboardingTourEnable } from 'shared/utils/onboardingTour';
 import { hasConfirmCodeOfConduct } from 'shared/utils/codeOfConduct';
 import {
   userHasCreditsForSession,
@@ -28,7 +27,6 @@ import {
   closeWaitlistModal as closeWaitlistModalAction,
 } from 'screens/sessions/actionCreators';
 import HeaderAction from 'shared/components/HeaderAction';
-import OnboardingTour from 'shared/components/OnboardingTour';
 import CodeOfConductModal from 'screens/sessions/components/modals/CodeOfConductModal';
 import FirstTimersInformationModal from 'screens/sessions/components/modals/FirstTimersInformationModal';
 import OpenClubGoalsModal from 'screens/sessions/components/modals/OpenClubGoalsModal';
@@ -39,9 +37,6 @@ import CancelModal from 'screens/sessions/components/modals/CancelModal';
 const SHOOTING_MACHINE_GOAL = 'SM';
 
 const SessionHeaderAction = ({ session, date }) => {
-  const SESSION_CANCELED_OUT_OF_TIME_PRICE = import.meta.env
-    .VITE_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE;
-
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -234,19 +229,6 @@ const SessionHeaderAction = ({ session, date }) => {
         text: 'Create Profile',
         action: signupForSession,
         variant: 'purple',
-        id: 'session-create-profile',
-        onboardingTour: (
-          <OnboardingTour
-            id="onboarding-tour-session-create-profile"
-            steps={[
-              {
-                element: '#session-create-profile',
-                intro:
-                  'Your free session credit awaits. Tap <strong>CREATE PROFILE</strong> to enter your information and set up your profile.',
-              },
-            ]}
-          />
-        ),
       };
     }
 
@@ -278,30 +260,6 @@ const SessionHeaderAction = ({ session, date }) => {
       text: 'Confirm Booking',
       action: bookSession,
       variant: 'purple',
-      id: 'session-confirm-reservation',
-      onboardingTour: (
-        <OnboardingTour
-          id="onboarding-tour-session-confirm-reservation"
-          enabled={
-            isFirstSessionFlow &&
-            isOnboardingTourEnable('onboarding-tour-session-confirm-reservation')
-          }
-          steps={[
-            {
-              element: '#session-confirm-reservation',
-              intro: `You're s'close. Press <strong>CONFIRM RESERVATION</strong> to hold your spot. ${
-                isFirstFreeSessionFlow
-                  ? `First you'll need to enter your payment info and then you'll be ready to book your first session! Don't worry, your card won't be charged unless you miss your session or cancel within 5 hours of your session starting ($${SESSION_CANCELED_OUT_OF_TIME_PRICE} charge).`
-                  : `${
-                      currentUser.totalCredits === 0
-                        ? 'Due to your location, you are not eligible for a free trial session, but because is your first time, you can buy a session at a discounted price.'
-                        : ''
-                    } `
-              }`,
-            },
-          ]}
-        />
-      ),
     };
   })();
 
@@ -311,12 +269,10 @@ const SessionHeaderAction = ({ session, date }) => {
         confirmText={confirmData.text}
         onConfirm={confirmData.action}
         confirmVariant={confirmData.variant}
-        confirmId={confirmData.id}
         confirmLoading={loadingButton}
         cancelText="Back"
         onCancel={() => history.push(ROUTES.LOCATIONS)}
       />
-      {confirmData.onboardingTour}
       <CodeOfConductModal
         isOpen={showCodeOfConductModal}
         closeHandler={() => setShowCodeOfConductModal(false)}

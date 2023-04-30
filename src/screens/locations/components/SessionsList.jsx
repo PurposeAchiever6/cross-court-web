@@ -5,7 +5,7 @@ import { isSameDay, sortSessionsByDate } from 'shared/utils/date';
 import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
 import Session from 'screens/locations/components/Session';
 
-const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCreditAdded }) => {
+const SessionsList = ({ availableSessions, selectedDate }) => {
   const sessionList = availableSessions.filter(({ startTime }) =>
     isSameDay(startTime, selectedDate)
   );
@@ -28,25 +28,15 @@ const SessionsList = ({ availableSessions, selectedDate, showingFreeSessionCredi
       xlBreakpoint={false}
     >
       {sortedSessions.map((session, index) => (
-        <Session
-          key={index}
-          session={session}
-          showingFreeSessionCreditAdded={showingFreeSessionCreditAdded}
-          className="mb-10 md:mb-4"
-        />
+        <Session key={index} session={session} className="mb-10 md:mb-4" />
       ))}
     </ExpandedLayout>
   );
 };
 
-SessionsList.defaultProps = {
-  showingFreeSessionCreditAdded: false,
-};
-
 SessionsList.propTypes = {
   availableSessions: PropTypes.arrayOf(PropTypes.shape()),
   selectedDate: PropTypes.instanceOf(Date).isRequired,
-  showingFreeSessionCreditAdded: PropTypes.bool,
 };
 
 export default SessionsList;

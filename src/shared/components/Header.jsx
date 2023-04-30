@@ -3,16 +3,13 @@ import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
-import useScrollBlock from 'shared/hooks/useScrollBlock';
 import { pluralize } from 'shared/utils/helpers';
 import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
-import { isOnboardingTourEnable, disableOnboardingTour } from 'shared/utils/onboardingTour';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import HeaderLayout from 'shared/components/layout/HeaderLayout';
 import Navbar from 'shared/components/Header/Navbar';
 import Button from 'shared/components/Button';
-import OnboardingTour from 'shared/components/OnboardingTour';
 
 const ALWAYS_SCROLLED = [
   ROUTES.FORGOTPASSWORD,
@@ -83,14 +80,8 @@ const Header = () => {
   const [alwaysScrolled, setAlwaysScrolled] = useState(false);
   const [showMembershipPromoBanner, setShowMembershipPromoBanner] = useState(false);
 
-  const [blockScroll, allowScroll] = useScrollBlock();
-
   const showNavItems = SHOW_NAVBAR.includes(`/${pathname.split(/[/_]/)[1]}`);
   const blackBg = BLACK_BG.includes(`/${pathname.split(/[/_]/)[1]}`);
-
-  const onboardingTourId = 'onboarding-tour-header';
-  const isHeaderOnboardingTourEnable =
-    !isAuthenticated && pathname === ROUTES.HOME && isOnboardingTourEnable(onboardingTourId);
 
   useEffect(() => {
     setAlwaysScrolled(ALWAYS_SCROLLED.includes(`/${pathname.split(/[/_]/)[1]}`));
@@ -99,11 +90,6 @@ const Header = () => {
   useEffect(() => {
     setShowMembershipPromoBanner(pathname === ROUTES.HOME && !userInfo.activeSubscription);
   }, [pathname, userInfo.activeSubscription]);
-
-  const exitHeaderOnboardingTour = () => {
-    disableOnboardingTour(onboardingTourId);
-    allowScroll();
-  };
 
   const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
@@ -129,10 +115,6 @@ const Header = () => {
       : 'Reserve';
   })();
 
-  if (isHeaderOnboardingTourEnable) {
-    blockScroll();
-  }
-
   if (HEADER_DISABLED_ROUTES.includes(pathname)) {
     return null;
   }
@@ -149,28 +131,10 @@ const Header = () => {
             <Navbar isAuthenticated={isAuthenticated} />
           </div>
         )}
-        <Button
-          id="header-btn"
-          to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP}
-          onClick={exitHeaderOnboardingTour}
-          size="sm"
-          className="z-10"
-        >
+        <Button to={isAuthenticated ? ROUTES.LOCATIONS : ROUTES.SIGNUP} size="sm" className="z-10">
           {buttonText}
         </Button>
       </div>
-      <OnboardingTour
-        id={onboardingTourId}
-        enabled={isHeaderOnboardingTourEnable}
-        steps={[
-          {
-            element: '#header-btn',
-            intro:
-              'Your first Crosscourt session is on us. Tap <strong>FIRST FREE</strong> to receive your session credit.',
-          },
-        ]}
-        onExit={exitHeaderOnboardingTour}
-      />
     </HeaderLayout>
   );
 };
