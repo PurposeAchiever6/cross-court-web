@@ -1,4 +1,9 @@
-import { INITIAL_LOAD_INIT, EDIT_PROFILE_INIT, SEND_MEMBERSHIP_HANDBOOK_INIT } from './actionTypes';
+import {
+  INITIAL_LOAD_INIT,
+  EDIT_PROFILE_INIT,
+  SEND_MEMBERSHIP_HANDBOOK_INIT,
+  UPDATE_SKILL_RATING_INIT,
+} from './actionTypes';
 
 export const initialLoadInit = () => ({
   type: INITIAL_LOAD_INIT,
@@ -11,5 +16,10 @@ export const editProfileInit = (payload) => ({
 
 export const sendMembershipHandbook = (payload) => ({
   type: SEND_MEMBERSHIP_HANDBOOK_INIT,
+  payload,
+});
+
+export const updateSkillRatingInit = (payload) => ({
+  type: UPDATE_SKILL_RATING_INIT,
   payload,
 });

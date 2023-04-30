@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'ramda';
-import Loader from 'screens/settings/components/Loader';
+import { useHistory } from 'react-router-dom';
 
+import HeaderAction from 'shared/components/HeaderAction';
 import BasketballSvg from 'shared/components/svg/BasketballSvg';
 import Button from 'shared/components/Button';
-import { initialLoadInit } from 'screens/my-account/actionCreators';
+import { initialLoadInit, updateSkillRatingInit } from 'screens/my-account/actionCreators';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 
 import SkillRatingUpdateRequestModal from 'screens/rating/components/SkillRatingUpdateRequestModal/index';
-import { updateSkillRatingInit } from 'screens/auth/actionCreators';
+import Loading from 'shared/components/Loading';
 
 export const LEVELS = [
   {
@@ -23,7 +24,7 @@ export const LEVELS = [
   {
     value: '2',
     title: 'Level 2',
-    subtitle: 'Mild Intensity',
+    subtitle: 'Light Intensity',
     description:
       'Developing a foundational skill set. Inconsistent play. Limited conditioning. ' +
       'Basic understanding of the game, but limited interest in sprinting the floor against ' +
@@ -58,6 +59,7 @@ export const LEVELS = [
 
 const IntensityLevels = ({ isEdit }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const SKILL_RATINGS_FOR_REVIEW = import.meta.env.VITE_SKILL_RATINGS_FOR_REVIEW;
   const SKILL_RATINGS_FOR_REVIEW_ON_EDIT = import.meta.env.VITE_SKILL_RATINGS_FOR_REVIEW_ON_EDIT;
@@ -98,11 +100,19 @@ const IntensityLevels = ({ isEdit }) => {
   const isRatingDisabled = (rating) => !isEdit && skillRatingsForReview.includes(rating);
 
   if (isEdit && (isLoading || isEmpty(profile))) {
-    return <Loader />;
+    return <Loading />;
   }
 
   return (
     <>
+      {isEdit && (
+        <HeaderAction
+          confirmText="Save"
+          onConfirm={handleClick}
+          cancelText="Cancel"
+          onCancel={() => history.goBack()}
+        />
+      )}
       <h2 className="my-8 max-w-7xl mx-auto">
         To give you the best experience possible, please choose your desired, on court intensity
         level so we are able to surround you with similar players.
@@ -145,11 +155,13 @@ const IntensityLevels = ({ isEdit }) => {
           </div>
         )}
       </div>
-      <div className={!isEdit ? 'text-center' : 'text-right'}>
-        <Button id="rating-btn" disabled={!skillRating} className="my-6" onClick={handleClick}>
-          {isEdit ? 'SAVE' : 'NEXT'}
-        </Button>
-      </div>
+      {!isEdit && (
+        <div className="text-center">
+          <Button disabled={!skillRating} className="my-6" onClick={handleClick}>
+            NEXT
+          </Button>
+        </div>
+      )}
       <SkillRatingUpdateRequestModal
         isOpen={showSkillRatingUpdateRequestModal}
         closeHandler={() => setShowSkillRatingUpdateRequestModal(false)}

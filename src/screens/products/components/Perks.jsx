@@ -46,7 +46,7 @@ const Perks = () => (
         <div className="flex flex-wrap justify-center -m-4">
           {PERKS.map(({ title, description, iconImg, iconClassName }, index) => (
             <div key={index} className="flex w-full sm:mb-4 sm:w-1/2 items-start p-4">
-              <img src={iconImg} alt={`perk-title`} className={iconClassName} />
+              <img src={iconImg} alt="perk-title" className={iconClassName} />
               <div>
                 <div className="font-shapiro95_super_wide text-lg sm:text-xl text-cc-purple uppercase mb-2">
                   {title}

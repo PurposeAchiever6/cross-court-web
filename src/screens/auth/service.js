@@ -33,14 +33,6 @@ export default {
 
     return response.data;
   },
-  updateSkillRating: async ({ email, skillRating }) => {
-    const response = await api.put(`/user/update_skill_rating`, {
-      email,
-      skillRating,
-    });
-
-    return response.data;
-  },
   updatePersonalInfo: async ({ email, personalInfo }) => {
     const response = await api.put(`/user/update_personal_info`, {
       email,

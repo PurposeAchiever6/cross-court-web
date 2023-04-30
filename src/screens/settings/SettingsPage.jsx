@@ -8,25 +8,25 @@ import { BILLING_TAB } from 'shared/constants/tabs';
 import Account from 'screens/settings/components/Account';
 import Billing from 'screens/settings/components/Billing';
 import Bio from 'screens/settings/components/Bio';
-import SkillRating from 'screens/settings/components/SkillRating';
+import IntensityLevel from 'screens/settings/components/IntensityLevel';
 
 const SettingsPage = () => (
   <PageLayout>
     <SectionLayout>
       <div className="max-w-4xl mx-auto">
-        <h2 className="font-shapiro95_super_wide text-3xl md:text-5xl">Settings</h2>
-        <Tabs className="mt-10">
+        <h2 className="font-shapiro95_super_wide text-3xl md:text-5xl mb-10">Settings</h2>
+        <Tabs variant="opacity-underline" showSeparator>
           <div label="Account">
             <Account />
           </div>
-          <div label={BILLING_TAB}>
+          <div label={BILLING_TAB} showSeparator>
             <Billing />
           </div>
           <div label="Bio">
             <Bio />
           </div>
-          <div label="Skill Rating">
-            <SkillRating />
+          <div label="Intensity Rating">
+            <IntensityLevel />
           </div>
         </Tabs>
       </div>

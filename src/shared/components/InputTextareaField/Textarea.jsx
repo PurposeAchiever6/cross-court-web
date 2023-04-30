@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Label from 'shared/components/Label';
@@ -13,6 +13,10 @@ const Textarea = ({
   dark,
   variant,
   className,
+  onChange,
+  showCharCount,
+  maxLength,
+  value,
   ...props
 }) => {
   const colorClasses = (() => {
@@ -35,18 +39,34 @@ const Textarea = ({
     }
   })();
 
+  const [charCount, setCharCount] = useState(value?.length ?? 0);
+  const handleChange = (e) => {
+    onChange(e);
+    setCharCount(e.target.value.length);
+  };
+
   return (
     <div className={className}>
       <div className={disabled ? 'opacity-50 pointer-events-none' : ''}>
-        {label && (
-          <Label forInput color={labelColor}>
-            {label}
-          </Label>
-        )}
+        <div className="flex items-center justify-between">
+          {label && (
+            <Label forInput color={labelColor}>
+              {label}
+            </Label>
+          )}
+          {showCharCount && (
+            <span className="font-shapiro45_welter_extd text-sm opacity-70">
+              {charCount} / {maxLength || 0}
+            </span>
+          )}
+        </div>
         <textarea
           rows={rows}
           className={`w-full font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 text-sm ${colorClasses} ${variantClasses}`}
           disabled={disabled}
+          onChange={handleChange}
+          value={value}
+          maxLength={maxLength}
           {...props}
         />
         {hint && (
@@ -78,6 +98,9 @@ Textarea.defaultProps = {
   dark: false,
   variant: 'normal',
   className: '',
+  showCharCount: false,
+  maxLength: undefined,
+  value: '',
 };
 
 Textarea.propTypes = {
@@ -90,6 +113,10 @@ Textarea.propTypes = {
   dark: PropTypes.bool,
   variant: PropTypes.oneOf(['normal', 'shrink', 'expanded']),
   className: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  showCharCount: PropTypes.bool,
+  maxLength: PropTypes.number,
+  value: PropTypes.string,
 };
 
 export default Textarea;

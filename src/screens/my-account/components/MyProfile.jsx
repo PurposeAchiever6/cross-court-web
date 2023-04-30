@@ -160,12 +160,14 @@ const MyProfile = ({ profile }) => {
                 </span>
               </>
             )}
-            <span className="text-xs mt-1">
-              <span className="font-shapiro95_super_wide mr-2">
-                Eval {pluralize('credit', scoutingCredits)}:
+            {scoutingCredits > 0 && (
+              <span className="text-xs mt-1">
+                <span className="font-shapiro95_super_wide mr-2">
+                  Eval {pluralize('credit', scoutingCredits)}:
+                </span>
+                {scoutingCredits}
               </span>
-              {scoutingCredits}
-            </span>
+            )}
             {activeSubscription && (
               <>
                 {(subscriptionSkillSessionsCreditsPerMonth !== 0 ||

@@ -27,9 +27,6 @@ import {
   AUTO_LOGIN_INIT,
   AUTO_LOGIN_SUCCESS,
   AUTO_LOGIN_FAILURE,
-  UPDATE_SKILL_RATING_INIT,
-  UPDATE_SKILL_RATING_SUCCESS,
-  UPDATE_SKILL_RATING_FAILURE,
   UPDATE_PERSONAL_INFO_INIT,
   UPDATE_PERSONAL_INFO_SUCCESS,
   UPDATE_PERSONAL_INFO_FAILURE,
@@ -90,27 +87,6 @@ export function* sendConfirmationEmailFlow() {
     const errorMessage = err.response.data.error;
     yield call(toast.error, errorMessage);
     yield put({ type: SEND_CONFIRMATION_EMAIL_FAILURE, error: errorMessage });
-  }
-}
-
-export function* updateSkillRatingFlow({ payload }) {
-  try {
-    const { isEdit } = payload;
-    let email = null;
-    if (!isEdit) email = yield select(getUserEmail);
-
-    yield call(authService.updateSkillRating, { email, skillRating: payload.skillRating });
-    yield put({ type: UPDATE_SKILL_RATING_SUCCESS });
-
-    if (isEdit) {
-      yield call(toast.success, 'Skill rating updated.');
-    } else {
-      yield put(push(ROUTES.ABOUT_YOURSELF, { from: ROUTES.RATING }));
-    }
-  } catch (err) {
-    const errorMessage = err.response.data.error;
-    yield call(toast.error, errorMessage);
-    yield put({ type: UPDATE_SKILL_RATING_FAILURE, error: errorMessage });
   }
 }
 
@@ -187,7 +163,6 @@ export default function* rootLoginSaga() {
     takeLatest(FORGOT_PASS_INIT, forgotPasswordFlow),
     takeLatest(PASS_RESET_INIT, passwordResetFlow),
     takeLatest(AUTO_LOGIN_INIT, autoLoginFlow),
-    takeLatest(UPDATE_SKILL_RATING_INIT, updateSkillRatingFlow),
     takeLatest(UPDATE_PERSONAL_INFO_INIT, updatePersonalInfoFlow),
     takeLatest(UPDATE_PROFILE_REQUEST_INIT, updateRequestFlow),
   ]);

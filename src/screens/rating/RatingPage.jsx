@@ -24,7 +24,7 @@ const RatingPage = () => {
         <h1 className="font-shapiro95_super_wide text-xl md:text-3xl text-center mt-4">
           SKILL ASSESSMENT SURVEY
         </h1>
-        <IntensityLevels isEdit={false} />
+        <IntensityLevels />
       </SectionLayout>
     </PageLayout>
   );

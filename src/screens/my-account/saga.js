@@ -1,5 +1,9 @@
-import { put, takeLatest, call, all } from 'redux-saga/effects';
+import { put, takeLatest, call, all, select } from 'redux-saga/effects';
 import toast from 'shared/utils/toast';
+import { push } from 'connected-react-router';
+
+import { getUserEmail } from 'screens/auth/reducer';
+import ROUTES from 'shared/constants/routes';
 
 import {
   INITIAL_LOAD_INIT,
@@ -12,6 +16,9 @@ import {
   GET_PROFILE_SUCCESS,
   GET_PROFILE_FAILURE,
   SEND_MEMBERSHIP_HANDBOOK_INIT,
+  UPDATE_SKILL_RATING_INIT,
+  UPDATE_SKILL_RATING_SUCCESS,
+  UPDATE_SKILL_RATING_FAILURE,
 } from './actionTypes';
 
 import myAccountService from './service';
@@ -71,11 +78,33 @@ export function* sendMembershipHandbookFlow(action) {
   }
 }
 
+export function* updateSkillRatingFlow({ payload }) {
+  try {
+    const { isEdit } = payload;
+    let email = null;
+    if (!isEdit) email = yield select(getUserEmail);
+
+    yield call(myAccountService.updateSkillRating, { email, skillRating: payload.skillRating });
+    yield put({ type: UPDATE_SKILL_RATING_SUCCESS });
+
+    if (isEdit) {
+      yield call(toast.success, 'Skill rating updated.');
+    } else {
+      yield put(push(ROUTES.ABOUT_YOURSELF, { from: ROUTES.RATING }));
+    }
+  } catch (err) {
+    const errorMessage = err.response.data.error;
+    yield call(toast.error, errorMessage);
+    yield put({ type: UPDATE_SKILL_RATING_FAILURE, error: errorMessage });
+  }
+}
+
 export default function* myAccountSaga() {
   yield all([
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
     takeLatest(EDIT_PROFILE_INIT, editProfileFlow),
     takeLatest(GET_PROFILE_INIT, getUserProfileFlow),
     takeLatest(SEND_MEMBERSHIP_HANDBOOK_INIT, sendMembershipHandbookFlow),
+    takeLatest(UPDATE_SKILL_RATING_INIT, updateSkillRatingFlow),
   ]);
 }

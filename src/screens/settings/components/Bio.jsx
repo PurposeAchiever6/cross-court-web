@@ -3,17 +3,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { isEmpty } from 'ramda';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { useHistory } from 'react-router-dom';
 
 import { initialLoadInit, editProfileInit } from 'screens/my-account/actionCreators';
 import { getPageLoading, getUserProfile, getEditProfileLoading } from 'screens/my-account/reducer';
 
-import Loader from 'screens/settings/components/Loader';
-import Button from 'shared/components/Button';
+import HeaderAction from 'shared/components/HeaderAction';
 import InputTextareaField from 'shared/components/InputTextareaField';
 import PersonSvg from 'shared/components/svg/PersonSvg';
+import Loading from 'shared/components/Loading';
+
+const MAX_LENGTH = 250;
 
 const validationSchema = Yup.object().shape({
-  bio: Yup.string().required('Required'),
+  bio: Yup.string().required('Required').max(MAX_LENGTH),
 });
 
 const Bio = () => {
@@ -21,14 +24,11 @@ const Bio = () => {
   const isLoading = useSelector(getPageLoading);
   const profile = useSelector(getUserProfile);
   const editProfileLoading = useSelector(getEditProfileLoading);
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(initialLoadInit());
   }, [dispatch]);
-
-  if (isLoading || isEmpty(profile)) {
-    return <Loader />;
-  }
 
   const editProfileAction = (values) => dispatch(editProfileInit(values));
 
@@ -37,6 +37,10 @@ const Bio = () => {
   const initialValues = {
     bio: bio || '',
   };
+
+  if (isLoading || isEmpty(profile)) {
+    return <Loading />;
+  }
 
   return (
     <Formik
@@ -47,31 +51,34 @@ const Bio = () => {
       onSubmit={(values) => editProfileAction(values)}
       validationSchema={validationSchema}
     >
-      {({ errors }) => (
-        <Form className="flex flex-col">
-          <div className="flex flex-col md:flex-row mb-12">
-            <div className="md:w-1/4 mb-6 md:mb-0">
-              <PersonSvg className="w-32 m-auto" />
-            </div>
-            <div className="flex flex-col md:w-3/4">
+      {({ submitForm }) => (
+        <>
+          <HeaderAction
+            confirmText="Save"
+            onConfirm={submitForm}
+            confirmLoading={editProfileLoading}
+            cancelText="Cancel"
+            onCancel={() => history.goBack()}
+          />
+          <Form className="flex flex-col">
+            <div className="flex flex-col md:flex-row mb-12">
+              <div className="flex items-center justify-center md:w-1/4 mb-6 md:mb-0">
+                <PersonSvg className="w-32" />
+              </div>
               <InputTextareaField
                 name="bio"
                 label="Bio*"
                 labelColor="white"
                 placeholder="Enter some info about yourself"
-                error={errors.bio}
                 dark
+                showCharCount
+                maxLength={MAX_LENGTH}
                 variant="expanded"
-                className="mb-6"
+                className="md:w-3/4"
               />
             </div>
-          </div>
-          <div className="flex justify-end">
-            <Button type="submit" loading={editProfileLoading}>
-              SAVE
-            </Button>
-          </div>
-        </Form>
+          </Form>
+        </>
       )}
     </Formik>
   );

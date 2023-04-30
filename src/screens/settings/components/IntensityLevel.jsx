@@ -2,6 +2,6 @@ import React from 'react';
 
 import IntensityLevels from 'shared/components/IntensityLevels';
 
-const SkillRating = () => <IntensityLevels isEdit />;
+const IntensityLevel = () => <IntensityLevels isEdit />;
 
-export default SkillRating;
+export default IntensityLevel;

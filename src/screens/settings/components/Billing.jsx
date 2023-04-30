@@ -18,8 +18,8 @@ import Link from 'shared/components/Link';
 import AddPaymentMethod from 'screens/settings/components/AddPaymentMethod';
 import PaymentHistoryModal from 'screens/settings/components/PaymentHistoryModal';
 import Button from 'shared/components/Button';
-import Loader from 'screens/settings/components/Loader';
 import ccLogo from 'shared/images/logos/cc-white.png';
+import Loading from 'shared/components/Loading';
 
 const Billing = () => {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const Billing = () => {
   };
 
   if (isLoading || isSubscriptionUpdatePaymentMethodLoading) {
-    return <Loader />;
+    return <Loading />;
   }
 
   return (
