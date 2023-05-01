@@ -16,6 +16,9 @@ import {
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAILURE,
   GET_PROFILE_SUCCESS,
+  UPDATE_SKILL_RATING_INIT,
+  UPDATE_SKILL_RATING_SUCCESS,
+  UPDATE_SKILL_RATING_FAILURE,
 } from 'screens/my-account/actionTypes';
 import {
   CANCEL_SUBSCRIPTION_SUCCESS,
@@ -38,6 +41,7 @@ const initialState = {
   error: '',
   pageLoading: false,
   editProfileLoading: false,
+  skillRatingUpdateLoading: false,
   showEditProfile: false,
   userProfile: {},
   previousSessions: [],
@@ -93,6 +97,17 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editProfileLoading: false,
+      };
+    case UPDATE_SKILL_RATING_INIT:
+      return {
+        ...state,
+        skillRatingUpdateLoading: true,
+      };
+    case UPDATE_SKILL_RATING_SUCCESS:
+    case UPDATE_SKILL_RATING_FAILURE:
+      return {
+        ...state,
+        skillRatingUpdateLoading: false,
       };
     case SESSIONS_INITIAL_LOAD:
     case INITIAL_APP_LOAD_SUCCESS:
@@ -161,6 +176,11 @@ export const getUpcomingSessions = createSelector(
 export const getEditProfileLoading = createSelector(
   getMyAccount,
   (myAccount) => myAccount.editProfileLoading
+);
+
+export const getSkillRatingUpdateLoading = createSelector(
+  getMyAccount,
+  (myAccount) => myAccount.skillRatingUpdateLoading
 );
 
 export const getShowEditProfile = createSelector(

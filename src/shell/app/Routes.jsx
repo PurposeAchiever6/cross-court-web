@@ -31,6 +31,9 @@ const SignupConfirmation = lazy(() => import('screens/auth/pages/SignupConfirmat
 const OnboardingPersonalDetails = lazy(() =>
   import('screens/onboarding/pages/OnboardingPersonalDetailsPage')
 );
+const OnboardingIntensityLevel = lazy(() =>
+  import('screens/onboarding/pages/OnboardingIntensityLevelPage')
+);
 const Dashboard = lazy(() => import('screens/dashboard/DashboardPage'));
 const WhyJoin = lazy(() => import('screens/why-join/WhyJoinPage'));
 const CareersPage = lazy(() => import('screens/careers/CareersPage'));
@@ -46,7 +49,6 @@ const MyAccount = lazy(() => import('screens/my-account/MyAccountPage'));
 const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfirm'));
 const FAQ = lazy(() => import('screens/faq/FaqPage'));
 const Content = lazy(() => import('screens/content/ContentPage'));
-const Rating = lazy(() => import('screens/rating/RatingPage'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
 const PrivacyPolicy = lazy(() => import('screens/legal-docs/pages/PrivacyPolicy'));
 const PWA = lazy(() => import('screens/pwa/PWAPage'));
@@ -288,9 +290,9 @@ const Routes = () => {
         <PrivateRoute path={ROUTES.ONBOARDING_PERSONAL_DETAILS} exact>
           <OnboardingPersonalDetails />
         </PrivateRoute>
-        <Route path={ROUTES.RATING} exact>
-          <Rating />
-        </Route>
+        <PrivateRoute path={ROUTES.ONBOARDING_INTENSITY_LEVEL} exact>
+          <OnboardingIntensityLevel />
+        </PrivateRoute>
         <Route path={ROUTES.ABOUT_YOURSELF} exact>
           <AboutYourself />
         </Route>

@@ -15,7 +15,6 @@ import {
   subscriptionProrate,
 } from 'screens/checkout/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
-import BackButton from 'shared/components/BackButton';
 import MembershipPurchaseConfirmationModal from 'screens/checkout/components/MembershipPurchaseConfirmationModal';
 import MembershipPromoCodeAlert from 'screens/checkout/components/MembershipPromoCodeAlert';
 import PurchaseDetails from 'screens/checkout/components/PurchaseDetails';
@@ -77,7 +76,6 @@ const CheckoutPage = () => {
 
   return (
     <>
-      <BackButton className="mt-10 w-max" />
       <div className="flex flex-col items-center justify-center py-20 px-4">
         <h1 className="font-shapiro95_super_wide text-2xl mb-8">PURCHASE DETAILS</h1>
         <div className="w-full max-w-screen-md">

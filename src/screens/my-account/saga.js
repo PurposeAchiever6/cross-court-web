@@ -1,9 +1,6 @@
-import { put, takeLatest, call, all, select } from 'redux-saga/effects';
+import { put, takeLatest, call, all } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
 import toast from 'shared/utils/toast';
-
-import { getUserEmail } from 'screens/auth/reducer';
-import ROUTES from 'shared/constants/routes';
 
 import {
   INITIAL_LOAD_INIT,
@@ -94,19 +91,20 @@ export function* sendMembershipHandbookFlow(action) {
   }
 }
 
-export function* updateSkillRatingFlow({ payload }) {
+export function* updateSkillRatingFlow(action) {
   try {
-    const { isEdit } = payload;
-    let email = null;
-    if (!isEdit) email = yield select(getUserEmail);
+    const { redirectTo, disableSuccessToast } = action.options;
+    const { skillRating } = action.payload;
 
-    yield call(myAccountService.updateSkillRating, { email, skillRating: payload.skillRating });
+    yield call(myAccountService.updateSkillRating, { skillRating });
     yield put({ type: UPDATE_SKILL_RATING_SUCCESS });
 
-    if (isEdit) {
-      yield call(toast.success, 'Skill rating updated.');
-    } else {
-      yield put(push(ROUTES.ABOUT_YOURSELF, { from: ROUTES.RATING }));
+    if (!disableSuccessToast) {
+      yield call(toast.success, 'Intensity level updated.');
+    }
+
+    if (redirectTo) {
+      yield put(push(redirectTo));
     }
   } catch (err) {
     const errorMessage = err.response.data.error;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ProgressTracker from 'shared/components/ProgressTracker';
 
-const OnboardingLayoutSidebar = ({ children, active, className }) => {
+const OnboardingLayoutSidebar = ({ children, active }) => {
   const steps = [
     { label: 'Account', active: true },
     { label: 'Membership', active: ['membership', 'review'].includes(active) },
@@ -12,7 +12,7 @@ const OnboardingLayoutSidebar = ({ children, active, className }) => {
 
   return (
     <>
-      <div className={`hidden md:block bg-cc-blue-500 p-10 ${className}`}>
+      <div className="hidden md:block bg-cc-blue-500 p-10 w-1/4 shrink-0">
         {children}
         <ProgressTracker steps={steps} className="text-sm mt-8 h-[10rem]" />
       </div>
@@ -27,13 +27,11 @@ const OnboardingLayoutSidebar = ({ children, active, className }) => {
 OnboardingLayoutSidebar.defaultProps = {
   children: null,
   active: null,
-  className: '',
 };
 
 OnboardingLayoutSidebar.propTypes = {
   children: PropTypes.node,
   active: PropTypes.string,
-  className: PropTypes.string,
 };
 
 export default OnboardingLayoutSidebar;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IntensityLevels from 'shared/components/IntensityLevels';
+import IntensityLevels from 'screens/rating/components/IntensityLevels';
 
 const IntensityLevel = () => <IntensityLevels isEdit />;
 

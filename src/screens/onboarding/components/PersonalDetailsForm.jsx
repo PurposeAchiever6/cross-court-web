@@ -44,7 +44,7 @@ const PersonalDetailsForm = () => {
         },
         {
           disableSuccessToast: true,
-          redirectTo: ROUTES.MYACCOUNT,
+          redirectTo: ROUTES.ONBOARDING_INTENSITY_LEVEL,
         }
       )
     );
@@ -92,7 +92,7 @@ const PersonalDetailsForm = () => {
       onSubmit={updateUser}
     >
       <Form className="flex">
-        <OnboardingLayoutContent className="w-full">
+        <OnboardingLayoutContent>
           <h1 className="font-shapiro95_super_wide text-xl md:text-2xl mb-4">Choose a password</h1>
           <div className="mb-6">
             <InputPasswordField
@@ -137,7 +137,7 @@ const PersonalDetailsForm = () => {
             </Button>
           </div>
         </OnboardingLayoutContent>
-        <OnboardingLayoutSidebar className="w-1/4 shrink-0">
+        <OnboardingLayoutSidebar>
           <Button type="submit" loading={loadingBtn} className="w-full">
             Next
           </Button>

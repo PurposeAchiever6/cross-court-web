@@ -20,7 +20,8 @@ export const sendMembershipHandbook = (payload) => ({
   payload,
 });
 
-export const updateSkillRatingInit = (payload) => ({
+export const updateSkillRatingInit = (payload, options = {}) => ({
   type: UPDATE_SKILL_RATING_INIT,
   payload,
+  options,
 });

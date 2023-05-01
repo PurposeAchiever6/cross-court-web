@@ -24,7 +24,7 @@ const OnboardingLayout = ({ children }) => (
         >
           <LogoSvg className="inline-block w-56" />
         </Link>
-        {children}
+        <div className="flex">{children}</div>
         <div className="text-xs mt-6">{`${new Date().getFullYear()}`} &reg; Crosscourt</div>
       </div>
     </SectionLayout>
