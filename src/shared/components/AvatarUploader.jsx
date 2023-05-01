@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 
 import InputFileField from 'shared/components/InputFileField';
 import Avatar from 'shared/components/Avatar';
-import avatarPlaceholderImg from 'screens/onboarding/images/avatar-placeholder.jpeg';
+import missingProfileImg from 'shared/images/missing-profile-image.jpg';
 
-const AvatarUploader = ({ name, img, description, error, className }) => {
+const AvatarUploader = ({ name, img, placeholderImg, description, error, className }) => {
   const { errors } = useFormikContext();
-  const [avatarImg, setAvatarImage] = useState(avatarPlaceholderImg);
+  const [avatarImg, setAvatarImage] = useState(placeholderImg || missingProfileImg);
 
   const errorMsg = error || errors[name];
 
@@ -45,6 +45,7 @@ const AvatarUploader = ({ name, img, description, error, className }) => {
 
 AvatarUploader.defaultProps = {
   img: null,
+  placeholderImg: null,
   description: null,
   error: null,
   className: '',
@@ -53,6 +54,7 @@ AvatarUploader.defaultProps = {
 AvatarUploader.propTypes = {
   name: PropTypes.string.isRequired,
   img: PropTypes.string,
+  placeholderImg: PropTypes.string,
   description: PropTypes.string,
   error: PropTypes.string,
   className: PropTypes.string,

@@ -18,6 +18,7 @@ import InputSelectField from 'shared/components/InputSelectField';
 import InputDateField from 'shared/components/InputDateField';
 import AvatarUploader from 'shared/components/AvatarUploader';
 import Button from 'shared/components/Button';
+import avatarPlaceholderImg from 'screens/onboarding/images/avatar-placeholder.jpeg';
 
 const SIGNUP_STATE_CREATED = 'created';
 const SIGNUP_STATE_PERSONAL_DETAILS = 'personal_details';
@@ -113,6 +114,7 @@ const PersonalDetailsForm = () => {
             <AvatarUploader
               name="image"
               img={currentUser.imageUrl}
+              placeholderImg={avatarPlaceholderImg}
               description="Please upload a high-resolution, recent profile picture featuring a professional,
                 close-range photo of you."
               className="mb-4"

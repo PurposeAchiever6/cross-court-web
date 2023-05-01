@@ -24,10 +24,12 @@ const SessionInformation = ({ session }) => {
       state: locationState,
       timeZone: locationTimeZone,
       zipcode: locationZipcode,
+      lateArrivalMinutes,
     },
   } = session;
 
   const [startTime, endTime] = timeRange24(time, durationMinutes);
+  const locationLateArrivalMinutes = lateArrivalMinutes || 5;
 
   const calendarEventName = (() => {
     if (isOpenClub) {
@@ -126,9 +128,14 @@ const SessionInformation = ({ session }) => {
               </div>
             </div>
           )}
+          <p className="text-cc-black/95 text-sm mb-4">
+            <span className="font-shapiro95_super_wide">Please note:</span> Plan to arrive at the
+            club at least 20 minutes before your session starts. Late entry beyond{' '}
+            {locationLateArrivalMinutes} minutes will not be permitted at this time. Thank you.
+          </p>
           <p className="text-cc-black/95 text-sm">
-            Please note: Plan to arrive at the club at least 20 minutes before your session starts.
-            Late entry beyond 5 minutes will not be permitted at this time. Thank you.
+            <span className="font-shapiro95_super_wide">Reminder:</span> Store your belongings in a
+            locker as we are not responsible for lost items. Thank you.
           </p>
         </div>
         <div className="h-[18rem] lg:h-[30rem]">
