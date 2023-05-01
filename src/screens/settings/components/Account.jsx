@@ -94,7 +94,7 @@ const Account = () => {
                 <img
                   alt="profile-pic"
                   src={imageUrl || missingProfileImg}
-                  className="border border-white border-opacity-40 rounded-full object-fit w-24 h-24 md:w-48 md:h-48 mr-6"
+                  className="border border-white border-opacity-40 rounded-full object-cover w-24 h-24 md:w-48 md:h-48 mr-6"
                 />
                 <div>
                   {!imageUrl && (

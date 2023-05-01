@@ -71,7 +71,7 @@ const Textarea = ({
         />
         {hint && (
           <div
-            className={`font-shapiro45_welter_extd text-xs text-right mt-px ${
+            className={`font-shapiro45_welter_extd text-xs text-right mt-2 ${
               error ? 'text-red-500' : 'text-current opacity-70'
             }`}
           >
@@ -79,7 +79,7 @@ const Textarea = ({
           </div>
         )}
         {error && !hint && (
-          <div className="font-shapiro45_welter_extd text-xs text-right text-red-500 mt-px">
+          <div className="font-shapiro45_welter_extd text-xs text-right text-red-500 mt-2">
             {error}
           </div>
         )}

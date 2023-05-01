@@ -14,6 +14,7 @@ const InputPhoneField = ({
   className,
   dark,
   variant,
+  showFlag,
   ...props
 }) => {
   const colorClasses = (() => {
@@ -27,12 +28,12 @@ const InputPhoneField = ({
   const variantClasses = (() => {
     switch (variant) {
       case 'shrink':
-        return 'pr-2 py-1';
+        return `${showFlag ? 'pl-12 md:pl-16 mr-2' : 'px-2'} px-2 py-1`;
       case 'expanded':
-        return 'pr-4 py-5';
+        return `${showFlag ? 'pl-12 md:pl-16 mr-4' : 'px-4'} py-5`;
       case 'normal':
       default:
-        return 'pr-2 py-2 md:py-3';
+        return `${showFlag ? 'pl-12 md:pl-16 mr-2' : 'px-2'} py-2 md:py-3`;
     }
   })();
 
@@ -47,14 +48,16 @@ const InputPhoneField = ({
               </Label>
             )}
             <div className="relative">
-              <img
-                src={UsFlag}
-                alt="us-flag"
-                className="absolute transform -translate-y-1/2 top-1/2 left-4 leading-none h-6 md:h-8"
-              />
+              {showFlag && (
+                <img
+                  src={UsFlag}
+                  alt="us-flag"
+                  className="absolute transform -translate-y-1/2 top-1/2 left-4 leading-none h-6 md:h-8"
+                />
+              )}
               <input
                 name={name}
-                className={`w-full pl-12 md:pl-16 font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 text-sm ${colorClasses} ${variantClasses}`}
+                className={`w-full font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 text-sm  ${colorClasses} ${variantClasses}`}
                 autoComplete="off"
                 onChange={onChange}
                 onBlur={onBlur}
@@ -84,6 +87,7 @@ InputPhoneField.defaultProps = {
   className: '',
   dark: false,
   variant: 'normal',
+  showFlag: true,
 };
 
 InputPhoneField.propTypes = {
@@ -93,6 +97,7 @@ InputPhoneField.propTypes = {
   error: PropTypes.string,
   className: PropTypes.string,
   dark: PropTypes.bool,
+  showFlag: PropTypes.bool,
   variant: PropTypes.oneOf(['normal', 'shrink', 'expanded']),
 };
 

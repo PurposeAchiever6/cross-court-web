@@ -8,7 +8,7 @@ import { passwordResetInit } from 'screens/auth/actionCreators';
 import { getResetPasswordLoading } from 'screens/auth/reducer';
 import Modal from 'shared/components/Modal';
 import Button from 'shared/components/Button';
-import InputTextField from 'shared/components/InputTextField';
+import InputPasswordField from 'shared/components/InputPasswordField';
 import PasswordSvg from 'shared/components/svg/PasswordSvg';
 
 export const ResetPasswordModal = ({ isOpen, closeHandler }) => {
@@ -38,18 +38,16 @@ export const ResetPasswordModal = ({ isOpen, closeHandler }) => {
         validationSchema={validationSchema}
       >
         <Form>
-          <InputTextField
+          <InputPasswordField
             name="password"
             label="New Password"
-            type="password"
             icon={<PasswordSvg className="w-5" />}
             leftIcon
             className="mb-4"
           />
-          <InputTextField
+          <InputPasswordField
             name="passwordConfirmation"
             label="Verify New Password"
-            type="password"
             icon={<PasswordSvg className="w-5" />}
             leftIcon
             className="mb-6"

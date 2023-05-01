@@ -13,6 +13,7 @@ import { getLoginLoading, getShowForgotPasswordModal } from 'screens/auth/reduce
 import Button from 'shared/components/Button';
 import Link from 'shared/components/Link';
 import InputTextField from 'shared/components/InputTextField';
+import InputPasswordField from 'shared/components/InputPasswordField';
 import EnvelopeSvg from 'shared/components/svg/EnvelopeSvg';
 import PasswordSvg from 'shared/components/svg/PasswordSvg';
 import ForgotPasswordModal from 'screens/auth/components/modals/ForgotPasswordModal';
@@ -48,38 +49,35 @@ const LoginForm = ({ className }) => {
         validationSchema={validationSchema}
         onSubmit={loginUser}
       >
-        {() => (
-          <Form>
-            <div className="mb-6">
-              <InputTextField
-                name="email"
-                label="Email Address"
-                icon={<EnvelopeSvg className="w-5" />}
-                leftIcon
-                className="mb-4"
-              />
-              <InputTextField
-                name="password"
-                type="password"
-                label="Password"
-                icon={<PasswordSvg className="w-5" />}
-                leftIcon
-              />
-            </div>
-            <div className="flex justify-between items-center">
-              <Button type="submit" loading={isLoading}>
-                Log In
-              </Button>
-              <Link
-                variant="purple-dark"
-                onClick={() => setShowForgotPasswordModal(true)}
-                className="text-sm"
-              >
-                Forgot Password
-              </Link>
-            </div>
-          </Form>
-        )}
+        <Form>
+          <div className="mb-6">
+            <InputTextField
+              name="email"
+              label="Email Address"
+              icon={<EnvelopeSvg className="w-5" />}
+              leftIcon
+              className="mb-4"
+            />
+            <InputPasswordField
+              name="password"
+              label="Password"
+              icon={<PasswordSvg className="w-5" />}
+              leftIcon
+            />
+          </div>
+          <div className="flex justify-between items-center">
+            <Button type="submit" loading={isLoading}>
+              Log In
+            </Button>
+            <Link
+              variant="purple-dark"
+              onClick={() => setShowForgotPasswordModal(true)}
+              className="text-sm"
+            >
+              Forgot Password
+            </Link>
+          </div>
+        </Form>
       </Formik>
       <ForgotPasswordModal
         isOpen={showForgotPasswordModal}

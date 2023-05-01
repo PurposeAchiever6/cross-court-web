@@ -1,15 +1,12 @@
 import React from 'react';
 
-import PageLayout from 'shared/components/layout/PageLayout';
-import SectionLayout from 'shared/components/layout/SectionLayout';
+import OnboardingLayout from 'shared/components/layout/OnboardingLayout';
 import PersonalDetailsForm from 'screens/onboarding/components/PersonalDetailsForm';
 
 const OnboardingPersonalDetailsPage = () => (
-  <PageLayout>
-    <SectionLayout>
-      <PersonalDetailsForm />
-    </SectionLayout>
-  </PageLayout>
+  <OnboardingLayout>
+    <PersonalDetailsForm />
+  </OnboardingLayout>
 );
 
 export default OnboardingPersonalDetailsPage;

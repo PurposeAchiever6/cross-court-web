@@ -1,6 +1,6 @@
 import { put, takeLatest, call, all, select } from 'redux-saga/effects';
-import toast from 'shared/utils/toast';
 import { push } from 'connected-react-router';
+import toast from 'shared/utils/toast';
 
 import { getUserEmail } from 'screens/auth/reducer';
 import ROUTES from 'shared/constants/routes';
@@ -20,7 +20,6 @@ import {
   UPDATE_SKILL_RATING_SUCCESS,
   UPDATE_SKILL_RATING_FAILURE,
 } from './actionTypes';
-
 import myAccountService from './service';
 
 export function* initialLoadFlow() {
@@ -43,14 +42,31 @@ export function* initialLoadFlow() {
 
 export function* editProfileFlow(action) {
   try {
+    const { redirectTo, disableSuccessToast } = action.options;
     const editProfilePayload = yield call(myAccountService.editUserProfile, action.payload);
+
     yield put({
       type: EDIT_PROFILE_SUCCESS,
       payload: editProfilePayload,
     });
-    yield call(toast.success, 'Changes were saved.');
+
+    if (!disableSuccessToast) {
+      yield call(toast.success, 'Changes were saved.');
+    }
+
+    if (redirectTo) {
+      yield put(push(redirectTo));
+    }
   } catch (err) {
-    yield put({ type: EDIT_PROFILE_FAILURE, error: err.response.data.error });
+    if (err.response.data.error) {
+      yield put({ type: EDIT_PROFILE_FAILURE, error: err.response.data.error });
+      yield call(toast.error, err.response.data.error);
+    }
+
+    if (err.response.data.errors) {
+      yield put({ type: EDIT_PROFILE_FAILURE, error: err.response.data.errors });
+      yield call(toast.error, err.response.data.errors.fullMessages);
+    }
   }
 }
 

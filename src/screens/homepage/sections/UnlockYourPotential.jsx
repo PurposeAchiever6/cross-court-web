@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
 import Button from 'shared/components/Button';
@@ -9,26 +8,16 @@ import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
 import CircleDashedSvg from 'shared/components/svg/CircleDashedSvg';
 
 import unlockYourPotentialImg from 'screens/homepage/images/unlock-your-potential.png';
-
-const GradientColorEffect = styled.div`
-  background: rgb(153, 153, 255);
-  background: linear-gradient(130deg, rgba(153, 153, 255, 1) 28%, rgba(251, 247, 243, 1) 78%);
-  clip-path: polygon(13% 0, 94% 0, 93% 39%, 77% 67%, 64% 78%, 47% 62%, 49% 45%, 21% 40%, 4% 15%);
-`;
-
-const DotColorEffect = styled.div`
-  background: rgb(46, 46, 46);
-  background: radial-gradient(circle, rgba(46, 46, 46, 1) 2%, rgba(0, 0, 0, 1) 75%);
-  filter: blur(40px);
-`;
+import gradientEffectBgImg from 'screens/homepage/images/unlock-your-potential-gradient-effect.png';
 
 const UnlockYourPotential = () => (
   <SectionLayout className="relative pb-12 md:pt-20 md:pb-20">
-    <div className="hidden md:block absolute top-0 right-0 w-1/3 h-2/3 -mt-28 blur-2xl">
-      <GradientColorEffect className="w-full h-full" />
-    </div>
+    <img
+      src={gradientEffectBgImg}
+      alt="cc-basketball-balls"
+      className="hidden md:block absolute -top-20 inset-x-0 w-full h-[75%]"
+    />
     <div className="relative pb-10 md:pb-28">
-      <DotColorEffect className="hidden md:block absolute right-1/2 bottom-8 transform translate-x-32 2xl:translate-x-48 w-56 h-56" />
       <div className="flex flex-col-reverse">
         <img
           alt="unlock-your-potential-img"

@@ -26,7 +26,7 @@ const Toast = ({ variant, title, description, showIcon, closeToast }) => {
         {icon}
         <div className="mr-4 sm:mr-6">
           {title && <h3 className="shapiro95_super_wide">{title}</h3>}
-          <p className="text-sm">{description}</p>
+          <div className="text-sm">{description}</div>
         </div>
       </div>
       <button onClick={closeToast} type="button">
@@ -48,7 +48,8 @@ Toast.propTypes = {
   showIcon: PropTypes.bool,
   variant: PropTypes.string,
   closeToast: PropTypes.func,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.node)])
+    .isRequired,
 };
 
 export default Toast;

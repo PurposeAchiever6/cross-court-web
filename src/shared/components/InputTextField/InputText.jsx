@@ -26,6 +26,7 @@ function InputText({
   className,
   ...props
 }) {
+  const [inputId] = useState((Math.random() + 1).toString(36).substring(2));
   const [leftIconWidth, setLeftIconWidth] = useState(null);
   const [rightIconWidth, setRightIconWidth] = useState(null);
 
@@ -35,8 +36,8 @@ function InputText({
     }
 
     setTimeout(() => {
-      const leftIconWidth = document.getElementById('left-icon')?.offsetWidth;
-      const rightIconWidth = document.getElementById('right-icon')?.offsetWidth;
+      const leftIconWidth = document.getElementById(`left-icon-${inputId}`)?.offsetWidth;
+      const rightIconWidth = document.getElementById(`right-icon-${inputId}`)?.offsetWidth;
 
       if (leftIconWidth) {
         setLeftIconWidth(leftIconWidth + 30);
@@ -82,7 +83,7 @@ function InputText({
         <div className="relative">
           {leftIcon && (
             <div
-              id="left-icon"
+              id={`left-icon-${inputId}`}
               className="absolute transform -translate-y-1/2 top-1/2 left-4 leading-none"
             >
               {icon}
@@ -97,7 +98,7 @@ function InputText({
           />
           {rightIcon && (
             <div
-              id="right-icon"
+              id={`right-icon-${inputId}`}
               className="absolute transform -translate-y-1/2 top-1/2 right-4 leading-none"
             >
               {icon}
