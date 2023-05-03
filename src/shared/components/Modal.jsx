@@ -7,7 +7,6 @@ import colors from 'shared/styles/constants';
 import useWindowSize from 'shared/hooks/useWindowSize';
 import { size as breakpoints } from 'shared/styles/mediaQueries';
 import CrossSvg from 'shared/components/svg/CrossSvg';
-import { titleize } from 'shared/utils/helpers';
 
 ReactModal.setAppElement('#root');
 
@@ -103,7 +102,7 @@ const Modal = ({
               subtitle ? 'mb-1' : 'mb-6'
             } ${dark ? 'text-white' : ''}`}
           >
-            {titleize(title)}
+            {title}
           </h2>
         )}
         {subtitle && (
@@ -112,7 +111,7 @@ const Modal = ({
               dark ? 'text-white' : ''
             }`}
           >
-            {titleize(subtitle)}
+            {subtitle}
           </h3>
         )}
         {children}
