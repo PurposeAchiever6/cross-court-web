@@ -8,8 +8,7 @@ import { initialLoadInit, updateSkillRatingInit } from 'screens/my-account/actio
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import Loading from 'shared/components/Loading';
 import HeaderAction from 'shared/components/HeaderAction';
-import BasketballSvg from 'shared/components/svg/BasketballSvg';
-import DisabledSvg from 'shared/components/svg/DisabledSvg';
+import SelectableBox from 'shared/components/SelectableBox';
 import SkillRatingUpdateRequestModal from 'screens/rating/components/SkillRatingUpdateRequestModal';
 
 export const LEVELS = [
@@ -133,36 +132,20 @@ const IntensityLevels = ({ isEdit, setSelectedSkillRating }) => {
           level so we are able to surround you with similar players.
         </p>
         <div className="text-white">
-          {LEVELS.map((level) => {
-            const isDisabled = isRatingDisabled(level.value);
-
-            return (
-              <div key={level.value} className="flex my-1">
-                <div className="bg-cc-blue-500 px-6 py-4 w-full">
-                  <h4 className="font-shapiro95_super_wide text-xl">{level.title}</h4>
-                  <span className="block text-lg text-cc-purple my-1">{level.subtitle}</span>
-                  <span className="block text-sm">{level.description}</span>
-                </div>
-                <div
-                  className={`relative flex justify-center items-center bg-cc-blue-700 cursor-pointer w-20 sm:w-28 ${
-                    isDisabled ? 'pointer-events-none' : ''
-                  }`}
-                  onClick={() => (isDisabled ? null : selectSkillRating(level.value))}
-                >
-                  {isDisabled ? (
-                    <DisabledSvg className="w-7 h-7 text-cc-gray-600" />
-                  ) : (
-                    <>
-                      <div className="absolute-center rounded-full border-2 border-cc-purple w-7 h-7" />
-                      {skillRating === level.value && (
-                        <BasketballSvg className="w-6 h-6 text-cc-purple" />
-                      )}
-                    </>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+          {LEVELS.map((level) => (
+            <SelectableBox
+              key={level.value}
+              variant="blue-dark"
+              disabled={isRatingDisabled(level.value)}
+              selected={skillRating === level.value}
+              onClick={() => selectSkillRating(level.value)}
+              className="my-1"
+            >
+              <h4 className="font-shapiro95_super_wide text-xl">{level.title}</h4>
+              <span className="block text-lg text-cc-purple my-1">{level.subtitle}</span>
+              <span className="block text-sm">{level.description}</span>
+            </SelectableBox>
+          ))}
         </div>
         {!isEdit && skillRatingsForReview.length > 0 && (
           <div className="text-sm mt-3">

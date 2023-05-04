@@ -27,7 +27,7 @@ const OnboardingIntensityLevelPage = () => {
         { skillRating },
         {
           disableSuccessToast: true,
-          redirectTo: ROUTES.MYACCOUNT,
+          redirectTo: ROUTES.ONBOARDING_MEMBERSHIPS,
         }
       )
     );
@@ -47,7 +47,12 @@ const OnboardingIntensityLevelPage = () => {
             onClick={() => history.push(ROUTES.ONBOARDING_PERSONAL_DETAILS)}
             className="shrink-0 mr-3"
           />
-          <Button onClick={updateSkillRating} loading={isLoading} className="w-full">
+          <Button
+            onClick={updateSkillRating}
+            loading={isLoading}
+            disabled={!skillRating}
+            className="w-full"
+          >
             Next
           </Button>
         </div>

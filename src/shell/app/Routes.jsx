@@ -34,6 +34,12 @@ const OnboardingPersonalDetails = lazy(() =>
 const OnboardingIntensityLevel = lazy(() =>
   import('screens/onboarding/pages/OnboardingIntensityLevelPage')
 );
+const OnboardingMemberships = lazy(() =>
+  import('screens/onboarding/pages/OnboardingMembershipsPage')
+);
+const OnboardingPaymentMethod = lazy(() =>
+  import('screens/onboarding/pages/OnboardingPaymentMethodPage')
+);
 const Dashboard = lazy(() => import('screens/dashboard/DashboardPage'));
 const WhyJoin = lazy(() => import('screens/why-join/WhyJoinPage'));
 const CareersPage = lazy(() => import('screens/careers/CareersPage'));
@@ -292,6 +298,12 @@ const Routes = () => {
         </PrivateRoute>
         <PrivateRoute path={ROUTES.ONBOARDING_INTENSITY_LEVEL} exact>
           <OnboardingIntensityLevel />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.ONBOARDING_MEMBERSHIPS} exact>
+          <OnboardingMemberships />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.ONBOARDING_PAYMENT_METHOD} exact>
+          <OnboardingPaymentMethod />
         </PrivateRoute>
         <Route path={ROUTES.ABOUT_YOURSELF} exact>
           <AboutYourself />

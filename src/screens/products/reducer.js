@@ -1,5 +1,6 @@
 /* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
+import { RECURRING, ONE_TIME } from 'screens/products/constants';
 import { CHECK_PROMO_CODE_SUCCESS, CLEAR_DISCOUNT } from 'screens/checkout/actionTypes';
 import {
   INITIAL_LOAD_INIT,
@@ -126,6 +127,16 @@ export const getError = createSelector(getProducts, (products) => products.error
 export const getAvailableProducts = createSelector(
   getProducts,
   (products) => products.availableProducts
+);
+
+export const getRecurringProducts = createSelector(getAvailableProducts, (products) =>
+  products.filter((product) => product.productType === RECURRING)
+);
+
+export const getDropInProducts = createSelector(getAvailableProducts, (products) =>
+  products.filter(
+    (product) => product.productType === ONE_TIME && !product.seasonPass && !product.scouting
+  )
 );
 
 export const getSelectedProduct = createSelector(

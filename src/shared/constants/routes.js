@@ -24,6 +24,8 @@ export default {
   MYACCOUNT: '/my-account',
   NOT_FOUND: '/404',
   ONBOARDING_INTENSITY_LEVEL: '/onboarding/intensity-level',
+  ONBOARDING_MEMBERSHIPS: '/onboarding/memberships',
+  ONBOARDING_PAYMENT_METHOD: '/onboarding/payment-method',
   ONBOARDING_PERSONAL_DETAILS: '/onboarding/personal-details',
   OPEN_CLUB_SESSION: '/session/:id/:date/open-club',
   PAYMENT_METHODS: '/payment-methods',

@@ -104,6 +104,14 @@ export default (state = initialState, action) => {
         skillRatingUpdateLoading: true,
       };
     case UPDATE_SKILL_RATING_SUCCESS:
+      return {
+        ...state,
+        skillRatingUpdateLoading: false,
+        userProfile: {
+          ...state.userProfile,
+          skillRating: action.payload.skillRating,
+        },
+      };
     case UPDATE_SKILL_RATING_FAILURE:
       return {
         ...state,

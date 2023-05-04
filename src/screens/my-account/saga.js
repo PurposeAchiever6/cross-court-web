@@ -97,7 +97,12 @@ export function* updateSkillRatingFlow(action) {
     const { skillRating } = action.payload;
 
     yield call(myAccountService.updateSkillRating, { skillRating });
-    yield put({ type: UPDATE_SKILL_RATING_SUCCESS });
+    yield put({
+      type: UPDATE_SKILL_RATING_SUCCESS,
+      payload: {
+        skillRating,
+      },
+    });
 
     if (!disableSuccessToast) {
       yield call(toast.success, 'Intensity level updated.');
