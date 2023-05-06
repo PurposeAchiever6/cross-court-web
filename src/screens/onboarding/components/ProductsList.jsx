@@ -20,7 +20,7 @@ const ProductsList = ({ selectProduct, selectedProduct, recurringProducts, dropI
           </div>
           <div className="flex items-center">
             <span className="font-shapiro95_super_wide sm:font-dharma_gothic_cheavy text-2xl sm:text-9xl mr-1 sm:mr-3">
-              {formatPrice(product.price)}
+              {formatPrice(product.priceForUser)}
             </span>
             <span>/mo.</span>
           </div>
@@ -42,7 +42,7 @@ const ProductsList = ({ selectProduct, selectedProduct, recurringProducts, dropI
           </div>
           <div className="flex items-center">
             <span className="font-shapiro95_super_wide sm:font-dharma_gothic_cheavy text-2xl sm:text-9xl mr-1 sm:mr-3">
-              {formatPrice(product.price)}
+              {formatPrice(product.priceForUser)}
             </span>
             <span className="whitespace-nowrap">1 day</span>
           </div>

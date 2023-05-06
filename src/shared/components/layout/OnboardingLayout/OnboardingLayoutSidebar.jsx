@@ -12,7 +12,7 @@ const OnboardingLayoutSidebar = ({ children, active }) => {
 
   return (
     <>
-      <div className="hidden md:block bg-cc-blue-500 p-10 w-1/4 shrink-0">
+      <div className="hidden md:block bg-cc-blue-500 px-6 py-10 w-1/4 shrink-0">
         {children}
         <ProgressTracker steps={steps} className="text-sm mt-8 h-[10rem]" />
       </div>

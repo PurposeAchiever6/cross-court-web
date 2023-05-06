@@ -1,1 +1,11 @@
 export const SELECT_PRODUCT = '@onboarding/SELECT_PRODUCT';
+
+export const SET_PAYMENT_METHOD_INIT = '@onboarding/SET_PAYMENT_METHOD_INIT';
+export const SET_PAYMENT_METHOD_SUCCESS = '@onboarding/SET_PAYMENT_METHOD_SUCCESS';
+export const SET_PAYMENT_METHOD_FAILURE = '@onboarding/SET_PAYMENT_METHOD_FAILURE';
+
+export const SET_PROMO_CODE_INIT = '@onboarding/SET_PROMO_CODE_INIT';
+export const SET_PROMO_CODE_SUCCESS = '@onboarding/SET_PROMO_CODE_SUCCESS';
+export const SET_PROMO_CODE_FAILURE = '@onboarding/SET_PROMO_CODE_FAILURE';
+
+export const REMOVE_PROMO_CODE_INIT = '@onboarding/REMOVE_PROMO_CODE_INIT';

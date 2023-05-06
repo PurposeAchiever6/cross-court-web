@@ -12,6 +12,7 @@ import styled from 'styled-components';
 
 import { initialAppLoad } from 'shared/actions/actionCreators';
 import ROUTES from 'shared/constants/routes';
+import StripeContainer from 'shared/components/StripeContainer';
 import Header from 'shared/components/Header';
 import Footer from 'shared/components/Footer';
 import Loading from 'shared/components/Loading';
@@ -40,6 +41,7 @@ const OnboardingMemberships = lazy(() =>
 const OnboardingPaymentMethod = lazy(() =>
   import('screens/onboarding/pages/OnboardingPaymentMethodPage')
 );
+const OnboardingReview = lazy(() => import('screens/onboarding/pages/OnboardingReviewPage'));
 const Dashboard = lazy(() => import('screens/dashboard/DashboardPage'));
 const WhyJoin = lazy(() => import('screens/why-join/WhyJoinPage'));
 const CareersPage = lazy(() => import('screens/careers/CareersPage'));
@@ -305,6 +307,9 @@ const Routes = () => {
         <PrivateRoute path={ROUTES.ONBOARDING_PAYMENT_METHOD} exact>
           <OnboardingPaymentMethod />
         </PrivateRoute>
+        <PrivateRoute path={ROUTES.ONBOARDING_REVIEW} exact>
+          <OnboardingReview />
+        </PrivateRoute>
         <Route path={ROUTES.ABOUT_YOURSELF} exact>
           <AboutYourself />
         </Route>
@@ -419,7 +424,9 @@ const Routes = () => {
           <ConnectedRouter history={history}>
             <Header />
             <ScrollToPosition />
-            <Pages />
+            <StripeContainer>
+              <Pages />
+            </StripeContainer>
             <Footer />
           </ConnectedRouter>
         </Suspense>

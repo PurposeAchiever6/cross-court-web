@@ -36,7 +36,10 @@ module.exports = {
         cream: '#FBF7F3',
         success: '#A3F5B0',
         warning: '#FFDC99',
-        error: '#FF8F8F',
+        error: {
+          400: '#FF8F8F',
+          600: '#AE1313',
+        },
       },
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '1rem' }],

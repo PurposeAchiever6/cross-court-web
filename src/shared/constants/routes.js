@@ -27,6 +27,7 @@ export default {
   ONBOARDING_MEMBERSHIPS: '/onboarding/memberships',
   ONBOARDING_PAYMENT_METHOD: '/onboarding/payment-method',
   ONBOARDING_PERSONAL_DETAILS: '/onboarding/personal-details',
+  ONBOARDING_REVIEW: '/onboarding/review',
   OPEN_CLUB_SESSION: '/session/:id/:date/open-club',
   PAYMENT_METHODS: '/payment-methods',
   PAYMENT_METHODS_ADD: '/payment-methods/add',

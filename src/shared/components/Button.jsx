@@ -15,7 +15,7 @@ const getVariantClasses = (variant) => {
     case 'outline-white':
       return 'border-2 border-white text-white hover:border-white/60 hover:text-white/60';
     case 'red':
-      return 'bg-error border-2 border-error text-black shadow-md hover:bg-error/75 hover:border-error/0';
+      return 'bg-error-400 border-2 border-error-400 text-black shadow-md hover:bg-error-400/75 hover:border-error-400/0';
     case 'purple':
     default:
       return 'bg-cc-purple-500 border-2 border-cc-purple-500 text-black shadow-md hover:bg-cc-purple-700 hover:border-cc-purple-700';

@@ -40,7 +40,7 @@ export function* addPaymentMethodFlow(action) {
       action.payload.stripe,
       action.payload.cardElement
     );
-    const paymentMethod = yield call(paymentsService.addPaymentMethod, paymentMethodPayload);
+    const paymentMethod = yield call(paymentsService.addPaymentMethod, paymentMethodPayload.id);
 
     yield put({
       type: ADD_CARD_SUCCESS,

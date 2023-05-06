@@ -90,6 +90,7 @@ const PersonalDetailsForm = () => {
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={updateUser}
+      enableReinitialize
     >
       <Form className="flex">
         <OnboardingLayoutContent>

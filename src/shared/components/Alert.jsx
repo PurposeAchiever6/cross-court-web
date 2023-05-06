@@ -11,7 +11,7 @@ const Alert = ({ variant, align, className, children }) => {
       case 'warning':
         return 'bg-warning text-black';
       case 'error':
-        return 'bg-error text-black';
+        return 'bg-error-400 text-black';
       case 'notice':
       default:
         return 'bg-white text-black';
