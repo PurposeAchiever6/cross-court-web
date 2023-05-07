@@ -12,13 +12,16 @@ export const clearDiscount = () => ({
   type: CLEAR_DISCOUNT,
 });
 
-export const createPurchase = (payload) => ({
+export const createPurchase = (payload, options = {}) => ({
   type: CREATE_PURCHASE_INIT,
   payload,
+  options,
 });
 
-export const createSubscription = () => ({
+export const createSubscription = (payload = {}, options = {}) => ({
   type: CREATE_SUBSCRIPTION_INIT,
+  payload,
+  options,
 });
 
 export const updateSubscription = () => ({

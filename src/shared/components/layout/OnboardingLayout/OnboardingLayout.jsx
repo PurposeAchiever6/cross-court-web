@@ -20,7 +20,7 @@ const OnboardingLayout = ({ children }) => (
         <Link
           variant="none"
           to={ROUTES.HOME}
-          className="block text-center md:text-left mb-5 md:mb-8"
+          className="inline-block text-center md:text-left mb-5 md:mb-8"
         >
           <LogoSvg className="inline-block w-56" />
         </Link>

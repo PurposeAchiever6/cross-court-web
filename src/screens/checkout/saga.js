@@ -1,13 +1,17 @@
 import { put, takeLatest, call, select, all } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
+
 import toast from 'shared/utils/toast';
 import ROUTES from 'shared/constants/routes';
 import { getSelectedProduct } from 'screens/products/reducer';
 import { getSelectedCard } from 'screens/payment-methods/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { RECURRING } from 'screens/products/constants';
-
 import { GET_PROFILE_INIT } from 'screens/my-account/actionTypes';
+import { RESERVE_SESSION_INIT } from 'screens/sessions/actionTypes';
+import paymentMethodsService from 'screens/payment-methods/service';
+import productsService from 'screens/products/service';
+
 import { getPromoCode } from './reducer';
 import {
   CREATE_PURCHASE_INIT,
@@ -29,24 +33,35 @@ import {
   SUBSCRIPTION_PRORATE_SUCCESS,
   SUBSCRIPTION_PRORATE_FAILURE,
 } from './actionTypes';
-import { RESERVE_SESSION_INIT } from '../sessions/actionTypes';
 import checkoutService from './service';
-import productsService from '../products/service';
 
-export function* createPurchaseFlow({ payload }) {
+export function* createPurchaseFlow({ payload, options }) {
   try {
-    const selectedProduct = yield select(getSelectedProduct);
-    const selectedCard = yield select(getSelectedCard);
-    const promoCode = yield select(getPromoCode);
+    const { product, paymentMethod, promoCode, useCcCash } = payload;
+    const { addPaymentMethod } = options;
+
+    const selectedProduct = product || (yield select(getSelectedProduct));
+    const selectedCard = paymentMethod || (yield select(getSelectedCard));
+    const selectedPromoCode = promoCode || (yield select(getPromoCode));
     const userProfile = yield select(getUserProfile);
     const { activeSubscription } = userProfile;
-    const { useCcCash } = payload;
+
+    let paymentMethodId = selectedCard.id;
+
+    if (addPaymentMethod) {
+      const addedPaymentMethod = yield call(
+        paymentMethodsService.addPaymentMethod,
+        selectedCard.id
+      );
+
+      paymentMethodId = addedPaymentMethod.id;
+    }
 
     yield call(
       checkoutService.createPurchase,
       selectedProduct.id,
-      selectedCard.id,
-      promoCode,
+      paymentMethodId,
+      selectedPromoCode,
       useCcCash
     );
 
@@ -110,17 +125,31 @@ export function* checkPromoCodeFlow({ payload }) {
   }
 }
 
-export function* createSubscriptionFlow() {
+export function* createSubscriptionFlow({ payload, options }) {
   try {
-    const selectedProduct = yield select(getSelectedProduct);
-    const selectedCard = yield select(getSelectedCard);
-    const promoCode = yield select(getPromoCode);
+    const { product, paymentMethod, promoCode } = payload;
+    const { addPaymentMethod } = options;
+
+    const selectedProduct = product || (yield select(getSelectedProduct));
+    const selectedCard = paymentMethod || (yield select(getSelectedCard));
+    const selectedPromoCode = promoCode || (yield select(getPromoCode));
+
+    let paymentMethodId = selectedCard.id;
+
+    if (addPaymentMethod) {
+      const addedPaymentMethod = yield call(
+        paymentMethodsService.addPaymentMethod,
+        selectedCard.id
+      );
+
+      paymentMethodId = addedPaymentMethod.id;
+    }
 
     const subscription = yield call(
       checkoutService.createSubscription,
       selectedProduct.id,
-      selectedCard.id,
-      promoCode
+      paymentMethodId,
+      selectedPromoCode
     );
 
     yield put({
