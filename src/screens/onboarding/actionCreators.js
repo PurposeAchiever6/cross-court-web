@@ -3,6 +3,7 @@ import {
   SET_PAYMENT_METHOD_INIT,
   SET_PROMO_CODE_INIT,
   REMOVE_PROMO_CODE_INIT,
+  COMPLETE_ONBOARDING_INIT,
 } from 'screens/onboarding/actionTypes';
 
 export const selectProduct = (payload) => ({
@@ -22,4 +23,8 @@ export const setPromoCodeInit = (payload) => ({
 
 export const removePromoCodeInit = () => ({
   type: REMOVE_PROMO_CODE_INIT,
+});
+
+export const completeOnboardingInit = () => ({
+  type: COMPLETE_ONBOARDING_INIT,
 });

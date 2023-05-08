@@ -4,7 +4,7 @@ import OnboardingLayout from 'shared/components/layout/OnboardingLayout';
 import PersonalDetailsForm from 'screens/onboarding/components/PersonalDetailsForm';
 
 const OnboardingPersonalDetailsPage = () => (
-  <OnboardingLayout>
+  <OnboardingLayout disableLink>
     <PersonalDetailsForm />
   </OnboardingLayout>
 );

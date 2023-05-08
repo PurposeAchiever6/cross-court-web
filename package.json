@@ -60,6 +60,7 @@
     "connected-react-router": "^6.8.0",
     "currency.js": "^1.2.2",
     "dayjs": "^1.8.29",
+    "deep-equal": "^2.2.1",
     "fetch": "^1.1.0",
     "formik": "^2.0.3",
     "google-map-react": "^1.1.7",

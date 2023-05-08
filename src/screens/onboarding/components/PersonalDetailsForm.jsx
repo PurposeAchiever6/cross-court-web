@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import ROUTES from 'shared/constants/routes';
+import { SIGNUP_STATE_CREATED, SIGNUP_STATE_PERSONAL_DETAILS } from 'screens/onboarding/constants';
 import { genderSelectOptions, zipcodeRegExp, phoneRegExp } from 'shared/utils/helpers';
 import { editProfileInit } from 'screens/my-account/actionCreators';
 import { getUserProfile, getEditProfileLoading } from 'screens/my-account/reducer';
@@ -19,9 +20,6 @@ import InputDateField from 'shared/components/InputDateField';
 import AvatarUploader from 'shared/components/AvatarUploader';
 import Button from 'shared/components/Button';
 import avatarPlaceholderImg from 'screens/onboarding/images/avatar-placeholder.jpeg';
-
-const SIGNUP_STATE_CREATED = 'created';
-const SIGNUP_STATE_PERSONAL_DETAILS = 'personal_details';
 
 const PersonalDetailsForm = () => {
   const dispatch = useDispatch();

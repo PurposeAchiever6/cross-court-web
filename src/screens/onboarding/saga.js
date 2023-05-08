@@ -3,6 +3,7 @@ import { push } from 'connected-react-router';
 import toast from 'shared/utils/toast';
 
 import ROUTES from 'shared/constants/routes';
+import { SIGNUP_STATE_COMPLETED } from 'screens/onboarding/constants';
 import {
   SET_PAYMENT_METHOD_INIT,
   SET_PAYMENT_METHOD_SUCCESS,
@@ -10,9 +11,13 @@ import {
   SET_PROMO_CODE_INIT,
   SET_PROMO_CODE_SUCCESS,
   SET_PROMO_CODE_FAILURE,
+  COMPLETE_ONBOARDING_INIT,
+  COMPLETE_ONBOARDING_SUCCESS,
+  COMPLETE_ONBOARDING_FAILURE,
 } from 'screens/onboarding/actionTypes';
 import paymentMethodsService from 'screens/payment-methods/service';
 import checkoutService from 'screens/checkout/service';
+import myAccountService from 'screens/my-account/service';
 
 export function* setPaymentMethodFlow({ payload }) {
   try {
@@ -55,7 +60,19 @@ export function* setPromoCodeFlow({ payload }) {
   }
 }
 
+export function* completeOnboardingFlow() {
+  try {
+    yield call(myAccountService.editUserProfile, { signupState: SIGNUP_STATE_COMPLETED });
+    yield put({ type: COMPLETE_ONBOARDING_SUCCESS });
+    yield put(push(ROUTES.HOME));
+  } catch (err) {
+    yield call(toast.error, err.response.data.error);
+    yield put({ type: COMPLETE_ONBOARDING_FAILURE });
+  }
+}
+
 export default function* onboardingSaga() {
   yield all([takeLatest(SET_PAYMENT_METHOD_INIT, setPaymentMethodFlow)]);
   yield all([takeLatest(SET_PROMO_CODE_INIT, setPromoCodeFlow)]);
+  yield all([takeLatest(COMPLETE_ONBOARDING_INIT, completeOnboardingFlow)]);
 }

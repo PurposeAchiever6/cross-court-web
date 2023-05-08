@@ -34,7 +34,7 @@ const OnboardingIntensityLevelPage = () => {
   };
 
   return (
-    <OnboardingLayout>
+    <OnboardingLayout disableLink>
       <OnboardingLayoutContent>
         <h1 className="font-shapiro95_super_wide text-xl md:text-2xl mb-4">
           Intensity Level Assesment

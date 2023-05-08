@@ -5,13 +5,15 @@ import React, { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
+import { ToastContainer, Bounce } from 'react-toastify';
+import deepEqual from 'deep-equal';
 import HttpsRedirect from 'react-https-redirect';
 import ReactGA from 'react-ga';
-import { ToastContainer, Bounce } from 'react-toastify';
 import styled from 'styled-components';
 
-import { initialAppLoad } from 'shared/actions/actionCreators';
 import ROUTES from 'shared/constants/routes';
+import { SIGNUP_STATE_CREATED } from 'screens/onboarding/constants';
+import { initialAppLoad } from 'shared/actions/actionCreators';
 import StripeContainer from 'shared/components/StripeContainer';
 import Header from 'shared/components/Header';
 import Footer from 'shared/components/Footer';
@@ -19,6 +21,7 @@ import Loading from 'shared/components/Loading';
 import ScrollToPosition from 'shared/components/ScrollToPosition';
 import { history } from 'shared/history';
 import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
 import { toggleActiveCampaignChat } from 'shared/utils/activeCampaign';
 import { getUserSource, setUserSource, removeUserSource } from 'shared/utils/userSource';
 import PrivateRoute from './PrivateRoute';
@@ -254,6 +257,13 @@ window.onpopstate = () => {
 const Routes = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(getIsAuthenticated);
+  const currentUser = useSelector(getUserProfile, deepEqual);
+
+  let forceRedirect = null;
+
+  if (isAuthenticated && currentUser.signupState === SIGNUP_STATE_CREATED) {
+    forceRedirect = ROUTES.ONBOARDING_PERSONAL_DETAILS;
+  }
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -386,6 +396,11 @@ const Routes = () => {
       </Switch>
     </main>
   );
+
+  if (forceRedirect && window.location.pathname !== forceRedirect) {
+    window.location.href = forceRedirect;
+    return <Loading />;
+  }
 
   return (
     <HttpsRedirect>
