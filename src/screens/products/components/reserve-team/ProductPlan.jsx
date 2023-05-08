@@ -55,7 +55,7 @@ const ProductPlan = ({
             </h2>
             <div className="text-xs font-shapiro96_inclined_wide text-left uppercase">
               <p className="mt-2">Month to month</p>
-              <p className="mt-2">Open club access</p>
+              <p className="mt-2">Office Hours access</p>
             </div>
           </div>
         )}

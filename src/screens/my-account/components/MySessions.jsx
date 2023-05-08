@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tabs from 'shared/components/Tabs';
 import SectionLayout from 'shared/components/layout/SectionLayout';
-import SessionsList from './SessionsList';
+import SessionsList from 'screens/my-account/components/SessionsList';
 
 const MySessions = ({ profile, previousSessions, upcomingSessions, semUpcomingSessions }) => (
   <SectionLayout className="mb-6">

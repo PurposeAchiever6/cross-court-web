@@ -46,7 +46,7 @@ const Session = ({
         <img alt="sklz-logo" className="w-20 md:w-24" src={past ? sklzLogoBlack : sklzLogoWhite} />
       )}
       {isOpenClub && (
-        <span className="font-shapiro95_super_wide md:text-xl uppercase">Open Club</span>
+        <span className="font-shapiro95_super_wide md:text-xl uppercase">Office Hours</span>
       )}
       {scouting && (
         <span className="font-shapiro95_super_wide md:text-xl uppercase">Evaluation</span>

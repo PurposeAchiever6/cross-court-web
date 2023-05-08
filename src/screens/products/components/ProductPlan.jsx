@@ -83,7 +83,7 @@ const ProductPlan = ({
             <div className="mb-4">Does not expire</div>
             <div className="mb-4">Excludes membership perks such as:</div>
             <div className=" text-cc-purple">
-              <div className="mb-1">Open Club</div>
+              <div className="mb-1">Office Hours</div>
               <div className="mb-1">Highlights</div>
               <div className="mb-1">Free jersey rental</div>
               <div>SKLZ</div>

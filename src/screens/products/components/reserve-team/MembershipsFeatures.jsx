@@ -14,7 +14,7 @@ const MembershipsFeatures = () => (
           before, you will receive a link to book that session.
         </li>
         <li>You will not be able to book sessions unless it meets this criteria.</li>
-        <li>You will have access to open club as well.</li>
+        <li>You will have access to Office Hours as well.</li>
         <li>
           If you'd like to upgrade to a traditional membership, reach out to us and we'll update
           your account on our end.

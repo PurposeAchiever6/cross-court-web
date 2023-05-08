@@ -4,7 +4,7 @@ import { isEmpty, take } from 'ramda';
 import ROUTES from 'shared/constants/routes';
 import Link from 'shared/components/Link';
 import BasketballIlustrationSvg from 'shared/components/svg/BasketballIlustrationSvg';
-import Session from './Session';
+import Session from 'screens/my-account/components/Session';
 
 const SessionsList = ({ sessions, past, isSem }) => {
   const filteredSessions = sessions.filter((session) => session.state !== 'canceled');

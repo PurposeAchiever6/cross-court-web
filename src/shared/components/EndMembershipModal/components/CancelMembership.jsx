@@ -16,7 +16,7 @@ const CancelMembership = ({ openFeedbackModal }) => {
   const LIST_ITEMS = [
     'We require a 30-day notice so you will be billed for one additional billing period (credits will remain available during this period).',
     'Any unused sessions that have been accumulated during rollover periods will be lost. The credits you currently have saved up will disappear after cancellation.',
-    'Access to CC perks such as Open Club, Highlights, Tournaments, Events, etc will no longer be available.',
+    'Access to CC perks such as Office Hours, Highlights, Tournaments, Events, etc will no longer be available.',
     'Your data will be retained for 60 days before it gets deleted from our servers.',
   ];
 

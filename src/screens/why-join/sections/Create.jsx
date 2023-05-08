@@ -12,7 +12,7 @@ import sklz from 'screens/why-join/images/sklz.png';
 import openClub from 'screens/why-join/images/open-club.png';
 import phone from 'screens/why-join/images/phone.png';
 import sklzLogoWhite from 'shared/images/logos/sklz-white.png';
-import openClubLogoWhite from 'shared/images/logos/open-club-white.png';
+import officeHoursLogo from 'shared/images/logos/office-hours-white.png';
 import ROUTES from 'shared/constants/routes';
 
 const Create = () => {
@@ -50,12 +50,13 @@ const Create = () => {
             <div className="flex flex-col md:flex-row items-center mt-4 md:mt-2">
               <img alt="open-club" src={openClub} />
               <div className="flex flex-col md:ml-32">
-                <img alt="sklz-logo" className="w-32 mt-4 md:mt-0" src={openClubLogoWhite} />
+                <img alt="sklz-logo" className="w-32 mt-4 md:mt-0" src={officeHoursLogo} />
                 <p className="mt-4 max-w-2xl text-lg">
-                  We’re open for “Office Hours” during the work day and then “Open Club” in the
-                  afternoon. Use the space as you wish. Get some work done or hit a workout. Put
-                  some shots up with the shooting machine, organize games with other members, or
-                  just come to hang out.
+                  The Club is open all day for members and their guests to utilize our amenities to
+                  get some work done, workout, hoop with others, hang out, recover, and generally
+                  use the space as it works for them. Using credits and booking through the
+                  schedule, members can reserve the court, the shooting machine, recovery devices,
+                  and other services offered during Office Hours.
                 </p>
               </div>
             </div>

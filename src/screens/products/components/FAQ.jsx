@@ -58,7 +58,7 @@ const QUESTIONS = [
   {
     question: 'How do I upgrade my skill level?',
     answer:
-      'Members have the ability to request a skill level update through your "My Account" page by providing required information or requesting a "player evaluation". We’re here to help you level up on and off the court. If you feel you’ve put in the time through Sessions, SKLZ, private training, our Shooting Machine, and Open Club to upgrade your skill level, then you can request an evaluation where hustle and skill will be evaluated in real time.',
+      'Members have the ability to request a skill level update through your "My Account" page by providing required information or requesting a "player evaluation". We’re here to help you level up on and off the court. If you feel you’ve put in the time through Sessions, SKLZ, private training, our Shooting Machine, and Office Hours to upgrade your skill level, then you can request an evaluation where hustle and skill will be evaluated in real time.',
   },
   {
     question: 'Can I cancel my membership at any time? ',

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import sklzLogoWhite from 'shared/images/logos/sklz-white.png';
-import openClubLogoWhite from 'shared/images/logos/open-club-white.png';
+import officeHoursLogo from 'shared/images/logos/office-hours-white.png';
 import sessionLogoWhite from 'shared/images/logos/session-white.png';
 
 const SessionLogo = ({ session, className }) => {
@@ -10,7 +10,7 @@ const SessionLogo = ({ session, className }) => {
 
   const logo = (() => {
     if (isOpenClub) {
-      return { src: openClubLogoWhite, alt: 'open-club-logo' };
+      return { src: officeHoursLogo, alt: 'office-hours-logo' };
     }
 
     if (skillSession) {

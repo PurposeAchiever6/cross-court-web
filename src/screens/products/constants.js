@@ -1,6 +1,6 @@
 import sessionsLogo from 'shared/images/logos/sessions-white.png';
 import skillSessionsLogo from 'shared/images/logos/sklz-white.png';
-import openClubLogo from 'shared/images/logos/open-club-white.png';
+import officeHoursLogo from 'shared/images/logos/office-hours-white.png';
 import activationsLogo from 'shared/images/logos/activations-white.png';
 import privateTrainingLogo from 'shared/images/logos/private-trainings-white.png';
 import ccLeagueLogo from 'shared/images/logos/cc-league-white.png';
@@ -44,9 +44,9 @@ export const MEMBERSHIPS_EXPERIENCES = [
     iconClassName: 'h-9',
   },
   {
-    icon: openClubLogo,
+    icon: officeHoursLogo,
     description:
-      'Shootaround solo, organize games with other members, hang out, get some work done, or rent our shooting machine. Book Open Club through the website the same way you book a session. Open Club will not use up any of your credits as it is included with membership.',
+      'The Club is open all day for members and their guests to utilize our amenities to get some work done, workout, hoop with others, hang out, recover, and generally use the space as it works for them. Using credits and booking through the schedule, members can reserve the court, the shooting machine, recovery devices, and other services offered during Office Hours.',
     label: 'Included',
     backgroundImage: openClubBgImg,
     darkenBackground: true,
@@ -98,7 +98,7 @@ export const MEMBERSHIPS_PERKS = [
   {
     name: 'Shooting Machine',
     description:
-      'Rent a personal shooting machine when booking your spot in Open Club to get in the zone and further elevate your confidence.',
+      'Rent a personal shooting machine when booking your spot in Office Hours to get in the zone and further elevate your confidence.',
     backgroundImage: dotsBgImg,
   },
   {
@@ -122,7 +122,7 @@ export const MEMBERSHIPS_PERKS = [
   {
     name: 'Guest Passes',
     description:
-      'Add non-member guests to your experience with a couple clicks. Available for all SKLZ/Open Club bookings, but limited for sessions. Tap "See Details" on a booking in "My Account" to invite a guest.',
+      'Add non-member guests to your experience with a couple clicks. Available for all SKLZ/Office Hours bookings, but limited for sessions. Tap "See Details" on a booking in "My Account" to invite a guest.',
     clipCorner: 'bottom-right',
     backgroundImage: dotsBgImg,
   },

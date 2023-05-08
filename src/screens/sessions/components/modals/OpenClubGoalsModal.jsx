@@ -36,7 +36,7 @@ export const OpenClubGoalsModal = ({
     <Modal
       closeHandler={closeHandler}
       isOpen={isOpen}
-      title="What is your goal for this open club?"
+      title="What is your goal for this Office Hours?"
     >
       <div>
         <InputRadioField

@@ -33,7 +33,7 @@ const SessionInformation = ({ session }) => {
 
   const calendarEventName = (() => {
     if (isOpenClub) {
-      return 'Crosscourt Open Club';
+      return 'Crosscourt Office Hours';
     }
 
     if (skillSession) {
