@@ -6,7 +6,11 @@ import {
   CREATE_SUBSCRIPTION_INIT,
   UPDATE_SUBSCRIPTION_INIT,
   SUBSCRIPTION_PRORATE_INIT,
-} from './actionTypes';
+  SHOW_ADD_PAYMENT_METHOD_MODAL,
+  CLOSE_ADD_PAYMENT_METHOD_MODAL,
+  SHOW_SELECT_PAYMENT_METHOD_MODAL,
+  CLOSE_SELECT_PAYMENT_METHOD_MODAL,
+} from 'screens/checkout/actionTypes';
 
 export const clearDiscount = () => ({
   type: CLEAR_DISCOUNT,
@@ -26,6 +30,22 @@ export const createSubscription = (payload = {}, options = {}) => ({
 
 export const updateSubscription = () => ({
   type: UPDATE_SUBSCRIPTION_INIT,
+});
+
+export const showAddPaymentMethodModal = () => ({
+  type: SHOW_ADD_PAYMENT_METHOD_MODAL,
+});
+
+export const closeAddPaymentMethodModal = () => ({
+  type: CLOSE_ADD_PAYMENT_METHOD_MODAL,
+});
+
+export const showSelectPaymentMethodModal = () => ({
+  type: SHOW_SELECT_PAYMENT_METHOD_MODAL,
+});
+
+export const closeSelectPaymentMethodModal = () => ({
+  type: CLOSE_SELECT_PAYMENT_METHOD_MODAL,
 });
 
 export const createAndReserveFreeSessionInit = (payload) => ({

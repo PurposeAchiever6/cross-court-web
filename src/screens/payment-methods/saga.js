@@ -1,7 +1,6 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
-import { replace, push } from 'connected-react-router';
+import { push } from 'connected-react-router';
 import toast from 'shared/utils/toast';
-import ROUTES from 'shared/constants/routes';
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -48,14 +47,13 @@ export function* addPaymentMethodFlow(action) {
         paymentMethod,
       },
     });
-    yield call(toast.success, 'Card sucessfully added!');
+
+    yield call(toast.success, 'Card sucessfully added.');
 
     const { redirectTo } = action.payload;
 
     if (redirectTo) {
       yield put(push(redirectTo));
-    } else {
-      yield put(replace(ROUTES.BILLING));
     }
   } catch (err) {
     yield call(toast.error, err.message);
@@ -77,7 +75,7 @@ export function* updatePaymentMethodFlow(action) {
         availableCards: paymentMethodsPayload,
       },
     });
-    yield call(toast.success, 'Default card updated');
+    yield call(toast.success, 'Default card updated.');
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({ type: UPDATE_CARD_FAILURE, error: err });

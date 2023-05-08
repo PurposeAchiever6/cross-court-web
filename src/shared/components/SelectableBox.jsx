@@ -22,7 +22,7 @@ const SelectableBox = ({ children, onClick, selected, variant, disabled, classNa
   return (
     <div className={className}>
       <div className="flex">
-        <div className={`p-4 ${variantClass.content}`}>{children}</div>
+        <div className={`p-4 w-full ${variantClass.content}`}>{children}</div>
         <button
           onClick={() => (disabled ? null : onClick())}
           type="button"

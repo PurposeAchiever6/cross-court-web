@@ -1,12 +1,21 @@
 /* eslint-disable react/jsx-no-useless-fragment */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-import ROUTES from 'shared/constants/routes';
 import { startedCheckout } from 'shared/utils/activeCampaign';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getAvailableProducts, getPageLoading } from 'screens/products/reducer';
+import {
+  getShowAddPaymentMethodModal,
+  getShowSelectPaymentMethodModal,
+} from 'screens/checkout/reducer';
+import {
+  showAddPaymentMethodModal,
+  closeAddPaymentMethodModal,
+  showSelectPaymentMethodModal,
+  closeSelectPaymentMethodModal,
+} from 'screens/checkout/actionCreators';
 import { dropInProducts } from 'screens/products/utils';
 import { getUserProfile } from 'screens/my-account/reducer';
 import {
@@ -29,16 +38,20 @@ import FAQ from 'screens/products/components/FAQ';
 import NoSessionCredits from 'screens/products/components/NoSessionCredits';
 import NoFreeSessionInformationModal from 'screens/products/components/NoFreeSessionInformationModal';
 import EndMembershipModal from 'shared/components/EndMembershipModal';
+import SelectPaymentMethodModal from 'screens/checkout/components/SelectPaymentMethodModal';
+import PurchaseDetailsModal from 'screens/checkout/components/PurchaseDetailsModal';
+import AddPaymentMethodModal from 'screens/checkout/components/AddPaymentMethodModal';
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { state } = useLocation();
 
   const availableProducts = useSelector(getAvailableProducts);
   const isLoading = useSelector(getPageLoading);
   const isAuthenticated = useSelector(getIsAuthenticated);
   const userProfile = useSelector(getUserProfile);
+  const addPaymentMethodModalOpen = useSelector(getShowAddPaymentMethodModal);
+  const selectPaymentMethodModalOpen = useSelector(getShowSelectPaymentMethodModal);
   const { activeSubscription, reserveTeam } = userProfile;
 
   const showNoFreeSessionInformation = state?.showNoFreeSessionInformation;
@@ -52,8 +65,8 @@ const ProductsPage = () => {
   const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
     !!showNoFreeSessionInformation
   );
-
   const [showMembershipIsPausedModal, setShowMembershipIsPausedModal] = useState(false);
+  const [showPurchaseDetailsModal, setShowPurchaseDetailsModal] = useState(false);
 
   const showMemberships = !comesFromCancelModal && !showScouting;
 
@@ -64,7 +77,7 @@ const ProductsPage = () => {
       startedCheckout({ email: userProfile.email, product });
     }
 
-    history.push(ROUTES.PAYMENT_METHODS_SELECT);
+    dispatch(showSelectPaymentMethodModal());
   };
 
   const selectProductDropInHandler = (product) => {
@@ -197,6 +210,21 @@ const ProductsPage = () => {
         price={priceForFirstTimersNoFreeSession}
         isOpen={showNoFreeSessionInformationModal}
         closeHandler={() => setShowNoFreeSessionInformationModal(false)}
+      />
+      <SelectPaymentMethodModal
+        isOpen={selectPaymentMethodModalOpen}
+        closeHandler={() => dispatch(closeSelectPaymentMethodModal())}
+        openPurchaseDetailsModal={() => setShowPurchaseDetailsModal(true)}
+        openAddPaymentMethodModal={() => dispatch(showAddPaymentMethodModal())}
+      />
+      <PurchaseDetailsModal
+        isOpen={showPurchaseDetailsModal}
+        closeHandler={() => setShowPurchaseDetailsModal(false)}
+      />
+      <AddPaymentMethodModal
+        isOpen={addPaymentMethodModalOpen}
+        closeHandler={() => dispatch(closeAddPaymentMethodModal())}
+        openSelectPaymentMethodModal={() => dispatch(showSelectPaymentMethodModal())}
       />
     </>
   );

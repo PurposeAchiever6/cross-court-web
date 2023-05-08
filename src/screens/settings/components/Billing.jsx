@@ -11,15 +11,14 @@ import {
   getDeleteCardLoading,
 } from 'screens/payment-methods/reducer';
 import Spinner from 'shared/components/Spinner';
-import CreditCardSvg from 'shared/components/svg/CreditCardSvg';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
 import Tooltip from 'shared/components/Tooltip';
 import Link from 'shared/components/Link';
 import AddPaymentMethod from 'screens/settings/components/AddPaymentMethod';
 import PaymentHistoryModal from 'screens/settings/components/PaymentHistoryModal';
 import Button from 'shared/components/Button';
-import ccLogo from 'shared/images/logos/cc-white.png';
 import Loading from 'shared/components/Loading';
+import CreditCard from 'shared/components/CreditCard';
 
 const Billing = () => {
   const dispatch = useDispatch();
@@ -74,20 +73,11 @@ const Billing = () => {
                     key={paymentMethod.id}
                     className="bg-cc-blue-500 flex flex-col md:flex-row p-4 md:p-2 w-full"
                   >
-                    <div className="relative md:w-max">
-                      <CreditCardSvg className="w-full md:w-48" />
-                      <img
-                        className="absolute w-12 md:w-8 top-8 md:top-4 left-8 md:left-5"
-                        src={ccLogo}
-                        alt="cc-logo"
-                      />
-                      <span className="absolute bottom-8 md:bottom-4 right-10 md:right-5 text-2xl md:text-lg text-cc-black font-shapiro95_super_wide">
-                        {paymentMethod.last4}
-                      </span>
-                      <span className="absolute bottom-16 md:bottom-10 right-10 md:right-5 text-sm md:text-xs text-cc-black font-shapiro95_super_wide">
-                        {paymentMethod.expMonth}/{paymentMethod.expYear}
-                      </span>
-                    </div>
+                    <CreditCard
+                      last4={paymentMethod.last4}
+                      expMonth={paymentMethod.expMonth}
+                      expYear={paymentMethod.expYear}
+                    />
                     <div className="flex flex-col gap-4 justify-center ml-6">
                       <InputCheckboxField
                         name="default"

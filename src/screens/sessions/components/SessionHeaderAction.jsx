@@ -132,7 +132,7 @@ const SessionHeaderAction = ({ session, date }) => {
   } = {}) => {
     if (!selectedCard && isFirstFreeSessionFlow) {
       window.localStorage.setItem('redirect', window.location.pathname);
-      history.push(ROUTES.PAYMENT_METHODS_SELECT);
+      history.push(ROUTES.BILLING);
       return;
     }
 

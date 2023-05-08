@@ -50,7 +50,6 @@ const Session = lazy(() => import('screens/sessions/pages/Session'));
 const SessionConfirmed = lazy(() => import('screens/sessions/pages/SessionConfirmed'));
 const SessionReserved = lazy(() => import('screens/sessions/pages/SessionReserved'));
 const FirstSessionReserved = lazy(() => import('screens/sessions/pages/FirstSessionReserved'));
-const Checkout = lazy(() => import('screens/checkout/CheckoutPage'));
 const ProductsPage = lazy(() => import('screens/products/ProductsPage'));
 const ManageMembershipPage = lazy(() => import('screens/memberships/ManageMembershipPage'));
 const MyAccount = lazy(() => import('screens/my-account/MyAccountPage'));
@@ -60,10 +59,6 @@ const Content = lazy(() => import('screens/content/ContentPage'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
 const PrivacyPolicy = lazy(() => import('screens/legal-docs/pages/PrivacyPolicy'));
 const PWA = lazy(() => import('screens/pwa/PWAPage'));
-const AddPaymentMethod = lazy(() => import('screens/payment-methods/pages/AddPaymentMethod'));
-const PaymentMethodsSelect = lazy(() =>
-  import('screens/payment-methods/pages/PaymentMethodsSelect')
-);
 const Gallery = lazy(() => import('screens/gallery/GalleryPage'));
 const Referrals = lazy(() => import('screens/referrals/ReferralsPage'));
 const MembershipConfirm = lazy(() => import('screens/checkout/pages/MembershipConfirm'));
@@ -346,20 +341,11 @@ const Routes = () => {
         <Route path={ROUTES.PRIVACY_POLICY} exact>
           <PrivacyPolicy />
         </Route>
-        <PrivateRoute path={ROUTES.CHECKOUT} exact>
-          <Checkout />
-        </PrivateRoute>
         <PrivateRoute path={ROUTES.CHECKOUT_CONFIRMED} exact>
           <CheckoutConfirm />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.CHECKOUT_MEMBERSHIP_CONFIRMED} exact>
           <MembershipConfirm />
-        </PrivateRoute>
-        <PrivateRoute path={[ROUTES.PAYMENT_METHODS_SELECT]} exact>
-          <PaymentMethodsSelect />
-        </PrivateRoute>
-        <PrivateRoute path={ROUTES.PAYMENT_METHODS_ADD} exact>
-          <AddPaymentMethod />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.MYACCOUNT} exact>
           <MyAccount />

@@ -18,15 +18,12 @@ const Prorate = ({ prorate }) => {
     'Please note, the billing period will be reset and you will be charged immediately';
 
   return (
-    <div className="flex justify-between">
-      <span>Total</span>
-      <div className="flex items-center">
-        <span>{price}</span>
-        <div className="ml-3 md:mb-2">
-          <Tooltip variant="black" tooltip={prorateExplanation}>
-            <FontAwesomeIcon icon={faInfoCircle} className="text-2xl" />
-          </Tooltip>
-        </div>
+    <div className="flex items-center">
+      <span>{price}</span>
+      <div className="ml-2">
+        <Tooltip place="right" variant="black" tooltip={prorateExplanation}>
+          <FontAwesomeIcon icon={faInfoCircle} className="text-lg" />
+        </Tooltip>
       </div>
     </div>
   );

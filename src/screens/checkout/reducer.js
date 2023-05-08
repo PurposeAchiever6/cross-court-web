@@ -21,7 +21,13 @@ import {
   SUBSCRIPTION_PRORATE_INIT,
   SUBSCRIPTION_PRORATE_SUCCESS,
   SUBSCRIPTION_PRORATE_FAILURE,
-} from './actionTypes';
+  SHOW_ADD_PAYMENT_METHOD_MODAL,
+  CLOSE_ADD_PAYMENT_METHOD_MODAL,
+  SHOW_SELECT_PAYMENT_METHOD_MODAL,
+  CLOSE_SELECT_PAYMENT_METHOD_MODAL,
+} from 'screens/checkout/actionTypes';
+
+import { ADD_CARD_SUCCESS } from 'screens/payment-methods/actionTypes';
 
 const initialState = {
   error: '',
@@ -33,6 +39,8 @@ const initialState = {
   promoCode: null,
   prorate: null,
   prorateLoading: false,
+  showAddPaymentMethodModal: false,
+  showSelectPaymentMethodModal: false,
 };
 
 export default (state = initialState, action) => {
@@ -111,6 +119,28 @@ export default (state = initialState, action) => {
         prorate: null,
         prorateLoading: false,
       };
+    case SHOW_ADD_PAYMENT_METHOD_MODAL:
+      return {
+        ...state,
+        showAddPaymentMethodModal: true,
+      };
+    case CLOSE_ADD_PAYMENT_METHOD_MODAL:
+    case ADD_CARD_SUCCESS:
+      return {
+        ...state,
+        showAddPaymentMethodModal: false,
+        showSelectPaymentMethodModal: true,
+      };
+    case SHOW_SELECT_PAYMENT_METHOD_MODAL:
+      return {
+        ...state,
+        showSelectPaymentMethodModal: true,
+      };
+    case CLOSE_SELECT_PAYMENT_METHOD_MODAL:
+      return {
+        ...state,
+        showSelectPaymentMethodModal: false,
+      };
     default:
       return state;
   }
@@ -139,5 +169,15 @@ export const getPromoCodeError = createSelector(getCheckout, (checkout) => check
 export const getPromoCodeValid = createSelector(getCheckout, (checkout) => checkout.promoCodeValid);
 export const getPromoCode = createSelector(getCheckout, (checkout) => checkout.promoCode);
 
-export const getProrate = createSelector(getCheckout, (products) => products.prorate);
-export const getProrateLoading = createSelector(getCheckout, (products) => products.prorateLoading);
+export const getProrate = createSelector(getCheckout, (checkout) => checkout.prorate);
+export const getProrateLoading = createSelector(getCheckout, (checkout) => checkout.prorateLoading);
+
+export const getShowAddPaymentMethodModal = createSelector(
+  getCheckout,
+  (checkout) => checkout.showAddPaymentMethodModal
+);
+
+export const getShowSelectPaymentMethodModal = createSelector(
+  getCheckout,
+  (checkout) => checkout.showSelectPaymentMethodModal
+);

@@ -10,7 +10,7 @@ export const initialLoadInit = () => ({
   type: INITIAL_LOAD_INIT,
 });
 
-export const addCard = (stripe, cardElement, redirectTo) => ({
+export const addCard = (stripe, cardElement, redirectTo = null) => ({
   type: ADD_CARD_INIT,
   payload: {
     cardElement,
