@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
 import { initialLoad as productsInitialLoad } from 'screens/products/actionCreators';
-import { selectProduct } from 'screens/onboarding/actionCreators';
+import { selectProduct, setPromoCodeInit } from 'screens/onboarding/actionCreators';
 import { getPageLoading, getRecurringProducts, getDropInProducts } from 'screens/products/reducer';
 import { getSelectedProduct } from 'screens/onboarding/reducer';
 import OnboardingLayout, {
@@ -16,6 +16,7 @@ import Link from 'shared/components/Link';
 import Button from 'shared/components/Button';
 import BackButton from 'shared/components/BackButton';
 import ProductsList from 'screens/onboarding/components/ProductsList';
+import RecurringProductsPromoCodeInformation from 'screens/onboarding/components/RecurringProductsPromoCodeInformation';
 
 const OnboardingMembershipsPage = () => {
   const history = useHistory();
@@ -28,6 +29,10 @@ const OnboardingMembershipsPage = () => {
 
   const selectProductHandler = (product) => {
     dispatch(selectProduct({ product }));
+
+    if (product.promoCode) {
+      dispatch(setPromoCodeInit({ promoCode: product.promoCode.code, product }));
+    }
   };
 
   useEffect(() => {
@@ -55,6 +60,10 @@ const OnboardingMembershipsPage = () => {
               </Link>{' '}
               apply.
             </div>
+            <RecurringProductsPromoCodeInformation
+              products={recurringProducts}
+              className="border-t border-black/30 mt-6 pt-6"
+            />
           </div>
         )}
       </OnboardingLayoutContent>

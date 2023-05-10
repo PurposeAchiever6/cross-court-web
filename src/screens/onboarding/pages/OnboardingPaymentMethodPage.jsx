@@ -4,7 +4,7 @@ import { useStripe, useElements } from '@stripe/react-stripe-js';
 import { useHistory, Redirect } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
-import { RECURRING } from 'screens/products/constants';
+import { isRecurring } from 'screens/products/utils';
 import { getSelectedProduct, getPaymentMethodLoading } from 'screens/onboarding/reducer';
 import { setPaymentMethodInit } from 'screens/onboarding/actionCreators';
 import OnboardingLayout, {
@@ -31,7 +31,7 @@ const OnboardingPaymentMethodPage = () => {
   const [termsAndConditions, setTermsAndConditions] = useState(false);
   const [awareRecurringProduct, setAwareRecurringProduct] = useState(false);
 
-  const recurringProduct = selectedProduct?.productType === RECURRING;
+  const recurringProduct = isRecurring(selectedProduct);
   const btnDisabled = !termsAndConditions || (recurringProduct && !awareRecurringProduct);
 
   const setPaymentMethod = () => {

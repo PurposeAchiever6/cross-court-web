@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { RECURRING } from 'screens/products/constants';
-import { formatPrice } from 'screens/products/utils';
+import { isRecurring, formatPrice } from 'screens/products/utils';
 import { titleize } from 'shared/utils/helpers';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import reviewImg from 'screens/onboarding/images/review.jpeg';
 
 const PurchaseDetails = ({ product, paymentMethod, className }) => {
-  const recurringProduct = product.productType === RECURRING;
+  const recurringProduct = isRecurring(product);
 
   return (
     <div className={className}>

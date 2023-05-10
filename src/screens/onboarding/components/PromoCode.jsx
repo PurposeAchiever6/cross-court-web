@@ -16,9 +16,10 @@ const PromoCode = ({ product, className }) => {
 
   const isLoading = useSelector(getPromoCodeLoading);
   const promoCodeApplied = useSelector(getPromoCodeApplied);
+  const promoCode = promoCodeApplied?.code;
 
   const initialValues = {
-    promoCode: promoCodeApplied || '',
+    promoCode: promoCode || '',
   };
 
   const validationSchema = Yup.object().shape({

@@ -3,10 +3,10 @@ import { push } from 'connected-react-router';
 
 import toast from 'shared/utils/toast';
 import ROUTES from 'shared/constants/routes';
+import { isRecurring } from 'screens/products/utils';
 import { getSelectedProduct } from 'screens/products/reducer';
 import { getSelectedCard } from 'screens/payment-methods/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
-import { RECURRING } from 'screens/products/constants';
 import { GET_PROFILE_INIT } from 'screens/my-account/actionTypes';
 import { RESERVE_SESSION_INIT } from 'screens/sessions/actionTypes';
 import paymentMethodsService from 'screens/payment-methods/service';
@@ -38,7 +38,7 @@ import checkoutService from './service';
 export function* createPurchaseFlow({ payload, options }) {
   try {
     const { product, paymentMethod, promoCode, useCcCash } = payload;
-    const { addPaymentMethod } = options;
+    const { addPaymentMethod, callAction } = options;
 
     const selectedProduct = product || (yield select(getSelectedProduct));
     const selectedCard = paymentMethod || (yield select(getSelectedCard));
@@ -67,6 +67,10 @@ export function* createPurchaseFlow({ payload, options }) {
 
     if (activeSubscription?.id && selectedProduct.seasonPass) {
       yield call(productsService.cancelSubscription, activeSubscription.id);
+    }
+
+    if (callAction) {
+      yield put(callAction);
     }
 
     yield put({ type: CREATE_PURCHASE_SUCCESS });
@@ -104,9 +108,9 @@ export function* checkPromoCodeFlow({ payload }) {
     const selectedProduct = yield select(getSelectedProduct);
     const productId = selectedProduct.id;
 
-    const { price } = yield call(checkoutService.checkPromoCode, payload.promoCode, productId);
+    const { promoCode } = yield call(checkoutService.checkPromoCode, payload.promoCode, productId);
 
-    if (activeSubscription && selectedProduct.productType === RECURRING) {
+    if (activeSubscription && isRecurring(selectedProduct)) {
       const params = { product_id: productId, promo_code: payload.promoCode };
       yield put({ type: SUBSCRIPTION_PRORATE_INIT, payload: params });
     }
@@ -114,8 +118,8 @@ export function* checkPromoCodeFlow({ payload }) {
     yield put({
       type: CHECK_PROMO_CODE_SUCCESS,
       payload: {
-        price,
-        promoCode: payload.promoCode,
+        price: promoCode.discountedPrice,
+        promoCode: promoCode.code,
       },
     });
   } catch (err) {
@@ -128,7 +132,7 @@ export function* checkPromoCodeFlow({ payload }) {
 export function* createSubscriptionFlow({ payload, options }) {
   try {
     const { product, paymentMethod, promoCode } = payload;
-    const { addPaymentMethod } = options;
+    const { addPaymentMethod, callAction } = options;
 
     const selectedProduct = product || (yield select(getSelectedProduct));
     const selectedCard = paymentMethod || (yield select(getSelectedCard));
@@ -151,6 +155,10 @@ export function* createSubscriptionFlow({ payload, options }) {
       paymentMethodId,
       selectedPromoCode
     );
+
+    if (callAction) {
+      yield put(callAction);
+    }
 
     yield put({
       type: CREATE_SUBSCRIPTION_SUCCESS,

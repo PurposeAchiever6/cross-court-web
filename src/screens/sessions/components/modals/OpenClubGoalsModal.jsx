@@ -95,7 +95,7 @@ export const OpenClubGoalsModal = ({
                       </InputCheckboxField>
                       <span className="font-shapiro95_super_wide text-lg ml-4 -mt-1">${price}</span>
                       {reserved && (
-                        <Badge size="sm" className="ml-2 -mt-2">
+                        <Badge size="sm" shrink className="ml-2 -mt-2">
                           Reserved
                         </Badge>
                       )}

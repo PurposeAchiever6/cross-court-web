@@ -1,3 +1,4 @@
+import { SIGNUP_STATE_COMPLETED } from 'screens/onboarding/constants';
 import { yearsFrom } from 'shared/utils/date';
 
 export const isUserInFirstSessionFlow = (userProfile) => {
@@ -59,3 +60,8 @@ export const userOutsideOfSessionSkillLevel = (userProfile, session) => {
 
   return skillLevel && (userSkillRating < skillLevel.min || userSkillRating > skillLevel.max);
 };
+
+export const restrictOnboardingAccess = (userProfile) =>
+  userProfile.signupState === SIGNUP_STATE_COMPLETED ||
+  userProfile.activeSubscription ||
+  !isUserInFirstSessionFlow(userProfile);

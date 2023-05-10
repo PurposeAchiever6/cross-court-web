@@ -73,7 +73,9 @@ const SelectPaymentMethodModal = ({
           >
             Continue
           </Button>
-          <Link onClick={handleAddPaymentMethod}>Add a new card</Link>
+          <Link variant="purple-dark" onClick={handleAddPaymentMethod} className="text-sm">
+            Add a new card
+          </Link>
         </div>
       </div>
     </Modal>

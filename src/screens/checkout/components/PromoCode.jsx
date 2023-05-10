@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import InputTextField from 'shared/components/InputTextField';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 
 import { checkPromoCode } from '../actionCreators';
 import { getPromoCodeLoading, getPromoCodeValid } from '../reducer';
@@ -47,9 +47,15 @@ const PromoCode = ({ className }) => {
                 DISCOUNT ADDED!
               </span>
             ) : (
-              <PrimaryButton type="submit" loading={isLoading} py="11px" className="self-end ml-4">
+              <Button
+                type="submit"
+                variant="outline-black"
+                loading={isLoading}
+                size="sm"
+                className="self-end ml-4 mb-1"
+              >
                 USE CODE
-              </PrimaryButton>
+              </Button>
             )}
           </div>
         </Form>

@@ -53,7 +53,7 @@ export default (state = initialState, action) => {
         ...state,
         selectedProduct: {
           ...state.selectedProduct,
-          promoCodeAppliedPrice: action.payload.price,
+          promoCodeAppliedPrice: action.payload.promoCode.discountedPrice,
         },
         promoCodeApplied: action.payload.promoCode,
         promoCodeLoading: false,

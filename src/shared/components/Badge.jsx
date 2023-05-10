@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Badge = ({ variant, size, pill, shrink, className, children }) => {
-  let badgeClasses = `inline-block font-shapiro95_super_wide uppercase text-center whitespace-nowrap align-middle leading-none font-normal ${
+const Badge = ({ variant, size, align, pill, shrink, className, children }) => {
+  let badgeClasses = `inline-block font-shapiro95_super_wide uppercase align-middle font-normal ${
     pill ? 'rounded-full' : ''
   }`;
 
@@ -16,6 +16,19 @@ const Badge = ({ variant, size, pill, shrink, className, children }) => {
       badgeClasses += ' text-xs';
       break;
     default:
+      break;
+  }
+
+  switch (align) {
+    case 'left':
+      badgeClasses += ' text-left';
+      break;
+    case 'right':
+      badgeClasses += ' text-right';
+      break;
+    case 'center':
+    default:
+      badgeClasses += ' text-center';
       break;
   }
 
@@ -39,6 +52,7 @@ const Badge = ({ variant, size, pill, shrink, className, children }) => {
 Badge.defaultProps = {
   variant: 'purple',
   size: 'md',
+  align: 'center',
   pill: false,
   shrink: false,
   className: '',
@@ -47,6 +61,7 @@ Badge.defaultProps = {
 Badge.propTypes = {
   variant: PropTypes.string,
   size: PropTypes.string,
+  align: PropTypes.string,
   pill: PropTypes.bool,
   shrink: PropTypes.bool,
   className: PropTypes.string,

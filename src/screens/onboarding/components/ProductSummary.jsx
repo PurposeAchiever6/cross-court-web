@@ -1,9 +1,14 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { formatPrice } from 'screens/products/utils';
+import { getPromoCodeApplied } from 'screens/onboarding/reducer';
+import RecurringProductInformation from 'screens/onboarding/components/RecurringProductInformation';
 
 const ProductSummary = ({ product, className }) => {
+  const promoCodeApplied = useSelector(getPromoCodeApplied);
+
   const { name, description, priceForUser, promoCodeAppliedPrice } = product;
 
   return (
@@ -15,6 +20,11 @@ const ProductSummary = ({ product, className }) => {
         <div className="border-b border-black pb-3 mb-3">
           <div className="mb-2">{name}</div>
           <p className="text-sm">{description}</p>
+          <RecurringProductInformation
+            product={product}
+            promoCode={promoCodeApplied}
+            className="text-sm mt-5"
+          />
         </div>
         <div className="text-lg">
           Total Today:{' '}

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
-import { SIGNUP_STATE_COMPLETED } from 'screens/onboarding/constants';
+import { restrictOnboardingAccess } from 'shared/utils/user';
 import { completeOnboardingInit } from 'screens/onboarding/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
 import PageLayout from 'shared/components/layout/PageLayout';
@@ -14,15 +14,17 @@ import LogoSvg from 'shared/components/svg/LogoSvg';
 import gradientEffectBgImg from 'shared/images/backgrounds/gradient-effect-top-right.png';
 
 const OnboardingLayout = ({ disableLink, children }) => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const currentUser = useSelector(getUserProfile);
 
   const completeOnboarding = () => {
     dispatch(completeOnboardingInit());
+    history.push(ROUTES.HOME);
   };
 
-  if (currentUser.signupState === SIGNUP_STATE_COMPLETED) {
+  if (restrictOnboardingAccess(currentUser)) {
     return <Redirect to={ROUTES.HOME} />;
   }
 

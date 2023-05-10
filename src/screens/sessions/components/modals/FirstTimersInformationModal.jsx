@@ -15,15 +15,13 @@ export const FirstTimersInformationModal = ({ isOpen, onConfirm }) => {
   return (
     <Modal title="Please Note" isOpen={isOpen} closeOnOverlayClick={false} showCloseButton={false}>
       <div>
-        <p className="mb-8">
+        <p className="text-sm mb-6">
           Please arrive at least 20 minutes early for your first session so our experience team can
           get you settled in. Thanks!
         </p>
-        <div className="text-center">
-          <Button onClick={onConfirmHandler} loading={submiting}>
-            Let's Go
-          </Button>
-        </div>
+        <Button onClick={onConfirmHandler} loading={submiting}>
+          Let's Go
+        </Button>
       </div>
     </Modal>
   );

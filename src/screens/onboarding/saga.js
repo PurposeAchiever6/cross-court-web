@@ -42,16 +42,13 @@ export function* setPaymentMethodFlow({ payload }) {
 
 export function* setPromoCodeFlow({ payload }) {
   try {
-    const { promoCode, product } = payload;
+    const { promoCode: promoCodeString, product } = payload;
 
-    const { price } = yield call(checkoutService.checkPromoCode, promoCode, product.id);
+    const { promoCode } = yield call(checkoutService.checkPromoCode, promoCodeString, product.id);
 
     yield put({
       type: SET_PROMO_CODE_SUCCESS,
-      payload: {
-        price,
-        promoCode,
-      },
+      payload: { promoCode },
     });
   } catch (err) {
     const error = err.response.data.error || 'Invalid discount code';
@@ -64,7 +61,6 @@ export function* completeOnboardingFlow() {
   try {
     yield call(myAccountService.editUserProfile, { signupState: SIGNUP_STATE_COMPLETED });
     yield put({ type: COMPLETE_ONBOARDING_SUCCESS });
-    yield put(push(ROUTES.HOME));
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({ type: COMPLETE_ONBOARDING_FAILURE });

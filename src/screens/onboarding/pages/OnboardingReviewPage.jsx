@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
-import { RECURRING } from 'screens/products/constants';
+import { isRecurring } from 'screens/products/utils';
 import { shortMonthDayFullYear } from 'shared/utils/date';
 import {
   getSelectedProduct,
@@ -11,6 +11,7 @@ import {
   getPromoCodeApplied,
 } from 'screens/onboarding/reducer';
 import { getCheckoutLoading } from 'screens/checkout/reducer';
+import { completeOnboardingInit } from 'screens/onboarding/actionCreators';
 import { createPurchase, createSubscription } from 'screens/checkout/actionCreators';
 import OnboardingLayout, {
   OnboardingLayoutContent,
@@ -28,19 +29,18 @@ const OnboardingReviewPage = () => {
   const selectedProduct = useSelector(getSelectedProduct);
   const selectedPaymentMethod = useSelector(getSelectedPaymentMethod);
   const promoCodeApplied = useSelector(getPromoCodeApplied);
-
-  const recurringProduct = selectedProduct?.productType === RECURRING;
+  const promoCode = promoCodeApplied?.code;
 
   const purchaseProduct = () => {
-    recurringProduct
+    isRecurring(selectedProduct)
       ? dispatch(
           createSubscription(
             {
               product: selectedProduct,
               paymentMethod: selectedPaymentMethod,
-              promoCode: promoCodeApplied,
+              promoCode,
             },
-            { addPaymentMethod: true }
+            { addPaymentMethod: true, callAction: completeOnboardingInit() }
           )
         )
       : dispatch(
@@ -48,9 +48,9 @@ const OnboardingReviewPage = () => {
             {
               product: selectedProduct,
               paymentMethod: selectedPaymentMethod,
-              promoCode: promoCodeApplied,
+              promoCode,
             },
-            { addPaymentMethod: true }
+            { addPaymentMethod: true, callAction: completeOnboardingInit() }
           )
         );
   };
