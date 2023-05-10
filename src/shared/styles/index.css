@@ -138,6 +138,8 @@ body[data-page='settings'] main,
 body[data-page^='session-'] main,
 body[data-page='first-session-reserved'] main,
 body[data-page='manage-membership'] main,
+body[data-page='checkout-confirmed'] main,
+body[data-page='checkout-membership'] main,
 body[data-page='gallery'] main {
   padding-top: 0;
 }

@@ -12,52 +12,62 @@ import Navbar from 'shared/components/Header/Navbar';
 import Button from 'shared/components/Button';
 
 const ALWAYS_SCROLLED = [
-  ROUTES.FORGOTPASSWORD,
-  ROUTES.RESETPASSWORD,
-  ROUTES.DASHBOARD,
+  ROUTES.ABOUT_YOURSELF,
+  ROUTES.CAREERS,
+  ROUTES.CHECKOUT,
   ROUTES.CONTENT,
+  ROUTES.DASHBOARD,
+  ROUTES.FORGOTPASSWORD,
+  ROUTES.GOALS,
+  ROUTES.MANAGE_MEMBERSHIP,
+  ROUTES.NOT_FOUND,
+  ROUTES.PRIVACY_POLICY,
+  ROUTES.RESETPASSWORD,
   ROUTES.SIGNUP,
   ROUTES.TERMS,
-  ROUTES.ABOUT_YOURSELF,
-  ROUTES.GOALS,
-  ROUTES.CHECKOUT,
-  ROUTES.MANAGE_MEMBERSHIP,
-  ROUTES.PRIVACY_POLICY,
-  ROUTES.NOT_FOUND,
-  ROUTES.CAREERS,
 ];
 
 const BLACK_BG = [
+  ROUTES.CAREERS,
+  ROUTES.CHECKOUT_CONFIRMED,
+  ROUTES.CHECKOUT_MEMBERSHIP_CONFIRMED,
   ROUTES.CONTENT,
+  ROUTES.FAQ,
   ROUTES.FAQ,
   ROUTES.FIRSTSESSIONRESERVED,
   ROUTES.GALLERY,
+  ROUTES.HOME,
   ROUTES.LOCATIONS,
   ROUTES.LOCATIONSFIRST,
-  ROUTES.HOME,
-  ROUTES.MEMBERSHIPS,
-  ROUTES.WHY_JOIN,
-  ROUTES.FAQ,
-  ROUTES.MYACCOUNT,
-  ROUTES.SETTINGS,
-  '/session',
-  '/first-session',
   ROUTES.MANAGE_MEMBERSHIP,
+  ROUTES.MEMBERSHIPS,
+  ROUTES.MYACCOUNT,
+  ROUTES.REFERRALS,
+  ROUTES.SESSIONRESERVED,
+  ROUTES.SETTINGS,
+  ROUTES.WHY_JOIN,
+  '/first-session',
+  '/session',
 ];
 
 const SHOW_NAVBAR = [
+  ROUTES.CAREERS,
+  ROUTES.CHECKOUT_CONFIRMED,
+  ROUTES.CHECKOUT_MEMBERSHIP_CONFIRMED,
+  ROUTES.FAQ,
   ROUTES.FAQ,
   ROUTES.FIRSTSESSIONRESERVED,
+  ROUTES.HOME,
   ROUTES.LOCATIONS,
   ROUTES.LOCATIONSFIRST,
-  ROUTES.HOME,
   ROUTES.MEMBERSHIPS,
-  ROUTES.WHY_JOIN,
-  ROUTES.FAQ,
   ROUTES.MYACCOUNT,
+  ROUTES.REFERRALS,
+  ROUTES.SESSIONRESERVED,
   ROUTES.SETTINGS,
-  '/session',
+  ROUTES.WHY_JOIN,
   '/first-session',
+  '/session',
 ];
 
 const HEADER_DISABLED_ROUTES = [
@@ -82,11 +92,16 @@ const Header = () => {
   const [alwaysScrolled, setAlwaysScrolled] = useState(false);
   const [showMembershipPromoBanner, setShowMembershipPromoBanner] = useState(false);
 
-  const showNavItems = SHOW_NAVBAR.includes(`/${pathname.split(/[/_]/)[1]}`);
-  const blackBg = BLACK_BG.includes(`/${pathname.split(/[/_]/)[1]}`);
+  const splitedPath = pathname
+    .split(/[/_]/)
+    .slice(1)
+    .filter((item) => Number.isNaN(item) || !Date.parse(item));
+
+  const showNavItems = SHOW_NAVBAR.includes(`/${splitedPath.join('/')}`);
+  const blackBg = BLACK_BG.includes(`/${splitedPath.join('/')}`);
 
   useEffect(() => {
-    setAlwaysScrolled(ALWAYS_SCROLLED.includes(`/${pathname.split(/[/_]/)[1]}`));
+    setAlwaysScrolled(ALWAYS_SCROLLED.includes(`/${splitedPath.join('/')}`));
   }, [pathname]);
 
   useEffect(() => {

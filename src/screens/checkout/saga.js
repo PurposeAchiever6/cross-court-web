@@ -190,7 +190,8 @@ export function* updateSubscriptionFlow() {
       },
     });
     yield put({ type: GET_PROFILE_INIT });
-    yield put(push(ROUTES.CHECKOUT_CONFIRMED));
+    yield put(push(ROUTES.MYACCOUNT));
+    yield call(toast.success, 'Membership updated.');
   } catch (err) {
     yield call(toast.error, err.response.data.error);
 

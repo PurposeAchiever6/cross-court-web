@@ -6,7 +6,7 @@ import SectionLayout from 'shared/components/layout/SectionLayout';
 import Map from 'shared/components/Map/Map';
 import CalendarEventLink from 'shared/components/CalendarEventLink';
 import CheckmarkSvg from 'shared/components/svg/CheckmarkSvg';
-import dotsBgImg from 'shared/images/backgrounds/dots.png';
+import GradientDots from 'shared/components/GradientDots';
 
 const SessionInformation = ({ session }) => {
   const {
@@ -45,10 +45,7 @@ const SessionInformation = ({ session }) => {
 
   return (
     <SectionLayout className="relative h-full pt-10 lg:pt-16 pb-4 lg:pb-16 bg-white text-black">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/95 via-white/99 to-white" />
-        <img src={dotsBgImg} alt="cc-basketball-balls" className="w-full" />
-      </div>
+      <GradientDots />
       <div className="relative max-w-screen-sm mx-auto">
         <h1 className="font-shapiro95_super_wide text-4xl uppercase flex items-center mb-6">
           <CheckmarkSvg className="w-12 -mt-1 mr-2" />
