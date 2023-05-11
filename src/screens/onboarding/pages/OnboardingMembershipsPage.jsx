@@ -17,6 +17,7 @@ import Button from 'shared/components/Button';
 import BackButton from 'shared/components/BackButton';
 import ProductsList from 'screens/onboarding/components/ProductsList';
 import RecurringProductsPromoCodeInformation from 'screens/onboarding/components/RecurringProductsPromoCodeInformation';
+import CompareMembershipsTable from 'screens/products/components/CompareMembershipsTable';
 
 const OnboardingMembershipsPage = () => {
   const history = useHistory();
@@ -41,47 +42,56 @@ const OnboardingMembershipsPage = () => {
 
   return (
     <OnboardingLayout>
-      <OnboardingLayoutContent>
-        <h1 className="font-shapiro95_super_wide text-xl md:text-2xl mb-4">Memberships</h1>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <div>
-            <ProductsList
-              selectProduct={selectProductHandler}
-              selectedProduct={selectedProduct}
-              recurringProducts={recurringProducts}
-              dropInProducts={dropInProducts}
-            />
-            <div className="text-sm mt-3">
-              Cancel anytime.{' '}
-              <Link variant="purple-dark" to={ROUTES.TERMS} target="_blank">
-                Terms and conditions
-              </Link>{' '}
-              apply.
+      <div>
+        <div className="flex">
+          <OnboardingLayoutContent>
+            <h1 className="font-shapiro95_super_wide text-xl md:text-2xl mb-4">Memberships</h1>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              <div>
+                <ProductsList
+                  selectProduct={selectProductHandler}
+                  selectedProduct={selectedProduct}
+                  recurringProducts={recurringProducts}
+                  dropInProducts={dropInProducts}
+                />
+                <div className="text-sm mt-3">
+                  Cancel anytime.{' '}
+                  <Link variant="purple-dark" to={ROUTES.TERMS} target="_blank">
+                    Terms and conditions
+                  </Link>{' '}
+                  apply.
+                </div>
+                <RecurringProductsPromoCodeInformation
+                  products={recurringProducts}
+                  className="border-t border-black/30 mt-6 pt-6"
+                />
+              </div>
+            )}
+          </OnboardingLayoutContent>
+          <OnboardingLayoutSidebar active="membership">
+            <div className="flex items-stretch">
+              <BackButton
+                onClick={() => history.push(ROUTES.ONBOARDING_INTENSITY_LEVEL)}
+                className="shrink-0 mr-3"
+              />
+              <Button
+                onClick={() => history.push(ROUTES.ONBOARDING_PAYMENT_METHOD)}
+                disabled={!selectedProduct}
+                className="w-full"
+              >
+                Next
+              </Button>
             </div>
-            <RecurringProductsPromoCodeInformation
-              products={recurringProducts}
-              className="border-t border-black/30 mt-6 pt-6"
-            />
-          </div>
-        )}
-      </OnboardingLayoutContent>
-      <OnboardingLayoutSidebar active="membership">
-        <div className="flex items-stretch">
-          <BackButton
-            onClick={() => history.push(ROUTES.ONBOARDING_INTENSITY_LEVEL)}
-            className="shrink-0 mr-3"
-          />
-          <Button
-            onClick={() => history.push(ROUTES.ONBOARDING_PAYMENT_METHOD)}
-            disabled={!selectedProduct}
-            className="w-full"
-          >
-            Next
-          </Button>
+          </OnboardingLayoutSidebar>
         </div>
-      </OnboardingLayoutSidebar>
+        <CompareMembershipsTable
+          products={recurringProducts}
+          initialRowsShown={10}
+          className="mt-4"
+        />
+      </div>
     </OnboardingLayout>
   );
 };

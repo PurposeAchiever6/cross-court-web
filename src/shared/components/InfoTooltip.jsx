@@ -5,8 +5,8 @@ import Tooltip from 'shared/components/Tooltip';
 import InfoSvg from 'shared/components/svg/InfoSvg';
 
 const InfoTooltip = ({ info, place, className }) => (
-  <Tooltip variant="purple" tooltip={info} place={place} className={className}>
-    <InfoSvg className="text-cc-purple cursor-pointer" />
+  <Tooltip variant="white" tooltip={info} place={place} className={className}>
+    <InfoSvg className="text-white/60 cursor-pointer w-5" />
   </Tooltip>
 );
 
