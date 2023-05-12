@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NoSessionCredits = () => (
-  <div className="no-session-credits relative text-white h-[200vh] bg-gradient-to-b from-black via-cc-black to-black">
+  <div className="no-session-credits relative text-white h-[200vh] bg-black">
     <div className="animate-fade fixed inset-x-0 top-1/2 transform -translate-y-1/2 text-center text-2xl md:text-4xl lg:text-5xl xl:text-6xl leading-none px-5">
       <div className="title">
         <div className="block font-shapiro95_super_wide tracking-wider md:pl-2 mb-1">

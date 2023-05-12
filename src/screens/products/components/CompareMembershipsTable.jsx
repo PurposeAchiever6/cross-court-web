@@ -130,7 +130,7 @@ const CompareMembershipsTable = ({ products, initialRowsShown, className }) => {
 
   return (
     <div className={className}>
-      <div className="md:flex md:items-center border-b border-white/30 font-shapiro95_super_wide py-6">
+      <div className="md:flex md:items-center border-b border-white/30 font-shapiro95_super_wide pb-6">
         <h2 className="md:w-1/3 text-3xl mb-8 md:mb-0">
           Compare <br /> Memberships
         </h2>

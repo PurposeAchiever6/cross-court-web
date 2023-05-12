@@ -89,7 +89,7 @@ const OnboardingMembershipsPage = () => {
         <CompareMembershipsTable
           products={recurringProducts}
           initialRowsShown={10}
-          className="mt-4"
+          className="mt-10"
         />
       </div>
     </OnboardingLayout>

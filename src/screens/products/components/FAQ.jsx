@@ -1,7 +1,6 @@
 import React from 'react';
 
 import SectionLayout from 'shared/components/layout/SectionLayout';
-import BackgroundSquare from 'shared/components/BackgroundSquare';
 import Accordion from 'shared/components/Accordion';
 
 const QUESTIONS = [
@@ -68,25 +67,18 @@ const QUESTIONS = [
 ];
 
 const FAQ = () => (
-  <SectionLayout className="pt-8">
-    <div className="relative">
-      <BackgroundSquare className="-mt-8 trasform -translate-x-20 lg:translate-x-24" />
-      <div className="relative z-10">
-        <h2 className="font-shapiro95_super_wide uppercase text-3xl sm:text-4xl mb-6 sm:mb-10">
-          Membership FAQ
-        </h2>
-        <div className="max-w-5xl mx-auto">
-          {QUESTIONS.map(({ question, answer }, index) => (
-            <Accordion
-              key={index}
-              title={question}
-              className="hover:bg-cc-blue-700 transition-all duration-300 mb-2"
-            >
-              {answer}
-            </Accordion>
-          ))}
-        </div>
-      </div>
+  <SectionLayout className="mb-12 md:mb-24">
+    <h2 className="font-shapiro95_super_wide text-center text-lg mb-6 sm:mb-10">Membership FAQ</h2>
+    <div className="max-w-5xl mx-auto">
+      {QUESTIONS.map(({ question, answer }, index) => (
+        <Accordion
+          key={index}
+          title={question}
+          className="hover:bg-cc-blue-700 transition-all duration-300 mb-2"
+        >
+          {answer}
+        </Accordion>
+      ))}
     </div>
   </SectionLayout>
 );
