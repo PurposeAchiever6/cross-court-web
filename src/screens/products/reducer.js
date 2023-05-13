@@ -140,6 +140,19 @@ export const getDropInProducts = createSelector(getAvailableProducts, (products)
   )
 );
 
+export const getRecurringProductsPromoCode = createSelector(getRecurringProducts, (products) =>
+  products
+    .filter((product) => product.promoCode)
+    .map((product) => ({ ...product.promoCode, productName: product.name }))
+);
+
+export const getFeaturedRecurringProductPromoCode = createSelector(
+  getRecurringProductsPromoCode,
+  // When we want to only show one promo code offer, we keep the last one that it should
+  // be for the most expensive product
+  (promoCodes) => promoCodes.slice(-1)[0]
+);
+
 export const getSelectedProduct = createSelector(
   getProducts,
   (products) => products.selectedProduct

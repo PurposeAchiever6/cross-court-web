@@ -238,7 +238,7 @@ const ProductsPage = () => {
         {showMemberships && (
           <>
             <SectionLayout className="mb-12 md:mb-24">
-              <CompareMembershipsTable products={recurringProducts} initialRowsShown={10} />
+              <CompareMembershipsTable products={recurringProducts} />
             </SectionLayout>
             <AmenitiesAndFeatures />
             <FAQ />

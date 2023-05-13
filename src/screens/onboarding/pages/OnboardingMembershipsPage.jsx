@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ import OnboardingLayout, {
 } from 'shared/components/layout/OnboardingLayout';
 import Loading from 'shared/components/Loading';
 import Link from 'shared/components/Link';
+import ArrowPointDownSvg from 'shared/components/svg/ArrowPointDownSvg';
 import Button from 'shared/components/Button';
 import BackButton from 'shared/components/BackButton';
 import ProductsList from 'screens/onboarding/components/ProductsList';
@@ -22,6 +23,7 @@ import CompareMembershipsTable from 'screens/products/components/CompareMembersh
 const OnboardingMembershipsPage = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const compareMembershipsTableRef = useRef(null);
 
   const isLoading = useSelector(getPageLoading);
   const recurringProducts = useSelector(getRecurringProducts);
@@ -31,7 +33,7 @@ const OnboardingMembershipsPage = () => {
   const selectProductHandler = (product) => {
     dispatch(selectProduct({ product }));
 
-    if (product.promoCode) {
+    if (product.promoCode?.validForUser) {
       dispatch(setPromoCodeInit({ promoCode: product.promoCode.code, product }));
     }
   };
@@ -45,7 +47,19 @@ const OnboardingMembershipsPage = () => {
       <div>
         <div className="flex">
           <OnboardingLayoutContent>
-            <h1 className="font-shapiro95_super_wide text-xl md:text-2xl mb-4">Memberships</h1>
+            <div className="sm:flex sm:justify-between sm:items-center mb-4">
+              <h1 className="font-shapiro95_super_wide text-xl md:text-2xl mb-3 sm:mb-0">
+                Memberships
+              </h1>
+              <Link
+                variant="purple-dark"
+                onClick={() => compareMembershipsTableRef.current.scrollIntoView()}
+                className="text-xs sm:text-sm flex items-center"
+              >
+                Compare Memberships
+                <ArrowPointDownSvg className="w-3 sm:w-4 ml-1 text-black" />
+              </Link>
+            </div>
             {isLoading ? (
               <Loading />
             ) : (
@@ -56,7 +70,7 @@ const OnboardingMembershipsPage = () => {
                   recurringProducts={recurringProducts}
                   dropInProducts={dropInProducts}
                 />
-                <div className="text-sm mt-3">
+                <div className="text-sm mt-5">
                   Cancel anytime.{' '}
                   <Link variant="purple-dark" to={ROUTES.TERMS} target="_blank">
                     Terms and conditions
@@ -89,7 +103,8 @@ const OnboardingMembershipsPage = () => {
         <CompareMembershipsTable
           products={recurringProducts}
           initialRowsShown={10}
-          className="mt-10"
+          ref={compareMembershipsTableRef}
+          className="pt-10"
         />
       </div>
     </OnboardingLayout>

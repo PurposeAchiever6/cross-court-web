@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { dropInProducts } from 'screens/products/utils';
+import { dropInProducts, formatPrice } from 'screens/products/utils';
 import { pluralize } from 'shared/utils/helpers';
 import Button from 'shared/components/Button';
 
@@ -23,7 +23,7 @@ const DropIns = ({ selectProductHandler, availableProducts }) => {
             access to Office Hours. No membership perks. Expires in 30 days. Does not renew.
           </span>
           <Button onClick={selectProductHandler} className="h-max">
-            Buy - ${product.price}
+            Buy - {formatPrice(product.price)}
           </Button>
         </div>
       ))}

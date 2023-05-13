@@ -19,6 +19,7 @@ export default {
   LOCATIONSFIRST: '/locations-first',
   LOGIN: '/login',
   MANAGE_MEMBERSHIP: '/manage-membership',
+  MEMBER_HANDBOOK: '/crosscourt-member-handbook.pdf',
   MEMBERSHIPS: '/memberships',
   MYACCOUNT: '/my-account',
   NOT_FOUND: '/404',

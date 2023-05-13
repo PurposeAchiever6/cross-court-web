@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
 import { pluralize } from 'shared/utils/helpers';
-import { isUserInFirstFreeSessionFlow } from 'shared/utils/user';
+import {
+  isUserInFirstFreeSessionFlow,
+  showHeaderMembershipPromoCodeBanner,
+} from 'shared/utils/user';
+import { initialLoad as getAvailableProducts } from 'screens/products/actionCreators';
+import { getFeaturedRecurringProductPromoCode } from 'screens/products/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import HeaderLayout from 'shared/components/layout/HeaderLayout';
@@ -83,11 +88,15 @@ const HEADER_DISABLED_ROUTES = [
   ROUTES.SIGNUP_VERIFICATION,
 ];
 
+const BANNER_ENABLED_ROUTES = [ROUTES.HOME, ROUTES.MEMBERSHIPS];
+
 const Header = () => {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
 
   const isAuthenticated = useSelector(getIsAuthenticated);
-  const userInfo = useSelector(getUserProfile);
+  const currentUser = useSelector(getUserProfile);
+  const promoCode = useSelector(getFeaturedRecurringProductPromoCode);
 
   const [alwaysScrolled, setAlwaysScrolled] = useState(false);
   const [showMembershipPromoBanner, setShowMembershipPromoBanner] = useState(false);
@@ -101,12 +110,20 @@ const Header = () => {
   const blackBg = BLACK_BG.includes(`/${splitedPath.join('/')}`);
 
   useEffect(() => {
+    dispatch(getAvailableProducts());
+  }, [currentUser]);
+
+  useEffect(() => {
     setAlwaysScrolled(ALWAYS_SCROLLED.includes(`/${splitedPath.join('/')}`));
   }, [pathname]);
 
   useEffect(() => {
-    setShowMembershipPromoBanner(pathname === ROUTES.HOME && !userInfo.activeSubscription);
-  }, [pathname, userInfo.activeSubscription]);
+    const showBanner =
+      BANNER_ENABLED_ROUTES.includes(pathname) &&
+      showHeaderMembershipPromoCodeBanner(isAuthenticated, promoCode);
+
+    setShowMembershipPromoBanner(showBanner);
+  }, [pathname, isAuthenticated, promoCode]);
 
   const daysFromNow = (input) => {
     const oneDay = 24 * 60 * 60 * 1000;
@@ -124,11 +141,11 @@ const Header = () => {
 
   const buttonText = (() => {
     if (!isAuthenticated) {
-      return 'First Free';
+      return 'Join';
     }
 
-    return isUserInFirstFreeSessionFlow(userInfo)
-      ? `Expires ${daysFromNow(userInfo.freeSessionExpirationDate)}`
+    return isUserInFirstFreeSessionFlow(currentUser)
+      ? `Expires ${daysFromNow(currentUser.freeSessionExpirationDate)}`
       : 'Reserve';
   })();
 

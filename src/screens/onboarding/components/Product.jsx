@@ -11,7 +11,7 @@ const Product = ({ selectProduct, selectedProduct, product, className }) => {
   const { durationInMonths, discountedPrice } = promoCode || {};
   const recurringProduct = isRecurring(product);
 
-  const hasPromoCode = recurringProduct && promoCode;
+  const hasPromoCode = recurringProduct && promoCode?.validForUser;
   const promoCodeForever = isForever(promoCode);
 
   const priceType = (() => {
@@ -20,7 +20,7 @@ const Product = ({ selectProduct, selectedProduct, product, className }) => {
         return 'Forever';
       }
 
-      return durationInMonths === 1 ? 'First Month' : `${durationInMonths} First Months`;
+      return durationInMonths === 1 ? 'First Month' : `First ${durationInMonths} Months`;
     }
 
     return recurringProduct ? '/mo.' : '1 day';
@@ -34,7 +34,7 @@ const Product = ({ selectProduct, selectedProduct, product, className }) => {
     }
 
     return `Save ${savedAmountPrice} ${
-      durationInMonths === 1 ? 'in 1st month' : `for the first ${durationInMonths} months`
+      durationInMonths === 1 ? 'in 1st month' : `in first ${durationInMonths} months`
     }`;
   };
 

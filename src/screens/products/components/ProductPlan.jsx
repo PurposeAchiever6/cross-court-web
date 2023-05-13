@@ -26,8 +26,6 @@ const ProductPlan = ({
     productType,
     name,
     description,
-    freeJerseyRental,
-    freeTowelRental,
     highlighted,
     promoCode,
   } = product;
@@ -36,11 +34,8 @@ const ProductPlan = ({
 
   const isRecurring = productType === RECURRING;
 
-  let freeRental = [];
-  freeJerseyRental && (freeRental = [...freeRental, 'Jersey']);
-  freeTowelRental && (freeRental = [...freeRental, 'Towel']);
+  const showPromoCode = promoCode && !currentUser.activeSubscription;
 
-  const showPromoCode = promoCode && currentUser.newMember;
   const discountText = (() => {
     if (!promoCode) return;
 
@@ -96,9 +91,16 @@ const ProductPlan = ({
         {showPromoCode && (
           <>
             <LineDashedSvg className="text-cc-purple mb-4" />
-            <span className="block text-white text-sm mb-2">{discountText}</span>
-            <span className="block text-white/60 text-sm mb-4">New Members Only</span>
-            <LineDashedSvg className="text-cc-purple" />
+            <span className="block text-white text-sm">{discountText}</span>
+            {promoCode.onlyForNewMembers && (
+              <span className="block text-white/60 text-sm mt-2">New Members Only</span>
+            )}
+            {promoCode.userMaxCheckedInSessions === 0 && (
+              <span className="block text-white/60 text-sm mt-2">
+                Expires after your first session
+              </span>
+            )}
+            <LineDashedSvg className="text-cc-purple mt-4" />
           </>
         )}
       </div>

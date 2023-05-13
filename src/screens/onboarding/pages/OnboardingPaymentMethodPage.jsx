@@ -70,6 +70,10 @@ const OnboardingPaymentMethodPage = () => {
             I agree to the{' '}
             <Link variant="purple-dark" to={ROUTES.TERMS} target="_blank">
               terms and conditions
+            </Link>{' '}
+            and policies found in the{' '}
+            <Link variant="purple-dark" to={ROUTES.MEMBER_HANDBOOK} target="_blank">
+              Member Handobook
             </Link>
           </InputCheckboxField>
         </div>

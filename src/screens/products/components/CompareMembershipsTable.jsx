@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { UNLIMITED_VALUE } from 'screens/products/constants';
@@ -117,7 +117,10 @@ const ROWS = [
   },
   {
     description: 'Free Jersey & Towel Rental',
-    accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
+    accessor: ({ freeJerseyRental, freeTowelRental }) =>
+      freeJerseyRental && freeTowelRental ? (
+        <CheckSvg className="w-6 text-cc-purple inline-block" />
+      ) : null,
   },
   {
     description: 'SNZS Access (Coming Soon)',
@@ -125,11 +128,11 @@ const ROWS = [
   },
 ];
 
-const CompareMembershipsTable = ({ products, initialRowsShown, className }) => {
+const CompareMembershipsTable = forwardRef(({ products, initialRowsShown, className }, ref) => {
   const [rowsShown, setRowsShown] = useState(initialRowsShown || ROWS.length);
 
   return (
-    <div className={className}>
+    <div ref={ref} className={className}>
       <div className="md:flex md:items-center border-b border-white/30 font-shapiro95_super_wide pb-6">
         <h2 className="md:w-1/3 text-3xl mb-8 md:mb-0">
           Compare <br /> Memberships
@@ -176,7 +179,7 @@ const CompareMembershipsTable = ({ products, initialRowsShown, className }) => {
       )}
     </div>
   );
-};
+});
 
 CompareMembershipsTable.defaultProps = {
   initialRowsShown: null,
