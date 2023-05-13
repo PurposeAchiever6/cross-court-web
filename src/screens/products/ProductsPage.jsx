@@ -19,7 +19,6 @@ import {
   showSelectPaymentMethodModal,
   closeSelectPaymentMethodModal,
 } from 'screens/checkout/actionCreators';
-import { dropInProducts } from 'screens/products/utils';
 import { getUserProfile } from 'screens/my-account/reducer';
 import {
   initialLoad,
@@ -39,7 +38,6 @@ import Scoutings from 'screens/products/components/Scoutings';
 import FAQ from 'screens/products/components/FAQ';
 import AmenitiesAndFeatures from 'screens/products/components/AmenitiesAndFeatures';
 import NoSessionCredits from 'screens/products/components/NoSessionCredits';
-import NoFreeSessionInformationModal from 'screens/products/components/NoFreeSessionInformationModal';
 import EndMembershipModal from 'shared/components/EndMembershipModal';
 import SelectPaymentMethodModal from 'screens/checkout/components/SelectPaymentMethodModal';
 import PurchaseDetailsModal from 'screens/checkout/components/PurchaseDetailsModal';
@@ -62,17 +60,11 @@ const ProductsPage = () => {
   const recurringProducts = useSelector(getRecurringProducts);
   const { activeSubscription, reserveTeam } = userProfile;
 
-  const showNoFreeSessionInformation = state?.showNoFreeSessionInformation;
   const showAnimation = state?.showNoCreditsAnimation;
   const comesFromCancelModal = state?.comesFromCancelModal;
   const showScouting = state?.showScouting;
-  const priceForFirstTimersNoFreeSession =
-    dropInProducts(availableProducts)[0]?.priceForFirstTimersNoFreeSession;
 
   const [showEndMembershipModal, setShowEndMembershipModal] = useState(false);
-  const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
-    !!showNoFreeSessionInformation
-  );
   const [showMembershipIsPausedModal, setShowMembershipIsPausedModal] = useState(false);
   const [showPurchaseDetailsModal, setShowPurchaseDetailsModal] = useState(false);
 
@@ -252,11 +244,6 @@ const ProductsPage = () => {
       <EndMembershipModal
         isOpen={showEndMembershipModal}
         closeHandler={() => setShowEndMembershipModal(false)}
-      />
-      <NoFreeSessionInformationModal
-        price={priceForFirstTimersNoFreeSession}
-        isOpen={showNoFreeSessionInformationModal}
-        closeHandler={() => setShowNoFreeSessionInformationModal(false)}
       />
       <SelectPaymentMethodModal
         isOpen={selectPaymentMethodModalOpen}

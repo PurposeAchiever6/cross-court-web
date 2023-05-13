@@ -49,11 +49,9 @@ const TermsAndConditions = () => (
       credit will be used for the reservation and will no longer be shown in your account. Any
       individual who cancels inside the 5 hour cancellation window will be automatically charged a $
       {import.meta.env.VITE_CANCELED_OUT_OF_TIME_PRICE} penalty in addition to losing a session
-      credit. In case you're cancelling your first free session out of time, your session credit
-      will be returned to your account for later use, but you will be charged a $
-      {import.meta.env.VITE_FREE_SESSION_CANCELED_OUT_OF_TIME_PRICE} fee. Booking a reservation and
-      "no showing" without cancelling a session you are signed up for, will result in a lost of the
-      session credit and a ${import.meta.env.VITE_NO_SHOW_UP_FEE} no show penalty.
+      credit. Booking a reservation and "no showing" without cancelling a session you are signed up
+      for, will result in a lost of the session credit and a ${import.meta.env.VITE_NO_SHOW_UP_FEE}{' '}
+      no show penalty.
       <br />
       <br />
       <div className="py-2 md:pl-14">D. Items to Note</div>
