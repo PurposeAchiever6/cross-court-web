@@ -55,10 +55,10 @@ const SessionRoster = ({ session, date, showExpanded, className }) => {
     <div className={className}>
       {showExpanded ? (
         <div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
             {userSessions.map(({ isFirstSession, user }, index) =>
               index + 1 > usersShown ? null : (
-                <UserCard key={user.id} user={user} newLabel={isFirstSession} />
+                <UserCard key={user.id} user={user} newLabel={isFirstSession} expanded={false} />
               )
             )}
           </div>
