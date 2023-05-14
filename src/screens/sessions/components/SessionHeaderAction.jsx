@@ -6,17 +6,11 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import toast from 'shared/utils/toast';
 import { hasConfirmCodeOfConduct } from 'shared/utils/codeOfConduct';
-import {
-  userHasCreditsForSession,
-  isUserInFirstFreeSessionFlow,
-  isUserInFirstSessionFlow,
-} from 'shared/utils/user';
+import { userHasCreditsForSession, isUserInFirstSessionFlow } from 'shared/utils/user';
 import { validateBooking } from 'screens/sessions/utils';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { getSessionsLoadingBtns, getShowWaitlistModal } from 'screens/sessions/reducer';
-import { getSelectedCard } from 'screens/payment-methods/reducer';
-import { createAndReserveFreeSessionInit } from 'screens/checkout/actionCreators';
 import {
   reserveSessionInit,
   signupBookSession,
@@ -56,7 +50,6 @@ const SessionHeaderAction = ({ session, date }) => {
   const isAuthenticated = useSelector(getIsAuthenticated);
   const currentUser = useSelector(getUserProfile);
   const showWaitlistModal = useSelector(getShowWaitlistModal) === id;
-  const selectedCard = useSelector(getSelectedCard);
   const loadingButton = useSelector(getSessionsLoadingBtns).includes(id);
 
   const [showCancelModal, setShowCancelModal] = useState(false);
@@ -68,7 +61,6 @@ const SessionHeaderAction = ({ session, date }) => {
   const [shootingMachineIds, setShootingMachineIds] = useState([]);
   const [scouting, setScouting] = useState(false);
 
-  const isFirstFreeSessionFlow = isUserInFirstFreeSessionFlow(currentUser);
   const isFirstSessionFlow = isUserInFirstSessionFlow(currentUser);
 
   const sessionShootingMachines = shootingMachines.map((shootingMachine) => ({
@@ -130,12 +122,6 @@ const SessionHeaderAction = ({ session, date }) => {
     skipFirstTimersInformationModal,
     skipScoutingModal,
   } = {}) => {
-    if (!selectedCard && isFirstFreeSessionFlow) {
-      window.localStorage.setItem('redirect', window.location.pathname);
-      history.push(ROUTES.BILLING);
-      return;
-    }
-
     if (!userHasCreditsForSession(currentUser, session)) {
       window.localStorage.setItem('redirect', window.location.pathname);
       history.push({ pathname: ROUTES.MEMBERSHIPS, state: { showNoCreditsAnimation: true } });
@@ -181,9 +167,7 @@ const SessionHeaderAction = ({ session, date }) => {
       scouting,
     };
 
-    isFirstFreeSessionFlow
-      ? dispatch(createAndReserveFreeSessionInit(payload))
-      : dispatch(reserveSessionInit(payload));
+    dispatch(reserveSessionInit(payload));
   };
 
   const onConfirmCodeOfConduct = () => {

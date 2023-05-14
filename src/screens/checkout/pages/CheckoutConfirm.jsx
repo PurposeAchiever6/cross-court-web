@@ -3,9 +3,8 @@ import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import ROUTES from 'shared/constants/routes';
-import { getPurchaseConfirmed } from 'screens/checkout/reducer';
+import { getPurchaseConfirmed, getSelectedProduct } from 'screens/checkout/reducer';
 import dayPassImg from 'screens/checkout/images/day-pass.png';
-import { getSelectedProduct } from 'screens/products/reducer';
 
 import Button from 'shared/components/Button';
 import PageLayout from 'shared/components/layout/PageLayout';

@@ -1,6 +1,5 @@
 import {
   INITIAL_LOAD_INIT,
-  SET_SELECTED_PRODUCT,
   CANCEL_SUBSCRIPTION_INIT,
   REACTIVATE_SUBSCRIPTION_INIT,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
@@ -12,13 +11,6 @@ import {
 
 export const initialLoad = () => ({
   type: INITIAL_LOAD_INIT,
-});
-
-export const setSelectedProduct = (product) => ({
-  type: SET_SELECTED_PRODUCT,
-  payload: {
-    selectedProduct: product,
-  },
 });
 
 export const cancelSubscription = (subscription) => ({

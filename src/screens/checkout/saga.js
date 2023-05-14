@@ -3,26 +3,18 @@ import { push } from 'connected-react-router';
 
 import toast from 'shared/utils/toast';
 import ROUTES from 'shared/constants/routes';
-import { isRecurring } from 'screens/products/utils';
-import { getSelectedProduct } from 'screens/products/reducer';
-import { getSelectedCard } from 'screens/payment-methods/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { GET_PROFILE_INIT } from 'screens/my-account/actionTypes';
-import { RESERVE_SESSION_INIT } from 'screens/sessions/actionTypes';
 import paymentMethodsService from 'screens/payment-methods/service';
 import productsService from 'screens/products/service';
 
-import { getPromoCode } from './reducer';
 import {
+  SET_PROMO_CODE_INIT,
+  SET_PROMO_CODE_SUCCESS,
+  SET_PROMO_CODE_FAILURE,
   CREATE_PURCHASE_INIT,
   CREATE_PURCHASE_SUCCESS,
   CREATE_PURCHASE_FAILURE,
-  CREATE_FREE_SESSION_INIT,
-  CREATE_FREE_SESSION_SUCCESS,
-  CREATE_FREE_SESSION_FAILURE,
-  CHECK_PROMO_CODE_INIT,
-  CHECK_PROMO_CODE_SUCCESS,
-  CHECK_PROMO_CODE_FAILURE,
   CREATE_SUBSCRIPTION_INIT,
   CREATE_SUBSCRIPTION_SUCCESS,
   CREATE_SUBSCRIPTION_FAILURE,
@@ -35,23 +27,37 @@ import {
 } from './actionTypes';
 import checkoutService from './service';
 
+export function* setPromoCodeFlow({ payload }) {
+  try {
+    const { promoCode: promoCodeString, product } = payload;
+
+    const { promoCode } = yield call(checkoutService.checkPromoCode, promoCodeString, product.id);
+
+    yield put({
+      type: SET_PROMO_CODE_SUCCESS,
+      payload: { promoCode },
+    });
+  } catch (err) {
+    const error = err.response.data.error || 'Invalid discount code';
+    yield call(toast.error, error);
+    yield put({ type: SET_PROMO_CODE_FAILURE });
+  }
+}
+
 export function* createPurchaseFlow({ payload, options }) {
   try {
     const { product, paymentMethod, promoCode, useCcCash } = payload;
     const { addPaymentMethod, callAction } = options;
 
-    const selectedProduct = product || (yield select(getSelectedProduct));
-    const selectedCard = paymentMethod || (yield select(getSelectedCard));
-    const selectedPromoCode = promoCode || (yield select(getPromoCode));
     const userProfile = yield select(getUserProfile);
     const { activeSubscription } = userProfile;
 
-    let paymentMethodId = selectedCard.id;
+    let paymentMethodId = paymentMethod.id;
 
     if (addPaymentMethod) {
       const addedPaymentMethod = yield call(
         paymentMethodsService.addPaymentMethod,
-        selectedCard.id
+        paymentMethodId
       );
 
       paymentMethodId = addedPaymentMethod.id;
@@ -59,13 +65,13 @@ export function* createPurchaseFlow({ payload, options }) {
 
     yield call(
       checkoutService.createPurchase,
-      selectedProduct.id,
+      product.id,
       paymentMethodId,
-      selectedPromoCode,
+      promoCode?.code,
       useCcCash
     );
 
-    if (activeSubscription?.id && selectedProduct.seasonPass) {
+    if (activeSubscription && product.seasonPass) {
       yield call(productsService.cancelSubscription, activeSubscription.id);
     }
 
@@ -83,67 +89,17 @@ export function* createPurchaseFlow({ payload, options }) {
   }
 }
 
-export function* createFreeSessionFlow({ payload }) {
-  try {
-    const selectedCard = yield select(getSelectedCard);
-
-    yield call(checkoutService.createFreeSession, selectedCard.id);
-    yield put({
-      type: CREATE_FREE_SESSION_SUCCESS,
-    });
-    yield put({
-      type: RESERVE_SESSION_INIT,
-      payload,
-    });
-  } catch (err) {
-    yield call(toast.error, err.response.data.error);
-    yield put({ type: CREATE_FREE_SESSION_FAILURE, error: err.response.data.error });
-  }
-}
-
-export function* checkPromoCodeFlow({ payload }) {
-  try {
-    const userProfile = yield select(getUserProfile);
-    const { activeSubscription } = userProfile;
-    const selectedProduct = yield select(getSelectedProduct);
-    const productId = selectedProduct.id;
-
-    const { promoCode } = yield call(checkoutService.checkPromoCode, payload.promoCode, productId);
-
-    if (activeSubscription && isRecurring(selectedProduct)) {
-      const params = { product_id: productId, promo_code: payload.promoCode };
-      yield put({ type: SUBSCRIPTION_PRORATE_INIT, payload: params });
-    }
-
-    yield put({
-      type: CHECK_PROMO_CODE_SUCCESS,
-      payload: {
-        price: promoCode.discountedPrice,
-        promoCode: promoCode.code,
-      },
-    });
-  } catch (err) {
-    const errorDetails = err.response.data.error || 'Invalid discount code';
-    yield call(toast.error, errorDetails);
-    yield put({ type: CHECK_PROMO_CODE_FAILURE, error: errorDetails });
-  }
-}
-
 export function* createSubscriptionFlow({ payload, options }) {
   try {
     const { product, paymentMethod, promoCode } = payload;
     const { addPaymentMethod, callAction } = options;
 
-    const selectedProduct = product || (yield select(getSelectedProduct));
-    const selectedCard = paymentMethod || (yield select(getSelectedCard));
-    const selectedPromoCode = promoCode || (yield select(getPromoCode));
-
-    let paymentMethodId = selectedCard.id;
+    let paymentMethodId = paymentMethod.id;
 
     if (addPaymentMethod) {
       const addedPaymentMethod = yield call(
         paymentMethodsService.addPaymentMethod,
-        selectedCard.id
+        paymentMethodId
       );
 
       paymentMethodId = addedPaymentMethod.id;
@@ -151,9 +107,9 @@ export function* createSubscriptionFlow({ payload, options }) {
 
     const subscription = yield call(
       checkoutService.createSubscription,
-      selectedProduct.id,
+      product.id,
       paymentMethodId,
-      selectedPromoCode
+      promoCode?.code
     );
 
     if (callAction) {
@@ -162,9 +118,7 @@ export function* createSubscriptionFlow({ payload, options }) {
 
     yield put({
       type: CREATE_SUBSCRIPTION_SUCCESS,
-      payload: {
-        subscription,
-      },
+      payload: { subscription },
     });
     yield put({ type: GET_PROFILE_INIT });
     yield put(push(ROUTES.CHECKOUT_MEMBERSHIP_CONFIRMED));
@@ -175,20 +129,19 @@ export function* createSubscriptionFlow({ payload, options }) {
   }
 }
 
-export function* updateSubscriptionFlow() {
+export function* updateSubscriptionFlow({ payload }) {
   try {
-    const selectedProduct = yield select(getSelectedProduct);
-    const selectedCard = yield select(getSelectedCard);
-    const promoCode = yield select(getPromoCode);
+    const { product, paymentMethod, promoCode } = payload;
+
     const userProfile = yield select(getUserProfile);
     const { activeSubscription } = userProfile;
 
     const subscription = yield call(
       checkoutService.updateSubscription,
       activeSubscription.id,
-      selectedProduct.id,
-      selectedCard.id,
-      promoCode
+      product.id,
+      paymentMethod.id,
+      promoCode?.code
     );
 
     yield put({
@@ -209,8 +162,12 @@ export function* updateSubscriptionFlow() {
 
 export function* subscriptionProrateFlow({ payload }) {
   try {
-    const prorate = yield call(checkoutService.subscriptionProrate, payload);
-    yield put({ type: SUBSCRIPTION_PRORATE_SUCCESS, payload: { prorate } });
+    const { productId, promoCode } = payload;
+    const { prorate } = yield call(checkoutService.subscriptionProrate, productId, promoCode?.code);
+    yield put({
+      type: SUBSCRIPTION_PRORATE_SUCCESS,
+      payload: { prorate, withPromoCode: !!promoCode },
+    });
   } catch (err) {
     yield put({ type: SUBSCRIPTION_PRORATE_FAILURE, error: err.response.data.error });
   }
@@ -218,11 +175,10 @@ export function* subscriptionProrateFlow({ payload }) {
 
 export default function* checkoutSaga() {
   yield all([
+    takeLatest(SET_PROMO_CODE_INIT, setPromoCodeFlow),
     takeLatest(CREATE_PURCHASE_INIT, createPurchaseFlow),
     takeLatest(CREATE_SUBSCRIPTION_INIT, createSubscriptionFlow),
     takeLatest(UPDATE_SUBSCRIPTION_INIT, updateSubscriptionFlow),
-    takeLatest(CREATE_FREE_SESSION_INIT, createFreeSessionFlow),
-    takeLatest(CHECK_PROMO_CODE_INIT, checkPromoCodeFlow),
     takeLatest(SUBSCRIPTION_PRORATE_INIT, subscriptionProrateFlow),
   ]);
 }

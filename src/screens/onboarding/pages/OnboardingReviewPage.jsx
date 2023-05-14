@@ -28,8 +28,7 @@ const OnboardingReviewPage = () => {
   const checkoutLoading = useSelector(getCheckoutLoading);
   const selectedProduct = useSelector(getSelectedProduct);
   const selectedPaymentMethod = useSelector(getSelectedPaymentMethod);
-  const promoCodeApplied = useSelector(getPromoCodeApplied);
-  const promoCode = promoCodeApplied?.code;
+  const promoCode = useSelector(getPromoCodeApplied);
 
   const purchaseProduct = () => {
     isRecurring(selectedProduct)

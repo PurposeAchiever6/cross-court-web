@@ -24,13 +24,13 @@ const CancelMembership = ({ openFeedbackModal }) => {
     <div>
       <h3 className="text-3xl font-shapiro95_super_wide mb-4">Are you sure?</h3>
       <p className="mb-6">We're sad to see you go, but here's what you need to know:</p>
-      <List align="center" items={LIST_ITEMS} />
+      <List align="center" items={LIST_ITEMS} className="text-sm" />
       <LineDashedSvg className="mb-6" />
       <div className="flex items-center mb-6">
         <FontAwesomeIcon icon={faExclamationCircle} className="text-xl mr-4" />
-        <p>
-          Don’t forget, you have the ability to <span className="text-cc-purple">pause</span> your
-          membership {freePausesPerYear} times a year free of charge, and can unpause anytime!
+        <p className="text-sm">
+          Don’t forget, you have the ability to <span className="text-cc-purple-900">pause</span>{' '}
+          your membership {freePausesPerYear} times a year free of charge, and can unpause anytime!
         </p>
       </div>
       <Button onClick={openFeedbackModal}>End Membership</Button>

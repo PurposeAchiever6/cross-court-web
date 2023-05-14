@@ -55,7 +55,7 @@ export const PauseMembership = ({ closeHandler }) => {
   };
 
   return (
-    <div>
+    <div className="text-sm">
       {!canFreePause && (
         <p className="mb-4">
           Looks like your {activeSubscription?.freePausesPerYear} free membership pauses this year

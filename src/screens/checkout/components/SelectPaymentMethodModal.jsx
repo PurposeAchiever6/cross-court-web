@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { isEmpty } from 'ramda';
 
+import { initialLoadInit } from 'screens/payment-methods/actionCreators';
+import { getAvailableCards } from 'screens/payment-methods/reducer';
+import { selectPaymentMethod } from 'screens/checkout/actionCreators';
+import { getSelectedPaymentMethod } from 'screens/checkout/reducer';
 import Modal from 'shared/components/Modal';
-import { initialLoadInit, setSelectedCard } from 'screens/payment-methods/actionCreators';
-import { getAvailableCards, getSelectedCard } from 'screens/payment-methods/reducer';
 import Button from 'shared/components/Button';
 import Link from 'shared/components/Link';
 import SelectableBox from 'shared/components/SelectableBox';
@@ -19,26 +20,26 @@ const SelectPaymentMethodModal = ({
 }) => {
   const dispatch = useDispatch();
 
-  const selectPaymentMethod = (paymentMethod) => {
-    dispatch(setSelectedCard(paymentMethod));
+  const paymentMethods = useSelector(getAvailableCards);
+  const selectedPaymentMethod = useSelector(getSelectedPaymentMethod);
+
+  const selectPaymentMethodHandler = (paymentMethod) => {
+    dispatch(selectPaymentMethod({ paymentMethod }));
+  };
+
+  const continueHandler = () => {
+    closeHandler();
+    openPurchaseDetailsModal();
+  };
+
+  const addPaymentMethodHandler = () => {
+    closeHandler();
+    openAddPaymentMethodModal();
   };
 
   useEffect(() => {
     dispatch(initialLoadInit());
   }, [dispatch]);
-
-  const paymentMethods = useSelector(getAvailableCards);
-  const selectedPaymentMethod = useSelector(getSelectedCard);
-
-  const handleContinue = () => {
-    closeHandler();
-    openPurchaseDetailsModal();
-  };
-
-  const handleAddPaymentMethod = () => {
-    closeHandler();
-    openAddPaymentMethodModal();
-  };
 
   return (
     <Modal isOpen={isOpen} closeHandler={closeHandler} title="Choose card" size="2xl">
@@ -47,7 +48,7 @@ const SelectPaymentMethodModal = ({
           <SelectableBox
             key={paymentMethod.id}
             selected={selectedPaymentMethod?.id === paymentMethod.id}
-            onClick={() => selectPaymentMethod(paymentMethod)}
+            onClick={() => selectPaymentMethodHandler(paymentMethod)}
             className="mb-1 w-full"
             variant="blue-light"
           >
@@ -67,13 +68,10 @@ const SelectPaymentMethodModal = ({
           </SelectableBox>
         ))}
         <div className="flex items-center justify-between mt-6">
-          <Button
-            disabled={!selectedPaymentMethod || isEmpty(selectedPaymentMethod)}
-            onClick={handleContinue}
-          >
+          <Button disabled={!selectedPaymentMethod} onClick={continueHandler}>
             Continue
           </Button>
-          <Link variant="purple-dark" onClick={handleAddPaymentMethod} className="text-sm">
+          <Link variant="purple-dark" onClick={addPaymentMethodHandler} className="text-sm">
             Add a new card
           </Link>
         </div>

@@ -18,7 +18,7 @@ export const EndMembershipModal = ({ isOpen, closeHandler }) => {
   return (
     <>
       <Modal isOpen={isOpen} closeHandler={closeHandler} size="lg">
-        <Tabs className="mt-10">
+        <Tabs>
           <div label="Pause">
             <PauseMembership closeHandler={closeHandler} />
           </div>

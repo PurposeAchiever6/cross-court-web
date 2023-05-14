@@ -68,7 +68,9 @@ export function* completeOnboardingFlow() {
 }
 
 export default function* onboardingSaga() {
-  yield all([takeLatest(SET_PAYMENT_METHOD_INIT, setPaymentMethodFlow)]);
-  yield all([takeLatest(SET_PROMO_CODE_INIT, setPromoCodeFlow)]);
-  yield all([takeLatest(COMPLETE_ONBOARDING_INIT, completeOnboardingFlow)]);
+  yield all([
+    takeLatest(SET_PAYMENT_METHOD_INIT, setPaymentMethodFlow),
+    takeLatest(SET_PROMO_CODE_INIT, setPromoCodeFlow),
+    takeLatest(COMPLETE_ONBOARDING_INIT, completeOnboardingFlow),
+  ]);
 }

@@ -4,7 +4,6 @@ import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
   INITIAL_LOAD_FAILURE,
-  SET_SELECTED_CARD,
   ADD_CARD_INIT,
   ADD_CARD_SUCCESS,
   ADD_CARD_FAILURE,
@@ -18,7 +17,6 @@ const initialState = {
   error: '',
   pageLoading: false,
   availableCards: [],
-  selectedCard: null,
   addCardLoading: false,
   deleteCardLoading: false,
 };
@@ -41,11 +39,6 @@ export default (state = initialState, action) => {
       };
     case INITIAL_LOAD_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
-    case SET_SELECTED_CARD:
-      return {
-        ...state,
-        selectedCard: { ...action.payload.selectedCard },
-      };
     case ADD_CARD_INIT:
       return {
         ...state,
@@ -89,11 +82,6 @@ export const getError = createSelector(getPaymentMethods, (paymentMethods) => pa
 export const getAvailableCards = createSelector(
   getPaymentMethods,
   (paymentMethods) => paymentMethods.availableCards
-);
-
-export const getSelectedCard = createSelector(
-  getPaymentMethods,
-  (paymentMethods) => paymentMethods.selectedCard
 );
 
 export const getAddCardLoading = createSelector(

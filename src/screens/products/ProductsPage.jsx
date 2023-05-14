@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
 import { startedCheckout } from 'shared/utils/activeCampaign';
 import { getIsAuthenticated } from 'screens/auth/reducer';
@@ -14,17 +14,15 @@ import {
   getShowSelectPaymentMethodModal,
 } from 'screens/checkout/reducer';
 import {
+  selectProduct,
+  setPromoCodeInit,
   showAddPaymentMethodModal,
   closeAddPaymentMethodModal,
   showSelectPaymentMethodModal,
   closeSelectPaymentMethodModal,
 } from 'screens/checkout/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
-import {
-  initialLoad,
-  setSelectedProduct,
-  reactivateSubscription,
-} from 'screens/products/actionCreators';
+import { initialLoad, reactivateSubscription } from 'screens/products/actionCreators';
 import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import Loading from 'shared/components/Loading';
@@ -48,8 +46,9 @@ import ROUTES from 'shared/constants/routes';
 import CompareMembershipsTable from 'screens/products/components/CompareMembershipsTable';
 
 const ProductsPage = () => {
-  const dispatch = useDispatch();
+  const history = useHistory();
   const { state } = useLocation();
+  const dispatch = useDispatch();
 
   const availableProducts = useSelector(getAvailableProducts);
   const isLoading = useSelector(getPageLoading);
@@ -71,7 +70,16 @@ const ProductsPage = () => {
   const showMemberships = !comesFromCancelModal && !showScouting;
 
   const selectProductHandler = (product) => {
-    dispatch(setSelectedProduct(product));
+    if (!isAuthenticated) {
+      history.push(ROUTES.LOGIN);
+      return;
+    }
+
+    dispatch(selectProduct({ product }));
+
+    if (product.promoCode?.validForUser) {
+      dispatch(setPromoCodeInit({ promoCode: product.promoCode.code, product }));
+    }
 
     if (isAuthenticated) {
       startedCheckout({ email: userProfile.email, product });
