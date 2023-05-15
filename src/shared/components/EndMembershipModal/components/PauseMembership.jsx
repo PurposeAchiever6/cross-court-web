@@ -22,9 +22,6 @@ export const PauseMembership = ({ closeHandler }) => {
   const canFreePause = activeSubscription?.canFreePause;
   const thisYearFreeFinishedPauses = thisYearFreeFinishedSubscriptionPauses(activeSubscription);
 
-  const pauseSubscriptionAction = (reason) =>
-    dispatch(pauseSubscription(activeSubscription, reason));
-
   const onClose = () => {
     setReason(null);
     setResasonOpenAnswer('');
@@ -38,7 +35,7 @@ export const PauseMembership = ({ closeHandler }) => {
 
   const onPauseClick = () => {
     const pauseReason = reason === 'other' ? reasonOpenAnswer : reason;
-    pauseSubscriptionAction(pauseReason);
+    dispatch(pauseSubscription(activeSubscription, pauseReason));
     onClose();
   };
 

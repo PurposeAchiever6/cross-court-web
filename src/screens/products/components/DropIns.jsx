@@ -23,7 +23,7 @@ const DropIns = ({ selectProductHandler, availableProducts }) => {
             access to Office Hours. No membership perks. Expires in 30 days. Does not renew.
           </span>
           <Button onClick={() => selectProductHandler(product)} className="h-max">
-            Buy - {formatPrice(product.price)}
+            Buy - {formatPrice(product.priceForUser)}
           </Button>
         </div>
       ))}

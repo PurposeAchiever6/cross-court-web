@@ -73,7 +73,7 @@ const OnboardingPaymentMethodPage = () => {
             </Link>{' '}
             and policies found in the{' '}
             <Link variant="purple-dark" to={ROUTES.MEMBER_HANDBOOK} target="_blank">
-              Member Handobook
+              Member Handbook
             </Link>
           </InputCheckboxField>
         </div>

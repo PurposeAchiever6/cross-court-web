@@ -67,6 +67,11 @@ const SelectPaymentMethodModal = ({
             </div>
           </SelectableBox>
         ))}
+        {paymentMethods.length === 0 && (
+          <div className="bg-cc-gray-400 p-4 sm:p-8 text-sm">
+            There are no payment methods added yet.
+          </div>
+        )}
         <div className="flex items-center justify-between mt-6">
           <Button disabled={!selectedPaymentMethod} onClick={continueHandler}>
             Continue

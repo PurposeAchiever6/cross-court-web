@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { useHistory } from 'react-router-dom';
 
+import ROUTES from 'shared/constants/routes';
 import { initialLoadInit, editProfileInit } from 'screens/my-account/actionCreators';
 import { getPageLoading, getUserProfile, getEditProfileLoading } from 'screens/my-account/reducer';
-
 import HeaderAction from 'shared/components/HeaderAction';
 import missingProfileImg from 'shared/images/missing-profile-image.jpg';
 import InputTextField from 'shared/components/InputTextField';
@@ -83,7 +83,7 @@ const Account = () => {
             onConfirm={submitForm}
             confirmLoading={editProfileLoading}
             cancelText="Cancel"
-            onCancel={() => history.goBack()}
+            onCancel={() => history.push(ROUTES.MYACCOUNT)}
           />
           <Form className="flex flex-col">
             <div className="flex flex-col md:flex-row mb-12">

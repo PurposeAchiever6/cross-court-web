@@ -22,7 +22,7 @@ import {
   closeSelectPaymentMethodModal,
 } from 'screens/checkout/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
-import { initialLoad, reactivateSubscription } from 'screens/products/actionCreators';
+import { initialLoad } from 'screens/products/actionCreators';
 import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import Loading from 'shared/components/Loading';
@@ -36,7 +36,6 @@ import Scoutings from 'screens/products/components/Scoutings';
 import FAQ from 'screens/products/components/FAQ';
 import AmenitiesAndFeatures from 'screens/products/components/AmenitiesAndFeatures';
 import NoSessionCredits from 'screens/products/components/NoSessionCredits';
-import EndMembershipModal from 'shared/components/EndMembershipModal';
 import SelectPaymentMethodModal from 'screens/checkout/components/SelectPaymentMethodModal';
 import PurchaseDetailsModal from 'screens/checkout/components/PurchaseDetailsModal';
 import AddPaymentMethodModal from 'screens/checkout/components/AddPaymentMethodModal';
@@ -63,7 +62,6 @@ const ProductsPage = () => {
   const comesFromCancelModal = state?.comesFromCancelModal;
   const showScouting = state?.showScouting;
 
-  const [showEndMembershipModal, setShowEndMembershipModal] = useState(false);
   const [showMembershipIsPausedModal, setShowMembershipIsPausedModal] = useState(false);
   const [showPurchaseDetailsModal, setShowPurchaseDetailsModal] = useState(false);
 
@@ -98,28 +96,30 @@ const ProductsPage = () => {
     }
   };
 
-  const cancelMembership = () => {
-    setShowEndMembershipModal(true);
-  };
-
-  const reactivateMembership = () => {
-    dispatch(reactivateSubscription(activeSubscription));
-  };
-
   const onSubmit = (isActiveSubscription, product) => {
     if (isActiveSubscription) {
-      activeSubscription.canceled ? reactivateMembership() : cancelMembership();
+      history.push(ROUTES.MANAGE_MEMBERSHIP);
     } else {
       selectProductHandler(product);
     }
   };
 
-  const getSubmitText = (isActiveSubscription, activeSubscription) => {
+  const getSubmitText = (isActiveSubscription, activeSubscription, product = null) => {
     if (isActiveSubscription) {
       return activeSubscription.canceled ? 'Reactivate' : 'Cancel';
     }
 
-    return activeSubscription ? 'Select' : 'Join';
+    if (activeSubscription) {
+      if (product) {
+        return Number(activeSubscription.product.price) > Number(product.price)
+          ? 'Downgrade'
+          : 'Upgrade';
+      }
+
+      return activeSubscription ? 'Select' : 'Join';
+    }
+
+    return 'Join';
   };
 
   useEffect(() => {
@@ -248,10 +248,6 @@ const ProductsPage = () => {
       <MembershipIsPausedModal
         isOpen={showMembershipIsPausedModal}
         closeHandler={() => setShowMembershipIsPausedModal(false)}
-      />
-      <EndMembershipModal
-        isOpen={showEndMembershipModal}
-        closeHandler={() => setShowEndMembershipModal(false)}
       />
       <SelectPaymentMethodModal
         isOpen={selectPaymentMethodModalOpen}

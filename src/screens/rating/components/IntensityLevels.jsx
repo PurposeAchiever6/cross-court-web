@@ -4,6 +4,7 @@ import { isEmpty } from 'ramda';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import ROUTES from 'shared/constants/routes';
 import { initialLoadInit, updateSkillRatingInit } from 'screens/my-account/actionCreators';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import Loading from 'shared/components/Loading';
@@ -123,7 +124,7 @@ const IntensityLevels = ({ isEdit, setSelectedSkillRating }) => {
           confirmText="Save"
           onConfirm={updateSkillRating}
           cancelText="Cancel"
-          onCancel={() => history.goBack()}
+          onCancel={() => history.push(ROUTES.MYACCOUNT)}
         />
       )}
       <div>

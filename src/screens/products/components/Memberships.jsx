@@ -17,7 +17,7 @@ const Memberships = ({ onSubmit, availableProducts, activeSubscription, getSubmi
           <div key={product.id} className="w-full lg:w-1/3 lg:px-6 shrink-0 mb-6 lg:mb-0">
             <ProductPlan
               product={product}
-              submitText={getSubmitText(isActiveSubscription, activeSubscription)}
+              submitText={getSubmitText(isActiveSubscription, activeSubscription, product)}
               submitBtnSecondary={isActiveSubscription}
               handleSubmit={(product) => onSubmit(isActiveSubscription, product)}
             />
