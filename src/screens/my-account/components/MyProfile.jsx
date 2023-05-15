@@ -17,7 +17,6 @@ import Button from 'shared/components/Button';
 import Link from 'shared/components/Link';
 import MembershipBadgeSvg from 'shared/components/svg/MembershipBadgeSvg';
 import { logoutInit } from 'screens/auth/actionCreators';
-import { ZERO_SKLZ_CREDITS_NOTICE } from 'screens/my-account/constants';
 import { referralText } from 'shared/constants/referrals';
 import { editProfileInit } from '../actionCreators';
 
@@ -38,6 +37,9 @@ const MyProfile = ({ profile }) => {
     editProfileAction({ applyCcCashToSubscription: value });
   };
 
+  const date = new Date();
+  const month = date.toLocaleString('en-US', { month: 'long' });
+
   const {
     defaultPaymentMethod,
     activeSubscription,
@@ -57,8 +59,6 @@ const MyProfile = ({ profile }) => {
     unlimitedSkillSessionCredits,
     subscriptionSkillSessionCredits,
   } = profile;
-
-  const subscriptionSkillSessionsCreditsPerMonth = activeSubscription?.product?.skillSessionCredits;
 
   const ccCashExplanationTooltip =
     'Accumulate CC CA$H through membership referrals and attending certain sessions that have a discount offer';
@@ -126,16 +126,33 @@ const MyProfile = ({ profile }) => {
       </div>
       <div className="flex flex-col md:flex-row gap-6 mt-20">
         <div className="bg-cc-blue-700 p-6 flex gap-6 md:w-1/3">
-          <div className="flex items-center justify-center text-9xl font-dharma_gothic_cheavy bg-cc-blue-300 py-3 px-6">
-            {unlimitedCredits ? 'Unl' : totalCredits}
-          </div>
-          <div className="flex flex-col">
-            <span className="font-shapiro95_super_wide text-lg">
-              {unlimitedCredits
-                ? 'Unl Sessions left'
-                : `${totalCredits} ${pluralize('Session', totalCredits)} left`}
-            </span>
-            {activeSubscription && <span className="opacity-60">This month</span>}
+          <div className="flex flex-col w-full">
+            <div className="flex items-center justify-between">
+              <span className="font-shapiro95_super_wide text-lg">Credits Left</span>
+              <span className="block opacity-60">{month}</span>
+            </div>
+            <div className="flex gap-2 items-center justify-between mt-2">
+              <div className="flex items-center gap-2 bg-cc-blue-300 p-2 w-1/2">
+                <span className="block font-shapiro95_super_wide text-xl">
+                  {unlimitedCredits ? 'Unl' : totalCredits}
+                </span>
+                <span className="block text-xs">{pluralize('Session', totalCredits)}</span>
+              </div>
+              <div className="flex items-center gap-2 bg-cc-blue-300 p-2 w-1/2">
+                <span className="block font-shapiro95_super_wide text-xl">
+                  {unlimitedSkillSessionCredits ? 'Unl' : subscriptionSkillSessionCredits}
+                </span>
+                <span className="block text-xs">
+                  {pluralize('Non-session', subscriptionSkillSessionCredits)}
+                </span>
+              </div>
+            </div>
+            {scoutingCredits > 0 && (
+              <div className="flex items-center mt-2 gap-2 bg-cc-blue-300 p-2">
+                <span className="block font-shapiro95_super_wide text-xl">{scoutingCredits}</span>
+                <span className="block text-xs">{pluralize('Evaluation', scoutingCredits)}</span>
+              </div>
+            )}
             {activeSubscription && (
               <>
                 <span className="text-xs mt-4">
@@ -160,34 +177,10 @@ const MyProfile = ({ profile }) => {
                 </span>
               </>
             )}
-            {scoutingCredits > 0 && (
-              <span className="text-xs mt-1">
-                <span className="font-shapiro95_super_wide mr-2">
-                  Eval {pluralize('credit', scoutingCredits)}:
-                </span>
-                {scoutingCredits}
-              </span>
-            )}
             {activeSubscription && (
-              <>
-                {(subscriptionSkillSessionsCreditsPerMonth !== 0 ||
-                  subscriptionSkillSessionCredits !== 0) && (
-                  <>
-                    <span className="text-xs mt-1">
-                      <span className="font-shapiro95_super_wide mr-2">
-                        SKLZ {pluralize('credit', subscriptionSkillSessionCredits)}:
-                      </span>
-                      {unlimitedSkillSessionCredits ? 'Unl' : subscriptionSkillSessionCredits}
-                    </span>
-                    {subscriptionSkillSessionCredits === 0 && (
-                      <div className="text-2xs">{ZERO_SKLZ_CREDITS_NOTICE}</div>
-                    )}
-                  </>
-                )}
-                <span className="text-sm mt-2">
-                  <Link to={ROUTES.MANAGE_MEMBERSHIP}>Manage membership</Link>
-                </span>
-              </>
+              <span className="text-sm mt-2">
+                <Link to={ROUTES.MANAGE_MEMBERSHIP}>Manage membership</Link>
+              </span>
             )}
           </div>
         </div>
