@@ -75,11 +75,9 @@ const AppWrapper = styled.div`
   min-height: 100vh;
 
   main {
-    overflow: hidden;
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
   }
 `;
 const { body } = document;

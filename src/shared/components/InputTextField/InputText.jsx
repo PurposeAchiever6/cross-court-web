@@ -11,7 +11,7 @@ const InputTextContainer = styled.div`
   }
 `;
 
-function InputText({
+const InputText = ({
   name,
   label,
   labelColor,
@@ -25,7 +25,7 @@ function InputText({
   variant,
   className,
   ...props
-}) {
+}) => {
   const [inputId] = useState((Math.random() + 1).toString(36).substring(2));
   const [leftIconWidth, setLeftIconWidth] = useState(null);
   const [rightIconWidth, setRightIconWidth] = useState(null);
@@ -122,7 +122,7 @@ function InputText({
       </InputTextContainer>
     </div>
   );
-}
+};
 
 InputText.defaultProps = {
   label: null,

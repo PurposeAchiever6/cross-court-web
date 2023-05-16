@@ -17,8 +17,16 @@ import InputPhoneField from 'shared/components/InputPhoneField';
 import InputDateField from 'shared/components/InputDateField';
 import InputSelectField from 'shared/components/InputSelectField';
 import InputFileField from 'shared/components/InputFileField';
-import { genderSelectOptions, formatPhoneNumber, phoneRegExp } from 'shared/utils/helpers';
 import Loading from 'shared/components/Loading';
+import CrossSvg from 'shared/components/svg/CrossSvg';
+import LinkSvg from 'shared/components/svg/LinkSvg';
+import Button from 'shared/components/Button';
+import {
+  genderSelectOptions,
+  formatPhoneNumber,
+  phoneRegExp,
+  urlRegExp,
+} from 'shared/utils/helpers';
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string().required('Required'),
@@ -57,6 +65,29 @@ const Account = () => {
     birthdayDay: profile?.birthday ? new Date(profile.birthday).getUTCDate() : '',
     birthdayMonth: profile?.birthday ? new Date(profile.birthday).getUTCMonth() + 1 : '',
     birthdayYear: profile?.birthday ? new Date(profile.birthday).getUTCFullYear() : '',
+    links: profile?.links || [],
+    newLink: '',
+  };
+
+  const addNewLink = (formValues, setFieldValue, setFieldError) => {
+    const { newLink, links } = formValues;
+
+    if (!urlRegExp.test(newLink)) {
+      setFieldError('newLink', 'Invalid link format');
+      return;
+    }
+
+    setFieldValue('links', [...links, newLink]);
+    setFieldValue('newLink', '');
+    setFieldError('newLink', null);
+  };
+
+  const removeLink = (formValues, setFieldValue, linkToRemove) => {
+    const { links } = formValues;
+    setFieldValue(
+      'links',
+      links.filter((link) => link !== linkToRemove)
+    );
   };
 
   if (isLoading || isEmpty(profile)) {
@@ -76,7 +107,7 @@ const Account = () => {
       }}
       validationSchema={validationSchema}
     >
-      {({ setFieldValue, submitForm }) => (
+      {({ values, setFieldValue, setFieldError, submitForm }) => (
         <>
           <HeaderAction
             confirmText="Save"
@@ -159,21 +190,66 @@ const Account = () => {
                 />
               </div>
             </div>
-            <div className="flex flex-col md:flex-row mb-12">
+            <div className="flex flex-col md:flex-row mb-4">
               <span className="text-2xl font-shapiro95_super_wide md:w-1/4 mb-6 md:mb-0">
                 Links
               </span>
               <div className="flex flex-col md:w-3/4">
                 <InputTextField
                   name="instagramUsername"
+                  label="Network Yourself"
+                  labelColor="white"
                   placeholder="@johndoe"
                   dark
                   variant="expanded"
-                  className="mb-6"
                   leftIcon
                   icon={<FontAwesomeIcon icon={faInstagram} size="xl" />}
                 />
               </div>
+            </div>
+            {values.links.length > 0 && (
+              <div className="md:w-3/4 md:self-end">
+                {values.links.map((link, index) => (
+                  <div className="relative">
+                    <button
+                      className="absolute text-white z-[100] top-7 right-4"
+                      onClick={() => removeLink(values, setFieldValue, link)}
+                      type="button"
+                    >
+                      <CrossSvg className="w-3" />
+                    </button>
+                    <InputTextField
+                      key={`link-${index}`}
+                      formik={false}
+                      value={link}
+                      readOnly
+                      dark
+                      variant="expanded"
+                      name="newLink"
+                      icon={<LinkSvg className="w-5" />}
+                      leftIcon
+                      className="mb-4"
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+            <div className="md:w-3/4 md:self-end">
+              <InputTextField
+                dark
+                variant="expanded"
+                name="newLink"
+                icon={<LinkSvg className="w-5" />}
+                leftIcon
+                className="mb-4"
+              />
+              <Button
+                variant="outline-white"
+                disabled={values.newLink.length === 0}
+                onClick={() => addNewLink(values, setFieldValue, setFieldError)}
+              >
+                Add
+              </Button>
             </div>
           </Form>
         </>
