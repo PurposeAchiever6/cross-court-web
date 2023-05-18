@@ -5,64 +5,49 @@ import Accordion from 'shared/components/Accordion';
 
 const QUESTIONS = [
   {
-    question: 'What are highlights and how do they work?',
+    question: 'What are highlights?',
     answer:
-      'Once you’re a VET or MVP member, you have access to Session highlights where you can find your on court moments and clip them from your mobile device. Use your highlights to see where you can improve or share the gems on social. Instructions to access "Pixellot" can be found on the “content” page in our footer.',
+      "Once you're a member, you have access to VOD content from your experience where you can find your personal highlights and clip them from your mobile device. Use your highlights to see where you can improve or share the gems on social. Instructions to access 'Pixellot' can be found in the footer of the website.",
   },
   {
     question: 'What are rollover credits?',
     answer:
-      'To provide added flexibility, certain memberships, come with the rollover sessions where a fixed amount of unused Sessions from the prior month rollover to the next month.',
+      'To provide added flexibility to your busy schedule, memberships come with a rollover feature where a fixed amount of unused credits from the prior month rollover to the next month.',
   },
   {
-    question: 'What is the policy for cancelling a session or no showing?',
+    question: 'How much is it to rent a jersey and towel? Can I buy a jersey?',
     answer:
-      'In order to cancel a Reservation and return your purchased session to your account, you must cancel your Reservation at least 5 hours prior to the start time of such Reservation. Once your Reservation is cancelled on time, your purchased session will be returned to your account to be used at a future date. If you haven’t cancelled by the deadline listed above, your session will be used for the Reservation and will no longer be shown in your account. Any individual who cancels inside the 5 hour cancellation window will be automatically charged a $10 penalty in addition to losing a session credit. Booking a reservation and "no showing", or not cancelling a session you are signed up for, will result in a lost session credit (does not apply to MVP members) and a $20 no show penalty.',
-  },
-  {
-    question: 'How much is it to rent a jersey? Can I buy a jersey instead?',
-    answer:
-      'Our VET and MVP memberships include free rental of a jersey and a towel for each session at no extra cost. Jerseys can be rented for $5 and towels for $3 for ROOKIE members/non-members or jerseys can purchased in club for $50.',
+      'Our memberships include free rental of 1 jersey and 1 towel for the day at no extra cost. Additional towels can be rented per session or purchased in club. Jerseys for Day Pass players can be rented per session, or purchased in-club.',
   },
   {
     question: 'How does the waitlist work?',
     answer:
-      'All members have priority on the waitlist over non members, however, MVP members have priority over all members, while VET members have priority over ROOKIE members',
+      'All members have priority on the waitlist over non members, however, MVP members have priority over all members, while VET members have priority over ROOKIE members.',
   },
   {
-    question: 'If I have a membership, can I sign up for any session?',
+    question: 'If I have a membership, can I access any session?',
     answer:
       'Members have potential to book our tiered sessions, although certain, higher intensity sessions may be unaccessible to some members depending on the individual\'s score in "My Account". Non-members do not have access to higher tiered sessions.',
   },
   {
-    question: 'How does the membership freeze work?',
+    question: 'How does membership freeze work?',
     answer:
-      'If you’re going out of town or just need to take a quick break to recover, we have a pause membership feature for you. The Rookie and Vet Memberships allow you to pause your account for one month per year at no extra charge, while the MVP allows you to pause for two months per year for free. Once a free pause has been used, you can freeze your membership for a fee. You can pause your membership through your “My Account” portal.',
+      "If you're going out of town or just need to take a quick break to rest up, you can pause your membership. Some of the memberships may allow you to pause for free more than once. Once your free pauses have been used, you can still freeze your membership by paying a freeze fee. You can pause your membership through your 'My Account' portal. Free pauses reset each year. ",
   },
   {
-    question: 'How does private training work?',
+    question: 'How many sessions can I book in a single day?',
     answer:
-      'If you really want to take your game and confidence to the next level, you can book a 1:1 coaching session with one of our coaches by reaching out to us via email at ccteam@cross-court.com.',
+      'To ensure high quality play, and enable all members to have space on the court, we may restrict each member to booking a maximum number of sessions per day. This can change by location.',
   },
   {
-    question: 'Is there a restriction on the number of sessions I can book in a single day?',
+    question: 'How does the Day Pass credit work?',
     answer:
-      'Members can book two sessions per day max because we see that players reduce their intensity and effort if signed up for more than 2 sessions.',
+      'Having a membership allows you to purchase additional Day Pass credits at a discount if the remaining credits in your account for that month have been used. Each additional Day Pass credit will be discounted for members, while non-members can purchase a Day Pas for regular price, which grants access to one experience and/or access to Office Hours on that day. Day Passes expire in 30 days.',
   },
   {
-    question: 'How does the drop in credit work? What do I get with that?',
+    question: 'How do I update my intensity level?',
     answer:
-      'Drop in credits give you one credit that can be used for a session or SKLZ experience. You do not receive any membership perks.',
-  },
-  {
-    question: 'How do I upgrade my skill level?',
-    answer:
-      'Members have the ability to request a skill level update through your "My Account" page by providing required information or requesting a "player evaluation". We’re here to help you level up on and off the court. If you feel you’ve put in the time through Sessions, SKLZ, private training, our Shooting Machine, and Office Hours to upgrade your skill level, then you can request an evaluation where hustle and skill will be evaluated in real time.',
-  },
-  {
-    question: 'Can I cancel my membership at any time? ',
-    answer:
-      'You may cancel your membership at any time by going into "My Account" and completing the cancellation flow. Please note, we do require a 30 day notice for all cancellations and ask for certain information depending on the reason for cancelling. More information can be found in our "Terms of Service".',
+      "Members have the ability to request an intensity level update through the 'My Account' page. We're here to help you level up on and off the court. If you feel you've put in the time through Sessions, SKLZ, private training, our Shooting Machine, and Office Hours, then you can buy an evaluation credit or provide data to show you have played at a certain level of competitive basketball.",
   },
 ];
 

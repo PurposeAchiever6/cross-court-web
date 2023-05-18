@@ -177,7 +177,7 @@ const ContentPage = () => (
           Let's get it!
         </p>
         <p className="text-xs md:text-lg text-center uppercase mb-10">
-          "Make sport your lifestyle"
+          "Connect. Create. Compete."
         </p>
       </div>
     </ol>

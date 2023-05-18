@@ -14,10 +14,10 @@ const TermsAndConditions = () => (
       <br />
       <div className="py-2 md:pl-14">A. Must Be 18 Years Old</div>
       <br />
-      You must be at least 18 years old to sign up, purchase and/or participate in any session.
-      Crosscourt does not accept the registration of minors and has the right to refuse the sessions
-      to any person who has signed up and/or purchased a session and is later revealed to be a
-      minor.
+      You must be at least 18 years old to sign up, purchase and/or participate in any session, and
+      to enter a Crosscourt club. Crosscourt does not accept the registration of minors and has the
+      right to refuse the sessions to any person who has signed up and/or purchased a session and is
+      later revealed to be a minor.
       <br />
       <br />
       <div className="py-2 md:pl-14">B. Crosscourt Sessions</div>
