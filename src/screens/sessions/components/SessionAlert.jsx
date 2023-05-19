@@ -31,7 +31,7 @@ const SessionAlert = ({ session, className }) => {
   }
 
   return (
-    <Alert variant={alertData.variant} className={`sm:text-center ${className}`}>
+    <Alert variant={alertData.variant} className={className}>
       {alertData.text}
     </Alert>
   );

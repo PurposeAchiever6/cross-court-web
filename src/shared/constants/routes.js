@@ -1,10 +1,9 @@
 import { TAB_QUERY_PARAM } from 'shared/components/Tabs';
 
-import { BILLING_TAB } from './tabs';
+import { BILLING_TAB, BIO_TAB } from './tabs';
 
 export default {
   ABOUT_YOURSELF: '/about-yourself',
-  BILLING: `/settings?${TAB_QUERY_PARAM}=${BILLING_TAB}`,
   CAREERS: '/careers',
   CHECKOUT_CONFIRMED: '/checkout/confirmed',
   CHECKOUT_MEMBERSHIP_CONFIRMED: '/checkout/membership',
@@ -35,6 +34,8 @@ export default {
   SESSION: '/session/:id/:date',
   SESSIONRESERVED: '/session/reserved',
   SETTINGS: '/settings',
+  SETTINGS_BILLING: `/settings?${TAB_QUERY_PARAM}=${BILLING_TAB}`,
+  SETTINGS_BIO: `/settings?${TAB_QUERY_PARAM}=${BIO_TAB}`,
   SIGNUP: '/signup',
   SIGNUP_VERIFICATION: '/signup/verification',
   SIGNUP_CONFIRMATION: '/signup/confirmation',

@@ -149,7 +149,7 @@ const ManageMembershipPage = () => {
                   Next bill due: {shortMonthDayFullYear(activeSubscription.currentPeriodEnd)}.
                 </span>
               </div>
-              <Button className="w-full" to={ROUTES.BILLING}>
+              <Button className="w-full" to={ROUTES.SETTINGS_BILLING}>
                 EDIT CARDS
               </Button>
             </div>

@@ -21,7 +21,7 @@ const AvatarUploader = ({ name, img, placeholderImg, description, error, classNa
   return (
     <div className={className}>
       <div className="flex items-start md:items-center bg-cc-gray-400 p-6">
-        <Avatar img={avatarImg} size="md" className="shrink-0 mr-8" />
+        <Avatar img={avatarImg} size="md" className="shrink-0 mr-8 bg-cc-purple rounded-full" />
         <div className="md:flex md:items-center">
           <InputFileField
             name={name}
@@ -31,7 +31,7 @@ const AvatarUploader = ({ name, img, placeholderImg, description, error, classNa
             showError={false}
             className="mb-4 md:mb-0 md:mr-8"
           />
-          {description && <p className="text-xs md:text-sm">{description}</p>}
+          {description && <p className="text-xs">{description}</p>}
         </div>
       </div>
       {errorMsg && (

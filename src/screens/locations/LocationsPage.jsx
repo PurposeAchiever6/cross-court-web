@@ -3,17 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
-import Loading from 'shared/components/Loading';
-import PageLayout from 'shared/components/layout/PageLayout';
-import SectionLayout from 'shared/components/layout/SectionLayout';
 import { add, isPast, startOfWeek, getUTCDate } from 'shared/utils/date';
 import { isUserInFirstSessionFlow, isUserInFirstFreeSessionFlow } from 'shared/utils/user';
-
 import { getUserProfile } from 'screens/my-account/reducer';
-import LocationPicker from './components/LocationPicker';
-import WeekSelector from './components/WeekSelector';
-import SessionsList from './components/SessionsList';
-import FreeSessionCreditAdded from './components/FreeSessionCreditAdded';
 import {
   getPageLoading,
   getAvailableLocations,
@@ -21,13 +13,20 @@ import {
   getSelectedLocation,
   getSessionsLoading,
   getSelectedDate,
-} from './reducer';
+} from 'screens/locations/reducer';
 import {
   getLocations,
   getSessionsByLocation,
   getSessionsByDate,
   setSelectedDate,
-} from './actionCreators';
+} from 'screens/locations/actionCreators';
+import Loading from 'shared/components/Loading';
+import PageLayout from 'shared/components/layout/PageLayout';
+import SectionLayout from 'shared/components/layout/SectionLayout';
+import LocationPicker from 'screens/locations/components/LocationPicker';
+import WeekSelector from 'screens/locations/components/WeekSelector';
+import SessionsList from 'screens/locations/components/SessionsList';
+import FreeSessionCreditAdded from 'screens/locations/components/FreeSessionCreditAdded';
 
 const LocationsPage = () => {
   const history = useHistory();

@@ -14,12 +14,6 @@ body {
   margin: 0;
 }
 
-#modal-root {
-  position: relative;
-  z-index: 999;
-  font-family: 'shapiro95_super_wide';
-}
-
 #root {
   position: relative;
   overflow: auto;

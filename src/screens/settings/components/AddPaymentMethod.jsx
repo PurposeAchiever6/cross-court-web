@@ -13,7 +13,7 @@ const AddPaymentMethod = () => {
 
   const addCardLoading = useSelector(getAddCardLoading);
 
-  const redirectTo = location.state?.redirectTo ?? ROUTES.BILLING;
+  const redirectTo = location.state?.redirectTo ?? ROUTES.SETTINGS_BILLING;
 
   const addCardHandler = (stripe, cardElement) => {
     dispatch(addCard(stripe, cardElement, redirectTo));

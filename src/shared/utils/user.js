@@ -77,3 +77,10 @@ export const restrictOnboardingAccess = (userProfile) =>
   userProfile.signupState === SIGNUP_STATE_COMPLETED ||
   userProfile.activeSubscription ||
   !isUserInFirstSessionFlow(userProfile);
+
+export const accountMissingInformation = (userProfile) =>
+  !userProfile.imageUrl ||
+  !userProfile.workCompany ||
+  !userProfile.workIndustry ||
+  !userProfile.workOccupation ||
+  (!userProfile.instagramProfile && userProfile.links.length === 0);

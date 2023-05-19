@@ -1,20 +1,26 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
-import { getPurchaseConfirmed, getSelectedProduct } from 'screens/checkout/reducer';
+import { getSelectedProduct as getSelectedProductOnboarding } from 'screens/onboarding/reducer';
+import {
+  getPurchaseConfirmed,
+  getSelectedProduct as getSelectedProductCheckout,
+} from 'screens/checkout/reducer';
 import dayPassImg from 'screens/checkout/images/day-pass.png';
-
-import Button from 'shared/components/Button';
 import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
+import Button from 'shared/components/Button';
 import CheckmarkSvg from 'shared/components/svg/CheckmarkSvg';
 import GradientDots from 'shared/components/GradientDots';
+import AccountMissingInformationLink from 'screens/checkout/components/AccountMissingInformationLink';
 
 const CheckoutConfirm = () => {
   const purchaseConfirmed = useSelector(getPurchaseConfirmed);
-  const selectedProduct = useSelector(getSelectedProduct);
+  const selectedProductCheckout = useSelector(getSelectedProductCheckout);
+  const selectedProductOnboarding = useSelector(getSelectedProductOnboarding);
+  const selectedProduct = selectedProductCheckout || selectedProductOnboarding;
 
   if (!purchaseConfirmed) {
     return <Redirect to={ROUTES.LOCATIONS} />;
@@ -48,6 +54,7 @@ const CheckoutConfirm = () => {
               Ready to go?
             </span>
             <Button to={ROUTES.LOCATIONS}>BOOK SESSION</Button>
+            <AccountMissingInformationLink className="text-sm mt-5" />
           </div>
         </SectionLayout>
         <img className="w-full md:w-1/2" src={dayPassImg} alt="day-pass" />

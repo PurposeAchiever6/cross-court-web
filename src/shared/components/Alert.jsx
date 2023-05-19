@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ExclamationSvg from 'shared/components/svg/ExclamationSvg';
 
-const Alert = ({ variant, align, className, children }) => {
+const Alert = ({ variant, align, className, showIcon, children }) => {
   const getVariantClasses = (() => {
     switch (variant) {
       case 'success':
@@ -35,21 +35,23 @@ const Alert = ({ variant, align, className, children }) => {
       <div
         className={`text-sm px-2 sm:px-4 py-3 flex items-center ${getVariantClasses} ${getAlignClass}`}
       >
-        <ExclamationSvg className="w-4 shrink-0 -mt-px mr-2" />
+        {showIcon && <ExclamationSvg className="w-4 shrink-0 -mt-px mr-2" />}
         {children}
       </div>
     </div>
   );
 };
 
-Alert.propTypes = {
-  className: '',
+Alert.defaultProps = {
+  showIcon: true,
   align: 'center',
+  className: '',
 };
 
 Alert.propTypes = {
   variant: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  showIcon: PropTypes.bool,
   align: PropTypes.string,
   className: PropTypes.string,
 };

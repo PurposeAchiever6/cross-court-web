@@ -3,7 +3,7 @@ import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 
 import Tabs from 'shared/components/Tabs';
-import { BILLING_TAB } from 'shared/constants/tabs';
+import { BILLING_TAB, BIO_TAB } from 'shared/constants/tabs';
 
 import Account from 'screens/settings/components/Account';
 import Billing from 'screens/settings/components/Billing';
@@ -22,7 +22,7 @@ const SettingsPage = () => (
           <div label={BILLING_TAB} showSeparator>
             <Billing />
           </div>
-          <div label="Bio">
+          <div label={BIO_TAB}>
             <Bio />
           </div>
           <div label="Intensity Rating">

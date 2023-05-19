@@ -17,6 +17,7 @@ import SportCharacter from 'shared/images/sport-character.png';
 import EmailSvg from 'shared/components/svg/EmailSvg';
 import Steps from 'shared/components/Steps';
 import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
+import AccountMissingInformationLink from 'screens/checkout/components/AccountMissingInformationLink';
 
 const CheckoutConfirm = () => {
   const purchaseConfirmed = useSelector(getPurchaseConfirmed);
@@ -67,6 +68,7 @@ const CheckoutConfirm = () => {
               Ready to go?
             </span>
             <Button to={ROUTES.LOCATIONS}>BOOK SESSION</Button>
+            <AccountMissingInformationLink className="text-sm mt-5" />
           </div>
         </SectionLayout>
         <SectionLayout className="w-full md:w-1/2 bg-black text-white py-6 md:py-28">

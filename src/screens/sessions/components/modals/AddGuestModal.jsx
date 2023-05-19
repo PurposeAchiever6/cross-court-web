@@ -83,7 +83,12 @@ const AddGuestModal = ({ isOpen, closeHandler, session }) => {
           <Form>
             <InputTextField label="Guest First Name*" name="firstName" className="mb-4" />
             <InputTextField label="Guest Last Name*" name="lastName" className="mb-4" />
-            <InputPhoneField label="Guest Phone*" name="phoneNumber" className="mb-4" />
+            <InputPhoneField
+              label="Guest Phone*"
+              name="phoneNumber"
+              showFlag={false}
+              className="mb-4"
+            />
             <InputTextField label="Guest Email*" name="email" className="mb-6" />
             <div className="text-right">
               <Button loading={isLoading} type="submit" className="w-full sm:w-auto">

@@ -4,7 +4,8 @@ import { useStripe, useElements } from '@stripe/react-stripe-js';
 import { useHistory, Redirect } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
-import { isRecurring } from 'screens/products/utils';
+import { formatPrice, isRecurring } from 'screens/products/utils';
+import { isForever } from 'screens/promo-codes/utils';
 import { getSelectedProduct, getPaymentMethodLoading } from 'screens/onboarding/reducer';
 import { setPaymentMethodInit } from 'screens/onboarding/actionCreators';
 import OnboardingLayout, {
@@ -30,9 +31,24 @@ const OnboardingPaymentMethodPage = () => {
 
   const [termsAndConditions, setTermsAndConditions] = useState(false);
   const [awareRecurringProduct, setAwareRecurringProduct] = useState(false);
+  const [awareRecurringProductPromoCode, setAwareRecurringProductPromoCode] = useState(false);
 
+  const selectedProductPromoCode = selectedProduct?.promoCode;
   const recurringProduct = isRecurring(selectedProduct);
-  const btnDisabled = !termsAndConditions || (recurringProduct && !awareRecurringProduct);
+  const showAwareRecurringProductPromoCode =
+    selectedProductPromoCode && !isForever(selectedProduct.promoCode);
+
+  const buttonDisabled = (() => {
+    if (recurringProduct) {
+      if (showAwareRecurringProductPromoCode) {
+        return !termsAndConditions || !awareRecurringProduct || !awareRecurringProductPromoCode;
+      }
+
+      return !termsAndConditions || !awareRecurringProduct;
+    }
+
+    return !termsAndConditions;
+  })();
 
   const setPaymentMethod = () => {
     dispatch(setPaymentMethodInit({ stripe, cardElement: elements.getElement('cardNumber') }));
@@ -51,15 +67,35 @@ const OnboardingPaymentMethodPage = () => {
         <PromoCode product={selectedProduct} className="mb-8" />
         <div>
           {recurringProduct && (
-            <InputCheckboxField
-              name="awareRecurringProduct"
-              onChange={() => setAwareRecurringProduct(!awareRecurringProduct)}
-              value={awareRecurringProduct}
-              formik={false}
-              className="mb-2"
-            >
-              I’m aware this is a monthly recurring subscription
-            </InputCheckboxField>
+            <>
+              <InputCheckboxField
+                name="awareRecurringProduct"
+                onChange={() => setAwareRecurringProduct(!awareRecurringProduct)}
+                value={awareRecurringProduct}
+                formik={false}
+                className="mb-2"
+              >
+                I’m aware this is a monthly recurring subscription
+              </InputCheckboxField>
+              {showAwareRecurringProductPromoCode && (
+                <InputCheckboxField
+                  name="awareRecurringProductPromoCode"
+                  onChange={() =>
+                    setAwareRecurringProductPromoCode(!awareRecurringProductPromoCode)
+                  }
+                  value={awareRecurringProductPromoCode}
+                  formik={false}
+                  className="mb-2"
+                >
+                  I will be billed at the regular {formatPrice(selectedProduct.priceForUser)}/month
+                  rate if I do not change my membership tier
+                  {selectedProductPromoCode.durationInMonths === 1
+                    ? ' prior to the next billing date'
+                    : ` in the next ${selectedProductPromoCode.durationInMonths} months`}
+                  .
+                </InputCheckboxField>
+              )}
+            </>
           )}
           <InputCheckboxField
             name="termsAndConditions"
@@ -71,10 +107,14 @@ const OnboardingPaymentMethodPage = () => {
             <Link variant="purple-dark" to={ROUTES.TERMS} target="_blank">
               terms and conditions
             </Link>{' '}
-            and policies found in the{' '}
-            <Link variant="purple-dark" to={ROUTES.MEMBER_HANDBOOK} target="_blank">
-              Member Handbook
-            </Link>
+            {recurringProduct && (
+              <>
+                and policies found in the{' '}
+                <Link variant="purple-dark" to={ROUTES.MEMBER_HANDBOOK} target="_blank">
+                  Member Handbook
+                </Link>
+              </>
+            )}
           </InputCheckboxField>
         </div>
       </OnboardingLayoutContent>
@@ -87,7 +127,7 @@ const OnboardingPaymentMethodPage = () => {
           <Button
             onClick={setPaymentMethod}
             loading={paymentMethodLoading}
-            disabled={btnDisabled}
+            disabled={buttonDisabled}
             className="w-full"
           >
             Next

@@ -6,7 +6,11 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import toast from 'shared/utils/toast';
 import { hasConfirmCodeOfConduct } from 'shared/utils/codeOfConduct';
-import { userHasCreditsForSession, isUserInFirstSessionFlow } from 'shared/utils/user';
+import {
+  userHasCreditsForSession,
+  isUserInFirstSessionFlow,
+  accountMissingInformation,
+} from 'shared/utils/user';
 import { validateBooking } from 'screens/sessions/utils';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -21,6 +25,7 @@ import {
   closeWaitlistModal as closeWaitlistModalAction,
 } from 'screens/sessions/actionCreators';
 import HeaderAction from 'shared/components/HeaderAction';
+import AccountRequirementsModal from 'screens/sessions/components/modals/AccountRequirementsModal';
 import CodeOfConductModal from 'screens/sessions/components/modals/CodeOfConductModal';
 import FirstTimersInformationModal from 'screens/sessions/components/modals/FirstTimersInformationModal';
 import OpenClubGoalsModal from 'screens/sessions/components/modals/OpenClubGoalsModal';
@@ -53,10 +58,12 @@ const SessionHeaderAction = ({ session, date }) => {
   const loadingButton = useSelector(getSessionsLoadingBtns).includes(id);
 
   const [showCancelModal, setShowCancelModal] = useState(false);
+  const [showAccountRequirementsModal, setShowAccountRequirementsModal] = useState(false);
   const [showCodeOfConductModal, setShowCodeOfConductModal] = useState(false);
   const [showFirstTimersInformationModal, setShowFirstTimersInformationModal] = useState(false);
   const [showOpenClubGoalsModal, setShowOpenClubGoalsModal] = useState(false);
   const [showScoutingModal, setShowScoutingModal] = useState(false);
+  const [profileRequiredValues, setProfileRequiredValues] = useState(null);
   const [openClubGoal, setOpenClubGoal] = useState(null);
   const [shootingMachineIds, setShootingMachineIds] = useState([]);
   const [scouting, setScouting] = useState(false);
@@ -117,10 +124,12 @@ const SessionHeaderAction = ({ session, date }) => {
   };
 
   const bookSession = ({
+    skipAccountRequirementsModal,
     skipCodeOfConductModal,
     skipOpenClubGoalsModal,
     skipFirstTimersInformationModal,
     skipScoutingModal,
+    currentProfileRequiredValues,
   } = {}) => {
     if (!userHasCreditsForSession(currentUser, session)) {
       window.localStorage.setItem('redirect', window.location.pathname);
@@ -132,6 +141,11 @@ const SessionHeaderAction = ({ session, date }) => {
 
     if (!canBook) {
       toast.error({ title: errorTitle, description: errorDescription });
+      return;
+    }
+
+    if (accountMissingInformation(currentUser) && !skipAccountRequirementsModal) {
+      setShowAccountRequirementsModal(true);
       return;
     }
 
@@ -165,24 +179,36 @@ const SessionHeaderAction = ({ session, date }) => {
       goal: openClubGoal,
       shootingMachineIds,
       scouting,
+      profileRequiredValues: currentProfileRequiredValues || profileRequiredValues,
     };
 
     dispatch(reserveSessionInit(payload));
   };
 
+  const onConfirmAccoutRequirements = (values) => {
+    setProfileRequiredValues(values);
+    setShowAccountRequirementsModal(false);
+    bookSession({ skipAccountRequirementsModal: true, currentProfileRequiredValues: values });
+  };
+
   const onConfirmCodeOfConduct = () => {
     setShowCodeOfConductModal(false);
-    bookSession({ skipCodeOfConductModal: true });
+    bookSession({ skipAccountRequirementsModal: true, skipCodeOfConductModal: true });
   };
 
   const onConfirmOpenClubGoal = () => {
     setShowOpenClubGoalsModal(false);
-    bookSession({ skipCodeOfConductModal: true, skipOpenClubGoalsModal: true });
+    bookSession({
+      skipAccountRequirementsModal: true,
+      skipCodeOfConductModal: true,
+      skipOpenClubGoalsModal: true,
+    });
   };
 
   const onConfirmScouting = () => {
     setShowScoutingModal(false);
     bookSession({
+      skipAccountRequirementsModal: true,
       skipCodeOfConductModal: true,
       skipOpenClubGoalsModal: true,
       skipScoutingModal: true,
@@ -192,6 +218,7 @@ const SessionHeaderAction = ({ session, date }) => {
   const onConfirmFirstTimersInformation = () => {
     setShowFirstTimersInformationModal(false);
     bookSession({
+      skipAccountRequirementsModal: true,
       skipCodeOfConductModal: true,
       skipOpenClubGoalsModal: true,
       skipScoutingModal: true,
@@ -256,6 +283,12 @@ const SessionHeaderAction = ({ session, date }) => {
         confirmLoading={loadingButton}
         cancelText="Back"
         onCancel={() => history.push(ROUTES.LOCATIONS)}
+      />
+      <AccountRequirementsModal
+        isOpen={showAccountRequirementsModal}
+        closeHandler={() => setShowAccountRequirementsModal(false)}
+        onConfirm={onConfirmAccoutRequirements}
+        user={currentUser}
       />
       <CodeOfConductModal
         isOpen={showCodeOfConductModal}

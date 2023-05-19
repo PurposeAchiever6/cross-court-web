@@ -145,7 +145,7 @@ InputText.propTypes = {
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   hint: PropTypes.string,
   disabled: PropTypes.bool,
-  icon: PropTypes.shape(),
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.shape()]),
   leftIcon: PropTypes.bool,
   rightIcon: PropTypes.bool,
   dark: PropTypes.bool,

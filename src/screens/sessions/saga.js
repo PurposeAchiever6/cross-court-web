@@ -87,6 +87,10 @@ export function* initialLoadAuthFlow({ payload }) {
 
 export function* reserveSessionFlow({ payload }) {
   try {
+    if (payload.profileRequiredValues) {
+      yield call(myAccountService.editUserProfile, payload.profileRequiredValues);
+    }
+
     const userSession = yield call(
       sessionService.reserveSession,
       payload.sessionId,
