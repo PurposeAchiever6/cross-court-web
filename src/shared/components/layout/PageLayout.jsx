@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 
-const PageLayout = ({ dark, backgroundImage, noPadding, headerPadding, children }) => {
+const PageLayout = ({ dark, backgroundImage, noPadding, headerPadding, className, children }) => {
   const paddingClasses = (() => {
     if (noPadding) {
       return '';
@@ -17,7 +17,10 @@ const PageLayout = ({ dark, backgroundImage, noPadding, headerPadding, children 
   })();
 
   return (
-    <LazyBackgroundImage img={backgroundImage} className={dark ? 'bg-black text-white' : ''}>
+    <LazyBackgroundImage
+      img={backgroundImage}
+      className={`${dark ? 'bg-black text-white' : ''} ${className}`}
+    >
       <div className={`max-w-screen-2xl mx-auto ${paddingClasses}`}>{children}</div>
     </LazyBackgroundImage>
   );
@@ -28,6 +31,7 @@ PageLayout.defaultProps = {
   backgroundImage: null,
   noPadding: false,
   headerPadding: false,
+  className: '',
 };
 
 PageLayout.propTypes = {
@@ -36,6 +40,7 @@ PageLayout.propTypes = {
   backgroundImage: PropTypes.string,
   noPadding: PropTypes.bool,
   headerPadding: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 export default PageLayout;

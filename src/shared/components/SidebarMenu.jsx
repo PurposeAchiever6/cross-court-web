@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { logoutInit } from 'screens/auth/actionCreators';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import CrossSvg from 'shared/components/svg/CrossSvg';
 
 const SidebarMenu = ({ menuToggler }) => {
@@ -77,15 +77,14 @@ const SidebarMenu = ({ menuToggler }) => {
         )}
       </div>
 
-      <PrimaryButton
-        className="w-max self-center md:self-end mt-16"
-        inverted
-        bg="transparent"
+      <Button
+        variant="outline-purple"
+        className="self-center md:self-end mt-16"
         to={ROUTES.LOCATIONS}
         onClick={menuToggler}
       >
-        BOOK SESSION
-      </PrimaryButton>
+        Book Session
+      </Button>
     </nav>
   );
 };
