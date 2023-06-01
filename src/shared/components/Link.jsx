@@ -4,20 +4,28 @@ import PropTypes from 'prop-types';
 
 const getVariantClasses = (variant) => {
   switch (variant) {
+    case 'none':
+      return '';
     case 'white-opacity':
       return 'text-white hover:opacity-60 transition-opacity duration-300';
-    case 'purple-underline':
+    case 'purple-dark':
+      return 'text-cc-purple-900 hover:underline';
+    case 'purple-light':
     default:
       return 'text-cc-purple hover:underline';
   }
 };
 
-const Link = ({ to, onClick, variant, isExternal, children, className, ...props }) => {
-  const linkClassName = `${getVariantClasses(variant)} ${className}`;
+const Link = ({ to, onClick, variant, isExternal, disabled, children, className, ...props }) => {
+  let linkClassName = `${getVariantClasses(variant)} ${className}`;
+
+  if (disabled) {
+    linkClassName += ' pointer-events-none opacity-50';
+  }
 
   if (isExternal) {
     return (
-      <a href={to} className={linkClassName} {...props}>
+      <a href={disabled ? undefined : to} className={linkClassName} {...props}>
         {children}
       </a>
     );
@@ -25,14 +33,18 @@ const Link = ({ to, onClick, variant, isExternal, children, className, ...props 
 
   if (onClick) {
     return (
-      <span onClick={onClick} className={`${linkClassName} cursor-pointer`} {...props}>
+      <span
+        onClick={disabled ? undefined : onClick}
+        className={`${linkClassName} cursor-pointer`}
+        {...props}
+      >
         {children}
       </span>
     );
   }
 
   return (
-    <RRLink to={to} className={linkClassName} {...props}>
+    <RRLink to={disabled ? undefined : to} className={linkClassName} {...props}>
       {children}
     </RRLink>
   );
@@ -41,8 +53,9 @@ const Link = ({ to, onClick, variant, isExternal, children, className, ...props 
 Link.defaultProps = {
   to: null,
   onClick: null,
-  variant: 'purple-underline',
+  variant: 'purple-light',
   isExternal: false,
+  disabled: false,
   className: '',
 };
 
@@ -52,6 +65,7 @@ Link.propTypes = {
   onClick: PropTypes.func,
   variant: PropTypes.string,
   isExternal: PropTypes.bool,
+  disabled: PropTypes.bool,
   className: PropTypes.string,
 };
 

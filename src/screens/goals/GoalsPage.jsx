@@ -5,7 +5,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import ROUTES from 'shared/constants/routes';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
 import Loading from 'shared/components/Loading';
 import { getUser } from 'screens/auth/reducer';
@@ -136,9 +136,9 @@ const AboutYourselfPage = () => {
                 </div>
               )}
               <div className="text-center my-10">
-                <PrimaryButton type="submit" loading={isSubmitting} className="mb-14">
+                <Button type="submit" loading={isSubmitting} className="mb-14">
                   SUBMIT
-                </PrimaryButton>
+                </Button>
               </div>
             </Form>
           )}

@@ -2,7 +2,7 @@ import React from 'react';
 import { useTable } from 'react-table';
 import PropTypes from 'prop-types';
 
-const SHARED_CLASSES = 'border border-cc-black text-sm md:text-base';
+const SHARED_CLASSES = 'text-sm md:text-base';
 
 const Table = ({ columns, data, className, headerClassName, initialState }) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
@@ -13,7 +13,7 @@ const Table = ({ columns, data, className, headerClassName, initialState }) => {
 
   return (
     <div className={className}>
-      <table {...getTableProps({ className: 'w-full' })}>
+      <table {...getTableProps({ className: 'w-full border-separate border-spacing-x-0.5' })}>
         <thead>
           {headerGroups.map((headerGroup, k) => (
             <tr key={`row-header-${k}`} {...headerGroup.getHeaderGroupProps()}>
@@ -21,7 +21,7 @@ const Table = ({ columns, data, className, headerClassName, initialState }) => {
                 <th
                   key={`header-${i}`}
                   {...column.getHeaderProps({
-                    className: `p-2 ${SHARED_CLASSES} ${headerClassName}`,
+                    className: `p-2 text-left bg-cc-blue-900 text-sm text-white ${headerClassName}`,
                   })}
                 >
                   {column.render('Header')}
@@ -39,7 +39,7 @@ const Table = ({ columns, data, className, headerClassName, initialState }) => {
                   <td
                     key={`row-data-${c}`}
                     {...cell.getCellProps({
-                      className: `p-3 bg-gray-100 ${SHARED_CLASSES} ${
+                      className: `p-3 ${j % 2 ? 'bg-gray-100' : 'bg-white'} ${SHARED_CLASSES} ${
                         cell.column.className ? cell.column.className : ''
                       }`,
                     })}

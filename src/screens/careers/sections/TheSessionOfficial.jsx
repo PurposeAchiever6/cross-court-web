@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import VideoPlayer from 'shared/components/VideoPlayer';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import theSessionOfficialBgImg from 'screens/careers/images/pick-up-referee-3.jpeg';
 
 const Section = styled.section`
@@ -53,12 +53,12 @@ const TheSessionOfficial = () => {
             SEM to deliver a seamless and enjoyable in session experience, every time.
           </p>
           <div className="flex justify-end">
-            <PrimaryButton className="mr-4 md:mr-12" onClick={() => window.open(SO_LINK, '_blank')}>
+            <Button className="mr-4 md:mr-12" onClick={() => window.open(SO_LINK, '_blank')}>
               APPLY
-            </PrimaryButton>
-            <PrimaryButton onClick={() => setShowModal(true)} inverted bg="transparent">
+            </Button>
+            <Button onClick={() => setShowModal(true)} variant="outline-purple">
               LEARN MORE
-            </PrimaryButton>
+            </Button>
           </div>
         </div>
       </Section>

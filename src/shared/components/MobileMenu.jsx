@@ -1,32 +1,24 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import useScrollBlock from 'shared/hooks/useScrollBlock';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import SidebarMenu from './SidebarMenu';
-
-const modalRoot = document.querySelector('#modal-root');
-const element = document.createElement('div');
 
 const MobileMenu = ({ menuOpen, toggleMenu }) => {
   const [blockScroll, allowScroll] = useScrollBlock();
 
   useEffect(() => {
-    modalRoot.appendChild(element);
-    return () => {
-      modalRoot.removeChild(element);
-    };
-  }, []);
-
-  useEffect(() => {
     menuOpen ? blockScroll() : allowScroll();
   }, [menuOpen, blockScroll, allowScroll]);
 
-  return ReactDOM.createPortal(
-    <div className={`fixed inset-0 md:hidden ${menuOpen ? 'block' : 'hidden'}`}>
+  if (!menuOpen) {
+    return null;
+  }
+
+  return (
+    <div className="fixed inset-0 md:hidden z-[9999]">
       <SidebarMenu menuToggler={toggleMenu} />
-    </div>,
-    element
+    </div>
   );
 };
 

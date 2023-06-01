@@ -84,13 +84,7 @@ Map.defaultProps = {
 };
 
 Map.propTypes = {
-  locations: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      lat: PropTypes.number.isRequired,
-      lng: PropTypes.number.isRequired,
-    })
-  ),
+  locations: PropTypes.arrayOf(PropTypes.shape()),
   selectedLocation: PropTypes.number,
   setLocationHandler: PropTypes.func,
   showLocationInfo: PropTypes.bool,

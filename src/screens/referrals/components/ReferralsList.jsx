@@ -14,12 +14,12 @@ const ReferralsList = ({ referrals, className }) => {
       {
         Header: 'User',
         accessor: 'referredUserName',
-        className: 'w-1/2',
+        className: 'w-1/2 bg-white text-black',
       },
       {
         Header: 'Used At',
         accessor: (row) => formatDateTime(row.createdAt),
-        className: 'w-1/2',
+        className: 'w-1/2 bg-white text-black',
       },
     ],
     []

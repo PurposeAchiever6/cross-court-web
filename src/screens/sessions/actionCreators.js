@@ -3,10 +3,12 @@ import {
   INITIAL_LOAD_AUTH_INIT,
   RESERVE_SESSION_INIT,
   CANCEL_SESSION_INIT,
-  CONFIRM_SESSION_INIT,
   JOIN_SESSION_WAITLIST_INIT,
   REMOVE_SESSION_WAITLIST_INIT,
-  SHOW_CANCEL_MODAL,
+  SHOW_WAITLIST_MODAL,
+  CLOSE_WAITLIST_MODAL,
+  SHOW_ADD_GUEST_MODAL,
+  CLOSE_ADD_GUEST_MODAL,
   SIGNUP_BOOK_SESSION,
   BUY_CREDITS_AND_BOOK_SESSION,
   VOTE_SESSION_INIT,
@@ -43,13 +45,6 @@ export const cancelSessionInit = (sessionId) => ({
   },
 });
 
-export const confirmSessionInit = (sessionId) => ({
-  type: CONFIRM_SESSION_INIT,
-  payload: {
-    sessionId,
-  },
-});
-
 export const joinSessionWaitlistInit = (sessionId, sessionDate) => ({
   type: JOIN_SESSION_WAITLIST_INIT,
   payload: {
@@ -66,8 +61,21 @@ export const removeSessionWaitlistInit = (sessionId, sessionDate) => ({
   },
 });
 
-export const showCancelModal = () => ({
-  type: SHOW_CANCEL_MODAL,
+export const showWaitlistModal = (sessionId) => ({
+  type: SHOW_WAITLIST_MODAL,
+  payload: { sessionId },
+});
+
+export const closeWaitlistModal = () => ({
+  type: CLOSE_WAITLIST_MODAL,
+});
+
+export const showAddGuestModal = () => ({
+  type: SHOW_ADD_GUEST_MODAL,
+});
+
+export const closeAddGuestModal = () => ({
+  type: CLOSE_ADD_GUEST_MODAL,
 });
 
 export const signupBookSession = (id, date) => ({

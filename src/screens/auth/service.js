@@ -33,14 +33,6 @@ export default {
 
     return response.data;
   },
-  updateSkillRating: async ({ email, skillRating }) => {
-    const response = await api.put(`/user/update_skill_rating`, {
-      email,
-      skillRating,
-    });
-
-    return response.data;
-  },
   updatePersonalInfo: async ({ email, personalInfo }) => {
     const response = await api.put(`/user/update_personal_info`, {
       email,
@@ -52,7 +44,7 @@ export default {
   forgotPassword: async ({ email }) => {
     const response = await api.post(`/users/password`, {
       email,
-      redirect_url: `${APP_URL}${ROUTES.RESETPASSWORD}`,
+      redirect_url: `${APP_URL}${ROUTES.LOGIN}`,
     });
 
     return response.data;

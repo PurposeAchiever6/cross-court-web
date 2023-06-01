@@ -32,15 +32,10 @@ const SkillRatingUpdateRequestModal = ({ isOpen, closeHandler, newSkillRating })
     switch (step) {
       case STEP_PROVIDE_REASON:
         return {
-          title: 'Skill Rating Update',
+          title: 'Become an MVP',
           size: '2xl',
           closeHandler,
-          content: (
-            <StepProvideReasonContent
-              newSkillRating={newSkillRating}
-              submitRequest={submitRequest}
-            />
-          ),
+          content: <StepProvideReasonContent submitRequest={submitRequest} />,
         };
       case STEP_SUBMITTED:
       default:
@@ -48,7 +43,7 @@ const SkillRatingUpdateRequestModal = ({ isOpen, closeHandler, newSkillRating })
           title: 'Request Submitted',
           size: 'md',
           closeHandler: goToMyAccount,
-          content: <StepSubmittedContent goToMyAccount={goToMyAccount} />,
+          content: <StepSubmittedContent />,
         };
     }
   })();

@@ -1,71 +1,65 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import { Redirect } from 'react-router-dom';
 
-import SportCharacter from 'shared/images/sport-character.png';
 import ROUTES from 'shared/constants/routes';
-
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import { getPurchaseConfirmed } from '../reducer';
-
-const Title = styled.h2`
-  .purchase {
-    font-size: 35px;
-    line-height: 35px;
-    padding-left: 3px;
-
-    @media (min-width: 992px) {
-      font-size: 45px;
-      line-height: 40px;
-    }
-  }
-
-  .complete {
-    font-size: 36px;
-    line-height: 30px;
-
-    @media (min-width: 992px) {
-      font-size: 46px;
-      line-height: 40px;
-    }
-  }
-`;
+import { getSelectedProduct as getSelectedProductOnboarding } from 'screens/onboarding/reducer';
+import {
+  getPurchaseConfirmed,
+  getSelectedProduct as getSelectedProductCheckout,
+} from 'screens/checkout/reducer';
+import dayPassImg from 'screens/checkout/images/day-pass.png';
+import PageLayout from 'shared/components/layout/PageLayout';
+import SectionLayout from 'shared/components/layout/SectionLayout';
+import Button from 'shared/components/Button';
+import CheckmarkSvg from 'shared/components/svg/CheckmarkSvg';
+import GradientDots from 'shared/components/GradientDots';
+import AccountMissingInformationLink from 'screens/checkout/components/AccountMissingInformationLink';
 
 const CheckoutConfirm = () => {
   const purchaseConfirmed = useSelector(getPurchaseConfirmed);
-  const redirectUrl = window.localStorage.getItem('redirect');
+  const selectedProductCheckout = useSelector(getSelectedProductCheckout);
+  const selectedProductOnboarding = useSelector(getSelectedProductOnboarding);
+  const selectedProduct = selectedProductCheckout || selectedProductOnboarding;
 
   if (!purchaseConfirmed) {
     return <Redirect to={ROUTES.LOCATIONS} />;
   }
 
   return (
-    <div className="sm:min-h-screen flex flex-col items-center justify-center px-4 pt-14 pb-20">
-      <img className="w-48 inline-block mb-5 -mt-5" src={SportCharacter} alt="Sport Icon" />
-      <Title className="font-shapiro95_super_wide uppercase mb-8 sm:mb-10">
-        <span className="purchase block">Purchase</span>
-        <span className="complete text-transparent text-stroke-cc-black text-stroke-width-1 block">
-          Complete
-        </span>
-      </Title>
-      <p className="max-w-md mx-auto text-center text-cc-purple text-lg mb-8 sm:mb-10">
-        <span className="font-shapiro96_inclined_wide uppercase">Please note:</span> No session has
-        been booked yet. Now you can use your new credit(s) to book a session.
-      </p>
-      {redirectUrl ? (
-        <PrimaryButton
-          to={redirectUrl}
-          onClick={() => {
-            window.localStorage.removeItem('redirect');
-          }}
-        >
-          GO TO SESSION
-        </PrimaryButton>
-      ) : (
-        <PrimaryButton to={ROUTES.LOCATIONS}>SEE SCHEDULE</PrimaryButton>
-      )}
-    </div>
+    <PageLayout headerPadding>
+      <div className="md:flex">
+        <SectionLayout className="md:w-1/2 bg-white text-black relative py-6 md:py-28">
+          <GradientDots />
+          <div className="relative">
+            <div className="flex font-shapiro95_super_wide items-center text-4xl md:text-5xl mb-4">
+              <CheckmarkSvg className="w-8 md:w-10 h-8 md:h-10 mr-2" />
+              <h3>Success.</h3>
+            </div>
+            <h4 className="block font-shapiro95_super_wide text-xl md:text-2xl mb-4">
+              Thanks for purchasing a Crosscourt Day Pass.
+            </h4>
+            <p className="mb-6">
+              Your Day Pass includes {selectedProduct.credits} credit that can be used for either a
+              Session, SKLZ, or another experience on the schedule and includes Open Club / Office
+              Hours access, which does not require a credit to book. Please note, your Day Pass
+              expires in 30 days.
+            </p>
+            <p className="mb-4">
+              Check out our schedule to book your experience and if you're available, come check out
+              Open Club or Office Hours as well before or after your session. Upon arrival, one of
+              our Experience Managers will get you settled in.
+            </p>
+            <span className="block font-shapiro95_super_wide text-lg md:text-xl mb-4">
+              Ready to go?
+            </span>
+            <Button to={ROUTES.LOCATIONS}>BOOK SESSION</Button>
+            <AccountMissingInformationLink className="text-sm mt-5" />
+          </div>
+        </SectionLayout>
+        <img className="w-full md:w-1/2" src={dayPassImg} alt="day-pass" />
+      </div>
+    </PageLayout>
   );
 };
 

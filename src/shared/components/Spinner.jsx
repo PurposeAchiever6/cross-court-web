@@ -1,23 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
-const SpinnerContainer = styled.div`
-  @keyframes spinner {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  .spinner {
-    animation: spinner 0.6s linear infinite;
-  }
-`;
-
-const Spinner = () => (
-  <SpinnerContainer>
-    <FontAwesomeIcon className="spinner" icon={faCircleNotch} />
-  </SpinnerContainer>
+const Spinner = ({ className, ...props }) => (
+  <span className={className}>
+    <FontAwesomeIcon className="animate-spin-quick" {...props} icon={faCircleNotch} />
+  </span>
 );
+
+Spinner.propTypes = {
+  className: PropTypes.string,
+};
+
+Spinner.defaultProps = {
+  className: '',
+};
 
 export default Spinner;

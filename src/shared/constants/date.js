@@ -1,4 +1,4 @@
-export const FORMAT_SESSION_DATE = 'ddd. MM/DD';
+export const FORMAT_SESSION_DATE = 'ddd, MMM D';
 export const FORMAT_SESSION_DATE_LONG = 'ddd MMM D, YYYY';
 export const FORMAT_SESSION_DATE_EXTRA_LONG = 'dddd, MMMM D, YYYY';
 export const FORMAT_URL = 'YYYY-MM-DD';
@@ -10,6 +10,8 @@ export const FORMAT_DATE_REQUEST = 'DD/MM/YYYY';
 export const FORMAT_DAY_SHORT = 'ddd';
 export const FORMAT_DAY_NUMBER = 'D';
 export const FORMAT_MONTH = 'MMMM';
+export const FORMAT_SHORT_MONTH_FULL_YEAR = 'MMM YYYY';
 export const FORMAT_SHARE_SESSION_DATE = 'MM/DD';
 export const FORMAT_SHARE_SESSION_TIME = 'h A';
 export const FORMAT_DATETIME = 'MM/DD/YYYY H:mm';
+export const SHORT_MONTH_DAY_FULL_YEAR = 'MMM D, YYYY';

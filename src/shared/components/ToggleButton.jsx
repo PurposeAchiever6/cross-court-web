@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faToggleOn } from '@fortawesome/free-solid-svg-icons';
 
-const ToggleButton = ({ offLabel, onLabel, size, value, onChange, className }) => {
+const ToggleButton = ({ offLabel, onLabel, size, value, onChange, className, variant }) => {
   const getSize = (() => {
     switch (size) {
       case 'sm':
@@ -22,6 +22,16 @@ const ToggleButton = ({ offLabel, onLabel, size, value, onChange, className }) =
     }
   })();
 
+  const getVariant = (() => {
+    switch (variant) {
+      case 'black':
+        return 'text-black';
+      case 'purple':
+      default:
+        return 'text-cc-purple';
+    }
+  })();
+
   return (
     <div className={className}>
       <div className="inline-block">
@@ -30,7 +40,7 @@ const ToggleButton = ({ offLabel, onLabel, size, value, onChange, className }) =
           {!value && (
             <FontAwesomeIcon
               icon={faToggleOn}
-              className={`${getSize} text-cc-purple text-opacity-60 cursor-pointer`}
+              className={`${getSize} ${getVariant} text-opacity-60 cursor-pointer`}
               rotation={180}
               onClick={() => onChange(true)}
             />
@@ -38,7 +48,7 @@ const ToggleButton = ({ offLabel, onLabel, size, value, onChange, className }) =
           {value && (
             <FontAwesomeIcon
               icon={faToggleOn}
-              className={`${getSize} text-cc-purple cursor-pointer`}
+              className={`${getSize} ${getVariant} cursor-pointer`}
               onClick={() => onChange(false)}
             />
           )}
@@ -54,6 +64,7 @@ ToggleButton.defaultProps = {
   onLabel: null,
   size: null,
   className: null,
+  variant: 'purple',
 };
 
 ToggleButton.propTypes = {
@@ -63,6 +74,7 @@ ToggleButton.propTypes = {
   className: PropTypes.string,
   value: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
+  variant: PropTypes.oneOf(['purple', 'black']),
 };
 
 export default ToggleButton;

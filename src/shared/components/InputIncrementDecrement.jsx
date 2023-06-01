@@ -12,7 +12,7 @@ export const OPERATIONS = {
 
 const Input = ({ ...props }) => (
   <input
-    className="text-center font-shapiro95_super_wide text-cc-black text-opacity-70 focus:text-opacity-100 bg-gray-100 text-5xl my-4 w-full"
+    className="text-center font-shapiro95_super_wide text-cc-black text-opacity-70 focus:text-opacity-100 bg-cc-gray-400 text-5xl my-4 w-full"
     autoComplete="off"
     {...props}
   />
@@ -31,9 +31,9 @@ const InputIncrementDecrement = ({
   error,
 }) => (
   <div className={`flex flex-col ${className}`}>
-    <div className="border bg-gray-100 flex flex-col items-center p-4">
+    <div className="border bg-cc-gray-400 flex flex-col items-center p-4">
       <Label
-        className="mb-1 uppercase text-sm md:text-base font-shapiro45_welter_extd"
+        className="mb-1 uppercase text-xs md:text-sm font-shapiro45_welter_extd"
         htmlFor={name}
         color={labelColor}
       >

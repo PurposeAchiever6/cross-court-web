@@ -1,6 +1,6 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
-import { toast } from 'react-toastify';
 
+import toast from 'shared/utils/toast';
 import { GET_REFERRALS_INIT, GET_REFERRALS_SUCCESS, GET_REFERRALS_FAILURE } from './actionTypes';
 import referralsService from './service';
 

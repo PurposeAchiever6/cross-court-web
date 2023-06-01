@@ -1,3 +1,5 @@
+import humps from 'humps';
+
 import api from 'shared/services';
 
 export default {
@@ -17,7 +19,8 @@ export default {
     if (response.error) {
       throw new Error(response.error.message);
     } else {
-      return response.paymentMethod.id;
+      const { id, card } = response.paymentMethod;
+      return { id, ...humps.camelizeKeys(card) };
     }
   },
   addPaymentMethod: async (paymentMethodStripeId) => {

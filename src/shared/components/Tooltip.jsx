@@ -5,15 +5,26 @@ import ReactTooltip from 'react-tooltip';
 
 import colors from 'shared/styles/constants';
 
-const Tooltip = ({ children, tooltip, enable, variant, place, className, tooltipClassName }) => {
+const Tooltip = ({
+  children,
+  tooltip,
+  enable,
+  variant,
+  place,
+  className,
+  tooltipClassName,
+  delayHide,
+  delayUpdate,
+}) => {
   const tooltipId = (Math.random() + 1).toString(36).substring(2);
 
   const { textColor, backgroundColor } = (() => {
     switch (variant) {
+      case 'white':
+        return { textColor: 'black', backgroundColor: 'white' };
       case 'purple':
         return { textColor: 'white', backgroundColor: colors.brandPurple };
       case 'black':
-        return { textColor: 'white', backgroundColor: colors.brandBlack };
       default:
         return { textColor: 'white', backgroundColor: colors.brandBlack };
     }
@@ -42,8 +53,8 @@ const Tooltip = ({ children, tooltip, enable, variant, place, className, tooltip
           <ReactTooltip
             id={tooltipId}
             backgroundColor={backgroundColor}
-            delayHide={250}
-            delayUpdate={500}
+            delayHide={delayHide}
+            delayUpdate={delayUpdate}
             textColor={textColor}
             place={place}
             effect="solid"
@@ -60,21 +71,26 @@ const Tooltip = ({ children, tooltip, enable, variant, place, className, tooltip
 };
 
 Tooltip.defaultProps = {
+  tooltip: null,
   variant: 'black',
   className: '',
   enable: true,
   place: 'bottom',
   tooltipClassName: '',
+  delayHide: 250,
+  delayUpdate: 500,
 };
 
 Tooltip.propTypes = {
-  tooltip: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  tooltip: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   children: PropTypes.node.isRequired,
   variant: PropTypes.string,
   className: PropTypes.string,
   enable: PropTypes.bool,
   place: PropTypes.string,
   tooltipClassName: PropTypes.string,
+  delayHide: PropTypes.number,
+  delayUpdate: PropTypes.number,
 };
 
 export default Tooltip;

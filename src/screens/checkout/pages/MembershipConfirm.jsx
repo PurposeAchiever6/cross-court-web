@@ -2,94 +2,123 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
 import ROUTES from 'shared/constants/routes';
-import confettiAnimation from 'shared/animations/confetti.json';
-import Animation from 'shared/components/Animation';
-import { getUserProfile } from 'screens/my-account/reducer';
+import { getPurchaseConfirmed } from 'screens/checkout/reducer';
+import bottle from 'screens/checkout/images/bottle.png';
+import jersey from 'screens/checkout/images/jersey.png';
+import towel from 'screens/checkout/images/towel.png';
+
+import GradientDots from 'shared/components/GradientDots';
+import Button from 'shared/components/Button';
+import PageLayout from 'shared/components/layout/PageLayout';
+import SectionLayout from 'shared/components/layout/SectionLayout';
+import CheckmarkSvg from 'shared/components/svg/CheckmarkSvg';
+import SportCharacter from 'shared/images/sport-character.png';
+import EmailSvg from 'shared/components/svg/EmailSvg';
 import Steps from 'shared/components/Steps';
-import { getPurchaseConfirmed } from '../reducer';
-import basketImg from '../images/basket.jpg';
-import basketballImg from '../images/basketball.jpg';
-import courtImg from '../images/court.jpg';
-import playImg from '../images/play.jpg';
-import runImg from '../images/run.jpg';
-import kGoldn from '../images/24kGoldn.jpg';
+import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
+import AccountMissingInformationLink from 'screens/checkout/components/AccountMissingInformationLink';
 
-const STEPS = [
-  {
-    title: 'A QUICK WELCOME MESSAGE',
-  },
-  {
-    title: 'YOUR NEW MEMBER HANDBOOK WHICH INCLUDES ALL YOU NEED TO KNOW AS A CC MEMBER',
-  },
-  {
-    title:
-      'A LINK TO JOIN OUR COMMUNITY DISCORD WHERE YOU CAN ENGAGE WITH OTHER MEMBERS AND STAY UP TO DATE ON ALL THINGS CC',
-  },
-  {
-    title:
-      'A LINK TO SCHEDULE AN OPTIONAL KICK OFF CALL WITH ONE OF OUR MEMBERSHIP EXPERIENCE MANAGERS SHOULD YOU HAVE ANY QUESTIONS',
-  },
-];
-
-const MembershipConfirm = () => {
+const CheckoutConfirm = () => {
   const purchaseConfirmed = useSelector(getPurchaseConfirmed);
-  const currentUser = useSelector(getUserProfile);
 
   if (!purchaseConfirmed) {
     return <Redirect to={ROUTES.LOCATIONS} />;
   }
 
+  const steps = [
+    {
+      title: 'New Member Handbook',
+      description: 'It includes all you need to know as a Crosscourt member.',
+    },
+    {
+      title: 'Community Invite',
+      description:
+        'You’ll find a Discord link where you can engage with other members and stay up to date on all things CC.',
+    },
+  ];
+
   return (
-    <>
-      <Animation
-        animation={confettiAnimation}
-        className="absolute inset-0 bottom-1/2 md:bottom-0"
-      />
-      <div className="md:text-lg flex flex-col px-4 pt-10 sm:pt-24 pb-10 md:pb-20 max-w-screen-md mx-auto relative">
-        <div className="text-center">
-          <h1 className="uppercase font-shapiro95_super_wide md:text-2xl mb-2">
-            HEY {currentUser.firstName}. WELCOME TO THE CCTEAM!
-          </h1>
-          <p className="font-shapiro96_inclined_wide uppercase">Next steps!</p>
-          <p className="font-shapiro96_inclined_wide uppercase">Check your email for</p>
-          <Steps steps={STEPS} className="text-left" />
-        </div>
-      </div>
-      <div className="text-center mb-20">
-        <PrimaryButton inverted to={ROUTES.LOCATIONS}>
-          See Schedule
-        </PrimaryButton>
-      </div>
-      <div className="bg-cc-black p-5 md:p-10 flex flex-col items-center justify-center">
-        <div className="flex h-3/3 mt-10 container">
-          <img
-            className="w-1/4 h-3/3 mr-2 object-cover object-center"
-            src={kGoldn}
-            alt="24kGoldn"
-          />
-          <div className="w-1/4 mx-2">
-            <img className="w-full pb-4 h-1/3 object-cover" src={runImg} alt="run" />
-            <img className="w-full h-2/3 object-cover" src={playImg} alt="play" />
+    <PageLayout headerPadding>
+      <div className="md:flex">
+        <SectionLayout className="w-full md:w-1/2 bg-white text-black relative py-6 md:py-28">
+          <GradientDots />
+          <div className="relative">
+            <div className="flex font-shapiro95_super_wide items-center text-4xl md:text-5xl mb-4">
+              <CheckmarkSvg className="w-8 md:w-10 h-8 md:h-10 mr-2" />
+              <h3>Success.</h3>
+            </div>
+            <h4 className="block font-shapiro95_super_wide text-xl md:text-2xl mb-4">
+              Welcome to the CC Team!
+            </h4>
+            <div className="flex items-center justify-center border-2 border-cc-black p-2 text-sm mb-4">
+              <EmailSvg className="mr-2" /> Check your email for:
+            </div>
+            <Steps steps={steps} />
+            <div className="text-center bg-cream p-4 mb-4">
+              <span className="block text-lg font-shapiro95_super_wide mb-1">
+                Unlock free Crosscourt Water Bottle
+              </span>
+              <span className="block">
+                Use all the credits in your account this month and receive a free custom CC water
+                bottle
+              </span>
+            </div>
+            <span className="block font-shapiro95_super_wide text-lg md:text-xl mb-4">
+              Ready to go?
+            </span>
+            <Button to={ROUTES.LOCATIONS}>BOOK SESSION</Button>
+            <AccountMissingInformationLink className="text-sm mt-5" />
           </div>
-          <div className="w-1/4 mx-2">
-            <img
-              className="w-full pb-4 h-2/3 object-cover object-left-top"
-              src={basketImg}
-              alt="ball"
-            />
-            <img
-              className="w-full h-1/3 object-cover object-top"
-              src={basketballImg}
-              alt="basketball"
-            />
+        </SectionLayout>
+        <SectionLayout className="w-full md:w-1/2 bg-black text-white py-6 md:py-28">
+          <div className="flex">
+            <div className="w-4/5 pr-4">
+              <span className="uppercase block font-shapiro95_super_wide text-3xl mt-3">
+                Unlock
+              </span>
+              <span className="uppercase block font-shapiro95_super_wide text-3xl mb-4">
+                CC Swag
+              </span>
+              <span className="block mb-4 text-sm">
+                Use all your credits during your first 3 months as a new member to unlock CC swag.
+              </span>
+              <span className="block text-sm">
+                *Must use all credits during first 3 months to receive jersey
+              </span>
+            </div>
+            <div className="w-1/5">
+              <img className="w-28" src={SportCharacter} alt="mascot" />
+            </div>
           </div>
-          <img className="w-1/4 h-3/3 ml-2 object-cover object-left" src={courtImg} alt="court" />
-        </div>
+          <LineDashedSvg className="my-4" />
+          <div className="flex items-center">
+            <img src={bottle} alt="bottle" className="w-1/4 pr-4" />
+            <div className="w-3/4">
+              <span className="block opacity-60">Month 1</span>
+              <span className="block font-shapiro95_super_wide text-xl">CC Water Bottle</span>
+            </div>
+          </div>
+          <LineDashedSvg className="w-3/4 ml-auto mb-6" />
+          <div className="flex items-center">
+            <img src={towel} alt="bottle" className="w-1/4 pr-4" />
+            <div className="w-3/4">
+              <span className="block opacity-60">Month 2</span>
+              <span className="block font-shapiro95_super_wide text-xl">CC Towel</span>
+            </div>
+          </div>
+          <LineDashedSvg className="w-3/4 ml-auto mb-6" />
+          <div className="flex items-center">
+            <img src={jersey} alt="bottle" className="w-1/4 pr-4" />
+            <div className="w-3/4">
+              <span className="block opacity-60">Month 3</span>
+              <span className="block font-shapiro95_super_wide text-xl">CC Jersey</span>
+            </div>
+          </div>
+        </SectionLayout>
       </div>
-    </>
+    </PageLayout>
   );
 };
 
-export default MembershipConfirm;
+export default CheckoutConfirm;

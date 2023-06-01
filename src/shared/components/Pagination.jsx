@@ -1,27 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FIRST_PAGE } from 'shared/hooks/usePagination';
-import PrimaryButton from './buttons/PrimaryButton';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 const Pagination = ({ className, nextPage, prevPage, currentPage, maxPage }) => (
   <div className={`flex justify-center items-center ${className}`}>
-    <PrimaryButton
-      inverted
-      className="mx-4"
+    <span className="mr-6">
+      Page {currentPage} of {maxPage}
+    </span>
+    <button
+      type="button"
+      className={`mr-2 w-8 h-8 ${
+        currentPage === FIRST_PAGE ? 'bg-gray-300' : 'bg-cc-blue-500'
+      } text-white`}
       onClick={() => prevPage()}
       disabled={currentPage === FIRST_PAGE}
     >
-      Prev
-    </PrimaryButton>
-    Page {currentPage} of {maxPage}
-    <PrimaryButton
-      inverted
-      className="mx-4"
+      <FontAwesomeIcon icon={faAngleLeft} />
+    </button>
+    <button
+      type="button"
+      className={`ml-2 w-8 h-8 ${
+        currentPage === maxPage ? 'bg-gray-300' : 'bg-cc-blue-500'
+      } text-white`}
       onClick={() => nextPage()}
       disabled={currentPage === maxPage}
     >
-      Next
-    </PrimaryButton>
+      <FontAwesomeIcon icon={faAngleRight} />
+    </button>
   </div>
 );
 

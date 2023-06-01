@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { confirmCodeOfConduct } from 'shared/utils/codeOfConduct';
 import Modal from 'shared/components/Modal';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 
-export const CodeOfConductModal = ({ isOpen, closeHandler, onConfirm, userProfile }) => {
+export const CodeOfConductModal = ({ isOpen, closeHandler, onConfirm, user }) => {
   const initialValues = {
     codeOfConductOne: false,
     codeOfConductTwo: false,
@@ -18,8 +18,8 @@ export const CodeOfConductModal = ({ isOpen, closeHandler, onConfirm, userProfil
     values.codeOfConductOne && values.codeOfConductTwo && values.codeOfConductThree;
 
   return (
-    <Modal dark isOpen={isOpen} closeHandler={closeHandler} title="Code Of Conduct">
-      <div className="text-white">
+    <Modal isOpen={isOpen} closeHandler={closeHandler} title="Code Of Conduct">
+      <div>
         <p className="text-sm mb-5">
           The Crosscourt experience is designed to enhance the physical and emotional wellbeing of
           our athletes. By following the code of conduct below, Crosscourt is able to create a safe,
@@ -28,7 +28,7 @@ export const CodeOfConductModal = ({ isOpen, closeHandler, onConfirm, userProfil
         <Formik
           initialValues={initialValues}
           onSubmit={() => {
-            confirmCodeOfConduct(userProfile);
+            confirmCodeOfConduct(user);
             onConfirm();
           }}
         >
@@ -49,10 +49,10 @@ export const CodeOfConductModal = ({ isOpen, closeHandler, onConfirm, userProfil
                 following: ejection, suspension, or ban from Crosscourt
               </InputCheckboxField>
               <div className="text-center">
-                <PrimaryButton onClick={closeHandler} inverted bg="transparent" className="mr-2">
+                <Button onClick={closeHandler} variant="outline-purple" className="mr-2">
                   Deny
-                </PrimaryButton>
-                <PrimaryButton
+                </Button>
+                <Button
                   type="submit"
                   onClick={handleSubmit}
                   disabled={!submitIsEnabled(values)}
@@ -60,7 +60,7 @@ export const CodeOfConductModal = ({ isOpen, closeHandler, onConfirm, userProfil
                   className="ml-2"
                 >
                   Accept
-                </PrimaryButton>
+                </Button>
               </div>
             </div>
           )}
@@ -74,7 +74,7 @@ CodeOfConductModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   closeHandler: PropTypes.func.isRequired,
   onConfirm: PropTypes.func.isRequired,
-  userProfile: PropTypes.shape().isRequired,
+  user: PropTypes.shape().isRequired,
 };
 
 export default CodeOfConductModal;

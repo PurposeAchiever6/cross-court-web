@@ -1,6 +1,5 @@
 /* eslint-disable default-param-last */
 import { createSelector } from 'reselect';
-import { LOCATION_CHANGE } from 'shared/actions/actionTypes';
 import {
   LOGIN_INIT,
   LOGIN_SUCCESS,
@@ -15,22 +14,24 @@ import {
   PASS_RESET_SUCCESS,
   PASS_RESET_FAILURE,
   AUTO_LOGIN_SUCCESS,
+  SHOW_FORGOT_PASSWORD_MODAL,
+  CLOSE_FORGOT_PASSWORD_MODAL,
+  SHOW_FORGOT_PASSWORD_EMAIL_SENT_MODAL,
+  CLOSE_FORGOT_PASSWORD_EMAIL_SENT_MODAL,
+  SHOW_RESET_PASSWORD_MODAL,
+  CLOSE_RESET_PASSWORD_MODAL,
 } from './actionTypes';
 
 const initialState = {
+  isAuthenticated: false,
   loginLoading: false,
   signupLoading: false,
-  forgotPassLoading: false,
-  passResetLoading: false,
-  isAuthenticated: false,
-  loginError: '',
-  signupErrors: {},
-  user: {
-    firstName: '',
-    email: '',
-  },
-  forgotPassError: '',
-  passResetError: '',
+  forgotPasswordLoading: false,
+  resetPasswordLoading: false,
+  showForgotPasswordModal: false,
+  showForgotPasswordEmailSentModal: false,
+  showResetPasswordModal: false,
+  user: { email: '' },
 };
 
 export default (state = initialState, action) => {
@@ -39,7 +40,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loginLoading: true,
-        loginError: '',
       };
     case LOGIN_SUCCESS:
       return {
@@ -48,59 +48,95 @@ export default (state = initialState, action) => {
         isAuthenticated: true,
       };
     case LOGIN_FAILURE:
-      return { ...state, loginError: action.error, loginLoading: false };
+      return {
+        ...state,
+        loginLoading: false,
+      };
     case SIGN_UP_INIT:
       return {
         ...state,
         signupLoading: true,
-        signupErrors: {},
-        user: { firstName: '', email: '' },
+        user: { email: '' },
       };
     case SIGN_UP_SUCCESS:
       return {
         ...state,
         signupLoading: false,
-        user: { firstName: action.payload.firstName, email: action.payload.email },
+        user: { email: action.payload.email },
       };
     case SIGN_UP_FAILURE:
-      return { ...state, signupErrors: action.payload.errors, signupLoading: false };
+      return {
+        ...state,
+        signupLoading: false,
+      };
     case FORGOT_PASS_INIT:
       return {
         ...state,
-        forgotPassLoading: true,
-        forgotPassError: '',
-        user: { firstName: '', email: '' },
+        forgotPasswordLoading: true,
+        user: { email: '' },
       };
     case FORGOT_PASS_SUCCESS:
       return {
         ...state,
-        forgotPassLoading: false,
+        forgotPasswordLoading: false,
         user: { email: action.payload.email },
       };
     case FORGOT_PASS_FAILURE:
-      return { ...state, forgotPassError: action.error, forgotPassLoading: false };
+      return {
+        ...state,
+        forgotPasswordLoading: false,
+      };
     case PASS_RESET_INIT:
       return {
         ...state,
-        passResetLoading: true,
-        passResetError: '',
+        resetPasswordLoading: true,
       };
     case PASS_RESET_SUCCESS:
       return {
         ...state,
-        passResetLoading: false,
+        resetPasswordLoading: false,
       };
     case PASS_RESET_FAILURE:
-      return { ...state, passResetError: action.error, passResetLoading: false };
-    case LOCATION_CHANGE:
       return {
         ...state,
-        loginError: '',
+        resetPasswordLoading: false,
       };
     case AUTO_LOGIN_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
+      };
+    case SHOW_FORGOT_PASSWORD_MODAL:
+      return {
+        ...state,
+        showForgotPasswordModal: true,
+      };
+    case CLOSE_FORGOT_PASSWORD_MODAL:
+      return {
+        ...state,
+        showForgotPasswordModal: false,
+      };
+    case SHOW_FORGOT_PASSWORD_EMAIL_SENT_MODAL:
+      return {
+        ...state,
+        showForgotPasswordEmailSentModal: true,
+      };
+    case CLOSE_FORGOT_PASSWORD_EMAIL_SENT_MODAL:
+      return {
+        ...state,
+        showForgotPasswordEmailSentModal: false,
+      };
+    case SHOW_RESET_PASSWORD_MODAL:
+      return {
+        ...state,
+        showForgotPasswordModal: false,
+        showForgotPasswordEmailSentModal: false,
+        showResetPasswordModal: true,
+      };
+    case CLOSE_RESET_PASSWORD_MODAL:
+      return {
+        ...state,
+        showResetPasswordModal: false,
       };
     default:
       return state;
@@ -111,22 +147,32 @@ const getAuth = (state) => state.auth;
 
 export const getLoginLoading = createSelector(getAuth, (auth) => auth.loginLoading);
 
-export const getLoginError = createSelector(getAuth, (auth) => auth.loginError);
-
 export const getSignupLoading = createSelector(getAuth, (auth) => auth.signupLoading);
-
-export const getSignupErrors = createSelector(getAuth, (auth) => auth.signupErrors);
 
 export const getUser = createSelector(getAuth, (auth) => auth.user);
 
 export const getUserEmail = createSelector(getAuth, (auth) => auth.user.email);
 
-export const getForgotPassLoading = createSelector(getAuth, (auth) => auth.forgotPassLoading);
+export const getForgotPasswordLoading = createSelector(
+  getAuth,
+  (auth) => auth.forgotPasswordLoading
+);
 
-export const getForgotPassError = createSelector(getAuth, (auth) => auth.forgotPassError);
-
-export const getPassResetLoading = createSelector(getAuth, (auth) => auth.passResetLoading);
-
-export const getPassResetError = createSelector(getAuth, (auth) => auth.passResetError);
+export const getResetPasswordLoading = createSelector(getAuth, (auth) => auth.resetPasswordLoading);
 
 export const getIsAuthenticated = createSelector(getAuth, (auth) => auth.isAuthenticated);
+
+export const getShowForgotPasswordModal = createSelector(
+  getAuth,
+  (auth) => auth.showForgotPasswordModal
+);
+
+export const getShowForgotPasswordEmailSentModal = createSelector(
+  getAuth,
+  (auth) => auth.showForgotPasswordEmailSentModal
+);
+
+export const getShowResetPasswordModal = createSelector(
+  getAuth,
+  (auth) => auth.showResetPasswordModal
+);

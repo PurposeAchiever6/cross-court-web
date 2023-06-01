@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 import Accordion from 'shared/components/Accordion';
+import ShowMore from 'shared/components/ShowMore';
 
 const QUESTIONS = [
   {
@@ -82,13 +81,7 @@ const FaqList = ({ showInBatches, className }) => {
         ) : null
       )}
       {questionsShown < questionsLength && (
-        <div
-          onClick={() => setQuestionsShow(questionsShown + showInBatches)}
-          className="bg-cc-blue-900 text-white px-4 py-2 text-center text-xs cursor-pointer hover:bg-cc-blue-700 transition-all duration-300"
-        >
-          Show More
-          <FontAwesomeIcon className="ml-2" icon={faChevronDown} />
-        </div>
+        <ShowMore onClick={() => setQuestionsShow(questionsShown + showInBatches)} />
       )}
     </div>
   );

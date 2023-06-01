@@ -5,7 +5,7 @@ import Button from 'shared/components/Button';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
 import trustTheProgressImg from 'screens/homepage/images/trust-the-progress.jpeg';
-import trustTheProgressShapeImg from 'screens/homepage/images/trust-the-progress-shape.png';
+import trustTheProgressShapeImg from 'shared/images/trust-the-progress-shape.png';
 
 const TrustTheProgress = () => (
   <SectionLayout className="border-b border-cc-purple">

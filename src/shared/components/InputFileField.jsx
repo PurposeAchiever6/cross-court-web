@@ -1,72 +1,117 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useRef, useState, useEffect } from 'react';
 import { Field } from 'formik';
-import { isNil } from 'ramda';
+import PropTypes from 'prop-types';
 
 import { fileToBase64 } from 'shared/utils/attachments';
+import Label from 'shared/components/Label';
+import Button from 'shared/components/Button';
 
 const InputFileField = ({
   name,
-  error,
-  labelText,
-  placeholder,
-  disabled,
-  showLabel,
-  displayErrorMsg,
-  setFieldValue,
   accept,
-  ...props
-}) => (
-  <Field name={name}>
-    {({ field, form: { errors: formikError } }) => (
-      <div className="flex flex-col mb-6" {...props}>
-        {showLabel && (
-          <label className="text-base mb-3 uppercase font-bold" htmlFor={field.name}>
-            {labelText}
-          </label>
-        )}
-        <input
-          onChange={async (event) => {
-            const file = await fileToBase64(event.currentTarget.files[0]);
-            setFieldValue('image', file);
-          }}
-          type="file"
-          autoComplete="off"
-          accept={accept}
-        />
-        {displayErrorMsg && (
-          <small
-            id={`${field.name}-error`}
-            className={`text-right mt-4 text-red-500 font-shapiro45_welter_extd ${
-              isNil(formikError[field.name]) ? 'inactive' : 'form-text'
-            }`}
-          >
-            {isNil(error) ? formikError[field.name] : error}
-          </small>
-        )}
-      </div>
-    )}
-  </Field>
-);
+  label,
+  labelColor,
+  variant,
+  disabled,
+  error,
+  showError,
+  setPreview,
+  className,
+}) => {
+  const fileInputRef = useRef(null);
+  const [file, setFile] = useState(null);
+
+  const handleClick = () => {
+    if (disabled) {
+      return;
+    }
+
+    fileInputRef.current.click();
+  };
+
+  const handleChange = async (event, setFieldValue) => {
+    if (disabled) {
+      return;
+    }
+
+    const uploadedFile = event.currentTarget.files[0];
+    setFile(uploadedFile);
+    const base64File = await fileToBase64(uploadedFile);
+    setFieldValue(name, base64File);
+
+    if (setPreview) {
+      setPreview(URL.createObjectURL(uploadedFile));
+    }
+  };
+
+  // eslint-disable-next-line arrow-body-style
+  useEffect(() => {
+    return () => {
+      if (setPreview) {
+        URL.revokeObjectURL(file);
+      }
+    };
+  }, []);
+
+  return (
+    <Field name={name}>
+      {({ field, form: { setFieldValue, errors: formikErrors } }) => (
+        <div className={className}>
+          {label && (
+            <Label forInput htmlFor={name} color={labelColor}>
+              {label}
+            </Label>
+          )}
+          <Button variant={variant} size="sm" onClick={handleClick} disabled={disabled}>
+            Upload
+          </Button>
+          {file && (
+            <div className="text-xs mt-2 truncate w-28" title={file.name}>
+              {file.name}
+            </div>
+          )}
+          <input
+            className="hidden"
+            ref={fileInputRef}
+            onChange={(e) => handleChange(e, setFieldValue)}
+            type="file"
+            autoComplete="off"
+            accept={accept}
+          />
+          {showError && (error || formikErrors[field.name]) && (
+            <div className="font-shapiro45_welter_extd text-xs text-right text-red-500 mt-2">
+              {error || formikErrors[field.name]}
+            </div>
+          )}
+        </div>
+      )}
+    </Field>
+  );
+};
 
 InputFileField.defaultProps = {
-  placeholder: '',
-  disabled: false,
-  showLabel: true,
-  displayErrorMsg: true,
   accept: '',
+  label: null,
+  labelColor: null,
+  variant: 'purple',
+  disabled: false,
+  error: null,
+  showError: true,
+  setPreview: null,
+  className: '',
 };
 
 InputFileField.propTypes = {
   name: PropTypes.string.isRequired,
-  error: PropTypes.string,
-  type: PropTypes.string,
-  labelText: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
-  showLabel: PropTypes.bool,
-  displayErrorMsg: PropTypes.bool,
   accept: PropTypes.string,
+  label: PropTypes.string,
+  labelColor: PropTypes.string,
+  variant: PropTypes.string,
+  disabled: PropTypes.bool,
+  error: PropTypes.string,
+  showError: PropTypes.bool,
+  setPreview: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default InputFileField;

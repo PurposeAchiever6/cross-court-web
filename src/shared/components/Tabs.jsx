@@ -1,13 +1,43 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { useLocation, useHistory } from 'react-router-dom';
 
-const Tabs = ({ variant, alignLabels, className, children }) => {
-  const [activeTab, setActiveTab] = useState(children[0].props.label);
+const TabContainer = styled.div`
+  scrollbar-width: none;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+export const TAB_QUERY_PARAM = 'tab';
+
+const Tabs = ({
+  variant,
+  alignLabels,
+  className,
+  children,
+  tabContainerClasses,
+  showSeparator,
+}) => {
+  const { search } = useLocation();
+  const history = useHistory();
+  const searchParams = new URLSearchParams(search);
+  const [activeTab, setActiveTab] = useState(
+    searchParams.get(TAB_QUERY_PARAM) || children[0].props.label
+  );
+
+  useEffect(() => {
+    searchParams.set(TAB_QUERY_PARAM, activeTab);
+    history.replace({
+      search: searchParams.toString(),
+    });
+  }, [activeTab]);
 
   const variantClasses = (active) => {
     switch (variant) {
       case 'opacity-underline':
-        return active ? 'opacity-100 border-b-2 border-b-current' : 'opacity-60 hover:opacity-100';
+        return active ? 'opacity-100 border-b-3 border-b-current' : 'opacity-60 hover:opacity-100';
       case 'opacity':
       default:
         return active ? 'opacity-100' : 'opacity-50 hover:opacity-100';
@@ -32,19 +62,27 @@ const Tabs = ({ variant, alignLabels, className, children }) => {
 
   return (
     <div className={className}>
-      <div className={`flex gap-8 mb-6 ${alignLabelsClasses}`}>
-        {children.map(({ props: { label } }) => (
-          <span
+      <TabContainer
+        className={`flex gap-8 ${
+          showSeparator ? '' : 'mb-6'
+        } overflow-y-hidden overflow-x-auto ${tabContainerClasses} ${alignLabelsClasses}`}
+      >
+        {children.map(({ props: { label, showSeparator: childShowSeparator } }) => (
+          <div
             key={label}
-            className={`text-2xl font-shapiro95_super_wide cursor-pointer transition-all duration-300 ${variantClasses(
-              activeTab === label
-            )}`}
             onClick={() => setActiveTab(label)}
+            className={`relative text-2xl font-shapiro95_super_wide cursor-pointer transition-opacity duration-300 ${
+              showSeparator ? 'pb-2 md:pb-3' : ''
+            } ${variantClasses(activeTab === label)}`}
           >
-            {label}
-          </span>
+            <span className="whitespace-nowrap">{label}</span>
+            {childShowSeparator && (
+              <div className="absolute top-1 -right-4 h-1/2 w-[2px] bg-white" />
+            )}
+          </div>
         ))}
-      </div>
+      </TabContainer>
+      {showSeparator && <hr className="mb-6" />}
       <div>
         {children.map((child) => (child.props.label == activeTab ? child.props.children : null))}
       </div>
@@ -56,6 +94,7 @@ Tabs.defaultProps = {
   variant: 'opacity',
   alignLabels: 'left',
   className: '',
+  tabContainerClasses: '',
 };
 
 Tabs.propTypes = {
@@ -63,6 +102,7 @@ Tabs.propTypes = {
   alignLabels: PropTypes.string,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  tabContainerClasses: PropTypes.string,
 };
 
 export default Tabs;

@@ -1,7 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
 
+import { titleize } from 'shared/utils/helpers';
+import { formatPrice } from 'screens/products/utils';
+import { discountAmountText, discountTimeText } from 'screens/promo-codes/utils';
+import { getFeaturedRecurringProductPromoCode } from 'screens/products/reducer';
 import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
@@ -9,8 +14,11 @@ import roughDarkBgImg from 'shared/images/backgrounds/rough-dark.jpeg';
 import CrossSvg from 'shared/components/svg/CrossSvg';
 
 const HeaderPromoBanner = ({ onClose }) => {
-  const promoCode = import.meta.env.VITE_FIRST_TIMER_PROMO_CODE;
-  const percentageDiscount = import.meta.env.VITE_FIRST_TIMER_PROMO_CODE_PERCENTAGE_DISCOUNT;
+  const promoCode = useSelector(getFeaturedRecurringProductPromoCode);
+
+  const discountProductText = `Special offer: ${formatPrice(
+    promoCode.discountedPrice
+  )} ${discountTimeText(promoCode)} with ${titleize(promoCode.productName)}`;
 
   return (
     <PageLayout noPadding>
@@ -23,13 +31,13 @@ const HeaderPromoBanner = ({ onClose }) => {
             onClick={onClose}
             className="absolute inset-y-0 right-0 bg-black bg-opacity-70 hover:bg-opacity-80 transition-all w-12 sm:w-10 flex justify-center items-center cursor-pointer"
           >
-            <CrossSvg color="white" className="w-3" />
+            <CrossSvg className="w-3" />
           </div>
-          <span className="font-shapiro95_super_wide uppercase text-sm sm:text-base sm:mt-1 mr-3">
-            {percentageDiscount}% off
+          <span className="font-shapiro95_super_wide uppercase text-sm sm:text-base mr-3">
+            {`${discountAmountText(promoCode)} off`}
           </span>
-          <span className="text-center text-2xs sm:text-xs sm:mt-1  pr-10 sm:pr-0">
-            Use code {promoCode} for {percentageDiscount}% off your first month.
+          <span className="text-center text-2xs sm:text-xs pr-10 sm:pr-0">
+            {discountProductText}
           </span>
         </SectionLayout>
       </LazyBackgroundImage>
