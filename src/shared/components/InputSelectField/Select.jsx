@@ -54,6 +54,7 @@ const darkStyles = (dark) => {
       background-color: ${theme.colors['cc-blue']['500']};
       border-width: 1px; // border
       border-color: ${theme.colors['cc-blue']['500']};
+
       &:hover {
         border-color: ${theme.colors['cc-blue']['500']};
       }
@@ -63,7 +64,7 @@ const darkStyles = (dark) => {
         border-color: ${hexToRgb(theme.colors.cream, '0.1')} !important; // focus:border-cream/10
       }
 
-      .select-field__single-value {
+      .select-field__input, .select-field__single-value {
         color: ${hexToRgb(theme.colors.cream, '0.7')}; // text-cream/70
       }
     `;

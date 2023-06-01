@@ -14,38 +14,68 @@ import InputSelectField from 'shared/components/InputSelectField';
 import InputTextField from 'shared/components/InputTextField';
 import PersonSvg from 'shared/components/svg/PersonSvg';
 import Loading from 'shared/components/Loading';
-import { industriesSelectOptions, occupationsSelectOptions } from 'screens/my-account/utils';
+import { industriesSelectOptions, SELECT_OTHER_VALUE } from 'screens/my-account/utils';
 
 const MAX_LENGTH = 250;
 
 const validationSchema = Yup.object().shape({
   bio: Yup.string().required('Required').max(MAX_LENGTH),
-  workCompany: Yup.string().required('Required'),
+  workCompany: Yup.string()
+    .required('Required')
+    .min(3, 'Should be at least 3 characters')
+    .max(20, 'Should be at most 20 characters'),
   workIndustry: Yup.string().required('Required'),
-  workOccupation: Yup.string().required('Required'),
+  otherWorkIndustry: Yup.string().when('workIndustry', {
+    is: (workIndustry) => workIndustry === SELECT_OTHER_VALUE,
+    then: (schema) =>
+      schema
+        .required('Required')
+        .min(4, 'Should be at least 4 characters')
+        .max(25, 'Should be at most 25 characters'),
+    otherwise: null,
+  }),
+  workOccupation: Yup.string()
+    .required('Required')
+    .min(5, 'Should be at least 5 characters')
+    .max(30, 'Should be at most 30 characters'),
 });
 
 const Bio = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
+
   const isLoading = useSelector(getPageLoading);
   const profile = useSelector(getUserProfile);
   const editProfileLoading = useSelector(getEditProfileLoading);
-  const history = useHistory();
-
-  useEffect(() => {
-    dispatch(initialLoadInit());
-  }, [dispatch]);
-
-  const editProfileAction = (values) => dispatch(editProfileInit(values));
 
   const { bio, workCompany, workIndustry, workOccupation } = profile;
+
+  const otherIndustrySelected =
+    workIndustry &&
+    industriesSelectOptions().filter((option) => option.value === workIndustry).length === 0;
 
   const initialValues = {
     bio: bio || '',
     workCompany: workCompany || '',
-    workIndustry: workIndustry || '',
+    workIndustry: otherIndustrySelected ? SELECT_OTHER_VALUE : workIndustry || '',
+    otherWorkIndustry: otherIndustrySelected ? workIndustry : '',
     workOccupation: workOccupation || '',
   };
+
+  const editProfile = (values) => {
+    const { workIndustry, otherWorkIndustry } = values;
+
+    dispatch(
+      editProfileInit({
+        ...values,
+        workIndustry: workIndustry === SELECT_OTHER_VALUE ? otherWorkIndustry : workIndustry,
+      })
+    );
+  };
+
+  useEffect(() => {
+    dispatch(initialLoadInit());
+  }, [dispatch]);
 
   if (isLoading || isEmpty(profile)) {
     return <Loading />;
@@ -57,7 +87,7 @@ const Bio = () => {
       validateOnBlur={false}
       initialValues={initialValues}
       enableReinitialize
-      onSubmit={(values) => editProfileAction(values)}
+      onSubmit={editProfile}
       validationSchema={validationSchema}
     >
       {({ values, submitForm }) => (
@@ -88,7 +118,7 @@ const Bio = () => {
             </div>
             <InputTextField
               name="workCompany"
-              label="Where do you work?*"
+              label="Company name*"
               labelColor="white"
               dark
               variant="expanded"
@@ -103,12 +133,17 @@ const Bio = () => {
               variant="expanded"
               className="mb-4 md:w-3/4 md:self-end"
             />
-            <InputSelectField
-              disabled={!values.workIndustry}
+            {values.workIndustry === SELECT_OTHER_VALUE && (
+              <InputTextField
+                name="otherWorkIndustry"
+                dark
+                className="-mt-2 mb-4 md:w-3/4 md:self-end"
+              />
+            )}
+            <InputTextField
               name="workOccupation"
               label="What do you do?*"
               labelColor="white"
-              options={occupationsSelectOptions(values.workIndustry)}
               dark
               variant="expanded"
               className="md:w-3/4 md:self-end"

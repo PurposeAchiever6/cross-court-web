@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
 import { urlRegExp } from 'shared/utils/helpers';
-import { industriesSelectOptions, occupationsSelectOptions } from 'screens/my-account/utils';
+import { industriesSelectOptions, SELECT_OTHER_VALUE } from 'screens/my-account/utils';
 import Modal from 'shared/components/Modal';
 import Alert from 'shared/components/Alert';
 import AvatarUploader from 'shared/components/AvatarUploader';
@@ -17,10 +17,15 @@ import LinkSvg from 'shared/components/svg/LinkSvg';
 import avatarPlaceholderImg from 'screens/sessions/images/account-requirements/avatar-placeholder.png';
 
 const AccountRequirementsModal = ({ isOpen, closeHandler, onConfirm, user }) => {
+  const otherIndustrySelected =
+    user.workIndustry &&
+    industriesSelectOptions().filter((option) => option.value === user.workIndustry).length === 0;
+
   const initialValues = {
     image: '',
     workCompany: user.workCompany || '',
-    workIndustry: user.workIndustry || '',
+    workIndustry: otherIndustrySelected ? SELECT_OTHER_VALUE : user.workIndustry || '',
+    otherWorkIndustry: otherIndustrySelected ? user.workIndustry : '',
     workOccupation: user.workOccupation || '',
     instagramUsername: user.instagramUsername || '',
     links: user.links || [],
@@ -29,9 +34,24 @@ const AccountRequirementsModal = ({ isOpen, closeHandler, onConfirm, user }) => 
 
   const validationSchema = Yup.object().shape({
     image: user.imageUrl ? null : Yup.string().required('Required'),
-    workCompany: Yup.string().required('Required'),
+    workCompany: Yup.string()
+      .required('Required')
+      .min(3, 'Should be at least 3 characters')
+      .max(20, 'Should be at most 20 characters'),
     workIndustry: Yup.string().required('Required'),
-    workOccupation: Yup.string().required('Required'),
+    otherWorkIndustry: Yup.string().when('workIndustry', {
+      is: (workIndustry) => workIndustry === SELECT_OTHER_VALUE,
+      then: (schema) =>
+        schema
+          .required('Required')
+          .min(4, 'Should be at least 4 characters')
+          .max(25, 'Should be at most 25 characters'),
+      otherwise: null,
+    }),
+    workOccupation: Yup.string()
+      .required('Required')
+      .min(5, 'Should be at least 5 characters')
+      .max(30, 'Should be at most 30 characters'),
     instagramUsername: Yup.string().when('links', {
       is: (links) => links.length === 0,
       then: (schema) => schema.required('Required'),
@@ -44,6 +64,15 @@ const AccountRequirementsModal = ({ isOpen, closeHandler, onConfirm, user }) => 
       otherwise: null,
     }),
   });
+
+  const handleOnConfirm = (values) => {
+    const { workIndustry, otherWorkIndustry } = values;
+
+    onConfirm({
+      ...values,
+      workIndustry: workIndustry === SELECT_OTHER_VALUE ? otherWorkIndustry : workIndustry,
+    });
+  };
 
   const addNewLink = (formValues, setFieldValue, setFieldError) => {
     const { newLink, links } = formValues;
@@ -81,7 +110,7 @@ const AccountRequirementsModal = ({ isOpen, closeHandler, onConfirm, user }) => 
         validateOnBlur={false}
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={onConfirm}
+        onSubmit={handleOnConfirm}
         enableReinitialize
       >
         {({ values, setFieldValue, setFieldError }) => (
@@ -93,19 +122,17 @@ const AccountRequirementsModal = ({ isOpen, closeHandler, onConfirm, user }) => 
               description="Please upload a high-resolution, recent profile picture featuring a professional, close-range photo of you."
               className="mb-8"
             />
-            <InputTextField label="Where do you work*" name="workCompany" className="mb-4" />
+            <InputTextField label="Company name*" name="workCompany" className="mb-4" />
             <InputSelectField
               label="Industry*"
               name="workIndustry"
               options={industriesSelectOptions()}
               className="mb-4"
             />
-            <InputSelectField
-              label="What do you do*"
-              name="workOccupation"
-              options={occupationsSelectOptions(values.workIndustry)}
-              className="mb-4"
-            />
+            {values.workIndustry === SELECT_OTHER_VALUE && (
+              <InputTextField name="otherWorkIndustry" variant="shrink" className="-mt-2 mb-4" />
+            )}
+            <InputTextField label="What do you do*" name="workOccupation" className="mb-4" />
             <InputTextField
               label="Instagram Profile*"
               name="instagramUsername"

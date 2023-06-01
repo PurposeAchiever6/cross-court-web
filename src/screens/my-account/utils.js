@@ -1,19 +1,14 @@
-import { INDUSTRIES_AND_OCCUPATIONS } from 'screens/my-account/constants';
+import { INDUSTRIES } from 'screens/my-account/constants';
 
-export const industriesSelectOptions = () =>
-  INDUSTRIES_AND_OCCUPATIONS.map((industry) => ({
-    label: industry.name,
-    value: industry.name,
+export const SELECT_OTHER_VALUE = '_other';
+
+export const industriesSelectOptions = () => {
+  const options = INDUSTRIES.map((industry) => ({
+    label: industry,
+    value: industry,
   })).sort((a, b) => (a.value > b.value ? 1 : -1));
 
-export const occupationsSelectOptions = (byIndustry) => {
-  const industry = INDUSTRIES_AND_OCCUPATIONS.find((industry) => industry.name === byIndustry);
+  options.push({ label: 'Other', value: SELECT_OTHER_VALUE });
 
-  if (!industry) {
-    return [];
-  }
-
-  return industry.occupations
-    .map((occupation) => ({ label: occupation, value: occupation }))
-    .sort((a, b) => (a.value > b.value ? 1 : -1));
+  return options;
 };
