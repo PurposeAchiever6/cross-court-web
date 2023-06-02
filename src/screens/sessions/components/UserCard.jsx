@@ -3,13 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import PropTypes from 'prop-types';
 
-import ROUTES from 'shared/constants/routes';
 import { capitalize } from 'shared/utils/helpers';
 import Avatar from 'shared/components/Avatar';
 import Badge from 'shared/components/Badge';
 import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
 import Link from 'shared/components/Link';
-import Button from 'shared/components/Button';
 import LinkSvg from 'shared/components/svg/LinkSvg';
 
 const UserCard = ({ user, newLabel, expanded, className }) => {
@@ -46,20 +44,24 @@ const UserCard = ({ user, newLabel, expanded, className }) => {
       {expanded && (
         <div className="bg-cc-blue-300 p-4">
           {newLabel && (
-            <div className="h-6">
+            <div className="h-7">
               <Badge variant="white" shrink size="sm">
                 New
               </Badge>
             </div>
           )}
-          <div className="font-shapiro95_super_wide text-xs h-4 mb-1">{workIndustry}</div>
-          <div className="capitalize text-sm h-4 mb-2">{workCompany}</div>
-          <div className="text-white text-opacity-60 text-xs h-4 mb-4">
-            {capitalize(workOccupation)}
+          <div className="h-24">
+            {workIndustry && (
+              <div className="font-shapiro95_super_wide text-xs mb-2">{workIndustry}</div>
+            )}
+            {workCompany && <div className="capitalize text-sm mb-2">{workCompany}</div>}
+            {workOccupation && (
+              <div className="text-white text-opacity-60 text-xs">{capitalize(workOccupation)}</div>
+            )}
           </div>
-          <div className={newLabel ? '' : 'pt-6'}>
+          <div className={newLabel ? '' : 'pt-7'}>
             <LineDashedSvg strokeWidth="1" strokeDashArray="6" className="text-cc-purple mb-4" />
-            <div className="flex items-center mb-4">
+            <div className="flex items-center">
               <Link
                 to={instagramProfile}
                 variant="white-opacity"
@@ -76,9 +78,6 @@ const UserCard = ({ user, newLabel, expanded, className }) => {
                 </Link>
               ))}
             </div>
-            <Button to={ROUTES.MYACCOUNT} variant="outline-white" className="w-full">
-              View Profile
-            </Button>
           </div>
         </div>
       )}

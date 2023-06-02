@@ -36,7 +36,7 @@ const validationSchema = Yup.object().shape({
   }),
   workOccupation: Yup.string()
     .required('Required')
-    .min(5, 'Should be at least 5 characters')
+    .min(3, 'Should be at least 3 characters')
     .max(30, 'Should be at most 30 characters'),
 });
 
@@ -142,7 +142,7 @@ const Bio = () => {
             )}
             <InputTextField
               name="workOccupation"
-              label="What do you do?*"
+              label="Job title*"
               labelColor="white"
               dark
               variant="expanded"

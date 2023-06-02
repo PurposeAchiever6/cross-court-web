@@ -9,6 +9,7 @@ const MobileMenu = ({ menuOpen, toggleMenu }) => {
 
   useEffect(() => {
     menuOpen ? blockScroll() : allowScroll();
+    return () => allowScroll();
   }, [menuOpen, blockScroll, allowScroll]);
 
   if (!menuOpen) {

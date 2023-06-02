@@ -50,7 +50,7 @@ const AccountRequirementsModal = ({ isOpen, closeHandler, onConfirm, user }) => 
     }),
     workOccupation: Yup.string()
       .required('Required')
-      .min(5, 'Should be at least 5 characters')
+      .min(3, 'Should be at least 3 characters')
       .max(30, 'Should be at most 30 characters'),
     instagramUsername: Yup.string().when('links', {
       is: (links) => links.length === 0,
@@ -132,7 +132,7 @@ const AccountRequirementsModal = ({ isOpen, closeHandler, onConfirm, user }) => 
             {values.workIndustry === SELECT_OTHER_VALUE && (
               <InputTextField name="otherWorkIndustry" variant="shrink" className="-mt-2 mb-4" />
             )}
-            <InputTextField label="What do you do*" name="workOccupation" className="mb-4" />
+            <InputTextField label="Job title*" name="workOccupation" className="mb-4" />
             <InputTextField
               label="Instagram Profile*"
               name="instagramUsername"

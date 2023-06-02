@@ -31,7 +31,7 @@ const successToast = (options) => {
   const { title, description, showIcon, ...rest } = getOptions(options);
 
   toast(<Toast variant="success" title={title} description={description} showIcon={showIcon} />, {
-    autoClose: 6000,
+    autoClose: 3000,
     ...rest,
   });
 };
