@@ -172,7 +172,7 @@ const ProductsPage = () => {
     <>
       <PageLayout noPadding className="relative">
         {showAnimation && <NoSessionCredits />}
-        <SectionLayout className="relative mb-12 md:mb-24 pt-24 md:pt-28">
+        <SectionLayout className="relative mb-12 md:mb-24 pt-24 md:pt-28 overflow-x-hidden">
           <img
             className="scale-[2.5] md:scale-100 top-36 -left-48 bottom-0 inset-x-0 md:inset-0 absolute"
             src={triangleTexture}
