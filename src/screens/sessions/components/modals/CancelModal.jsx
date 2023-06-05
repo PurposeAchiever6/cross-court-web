@@ -135,10 +135,19 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
           </div>
           {cancellationText && <div className="text-sm mt-5 font-bold">{cancellationText}</div>}
         </div>
-        <Button onClick={onCancelClick} disabled={disableBtn} className="mr-2">
+
+        <Button
+          onClick={onCancelClick}
+          disabled={disableBtn}
+          className="w-full sm:w-auto sm:mr-2 mb-2 sm:mb-0"
+        >
           Yes, cancel it
         </Button>
-        <Button onClick={closeHandler} variant="outline-purple" className="ml-2">
+        <Button
+          onClick={closeHandler}
+          variant="outline-purple"
+          className="w-full sm:w-auto sm:ml-2"
+        >
           No, keep it
         </Button>
       </div>

@@ -321,15 +321,15 @@ const Routes = () => {
         <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFIRST]} exact>
           <Locations />
         </Route>
-        <Route path={ROUTES.SESSION} exact>
-          <Session />
-        </Route>
         <PrivateRoute path={ROUTES.SESSIONRESERVED} exact>
           <SessionReserved />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.FIRSTSESSIONRESERVED} exact>
           <FirstSessionReserved />
         </PrivateRoute>
+        <Route path={ROUTES.SESSION} exact>
+          <Session />
+        </Route>
         <Route path={ROUTES.WHY_JOIN} exact>
           <WhyJoin />
         </Route>
