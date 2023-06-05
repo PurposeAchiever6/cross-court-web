@@ -4,6 +4,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 import authReducer from 'screens/auth/reducer';
+import onboardingReducer from 'screens/onboarding/reducer';
 import locationsReducer from 'screens/locations/reducer';
 import sessionReducer from 'screens/sessions/reducer';
 import productsReducer from 'screens/products/reducer';
@@ -21,6 +22,7 @@ const appReducer = (history) =>
   combineReducers({
     router: connectRouter(history),
     auth: authReducer,
+    onboarding: onboardingReducer,
     locations: locationsReducer,
     session: sessionReducer,
     products: productsReducer,

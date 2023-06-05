@@ -13,5 +13,3 @@ export const UPDATE_CARD_FAILURE = '@payment-methods/UPDATE_CARD_FAILURE';
 export const DELETE_CARD_INIT = '@payment-methods/DELETE_CARD_INIT';
 export const DELETE_CARD_SUCCESS = '@payment-methods/DELETE_CARD_SUCCESS';
 export const DELETE_CARD_FAILURE = '@payment-methods/DELETE_CARD_FAILURE';
-
-export const SET_SELECTED_CARD = '@payment-methods/SET_SELECTED_CARD';

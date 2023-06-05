@@ -1,46 +1,34 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux';
-
 import ROUTES from 'shared/constants/routes';
-import { getUserSource } from 'shared/utils/userSource';
+import { getIsAuthenticated } from 'screens/auth/reducer';
+import AuthPageLayout from 'shared/components/layout/AuthPageLayout';
+import Link from 'shared/components/Link';
 import SignupForm from 'screens/auth/components/SignupForm';
-import { signUpInit } from 'screens/auth/actionCreators';
-import { getSignupLoading, getSignupErrors, getIsAuthenticated } from 'screens/auth/reducer';
-import signUnImage1 from 'screens/auth/images/sign_up_image_01.png';
-import signUnImage2 from 'screens/auth/images/sign_up_image_02.png';
+import signupImg from 'screens/auth/images/signup.jpg';
 
 const SignupPage = () => {
-  const dispatch = useDispatch();
-
-  const isLoading = useSelector(getSignupLoading);
-  const errors = useSelector(getSignupErrors);
   const isAuthenticated = useSelector(getIsAuthenticated);
-
-  const signupAction = (credentials) => {
-    const source = getUserSource() || 'web';
-    dispatch(signUpInit({ ...credentials, source }));
-  };
 
   if (isAuthenticated) {
     return <Redirect to={ROUTES.HOME} />;
   }
 
   return (
-    <div className="flex flex-col items-center justify-center relative">
-      <img
-        src={signUnImage1}
-        alt="Sign up to sweat"
-        className="absolute bottom-0 left-0 w-2/5 md:w-1/5 -z-1"
-      />
-      <img
-        src={signUnImage2}
-        alt="Sign up, first free"
-        className="absolute bottom-0 right-0 w-2/5 md:w-1/5 -z-1"
-      />
-      <SignupForm signupHandler={signupAction} errors={errors} isLoading={isLoading} />
-    </div>
+    <AuthPageLayout image={signupImg}>
+      <div className="md:absolute md:top-0 md:right-0 text-right text-sm mb-8">
+        <span className="mr-2">Already a member?</span>
+        <Link variant="purple-dark" to={ROUTES.LOGIN}>
+          Log In
+        </Link>
+      </div>
+      <h1 className="font-shapiro95_super_wide text-3xl md:text-4xl xl:text-5xl mb-4">
+        Let's Begin.
+      </h1>
+      <SignupForm />
+    </AuthPageLayout>
   );
 };
 

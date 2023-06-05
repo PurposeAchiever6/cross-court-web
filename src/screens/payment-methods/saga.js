@@ -1,7 +1,6 @@
 import { put, takeLatest, call, all } from 'redux-saga/effects';
 import { push } from 'connected-react-router';
-import { toast } from 'react-toastify';
-import ROUTES from 'shared/constants/routes';
+import toast from 'shared/utils/toast';
 import {
   INITIAL_LOAD_INIT,
   INITIAL_LOAD_SUCCESS,
@@ -40,7 +39,7 @@ export function* addPaymentMethodFlow(action) {
       action.payload.stripe,
       action.payload.cardElement
     );
-    const paymentMethod = yield call(paymentsService.addPaymentMethod, paymentMethodPayload);
+    const paymentMethod = yield call(paymentsService.addPaymentMethod, paymentMethodPayload.id);
 
     yield put({
       type: ADD_CARD_SUCCESS,
@@ -48,9 +47,14 @@ export function* addPaymentMethodFlow(action) {
         paymentMethod,
       },
     });
-    yield call(toast.success, 'Card sucessfully added!');
 
-    yield put(push(action.payload.redirectTo || ROUTES.PAYMENT_METHODS_DEFAULT));
+    yield call(toast.success, 'Card sucessfully added.');
+
+    const { redirectTo } = action.payload;
+
+    if (redirectTo) {
+      yield put(push(redirectTo));
+    }
   } catch (err) {
     yield call(toast.error, err.message);
     yield put({ type: ADD_CARD_FAILURE, error: err });
@@ -71,7 +75,7 @@ export function* updatePaymentMethodFlow(action) {
         availableCards: paymentMethodsPayload,
       },
     });
-    yield call(toast.success, 'Default card updated');
+    yield call(toast.success, 'Default card updated.');
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({ type: UPDATE_CARD_FAILURE, error: err });
@@ -91,7 +95,7 @@ export function* deletePaymentMethodFlow(action) {
         availableCards: paymentMethodsPayload,
       },
     });
-    yield call(toast.success, 'Card successfully deleted');
+    yield call(toast.success, 'Card deleted.');
   } catch (err) {
     yield call(toast.error, err.response.data.error);
     yield put({ type: DELETE_CARD_FAILURE, error: err.response.data.error });

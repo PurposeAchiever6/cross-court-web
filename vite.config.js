@@ -8,11 +8,12 @@ import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 
 export default defineConfig(() => ({
-  server: { port: 3000 },
+  server: { port: 3000, open: true },
   plugins: [viteCommonjs(), react()],
   build: {
     outDir: 'build',
     commonjsOptions: {
+      include: ['tailwind.config.js', 'node_modules/**'],
       defaultIsModuleExports(id) {
         try {
           const module = require(id);
@@ -26,6 +27,9 @@ export default defineConfig(() => ({
       },
       transformMixedEsModules: true,
     },
+  },
+  optimizeDeps: {
+    include: ['tailwind.config.js'],
   },
   resolve: {
     alias: [
@@ -43,6 +47,7 @@ export default defineConfig(() => ({
         replacement: fileURLToPath(new URL('./src/screens', import.meta.url)),
       },
       { find: 'assets', replacement: fileURLToPath(new URL('./src/assets', import.meta.url)) },
+      { find: '~', replacement: fileURLToPath(new URL('.', import.meta.url)) },
     ],
   },
 }));

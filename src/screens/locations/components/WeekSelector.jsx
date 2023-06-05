@@ -1,9 +1,6 @@
-/* eslint-disable no-nested-ternary */
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import {
   isSameDay,
@@ -16,109 +13,90 @@ import {
   isInFutureWeek,
   isPast,
 } from 'shared/utils/date';
-import colors from 'shared/styles/constants';
-
-const WeekSelectorContainer = styled.div`
-  .week-handler {
-    display: flex;
-    padding: 0.5rem 0;
-
-    button {
-      padding: 1rem;
-      font-size: 1rem;
-      border: 0;
-      background-color: transparent;
-      cursor: pointer;
-    }
-
-    svg {
-      font-size: 1.5rem;
-    }
-  }
-
-  .weektitle-container {
-    text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: bold;
-    flex: 1;
-    text-align: center;
-    align-self: center;
-  }
-
-  .weekdays-container {
-    display: flex;
-    overflow-y: scroll;
-    justify-content: space-between;
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  }
-`;
-
-const DayContainer = styled.button`
-  display: flex;
-  flex-direction: column;
-  text-transform: uppercase;
-  font-weight: bold;
-  text-align: center;
-  padding: 6px;
-  border: 0;
-  cursor: pointer;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ day, currentDay }) => (isSameDay(day, currentDay) ? 'black' : 'white')};
-  color: ${({ day, currentDay, disabled }) =>
-    disabled ? colors.lightGrey : isSameDay(day, currentDay) ? 'white' : 'black'};
-  .day-number {
-    text-align: center;
-  }
-`;
+import WeekButton from 'screens/locations/components/WeekButton';
 
 const WeekSelector = ({
   selectedDate,
   increaseHandler,
   decreaseHandler,
   setSelectedDateHandler,
-}) => (
-  <WeekSelectorContainer>
-    <div className="week-handler">
-      <button
-        type="button"
-        onClick={decreaseHandler}
-        className={isThisWeek(selectedDate) ? 'opacity-50 pointer-events-none' : ''}
+  className,
+}) => {
+  const horizontalScrollContainerRef = useRef(null);
+
+  useEffect(() => {
+    if (!selectedDate) {
+      return;
+    }
+
+    horizontalScrollContainerRef.current.scrollLeft = 45 * selectedDate.getDay();
+  }, [selectedDate]);
+
+  return (
+    <div className={className}>
+      <div className="bg-cc-blue-900 text-center text-sm px-4 py-3 mb-2">
+        {weekRangeTitle(selectedDate)}
+      </div>
+      <div className="flex md:hidden mb-2">
+        <WeekButton
+          icon={faAngleLeft}
+          onClick={decreaseHandler}
+          disabled={isThisWeek(selectedDate)}
+          className="w-full mr-1"
+        />
+        <WeekButton
+          icon={faAngleRight}
+          onClick={increaseHandler}
+          disabled={isInFutureWeek(selectedDate, 2)}
+          className="w-full ml-1"
+        />
+      </div>
+      <div
+        className="flex overflow-x-auto md:overflow-x-visible"
+        ref={horizontalScrollContainerRef}
       >
-        <FontAwesomeIcon icon={faAngleLeft} />
-      </button>
-      <span className="weektitle-container">{weekRangeTitle(selectedDate)}</span>
-      <button
-        type="button"
-        onClick={increaseHandler}
-        className={isInFutureWeek(selectedDate, 2) ? 'opacity-50 pointer-events-none' : ''}
-      >
-        <FontAwesomeIcon icon={faAngleRight} />
-      </button>
+        <WeekButton
+          icon={faAngleLeft}
+          onClick={decreaseHandler}
+          disabled={isThisWeek(selectedDate)}
+          className="hidden md:block mr-1"
+        />
+        {weekRange(startOfWeek(selectedDate)).map((day) => (
+          <button
+            key={day}
+            type="button"
+            onClick={() => setSelectedDateHandler(day)}
+            className={`w-full text-center text-sm px-4 py-2 mx-1 transition-all duration-300 sm:hover:bg-cc-blue-700 ${
+              isSameDay(day, selectedDate)
+                ? 'bg-white text-cc-blue-900 pointer-events-none'
+                : 'bg-cc-blue-900'
+            } ${isPast(day) ? 'opacity-50 pointer-events-none' : ''}`}
+          >
+            <span className="block font-shapiro95_super_wide uppercase">{dayShort(day)}</span>
+            <span className="block">{dayNumber(day)}</span>
+          </button>
+        ))}
+        <WeekButton
+          icon={faAngleRight}
+          onClick={increaseHandler}
+          disabled={isInFutureWeek(selectedDate, 2)}
+          className="hidden md:block ml-1"
+        />
+      </div>
     </div>
-    <div className="weekdays-container px-2 md:px-6">
-      {weekRange(startOfWeek(selectedDate)).map((day) => (
-        <DayContainer
-          key={day}
-          day={day}
-          currentDay={selectedDate}
-          onClick={() => setSelectedDateHandler(day)}
-          disabled={isPast(day)}
-        >
-          <span className="text-xs sm:text-base">{dayShort(day)}</span>
-          <span className="text-sm sm:text-base">{dayNumber(day)}</span>
-        </DayContainer>
-      ))}
-    </div>
-  </WeekSelectorContainer>
-);
+  );
+};
+
+WeekSelector.defaultProps = {
+  className: '',
+};
 
 WeekSelector.propTypes = {
   selectedDate: PropTypes.instanceOf(Date).isRequired,
   increaseHandler: PropTypes.func.isRequired,
   decreaseHandler: PropTypes.func.isRequired,
   setSelectedDateHandler: PropTypes.func.isRequired,
+  className: PropTypes.string,
 };
 
 export default WeekSelector;

@@ -2,9 +2,7 @@
 @import './contact-form.css';
 @import './utilities.css';
 @import './sidebar.css';
-@import './alerts.css';
 @import './toasts.css';
-@import './onboarding-tour.css';
 @import './active-campaign-chat.css';
 @import './email-opt-in.css';
 
@@ -14,12 +12,6 @@ html {
 
 body {
   margin: 0;
-}
-
-#modal-root {
-  position: relative;
-  z-index: 999;
-  font-family: 'shapiro95_super_wide';
 }
 
 #root {
@@ -122,6 +114,11 @@ body .mobile-hide-inline {
 
 /* MAIN */
 body[data-page='home'] main,
+body[data-page='login'] main,
+body[data-page^='signup'] main,
+body[data-page^='onboarding'] main,
+body[data-page='locations'] main,
+body[data-page='locations-first'] main,
 body[data-page='why-join'] main,
 body[data-page='free-session-credit-added'] main,
 body[data-page='no-session-credits'] main,
@@ -129,7 +126,14 @@ body[data-page='dashboard'] main,
 body[data-page='app'] main,
 body[data-page='careers'] main,
 body[data-page='memberships'] main,
+body[data-page='my-account'] main,
 body[data-page='faq'] main,
+body[data-page='settings'] main,
+body[data-page^='session-'] main,
+body[data-page='first-session-reserved'] main,
+body[data-page='manage-membership'] main,
+body[data-page='checkout-confirmed'] main,
+body[data-page='checkout-membership'] main,
 body[data-page='gallery'] main {
   padding-top: 0;
 }
@@ -354,426 +358,6 @@ body .signup-success .send-again-container .send-it-again {
   100% {
     transform: translate3d(50%, 50%, 0);
   }
-}
-
-/* MY ACCOUNT */
-
-@media (min-width: 992px) {
-  body .my-account-desktop .sidebar-container {
-    width: 468px;
-  }
-}
-
-body .my-account-desktop .upcoming-sessions,
-body .my-account-mobile .upcoming-sessions {
-  margin-bottom: 60px;
-}
-body .my-account-desktop .upcoming-sessions h3,
-body .my-account-desktop .past-sessions h3,
-body .my-account-mobile .upcoming-sessions h3,
-body .my-account-mobile .past-sessions h3 {
-  font-family: 'shapiro95_super_wide';
-  font-size: 20px;
-  line-height: 20px;
-}
-@media (min-width: 992px) {
-  body .my-account-desktop .upcoming-sessions h3,
-  body .my-account-desktop .past-sessions h3,
-  body .my-account-mobile .upcoming-sessions h3,
-  body .my-account-mobile .past-sessions h3 {
-    font-size: 28px;
-    line-height: 28px;
-    margin-bottom: 10px;
-  }
-}
-body .my-account-desktop .upcoming-sessions .empty-container,
-body .my-account-desktop .past-sessions .empty-container {
-  background-color: transparent;
-  height: auto;
-}
-body .my-account-mobile .upcoming-sessions .empty-container,
-body .my-account-mobile .past-sessions .empty-container {
-  background-color: transparent;
-  padding: 0 32px;
-}
-body .my-account-desktop .upcoming-sessions .empty-container .container-empty-message h3,
-body .my-account-desktop .past-sessions .empty-container .container-empty-message h3,
-body .my-account-mobile .upcoming-sessions .empty-container .container-empty-message h3,
-body .my-account-mobile .past-sessions .empty-container .container-empty-message h3 {
-  color: #000;
-  letter-spacing: 0;
-  margin: 0 0 10px;
-}
-body .my-account-desktop .upcoming-sessions .sessions-container .session-container,
-body .my-account-desktop .past-sessions .sessions-container .session-container,
-body .my-account-mobile .upcoming-sessions .sessions-container .session-container,
-body .my-account-mobile .past-sessions .sessions-container .session-container {
-  border: 3px solid #9999ff;
-}
-
-body .my-account-desktop .upcoming-sessions .sessions-container .session-container .details .date,
-body .my-account-mobile .upcoming-sessions .sessions-container .session-container .details .date {
-  background-color: #fff;
-  color: #9999ff;
-  font-family: 'shapiro95_super_wide';
-  font-size: 18px;
-  line-height: 54px;
-  padding: 0 10px;
-  position: relative;
-  text-transform: uppercase;
-}
-body .my-account-desktop .past-sessions .sessions-container .session-container .details .date,
-body .my-account-mobile .past-sessions .sessions-container .session-container .details .date {
-  background-color: #000;
-  color: #fff;
-  font-family: 'shapiro95_super_wide';
-  font-size: 18px;
-  line-height: 54px;
-  padding: 0 10px;
-  position: relative;
-  text-transform: uppercase;
-}
-body
-  .my-account-desktop
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .date
-  .reserved-check,
-body
-  .my-account-desktop
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .date
-  .reserved-check,
-body
-  .my-account-mobile
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .date
-  .reserved-check,
-body
-  .my-account-mobile
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .date
-  .reserved-check {
-  background-color: transparent;
-  margin-left: 0;
-  height: 35px;
-  position: absolute;
-  right: 10px;
-  width: 35px;
-}
-body
-  .my-account-desktop
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .date
-  .reserved-check
-  svg,
-body
-  .my-account-desktop
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .date
-  .reserved-check
-  svg,
-body
-  .my-account-mobile
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .date
-  .reserved-check
-  svg,
-body
-  .my-account-mobile
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .date
-  .reserved-check
-  svg {
-  font-size: 35px;
-}
-body
-  .my-account-desktop
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container,
-body
-  .my-account-mobile
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container {
-  background-color: #9999ff;
-  color: #fff;
-  min-height: 128px;
-  padding: 10px;
-}
-@media (min-width: 992px) {
-  body
-    .my-account-desktop
-    .upcoming-sessions
-    .sessions-container
-    .session-container
-    .details
-    .time-location-buttons-container,
-  body
-    .my-account-mobile
-    .upcoming-sessions
-    .sessions-container
-    .session-container
-    .details
-    .time-location-buttons-container {
-    min-height: 0;
-  }
-}
-body
-  .my-account-desktop
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container,
-body
-  .my-account-mobile
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container {
-  background-color: #fff;
-  color: #000;
-  min-height: 128px;
-  padding: 10px;
-}
-@media (min-width: 992px) {
-  body
-    .my-account-desktop
-    .past-sessions
-    .sessions-container
-    .session-container
-    .details
-    .time-location-buttons-container,
-  body
-    .my-account-mobile
-    .past-sessions
-    .sessions-container
-    .session-container
-    .details
-    .time-location-buttons-container {
-    min-height: 0;
-  }
-}
-body
-  .my-account-desktop
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .time,
-body
-  .my-account-desktop
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .time,
-body
-  .my-account-mobile
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .time,
-body
-  .my-account-mobile
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .time {
-  font-size: 16px;
-  line-height: 20px;
-  margin: 0;
-  padding: 0;
-}
-body
-  .my-account-desktop
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .location,
-body
-  .my-account-desktop
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .location,
-body
-  .my-account-mobile
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .location,
-body
-  .my-account-mobile
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .location {
-  font-family: 'shapiro95_super_wide';
-  margin: 0 0 20px;
-  padding: 0;
-  text-transform: uppercase;
-}
-body
-  .my-account-desktop
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .buttons-container,
-body
-  .my-account-desktop
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .buttons-container,
-body
-  .my-account-mobile
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .buttons-container,
-body
-  .my-account-mobile
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .buttons-container {
-  margin: 0;
-  padding: 0;
-}
-body
-  .my-account-desktop
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .buttons-container
-  .confirm-button,
-body
-  .my-account-desktop
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .buttons-container
-  .see-details-button,
-body
-  .my-account-desktop
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .buttons-container
-  .see-details-button,
-body
-  .my-account-mobile
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .buttons-container
-  .confirm-button,
-body
-  .my-account-mobile
-  .upcoming-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .buttons-container
-  .see-details-button,
-body
-  .my-account-mobile
-  .past-sessions
-  .sessions-container
-  .session-container
-  .details
-  .time-location-buttons-container
-  .buttons-container
-  .see-details-button {
-  padding: 0 0 5px;
-  width: 100%;
-}
-body .my-account-mobile .tabs {
-  padding: 32px 32px 0;
-}
-body .my-account-mobile .tabs span {
-  font-family: 'shapiro97_air_extd';
-  font-size: 18px;
-  line-height: 18px;
-  -webkit-text-stroke: 1px;
-}
-body .my-account-mobile .tabs span:nth-of-type(1) {
-  margin-right: 20px;
-}
-body .my-account-mobile .tabs span.selected {
-  font-family: 'shapiro95_super_wide';
-  font-size: 20px;
-  line-height: 19px;
-  font-weight: normal;
-}
-body .my-account-mobile .tabs {
-  font-size: 24px;
-  line-height: 20px;
-}
-body .my-account-mobile .tab-content {
-  margin-bottom: 20px;
 }
 
 /* PWA */

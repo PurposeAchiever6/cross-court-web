@@ -8,20 +8,20 @@ import {
   INITIAL_LOAD_AUTH_INIT,
   INITIAL_LOAD_AUTH_SUCCESS,
   INITIAL_LOAD_AUTH_FAILURE,
-  SHOW_CANCEL_MODAL,
-  CANCEL_SESSION_SUCCESS,
+  SHOW_WAITLIST_MODAL,
+  CLOSE_WAITLIST_MODAL,
+  SHOW_ADD_GUEST_MODAL,
+  CLOSE_ADD_GUEST_MODAL,
   RESERVE_SESSION_INIT,
   RESERVE_SESSION_SUCCESS,
   RESERVE_SESSION_FAILURE,
-  CONFIRM_SESSION_INIT,
-  CONFIRM_SESSION_SUCCESS,
-  CONFIRM_SESSION_FAILURE,
   JOIN_SESSION_WAITLIST_INIT,
   JOIN_SESSION_WAITLIST_SUCCESS,
   JOIN_SESSION_WAITLIST_FAILURE,
   REMOVE_SESSION_WAITLIST_INIT,
   REMOVE_SESSION_WAITLIST_SUCCESS,
   REMOVE_SESSION_WAITLIST_FAILURE,
+  ADD_SESSION_GUEST_INIT,
   ADD_SESSION_GUEST_SUCCESS,
   ADD_SESSION_GUEST_FAILURE,
   REMOVE_SESSION_GUEST_SUCCESS,
@@ -31,12 +31,13 @@ const initialState = {
   error: null,
   pageLoading: true,
   sessionsLoadingBtns: [],
-  showCancelModal: false,
+  addGuestLoading: false,
+  removeSessionWaitlistLoading: false,
+  showWaitlistModal: false,
+  showAddGuestModal: false,
   sessionInfo: {},
   sessionId: '',
   sessionDate: '',
-  sessionWaitlist: {},
-  addSessionGuestError: false,
 };
 
 export default (state = initialState, action) => {
@@ -61,55 +62,6 @@ export default (state = initialState, action) => {
     case INITIAL_LOAD_AUTH_FAILURE:
       return { ...state, error: action.error };
     case RESERVE_SESSION_FAILURE:
-    case CONFIRM_SESSION_FAILURE:
-      return { ...state, error: action.error, pageLoading: false };
-    case SHOW_CANCEL_MODAL:
-      return { ...state, showCancelModal: !state.showCancelModal };
-    case CANCEL_SESSION_SUCCESS:
-      return {
-        ...state,
-        showCancelModal: false,
-      };
-    case RESERVE_SESSION_INIT:
-    case CONFIRM_SESSION_INIT:
-      return {
-        ...state,
-        pageLoading: true,
-      };
-    case JOIN_SESSION_WAITLIST_INIT:
-    case REMOVE_SESSION_WAITLIST_INIT:
-      return {
-        ...state,
-        sessionsLoadingBtns: [...state.sessionsLoadingBtns, action.payload.sessionId],
-      };
-    case RESERVE_SESSION_SUCCESS:
-    case CONFIRM_SESSION_SUCCESS:
-      return {
-        ...state,
-        pageLoading: false,
-        sessionInfo: {
-          ...state.sessionInfo,
-          userSession: action.payload.userSession,
-        },
-      };
-    case JOIN_SESSION_WAITLIST_SUCCESS:
-      return {
-        ...state,
-        sessionsLoadingBtns: [
-          ...state.sessionsLoadingBtns.filter((id) => id !== action.payload.sessionId),
-        ],
-        sessionWaitlist: action.payload.sessionWaitlist,
-      };
-    case REMOVE_SESSION_WAITLIST_SUCCESS:
-      return {
-        ...state,
-        sessionInfo: { ...state.sessionInfo, onWaitlist: false },
-        sessionsLoadingBtns: [
-          ...state.sessionsLoadingBtns.filter((id) => id !== action.payload.sessionId),
-        ],
-      };
-    case JOIN_SESSION_WAITLIST_FAILURE:
-    case REMOVE_SESSION_WAITLIST_FAILURE:
       return {
         ...state,
         error: action.error,
@@ -117,10 +69,75 @@ export default (state = initialState, action) => {
           ...state.sessionsLoadingBtns.filter((id) => id !== action.payload.sessionId),
         ],
       };
+    case SHOW_WAITLIST_MODAL:
+      return { ...state, showWaitlistModal: action.payload.sessionId };
+    case CLOSE_WAITLIST_MODAL:
+      return { ...state, showWaitlistModal: false };
+    case SHOW_ADD_GUEST_MODAL:
+      return { ...state, showAddGuestModal: true };
+    case CLOSE_ADD_GUEST_MODAL:
+      return { ...state, showAddGuestModal: false };
+    case RESERVE_SESSION_INIT:
+      return {
+        ...state,
+        sessionsLoadingBtns: [...state.sessionsLoadingBtns, action.payload.sessionId],
+      };
+    case JOIN_SESSION_WAITLIST_INIT:
+      return {
+        ...state,
+        sessionsLoadingBtns: [...state.sessionsLoadingBtns, action.payload.sessionId],
+      };
+    case REMOVE_SESSION_WAITLIST_INIT:
+      return {
+        ...state,
+        removeSessionWaitlistLoading: true,
+      };
+    case RESERVE_SESSION_SUCCESS:
+      return {
+        ...state,
+        sessionsLoadingBtns: [
+          ...state.sessionsLoadingBtns.filter((id) => id !== action.payload.sessionId),
+        ],
+        sessionInfo: {
+          ...state.sessionInfo,
+          reserved: true,
+          userSession: action.payload.userSession,
+        },
+      };
+    case JOIN_SESSION_WAITLIST_SUCCESS:
+      return {
+        ...state,
+        sessionInfo: {
+          ...state.sessionInfo,
+          onWaitlist: true,
+          waitlistPlacement: action.payload.waitlistPlacement,
+        },
+        sessionsLoadingBtns: [
+          ...state.sessionsLoadingBtns.filter((id) => id !== action.payload.sessionId),
+        ],
+      };
+    case REMOVE_SESSION_WAITLIST_SUCCESS:
+      return {
+        ...state,
+        sessionInfo: { ...state.sessionInfo, onWaitlist: false, waitlistPlacement: null },
+        removeSessionWaitlistLoading: false,
+      };
+    case JOIN_SESSION_WAITLIST_FAILURE:
+    case REMOVE_SESSION_WAITLIST_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        removeSessionWaitlistLoading: false,
+      };
+    case ADD_SESSION_GUEST_INIT:
+      return {
+        ...state,
+        addGuestLoading: true,
+      };
     case ADD_SESSION_GUEST_SUCCESS:
       return {
         ...state,
-        addSessionGuestError: false,
+        addGuestLoading: false,
         sessionInfo: {
           ...state.sessionInfo,
           userSession: {
@@ -135,7 +152,7 @@ export default (state = initialState, action) => {
     case ADD_SESSION_GUEST_FAILURE:
       return {
         ...state,
-        addSessionGuestError: true,
+        addGuestLoading: false,
       };
     case REMOVE_SESSION_GUEST_SUCCESS:
       return {
@@ -171,13 +188,20 @@ export const getError = createSelector(getSession, (session) => session.error);
 export const getSessionInfo = createSelector(getSession, (session) => session.sessionInfo);
 export const getSessionId = createSelector(getSession, (session) => session.sessionId);
 export const getSessionDate = createSelector(getSession, (session) => session.sessionDate);
-export const getShowCancelModal = createSelector(getSession, (session) => session.showCancelModal);
-export const getSessionWaitlist = createSelector(getSession, (session) => session.sessionWaitlist);
+export const getRemoveSessionWaitlistLoading = createSelector(
+  getSession,
+  (session) => session.removeSessionWaitlistLoading
+);
+export const getShowWaitlistModal = createSelector(
+  getSession,
+  (session) => session.showWaitlistModal
+);
+export const getShowAddGuestModal = createSelector(
+  getSession,
+  (session) => session.showAddGuestModal
+);
 export const getSessionsLoadingBtns = createSelector(
   getSession,
   (session) => session.sessionsLoadingBtns
 );
-export const getAddSessionGuestError = createSelector(
-  getSession,
-  (session) => session.addSessionGuestError
-);
+export const getAddGuestLoading = createSelector(getSession, (session) => session.addGuestLoading);

@@ -1,89 +1,98 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import { isEmpty } from 'ramda';
-import { string, func, bool } from 'prop-types';
+import PropTypes from 'prop-types';
 
+import {
+  loginInit,
+  showForgotPasswordModal as showForgotPasswordModalAction,
+  closeForgotPasswordModal as closeForgotPasswordModalAction,
+} from 'screens/auth/actionCreators';
+import { getLoginLoading, getShowForgotPasswordModal } from 'screens/auth/reducer';
+import Button from 'shared/components/Button';
+import Link from 'shared/components/Link';
 import InputTextField from 'shared/components/InputTextField';
-import ROUTES from 'shared/constants/routes';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import InputPasswordField from 'shared/components/InputPasswordField';
+import EnvelopeSvg from 'shared/components/svg/EnvelopeSvg';
+import PasswordSvg from 'shared/components/svg/PasswordSvg';
+import ForgotPasswordModal from 'screens/auth/components/modals/ForgotPasswordModal';
 
-const validationSchema = Yup.object().shape({
-  email: Yup.string().required('Required'),
-  password: Yup.string().required('Required'),
-});
+const LoginForm = ({ className }) => {
+  const dispatch = useDispatch();
 
-const initialValues = {
-  email: '',
-  password: '',
+  const isLoading = useSelector(getLoginLoading);
+  const showForgotPasswordModal = useSelector(getShowForgotPasswordModal);
+
+  const loginUser = (credentials) => dispatch(loginInit(credentials));
+
+  const setShowForgotPasswordModal = (show) => {
+    show ? dispatch(showForgotPasswordModalAction()) : dispatch(closeForgotPasswordModalAction());
+  };
+
+  const initialValues = {
+    email: '',
+    password: '',
+  };
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required('Required'),
+    password: Yup.string().required('Required'),
+  });
+
+  return (
+    <div className={className}>
+      <Formik
+        validateOnChange={false}
+        validateOnBlur={false}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={loginUser}
+      >
+        <Form>
+          <div className="mb-6">
+            <InputTextField
+              name="email"
+              label="Email Address"
+              icon={<EnvelopeSvg className="w-5" />}
+              leftIcon
+              className="mb-4"
+            />
+            <InputPasswordField
+              name="password"
+              label="Password"
+              icon={<PasswordSvg className="w-5" />}
+              leftIcon
+            />
+          </div>
+          <div className="flex justify-between items-center">
+            <Button type="submit" loading={isLoading}>
+              Log In
+            </Button>
+            <Link
+              variant="purple-dark"
+              onClick={() => setShowForgotPasswordModal(true)}
+              className="text-sm"
+            >
+              Forgot Password
+            </Link>
+          </div>
+        </Form>
+      </Formik>
+      <ForgotPasswordModal
+        isOpen={showForgotPasswordModal}
+        closeHandler={() => setShowForgotPasswordModal(false)}
+      />
+    </div>
+  );
 };
 
-const LoginForm = ({ error, loginHandler, isLoading }) => (
-  <div>
-    <Formik
-      validateOnChange={false}
-      validateOnBlur={false}
-      initialValues={initialValues}
-      onSubmit={(values) => {
-        loginHandler({ ...values });
-      }}
-      validationSchema={validationSchema}
-    >
-      {(props) => {
-        const { errors } = props;
-        return (
-          <Form>
-            <h1 className="font-shapiro95_super_wide text-center text-4xl uppercase mb-12">
-              LOG IN
-            </h1>
-            <div className="mb-10">
-              <InputTextField
-                label="Email"
-                error={errors.username}
-                name="email"
-                placeholder="example@crosscourt.com"
-                className="text-lg mb-5"
-              />
-              <InputTextField
-                type="password"
-                label="Password"
-                error={errors.password}
-                name="password"
-                placeholder="Type password"
-                className="text-lg"
-              />
-            </div>
-            {isEmpty(error) ? null : <div className="alert-error mb-2">{error}</div>}
-            <PrimaryButton type="submit" loading={isLoading} w="100%" className="mb-14">
-              LOG IN
-            </PrimaryButton>
-            <div className="text-center mb-14">
-              <Link to={ROUTES.FORGOTPASSWORD} className="font-bold hover:underline">
-                Forgot your password?
-              </Link>
-            </div>
-            <div className="text-center">
-              If you are a new player
-              <Link to={ROUTES.SIGNUP} className="block font-bold hover:underline">
-                Sign up here
-              </Link>
-            </div>
-          </Form>
-        );
-      }}
-    </Formik>
-  </div>
-);
-
 LoginForm.defaultProps = {
-  error: null,
+  className: '',
 };
 
 LoginForm.propTypes = {
-  error: string,
-  loginHandler: func.isRequired,
-  isLoading: bool.isRequired,
+  className: PropTypes.string,
 };
 
 export default LoginForm;

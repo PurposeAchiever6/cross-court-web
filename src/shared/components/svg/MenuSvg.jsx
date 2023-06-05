@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MenuSvgAlt = ({ color, className }) => (
+const MenuSvg = ({ className }) => (
   <svg
     className={className}
     width="27"
@@ -10,20 +10,18 @@ const MenuSvgAlt = ({ color, className }) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M26.5 1H0" stroke={color} strokeWidth="3" />
-    <path d="M26.5 11H0" stroke={color} strokeWidth="3" />
-    <path d="M26.5 21H0" stroke={color} strokeWidth="3" />
+    <path d="M26.5 1H0" stroke="currentColor" strokeWidth="3" />
+    <path d="M26.5 11H0" stroke="currentColor" strokeWidth="3" />
+    <path d="M26.5 21H0" stroke="currentColor" strokeWidth="3" />
   </svg>
 );
 
-MenuSvgAlt.propTypes = {
-  color: PropTypes.string,
-  className: PropTypes.string,
-};
-
-MenuSvgAlt.defaultProps = {
-  color: '#9999FF',
+MenuSvg.defaultProps = {
   className: '',
 };
 
-export default MenuSvgAlt;
+MenuSvg.propTypes = {
+  className: PropTypes.string,
+};
+
+export default MenuSvg;

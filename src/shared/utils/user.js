@@ -1,3 +1,4 @@
+import { SIGNUP_STATE_COMPLETED } from 'screens/onboarding/constants';
 import { yearsFrom } from 'shared/utils/date';
 
 export const isUserInFirstSessionFlow = (userProfile) => {
@@ -59,3 +60,27 @@ export const userOutsideOfSessionSkillLevel = (userProfile, session) => {
 
   return skillLevel && (userSkillRating < skillLevel.min || userSkillRating > skillLevel.max);
 };
+
+export const showHeaderMembershipPromoCodeBanner = (isAuthenticated, promoCode) => {
+  if (!promoCode) {
+    return false;
+  }
+
+  if (!isAuthenticated) {
+    return true;
+  }
+
+  return promoCode.validForUser;
+};
+
+export const restrictOnboardingAccess = (userProfile) =>
+  userProfile.signupState === SIGNUP_STATE_COMPLETED ||
+  userProfile.activeSubscription ||
+  !isUserInFirstSessionFlow(userProfile);
+
+export const accountMissingInformation = (userProfile) =>
+  !userProfile.imageUrl ||
+  !userProfile.workCompany ||
+  !userProfile.workIndustry ||
+  !userProfile.workOccupation ||
+  (!userProfile.instagramProfile && userProfile.links.length === 0);

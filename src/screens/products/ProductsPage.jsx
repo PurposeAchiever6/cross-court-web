@@ -1,78 +1,89 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import ROUTES from 'shared/constants/routes';
 import { startedCheckout } from 'shared/utils/activeCampaign';
 import { getIsAuthenticated } from 'screens/auth/reducer';
-import { getAvailableProducts, getPageLoading } from 'screens/products/reducer';
-import { dropInProducts, thisYearFreeFinishedSubscriptionPauses } from 'screens/products/utils';
-import { getUserProfile } from 'screens/my-account/reducer';
 import {
-  initialLoad,
-  setSelectedProduct,
-  reactivateSubscription,
-  pauseSubscription,
-} from 'screens/products/actionCreators';
+  getAvailableProducts,
+  getPageLoading,
+  getRecurringProducts,
+} from 'screens/products/reducer';
+import {
+  getShowAddPaymentMethodModal,
+  getShowSelectPaymentMethodModal,
+} from 'screens/checkout/reducer';
+import {
+  selectProduct,
+  setPromoCodeInit,
+  showAddPaymentMethodModal,
+  closeAddPaymentMethodModal,
+  showSelectPaymentMethodModal,
+  closeSelectPaymentMethodModal,
+} from 'screens/checkout/actionCreators';
+import { getUserProfile } from 'screens/my-account/reducer';
+import { initialLoad } from 'screens/products/actionCreators';
 import PageLayout from 'shared/components/layout/PageLayout';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import Loading from 'shared/components/Loading';
-import CancelMembershipModal from 'shared/components/CancelMembershipModal';
 import MembershipIsPausedModal from 'screens/memberships/components/MembershipIsPausedModal';
-import PauseMembershipModal from 'screens/memberships/components/PauseMembershipModal';
 import Memberships from 'screens/products/components/Memberships';
 import ReserveTeamMemberships from 'screens/products/components/reserve-team/Memberships';
 import ReserveTeamMembershipsFeatures from 'screens/products/components/reserve-team/MembershipsFeatures';
-import MembershipsFeatures from 'screens/products/components/MembershipsFeatures';
 import DropIns from 'screens/products/components/DropIns';
 import SeasonPass from 'screens/products/components/SeasonPass';
 import Scoutings from 'screens/products/components/Scoutings';
 import FAQ from 'screens/products/components/FAQ';
+import AmenitiesAndFeatures from 'screens/products/components/AmenitiesAndFeatures';
 import NoSessionCredits from 'screens/products/components/NoSessionCredits';
-import NoFreeSessionInformationModal from 'screens/products/components/NoFreeSessionInformationModal';
+import SelectPaymentMethodModal from 'screens/checkout/components/SelectPaymentMethodModal';
+import PurchaseDetailsModal from 'screens/checkout/components/PurchaseDetailsModal';
+import AddPaymentMethodModal from 'screens/checkout/components/AddPaymentMethodModal';
+import triangleTexture from 'screens/products/images/triangle-texture.png';
+import Link from 'shared/components/Link';
+import ROUTES from 'shared/constants/routes';
+import CompareMembershipsTable from 'screens/products/components/CompareMembershipsTable';
 
 const ProductsPage = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const { state } = useLocation();
+  const dispatch = useDispatch();
 
   const availableProducts = useSelector(getAvailableProducts);
   const isLoading = useSelector(getPageLoading);
   const isAuthenticated = useSelector(getIsAuthenticated);
   const userProfile = useSelector(getUserProfile);
+  const addPaymentMethodModalOpen = useSelector(getShowAddPaymentMethodModal);
+  const selectPaymentMethodModalOpen = useSelector(getShowSelectPaymentMethodModal);
+  const recurringProducts = useSelector(getRecurringProducts);
   const { activeSubscription, reserveTeam } = userProfile;
 
-  const showNoFreeSessionInformation = state?.showNoFreeSessionInformation;
   const showAnimation = state?.showNoCreditsAnimation;
   const comesFromCancelModal = state?.comesFromCancelModal;
   const showScouting = state?.showScouting;
-  const priceForFirstTimersNoFreeSession =
-    dropInProducts(availableProducts)[0]?.priceForFirstTimersNoFreeSession;
-
-  const [showPauseModal, setShowPauseModal] = useState(false);
-  const [showCancelModal, setShowCancelModal] = useState(false);
-  const [showNoFreeSessionInformationModal, setShowNoFreeSessionInformationModal] = useState(
-    !!showNoFreeSessionInformation
-  );
 
   const [showMembershipIsPausedModal, setShowMembershipIsPausedModal] = useState(false);
+  const [showPurchaseDetailsModal, setShowPurchaseDetailsModal] = useState(false);
 
   const showMemberships = !comesFromCancelModal && !showScouting;
-  const canFreePause = activeSubscription?.canFreePause;
-  const thisYearFreeFinishedPauses = thisYearFreeFinishedSubscriptionPauses(activeSubscription);
-
-  const pauseSubscriptionAction = (reason) =>
-    dispatch(pauseSubscription(activeSubscription, reason));
 
   const selectProductHandler = (product) => {
-    dispatch(setSelectedProduct(product));
+    if (!isAuthenticated) {
+      history.push(ROUTES.LOGIN);
+      return;
+    }
+
+    dispatch(selectProduct({ product }));
+
+    if (product.promoCode?.validForUser) {
+      dispatch(setPromoCodeInit({ promoCode: product.promoCode.code, product }));
+    }
 
     if (isAuthenticated) {
       startedCheckout({ email: userProfile.email, product });
     }
 
-    history.push(ROUTES.PAYMENT_METHODS_SELECT);
+    dispatch(showSelectPaymentMethodModal());
   };
 
   const selectProductDropInHandler = (product) => {
@@ -85,28 +96,30 @@ const ProductsPage = () => {
     }
   };
 
-  const cancelMembership = () => {
-    setShowCancelModal(true);
-  };
-
-  const reactivateMembership = () => {
-    dispatch(reactivateSubscription(activeSubscription));
-  };
-
   const onSubmit = (isActiveSubscription, product) => {
     if (isActiveSubscription) {
-      activeSubscription.canceled ? reactivateMembership() : cancelMembership();
+      history.push(ROUTES.MANAGE_MEMBERSHIP);
     } else {
       selectProductHandler(product);
     }
   };
 
-  const getSubmitText = (isActiveSubscription, activeSubscription) => {
+  const getSubmitText = (isActiveSubscription, activeSubscription, product = null) => {
     if (isActiveSubscription) {
       return activeSubscription.canceled ? 'Reactivate' : 'Cancel';
     }
 
-    return activeSubscription ? 'Select' : 'Join';
+    if (activeSubscription) {
+      if (product) {
+        return Number(activeSubscription.product.price) > Number(product.price)
+          ? 'Downgrade'
+          : 'Upgrade';
+      }
+
+      return activeSubscription ? 'Select' : 'Join';
+    }
+
+    return 'Join';
   };
 
   useEffect(() => {
@@ -142,79 +155,114 @@ const ProductsPage = () => {
     return 'Memberships';
   })();
 
+  const pageDescription = (() => {
+    if (comesFromCancelModal || showScouting || reserveTeam) {
+      return;
+    }
+
+    return (
+      'All memberships are designed to help you connect, create, and compete in the pursuit of ' +
+      'progress. Each tier comes with full access to the club during operating hours, access ' +
+      'to all physical and digital community experiences, and a number of other perks limited ' +
+      'to Crosscourt members.'
+    );
+  })();
+
   return (
     <>
-      <PageLayout>
+      <PageLayout noPadding className="relative">
         {showAnimation && <NoSessionCredits />}
-        <SectionLayout className="md:mt-12 mb-24">
-          <h2 className="font-shapiro95_super_wide uppercase text-3xl sm:text-4xl mb-6 sm:mb-10">
-            {pageTitle}
-          </h2>
-          <div className="flex flex-col lg:flex-row">
-            {comesFromCancelModal && (
-              <SeasonPass
-                selectProductHandler={selectProductHandler}
-                availableProducts={availableProducts}
-              />
+        <SectionLayout className="relative mb-12 md:mb-24 pt-24 md:pt-28 overflow-x-hidden">
+          <img
+            className="scale-[2.5] md:scale-100 top-36 -left-48 bottom-0 inset-x-0 md:inset-0 absolute"
+            src={triangleTexture}
+            alt="triangle-texture"
+          />
+          <div className="relative">
+            <h2
+              className={`font-shapiro95_super_wide text-3xl sm:text-4xl ${
+                pageDescription ? 'mb-10 md:mb-2' : 'mb-6 sm:mb-10'
+              }`}
+            >
+              {pageTitle}
+            </h2>
+            {pageDescription && (
+              <h4 className="hidden md:block text-sm max-w-3xl mb-6 sm:mb-10">{pageDescription}</h4>
             )}
-            {showScouting && (
-              <Scoutings
-                selectProductHandler={selectProductHandler}
-                availableProducts={availableProducts}
-              />
-            )}
-            {showMemberships && (
-              <>
-                <DropIns
-                  selectProductHandler={selectProductDropInHandler}
+            <div className="md:flex">
+              {comesFromCancelModal && (
+                <SeasonPass
+                  selectProductHandler={selectProductHandler}
                   availableProducts={availableProducts}
                 />
-                {reserveTeam ? (
-                  <ReserveTeamMemberships
-                    onSubmit={onSubmit}
+              )}
+              {showScouting && (
+                <Scoutings
+                  selectProductHandler={selectProductHandler}
+                  availableProducts={availableProducts}
+                />
+              )}
+              {showMemberships && (
+                <div className="flex flex-col">
+                  {reserveTeam ? (
+                    <ReserveTeamMemberships
+                      onSubmit={onSubmit}
+                      availableProducts={availableProducts}
+                      activeSubscription={activeSubscription}
+                      getSubmitText={getSubmitText}
+                    />
+                  ) : (
+                    <Memberships
+                      onSubmit={onSubmit}
+                      availableProducts={availableProducts}
+                      activeSubscription={activeSubscription}
+                      getSubmitText={getSubmitText}
+                    />
+                  )}
+                  <DropIns
+                    selectProductHandler={selectProductDropInHandler}
                     availableProducts={availableProducts}
-                    activeSubscription={activeSubscription}
-                    getSubmitText={getSubmitText}
                   />
-                ) : (
-                  <Memberships
-                    onSubmit={onSubmit}
-                    availableProducts={availableProducts}
-                    activeSubscription={activeSubscription}
-                    getSubmitText={getSubmitText}
-                  />
-                )}
-              </>
-            )}
+                  <div className="text-center">
+                    <span>Cancel anytime.</span>
+                    <span className="block text-xs">
+                      <Link to={ROUTES.TERMS}>Terms and conditions</Link> apply.
+                    </span>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </SectionLayout>
+        {showMemberships && reserveTeam && <ReserveTeamMembershipsFeatures />}
         {showMemberships && (
-          <>{reserveTeam ? <ReserveTeamMembershipsFeatures /> : <MembershipsFeatures />}</>
+          <>
+            <SectionLayout className="mb-12 md:mb-24">
+              <CompareMembershipsTable products={recurringProducts} />
+            </SectionLayout>
+            <AmenitiesAndFeatures />
+            <FAQ />
+          </>
         )}
-        {showMemberships && <FAQ />}
       </PageLayout>
       <MembershipIsPausedModal
         isOpen={showMembershipIsPausedModal}
         closeHandler={() => setShowMembershipIsPausedModal(false)}
       />
-      <CancelMembershipModal
-        isOpen={showCancelModal}
-        closeHandler={() => setShowCancelModal(false)}
-        activeSubscription={activeSubscription}
-        setShowPauseModal={setShowPauseModal}
+      <SelectPaymentMethodModal
+        isOpen={selectPaymentMethodModalOpen}
+        closeHandler={() => dispatch(closeSelectPaymentMethodModal())}
+        openPurchaseDetailsModal={() => setShowPurchaseDetailsModal(true)}
+        openAddPaymentMethodModal={() => dispatch(showAddPaymentMethodModal())}
       />
-      <NoFreeSessionInformationModal
-        price={priceForFirstTimersNoFreeSession}
-        isOpen={showNoFreeSessionInformationModal}
-        closeHandler={() => setShowNoFreeSessionInformationModal(false)}
+      <PurchaseDetailsModal
+        isOpen={showPurchaseDetailsModal}
+        closeHandler={() => setShowPurchaseDetailsModal(false)}
       />
-      <PauseMembershipModal
-        isOpen={showPauseModal}
-        closeHandler={() => setShowPauseModal(false)}
-        activeSubscription={activeSubscription}
-        pauseSubscriptionAction={pauseSubscriptionAction}
-        canFreePause={canFreePause}
-        thisYearFreeFinishedPauses={thisYearFreeFinishedPauses}
+      <AddPaymentMethodModal
+        isOpen={addPaymentMethodModalOpen}
+        closeHandler={() => dispatch(closeAddPaymentMethodModal())}
+        openSelectPaymentMethodModal={() => dispatch(showSelectPaymentMethodModal())}
       />
     </>
   );

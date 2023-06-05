@@ -55,7 +55,7 @@ const HomePage = () => {
 
   return (
     <>
-      <PageLayout>
+      <PageLayout className="overflow-hidden">
         <UnlockYourPotential />
         <CrosscourtGoal />
         <PlatformForProgress />

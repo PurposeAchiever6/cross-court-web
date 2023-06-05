@@ -1,5 +1,5 @@
 import currency from 'currency.js';
-import { ONE_TIME, FREE_SESSION, UNLIMITED_VALUE } from 'screens/products/constants';
+import { ONE_TIME, RECURRING, FREE_SESSION, UNLIMITED_VALUE } from 'screens/products/constants';
 
 export const productDiscount = (product, user) => {
   const userHasActiveSubscription = !!user.activeSubscription;
@@ -54,3 +54,5 @@ export const dropInProducts = (products) =>
       !product.seasonPass &&
       !product.scouting
   );
+
+export const isRecurring = (product) => product?.productType === RECURRING;

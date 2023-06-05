@@ -21,6 +21,8 @@ import {
   FORMAT_SHARE_SESSION_DATE,
   FORMAT_SHARE_SESSION_TIME,
   FORMAT_DATETIME,
+  FORMAT_SHORT_MONTH_FULL_YEAR,
+  SHORT_MONTH_DAY_FULL_YEAR,
 } from 'shared/constants/date';
 
 dayjs.extend(utc);
@@ -60,10 +62,16 @@ export const timeRange24 = (time, durationInMinutes = 60) => {
   return [startTimeHour, endTimeHour];
 };
 
-export const weekRangeTitle = (date) =>
-  ` WEEK ${startOfWeek(date).format(FORMAT_MONTH)} ${startOfWeek(date).date()} - ${endOfWeek(
-    date
-  ).format(FORMAT_MONTH)} ${endOfWeek(date).date()}`;
+export const weekRangeTitle = (date) => {
+  const startMonth = startOfWeek(date).format(FORMAT_MONTH);
+  const endMonth = endOfWeek(date).format(FORMAT_MONTH);
+
+  if (startMonth !== endMonth) {
+    return `${startMonth} ${startOfWeek(date).date()} - ${endMonth} ${endOfWeek(date).date()}`;
+  }
+
+  return `${startMonth} ${startOfWeek(date).date()} - ${endOfWeek(date).date()}`;
+};
 
 export const paymentFormattedDate = (date) => getUTCDate(date).format(FORMAT_DATE_MM_DD_YY);
 
@@ -71,6 +79,11 @@ export const requestFormattedDate = (date) => getUTCDate(date).format(FORMAT_DAT
 
 export const subscriptionPeriodFormattedDate = (date) =>
   getUTCDate(date).local().format(FORMAT_DATE_SUBSCRIPTION);
+
+export const shortMonthDayFullYear = (date) =>
+  getUTCDate(date).local().format(SHORT_MONTH_DAY_FULL_YEAR);
+
+export const formatDateShortYear = (date) => getUTCDate(date).local().format(FORMAT_DATE_MM_DD_YY);
 
 export const isSameDay = (date1, date2) =>
   requestFormattedDate(date1) === requestFormattedDate(date2);
@@ -107,7 +120,12 @@ export const sortSessionsByDate = (sessions) =>
   sort((a, b) => (dayjs(new Date(a.time)).isAfter(dayjs(new Date(b.time))) ? 1 : -1), sessions);
 
 export const formatSessionTime = (time) => getUTCDate(time).format(FORMAT_HOUR);
+export const formatSessionEndTime = (time, durationInMinutes) =>
+  getUTCDate(time).add(durationInMinutes, 'minutes').format(FORMAT_HOUR);
 export const formatSessionDate = (time) => getUTCDate(time).format(FORMAT_DATE_MM_DD_YY);
+
+export const formatShortMonthFullYearDate = (date) =>
+  getUTCDate(date).format(FORMAT_SHORT_MONTH_FULL_YEAR);
 
 export const formatShareSessionDate = (date) => getUTCDate(date).format(FORMAT_SHARE_SESSION_DATE);
 export const formatShareSessionTime = (date) => getUTCDate(date).format(FORMAT_SHARE_SESSION_TIME);

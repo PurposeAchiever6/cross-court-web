@@ -9,12 +9,16 @@ import Spinner from 'shared/components/Spinner';
 const getVariantClasses = (variant) => {
   switch (variant) {
     case 'outline-purple':
-      return 'border-3 border-cc-purple-500 text-cc-purple-500 hover:border-cc-purple-700 hover:text-cc-purple-700';
+      return 'border-2 border-cc-purple-500 text-cc-purple-500 hover:border-cc-purple-700 hover:text-cc-purple-700';
     case 'outline-black':
-      return 'border-3 border-cc-black text-cc-black hover:border-cc-black/75 hover:text-cc-black/75';
+      return 'border-2 border-black text-black hover:border-black/75 hover:text-black/75';
+    case 'outline-white':
+      return 'border-2 border-white text-white hover:border-white/60 hover:text-white/60';
+    case 'red':
+      return 'bg-error-400 border-2 border-error-400 text-black shadow-md hover:bg-error-400/75 hover:border-error-400/0';
     case 'purple':
     default:
-      return 'bg-cc-purple-500 border-3 border-cc-purple-500 text-black shadow-md hover:bg-cc-purple-700 hover:border-cc-purple-700';
+      return 'bg-cc-purple-500 border-2 border-cc-purple-500 text-black shadow-md hover:bg-cc-purple-700 hover:border-cc-purple-700';
   }
 };
 
@@ -44,7 +48,7 @@ const Button = ({
   ...props
 }) => {
   let btnClassName =
-    'font-shapiro95_super_wide uppercase inline-block transition-all duration-300 text-center whitespace-nowrap px-6 py-2 outline-none focus:outline focus:outline-offset-1 focus:outline-cc-purple-300';
+    'relative font-shapiro95_super_wide uppercase inline-block transition-all duration-300 text-center whitespace-nowrap px-6 py-2 outline-none focus:outline focus:outline-offset-1 focus:outline-cc-purple-300';
 
   btnClassName += ` ${getVariantClasses(variant)}`;
 
@@ -64,7 +68,7 @@ const Button = ({
 
   const onClickBtn = (e) => {
     e.target.blur();
-    onClick();
+    onClick(e);
   };
 
   return to ? (
@@ -85,7 +89,8 @@ const Button = ({
       onClick={onClickBtn}
       {...props}
     >
-      {loading ? <Spinner /> : children}
+      <Spinner className={`absolute mx-auto left-0 right-0 ${loading ? 'block' : 'hidden'}`} />
+      <span className={loading ? 'text-transparent' : ''}>{children}</span>
     </button>
   );
 };
@@ -104,7 +109,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(['purple', 'outline-purple', 'outline-black']),
+  variant: PropTypes.oneOf(['purple', 'outline-purple', 'outline-black', 'outline-white', 'red']),
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
   disabled: PropTypes.bool,
   type: PropTypes.string,

@@ -6,7 +6,7 @@ import useScrollBlock from 'shared/hooks/useScrollBlock';
 import colors from 'shared/styles/constants';
 import useWindowSize from 'shared/hooks/useWindowSize';
 import { size as breakpoints } from 'shared/styles/mediaQueries';
-import CrossSvg from './svg/CrossSvg';
+import CrossSvg from 'shared/components/svg/CrossSvg';
 
 ReactModal.setAppElement('#root');
 
@@ -73,7 +73,7 @@ const Modal = ({
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
       width: windowSize < breakpoints.desktop ? '100%' : getWidthBySize,
-      maxWidth: '90%',
+      maxWidth: '93%',
       maxHeight: '95%',
       overflowY: 'auto',
       backgroundColor: dark ? colors.brandBlack : 'white',
@@ -90,15 +90,15 @@ const Modal = ({
       shouldCloseOnOverlayClick={closeOnOverlayClick}
       style={modalStyle}
     >
-      <div className={`p-2 ${showCloseButton ? 'pt-5' : ''}`}>
+      <div className={`sm:p-2 ${showCloseButton ? 'pt-5' : ''}`}>
         {showCloseButton && (
           <button className="absolute top-0 right-0 p-4" onClick={closeHandler} type="button">
-            <CrossSvg color={dark ? 'white' : 'black'} />
+            <CrossSvg className={`w-4 ${dark ? 'text-white' : 'text-black'}`} />
           </button>
         )}
         {title && (
           <h2
-            className={`font-shapiro95_super_wide text-lg sm:text-2xl text-center uppercase ${titleClasses} ${
+            className={`font-shapiro95_super_wide text-lg sm:text-2xl ${titleClasses} ${
               subtitle ? 'mb-1' : 'mb-6'
             } ${dark ? 'text-white' : ''}`}
           >
@@ -107,7 +107,7 @@ const Modal = ({
         )}
         {subtitle && (
           <h3
-            className={`font-shapiro95_super_wide text-sm sm:text-base text-center uppercase mb-6 ${subtitleClasses} ${
+            className={`font-shapiro95_super_wide text-sm sm:text-base mb-6 ${subtitleClasses} ${
               dark ? 'text-white' : ''
             }`}
           >

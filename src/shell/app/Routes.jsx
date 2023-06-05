@@ -5,19 +5,23 @@ import React, { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
+import { ToastContainer, Bounce } from 'react-toastify';
+import deepEqual from 'deep-equal';
 import HttpsRedirect from 'react-https-redirect';
 import ReactGA from 'react-ga';
-import { ToastContainer, Zoom } from 'react-toastify';
 import styled from 'styled-components';
 
-import { initialAppLoad } from 'shared/actions/actionCreators';
 import ROUTES from 'shared/constants/routes';
+import { SIGNUP_STATE_CREATED } from 'screens/onboarding/constants';
+import { initialAppLoad } from 'shared/actions/actionCreators';
+import StripeContainer from 'shared/components/StripeContainer';
 import Header from 'shared/components/Header';
 import Footer from 'shared/components/Footer';
 import Loading from 'shared/components/Loading';
 import ScrollToPosition from 'shared/components/ScrollToPosition';
 import { history } from 'shared/history';
 import { getIsAuthenticated } from 'screens/auth/reducer';
+import { getUserProfile } from 'screens/my-account/reducer';
 import { toggleActiveCampaignChat } from 'shared/utils/activeCampaign';
 import { getUserSource, setUserSource, removeUserSource } from 'shared/utils/userSource';
 import PrivateRoute from './PrivateRoute';
@@ -26,49 +30,44 @@ import HtmlHead from './HtmlHead';
 const Home = lazy(() => import('screens/homepage/HomePage'));
 const Login = lazy(() => import('screens/auth/pages/LoginPage'));
 const Signup = lazy(() => import('screens/auth/pages/SignupPage'));
-const SignupSuccess = lazy(() => import('screens/auth/pages/SignupSuccess'));
-const SignupConfirmation = lazy(() => import('screens/auth/pages/SignupConfirmation'));
-const ForgotPass = lazy(() => import('screens/auth/pages/ForgotPassPage'));
-const ForgotPassSuccess = lazy(() => import('screens/auth/pages/ForgotPassSuccess'));
-const PassReset = lazy(() => import('screens/auth/pages/PassResetPage'));
-const PassResetSuccess = lazy(() => import('screens/auth/pages/PassResetSuccess'));
+const SignupVerification = lazy(() => import('screens/auth/pages/SignupVerificationPage'));
+const SignupConfirmation = lazy(() => import('screens/auth/pages/SignupConfirmationPage'));
+const OnboardingPersonalDetails = lazy(() =>
+  import('screens/onboarding/pages/OnboardingPersonalDetailsPage')
+);
+const OnboardingIntensityLevel = lazy(() =>
+  import('screens/onboarding/pages/OnboardingIntensityLevelPage')
+);
+const OnboardingMemberships = lazy(() =>
+  import('screens/onboarding/pages/OnboardingMembershipsPage')
+);
+const OnboardingPaymentMethod = lazy(() =>
+  import('screens/onboarding/pages/OnboardingPaymentMethodPage')
+);
+const OnboardingReview = lazy(() => import('screens/onboarding/pages/OnboardingReviewPage'));
 const Dashboard = lazy(() => import('screens/dashboard/DashboardPage'));
 const WhyJoin = lazy(() => import('screens/why-join/WhyJoinPage'));
 const CareersPage = lazy(() => import('screens/careers/CareersPage'));
 const Locations = lazy(() => import('screens/locations/LocationsPage'));
 const Session = lazy(() => import('screens/sessions/pages/Session'));
-const SessionConfirmed = lazy(() => import('screens/sessions/pages/SessionConfirmed'));
 const SessionReserved = lazy(() => import('screens/sessions/pages/SessionReserved'));
 const FirstSessionReserved = lazy(() => import('screens/sessions/pages/FirstSessionReserved'));
-const SessionJoinWaitlist = lazy(() => import('screens/sessions/pages/JoinWaitlist'));
-const Checkout = lazy(() => import('screens/checkout/CheckoutPage'));
 const ProductsPage = lazy(() => import('screens/products/ProductsPage'));
 const ManageMembershipPage = lazy(() => import('screens/memberships/ManageMembershipPage'));
 const MyAccount = lazy(() => import('screens/my-account/MyAccountPage'));
-const PaymentHistory = lazy(() => import('screens/payment-history/PaymentHistoryPage'));
 const CheckoutConfirm = lazy(() => import('screens/checkout/pages/CheckoutConfirm'));
 const FAQ = lazy(() => import('screens/faq/FaqPage'));
 const Content = lazy(() => import('screens/content/ContentPage'));
-const Rating = lazy(() => import('screens/rating/RatingPage'));
 const TermsAndConditions = lazy(() => import('screens/legal-docs/pages/TermsAndConditions'));
 const PrivacyPolicy = lazy(() => import('screens/legal-docs/pages/PrivacyPolicy'));
 const PWA = lazy(() => import('screens/pwa/PWAPage'));
-const AddPaymentMethod = lazy(() => import('screens/payment-methods/pages/AddPaymentMethod'));
-const PaymentMethodsSelect = lazy(() =>
-  import('screens/payment-methods/pages/PaymentMethodsSelect')
-);
-const PaymentMethodsDefault = lazy(() =>
-  import('screens/payment-methods/pages/PaymentMethodsDefault')
-);
-const PaymentMethodsMembership = lazy(() =>
-  import('screens/payment-methods/pages/PaymentMethodsMembership')
-);
 const Gallery = lazy(() => import('screens/gallery/GalleryPage'));
 const Referrals = lazy(() => import('screens/referrals/ReferralsPage'));
 const MembershipConfirm = lazy(() => import('screens/checkout/pages/MembershipConfirm'));
 const AboutYourself = lazy(() => import('screens/about-yourself/AboutYourselfPage'));
 const Goals = lazy(() => import('screens/goals/GoalsPage'));
 const NotFoundPage = lazy(() => import('screens/not-found/NotFoundPage'));
+const SettingsPage = lazy(() => import('screens/settings/SettingsPage'));
 
 const AppWrapper = styled.div`
   display: flex;
@@ -76,11 +75,9 @@ const AppWrapper = styled.div`
   min-height: 100vh;
 
   main {
-    overflow: hidden;
     flex: 1;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
   }
 `;
 const { body } = document;
@@ -257,6 +254,13 @@ window.onpopstate = () => {
 const Routes = () => {
   const dispatch = useDispatch();
   const isAuthenticated = useSelector(getIsAuthenticated);
+  const currentUser = useSelector(getUserProfile, deepEqual);
+
+  let forceRedirect = null;
+
+  if (isAuthenticated && currentUser.signupState === SIGNUP_STATE_CREATED) {
+    forceRedirect = ROUTES.ONBOARDING_PERSONAL_DETAILS;
+  }
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
@@ -287,38 +291,35 @@ const Routes = () => {
         <Route path={ROUTES.SIGNUP} exact>
           <Signup />
         </Route>
-        <Route path={ROUTES.RATING} exact>
-          <Rating />
+        <Route path={ROUTES.SIGNUP_VERIFICATION} exact>
+          <SignupVerification />
         </Route>
+        <Route path={ROUTES.SIGNUP_CONFIRMATION} exact>
+          <SignupConfirmation />
+        </Route>
+        <PrivateRoute path={ROUTES.ONBOARDING_PERSONAL_DETAILS} exact>
+          <OnboardingPersonalDetails />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.ONBOARDING_INTENSITY_LEVEL} exact>
+          <OnboardingIntensityLevel />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.ONBOARDING_MEMBERSHIPS} exact>
+          <OnboardingMemberships />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.ONBOARDING_PAYMENT_METHOD} exact>
+          <OnboardingPaymentMethod />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.ONBOARDING_REVIEW} exact>
+          <OnboardingReview />
+        </PrivateRoute>
         <Route path={ROUTES.ABOUT_YOURSELF} exact>
           <AboutYourself />
         </Route>
         <Route path={ROUTES.GOALS} exact>
           <Goals />
         </Route>
-        <Route path={ROUTES.SIGNUPSUCCESS} exact>
-          <SignupSuccess />
-        </Route>
-        <Route path={ROUTES.SIGNUPCONFIRMATION} exact>
-          <SignupConfirmation />
-        </Route>
-        <Route path={ROUTES.FORGOTPASSWORD} exact>
-          <ForgotPass />
-        </Route>
-        <Route path={ROUTES.FORGOTPASSWORDSUCCESS} exact>
-          <ForgotPassSuccess />
-        </Route>
-        <Route path={ROUTES.RESETPASSWORD} exact>
-          <PassReset />
-        </Route>
-        <Route path={ROUTES.RESETPASSWORDSUCCESS} exact>
-          <PassResetSuccess />
-        </Route>
         <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFIRST]} exact>
           <Locations />
-        </Route>
-        <Route path={[ROUTES.SKLZ_SESSION, ROUTES.OPEN_CLUB_SESSION, ROUTES.SESSION]} exact>
-          <Session />
         </Route>
         <PrivateRoute path={ROUTES.SESSIONRESERVED} exact>
           <SessionReserved />
@@ -326,8 +327,8 @@ const Routes = () => {
         <PrivateRoute path={ROUTES.FIRSTSESSIONRESERVED} exact>
           <FirstSessionReserved />
         </PrivateRoute>
-        <Route path={ROUTES.SESSIONCONFIRMED} exact>
-          <SessionConfirmed />
+        <Route path={ROUTES.SESSION} exact>
+          <Session />
         </Route>
         <Route path={ROUTES.WHY_JOIN} exact>
           <WhyJoin />
@@ -344,29 +345,11 @@ const Routes = () => {
         <Route path={ROUTES.PRIVACY_POLICY} exact>
           <PrivacyPolicy />
         </Route>
-        <PrivateRoute path={ROUTES.PAYMENT_HISTORY} exact>
-          <PaymentHistory />
-        </PrivateRoute>
-        <PrivateRoute path={ROUTES.CHECKOUT} exact>
-          <Checkout />
-        </PrivateRoute>
         <PrivateRoute path={ROUTES.CHECKOUT_CONFIRMED} exact>
           <CheckoutConfirm />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.CHECKOUT_MEMBERSHIP_CONFIRMED} exact>
           <MembershipConfirm />
-        </PrivateRoute>
-        <PrivateRoute path={[ROUTES.PAYMENT_METHODS_SELECT]} exact>
-          <PaymentMethodsSelect />
-        </PrivateRoute>
-        <PrivateRoute path={[ROUTES.PAYMENT_METHODS_DEFAULT]} exact>
-          <PaymentMethodsDefault />
-        </PrivateRoute>
-        <PrivateRoute path={[ROUTES.PAYMENT_METHODS_MEMBERSHIP]} exact>
-          <PaymentMethodsMembership />
-        </PrivateRoute>
-        <PrivateRoute path={ROUTES.PAYMENT_METHODS_ADD} exact>
-          <AddPaymentMethod />
         </PrivateRoute>
         <PrivateRoute path={ROUTES.MYACCOUNT} exact>
           <MyAccount />
@@ -389,14 +372,14 @@ const Routes = () => {
         <PrivateRoute path={ROUTES.DASHBOARD} exact>
           <Dashboard />
         </PrivateRoute>
-        <PrivateRoute path={ROUTES.SESSIONJOINWAITLIST} exact>
-          <SessionJoinWaitlist />
-        </PrivateRoute>
         <Route path={ROUTES.GALLERY} exact>
           <Gallery />
         </Route>
         <PrivateRoute path={ROUTES.REFERRALS} exact>
           <Referrals />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.SETTINGS} exact>
+          <SettingsPage />
         </PrivateRoute>
         <Route path={ROUTES.NOT_FOUND} exact>
           <NotFoundPage />
@@ -408,14 +391,19 @@ const Routes = () => {
     </main>
   );
 
+  if (forceRedirect && window.location.pathname !== forceRedirect) {
+    window.location.href = forceRedirect;
+    return <Loading />;
+  }
+
   return (
     <HttpsRedirect>
       <HtmlHead />
       <AppWrapper>
         <ToastContainer
-          transition={Zoom}
+          transition={Bounce}
           position="top-right"
-          autoClose={3500}
+          autoClose={false}
           hideProgressBar
           newestOnTop
           closeOnClick
@@ -431,7 +419,9 @@ const Routes = () => {
           <ConnectedRouter history={history}>
             <Header />
             <ScrollToPosition />
-            <Pages />
+            <StripeContainer>
+              <Pages />
+            </StripeContainer>
             <Footer />
           </ConnectedRouter>
         </Suspense>

@@ -32,14 +32,6 @@ export default {
     return response.data;
   },
 
-  createFreeSession: async (cardId) => {
-    const response = await api.put(`/payments/create_free_session_intent`, {
-      paymentMethodId: cardId,
-    });
-
-    return response.data;
-  },
-
   checkPromoCode: async (promoCode, productId) => {
     const response = await api.get('/promo_code', {
       data: {},
@@ -52,8 +44,14 @@ export default {
     return response.data;
   },
 
-  subscriptionProrate: async (payload) => {
-    const response = await api.get('/subscriptions/preview_prorate', { data: {}, params: payload });
+  subscriptionProrate: async (productId, promoCode) => {
+    const response = await api.get('/subscriptions/preview_prorate', {
+      data: {},
+      params: {
+        product_id: productId,
+        promo_code: promoCode,
+      },
+    });
 
     return response.data;
   },

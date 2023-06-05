@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import Radio from 'shared/components/InputRadioField/Radio';
 import FormikRadio from 'shared/components/InputRadioField/FormikRadio';
 
-const InputCheckboxField = ({ formik, ...props }) =>
+const InputRadioField = ({ formik, ...props }) =>
   formik ? <FormikRadio {...props} /> : <Radio {...props} />;
 
-InputCheckboxField.defaultProps = {
+InputRadioField.defaultProps = {
   formik: true,
 };
 
-InputCheckboxField.propTypes = {
+InputRadioField.propTypes = {
   formik: PropTypes.bool,
 };
 
-export default InputCheckboxField;
+export default InputRadioField;

@@ -25,4 +25,10 @@ export default {
     });
     return response.data;
   },
+  updateSkillRating: async ({ skillRating }) => {
+    const response = await api.put(`/user/update_skill_rating`, {
+      skillRating,
+    });
+    return response.data;
+  },
 };

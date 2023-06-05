@@ -1,162 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { equals } from 'ramda';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import sklzLogoPurple from 'shared/images/logos/sklz-purple.png';
-import colors from 'shared/styles/constants';
+import Tooltip from 'shared/components/Tooltip';
+import sklzLogoBlack from 'shared/images/logos/sklz-black.png';
+import sklzLogoWhite from 'shared/images/logos/sklz-white.png';
 import { urlFormattedDate, shortSessionDate, hourRange } from 'shared/utils/date';
-import CheckCircle from 'shared/components/svg/CheckCircleSvg';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-
-const SessionContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 1rem;
-
-  @media (min-width: 992px) {
-    min-width: 18rem;
-    max-width: 30%;
-    margin-right: 3%;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-
-  h3 {
-    font-size: 1.75rem;
-    font-weight: 500;
-    margin: 0 0 2rem 0;
-  }
-
-  .reserved-check {
-    height: 2rem;
-    width: 2rem;
-    background-color: #9999ff;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-left: 0;
-    margin-left: 1rem;
-
-    svg {
-      font-size: 0.5rem;
-      color: #fff;
-      padding-left: 0;
-    }
-  }
-  .image {
-    flex: 1;
-
-    .location-img {
-      width: 100%;
-      height: 10rem;
-      object-fit: cover;
-      object-position: top;
-      display: flex;
-      height: 13.5rem;
-    }
-  }
-
-  .details {
-    flex: 2;
-
-    .date {
-      display: flex;
-      align-items: center;
-      margin: 0;
-      background-color: ${colors.black};
-      color: white;
-      font-weight: 500;
-      font-size: 1.7rem;
-      line-height: 2;
-      padding: 0 2rem;
-    }
-
-    .first {
-      background-color: #9999ff;
-    }
-
-    .past {
-      background-color: ${colors.offWhite};
-      color: ${colors.grey};
-    }
-
-    .time {
-      font-weight: 500;
-      font-size: 1.4rem;
-      margin-top: 1rem;
-      padding: 0 2rem;
-    }
-
-    .location {
-      font-size: 1.4rem;
-      letter-spacing: 0.1em;
-      margin-top: 0.5rem;
-      padding: 0 2rem;
-    }
-
-    p {
-      margin: 0;
-    }
-
-    .buttons-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      .btn {
-        outline: none;
-        border: 1px solid ${colors.white};
-        font-size: 0.85rem;
-        font-weight: 500;
-        padding: 0.7rem 2rem;
-        cursor: pointer;
-      }
-
-      .confirm-btn {
-        padding: 0.7rem 2rem;
-      }
-
-      .btn-alt {
-        border: 1px solid ${colors.black};
-        color: ${colors.black};
-        padding: 0.7rem 1.5rem;
-      }
-    }
-  }
-
-  @media (max-width: 991px) {
-    flex-direction: row;
-
-    .image {
-      .location-img {
-        height: 100%;
-        object-fit: cover;
-        object-position: top;
-        display: flex;
-      }
-    }
-    .location {
-      font-size: 1.2rem;
-    }
-    .time {
-      font-size: 1.2rem;
-    }
-    .date {
-      font-size: 1.5rem;
-    }
-  }
-`;
+import Button from 'shared/components/Button';
 
 const Session = ({
   past,
-  isSem,
   sessionInfo: {
-    inStartTime,
-    state,
     date,
     scouting,
     session: {
@@ -165,78 +20,86 @@ const Session = ({
       durationMinutes,
       skillSession,
       isOpenClub,
+      normalSession,
       location: { name: locationName, imageUrls },
+      skillLevel,
+      themeTitle,
+      themeDescription,
     },
   },
-}) => {
-  let dateClassName = 'date';
-  if (past) {
-    dateClassName += ' past';
-  } else if (isSem && inStartTime) {
-    dateClassName += ' first';
-  }
-  const isConfirmed = equals(state, 'confirmed');
-
-  return (
-    <SessionContainer className="session-container">
-      <div className="relative image">
-        {imageUrls && <img src={imageUrls[0]} className="location-img" alt="Session" />}
-        {skillSession && (
-          <img
-            alt="sklz-logo"
-            className="absolute top-0 right-0 w-20 md:w-24 m-2 md:m-4"
-            src={sklzLogoPurple}
-          />
-        )}
-        {isOpenClub && (
-          <div className="absolute top-0 right-0 m-2 md:m-4">
-            <span className="block text-cc-purple font-shapiro95_super_wide md:text-xl text-right uppercase">
-              Open Club
-            </span>
-          </div>
-        )}
-        {scouting && (
-          <div className="absolute top-0 right-0 m-2 md:m-4">
-            <span className="block text-cc-purple font-shapiro95_super_wide md:text-xl text-right uppercase">
-              Evalua
-              <br className="sm:hidden" />
-              tion
-            </span>
-          </div>
-        )}
-      </div>
-      <div className="details">
-        <span className={dateClassName}>
-          {shortSessionDate(date).replace('.', '').replace('/', '.')}
-          {isConfirmed && !past && (
-            <span className="reserved-check">
-              <CheckCircle />
-            </span>
-          )}
+}) => (
+  <div
+    className={`flex flex-col gap-2 border-2 border-cc-black p-4 my-2 md:my-0 md:mx-2 md:w-[calc(33%-1rem)] ${
+      past ? 'bg-white text-cc-black' : 'bg-cc-black text-white'
+    }`}
+  >
+    <div className="flex items-center justify-between">
+      <span className="text-9xl font-dharma_gothic_cexbold leading-[6rem] pt-2">
+        {locationName}
+      </span>
+      {imageUrls && <img className="w-24 h-24 object-cover" src={imageUrls[0]} alt="Session" />}
+    </div>
+    <span className="uppercase font-shapiro95_super_wide">{shortSessionDate(date)}</span>
+    <span>{hourRange(time, durationMinutes)}</span>
+    <div className={`flex items-center border-t py-2 ${past ? 'border-cc-black' : 'border-white'}`}>
+      {skillSession && (
+        <img alt="sklz-logo" className="w-20 md:w-24" src={past ? sklzLogoBlack : sklzLogoWhite} />
+      )}
+      {isOpenClub && (
+        <span className="font-shapiro95_super_wide md:text-xl uppercase">Office Hours</span>
+      )}
+      {scouting && (
+        <span className="font-shapiro95_super_wide md:text-xl uppercase">Evaluation</span>
+      )}
+      {normalSession && (
+        <span className="font-shapiro95_super_wide md:text-xl uppercase">Session</span>
+      )}
+    </div>
+    {skillLevel && (
+      <div
+        className={`flex items-center justify-between border-t py-2 text-lg ${
+          past ? 'border-cc-black' : 'border-white'
+        }`}
+      >
+        <span>
+          {skillLevel.min} - {skillLevel.max}
         </span>
-        <div className="time-location-buttons-container">
-          <p className="time">{hourRange(time, durationMinutes)}</p>
-          <p className="location">{locationName}</p>
-          <div className="buttons-container">
-            <PrimaryButton
-              className="see-details-button"
-              to={`/session/${sessionId}/${urlFormattedDate(date)}`}
-              inverted={past}
-              style={{ border: '3px solid white' }}
-            >
-              SEE DETAILS
-            </PrimaryButton>
-          </div>
-        </div>
+        <Tooltip variant="black" tooltip={skillLevel.description}>
+          <FontAwesomeIcon size="lg" icon={faInfoCircle} className="text-gray-400 cursor-pointer" />
+        </Tooltip>
       </div>
-    </SessionContainer>
-  );
-};
+    )}
+    {themeTitle && (
+      <div
+        className={`flex items-center justify-between border-t py-2 text-lg ${
+          past ? 'border-cc-black' : 'border-white'
+        }`}
+      >
+        <span>{themeTitle}</span>
+        {themeDescription && (
+          <Tooltip variant="black" tooltip={themeDescription}>
+            <FontAwesomeIcon
+              size="lg"
+              icon={faInfoCircle}
+              className="text-gray-400 cursor-pointer"
+            />
+          </Tooltip>
+        )}
+      </div>
+    )}
+    <Button
+      to={`/session/${sessionId}/${urlFormattedDate(date)}`}
+      variant={past ? 'outline-black' : 'purple'}
+      className="mt-auto"
+    >
+      DETAILS
+    </Button>
+  </div>
+);
 
 Session.propTypes = {
   past: PropTypes.bool,
-  isSem: PropTypes.bool,
-  sessionInfo: PropTypes.object.isRequired,
+  sessionInfo: PropTypes.shape().isRequired,
 };
 
 export default Session;

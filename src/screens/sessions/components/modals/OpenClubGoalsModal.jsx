@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Modal from 'shared/components/Modal';
 import InputRadioField from 'shared/components/InputRadioField';
 import InputCheckboxField from 'shared/components/InputCheckboxField';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import Collapsible from 'shared/components/Collapsible';
 import Badge from 'shared/components/Badge';
 
@@ -36,15 +36,14 @@ export const OpenClubGoalsModal = ({
     <Modal
       closeHandler={closeHandler}
       isOpen={isOpen}
-      title="What is your goal for this open club?"
-      dark
+      title="What is your goal for this Office Hours?"
     >
-      <div className="text-white">
+      <div>
         <InputRadioField
           name="goal"
           checked={openClubGoal === openClubGoals.RUN_PICKUP}
           onChange={() => handleSelect(openClubGoals.RUN_PICKUP)}
-          variant="cc-ball-white"
+          variant="cc-ball"
           className="mb-2"
           formik={false}
         >
@@ -54,7 +53,7 @@ export const OpenClubGoalsModal = ({
           name="goal"
           checked={openClubGoal === openClubGoals.SHOOT_SOLO}
           onChange={() => handleSelect(openClubGoals.SHOOT_SOLO)}
-          variant="cc-ball-white"
+          variant="cc-ball"
           className="mb-2"
           formik={false}
         >
@@ -64,7 +63,7 @@ export const OpenClubGoalsModal = ({
           name="goal"
           checked={openClubGoal === openClubGoals.HANG_OUT}
           onChange={() => handleSelect(openClubGoals.HANG_OUT)}
-          variant="cc-ball-white"
+          variant="cc-ball"
           className="mb-4"
           formik={false}
         >
@@ -80,7 +79,7 @@ export const OpenClubGoalsModal = ({
                       <InputCheckboxField
                         name="goal"
                         checked={inputChecked}
-                        variant="cc-ball-white"
+                        variant="cc-ball"
                         onChange={() => handleShootingMachineSelect(id)}
                         disabled={reserved}
                         formik={false}
@@ -96,7 +95,7 @@ export const OpenClubGoalsModal = ({
                       </InputCheckboxField>
                       <span className="font-shapiro95_super_wide text-lg ml-4 -mt-1">${price}</span>
                       {reserved && (
-                        <Badge size="sm" className="ml-2 -mt-2">
+                        <Badge size="sm" shrink className="ml-2 -mt-2">
                           Reserved
                         </Badge>
                       )}
@@ -108,9 +107,9 @@ export const OpenClubGoalsModal = ({
           </Collapsible>
         )}
         <div className="text-center">
-          <PrimaryButton type="submit" onClick={() => onConfirm()} disabled={!openClubGoal}>
+          <Button type="submit" onClick={() => onConfirm()} disabled={!openClubGoal}>
             Done
-          </PrimaryButton>
+          </Button>
         </div>
       </div>
     </Modal>

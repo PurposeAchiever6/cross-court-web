@@ -7,7 +7,7 @@ import { getUserProfile } from 'screens/my-account/reducer';
 import { openContactFormForUser } from 'shared/utils/contactForm';
 import theSessionExperienceManagerBgImg from 'screens/careers/images/the-session-experience-manager.jpeg';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 
 const Section = styled.section`
   .title {
@@ -47,12 +47,12 @@ const SessionExperienceManager = () => {
           hospitality, then you may be a perfect Session Experience Manager.
         </p>
         <div className="flex">
-          <PrimaryButton className="mr-4 md:mr-12" onClick={() => window.open(SEM_LINK, '_blank')}>
+          <Button className="mr-4 md:mr-12" onClick={() => window.open(SEM_LINK, '_blank')}>
             APPLY
-          </PrimaryButton>
-          <PrimaryButton onClick={() => openContactFormForUser(currentUser)} inverted>
+          </Button>
+          <Button onClick={() => openContactFormForUser(currentUser)} variant="outline-purple">
             LEARN MORE
-          </PrimaryButton>
+          </Button>
         </div>
       </div>
       <LazyBackgroundImage

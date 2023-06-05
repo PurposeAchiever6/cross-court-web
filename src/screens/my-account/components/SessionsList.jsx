@@ -1,103 +1,51 @@
 import React from 'react';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { isEmpty, take } from 'ramda';
-import colors from 'shared/styles/constants';
 import ROUTES from 'shared/constants/routes';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
-import Session from './Session';
+import Link from 'shared/components/Link';
+import BasketballIlustrationSvg from 'shared/components/svg/BasketballIlustrationSvg';
+import Session from 'screens/my-account/components/Session';
 
-const SessionsListContainer = styled.div`
-  margin: 2rem auto 1rem;
-
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 500;
-  }
-
-  .empty-container {
-    background-color: ${colors.offWhite};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    @media (min-width: 992px) {
-      height: 25rem;
-    }
-
-    .container-empty-message {
-      margin: 2rem 0;
-      font-size: 2rem;
-      color: ${colors.grey};
-      text-align: center;
-
-      p {
-        font-size: 2rem;
-        margin: 0;
-        letter-spacing: 0.04em;
-      }
-
-      .title {
-        font-weight: 500;
-        margin-bottom: 2rem;
-        text-transform: uppercase;
-        font-size: 2.5rem;
-      }
-    }
-  }
-
-  .sessions {
-    width: 90%;
-    margin-top: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-
-    .sessions-container {
-      display: flex;
-      flex-wrap: wrap;
-    }
-  }
-
-  @media (max-width: 991px) {
-    margin: 0 0 1rem;
-  }
-`;
-
-const SessionsList = ({ title, sessions, past, isSem }) => {
+const SessionsList = ({ sessions, past, isSem }) => {
   const filteredSessions = sessions.filter((session) => session.state !== 'canceled');
   const sesionsToShow = take(3, filteredSessions);
 
   return (
-    <SessionsListContainer className={!past ? 'upcoming-sessions' : 'past-sessions'}>
+    <div className="bg-white">
+      {past && <hr className="mx-6 border-cc-black opacity-70" />}
       {isEmpty(sesionsToShow) ? (
-        <div className="empty-container">
-          <div className="container-empty-message">
-            <h3>YOU HAVE NO {title}</h3>
-            {!past && !isSem && (
-              <PrimaryButton to={ROUTES.LOCATIONS} className="mt-6 block">
-                EXPLORE SESSIONS
-              </PrimaryButton>
-            )}
-          </div>
+        <div className="flex flex-col items-center justify-center p-8">
+          {!past && <BasketballIlustrationSvg className="text-cc-black" />}
+          <h3 className="text-black text-2xl my-2 font-shapiro95_super_wide">
+            You have no {past ? 'past' : 'upcoming'} sessions yet.
+          </h3>
+          {!past && !isSem && (
+            <Link to={ROUTES.LOCATIONS} className="text-sm">
+              View the schedule
+            </Link>
+          )}
         </div>
       ) : (
-        <div className="sessions">
-          <h3>{title}</h3>
-          <div className="sessions-container">
-            {sesionsToShow.map((session) => (
-              <Session isSem={isSem} past={past} key={session.id} sessionInfo={session} />
-            ))}
+        <div className="p-6">
+          <div className={`flex flex-col md:flex-row ${past ? 'opacity-70' : ''}`}>
+            <h3 className="text-cc-black md:w-1/5 text-2xl md:text-xl font-shapiro95_super_wide">
+              {past ? 'Past' : 'Upcoming'} <br /> Sessions
+            </h3>
+            <div className="flex flex-col md:flex-row md:flex-wrap w-full">
+              {sesionsToShow.map((session) => (
+                <Session past={past} key={session.id} sessionInfo={session} />
+              ))}
+            </div>
           </div>
         </div>
       )}
-    </SessionsListContainer>
+    </div>
   );
 };
 
 SessionsList.propTypes = {
   past: PropTypes.bool,
   isSem: PropTypes.bool,
-  title: PropTypes.string.isRequired,
   sessions: PropTypes.arrayOf(PropTypes.object),
 };
 

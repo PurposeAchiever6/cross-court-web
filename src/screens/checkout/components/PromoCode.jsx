@@ -1,68 +1,84 @@
 import React from 'react';
-import { Formik, Form } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
+import { setPromoCodeInit, removePromoCodeInit } from 'screens/checkout/actionCreators';
+import { getPromoCodeLoading, getPromoCodeApplied } from 'screens/checkout/reducer';
 import InputTextField from 'shared/components/InputTextField';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
+import Link from 'shared/components/Link';
+import CheckSvg from 'shared/components/svg/CheckSvg';
 
-import { checkPromoCode } from '../actionCreators';
-import { getPromoCodeLoading, getPromoCodeValid } from '../reducer';
-
-const PromoCode = ({ className }) => {
+const PromoCode = ({ product, className }) => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(getPromoCodeLoading);
-  const isPromoCodeValid = useSelector(getPromoCodeValid);
-
-  const checkPromoCodeAction = (promoCode) => dispatch(checkPromoCode(promoCode));
+  const promoCodeApplied = useSelector(getPromoCodeApplied);
+  const promoCode = promoCodeApplied?.code;
 
   const initialValues = {
-    promoCode: '',
+    promoCode: promoCode || '',
+  };
+
+  const validationSchema = Yup.object().shape({
+    promoCode: Yup.string().required('Required'),
+  });
+
+  const checkPromoCode = ({ promoCode }) => {
+    dispatch(setPromoCodeInit({ promoCode, product }));
+  };
+
+  const removePromoCode = (setFieldValue) => {
+    setFieldValue('promoCode', '');
+    dispatch(removePromoCodeInit());
   };
 
   return (
-    <Formik
-      validateOnChange={false}
-      validateOnBlur={false}
-      initialValues={initialValues}
-      onSubmit={({ promoCode }) => {
-        if (promoCode.length > 0) {
-          checkPromoCodeAction(promoCode);
-        }
-      }}
-    >
-      {() => (
-        <Form className={className}>
-          <div className="flex flex-col md:flex-row">
-            <InputTextField
-              name="promoCode"
-              label="Discount Code"
-              placeholder="Enter your code"
-              disabled={isPromoCodeValid}
-              className="mb-4 md:mb-0"
-            />
-            {isPromoCodeValid ? (
-              <span className="text-right text-sm md:text-base md:ml-2 md:mt-10">
-                DISCOUNT ADDED!
-              </span>
+    <div className={className}>
+      <Formik
+        validateOnChange={false}
+        validateOnBlur={false}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={checkPromoCode}
+        enableReinitialize
+      >
+        {({ setFieldValue }) => (
+          <Form>
+            <InputTextField name="promoCode" label="Promo code" className="mb-4" />
+            {promoCodeApplied ? (
+              <div className="flex items-center">
+                <CheckSvg className="w-4 mr-2" />
+                <span className="text-sm mr-3">Code Applied</span>
+                <Link
+                  variant="purple-dark"
+                  onClick={() => removePromoCode(setFieldValue)}
+                  className="text-sm"
+                >
+                  Remove
+                </Link>
+              </div>
             ) : (
-              <PrimaryButton type="submit" loading={isLoading} py="11px" className="self-end ml-4">
-                USE CODE
-              </PrimaryButton>
+              <Button type="submit" size="sm" variant="outline-black" loading={isLoading}>
+                Add Code
+              </Button>
             )}
-          </div>
-        </Form>
-      )}
-    </Formik>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
 };
 
 PromoCode.defaultProps = {
+  product: null,
   className: '',
 };
 
 PromoCode.propTypes = {
+  product: PropTypes.shape(),
   className: PropTypes.string,
 };
 

@@ -32,11 +32,6 @@ export default {
 
     return response.data.session;
   },
-  confirmSession: async (sessionId) => {
-    const response = await api.put(`/user_sessions/${sessionId}/confirm`, {});
-
-    return response.data;
-  },
   joinSessionWaitlist: async (sessionId, date) => {
     const response = await api.post(`/sessions/${sessionId}/waitlists`, {
       date: requestFormattedDate(date),

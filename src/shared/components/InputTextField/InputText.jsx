@@ -11,7 +11,7 @@ const InputTextContainer = styled.div`
   }
 `;
 
-function InputText({
+const InputText = ({
   name,
   label,
   labelColor,
@@ -25,14 +25,19 @@ function InputText({
   variant,
   className,
   ...props
-}) {
+}) => {
+  const [inputId] = useState((Math.random() + 1).toString(36).substring(2));
   const [leftIconWidth, setLeftIconWidth] = useState(null);
   const [rightIconWidth, setRightIconWidth] = useState(null);
 
   useEffect(() => {
+    if (!leftIcon && !rightIcon) {
+      return;
+    }
+
     setTimeout(() => {
-      const leftIconWidth = document.getElementById('left-icon')?.offsetWidth;
-      const rightIconWidth = document.getElementById('right-icon')?.offsetWidth;
+      const leftIconWidth = document.getElementById(`left-icon-${inputId}`)?.offsetWidth;
+      const rightIconWidth = document.getElementById(`right-icon-${inputId}`)?.offsetWidth;
 
       if (leftIconWidth) {
         setLeftIconWidth(leftIconWidth + 30);
@@ -41,17 +46,17 @@ function InputText({
         setRightIconWidth(rightIconWidth + 30);
       }
     }, 100);
-  }, []);
+  }, [leftIcon, rightIcon]);
 
-  const darkClasses = (() => {
+  const colorClasses = (() => {
     if (dark) {
       return 'text-cream bg-cc-blue-500 border border-cc-blue-500 focus:border-cream/10';
     }
 
-    return 'text-cc-black bg-cream border border-cc-black/50 focus:border-cc-black/100';
+    return 'text-cc-black bg-cc-gray-400 border border-cc-gray-400 focus:border-cc-gray-600 placeholder:text-gray-400';
   })();
 
-  const inputClasses = (() => {
+  const variantClasses = (() => {
     switch (variant) {
       case 'shrink':
         return 'px-2 py-1';
@@ -71,21 +76,21 @@ function InputText({
         rightIconWidth={rightIconWidth}
       >
         {label && (
-          <Label className="mb-1 uppercase text-sm md:text-base" htmlFor={name} color={labelColor}>
+          <Label forInput htmlFor={name} color={labelColor}>
             {label}
           </Label>
         )}
         <div className="relative">
           {leftIcon && (
             <div
-              id="left-icon"
+              id={`left-icon-${inputId}`}
               className="absolute transform -translate-y-1/2 top-1/2 left-4 leading-none"
             >
               {icon}
             </div>
           )}
           <input
-            className={`w-full font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 ${darkClasses} ${inputClasses}`}
+            className={`w-full font-shapiro45_welter_extd text-opacity-70 focus:text-opacity-100 text-sm ${colorClasses} ${variantClasses}`}
             autoComplete="off"
             name={name}
             disabled={disabled}
@@ -93,7 +98,7 @@ function InputText({
           />
           {rightIcon && (
             <div
-              id="right-icon"
+              id={`right-icon-${inputId}`}
               className="absolute transform -translate-y-1/2 top-1/2 right-4 leading-none"
             >
               {icon}
@@ -117,7 +122,7 @@ function InputText({
       </InputTextContainer>
     </div>
   );
-}
+};
 
 InputText.defaultProps = {
   label: null,
@@ -140,11 +145,11 @@ InputText.propTypes = {
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   hint: PropTypes.string,
   disabled: PropTypes.bool,
-  icon: PropTypes.shape(),
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.shape()]),
   leftIcon: PropTypes.bool,
   rightIcon: PropTypes.bool,
   dark: PropTypes.bool,
-  variant: PropTypes.string,
+  variant: PropTypes.oneOf(['normal', 'shrink', 'expanded']),
   className: PropTypes.string,
 };
 

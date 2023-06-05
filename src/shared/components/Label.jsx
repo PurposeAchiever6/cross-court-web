@@ -2,7 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Label = ({ color, children, className, ...props }) => {
+const Label = ({ forInput, color, children, className, ...props }) => {
+  const inputClasses = forInput
+    ? 'font-shapiro45_welter_extd text-sm mb-1'
+    : 'font-shapiro95_super_wide';
+
   const labelColorClass = (() => {
     switch (color) {
       case 'purple':
@@ -15,18 +19,20 @@ const Label = ({ color, children, className, ...props }) => {
   })();
 
   return (
-    <label className={`block font-shapiro95_super_wide ${labelColorClass} ${className}`} {...props}>
+    <label className={`block ${inputClasses} ${labelColorClass} ${className}`} {...props}>
       {children}
     </label>
   );
 };
 
 Label.defaultProps = {
+  forInput: false,
   color: '',
   className: '',
 };
 
 Label.propTypes = {
+  forInput: PropTypes.bool,
   color: PropTypes.string,
   children: PropTypes.node.isRequired,
   className: PropTypes.string,

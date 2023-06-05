@@ -2,16 +2,19 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { isEmpty } from 'ramda';
 import Loading from 'shared/components/Loading';
-import MyAcccountPageDesktop from './MyAccountPageDesktop';
-import MyAcccountPageMobile from './MyAccountPageMobile';
-import { initialLoadInit } from './actionCreators';
+import PageLayout from 'shared/components/layout/PageLayout';
+
+import MyProfile from 'screens/my-account/components/MyProfile';
+import { initialLoadInit } from 'screens/my-account/actionCreators';
 import {
   getPageLoading,
   getUserProfile,
   getPreviousSessions,
   getUpcomingSessions,
   getSemUpcomingSessions,
-} from './reducer';
+} from 'screens/my-account/reducer';
+import MySessions from 'screens/my-account/components/MySessions';
+import MyInfo from 'screens/my-account/components/MyInfo';
 
 export const MyAccountPage = () => {
   const dispatch = useDispatch();
@@ -31,20 +34,16 @@ export const MyAccountPage = () => {
   }
 
   return (
-    <>
-      <MyAcccountPageMobile
-        userProfile={userProfile}
+    <PageLayout>
+      <MyProfile profile={userProfile} />
+      <MySessions
+        profile={userProfile}
         previousSessions={previousSessions}
         upcomingSessions={upcomingSessions}
         semUpcomingSessions={semUpcomingSessions}
       />
-      <MyAcccountPageDesktop
-        userProfile={userProfile}
-        previousSessions={previousSessions}
-        upcomingSessions={upcomingSessions}
-        semUpcomingSessions={semUpcomingSessions}
-      />
-    </>
+      <MyInfo profile={userProfile} />
+    </PageLayout>
   );
 };
 

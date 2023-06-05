@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import ReactGA from 'react-ga';
+import 'regenerator-runtime';
 
 import App from 'shell/Root';
 import * as serviceWorker from './serviceWorker';

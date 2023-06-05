@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 
 import { getUserProfile } from 'screens/my-account/reducer';
 import InputTextareaField from 'shared/components/InputTextareaField';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import ROUTES from 'shared/constants/routes';
+import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
+import Link from 'shared/components/Link';
 
-const MAX_SKILL_RATING = '5';
-
-const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
+const StepProvideReasonContent = ({ submitRequest }) => {
   const history = useHistory();
 
   const currentUser = useSelector(getUserProfile);
@@ -19,8 +19,6 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
   const [reason, setReason] = useState('');
 
   const userNotMember = !currentUser.activeSubscription;
-  const maxSkillRating = newSkillRating === MAX_SKILL_RATING;
-  const proofRequested = maxSkillRating ? 'D3 University' : 'varsity';
 
   const validate = () => {
     const newErrors = {};
@@ -62,28 +60,26 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
           <div className="font-shapiro95_super_wide uppercase text-xs md:text-sm bg-cc-purple text-white p-4 mb-4">
             Only members can request a skill rating update
           </div>
-          <PrimaryButton inverted to={ROUTES.MEMBERSHIPS} fontSize="0.75rem">
+          <Button inverted to={ROUTES.MEMBERSHIPS} fontSize="0.75rem">
             See Memberships
-          </PrimaryButton>
+          </Button>
         </div>
       )}
       <div className={`text-sm ${userNotMember ? 'opacity-30 pointer-events-none' : ''}`}>
         <div className="mb-8">
           {userNotMember && (
             <p className="mb-2">
-              We believe it is important for our member's success to experience crosscourt with
+              We believe it is important for our member's success to experience Crosscourt with
               other athletes of similar abilities.
             </p>
           )}
-          <p className="mb-8">
-            To update your skill rating to a <strong>{newSkillRating}</strong>, please provide{' '}
-            <strong>proof</strong> of at least {proofRequested} level played <strong>OR</strong>{' '}
-            book an <strong>evaluation session</strong> to have one of our Experience Managers go
-            through our player evaluation form with you during a session.
+          <p className="mb-6 text-lg md:text-xl">
+            You must have played D3 or above at a university level to update this skill, or purchase
+            an evaluation credit.
           </p>
           <div className="mb-4">
-            1) Link(s) to team roster, MaxPreps profile, article, YouTube video, social media clips,
-            or image(s) that depict at least <strong>{proofRequested}</strong> level played within
+            Add links to team roster, MaxPreps profile, articles, Youtube videos, social media
+            clips, or images that depict your D3 or above university level status that was within
             the last 10 years.
           </div>
           <InputTextareaField
@@ -92,49 +88,49 @@ const StepProvideReasonContent = ({ submitRequest, newSkillRating }) => {
             hint="Please include at least 20 characters"
             error={errors.reason}
             formik={false}
-            className="mb-6"
+            className="mb-4"
+            placeholder="Paste links..."
           />
-          <div className="text-center">
-            <PrimaryButton onClick={onSubmit}>Submit</PrimaryButton>
-          </div>
+          <Button className="w-full md:w-auto" onClick={onSubmit}>
+            Submit
+          </Button>
+        </div>
+        <div className="flex items-center mb-4">
+          <span className="block text-lg md:text-xl mr-4">OR</span>
+          <LineDashedSvg strokeWidth="4px" />
         </div>
         <div className="mb-6 md:mb-12">
-          <div className="mb-6">
-            2) If you think you have what it takes, please purchase an{' '}
-            <strong>evaluation credit</strong> below. You will be able to apply the evaluation
-            credit at your leisure when booking a session.
+          <div className="mb-6 text-lg md:text-xl">
+            If you think you have what it takes, purchase an evaluation credit below.
           </div>
-          <div className="text-center">
-            <div className="font-shapiro95_super_wide text-xl uppercase mb-6">
-              Purchase evaluation credit
-            </div>
-            <PrimaryButton onClick={onPurchaseScoutingCredit}>Purchase Evaluation</PrimaryButton>
+          <div className="mb-4">
+            You’ll be able to apply the evaluation credit at your leisure when booking a session.
           </div>
-        </div>
-        <div className="text-center md:text-left">
-          <PrimaryButton
-            inverted
-            color="black"
-            fontSize="0.675rem"
-            hoverEffect={false}
-            to="/player-evaluation-form.png"
-            target="_blank"
-          >
-            See Player Evaluation Form
-          </PrimaryButton>
+          <div className="md:flex md:items-center">
+            <Button
+              variant="outline-purple"
+              className="w-full md:w-auto"
+              onClick={onPurchaseScoutingCredit}
+            >
+              Buy Credit
+            </Button>
+            <Link
+              className="block mt-4 md:mt-0 md:ml-4 w-full md:w-auto text-center"
+              to="/player-evaluation-form.png"
+              target="_blank"
+              isExternal
+            >
+              View Evaluation Form
+            </Link>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-StepProvideReasonContent.defaultProps = {
-  newSkillRating: null,
-};
-
 StepProvideReasonContent.propTypes = {
   submitRequest: PropTypes.func.isRequired,
-  newSkillRating: PropTypes.string,
 };
 
 export default StepProvideReasonContent;

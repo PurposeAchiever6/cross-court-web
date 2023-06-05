@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { openContactFormForUser } from 'shared/utils/contactForm';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import CCTeamPerksBgImg from 'screens/careers/images/cc-team-perks.jpeg';
 import competitiveWageIcon from 'screens/careers/images/wage.png';
 import freeSessionsIcon from 'screens/careers/images/free-sessions.png';
@@ -55,9 +55,7 @@ const CCTeamPerks = () => {
           ANY QUESTIONS?
         </h2>
         <div>
-          <PrimaryButton onClick={() => openContactFormForUser(currentUser)}>
-            EMAIL US
-          </PrimaryButton>
+          <Button onClick={() => openContactFormForUser(currentUser)}>EMAIL US</Button>
         </div>
       </div>
     </LazyBackgroundImage>
