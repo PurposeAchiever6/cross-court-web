@@ -46,6 +46,7 @@ const SignupForm = ({ className }) => {
             icon={<EnvelopeSvg className="w-5" />}
             leftIcon
             className="mb-6"
+            autoComplete="email"
           />
           <Button type="submit" loading={isLoading}>
             Join

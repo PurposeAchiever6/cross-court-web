@@ -72,8 +72,15 @@ const UserCard = ({ user, newLabel, expanded, className }) => {
               >
                 <FontAwesomeIcon icon={faInstagram} size="xl" />
               </Link>
-              {links.map((link) => (
-                <Link to={link} variant="white-opacity" isExternal target="_blank" rel="noreferrer">
+              {links.map((link, i) => (
+                <Link
+                  to={link}
+                  key={`${firstName}-link-${i}`}
+                  variant="white-opacity"
+                  isExternal
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <LinkSvg className="w-6 ml-2" />
                 </Link>
               ))}

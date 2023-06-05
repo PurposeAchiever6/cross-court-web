@@ -36,7 +36,7 @@ const SessionVote = ({ session, className }) => {
           <span className="block text-cc-purple text-sm mb-1">
             {voted
               ? 'Thanks for your vote'
-              : 'This session becomes available one it hits 15 upvotes.'}
+              : 'This session becomes available once it hits 15 upvotes.'}
           </span>
           <span className="block text-white text-opacity-60 text-sm">{votes} upvotes</span>
         </div>

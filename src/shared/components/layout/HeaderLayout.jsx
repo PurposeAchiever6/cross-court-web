@@ -20,13 +20,21 @@ const HeaderLayout = ({ dark, alwaysScrolled, showBanner, children }) => {
 
   const textColorClass = dark || menuOpen ? 'text-white' : 'text-cc-purple';
 
-  document.addEventListener('scroll', () => {
-    setScrolled(alwaysScrolled ? true : window.scrollY > SCROLL_LIMIT);
-  });
-
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  useEffect(() => {
+    const setScroll = () => {
+      setScrolled(alwaysScrolled || window.scrollY > SCROLL_LIMIT);
+    };
+
+    document.addEventListener('scroll', setScroll);
+
+    return () => {
+      document.removeEventListener('scroll', setScroll);
+    };
+  }, []);
 
   useEffect(() => {
     setScrolled(alwaysScrolled);

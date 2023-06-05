@@ -39,11 +39,9 @@ const UserCreditsLeft = ({ session, className }) => {
       heading = `${totalSkillSessionCredits} sklz ${pluralize('credit', totalSkillSessionCredits)}`;
       subheading = activeSubscription ? 'Left this month' : 'Available';
     }
+  } else if (unlimitedCredits) {
+    heading = 'Unlimited sessions';
   } else {
-    if (unlimitedCredits) {
-      heading = 'Unlimited sessions';
-    }
-
     heading = `${totalCredits || 'No'} session ${pluralize('credit', totalCredits)}`;
     subheading = activeSubscription ? 'Left this month' : 'Available';
   }

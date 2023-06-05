@@ -24,7 +24,7 @@ CheckmarkList.defaultProps = {
 };
 
 CheckmarkList.propTypes = {
-  list: PropTypes.shape().isRequired,
+  list: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   className: PropTypes.string,
 };
 

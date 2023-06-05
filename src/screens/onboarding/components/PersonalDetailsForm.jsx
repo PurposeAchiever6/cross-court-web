@@ -99,9 +99,11 @@ const PersonalDetailsForm = () => {
               label="Password*"
               allowShowPassword
               className="mb-4"
+              autoComplete="new-password"
             />
             <InputPasswordField
               name="passwordConfirmation"
+              autoComplete="new-password"
               label="Confirm Password*"
               allowShowPassword
             />

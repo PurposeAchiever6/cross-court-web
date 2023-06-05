@@ -7,7 +7,7 @@ import { getIsAuthenticated } from 'screens/auth/reducer';
 import AuthPageLayout from 'shared/components/layout/AuthPageLayout';
 import Link from 'shared/components/Link';
 import SignupForm from 'screens/auth/components/SignupForm';
-import signupImg from 'screens/auth/images/signup.jpeg';
+import signupImg from 'screens/auth/images/signup.jpg';
 
 const SignupPage = () => {
   const isAuthenticated = useSelector(getIsAuthenticated);
