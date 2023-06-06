@@ -72,7 +72,7 @@ const UserCard = ({ user, newLabel, expanded, className }) => {
               >
                 <FontAwesomeIcon icon={faInstagram} size="xl" />
               </Link>
-              {links.map((link, i) => (
+              {links?.map((link, i) => (
                 <Link
                   to={link}
                   key={`${firstName}-link-${i}`}
