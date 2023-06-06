@@ -4,8 +4,8 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 
+import { getUtmParams } from 'shared/utils/utm';
 import { emailRegExp } from 'shared/utils/helpers';
-import { getUserSource } from 'shared/utils/userSource';
 import { signUpInit } from 'screens/auth/actionCreators';
 import { getSignupLoading } from 'screens/auth/reducer';
 import InputTextField from 'shared/components/InputTextField';
@@ -18,8 +18,9 @@ const SignupForm = ({ className }) => {
   const isLoading = useSelector(getSignupLoading);
 
   const signup = (credentials) => {
-    const source = getUserSource() || 'web';
-    dispatch(signUpInit({ ...credentials, source }));
+    const utmParams = getUtmParams();
+
+    dispatch(signUpInit({ ...credentials, ...utmParams }));
   };
 
   const initialValues = {
