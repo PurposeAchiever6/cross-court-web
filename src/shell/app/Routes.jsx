@@ -23,7 +23,12 @@ import { history } from 'shared/history';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { toggleActiveCampaignChat } from 'shared/utils/activeCampaign';
-import { getUserSource, setUserSource, removeUserSource } from 'shared/utils/userSource';
+import {
+  parseUrlUtmParams,
+  removeUtmParams,
+  setUtmParams,
+  isUtmParamsEmpty,
+} from 'shared/utils/utm';
 import PrivateRoute from './PrivateRoute';
 import HtmlHead from './HtmlHead';
 
@@ -263,19 +268,17 @@ const Routes = () => {
   }
 
   useEffect(() => {
-    const query = new URLSearchParams(window.location.search);
-    const source = query.get('source');
-    const userAlreadyHasSource = getUserSource();
+    const utmParams = parseUrlUtmParams(window.location.search);
 
-    if (!userAlreadyHasSource && source) {
-      setUserSource(source);
+    if (isUtmParamsEmpty()) {
+      setUtmParams(utmParams);
     }
   }, []);
 
   useEffect(() => {
     if (isAuthenticated) {
       window.localStorage.setItem('hasLoggedIn', 'true');
-      removeUserSource();
+      removeUtmParams();
       dispatch(initialAppLoad());
     }
 

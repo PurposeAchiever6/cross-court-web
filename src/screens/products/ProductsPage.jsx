@@ -69,7 +69,7 @@ const ProductsPage = () => {
 
   const selectProductHandler = (product) => {
     if (!isAuthenticated) {
-      history.push(ROUTES.LOGIN);
+      history.push(ROUTES.SIGNUP);
       return;
     }
 
