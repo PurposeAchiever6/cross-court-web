@@ -34,7 +34,7 @@ const RULES_LIST = [
 
 const RulesAndFormatModal = ({ isOpen, closeHandler }) => (
   <Modal isOpen={isOpen} closeHandler={closeHandler} size="2xl">
-    <Tabs variant="opacity-underline">
+    <Tabs variant="opacity-underline" noActiveTab>
       <div label="Format">
         <List className="text-sm" items={FORMAT_LIST} />
       </div>

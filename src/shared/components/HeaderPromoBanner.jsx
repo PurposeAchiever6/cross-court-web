@@ -18,7 +18,7 @@ const HeaderPromoBanner = ({ onClose }) => {
 
   const discountProductText = `Special offer: ${formatPrice(
     promoCode.discountedPrice
-  )} ${discountTimeText(promoCode)} with ${titleize(promoCode.productName)}`;
+  )} ${discountTimeText(promoCode)} with ${titleize(promoCode.product.name)}`;
 
   return (
     <PageLayout noPadding>

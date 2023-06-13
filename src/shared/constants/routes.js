@@ -4,6 +4,7 @@ import { BILLING_TAB, BIO_TAB } from './tabs';
 
 export default {
   ABOUT_YOURSELF: '/about-yourself',
+  ADS: '/ads',
   CAREERS: '/careers',
   CHECKOUT_CONFIRMED: '/checkout/confirmed',
   CHECKOUT_MEMBERSHIP_CONFIRMED: '/checkout/membership',

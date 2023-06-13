@@ -47,7 +47,7 @@ const Create = () => {
             className="md:w-[625px] md:h-[568px] hidden md:block absolute"
           />
           <div className="px-6 md:px-28 relative pb-6 md:pb-24">
-            <div className="flex flex-col md:flex-row items-center mt-4 md:mt-2">
+            <div className="flex flex-col md:flex-row items-center">
               <img alt="open-club" src={openClub} />
               <div className="flex flex-col md:ml-32">
                 <img alt="sklz-logo" className="w-32 mt-4 md:mt-0" src={officeHoursLogo} />
@@ -60,7 +60,7 @@ const Create = () => {
                 </p>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row items-center">
+            <div className="flex flex-col md:flex-row items-center mt-8 md:mt-2">
               <img alt="sklz" src={sklz} />
               <div className="flex flex-col md:ml-32">
                 <img alt="sklz-logo" className="w-32 mt-4 md:mt-0" src={sklzLogoWhite} />
