@@ -11,7 +11,7 @@ const SessionsList = ({ sessions, past, isSem }) => {
   const sesionsToShow = take(3, filteredSessions);
 
   return (
-    <div className="bg-white">
+    <div className="bg-cream">
       {past && <hr className="mx-6 border-cc-black opacity-70" />}
       {isEmpty(sesionsToShow) ? (
         <div className="flex flex-col items-center justify-center p-8">

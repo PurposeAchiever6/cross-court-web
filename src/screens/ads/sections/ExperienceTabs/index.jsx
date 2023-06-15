@@ -135,7 +135,7 @@ const ExperienceTabs = () => {
 
   return (
     <>
-      <SectionLayout className="mb-24">
+      <SectionLayout>
         <Tabs tabContainerClasses="border-b" variant="opacity-underline" noActiveTab>
           {tabs.map((tab) => (
             <div label={tab.label} key={tab.label}>

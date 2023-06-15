@@ -43,7 +43,7 @@ const UnlockYourPotential = () => {
       )} by becoming a member today.`;
 
   return (
-    <SectionLayout className="relative md:pt-20">
+    <SectionLayout className="relative pt-10 md:pt-20">
       <img
         src={gradientEffectBgImg}
         alt="cc-basketball-balls"

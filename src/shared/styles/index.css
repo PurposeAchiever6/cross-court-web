@@ -114,6 +114,7 @@ body .mobile-hide-inline {
 
 /* MAIN */
 body[data-page='home'] main,
+body[data-page='ads'] main,
 body[data-page='login'] main,
 body[data-page^='signup'] main,
 body[data-page^='onboarding'] main,
