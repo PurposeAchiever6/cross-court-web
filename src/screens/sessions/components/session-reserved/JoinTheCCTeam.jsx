@@ -55,7 +55,7 @@ const JoinTheCCTeam = () => {
           <div className="font-shapiro95_super_wide text-center uppercase border-b border-cc-purple pb-6 mb-10">
             <span className="block text-5xl mb-2">{discountAmountText(promoCode)} off</span>
             <span className="block text-xl mb-2">{discountTimeText(promoCode)}</span>
-            <span className="block">with {titleize(promoCode.productName)}</span>
+            <span className="block">with {titleize(promoCode.product.name)}</span>
           </div>
         )}
         <CheckmarkList list={CHECKMARK_LIST} className="mb-8" />

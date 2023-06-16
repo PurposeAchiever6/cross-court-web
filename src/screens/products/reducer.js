@@ -117,7 +117,7 @@ export const getDropInProducts = createSelector(getAvailableProducts, (products)
 export const getRecurringProductsPromoCode = createSelector(getRecurringProducts, (products) =>
   products
     .filter((product) => product.promoCode)
-    .map((product) => ({ ...product.promoCode, productName: product.name }))
+    .map((product) => ({ ...product.promoCode, product }))
 );
 
 export const getFeaturedRecurringProductPromoCode = createSelector(

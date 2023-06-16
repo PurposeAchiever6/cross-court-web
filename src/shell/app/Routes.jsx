@@ -52,6 +52,7 @@ const OnboardingPaymentMethod = lazy(() =>
 const OnboardingReview = lazy(() => import('screens/onboarding/pages/OnboardingReviewPage'));
 const Dashboard = lazy(() => import('screens/dashboard/DashboardPage'));
 const WhyJoin = lazy(() => import('screens/why-join/WhyJoinPage'));
+const Ads = lazy(() => import('screens/ads/AdsPage'));
 const CareersPage = lazy(() => import('screens/careers/CareersPage'));
 const Locations = lazy(() => import('screens/locations/LocationsPage'));
 const Session = lazy(() => import('screens/sessions/pages/Session'));
@@ -293,6 +294,9 @@ const Routes = () => {
         </Route>
         <Route path={ROUTES.SIGNUP} exact>
           <Signup />
+        </Route>
+        <Route path={ROUTES.ADS} exact>
+          <Ads />
         </Route>
         <Route path={ROUTES.SIGNUP_VERIFICATION} exact>
           <SignupVerification />

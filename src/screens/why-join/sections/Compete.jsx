@@ -5,7 +5,7 @@ import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
 import Button from 'shared/components/Button';
 import Link from 'shared/components/Link';
 import VideoPlayer from 'shared/components/VideoPlayer';
-import RulesAndFormatModal from 'screens/why-join/components/RulesAndFormatModal';
+import RulesAndFormatModal from 'shared/components/RulesAndFormatModal';
 
 import activationsLogoWhite from 'shared/images/logos/activations-white.png';
 import challengesLogoWhite from 'shared/images/logos/challenges-white.png';
@@ -58,9 +58,9 @@ const Compete = () => {
           />
           <div className="px-6 md:px-28 relative pb-6 md:pb-24">
             <div className="flex flex-col md:flex-row items-center">
-              <img alt="sklz" src={session} />
+              <img alt="sessions" src={session} />
               <div className="flex flex-col md:ml-32">
-                <img alt="sklz-logo" className="w-32 mt-4 md:mt-0" src={sessionsLogoWhite} />
+                <img alt="session-logo" className="w-32 mt-4 md:mt-0" src={sessionsLogoWhite} />
                 <p className="mt-4 max-w-2xl text-lg">
                   Our curated, pickup-inspired experience. Our bread and butter. 55 minutes, 15
                   player limit, 2 Session Officials, tiered skill levels, music, jerseys, and more.
@@ -83,9 +83,13 @@ const Compete = () => {
               </div>
             </div>
             <div className="flex flex-col md:flex-row items-center mt-8 md:mt-2">
-              <img alt="open-club" src={activation} />
+              <img alt="activations" src={activation} />
               <div className="flex flex-col md:ml-32">
-                <img alt="sklz-logo" className="w-40 mt-4 md:mt-0" src={activationsLogoWhite} />
+                <img
+                  alt="activations-logo"
+                  className="w-40 mt-4 md:mt-0"
+                  src={activationsLogoWhite}
+                />
                 <p className="mt-4 max-w-2xl text-lg">
                   Unique, members only pop up events and competitive experiences centered around
                   team sport. From 3v3 challenges, to dodgeball tournaments, to 3 point contests, to
@@ -105,9 +109,13 @@ const Compete = () => {
               </div>
             </div>
             <div className="flex flex-col md:flex-row items-center mt-8 md:mt-2">
-              <img alt="open-club" src={challenges} />
+              <img alt="challenges" src={challenges} />
               <div className="flex flex-col md:ml-32">
-                <img alt="sklz-logo" className="w-40 mt-4 md:mt-0" src={challengesLogoWhite} />
+                <img
+                  alt="challenges-logo"
+                  className="w-40 mt-4 md:mt-0"
+                  src={challengesLogoWhite}
+                />
                 <p className="mt-4 max-w-2xl text-lg">
                   We constantly look for fun ways to engage our community through challenges and
                   other competitions beyond the court. From a March Madness bracket challenge, to an
@@ -117,9 +125,9 @@ const Compete = () => {
               </div>
             </div>
             <div className="flex flex-col md:flex-row items-center mt-8 md:mt-2">
-              <img alt="open-club" src={szns} />
+              <img alt="szns" src={szns} />
               <div className="flex flex-col md:ml-32">
-                <img alt="sklz-logo" className="w-28 mt-4 md:mt-0" src={sznsLogoWhite} />
+                <img alt="szns-logo" className="w-28 mt-4 md:mt-0" src={sznsLogoWhite} />
                 <div>
                   <p className="mt-4 text-lg font-shapiro95_super_wide text-cc-purple">
                     COMING SOON

@@ -11,8 +11,13 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
 
   const { unlimitedCredits } = user;
   const { date, time, isOpenClub, costCredits, userSession } = session;
-  const { inCancellationTime, isFreeSession, scouting, shootingMachineReservations } =
-    userSession || {};
+  const {
+    inCancellationTime,
+    isFreeSession,
+    scouting,
+    shootingMachineReservations,
+    creditUsedType,
+  } = userSession || {};
 
   const onCancelClick = () => {
     setDisableBtn(true);
@@ -45,6 +50,7 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
 
     const lateCancelFee = import.meta.env.VITE_CANCELED_OUT_OF_TIME_PRICE;
     const hasLateCancelFee = Number(lateCancelFee);
+    const wasFreeReservation = costCredits === 0 || !creditUsedType;
 
     if (unlimitedCredits) {
       if (inCancellationTime) {
@@ -72,7 +78,7 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
     }
 
     if (inCancellationTime) {
-      if (costCredits === 0) {
+      if (wasFreeReservation) {
         return scouting ? 'The evaluation credit will be refunded to your account.' : null;
       }
 
@@ -87,7 +93,7 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
       } late cancellation fee.`;
     }
 
-    if (costCredits === 0) {
+    if (wasFreeReservation) {
       if (scouting) {
         let message =
           'The evaluation credit will not be refunded because of the late cancellation.';

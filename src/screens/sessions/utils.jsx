@@ -118,6 +118,7 @@ export const sessionInformation = (session) => {
   const {
     isOpenClub,
     costCredits,
+    allowFreeBooking,
     allowBackToBackReservations,
     allSkillLevelsAllowed,
     guestsAllowed,
@@ -126,7 +127,7 @@ export const sessionInformation = (session) => {
 
   const sessionCcCashEarned = Number(ccCashEarned);
 
-  if (costCredits === 0 || isOpenClub) {
+  if (costCredits === 0 || allowFreeBooking || isOpenClub) {
     information.push('No Credit Required');
   }
 

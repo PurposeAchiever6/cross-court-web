@@ -19,15 +19,19 @@ const Tabs = ({
   children,
   tabContainerClasses,
   showSeparator,
+  noActiveTab,
 }) => {
   const { search } = useLocation();
   const history = useHistory();
   const searchParams = new URLSearchParams(search);
   const [activeTab, setActiveTab] = useState(
-    searchParams.get(TAB_QUERY_PARAM) || children[0].props.label
+    noActiveTab ? children[0].props.label : searchParams.get(TAB_QUERY_PARAM)
   );
 
   useEffect(() => {
+    if (noActiveTab) {
+      return;
+    }
     searchParams.set(TAB_QUERY_PARAM, activeTab);
     history.replace({
       search: searchParams.toString(),
@@ -95,6 +99,7 @@ Tabs.defaultProps = {
   alignLabels: 'left',
   className: '',
   tabContainerClasses: '',
+  noActiveTab: false,
 };
 
 Tabs.propTypes = {
@@ -103,6 +108,7 @@ Tabs.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   tabContainerClasses: PropTypes.string,
+  noActiveTab: PropTypes.bool,
 };
 
 export default Tabs;

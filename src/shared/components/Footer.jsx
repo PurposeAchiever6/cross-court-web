@@ -20,6 +20,7 @@ import Link from 'shared/components/Link';
 import InputTextField from 'shared/components/InputTextField';
 
 const FOOTER_DISABLED_ROUTES = [
+  ROUTES.ADS,
   ROUTES.DASHBOARD,
   ROUTES.LOGIN,
   ROUTES.ONBOARDING_INTENSITY_LEVEL,
@@ -199,7 +200,7 @@ const Footer = () => {
           </SectionLayout>
           <SectionLayout as="div" className="bg-black text-center text-xs py-6">
             <span className="block md:inline-block mb-1 md:mb-0">
-              {`${new Date().getFullYear()}`} &reg; Crosscourt
+              {`${new Date().getFullYear()}`} &copy; Crosscourt
             </span>
             <span className="hidden md:inline-block mx-2">/</span>
             <span className="block md:inline-block mb-1 md:mb-0">{ccAddress}</span>
