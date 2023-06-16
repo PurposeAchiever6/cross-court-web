@@ -29,7 +29,7 @@ const getUtmParams = () => {
 
   return {
     ...savedUtmParams,
-    utmSource: savedUtmParams.utmSource || 'web',
+    utmSource: savedUtmParams?.utmSource || 'web',
   };
 };
 

@@ -11,6 +11,16 @@ export default {
 
     return response.data.locations;
   },
+  getLocationsNearZipcode: async (zipcode) => {
+    const response = await api.get(`/locations/locations_near_zipcode`, {
+      data: {},
+      params: {
+        zipcode,
+      },
+    });
+
+    return response.data;
+  },
   getSessions: async (locationId = null, date) => {
     const response = await api.get(`/sessions/`, {
       data: {},
