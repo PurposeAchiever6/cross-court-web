@@ -80,12 +80,12 @@ const UnlockYourPotential = () => {
           <p className="font-shapiro95_super_wide text-lg md:text-2xl text-cc-black">
             {promoCode ? (
               <>
-                <span className="block text-5xl">
+                <span className="block text-4xl md:text-5xl">
                   <span className="text-black/50 line-through decoration-success">
                     {formatPrice(promoCode.product.price)}
                   </span>
                   <span className="ml-4 mr-1">{formatPrice(promoCode.discountedPrice)}</span>
-                  <sup className="text-3xl">/mo.</sup>
+                  <sup className="text-2xl md:text-3xl">/mo.</sup>
                 </span>
                 <span className="block">{discountProductText}</span>
               </>
