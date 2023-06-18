@@ -3,7 +3,6 @@ import { TAB_QUERY_PARAM } from 'shared/components/Tabs';
 import { BILLING_TAB, BIO_TAB } from './tabs';
 
 export default {
-  ABOUT_YOURSELF: '/about-yourself',
   ADS: '/ads',
   CAREERS: '/careers',
   CHECKOUT_CONFIRMED: '/checkout/confirmed',
@@ -13,7 +12,6 @@ export default {
   FAQ: '/faq',
   FIRSTSESSIONRESERVED: '/first-session/reserved',
   GALLERY: '/gallery',
-  GOALS: '/goals',
   HOME: '/',
   LOCATIONS: '/locations',
   LOCATIONSFIRST: '/locations-first',

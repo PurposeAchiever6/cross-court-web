@@ -27,9 +27,6 @@ import {
   AUTO_LOGIN_INIT,
   AUTO_LOGIN_SUCCESS,
   AUTO_LOGIN_FAILURE,
-  UPDATE_PERSONAL_INFO_INIT,
-  UPDATE_PERSONAL_INFO_SUCCESS,
-  UPDATE_PERSONAL_INFO_FAILURE,
   UPDATE_PROFILE_REQUEST_INIT,
   UPDATE_PROFILE_REQUEST_SUCCESS,
   UPDATE_PROFILE_REQUEST_FAILURE,
@@ -90,24 +87,6 @@ export function* sendConfirmationEmailFlow() {
   }
 }
 
-export function* updatePersonalInfoFlow({ payload }) {
-  try {
-    const email = yield select(getUserEmail);
-
-    yield call(authService.updatePersonalInfo, { email, personalInfo: payload.personalInfo });
-    yield put({ type: UPDATE_PERSONAL_INFO_SUCCESS });
-    yield put(
-      push(payload.from === ROUTES.ABOUT_YOURSELF ? ROUTES.GOALS : ROUTES.SIGNUPSUCCESS, {
-        from: payload.from,
-      })
-    );
-  } catch (err) {
-    const errorMessage = err.response.data.error;
-    yield call(toast.error, errorMessage);
-    yield put({ type: UPDATE_PERSONAL_INFO_FAILURE, error: errorMessage });
-  }
-}
-
 export function* updateRequestFlow({ payload }) {
   try {
     yield call(authService.updateProfileRequest, payload);
@@ -163,7 +142,6 @@ export default function* rootLoginSaga() {
     takeLatest(FORGOT_PASS_INIT, forgotPasswordFlow),
     takeLatest(PASS_RESET_INIT, passwordResetFlow),
     takeLatest(AUTO_LOGIN_INIT, autoLoginFlow),
-    takeLatest(UPDATE_PERSONAL_INFO_INIT, updatePersonalInfoFlow),
     takeLatest(UPDATE_PROFILE_REQUEST_INIT, updateRequestFlow),
   ]);
 }
