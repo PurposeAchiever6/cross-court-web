@@ -8,6 +8,8 @@ const getVariantClasses = (variant) => {
       return '';
     case 'white-opacity':
       return 'text-white hover:opacity-60 transition-opacity duration-300';
+    case 'white':
+      return 'text-white hover:underline';
     case 'purple-dark':
       return 'text-cc-purple-900 hover:underline';
     case 'purple-light':
