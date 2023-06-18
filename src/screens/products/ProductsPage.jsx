@@ -127,7 +127,7 @@ const ProductsPage = () => {
   };
 
   const scrollIntoRef = (ref) => {
-    // We rest 80 because of the header
+    // We subtract 80 because of the header
     window.scrollTo({ top: ref.current.offsetTop - 80, behavior: 'smooth' });
   };
 
