@@ -19,6 +19,11 @@ import {
   GET_SESSIONS_BY_DATE_SUCCESS,
   GET_SESSIONS_BY_DATE_FAILURE,
   SET_SELECTED_DATE,
+  VALIDATE_RANGE_AND_SUBMIT_INIT,
+  VALIDATE_RANGE_AND_SUBMIT_SUCCESS,
+  VALIDATE_RANGE_AND_SUBMIT_FAILURE,
+  SHOW_OUTSIDE_RANGE_MODAL,
+  CLOSE_OUTSIDE_RANGE_MODAL,
 } from './actionTypes';
 
 const initialState = {
@@ -26,6 +31,9 @@ const initialState = {
   pageLoading: false,
   sessionsLoading: false,
   availableLocations: [],
+  showOutsideRangeModal: false,
+  nearestLocation: null,
+  outsideRangeValidationLoading: false,
   availableSessions: [],
   selectedLocation: null,
   selectedDate: new Date().toLocaleDateString('en-US'),
@@ -47,6 +55,35 @@ export default (state = initialState, action) => {
       };
     case GET_LOCATIONS_FAILURE:
       return { ...state, error: action.error, pageLoading: false };
+    case SHOW_OUTSIDE_RANGE_MODAL:
+      return {
+        ...state,
+        nearestLocation: action.payload.nearestLocation,
+        showOutsideRangeModal: true,
+      };
+    case CLOSE_OUTSIDE_RANGE_MODAL:
+      return {
+        ...state,
+        showOutsideRangeModal: false,
+      };
+    case VALIDATE_RANGE_AND_SUBMIT_INIT:
+      return {
+        ...state,
+        outsideRangeValidationLoading: true,
+        error: '',
+      };
+    case VALIDATE_RANGE_AND_SUBMIT_SUCCESS:
+      return {
+        ...state,
+        outsideRangeValidationLoading: false,
+      };
+    case VALIDATE_RANGE_AND_SUBMIT_FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        showOutsideRangeModal: false,
+        outsideRangeValidationLoading: false,
+      };
     case GET_SESSIONS_BY_LOCATION_INIT:
       return {
         ...state,
@@ -123,6 +160,21 @@ export const getError = createSelector(getLocations, (locations) => locations.er
 export const getAvailableLocations = createSelector(
   getLocations,
   (locations) => locations.availableLocations
+);
+
+export const getNearestLocation = createSelector(
+  getLocations,
+  (locations) => locations.nearestLocation
+);
+
+export const showOutsideRangeModalSelector = createSelector(
+  getLocations,
+  (locations) => locations.showOutsideRangeModal
+);
+
+export const outsideRangeValidationLoadingSelector = createSelector(
+  getLocations,
+  (locations) => locations.outsideRangeValidationLoading
 );
 
 export const getAvailableSessions = createSelector(

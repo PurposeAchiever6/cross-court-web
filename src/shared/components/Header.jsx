@@ -17,13 +17,11 @@ import Navbar from 'shared/components/Header/Navbar';
 import Button from 'shared/components/Button';
 
 const ALWAYS_SCROLLED = [
-  ROUTES.ABOUT_YOURSELF,
   ROUTES.CAREERS,
   ROUTES.CHECKOUT,
   ROUTES.CONTENT,
   ROUTES.DASHBOARD,
   ROUTES.FORGOTPASSWORD,
-  ROUTES.GOALS,
   ROUTES.NOT_FOUND,
   ROUTES.PRIVACY_POLICY,
   ROUTES.RESETPASSWORD,

@@ -33,14 +33,6 @@ export default {
 
     return response.data;
   },
-  updatePersonalInfo: async ({ email, personalInfo }) => {
-    const response = await api.put(`/user/update_personal_info`, {
-      email,
-      personalInfo,
-    });
-
-    return response.data;
-  },
   forgotPassword: async ({ email }) => {
     const response = await api.post(`/users/password`, {
       email,

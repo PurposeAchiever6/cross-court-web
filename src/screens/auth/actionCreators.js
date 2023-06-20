@@ -6,7 +6,6 @@ import {
   FORGOT_PASS_INIT,
   PASS_RESET_INIT,
   AUTO_LOGIN_INIT,
-  UPDATE_PERSONAL_INFO_INIT,
   UPDATE_PROFILE_REQUEST_INIT,
   SHOW_FORGOT_PASSWORD_MODAL,
   CLOSE_FORGOT_PASSWORD_MODAL,
@@ -33,11 +32,6 @@ export const signUpInit = (payload) => ({
 
 export const sendConfirmationEmailInit = () => ({
   type: SEND_CONFIRMATION_EMAIL_INIT,
-});
-
-export const updatePersonalInfo = (payload) => ({
-  type: UPDATE_PERSONAL_INFO_INIT,
-  payload,
 });
 
 export const updateProfileRequestInit = (payload) => ({

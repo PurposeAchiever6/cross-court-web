@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import ROUTES from 'shared/constants/routes';
 import { startedCheckout } from 'shared/utils/activeCampaign';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import {
@@ -41,13 +42,16 @@ import PurchaseDetailsModal from 'screens/checkout/components/PurchaseDetailsMod
 import AddPaymentMethodModal from 'screens/checkout/components/AddPaymentMethodModal';
 import triangleTexture from 'screens/products/images/triangle-texture.png';
 import Link from 'shared/components/Link';
-import ROUTES from 'shared/constants/routes';
 import CompareMembershipsTable from 'screens/products/components/CompareMembershipsTable';
+import ArrowPointDownSvg from 'shared/components/svg/ArrowPointDownSvg';
 
 const ProductsPage = () => {
   const history = useHistory();
-  const { state } = useLocation();
   const dispatch = useDispatch();
+  const { state } = useLocation();
+
+  const compareMembershipsTableRef = useRef(null);
+  const amenitiesAndFeaturesRef = useRef(null);
 
   const availableProducts = useSelector(getAvailableProducts);
   const isLoading = useSelector(getPageLoading);
@@ -122,6 +126,11 @@ const ProductsPage = () => {
     return 'Join';
   };
 
+  const scrollIntoRef = (ref) => {
+    // We subtract 80 because of the header
+    window.scrollTo({ top: ref.current.offsetTop - 80, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     dispatch(initialLoad());
     if (showAnimation) {
@@ -179,16 +188,34 @@ const ProductsPage = () => {
             alt="triangle-texture"
           />
           <div className="relative">
-            <h2
-              className={`font-shapiro95_super_wide text-3xl sm:text-4xl ${
-                pageDescription ? 'mb-10 md:mb-2' : 'mb-6 sm:mb-10'
-              }`}
-            >
-              {pageTitle}
-            </h2>
-            {pageDescription && (
-              <h4 className="hidden md:block text-sm max-w-3xl mb-6 sm:mb-10">{pageDescription}</h4>
-            )}
+            <div className="lg:flex sm:justify-between mb-6 lg:mb-10">
+              <div>
+                <h2 className="font-shapiro95_super_wide text-3xl sm:text-4xl">{pageTitle}</h2>
+                {pageDescription && (
+                  <p className="text-sm max-w-3xl mt-6 md:mt-2">{pageDescription}</p>
+                )}
+              </div>
+              {showMemberships && (
+                <div className="flex lg:block mt-6 lg:mt-2">
+                  <Link
+                    variant="white"
+                    onClick={() => scrollIntoRef(compareMembershipsTableRef)}
+                    className="font-shapiro95_super_wide text-xs flex lg:justify-end items-center mb-1 mr-4 lg:mr-0"
+                  >
+                    Compare
+                    <ArrowPointDownSvg className="w-3 sm:w-5 ml-1 text-cc-purple" />
+                  </Link>
+                  <Link
+                    variant="white"
+                    onClick={() => scrollIntoRef(amenitiesAndFeaturesRef)}
+                    className="font-shapiro95_super_wide text-xs flex lg:justify-end items-center"
+                  >
+                    Amenities
+                    <ArrowPointDownSvg className="w-3 sm:w-5 ml-1 text-cc-purple" />
+                  </Link>
+                </div>
+              )}
+            </div>
             <div className="md:flex">
               {comesFromCancelModal && (
                 <SeasonPass
@@ -237,10 +264,14 @@ const ProductsPage = () => {
         {showMemberships && reserveTeam && <ReserveTeamMembershipsFeatures />}
         {showMemberships && (
           <>
-            <SectionLayout className="mb-12 md:mb-24">
-              <CompareMembershipsTable products={recurringProducts} />
-            </SectionLayout>
-            <AmenitiesAndFeatures />
+            <div ref={compareMembershipsTableRef}>
+              <SectionLayout className="mb-12 md:mb-24">
+                <CompareMembershipsTable products={recurringProducts} />
+              </SectionLayout>
+            </div>
+            <div ref={amenitiesAndFeaturesRef}>
+              <AmenitiesAndFeatures />
+            </div>
             <FAQ />
           </>
         )}

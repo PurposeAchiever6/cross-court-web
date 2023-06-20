@@ -70,8 +70,6 @@ const PWA = lazy(() => import('screens/pwa/PWAPage'));
 const Gallery = lazy(() => import('screens/gallery/GalleryPage'));
 const Referrals = lazy(() => import('screens/referrals/ReferralsPage'));
 const MembershipConfirm = lazy(() => import('screens/checkout/pages/MembershipConfirm'));
-const AboutYourself = lazy(() => import('screens/about-yourself/AboutYourselfPage'));
-const Goals = lazy(() => import('screens/goals/GoalsPage'));
 const NotFoundPage = lazy(() => import('screens/not-found/NotFoundPage'));
 const SettingsPage = lazy(() => import('screens/settings/SettingsPage'));
 
@@ -319,12 +317,6 @@ const Routes = () => {
         <PrivateRoute path={ROUTES.ONBOARDING_REVIEW} exact>
           <OnboardingReview />
         </PrivateRoute>
-        <Route path={ROUTES.ABOUT_YOURSELF} exact>
-          <AboutYourself />
-        </Route>
-        <Route path={ROUTES.GOALS} exact>
-          <Goals />
-        </Route>
         <Route path={[ROUTES.LOCATIONS, ROUTES.LOCATIONSFIRST]} exact>
           <Locations />
         </Route>

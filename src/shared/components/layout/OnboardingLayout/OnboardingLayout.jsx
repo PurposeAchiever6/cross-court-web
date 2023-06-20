@@ -47,7 +47,7 @@ const OnboardingLayout = ({ disableLink, children }) => {
             )}
           </div>
           <div className="flex">{children}</div>
-          <div className="text-xs mt-6">{`${new Date().getFullYear()}`} &reg; Crosscourt</div>
+          <div className="text-xs mt-6">{`${new Date().getFullYear()}`} &copy; Crosscourt</div>
         </div>
       </SectionLayout>
     </PageLayout>
