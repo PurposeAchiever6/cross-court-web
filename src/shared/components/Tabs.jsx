@@ -21,21 +21,23 @@ const Tabs = ({
   showSeparator,
   noActiveTab,
 }) => {
-  const { search } = useLocation();
   const history = useHistory();
+  const { search } = useLocation();
+
   const searchParams = new URLSearchParams(search);
+  const defaultActiveTab = children[0].props.label;
+
   const [activeTab, setActiveTab] = useState(
-    noActiveTab ? children[0].props.label : searchParams.get(TAB_QUERY_PARAM)
+    noActiveTab ? defaultActiveTab : searchParams.get(TAB_QUERY_PARAM) || defaultActiveTab
   );
 
   useEffect(() => {
     if (noActiveTab) {
       return;
     }
+
     searchParams.set(TAB_QUERY_PARAM, activeTab);
-    history.replace({
-      search: searchParams.toString(),
-    });
+    history.replace({ search: searchParams.toString() });
   }, [activeTab]);
 
   const variantClasses = (active) => {
