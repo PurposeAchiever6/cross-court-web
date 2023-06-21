@@ -1,37 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import StarFullIcon from 'shared/images/star-full-purple.png';
-import StarEmptyIcon from 'shared/images/star-empty.png';
+import StarSvg from 'shared/components/svg/StarSvg';
 
-const Star = ({ alt, full, className, fadeEffect, ...props }) =>
-  fadeEffect ? (
-    <div className="relative">
-      <img
-        {...props}
-        alt={alt}
-        src={StarFullIcon}
-        className={`absolute ${className} ${
-          full ? 'opacity-100 transition-opacity duration-500' : 'opacity-0'
-        }`}
-      />
-      <img {...props} alt={alt} src={StarEmptyIcon} className={className} />
-    </div>
-  ) : (
-    <img {...props} alt={alt} src={full ? StarFullIcon : StarEmptyIcon} className={className} />
-  );
+const Star = ({ alt, full, hover, className, fadeEffect, selectedRate, onClick, ...props }) => (
+  <div
+    {...props}
+    onClick={onClick}
+    className={`${onClick ? 'cursor-pointer' : ''} ${
+      fadeEffect ? 'transition-colors duration-500' : ''
+    } ${full ? 'bg-cc-purple' : `${hover ? 'bg-cc-black/60' : 'bg-cc-gray-600'}`} p-2 mr-1`}
+  >
+    <StarSvg
+      className={`${className} ${fadeEffect ? 'transition-colors duration-500' : ''} ${
+        full ? 'text-black' : 'text-white'
+      }`}
+    />
+  </div>
+);
 
 Star.defaultProps = {
-  full: true,
-  fadeEffect: false,
+  fadeEffect: true,
   className: '',
+  onClick: undefined,
 };
 
 Star.propTypes = {
   alt: PropTypes.string.isRequired,
-  full: PropTypes.bool,
-  fadeEffect: PropTypes.bool,
+  full: PropTypes.bool.isRequired,
+  hover: PropTypes.bool.isRequired,
   className: PropTypes.string,
+  fadeEffect: PropTypes.bool,
+  selectedRate: PropTypes.number.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default Star;

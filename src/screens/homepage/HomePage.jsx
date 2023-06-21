@@ -27,7 +27,7 @@ const HomePage = () => {
   const openFormParam = openForm === 'true';
   const openSurveyParam = openSurvey === 'true';
 
-  const [showSurveyModal, setShowSurveyModal] = useState(openSurveyParam);
+  const [showSurveyModal, setShowSurveyModal] = useState(false);
 
   useEffect(() => {
     if (!loading) {
@@ -40,14 +40,14 @@ const HomePage = () => {
   }, [search, userInfo, isAuthenticated, loading, openFormParam]);
 
   useEffect(() => {
-    if (
-      isAuthenticated &&
-      userInfo?.lastCheckedInUserSession &&
-      !userInfo.lastCheckedInUserSession.surveyAnswered
-    ) {
-      setShowSurveyModal(true);
+    if ((isAuthenticated && userInfo?.lastCheckedInUserSession) || openSurveyParam) {
+      if (!userInfo.lastCheckedInUserSession.surveyAnswered) {
+        setShowSurveyModal(true);
+      } else {
+        setShowSurveyModal(false);
+      }
     }
-  }, [isAuthenticated, userInfo]);
+  }, [isAuthenticated, userInfo, openSurveyParam]);
 
   if (!isAuthenticated && openSurveyParam) {
     return <Redirect to={ROUTES.LOGIN} />;
@@ -66,6 +66,7 @@ const HomePage = () => {
       <SessionSurveyModal
         showSurveyModal={showSurveyModal}
         setShowSurveyModal={setShowSurveyModal}
+        userSessionInfo={userInfo.lastCheckedInUserSession}
       />
     </>
   );

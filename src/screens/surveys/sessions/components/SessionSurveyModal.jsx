@@ -1,64 +1,94 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
 
 import { createSessionSurvey } from 'screens/surveys/sessions/actionCreators';
 import Modal from 'shared/components/Modal';
 import StarsRate from 'shared/components/StarsRate';
 import InputTextareaField from 'shared/components/InputTextareaField';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
+import { formatSessionTime, longMonthAndDate } from 'shared/utils/date';
+import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
 
-const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal }) => {
+const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, userSessionInfo }) => {
   const dispatch = useDispatch();
+  const session = userSessionInfo?.session ?? {};
+  const location = session?.location ?? {};
 
-  const [starsSelected, setStarsSelected] = useState(0);
-  const [feedbackValue, setFeedbackValue] = useState('');
-
-  const showHint = starsSelected > 0 && starsSelected <= 3;
-  const allowSubmit = starsSelected >= 4 || feedbackValue.length >= 20;
-
-  const title =
-    starsSelected > 0
-      ? 'Thanks for your feedback!'
-      : 'Thanks for coming out! Rate your last session';
-
-  const submitHandler = () => {
-    dispatch(createSessionSurvey({ rate: starsSelected, feedback: feedbackValue }));
+  const submitHandler = (values) => {
+    dispatch(
+      createSessionSurvey({ rate: values.experienceRate, feedback: values.experienceFeedback })
+    );
     setShowSurveyModal(false);
   };
+
+  const initialValues = {
+    experienceFeedback: '',
+    experienceRate: 0,
+  };
+
+  const validationSchema = Yup.object().shape({
+    experienceRate: Yup.number().required('Required').min(1, 'Required'),
+    experienceFeedback: Yup.string().when('experienceRate', {
+      is: (experienceRate) => experienceRate < 4,
+      then: Yup.string().required('Required').min(20, 'Please include at least 20 characters'),
+      otherwise: Yup.string().notRequired().nullable(),
+    }),
+  });
 
   return (
     <Modal
       isOpen={showSurveyModal}
       closeHandler={() => setShowSurveyModal(false)}
       closeOnOverlayClick={false}
-      dark
-      size="lg"
+      size="md"
       showCloseButton={false}
       shouldCloseOnEsc={false}
-      title={title}
+      title="How was your recent experience?"
     >
-      <div className="text-center">
-        <StarsRate
-          size="2xl"
-          rate={starsSelected}
-          onClick={(rate) => setStarsSelected(rate)}
-          className="inline-block mb-8"
-          showEmptyStars
-        />
-        <InputTextareaField
-          placeholder="What is the most important reason for your score?"
-          value={feedbackValue}
-          onChange={(e) => setFeedbackValue(e.target.value)}
-          rows={6}
-          className="text-white mb-8"
-          hint={showHint ? 'Please include at least 20 characters' : null}
-          formik={false}
-        />
-        <PrimaryButton disabled={!allowSubmit} onClick={submitHandler} inverted bg="transparent">
-          SUBMIT
-        </PrimaryButton>
-      </div>
+      <Formik
+        validateOnChange={false}
+        validateOnBlur={false}
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={submitHandler}
+      >
+        {({ values, setFieldValue, errors }) => {
+          const disabled =
+            !values.experienceRate > 4 || (values.experienceRate < 4 && !values.experienceFeedback);
+
+          return (
+            <Form>
+              <p className="before:w-[0.75em] before:h-[0.75em] before:mr-1 before:bg-cc-purple before:inline-block before:flex-shrink-0 mb-4">
+                <span className="font-shapiro95_super_wide">Session</span>: {location.name},{' '}
+                {longMonthAndDate(userSessionInfo.date)} @ {formatSessionTime(session.time)}
+              </p>
+              <LineDashedSvg />
+              <StarsRate
+                size="md"
+                rate={values.experienceRate}
+                onClick={(rate) => setFieldValue('experienceRate', rate)}
+                showEmptyStars
+                className="my-4"
+                error={errors.experienceRate}
+              />
+              <p className="mb-2 text-sm">Share your thoughts</p>
+              <InputTextareaField
+                name="experienceFeedback"
+                label="Comments"
+                rows={3}
+                className="mb-2"
+              />
+              <LineDashedSvg className="my-4" />
+              <Button type="submit" disabled={disabled}>
+                Submit
+              </Button>
+            </Form>
+          );
+        }}
+      </Formik>
     </Modal>
   );
 };
@@ -66,6 +96,7 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal }) => {
 SessionSurveyModal.propTypes = {
   showSurveyModal: PropTypes.bool.isRequired,
   setShowSurveyModal: PropTypes.func.isRequired,
+  userSessionInfo: PropTypes.shape().isRequired,
 };
 
 export default SessionSurveyModal;
