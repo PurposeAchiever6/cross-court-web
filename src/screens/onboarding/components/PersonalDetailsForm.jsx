@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
@@ -87,7 +87,6 @@ const PersonalDetailsForm = () => {
   const validationSchema = Yup.object().shape({
     password: signupStateIsCreated ? Yup.string().required('Required') : null,
     passwordConfirmation: signupStateIsCreated ? Yup.string().required('Required') : null,
-    image: currentUser.imageUrl ? null : Yup.string().required('Required'),
     firstName: Yup.string().required('Required'),
     lastName: Yup.string().required('Required'),
     phoneNumber: Yup.string()

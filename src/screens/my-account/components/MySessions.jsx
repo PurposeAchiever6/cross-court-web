@@ -7,7 +7,7 @@ import SessionsList from 'screens/my-account/components/SessionsList';
 const MySessions = ({ profile, previousSessions, upcomingSessions, semUpcomingSessions }) => (
   <SectionLayout className="mb-6">
     {profile.isSem || profile.isReferee ? (
-      <Tabs alignLabels="around" className="mt-10">
+      <Tabs alignLabels="around" className="mt-10" noActiveTab>
         <div label="As ETM">
           <SessionsList sessions={semUpcomingSessions} isSem />
         </div>
