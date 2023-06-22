@@ -18,6 +18,8 @@ const ReferAFriend = () => {
   const { referralCode } = currentUser;
 
   const REFERRAL_CODE_PERCENTAGE_DISCOUNT = import.meta.env.VITE_REFERRAL_CODE_PERCENTAGE_DISCOUNT;
+  const REFERRAL_CASH = import.meta.env.VITE_REFERRAL_CASH;
+  const isCash = REFERRAL_CASH > 0;
 
   return (
     <SectionLayout
@@ -30,17 +32,27 @@ const ReferAFriend = () => {
           <span className="block text-5xl">Friend</span>
         </h1>
         <div className="font-shapiro95_super_wide text-center border-t border-b border-cc-purple py-4 mb-6">
-          <span className="block text-3xl">Give {REFERRAL_CODE_PERCENTAGE_DISCOUNT}% Off</span>
-          <span className="block text-xl">Get CC Cash!</span>
+          <span className="block text-3xl text-success">
+            {isCash
+              ? `Get $${REFERRAL_CASH} Cash`
+              : `Give ${REFERRAL_CODE_PERCENTAGE_DISCOUNT}% Off`}
+          </span>
+          <span className="block text-xl">
+            {isCash ? `Give ${REFERRAL_CODE_PERCENTAGE_DISCOUNT}% Off` : 'Get CC Cash!'}
+          </span>
         </div>
         <CheckmarkList
           list={[
             { title: 'Invite your friends to CC', subtitle: 'Share your personal promo code.' },
             {
               title: `They get a CC Membership for ${REFERRAL_CODE_PERCENTAGE_DISCOUNT}% off their first month`,
-              subtitle: 'Please note: It must be redeemed before attending the first session.',
             },
-            { title: 'You get CC Cash', subtitle: 'Use it to buy day-passes, merch and more.' },
+            {
+              title: isCash ? `You get $${REFERRAL_CASH} Cash` : 'You get CC Cash',
+              subtitle: isCash
+                ? 'Payouts at the end of each month.'
+                : 'Use it to buy day-passes, merch and more.',
+            },
           ]}
           className="mb-6"
         />
