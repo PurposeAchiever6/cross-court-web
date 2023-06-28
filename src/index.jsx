@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 import 'regenerator-runtime';
 
 import App from 'shell/Root';
@@ -21,6 +21,8 @@ const GOOGLE_ANALYTICS_CODE = import.meta.env.VITE_GOOGLE_ANALYTICS_CODE;
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
-ReactGA.initialize(GOOGLE_ANALYTICS_CODE);
+ReactGA.initialize(GOOGLE_ANALYTICS_CODE, {
+  testMode: import.meta.env.VITE_RUNNING_ENV !== 'production',
+});
 root.render(<App />);
 serviceWorker.unregister();

@@ -8,7 +8,7 @@ import { ConnectedRouter } from 'connected-react-router';
 import { ToastContainer, Bounce } from 'react-toastify';
 import deepEqual from 'deep-equal';
 import HttpsRedirect from 'react-https-redirect';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 import styled from 'styled-components';
 
 import ROUTES from 'shared/constants/routes';
@@ -236,7 +236,7 @@ window.cookieAndSessionStorageHandler = () => {
 
 history.listen((location) => {
   ReactGA.set({ page: location.pathname }); // Update the user's current page
-  ReactGA.pageview(location.pathname); // Record a pageview for the given page
+  ReactGA.send({ hitType: 'pageview', page: location.pathname }); // Record a pageview for the given page
 
   setPageNameOnBodyClass(window.location.pathname);
   keepScrolling = true;
