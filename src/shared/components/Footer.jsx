@@ -70,7 +70,7 @@ const Footer = () => {
   return (
     <>
       <PageLayout noPadding>
-        <footer className="bg-cc-blue-900 relative">
+        <footer id="page-footer" className="bg-cc-blue-900 relative">
           <LineDashedSvg className="text-cc-purple absolute top-0 right-0 w-full md:w-1/2" />
           <SectionLayout as="div" className="pt-20 pb-10 sm:pb-20">
             <div className="lg:flex">
