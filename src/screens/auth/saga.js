@@ -37,12 +37,15 @@ import {
 import authService from './service';
 import { getUserEmail } from './reducer';
 
-export function* loginFlow({ payload }) {
+export function* loginFlow({ payload, options }) {
   try {
+    const { redirectTo } = options;
+
     const loginPayload = yield call(authService.login, payload);
+
     yield call(AuthUtils.setTokens, loginPayload);
     yield put({ type: LOGIN_SUCCESS, payload: loginPayload.user });
-    yield put(push(ROUTES.HOME));
+    yield put(push(redirectTo || ROUTES.HOME));
     yield call(toast.success, 'Login successful. Welcome!');
   } catch (err) {
     yield put({ type: LOGIN_FAILURE, error: err.response.data.error });

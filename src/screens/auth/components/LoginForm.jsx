@@ -18,13 +18,13 @@ import EnvelopeSvg from 'shared/components/svg/EnvelopeSvg';
 import PasswordSvg from 'shared/components/svg/PasswordSvg';
 import ForgotPasswordModal from 'screens/auth/components/modals/ForgotPasswordModal';
 
-const LoginForm = ({ className }) => {
+const LoginForm = ({ redirectTo, className }) => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(getLoginLoading);
   const showForgotPasswordModal = useSelector(getShowForgotPasswordModal);
 
-  const loginUser = (credentials) => dispatch(loginInit(credentials));
+  const loginUser = (credentials) => dispatch(loginInit(credentials, { redirectTo }));
 
   const setShowForgotPasswordModal = (show) => {
     show ? dispatch(showForgotPasswordModalAction()) : dispatch(closeForgotPasswordModalAction());
@@ -88,10 +88,12 @@ const LoginForm = ({ className }) => {
 };
 
 LoginForm.defaultProps = {
+  redirectTo: null,
   className: '',
 };
 
 LoginForm.propTypes = {
+  redirectTo: PropTypes.string,
   className: PropTypes.string,
 };
 

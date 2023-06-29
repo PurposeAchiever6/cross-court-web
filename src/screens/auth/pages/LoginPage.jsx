@@ -21,6 +21,7 @@ const LoginPage = () => {
   const location = useLocation();
   const dispatch = useDispatch();
 
+  const { referrer } = location.state || {};
   const { client, token, uid, resetPassword } = humps.camelizeKeys(
     queryString.parse(location.search)
   );
@@ -56,7 +57,7 @@ const LoginPage = () => {
         <h1 className="font-shapiro95_super_wide text-3xl md:text-4xl xl:text-5xl mb-4">
           Welcome Back
         </h1>
-        <LoginForm />
+        <LoginForm redirectTo={referrer} />
       </AuthPageLayout>
       <ResetPasswordModal
         isOpen={showResetPasswordModal}
