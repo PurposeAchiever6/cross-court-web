@@ -42,7 +42,7 @@ const UserCard = ({ user, newLabel, expanded, className }) => {
         <Avatar img={imageUrl} size="md" className="absolute-center-y right-4" />
       </div>
       {expanded && (
-        <div className="bg-cc-blue-300 p-4">
+        <div className="bg-cc-blue-300 px-4 py-6">
           {newLabel && (
             <div className="h-7">
               <Badge variant="white" shrink size="sm">

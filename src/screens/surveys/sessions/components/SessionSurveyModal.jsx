@@ -93,10 +93,14 @@ const SessionSurveyModal = ({ showSurveyModal, setShowSurveyModal, userSessionIn
   );
 };
 
+SessionSurveyModal.defaultProps = {
+  userSessionInfo: {},
+};
+
 SessionSurveyModal.propTypes = {
   showSurveyModal: PropTypes.bool.isRequired,
   setShowSurveyModal: PropTypes.func.isRequired,
-  userSessionInfo: PropTypes.shape().isRequired,
+  userSessionInfo: PropTypes.shape(),
 };
 
 export default SessionSurveyModal;

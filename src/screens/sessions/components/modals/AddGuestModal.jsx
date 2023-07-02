@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import { emailRegExp, phoneRegExp } from 'shared/utils/helpers';
 import { longSessionDate, hourRange } from 'shared/utils/date';
-import { addSessionGuest } from 'screens/sessions/actionCreators';
+import { initialLoadInit, addSessionGuest } from 'screens/sessions/actionCreators';
 import { getAddGuestLoading } from 'screens/sessions/reducer';
 import Modal from 'shared/components/Modal';
 import InputTextField from 'shared/components/InputTextField';
@@ -22,8 +22,13 @@ const AddGuestModal = ({ isOpen, closeHandler, session }) => {
   const { name, address, city, state, zipcode } = location;
   const { id: userSessionId, date } = userSession;
 
-  const addGuestToSession = (guestData) => {
-    dispatch(addSessionGuest(userSessionId, guestData));
+  const addGuestToSession = (guestInfo) => {
+    dispatch(
+      addSessionGuest(
+        { userSessionId, guestInfo },
+        { callAction: initialLoadInit(session.id, date) }
+      )
+    );
   };
 
   const initialValues = {

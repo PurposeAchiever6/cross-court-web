@@ -110,18 +110,14 @@ export const removeVoteSessionInit = (sessionId, sessionDate) => ({
   },
 });
 
-export const addSessionGuest = (userSessionId, guestInfo) => ({
+export const addSessionGuest = (payload, options = {}) => ({
   type: ADD_SESSION_GUEST_INIT,
-  payload: {
-    userSessionId,
-    guestInfo,
-  },
+  payload,
+  options,
 });
 
-export const removeSessionGuest = (userSessionId, sessionGuestId) => ({
+export const removeSessionGuest = (payload, options = {}) => ({
   type: REMOVE_SESSION_GUEST_INIT,
-  payload: {
-    userSessionId,
-    sessionGuestId,
-  },
+  payload,
+  options,
 });

@@ -208,17 +208,33 @@ export const sessionRestrictions = (session) => {
 };
 
 export const sessionGuestsAllowed = (session) =>
-  session.guestsAllowed > 0 &&
-  !session.full &&
-  session.reserved &&
-  session.guestsAllowedPerUser !== 0;
+  session.guestsAllowed > 0 && session.reserved && session.guestsAllowedPerUser > 0;
 
 export const sessionGuestsAllowedForUser = (session) => {
-  const { userSession, guestsAllowedPerUser } = session;
-  const sessionGuests = userSession?.sessionGuests ?? [];
+  const { full, guestsCount, guestsAllowed, userSession, guestsAllowedPerUser } = session;
+  const userSessionGuests = userSession?.sessionGuests ?? [];
 
-  return (
-    sessionGuestsAllowed(session) &&
-    (!guestsAllowedPerUser || guestsAllowedPerUser > sessionGuests.length)
-  );
+  if (!sessionGuestsAllowed(session)) {
+    return { guestsAllowedForUser: false, reason: "This session doesn't allow guests" };
+  }
+
+  if (full) {
+    return { guestsAllowedForUser: false, reason: 'The session is full' };
+  }
+
+  if (userSessionGuests.length >= guestsAllowedPerUser) {
+    return {
+      guestsAllowedForUser: false,
+      reason: "You can't invite more guests to this session",
+    };
+  }
+
+  if (guestsCount >= guestsAllowed) {
+    return {
+      guestsAllowedForUser: false,
+      reason: "The session doesn't allow more guests",
+    };
+  }
+
+  return { guestsAllowedForUser: true };
 };

@@ -9,6 +9,7 @@ import { titleize } from 'shared/utils/helpers';
 import { sessionGuestsAllowed, sessionGuestsAllowedForUser } from 'screens/sessions/utils';
 import { getShowAddGuestModal } from 'screens/sessions/reducer';
 import {
+  initialLoadInit,
   removeSessionGuest,
   showAddGuestModal as showAddGuestModalAction,
   closeAddGuestModal as closeAddGuestModalAction,
@@ -21,10 +22,11 @@ const SessionGuests = ({ session, className }) => {
   const dispatch = useDispatch();
 
   const showAddGuestModal = useSelector(getShowAddGuestModal);
-  const guestsAllowed = sessionGuestsAllowed(session);
-  const guestsAllowedForUser = sessionGuestsAllowedForUser(session);
+  const guestsAllowedForSession = sessionGuestsAllowed(session);
+  const { guestsAllowedForUser, reason } = sessionGuestsAllowedForUser(session);
 
   const { userSession } = session;
+  const { id: userSessionId, date } = userSession || {};
 
   const sessionGuests = userSession?.sessionGuests ?? [];
   const hasGuests = sessionGuests.length > 0;
@@ -33,11 +35,16 @@ const SessionGuests = ({ session, className }) => {
     show ? dispatch(showAddGuestModalAction()) : dispatch(closeAddGuestModalAction());
   };
 
-  const removeGuest = (guestId) => {
-    dispatch(removeSessionGuest(userSession.id, guestId));
+  const removeGuest = (sessionGuestId) => {
+    dispatch(
+      removeSessionGuest(
+        { userSessionId, sessionGuestId },
+        { callAction: initialLoadInit(session.id, date) }
+      )
+    );
   };
 
-  if (!guestsAllowed) {
+  if (!guestsAllowedForSession) {
     return;
   }
 
@@ -69,9 +76,7 @@ const SessionGuests = ({ session, className }) => {
           Use Free Guest Pass
         </Button>
         {!guestsAllowedForUser && (
-          <div className="bg-cc-blue-700 text-center text-2xs px-3 py-2 mt-1">
-            You can't invite more guests to this session
-          </div>
+          <div className="bg-cc-blue-700 text-center text-2xs px-3 py-2 mt-1">{reason}</div>
         )}
       </div>
       <AddGuestModal
