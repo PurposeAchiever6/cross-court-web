@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { signUpInit } from 'screens/auth/actionCreators';
 import unlockYourPotentialImg from 'screens/ads/images/unlock-your-potential.png';
-import gradientEffectBgImg from 'screens/ads/images/unlock-your-potential-gradient-effect.png';
+import gradientEffectBgImg from 'shared/images/backgrounds/gradient-effect-top-right.png';
 import purpleTexture from 'screens/ads/images/purple-texture.jpg';
 import { getFeaturedRecurringProductPromoCode } from 'screens/products/reducer';
 import { formatPrice } from 'screens/products/utils';
@@ -46,7 +46,7 @@ const UnlockYourPotential = () => {
     <SectionLayout className="relative pt-10 md:pt-20">
       <img
         src={gradientEffectBgImg}
-        alt="cc-basketball-balls"
+        alt="gradient-effect-bg-img"
         className="hidden md:block absolute -top-24 inset-x-0 w-full h-[40%]"
       />
       <div className="relative md:pb-28">

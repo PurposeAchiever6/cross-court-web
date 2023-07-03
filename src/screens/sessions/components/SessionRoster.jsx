@@ -1,29 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import { pluralize } from 'shared/utils/helpers';
 import { requestFormattedDate } from 'shared/utils/date';
 import userSessionService from 'screens/user-sessions/service';
 import Spinner from 'shared/components/Spinner';
 import Avatar from 'shared/components/Avatar';
 import UserCard from 'screens/sessions/components/UserCard';
+import GuestsCard from 'screens/sessions/components/GuestsCard';
 import ShowMore from 'shared/components/ShowMore';
 
 const SessionRoster = ({ session, date, showExpanded, className }) => {
   const [loadingUserSessions, setLoadingUserSessions] = useState(false);
   const [userSessions, setUserSessions] = useState([]);
+  const [userGuests, setUserGuests] = useState([]);
   const [usersShown, setUsersShow] = useState(4);
 
   const { id } = session;
+  const sessionHasGuests = userGuests.length > 0;
 
   useEffect(() => {
     const fetchUserSessions = async () => {
       setLoadingUserSessions(true);
 
-      const userSessions = await userSessionService.getUserSessionList(id, {
+      const { userSessions, guests } = await userSessionService.getUserSessionList(id, {
         date: requestFormattedDate(date),
       });
 
       setUserSessions(userSessions);
+      setUserGuests(guests);
       setLoadingUserSessions(false);
     };
 
@@ -56,13 +61,17 @@ const SessionRoster = ({ session, date, showExpanded, className }) => {
       {showExpanded ? (
         <div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
-            {userSessions.map(({ isFirstSession, user }, index) =>
-              index + 1 > usersShown ? null : (
-                <UserCard key={user.id} user={user} newLabel={isFirstSession} />
-              )
+            {userSessions.map(
+              ({ isFirstSession, user }, index) =>
+                usersShown >= index + 1 && (
+                  <UserCard key={user.id} user={user} newLabel={isFirstSession} />
+                )
+            )}
+            {sessionHasGuests && usersShown > userSessions.length && (
+              <GuestsCard guests={userGuests} className="flex flex-col" />
             )}
           </div>
-          {usersShown < userSessions.length && (
+          {usersShown < userSessions.length + (sessionHasGuests ? 1 : 0) && (
             <ShowMore onClick={() => setUsersShow(usersShown + 4)} className="mt-6" />
           )}
         </div>
@@ -78,6 +87,12 @@ const SessionRoster = ({ session, date, showExpanded, className }) => {
               className="shrink-0"
             />
           ))}
+          {sessionHasGuests && (
+            <Avatar
+              size="sm"
+              tooltip={`${userGuests.length} ${pluralize('guest', userGuests.length)}`}
+            />
+          )}
         </div>
       )}
     </div>

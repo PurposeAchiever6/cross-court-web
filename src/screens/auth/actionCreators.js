@@ -15,9 +15,10 @@ import {
   CLOSE_RESET_PASSWORD_MODAL,
 } from './actionTypes';
 
-export const loginInit = (payload) => ({
+export const loginInit = (payload, options = {}) => ({
   type: LOGIN_INIT,
   payload,
+  options,
 });
 
 export const logoutInit = (payload = {}) => ({

@@ -6,7 +6,7 @@ import { faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import CheeseburgerMenu from 'cheeseburger-menu';
 
 import ROUTES from 'shared/constants/routes';
-import { validateEmail } from 'shared/utils/helpers';
+import { reducedPathname, validateEmail } from 'shared/utils/helpers';
 import { openContactFormForUser } from 'shared/utils/contactForm';
 import { sendMembershipHandbook } from 'screens/my-account/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -28,9 +28,13 @@ const FOOTER_DISABLED_ROUTES = [
   ROUTES.ONBOARDING_PAYMENT_METHOD,
   ROUTES.ONBOARDING_PERSONAL_DETAILS,
   ROUTES.ONBOARDING_REVIEW,
+  ROUTES.SELF_CHECK_IN_SUCCESS,
+  ROUTES.SELF_CHECK_IN_ERROR,
   ROUTES.SIGNUP,
   ROUTES.SIGNUP_CONFIRMATION,
   ROUTES.SIGNUP_VERIFICATION,
+  '/locations/self-check-in',
+  '/locations/self-check-in/confirm',
 ];
 
 const Footer = () => {
@@ -63,14 +67,14 @@ const Footer = () => {
     }
   };
 
-  if (FOOTER_DISABLED_ROUTES.includes(pathname)) {
+  if (FOOTER_DISABLED_ROUTES.includes(reducedPathname(pathname))) {
     return null;
   }
 
   return (
     <>
       <PageLayout noPadding>
-        <footer className="bg-cc-blue-900 relative">
+        <footer id="page-footer" className="bg-cc-blue-900 relative">
           <LineDashedSvg className="text-cc-purple absolute top-0 right-0 w-full md:w-1/2" />
           <SectionLayout as="div" className="pt-20 pb-10 sm:pb-20">
             <div className="lg:flex">

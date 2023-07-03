@@ -75,7 +75,7 @@ const PlayersList = () => {
     const userSessionsList = await userSessionService.getUserSessionList(selectedSession.id, {
       date: requestFormattedDate(currentDate),
       checked_in: true,
-    });
+    }).userSessions;
     setUserSessions(userSessionsList);
   }, [selectedSession]);
 

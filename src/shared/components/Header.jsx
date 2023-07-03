@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
-import { pluralize } from 'shared/utils/helpers';
+import { pluralize, reducedPathname } from 'shared/utils/helpers';
 import {
   isUserInFirstFreeSessionFlow,
   showHeaderMembershipPromoCodeBanner,
@@ -82,9 +82,13 @@ const HEADER_DISABLED_ROUTES = [
   ROUTES.ONBOARDING_PAYMENT_METHOD,
   ROUTES.ONBOARDING_PERSONAL_DETAILS,
   ROUTES.ONBOARDING_REVIEW,
+  ROUTES.SELF_CHECK_IN_SUCCESS,
+  ROUTES.SELF_CHECK_IN_ERROR,
   ROUTES.SIGNUP,
   ROUTES.SIGNUP_CONFIRMATION,
   ROUTES.SIGNUP_VERIFICATION,
+  '/locations/self-check-in',
+  '/locations/self-check-in/confirm',
 ];
 
 const BANNER_ENABLED_ROUTES = [ROUTES.HOME, ROUTES.MEMBERSHIPS];
@@ -100,25 +104,20 @@ const Header = () => {
   const [alwaysScrolled, setAlwaysScrolled] = useState(false);
   const [showMembershipPromoBanner, setShowMembershipPromoBanner] = useState(false);
 
-  const splitedPath = pathname
-    .split(/[/_]/)
-    .slice(1)
-    .filter((item) => Number.isNaN(item) || !Date.parse(item));
-
-  const showNavItems = SHOW_NAVBAR.includes(`/${splitedPath.join('/')}`);
-  const blackBg = BLACK_BG.includes(`/${splitedPath.join('/')}`);
+  const showNavItems = SHOW_NAVBAR.includes(reducedPathname(pathname));
+  const blackBg = BLACK_BG.includes(reducedPathname(pathname));
 
   useEffect(() => {
     dispatch(getAvailableProducts());
   }, [currentUser]);
 
   useEffect(() => {
-    setAlwaysScrolled(ALWAYS_SCROLLED.includes(`/${splitedPath.join('/')}`));
+    setAlwaysScrolled(ALWAYS_SCROLLED.includes(reducedPathname(pathname)));
   }, [pathname]);
 
   useEffect(() => {
     const showBanner =
-      BANNER_ENABLED_ROUTES.includes(pathname) &&
+      BANNER_ENABLED_ROUTES.includes(reducedPathname(pathname)) &&
       showHeaderMembershipPromoCodeBanner(isAuthenticated, promoCode);
 
     setShowMembershipPromoBanner(showBanner);
@@ -148,7 +147,7 @@ const Header = () => {
       : 'Reserve';
   })();
 
-  if (HEADER_DISABLED_ROUTES.includes(pathname)) {
+  if (HEADER_DISABLED_ROUTES.includes(reducedPathname(pathname))) {
     return null;
   }
 

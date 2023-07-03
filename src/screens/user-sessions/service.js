@@ -7,6 +7,6 @@ export default {
       params,
     });
 
-    return response.data.userSessions;
+    return response.data;
   },
 };
