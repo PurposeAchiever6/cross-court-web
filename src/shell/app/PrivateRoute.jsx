@@ -7,7 +7,7 @@ import ROUTES from 'shared/constants/routes';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 
 export default function PrivateRoute({ children, ...rest }) {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   const isAuthenticated = useSelector(getIsAuthenticated);
 
@@ -19,7 +19,7 @@ export default function PrivateRoute({ children, ...rest }) {
         <Redirect
           to={{
             pathname: ROUTES.LOGIN,
-            state: { referrer: pathname },
+            state: { referrer: pathname + search },
           }}
         />
       )}

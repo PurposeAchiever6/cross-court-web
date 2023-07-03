@@ -14,6 +14,7 @@ import paymentMethodsReducer from 'screens/payment-methods/reducer';
 import checkoutReducer from 'screens/checkout/reducer';
 import galleryReducer from 'screens/gallery/reducer';
 import referralsReducer from 'screens/referrals/reducer';
+import selfCheckInReducer from 'screens/self-check-in/reducer';
 
 import { LOGOUT_INIT } from 'screens/auth/actionTypes';
 
@@ -37,6 +38,7 @@ const appReducer = (history) =>
     checkout: checkoutReducer,
     gallery: galleryReducer,
     referrals: referralsReducer,
+    selfCheckIn: selfCheckInReducer,
   });
 
 export default (history) => (state, action) => {

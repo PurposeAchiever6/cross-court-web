@@ -60,3 +60,10 @@ export const genderSelectOptions = [
   { value: 'female', label: 'Female' },
   { value: 'other', label: 'Other' },
 ];
+
+export const reducedPathname = (pathname) =>
+  `/${pathname
+    .split('/')
+    .slice(1)
+    .filter((item) => !(/^\d+$/.test(item) || Date.parse(item)))
+    .join('/')}`;

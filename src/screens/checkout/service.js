@@ -23,7 +23,7 @@ export default {
   },
 
   updateSubscription: async (subscriptionId, productId, paymentMethodId, promoCode) => {
-    const response = await api.put(`subscriptions/${subscriptionId}`, {
+    const response = await api.put(`/subscriptions/${subscriptionId}`, {
       productId,
       paymentMethodId,
       promoCode,

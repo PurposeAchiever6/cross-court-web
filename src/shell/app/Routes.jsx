@@ -72,6 +72,14 @@ const Referrals = lazy(() => import('screens/referrals/ReferralsPage'));
 const MembershipConfirm = lazy(() => import('screens/checkout/pages/MembershipConfirm'));
 const NotFoundPage = lazy(() => import('screens/not-found/NotFoundPage'));
 const SettingsPage = lazy(() => import('screens/settings/SettingsPage'));
+const SelfCheckInPage = lazy(() => import('screens/self-check-in/pages/SelfCheckInPage'));
+const SelfCheckInConfirmPage = lazy(() =>
+  import('screens/self-check-in/pages/SelfCheckInConfirmPage')
+);
+const SelfCheckInErrorPage = lazy(() => import('screens/self-check-in/pages/SelfCheckInErrorPage'));
+const SelfCheckInSuccessPage = lazy(() =>
+  import('screens/self-check-in/pages/SelfCheckInSuccessPage')
+);
 
 const AppWrapper = styled.div`
   display: flex;
@@ -370,6 +378,18 @@ const Routes = () => {
         </Route>
         <PrivateRoute path={ROUTES.DASHBOARD} exact>
           <Dashboard />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.SELF_CHECK_IN} exact>
+          <SelfCheckInPage />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.SELF_CHECK_IN_CONFIRM} exact>
+          <SelfCheckInConfirmPage />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.SELF_CHECK_IN_ERROR} exact>
+          <SelfCheckInErrorPage />
+        </PrivateRoute>
+        <PrivateRoute path={ROUTES.SELF_CHECK_IN_SUCCESS} exact>
+          <SelfCheckInSuccessPage />
         </PrivateRoute>
         <Route path={ROUTES.GALLERY} exact>
           <Gallery />
