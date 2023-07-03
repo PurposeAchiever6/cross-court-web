@@ -15,7 +15,6 @@ import PlatformForProgress from 'screens/homepage/sections/PlatformForProgress';
 import Testimonials from 'screens/homepage/sections/Testimonials';
 import TrustTheProgress from 'screens/homepage/sections/TrustTheProgress';
 import Faq from 'screens/homepage/sections/Faq';
-import ScheduleTourButton from 'screens/homepage/components/ScheduleTourButton';
 
 const HomePage = () => {
   const { search } = useLocation();
@@ -63,7 +62,6 @@ const HomePage = () => {
         <Testimonials />
         <TrustTheProgress />
         <Faq />
-        <ScheduleTourButton />
       </PageLayout>
       <SessionSurveyModal
         showSurveyModal={showSurveyModal}

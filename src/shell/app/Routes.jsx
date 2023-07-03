@@ -29,6 +29,7 @@ import {
   setUtmParams,
   isUtmParamsEmpty,
 } from 'shared/utils/utm';
+import ScheduleTourButton from 'shared/components/ScheduleTourButton';
 import PrivateRoute from './PrivateRoute';
 import HtmlHead from './HtmlHead';
 
@@ -442,6 +443,7 @@ const Routes = () => {
               <Pages />
             </StripeContainer>
             <Footer />
+            <ScheduleTourButton />
           </ConnectedRouter>
         </Suspense>
       </AppWrapper>
