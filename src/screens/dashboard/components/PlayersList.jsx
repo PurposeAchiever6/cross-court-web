@@ -72,11 +72,11 @@ const PlayersList = () => {
 
   const getUserSessionsList = useCallback(async () => {
     const currentDate = new Date().toLocaleDateString('en-US');
-    const userSessionsList = await userSessionService.getUserSessionList(selectedSession.id, {
+    const response = await userSessionService.getUserSessionList(selectedSession.id, {
       date: requestFormattedDate(currentDate),
       checked_in: true,
-    }).userSessions;
-    setUserSessions(userSessionsList);
+    });
+    setUserSessions(response.userSessions);
   }, [selectedSession]);
 
   useEffect(() => {

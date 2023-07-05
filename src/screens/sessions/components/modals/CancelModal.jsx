@@ -10,13 +10,14 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
   const [disableBtn, setDisableBtn] = useState(false);
 
   const { unlimitedCredits } = user;
-  const { date, time, isOpenClub, costCredits, userSession } = session;
+  const { date, time, isOpenClub, costCredits, userSession, location } = session;
+  const { lateCancellationFee, lateCancellationReimburseCredit } = location || {};
   const {
     inCancellationTime,
     isFreeSession,
     scouting,
     shootingMachineReservations,
-    creditUsedType,
+    creditUsedTypeWasFree,
   } = userSession || {};
 
   const onCancelClick = () => {
@@ -48,10 +49,6 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
       return 'You will not be charged for the shooting machine(s) rental.';
     }
 
-    const lateCancelFee = import.meta.env.VITE_CANCELED_OUT_OF_TIME_PRICE;
-    const hasLateCancelFee = Number(lateCancelFee);
-    const wasFreeReservation = costCredits === 0 || !creditUsedType;
-
     if (unlimitedCredits) {
       if (inCancellationTime) {
         return null;
@@ -61,8 +58,8 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
         let message =
           'The evaluation credit will not be refunded because of the late cancellation.';
 
-        if (hasLateCancelFee) {
-          message += ` You will also be charged a $${lateCancelFee} late cancellation fee.`;
+        if (lateCancellationFee > 0) {
+          message += ` You will also be charged a $${lateCancellationFee} late cancellation fee.`;
         } else {
           message += ' You will not be charged a late cancellation fee.';
         }
@@ -70,15 +67,15 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
         return message;
       }
 
-      if (hasLateCancelFee) {
-        return `You will be charged a $${lateCancelFee} late cancellation fee.`;
+      if (lateCancellationFee > 0) {
+        return `You will be charged a $${lateCancellationFee} late cancellation fee.`;
       }
 
       return 'You will not be charged a late cancellation fee.';
     }
 
     if (inCancellationTime) {
-      if (wasFreeReservation) {
+      if (creditUsedTypeWasFree) {
         return scouting ? 'The evaluation credit will be refunded to your account.' : null;
       }
 
@@ -93,34 +90,51 @@ export const CancelModal = ({ isOpen, closeHandler, cancelSession, session, user
       } late cancellation fee.`;
     }
 
-    if (wasFreeReservation) {
+    if (creditUsedTypeWasFree) {
       if (scouting) {
         let message =
           'The evaluation credit will not be refunded because of the late cancellation.';
 
-        if (hasLateCancelFee) {
-          message += ` You will also be charged a $${lateCancelFee} late cancellation fee.`;
+        if (lateCancellationFee > 0) {
+          message += ` You will also be charged a $${lateCancellationFee} late cancellation fee.`;
         }
 
         return message;
       }
 
-      if (hasLateCancelFee) {
-        return `You will be charged a $${lateCancelFee} late cancellation fee.`;
+      if (lateCancellationFee > 0) {
+        return `You will be charged a $${lateCancellationFee} late cancellation fee.`;
       }
 
       return null;
     }
 
-    let message = scouting
-      ? 'The session and evaluation credits will not be refunded because of the late cancellation.'
-      : `The ${pluralize(
-          'credit',
-          costCredits
-        )} will not be refunded because of the late cancellation.`;
+    let message = '';
 
-    if (hasLateCancelFee) {
-      message += ` You will also be charged a $${lateCancelFee} late cancellation fee.`;
+    if (lateCancellationReimburseCredit) {
+      message = `The ${pluralize(
+        'credit',
+        costCredits
+      )} will be refunded to your account besides the late cancellation.`;
+
+      if (lateCancellationFee > 0) {
+        message += ` However, you will be charged a $${lateCancellationFee} fee.`;
+      }
+
+      if (scouting) {
+        message += ' Your evaluation credit will not be refunded.';
+      }
+    } else {
+      message = scouting
+        ? 'The session and evaluation credits will not be refunded because of the late cancellation.'
+        : `The ${pluralize(
+            'credit',
+            costCredits
+          )} will not be refunded because of the late cancellation.`;
+
+      if (lateCancellationFee > 0) {
+        message += ` You will also be charged a $${lateCancellationFee} late cancellation fee.`;
+      }
     }
 
     return message;

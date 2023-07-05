@@ -47,11 +47,9 @@ const TermsAndConditions = () => (
       your reservation is cancelled on time, your session credit will be returned to your account to
       be used at a future date. If you haven’t cancelled by the deadline listed above, your session
       credit will be used for the reservation and will no longer be shown in your account. Any
-      individual who cancels inside the 5 hour cancellation window will be automatically charged a $
-      {import.meta.env.VITE_CANCELED_OUT_OF_TIME_PRICE} penalty in addition to losing a session
-      credit. Booking a reservation and "no showing" without cancelling a session you are signed up
-      for, will result in a lost of the session credit and a ${import.meta.env.VITE_NO_SHOW_UP_FEE}{' '}
-      no show penalty.
+      individual who cancels inside the 5 hour cancellation window can be charged a fee penalty and
+      lose their session credit. Booking a reservation and "no showing" without cancelling a session
+      you are signed up for, will result in a lost of the session credit and a no show fee penalty.
       <br />
       <br />
       <div className="py-2 md:pl-14">D. Items to Note</div>
