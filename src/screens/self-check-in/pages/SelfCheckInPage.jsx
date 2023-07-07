@@ -15,6 +15,7 @@ import { getAvailableLocations } from 'screens/locations/reducer';
 import { getLocations } from 'screens/locations/actionCreators';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import ROUTES from 'shared/constants/routes';
+import useInterval from 'shared/hooks/useInterval';
 
 import theme from '~/tailwind.theme';
 
@@ -40,22 +41,10 @@ const SelfCheckInPage = () => {
         history.push(ROUTES.HOME);
       }
       dispatch(getLocations());
-      dispatch(getQrData(locationId));
     }
   }, [dispatch, pageLoading, employee]);
 
-  useEffect(() => {
-    if (!refreshTimeMs) {
-      return;
-    }
-
-    const interval = setInterval(() => {
-      dispatch(getQrData());
-    }, refreshTimeMs);
-    return () => {
-      clearInterval(interval);
-    };
-  }, [refreshTimeMs]);
+  useInterval(() => dispatch(getQrData(locationId)), refreshTimeMs, [locationId]);
 
   return (
     <PageLayout noPadding>
