@@ -50,6 +50,14 @@ const ROWS = [
       freePausesPerYear > 0 ? `${freePausesPerYear} mo.` : 'None',
   },
   {
+    description: 'Last Minute Free Booking',
+    tooltip:
+      'Receive a "last minute" notification to book upcoming sessions that need a few more players using complementary AKA free credits. Email notifications are prioritized for MVP, Vet, and Rookie members in that order',
+    accessor: ({ noBookingChargeFeature, noBookingChargeFeaturePriority }) =>
+      noBookingChargeFeature ? noBookingChargeFeaturePriority : 'N/A',
+  },
+
+  {
     description: 'Office Hours',
     tooltip:
       'The Club is open all day for members and their guests to utilize our spaces to get work done, workout, hangout, hoop, recover, and generally use the space as it works for them. Using credits, members can reserve the court, the shooting machine, recovery devices, and other services during Office Hours through the schedule as well as add their guests.',
