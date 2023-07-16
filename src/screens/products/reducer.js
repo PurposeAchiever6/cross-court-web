@@ -15,6 +15,12 @@ import {
   REACTIVATE_SUBSCRIPTION_INIT,
   REACTIVATE_SUBSCRIPTION_SUCCESS,
   REACTIVATE_SUBSCRIPTION_FAILURE,
+  REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_INIT,
+  REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_SUCCESS,
+  REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_FAILURE,
+  CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
+  CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_SUCCESS,
+  CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_FAILURE,
 } from './actionTypes';
 
 const initialState = {
@@ -24,6 +30,8 @@ const initialState = {
   error: '',
   unpauseLoading: false,
   reactivateLoading: false,
+  removeCancelAtNextPeriodEndLoading: false,
+  cancelRequestCancellationLoading: false,
 };
 
 export default (state = initialState, action) => {
@@ -83,6 +91,28 @@ export default (state = initialState, action) => {
         ...state,
         reactivateLoading: false,
       };
+    case REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_INIT:
+      return {
+        ...state,
+        removeCancelAtNextPeriodEndLoading: true,
+      };
+    case REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_SUCCESS:
+    case REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_FAILURE:
+      return {
+        ...state,
+        removeCancelAtNextPeriodEndLoading: false,
+      };
+    case CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_INIT:
+      return {
+        ...state,
+        cancelRequestCancellationLoading: true,
+      };
+    case CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_SUCCESS:
+    case CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_FAILURE:
+      return {
+        ...state,
+        cancelRequestCancellationLoading: false,
+      };
     default:
       return state;
   }
@@ -132,4 +162,14 @@ export const getUnpauseLoading = createSelector(getProducts, (products) => produ
 export const getReactivateLoading = createSelector(
   getProducts,
   (products) => products.reactivateLoading
+);
+
+export const getRemoveCancelAtNextPeriodEndLoading = createSelector(
+  getProducts,
+  (products) => products.removeCancelAtNextPeriodEndLoading
+);
+
+export const getCancelRequestCancellationLoading = createSelector(
+  getProducts,
+  (products) => products.cancelRequestCancellationLoading
 );
