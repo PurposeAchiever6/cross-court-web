@@ -2,8 +2,10 @@ import {
   INITIAL_LOAD_INIT,
   CANCEL_SUBSCRIPTION_INIT,
   REACTIVATE_SUBSCRIPTION_INIT,
+  REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_INIT,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
   SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
+  CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
   PAUSE_SUBSCRIPTION_INIT,
   CANCEL_PAUSE_SUBSCRIPTION_INIT,
   UNPAUSE_SUBSCRIPTION_INIT,
@@ -23,6 +25,11 @@ export const reactivateSubscription = (subscription) => ({
   payload: { subscription },
 });
 
+export const removeSubscriptionCancelAtNextPeriodEnd = (payload) => ({
+  type: REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_INIT,
+  payload,
+});
+
 export const updateSubscriptionPaymentMethod = (subscription, paymentMethod) => ({
   type: UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
   payload: {
@@ -33,6 +40,11 @@ export const updateSubscriptionPaymentMethod = (subscription, paymentMethod) => 
 
 export const createSubscriptionRequestCancellation = (payload) => ({
   type: SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
+  payload,
+});
+
+export const cancelSubscriptionRequestCancellation = (payload = {}) => ({
+  type: CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
   payload,
 });
 

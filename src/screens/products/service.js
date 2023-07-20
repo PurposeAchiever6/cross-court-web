@@ -29,6 +29,15 @@ export default {
     return response.data;
   },
 
+  removeSubscriptionCancelAtNextPeriodEnd: async (subscriptionId) => {
+    const response = await api.post(
+      `/subscriptions/${subscriptionId}/remove_cancel_at_next_period_end`,
+      {}
+    );
+
+    return response.data;
+  },
+
   updateSubscriptionPaymentMethod: async (subscriptionId, paymentMethodId) => {
     const response = await api.post(`/subscriptions/${subscriptionId}/payment_method`, {
       paymentMethodId,
@@ -39,6 +48,12 @@ export default {
 
   createSubscriptionRequestCancellation: async (payload) => {
     const response = await api.post('/subscriptions/request_cancellation', payload);
+
+    return response.data;
+  },
+
+  cancelSubscriptionRequestCancellation: async (payload) => {
+    const response = await api.post('/subscriptions/cancel_request_cancellation', payload);
 
     return response.data;
   },

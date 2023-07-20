@@ -7,16 +7,27 @@ import SectionLayout from 'shared/components/layout/SectionLayout';
 import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
 
 import ROUTES from 'shared/constants/routes';
-import { subscriptionPeriodFormattedDate, shortMonthDayFullYear } from 'shared/utils/date';
+import {
+  subscriptionPeriodFormattedDate,
+  subscriptionNextPeriodFormattedDate,
+  shortMonthDayFullYear,
+} from 'shared/utils/date';
 import Loading from 'shared/components/Loading';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import {
   cancelPauseSubscription,
   unpauseSubscription,
   reactivateSubscription,
+  removeSubscriptionCancelAtNextPeriodEnd,
+  cancelSubscriptionRequestCancellation,
 } from 'screens/products/actionCreators';
 import { creditsString } from 'screens/products/utils';
-import { getUnpauseLoading, getReactivateLoading } from 'screens/products/reducer';
+import {
+  getUnpauseLoading,
+  getReactivateLoading,
+  getRemoveCancelAtNextPeriodEndLoading,
+  getCancelRequestCancellationLoading,
+} from 'screens/products/reducer';
 import UnpauseMembershipModal from 'screens/memberships/components/UnpauseMembershipModal';
 import Button from 'shared/components/Button';
 import manageMembershipImg from 'screens/memberships/images/manage-membership.jpg';
@@ -26,16 +37,21 @@ import trustTheProgressShapeImg from 'shared/images/trust-the-progress-shape.png
 import EndMembershipModal from 'shared/components/EndMembershipModal';
 
 const ManageMembershipPage = () => {
+  const dispatch = useDispatch();
+
   const { activeSubscription } = useSelector(getUserProfile);
+  const loading = useSelector(getPageLoading);
   const unpauseLoading = useSelector(getUnpauseLoading);
   const reactivateLoading = useSelector(getReactivateLoading);
+  const removeCancelAtNextPeriodEndLoading = useSelector(getRemoveCancelAtNextPeriodEndLoading);
+  const cancelRequestCancellationLoading = useSelector(getCancelRequestCancellationLoading);
 
-  const loading = useSelector(getPageLoading);
-  const dispatch = useDispatch();
   const [showUnpauseModal, setShowUnpauseModal] = useState(false);
   const [showEndMembershipModal, setShowEndMembershipModal] = useState(false);
 
   const active = !activeSubscription?.canceled;
+  const cancelAtNextPeriodEnd = activeSubscription?.cancelAtNextPeriodEnd;
+  const requestedCancellation = activeSubscription?.requestedCancellation;
   const paused = activeSubscription?.paused;
   const product = activeSubscription?.product;
   const willPause = activeSubscription?.willPause;
@@ -44,8 +60,15 @@ const ManageMembershipPage = () => {
 
   const cancelPauseSubscriptionAction = () => dispatch(cancelPauseSubscription(activeSubscription));
   const unpauseSubscriptionAction = () => dispatch(unpauseSubscription(activeSubscription));
+
   const reactivateSubscriptionAction = () => {
     dispatch(reactivateSubscription(activeSubscription));
+  };
+  const removeSubscriptionCancelAtNextPeriodEndAction = () => {
+    dispatch(removeSubscriptionCancelAtNextPeriodEnd({ subscription: activeSubscription }));
+  };
+  const cancelSubscriptionRequestCancellationAction = () => {
+    dispatch(cancelSubscriptionRequestCancellation());
   };
 
   const statusText = (() => {
@@ -53,7 +76,7 @@ const ManageMembershipPage = () => {
       return (
         <>
           <span className="mb-2 block">
-            Your membership is currently <span className="text-notice font-bold">paused</span>
+            Your membership is currently <span className="text-warning font-bold">paused</span>
           </span>
           until {subscriptionPeriodFormattedDate(activeSubscription?.pausedUntil)}.
         </>
@@ -64,7 +87,7 @@ const ManageMembershipPage = () => {
       return (
         <>
           <span className="mb-2 block">
-            Your membership will be <span className="text-notice font-bold">paused</span>
+            Your membership will be <span className="text-warning font-bold">paused</span>
           </span>
           from {subscriptionPeriodFormattedDate(activeSubscription?.pausedFrom)} until{' '}
           {subscriptionPeriodFormattedDate(activeSubscription?.pausedUntil)}.
@@ -72,14 +95,38 @@ const ManageMembershipPage = () => {
       );
     }
 
+    if (requestedCancellation) {
+      return 'Your cancellation request is being processed. Please allow 3-5 business days for us to process your request.';
+    }
+
+    if (cancelAtNextPeriodEnd) {
+      return (
+        <>
+          <span className="mb-2 block">
+            Your membership will be <span className="text-error-400 font-bold">canceled</span> at
+            next billing period end:{' '}
+            {subscriptionNextPeriodFormattedDate(activeSubscription.currentPeriodEnd)}.
+          </span>
+          You can reactivate your membership anytime until then.
+        </>
+      );
+    }
+
     if (active) {
-      return 'Pause or cancel your membership';
+      return (
+        <>
+          <span className="mb-2 block">
+            Your membership is <span className="text-success font-bold">active</span>.
+          </span>
+          Pause or cancel your membership.
+        </>
+      );
     }
 
     return (
       <>
         <span className="mb-2 block">
-          Your membership will be <span className="text-warning font-bold">canceled</span> on{' '}
+          Your membership will be <span className="text-error-400 font-bold">canceled</span> on{' '}
           {subscriptionPeriodFormattedDate(activeSubscription.currentPeriodEnd)}.
         </span>
         You can reactivate your membership anytime until then.
@@ -104,6 +151,30 @@ const ManageMembershipPage = () => {
       return (
         <Button className="w-full" onClick={() => cancelPauseSubscriptionAction()}>
           Cancel Pause
+        </Button>
+      );
+    }
+
+    if (requestedCancellation) {
+      return (
+        <Button
+          className="w-full"
+          onClick={() => cancelSubscriptionRequestCancellationAction()}
+          loading={cancelRequestCancellationLoading}
+        >
+          Cancel Request
+        </Button>
+      );
+    }
+
+    if (cancelAtNextPeriodEnd) {
+      return (
+        <Button
+          className="w-full"
+          onClick={() => removeSubscriptionCancelAtNextPeriodEndAction()}
+          loading={removeCancelAtNextPeriodEndLoading}
+        >
+          Reactivate
         </Button>
       );
     }
@@ -142,7 +213,7 @@ const ManageMembershipPage = () => {
           <h2 className="font-shapiro95_super_wide text-3xl md:text-5xl mb-12">Manage</h2>
           <div className="md:flex border border-white/30">
             <div className="flex flex-col justify-between md:w-1/3 p-4 border-b md:border-r md:border-b-0 border-white/30 min-h-[12rem]">
-              <div>
+              <div className="text-sm">
                 <span className="font-shapiro95_super_wide text-lg mb-2 block">Billing</span>
                 <span className="block mb-2">Current Membership ${product?.price} + tax.</span>
                 <span className="block">
@@ -154,7 +225,7 @@ const ManageMembershipPage = () => {
               </Button>
             </div>
             <div className="flex flex-col justify-between md:w-1/3 p-4 border-b md:border-r md:border-b-0 border-white/30 min-h-[12rem]">
-              <div>
+              <div className="text-sm">
                 <span className="font-shapiro95_super_wide text-lg mb-2 block">Current Plan</span>
                 <span className="block mb-2">{product?.name}</span>
                 <span className="block mb-4">
@@ -166,7 +237,7 @@ const ManageMembershipPage = () => {
               </Button>
             </div>
             <div className="flex flex-col justify-between md:w-1/3 p-4 min-h-[12rem]">
-              <div>
+              <div className="text-sm">
                 <span className="font-shapiro95_super_wide text-lg mb-2 block">Status</span>
                 <span className="block mb-4">{statusText}</span>
               </div>

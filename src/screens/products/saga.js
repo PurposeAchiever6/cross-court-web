@@ -14,12 +14,18 @@ import {
   REACTIVATE_SUBSCRIPTION_INIT,
   REACTIVATE_SUBSCRIPTION_SUCCESS,
   REACTIVATE_SUBSCRIPTION_FAILURE,
+  REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_INIT,
+  REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_SUCCESS,
+  REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_FAILURE,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_SUCCESS,
   UPDATE_SUBSCRIPTION_PAYMENT_METHOD_FAILURE,
   SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
   SUBSCRIPTION_REQUEST_CANCELLATION_SUCCESS,
   SUBSCRIPTION_REQUEST_CANCELLATION_FAILURE,
+  CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
+  CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_SUCCESS,
+  CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_FAILURE,
   PAUSE_SUBSCRIPTION_INIT,
   PAUSE_SUBSCRIPTION_SUCCESS,
   PAUSE_SUBSCRIPTION_FAILURE,
@@ -77,6 +83,27 @@ export function* reactivateSubscriptionFlow(action) {
   }
 }
 
+export function* removeSubscriptionCancelAtNextPeriodEndFlow({ payload }) {
+  try {
+    const { subscription } = yield call(
+      productsService.removeSubscriptionCancelAtNextPeriodEnd,
+      payload.subscription.id
+    );
+    yield put({
+      type: REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_SUCCESS,
+      payload: { subscription },
+    });
+    yield call(toast.success, 'Your membership has been reactivated.');
+  } catch (err) {
+    const { error } = err.response.data;
+    yield call(toast.error, error);
+    yield put({
+      type: REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_FAILURE,
+      error,
+    });
+  }
+}
+
 export function* updateSubscriptionPaymentMethodFlow(action) {
   try {
     const subscription = yield call(
@@ -99,10 +126,35 @@ export function* updateSubscriptionPaymentMethodFlow(action) {
 
 export function* createSubscriptionRequestCancellationFlow({ payload }) {
   try {
-    yield call(productsService.createSubscriptionRequestCancellation, payload);
-    yield put({ type: SUBSCRIPTION_REQUEST_CANCELLATION_SUCCESS });
+    const { subscription } = yield call(
+      productsService.createSubscriptionRequestCancellation,
+      payload
+    );
+    yield put({ type: SUBSCRIPTION_REQUEST_CANCELLATION_SUCCESS, payload: { subscription } });
+    yield call(toast.success, 'Your cancellation request has been submitted.');
   } catch (err) {
     yield put({ type: SUBSCRIPTION_REQUEST_CANCELLATION_FAILURE, error: err.response.data.error });
+  }
+}
+
+export function* cancelSubscriptionRequestCancellationFlow({ payload }) {
+  try {
+    const { subscription } = yield call(
+      productsService.cancelSubscriptionRequestCancellation,
+      payload
+    );
+    yield put({
+      type: CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_SUCCESS,
+      payload: { subscription },
+    });
+    yield call(toast.success, 'Your cancellation request has been removed.');
+  } catch (err) {
+    const { error } = err.response.data;
+    yield call(toast.error, error);
+    yield put({
+      type: CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_FAILURE,
+      error,
+    });
   }
 }
 
@@ -151,8 +203,16 @@ export default function* productsSaga() {
     takeLatest(INITIAL_LOAD_INIT, initialLoadFlow),
     takeLatest(CANCEL_SUBSCRIPTION_INIT, cancelSubscriptionFlow),
     takeLatest(REACTIVATE_SUBSCRIPTION_INIT, reactivateSubscriptionFlow),
+    takeLatest(
+      REMOVE_SUBSCRIPTION_CANCEL_AT_NEXT_PERIOD_END_INIT,
+      removeSubscriptionCancelAtNextPeriodEndFlow
+    ),
     takeLatest(UPDATE_SUBSCRIPTION_PAYMENT_METHOD_INIT, updateSubscriptionPaymentMethodFlow),
     takeLatest(SUBSCRIPTION_REQUEST_CANCELLATION_INIT, createSubscriptionRequestCancellationFlow),
+    takeLatest(
+      CANCEL_SUBSCRIPTION_REQUEST_CANCELLATION_INIT,
+      cancelSubscriptionRequestCancellationFlow
+    ),
     takeLatest(PAUSE_SUBSCRIPTION_INIT, pauseSubscriptionFlow),
     takeLatest(CANCEL_PAUSE_SUBSCRIPTION_INIT, cancelPauseSubscriptionFlow),
     takeLatest(UNPAUSE_SUBSCRIPTION_INIT, unpauseSubscriptionFlow),

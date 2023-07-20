@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 
 import Link from 'shared/components/Link';
 
-const NavbarItem = ({ name, link, enable }) => {
+const NavbarItem = ({ name, link, enable, ...props }) => {
   const { pathname } = useLocation();
   const active = pathname === link;
+  const linkClassName = 'text-xs 2xl:text-sm uppercase';
 
   if (!enable) {
     return null;
@@ -16,7 +17,8 @@ const NavbarItem = ({ name, link, enable }) => {
     <Link
       to={link}
       variant="white-opacity"
-      className={`text-xs 2xl:text-sm uppercase ${active ? 'pointer-events-none opacity-50' : ''}`}
+      className={`${linkClassName} ${active ? 'pointer-events-none opacity-50' : ''}`}
+      {...props}
     >
       {name}
     </Link>

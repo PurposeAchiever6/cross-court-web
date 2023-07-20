@@ -81,6 +81,9 @@ export const requestFormattedDate = (date) => getUTCDate(date).format(FORMAT_DAT
 export const subscriptionPeriodFormattedDate = (date) =>
   getUTCDate(date).local().format(FORMAT_DATE_SUBSCRIPTION);
 
+export const subscriptionNextPeriodFormattedDate = (date) =>
+  getUTCDate(date).add(1, 'month').local().format(FORMAT_DATE_SUBSCRIPTION);
+
 export const shortMonthDayFullYear = (date) =>
   getUTCDate(date).local().format(SHORT_MONTH_DAY_FULL_YEAR);
 
