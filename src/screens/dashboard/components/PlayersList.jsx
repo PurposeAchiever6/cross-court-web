@@ -23,6 +23,7 @@ import userSessionService from 'screens/user-sessions/service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import missingProfileImg from 'shared/images/missing-profile-image.jpg';
+import Badge from 'shared/components/Badge';
 
 const LEFT = 'left';
 const RIGHT = 'right';
@@ -36,6 +37,7 @@ const PlayersList = () => {
   const [selectedSessionIndex, setSelectedSessionIndex] = useState(0);
   const [selectedSession, setSelectedSession] = useState(null);
   const [userSessions, setUserSessions] = useState([]);
+  const [guests, setGuests] = useState([]);
 
   const isPageLoading = useSelector(getPageLoading);
   const isSessionsLoading = useSelector(getSessionsLoading);
@@ -77,6 +79,7 @@ const PlayersList = () => {
       checked_in: true,
     });
     setUserSessions(response.userSessions);
+    setGuests(response.guests);
   }, [selectedSession]);
 
   useEffect(() => {
@@ -167,7 +170,10 @@ const PlayersList = () => {
           <div>
             <div className="flex flex-col">
               {userSessions.map((userSession, index) => (
-                <div className="flex text-4xl justify-between items-center" key={userSession.id}>
+                <div
+                  className="flex text-4xl justify-between items-center mb-3"
+                  key={userSession.id}
+                >
                   <p className="font-shapiro96_inclined_wide w-1/5 text-center">{index + 1}</p>
                   <div className="flex justify-center w-1/5">
                     <img
@@ -185,6 +191,27 @@ const PlayersList = () => {
                   >{`${userSession.user.firstName} ${userSession.user.lastName}`}</p>
                   <p className="uppercase font-shapiro96_inclined_wide w-1/5">
                     {userSession.assignedTeam}
+                  </p>
+                </div>
+              ))}
+              {guests.map((guest, index) => (
+                <div className="flex text-4xl justify-between items-center mb-3" key={guest.id}>
+                  <p className="font-shapiro96_inclined_wide w-1/5 text-center">
+                    {userSessions.length + index + 1}
+                  </p>
+                  <div className="flex justify-center w-1/5 relative">
+                    <img
+                      className="w-16 h-16 object-cover rounded-full"
+                      src={missingProfileImg}
+                      alt="Profile"
+                    />
+                    <Badge variant="black" className="absolute-center mt-3">
+                      Guest
+                    </Badge>
+                  </div>
+                  <p className="ml-12 w-2/5 text-cc-black">{`${guest.firstName} ${guest.lastName}`}</p>
+                  <p className="uppercase font-shapiro96_inclined_wide w-1/5">
+                    {guest.assignedTeam}
                   </p>
                 </div>
               ))}
