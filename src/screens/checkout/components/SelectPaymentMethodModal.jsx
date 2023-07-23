@@ -38,8 +38,10 @@ const SelectPaymentMethodModal = ({
   };
 
   useEffect(() => {
+    if (!isOpen) return;
+
     dispatch(initialLoadInit());
-  }, [dispatch]);
+  }, [dispatch, isOpen]);
 
   return (
     <Modal isOpen={isOpen} closeHandler={closeHandler} title="Choose card" size="2xl">

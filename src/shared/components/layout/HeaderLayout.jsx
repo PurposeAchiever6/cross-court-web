@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DesktopMenu from 'cheeseburger-menu';
 import PropTypes from 'prop-types';
 
 import ROUTES from 'shared/constants/routes';
@@ -8,7 +7,6 @@ import MenuSvg from 'shared/components/svg/MenuSvg';
 import LogoSvg from 'shared/components/svg/LogoSvg';
 
 import HeaderPromoBanner from 'shared/components/HeaderPromoBanner';
-import SidebarMenu from 'shared/components/SidebarMenu';
 import MobileMenu from 'shared/components/MobileMenu';
 
 const SCROLL_LIMIT = 50;
@@ -61,23 +59,18 @@ const HeaderLayout = ({ dark, alwaysScrolled, showBanner, children }) => {
         }`}
       >
         <MobileMenu menuOpen={menuOpen} toggleMenu={toggleMenu} />
-        <DesktopMenu
-          isOpen={menuOpen}
-          closeCallback={toggleMenu}
-          topOffset="0"
-          width={document.documentElement.clientWidth / 2}
-          transitionTime={1}
-          className="hidden md:block"
-        >
-          <SidebarMenu menuToggler={toggleMenu} />
-        </DesktopMenu>
         <div className="max-w-screen-2xl mx-auto flex justify-between items-center h-full px-4 2xl:px-0">
           <div
             className={`flex items-center h-full z-1005 ${
               showMembershipPromoBanner && menuOpen ? '-mt-56 sm:-mt-32 md:mt-0' : ''
             }`}
           >
-            <button aria-label="Menu Button" type="button" onClick={toggleMenu} className="mr-4">
+            <button
+              aria-label="Menu Button"
+              type="button"
+              onClick={toggleMenu}
+              className="md:hidden mr-4"
+            >
               <MenuSvg />
             </button>
             <Link to={ROUTES.HOME}>
