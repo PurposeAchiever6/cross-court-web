@@ -73,19 +73,20 @@ const MyProfile = ({ profile }) => {
     <SectionLayout className="mb-6">
       <div className="flex flex-col md:flex-row justify-between">
         <div className="md:flex items-center">
-          <div className="relative md:mr-6 mb-4 md:mb-0">
+          <div className="relative w-48 h-48 mx-auto md:mr-6 mb-8 mb-4">
             <img
-              className="w-48 h-48 object-cover rounded-full relative z-10 my-0 mx-auto"
+              className="relative z-[1] object-cover rounded-full my-0 mx-auto"
               src={imageUrl || missingProfileImg}
               alt="Profile"
             />
+            <div className="absolute w-52 h-52 rounded-full bg-cc-purple filter blur-lg top-0 -left-2" />
             {newMember && (
-              <div className="font-shapiro95_super_wide text-black bg-cream absolute px-3 py-1 text-sm z-10 right-0 top-0">
+              <div className="font-shapiro95_super_wide text-black bg-cream absolute px-3 py-1 text-sm -right-10 -top-6">
                 NEW
               </div>
             )}
-            <div className="absolute w-40 h-40 rounded-full bg-cc-purple filter blur-lg top-8 md:top-10 left-20 md:left-4 z-0" />
           </div>
+
           <div className="flex flex-col items-start gap-2">
             <h2 className="flex md:flex-col gap-1 text-2xl md:text-4xl font-shapiro95_super_wide max-w-xs md:max-w-2xl">
               <span>{firstName}</span>

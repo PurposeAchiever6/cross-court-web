@@ -21,12 +21,12 @@ const MobileMenu = ({ menuOpen, toggleMenu }) => {
   const history = useHistory();
   const [blockScroll, allowScroll] = useScrollBlock();
 
+  useOnClickOutside(menuRef, () => toggleMenu());
+
   useEffect(() => {
     menuOpen ? blockScroll() : allowScroll();
     return () => allowScroll();
   }, [menuOpen, blockScroll, allowScroll]);
-
-  useOnClickOutside(menuRef, () => toggleMenu());
 
   if (!menuOpen) {
     return null;
@@ -43,7 +43,7 @@ const MobileMenu = ({ menuOpen, toggleMenu }) => {
   };
 
   return (
-    <div className="fixed inset-0 md:hidden z-[9999]">
+    <div className="absolute inset-0 z-[9999] bg-cc-black/80 min-h-screen">
       <nav
         className="flex flex-col justify-center bg-cc-blue-700 shadow-md pt-32 pb-12 px-12 relative"
         ref={menuRef}
@@ -56,19 +56,19 @@ const MobileMenu = ({ menuOpen, toggleMenu }) => {
           <NavLink exact to={ROUTES.HOME} onClick={toggleMenu}>
             Home
           </NavLink>
-          <hr />
+          <hr className="border-white/30" />
           <NavLink exact to={ROUTES.WHY_JOIN} onClick={toggleMenu}>
             Why Join?
           </NavLink>
-          <hr />
+          <hr className="border-white/30" />
           <NavLink exact to={ROUTES.LOCATIONS} onClick={toggleMenu}>
             Schedule
           </NavLink>
-          <hr />
+          <hr className="border-white/30" />
           <NavLink exact to={ROUTES.MEMBERSHIPS} onClick={toggleMenu}>
             Memberships
           </NavLink>
-          <hr />
+          <hr className="border-white/30" />
           {SHOP_URL && (
             <Link
               className="hover:no-underline"
@@ -82,18 +82,18 @@ const MobileMenu = ({ menuOpen, toggleMenu }) => {
               Shop
             </Link>
           )}
-          <hr />
+          <hr className="border-white/30" />
 
           {isAuthenticated && (
             <>
               <NavLink exact to={ROUTES.MYACCOUNT} onClick={toggleMenu}>
-                My account
+                My Account
               </NavLink>
-              <hr />
-              <Link to="#" type="button" onClick={() => logoutAction()}>
+              <hr className="border-white/30" />
+              <Link className="hover:no-underline" variant="white" onClick={() => logoutAction()}>
                 Logout
               </Link>
-              <hr />
+              <hr className="border-white/30" />
               <Button className="w-full" onClick={() => handleClick(ROUTES.LOCATIONS)}>
                 Schedule
               </Button>
@@ -102,10 +102,14 @@ const MobileMenu = ({ menuOpen, toggleMenu }) => {
 
           {!isAuthenticated && (
             <>
-              <Link variant="white" to="#" onClick={() => handleClick(ROUTES.LOGIN)}>
+              <Link
+                className="hover:no-underline"
+                variant="white"
+                onClick={() => handleClick(ROUTES.LOGIN)}
+              >
                 Log in
               </Link>
-              <hr />
+              <hr className="border-white/30" />
               <Button className="w-full" onClick={() => handleClick(ROUTES.SIGNUP)}>
                 Join
               </Button>
