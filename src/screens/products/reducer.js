@@ -152,9 +152,9 @@ export const getRecurringProductsPromoCode = createSelector(getRecurringProducts
 
 export const getFeaturedRecurringProductPromoCode = createSelector(
   getRecurringProductsPromoCode,
-  // When we want to only show one promo code offer, we keep the last one that it should
-  // be for the most expensive product
-  (promoCodes) => promoCodes.slice(-1)[0]
+  // When we want to only show one promo code offer, we keep the middle one that it should
+  // be for the middle price product
+  (promoCodes) => promoCodes[Math.floor((promoCodes.length - 1) / 2)]
 );
 
 export const getUnpauseLoading = createSelector(getProducts, (products) => products.unpauseLoading);
