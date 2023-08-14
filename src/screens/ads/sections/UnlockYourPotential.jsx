@@ -31,7 +31,7 @@ const UnlockYourPotential = () => {
       setEmailError(null);
 
       const utmParams = getUtmParams();
-      dispatch(signUpInit({ email, ...utmParams }));
+      dispatch(signUpInit({ email, ...utmParams, utmSource: 'ads_page' }));
     }
   };
 
