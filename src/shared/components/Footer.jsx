@@ -87,7 +87,7 @@ const Footer = () => {
                 <span className="text-sm">
                   Text Us:{' '}
                   <Link
-                    to={`sms:${ccPhone};?&body=Hi, I have some questions about Crosscourt`}
+                    to={`sms:${ccPhone};?&body=Hello. I have a question regarding...`}
                     isExternal
                   >
                     {formatPhoneNumber(ccPhone)}
