@@ -6,7 +6,7 @@ import { faInstagram, faDiscord } from '@fortawesome/free-brands-svg-icons';
 import CheeseburgerMenu from 'cheeseburger-menu';
 
 import ROUTES from 'shared/constants/routes';
-import { reducedPathname, validateEmail } from 'shared/utils/helpers';
+import { reducedPathname, validateEmail, formatPhoneNumber } from 'shared/utils/helpers';
 import { openContactFormForUser } from 'shared/utils/contactForm';
 import { sendMembershipHandbook } from 'screens/my-account/actionCreators';
 import { getUserProfile } from 'screens/my-account/reducer';
@@ -52,6 +52,7 @@ const Footer = () => {
   const discordLink = import.meta.env.VITE_DISCORD_LINK;
   const scheduleTourLink = import.meta.env.VITE_SCHEDULE_TOUR_LINK;
   const ccEmail = import.meta.env.VITE_CC_EMAIL;
+  const ccPhone = import.meta.env.VITE_CC_PHONE;
   const ccAddress = import.meta.env.VITE_CC_ADDRESS;
   const windowSize = document.documentElement.clientWidth;
 
@@ -78,11 +79,20 @@ const Footer = () => {
           <LineDashedSvg className="text-cc-purple absolute top-0 right-0 w-full md:w-1/2" />
           <SectionLayout as="div" className="pt-20 pb-10 sm:pb-20">
             <div className="lg:flex">
-              <div className="w-full mb-10 lg:mb-0">
+              <div className="w-full flex flex-col gap-4 mb-10 lg:mb-0">
                 <LogoSvg className="w-64 mb-3" />
-                <Link to={`mailto:${ccEmail}`} isExternal className="text-sm inline-block mb-5">
+                <Link to={`mailto:${ccEmail}`} isExternal className="text-sm">
                   {ccEmail}
                 </Link>
+                <span className="text-sm">
+                  Text Us:{' '}
+                  <Link
+                    to={`sms:${ccPhone};?&body=Hello. I have a question regarding...`}
+                    isExternal
+                  >
+                    {formatPhoneNumber(ccPhone)}
+                  </Link>
+                </span>
                 <div>
                   <Link
                     to={discordLink}
