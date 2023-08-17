@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 
 import ROUTES from 'shared/constants/routes';
 import { SIGNUP_STATE_CREATED, SIGNUP_STATE_PERSONAL_DETAILS } from 'screens/onboarding/constants';
-import { genderSelectOptions, zipcodeRegExp, phoneRegExp } from 'shared/utils/helpers';
+import { genderSelectOptions, zipcodeRegExp } from 'shared/utils/helpers';
 import { editProfileInit } from 'screens/my-account/actionCreators';
 import { validateRangeAndSubmit, closeOutsideRangeModal } from 'screens/locations/actionCreators';
 import {
@@ -20,7 +20,6 @@ import {
 } from 'shared/components/layout/OnboardingLayout';
 import InputPasswordField from 'shared/components/InputPasswordField';
 import InputTextField from 'shared/components/InputTextField';
-import InputPhoneField from 'shared/components/InputPhoneField';
 import InputSelectField from 'shared/components/InputSelectField';
 import InputDateField from 'shared/components/InputDateField';
 import AvatarUploader from 'shared/components/AvatarUploader';
@@ -74,9 +73,6 @@ const PersonalDetailsForm = () => {
     password: '',
     passwordConfirmation: '',
     image: '',
-    firstName: currentUser.firstName || '',
-    lastName: currentUser.lastName || '',
-    phoneNumber: currentUser.phoneNumber || '',
     gender: currentUser.gender || '',
     birthdayDay: currentUser?.birthday ? new Date(currentUser.birthday).getUTCDate() : '',
     birthdayMonth: currentUser?.birthday ? new Date(currentUser.birthday).getUTCMonth() + 1 : '',
@@ -87,12 +83,6 @@ const PersonalDetailsForm = () => {
   const validationSchema = Yup.object().shape({
     password: signupStateIsCreated ? Yup.string().required('Required') : null,
     passwordConfirmation: signupStateIsCreated ? Yup.string().required('Required') : null,
-    firstName: Yup.string().required('Required'),
-    lastName: Yup.string().required('Required'),
-    phoneNumber: Yup.string()
-      .transform((value) => value.replace(/\D/g, ''))
-      .matches(phoneRegExp, 'Please enter a valid phone number')
-      .required('Required'),
     gender: Yup.string().required('Required'),
     birthdayDay: Yup.number().required('Required'),
     birthdayMonth: Yup.number().required('Required'),
@@ -142,14 +132,6 @@ const PersonalDetailsForm = () => {
                 placeholderImg={avatarPlaceholderImg}
                 description="Please upload a high-resolution, recent profile picture featuring a professional,
                 close-range photo of you."
-                className="mb-4"
-              />
-              <InputTextField label="First Name*" name="firstName" className="mb-4" />
-              <InputTextField label="Last Name*" name="lastName" className="mb-4" />
-              <InputPhoneField
-                label="Phone*"
-                name="phoneNumber"
-                showFlag={false}
                 className="mb-4"
               />
               <InputSelectField
