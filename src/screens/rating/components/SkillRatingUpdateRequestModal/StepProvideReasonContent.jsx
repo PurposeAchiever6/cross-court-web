@@ -60,7 +60,7 @@ const StepProvideReasonContent = ({ submitRequest }) => {
           <div className="font-shapiro95_super_wide uppercase text-xs md:text-sm bg-cc-purple text-white p-4 mb-4">
             Only members can request a skill rating update
           </div>
-          <Button inverted to={ROUTES.MEMBERSHIPS} fontSize="0.75rem">
+          <Button variant="outline-purple" to={ROUTES.MEMBERSHIPS} className="text-sm">
             See Memberships
           </Button>
         </div>

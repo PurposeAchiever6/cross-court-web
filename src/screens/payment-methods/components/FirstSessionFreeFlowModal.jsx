@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from 'shared/components/Modal';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 
 const FirstSessionFreeFlowModal = ({ isOpen, closeHandler }) => (
   <Modal isOpen={isOpen} closeHandler={closeHandler} title="Let's Sweat!" size="sm">
@@ -11,9 +11,9 @@ const FirstSessionFreeFlowModal = ({ isOpen, closeHandler }) => (
       not show up and we have to charge your account.
     </div>
     <div className="text-center">
-      <PrimaryButton inverted onClick={closeHandler}>
+      <Button variant="outline-purple" onClick={closeHandler}>
         I UNDERSTAND
-      </PrimaryButton>
+      </Button>
     </div>
   </Modal>
 );

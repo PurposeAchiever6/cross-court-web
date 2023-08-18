@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { RECURRING } from 'screens/products/constants';
 import { productDiscount, formatPrice } from 'screens/products/utils';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 
 const ProductPlan = ({
   product,
@@ -65,13 +65,9 @@ const ProductPlan = ({
           isRecurring ? 'top-1/4' : 'top-1/2'
         }`}
       >
-        <PrimaryButton
-          inverted={submitBtnSecondary}
-          bg={submitBtnSecondary && 'transparent'}
-          onClick={() => handleSubmit(product)}
-        >
+        <Button variant="outline-purple" onClick={() => handleSubmit(product)}>
           {submitText}
-        </PrimaryButton>
+        </Button>
       </div>
       <div className="lg:h-4">
         {!isRecurring && <div className="text-xs">*Expires in 30 Days</div>}

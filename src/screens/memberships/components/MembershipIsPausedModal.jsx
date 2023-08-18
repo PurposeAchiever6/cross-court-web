@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from 'shared/components/Modal';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import routes from 'shared/constants/routes';
 
 const MembershipIsPausedModal = ({ isOpen, closeHandler }) => (
@@ -14,9 +14,9 @@ const MembershipIsPausedModal = ({ isOpen, closeHandler }) => (
       <p className="mb-5">Thanks.</p>
     </div>
     <div className="text-center">
-      <PrimaryButton inverted type="submit" to={routes.MANAGE_MEMBERSHIP}>
+      <Button variant="outline-purple" type="submit" to={routes.MANAGE_MEMBERSHIP}>
         Manage my membership
-      </PrimaryButton>
+      </Button>
     </div>
   </Modal>
 );

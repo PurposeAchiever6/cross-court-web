@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ROUTES from 'shared/constants/routes';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import oneHourIcon from 'shared/images/cc-keys/1-hour.png';
 import premiumAmenitiesIcon from 'shared/images/cc-keys/premium-amenities.png';
 import fifteenPlayerLimitIcon from 'shared/images/cc-keys/15-player-limit.png';
@@ -31,7 +31,7 @@ const CrosscourtKeys = () => (
       ))}
     </div>
     <div className="text-center mt-16">
-      <PrimaryButton to={ROUTES.LOCATIONS}>Book Session</PrimaryButton>
+      <Button to={ROUTES.LOCATIONS}>Book Session</Button>
     </div>
   </section>
 );

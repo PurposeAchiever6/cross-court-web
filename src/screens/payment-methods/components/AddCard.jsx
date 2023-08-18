@@ -7,7 +7,7 @@ import {
   CardCvcElement,
 } from 'react-stripe-elements';
 import styled from 'styled-components';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import { getAddCardLoading } from '../reducer';
 
 const AddCardContainer = styled.div`
@@ -63,9 +63,9 @@ const AddCard = ({ stripe, elements, addCardHandler }) => {
         </span>
       </div>
       <div className="text-center">
-        <PrimaryButton onClick={submitHandler} loading={addCardLoading}>
+        <Button onClick={submitHandler} loading={addCardLoading}>
           ADD
-        </PrimaryButton>
+        </Button>
       </div>
     </AddCardContainer>
   );

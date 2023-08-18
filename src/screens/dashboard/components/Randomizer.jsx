@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PLAYERS_PER_TEAM, MAX_MISSING_PLAYERS } from 'shared/constants/gameConstants';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 
 const Randomizer = () => {
   const [missingPlayers, setMissingPlayers] = useState(0);
@@ -42,9 +42,9 @@ const Randomizer = () => {
           +
         </div>
       </div>
-      <PrimaryButton px="100px" inverted bg="transparent" onClick={randomize} className="ml-4 my-4">
+      <Button variant="outline-purple" onClick={randomize} className="ml-4 my-4 px-24">
         Randomize
-      </PrimaryButton>
+      </Button>
       <div className="h-56">
         {playersThatStay.length > 0 && (
           <div className="flex justify-around">
