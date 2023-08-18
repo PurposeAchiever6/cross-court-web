@@ -65,7 +65,10 @@ const ProductPlan = ({
           isRecurring ? 'top-1/4' : 'top-1/2'
         }`}
       >
-        <Button variant="outline-purple" onClick={() => handleSubmit(product)}>
+        <Button
+          variant={submitBtnSecondary ? 'outline-purple' : 'purple'}
+          onClick={() => handleSubmit(product)}
+        >
           {submitText}
         </Button>
       </div>
