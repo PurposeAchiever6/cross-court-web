@@ -78,6 +78,7 @@ const Modal = ({
       overflowY: 'auto',
       backgroundColor: dark ? colors.brandBlack : 'white',
       borderColor: dark ? colors.brandBlack : null,
+      borderRadius: '0',
       ...style,
     },
   };
@@ -90,9 +91,9 @@ const Modal = ({
       shouldCloseOnOverlayClick={closeOnOverlayClick}
       style={modalStyle}
     >
-      <div className={`sm:p-2 ${showCloseButton ? 'pt-5' : ''}`}>
+      <div className={`sm:p-4 ${showCloseButton ? 'pt-6' : ''}`}>
         {showCloseButton && (
-          <button className="absolute top-0 right-0 p-4" onClick={closeHandler} type="button">
+          <button className="absolute top-0 left-0 p-3" onClick={closeHandler} type="button">
             <CrossSvg className={`w-4 ${dark ? 'text-white' : 'text-black'}`} />
           </button>
         )}

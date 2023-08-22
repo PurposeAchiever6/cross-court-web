@@ -1,10 +1,10 @@
 import ROUTES from 'shared/constants/routes';
 import activeCampaignService from 'shared/services/activeCampaign';
+import { STARTED_CHECKOUT_EVENT } from 'shared/constants/active_campaign';
 
 const APP_URL = import.meta.env.VITE_URL;
 
 const HIDE_CHATS_FOR_PATHS = [ROUTES.DASHBOARD];
-const STARTED_CHECKOUT_EVENT = 'Started Checkout';
 
 const contactUrl = `${APP_URL}?openForm=true`;
 

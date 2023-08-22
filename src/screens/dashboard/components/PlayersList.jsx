@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   getPageLoading,
@@ -106,18 +106,16 @@ const PlayersList = () => {
 
   return (
     <>
-      <PrimaryButton
-        px="100px"
-        inverted
-        bg="transparent"
-        className="absolute bottom-0 right-0 mb-7 mr-5"
+      <Button
+        variant="outline-purple"
+        className="absolute bottom-0 right-0 mb-7 mx-5"
         onClick={() => {
           setShowList(true);
           window.scrollTo({ top: 0 });
         }}
       >
         Roster
-      </PrimaryButton>
+      </Button>
 
       {showList && (
         <div className="absolute w-screen h-full bg-white z-30 p-8">
@@ -155,17 +153,17 @@ const PlayersList = () => {
                 <FontAwesomeIcon icon={faAngleRight} />
               </button>
             </div>
-            <PrimaryButton
-              inverted
+            <Button
+              variant="outline-purple"
               className="m-5"
               onClick={getUserSessionsList}
               disabled={!selectedSession}
             >
               Refresh
-            </PrimaryButton>
-            <PrimaryButton className="m-5" onClick={() => setShowList(false)}>
+            </Button>
+            <Button className="m-5" onClick={() => setShowList(false)}>
               Dashboard
-            </PrimaryButton>
+            </Button>
           </div>
           <div>
             <div className="flex flex-col">

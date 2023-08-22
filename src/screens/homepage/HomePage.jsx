@@ -15,6 +15,9 @@ import PlatformForProgress from 'screens/homepage/sections/PlatformForProgress';
 import Testimonials from 'screens/homepage/sections/Testimonials';
 import TrustTheProgress from 'screens/homepage/sections/TrustTheProgress';
 import Faq from 'screens/homepage/sections/Faq';
+import LeadMagnetModal, {
+  LOCAL_STORAGE_LEAD_MAGNET_NOT_SHOW_AGAIN_KEY,
+} from './components/LeadMagnetModal';
 
 const HomePage = () => {
   const { search } = useLocation();
@@ -28,6 +31,7 @@ const HomePage = () => {
   const openSurveyParam = openSurvey === 'true';
 
   const [showSurveyModal, setShowSurveyModal] = useState(false);
+  const [showLeadMagnetModal, setShowLeadMagnetModal] = useState(false);
 
   useEffect(() => {
     if (!loading) {
@@ -49,6 +53,16 @@ const HomePage = () => {
     }
   }, [isAuthenticated, userInfo, openSurveyParam]);
 
+  useEffect(() => {
+    const notShowAgainLeadMagnet = Boolean(
+      localStorage.getItem(LOCAL_STORAGE_LEAD_MAGNET_NOT_SHOW_AGAIN_KEY)
+    );
+
+    if (!isAuthenticated && !notShowAgainLeadMagnet) {
+      setShowLeadMagnetModal(true);
+    }
+  }, [isAuthenticated]);
+
   if (!isAuthenticated && openSurveyParam) {
     return <Redirect to={ROUTES.LOGIN} />;
   }
@@ -67,6 +81,10 @@ const HomePage = () => {
         showSurveyModal={showSurveyModal}
         setShowSurveyModal={setShowSurveyModal}
         userSessionInfo={userInfo.lastCheckedInUserSession}
+      />
+      <LeadMagnetModal
+        isOpen={showLeadMagnetModal}
+        closeHandler={() => setShowLeadMagnetModal(false)}
       />
     </>
   );

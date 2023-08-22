@@ -1,6 +1,6 @@
 import React from 'react';
 import ROUTES from 'shared/constants/routes';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import BallHit from 'shared/images/ball-hit.gif';
 
 const NotFoundPage = () => (
@@ -15,9 +15,9 @@ const NotFoundPage = () => (
     <p className="font-shapiro95_super_wide text-lg md:text-3xl text-center uppercase text-cc-purple">
       It seems that you are lost
     </p>
-    <PrimaryButton to={ROUTES.HOME} w="100%" className="mt-10">
+    <Button to={ROUTES.HOME} className="mt-10">
       Back home
-    </PrimaryButton>
+    </Button>
   </div>
 );
 

@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
-import PrimaryButton from 'shared/components/buttons/PrimaryButton';
+import Button from 'shared/components/Button';
 import LazyBackgroundImage from 'shared/components/LazyBackgroundImage';
 import blackTextureBgImg from 'shared/images/black-texture-bg.png';
 
@@ -68,15 +68,9 @@ const DashboardPage = () => {
         className="flex flex-col min-h-screen bg-no-repeat bg-cover bg-center"
       >
         <div className="flex justify-end">
-          <PrimaryButton
-            inverted
-            bg="transparent"
-            className="m-4"
-            px="100px"
-            onClick={() => reset()}
-          >
+          <Button variant="outline-purple" className="m-4 px-24" onClick={() => reset()}>
             reset
-          </PrimaryButton>
+          </Button>
         </div>
         <Fouls setFouls={setFouls} darkFouls={darkFouls} lightFouls={lightFouls} />
         <WinStreak setStreak={setStreak} streak={streak} />
