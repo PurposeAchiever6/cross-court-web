@@ -62,14 +62,15 @@ const LeadMagnetModal = ({ isOpen, closeHandler }) => {
     }
   };
 
-  const handleNotShowAgain = () => {
-    localStorage.setItem('hasClosedLeadMagnetModal', 'true');
-  };
-
   const onClose = () => {
     setSuccess(false);
     closeHandler();
     setEmail('');
+  };
+
+  const handleNotShowAgain = () => {
+    localStorage.setItem('hasClosedLeadMagnetModal', 'true');
+    onClose();
   };
 
   return (
