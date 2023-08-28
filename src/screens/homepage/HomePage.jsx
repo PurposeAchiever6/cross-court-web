@@ -7,6 +7,7 @@ import ROUTES from 'shared/constants/routes';
 import { openContactForm, openContactFormForUser } from 'shared/utils/contactForm';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
+import { hasConfirmDontShowLeadMagnet } from 'shared/utils/leadMagnet';
 import SessionSurveyModal from 'screens/surveys/sessions/components/SessionSurveyModal';
 import PageLayout from 'shared/components/layout/PageLayout';
 import UnlockYourPotential from 'screens/homepage/sections/UnlockYourPotential';
@@ -15,9 +16,7 @@ import PlatformForProgress from 'screens/homepage/sections/PlatformForProgress';
 import Testimonials from 'screens/homepage/sections/Testimonials';
 import TrustTheProgress from 'screens/homepage/sections/TrustTheProgress';
 import Faq from 'screens/homepage/sections/Faq';
-import LeadMagnetModal, {
-  LOCAL_STORAGE_LEAD_MAGNET_NOT_SHOW_AGAIN_KEY,
-} from './components/LeadMagnetModal';
+import LeadMagnetModal from './components/LeadMagnetModal';
 
 const HomePage = () => {
   const { search } = useLocation();
@@ -54,11 +53,7 @@ const HomePage = () => {
   }, [isAuthenticated, userInfo, openSurveyParam]);
 
   useEffect(() => {
-    const notShowAgainLeadMagnet = Boolean(
-      localStorage.getItem(LOCAL_STORAGE_LEAD_MAGNET_NOT_SHOW_AGAIN_KEY)
-    );
-
-    if (!isAuthenticated && !notShowAgainLeadMagnet) {
+    if (!isAuthenticated && !hasConfirmDontShowLeadMagnet()) {
       setShowLeadMagnetModal(true);
     }
   }, [isAuthenticated]);
