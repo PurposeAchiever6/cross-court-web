@@ -11,6 +11,7 @@ const VideoPlayer = ({
   height,
   controls,
   url,
+  className,
   ...props
 }) => {
   const modalStyle = {
@@ -53,7 +54,9 @@ const VideoPlayer = ({
       </div>
     </ReactModal>
   ) : (
-    <ReactPlayer url={url} width={width} height={height} controls={controls} {...props} />
+    <div className={className}>
+      <ReactPlayer url={url} width={width} height={height} controls={controls} {...props} />
+    </div>
   );
 };
 
@@ -63,6 +66,7 @@ VideoPlayer.defaultProps = {
   controls: true,
   openOnModal: false,
   isModalOpen: false,
+  className: '',
   closeModalHandler: () => null,
 };
 
@@ -73,6 +77,7 @@ VideoPlayer.propTypes = {
   controls: PropTypes.bool,
   openOnModal: PropTypes.bool,
   isModalOpen: PropTypes.bool,
+  className: PropTypes.string,
   closeModalHandler: PropTypes.func,
 };
 

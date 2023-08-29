@@ -3,20 +3,15 @@ import PropTypes from 'prop-types';
 
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
+import VideoPlayer from 'shared/components/VideoPlayer';
 import List from 'shared/components/List';
 import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
 import CircleDashedSvg from 'shared/components/svg/CircleDashedSvg';
-import currentOptionsImg from 'screens/ads/images/current-options.jpeg';
 
 const CurrentOptions = ({ className }) => (
   <SectionLayout className={className}>
-    <ExpandedLayout
-      smBreakpoint={false}
-      mdBreakpoint={false}
-      lgBreakpoint={false}
-      xlBreakpoint={false}
-    >
-      <img alt="curated-pickup-hoops-img" src={currentOptionsImg} className="w-full mb-10" />
+    <ExpandedLayout lgBreakpoint={false} xlBreakpoint={false} className="mb-10">
+      <VideoPlayer url="/how-it-works.mp4" playing muted loop playsInline controls />
     </ExpandedLayout>
     <div className="sm:flex mb-20">
       <div className="w-full sm:pr-4 mb-6 sm:mb-0">

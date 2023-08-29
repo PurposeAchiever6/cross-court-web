@@ -29,11 +29,13 @@ const CuratedPickupHoops = ({ className }) => (
         </p>
         <SignupForm dark submitText="Get Started" />
       </div>
-      <img
-        alt="curated-pickup-hoops-img"
-        src={curatedPickupHoopsImg}
-        className="w-full object-cover lg:w-1/2 lg:pl-4"
-      />
+      <ExpandedLayout lgBreakpoint={false} xlBreakpoint={false} className="lg:w-1/2 lg:pl-4">
+        <img
+          alt="curated-pickup-hoops-img"
+          src={curatedPickupHoopsImg}
+          className="w-full h-full object-cover"
+        />
+      </ExpandedLayout>
     </div>
     <ExpandedLayout
       lgBreakpoint={false}
