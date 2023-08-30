@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ProductPlan from './ProductPlan';
 
-const Memberships = ({ onSubmit, availableProducts, activeSubscription, getSubmitText }) => (
+const Trials = ({ onSubmit, availableProducts, activeSubscription, getSubmitText }) => (
   <>
     {availableProducts.map((product) => {
       const isActiveSubscription = product.id === activeSubscription?.product.id;
@@ -22,15 +22,15 @@ const Memberships = ({ onSubmit, availableProducts, activeSubscription, getSubmi
   </>
 );
 
-Memberships.defaultProps = {
+Trials.defaultProps = {
   activeSubscription: null,
 };
 
-Memberships.propTypes = {
+Trials.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   availableProducts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   activeSubscription: PropTypes.shape(),
   getSubmitText: PropTypes.func.isRequired,
 };
 
-export default Memberships;
+export default Trials;

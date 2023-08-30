@@ -8,6 +8,7 @@ import { formatPrice } from 'screens/products/utils';
 import Button from 'shared/components/Button';
 import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
 import { isForever } from 'screens/promo-codes/utils';
+import { pluralize } from 'shared/utils/helpers';
 
 const ProductPlan = ({
   product,
@@ -28,6 +29,9 @@ const ProductPlan = ({
     description,
     highlighted,
     promoCode,
+    trial,
+    credits,
+    creditsExpirationDays,
   } = product;
 
   const price = formatPrice(priceForUser);
@@ -52,13 +56,47 @@ const ProductPlan = ({
     return `First ${promoCode.durationInMonths} months for ${discountPrice}`;
   })();
 
+  const creditsText = (() => {
+    if (isRecurring) {
+      return '/mo.';
+    }
+
+    if (trial) {
+      return `${credits} for 1 Day Pass. Expires in ${creditsExpirationDays} days.`;
+    }
+
+    return `${credits} ${pluralize('Credit', Number(credits))}`;
+  })();
+
+  const planClassName = (() => {
+    if (highlighted) {
+      return 'bg-cc-blue-300 text-white';
+    }
+
+    if (trial) {
+      return 'bg-white text-black';
+    }
+
+    return 'bg-cc-blue-900 text-white';
+  })();
+
+  const labelClassName = (() => {
+    if (highlighted) {
+      return 'bg-cream bg-opacity-100 text-black';
+    }
+
+    if (trial) {
+      return 'bg-black text-white';
+    }
+
+    return 'bg-cream bg-opacity-25 text-white';
+  })();
+
   return (
     <div
-      className={`relative p-4 md:px-10 ${label ? 'pt-10' : ''} md:pt-16 ${
-        showPromoCode ? 'md:pb-8' : 'md:pb-16'
-      } ${
-        highlighted ? 'bg-cc-blue-300' : 'bg-cc-blue-900'
-      } text-white text-center transform lg:hover:scale-105 transition-transform duration-300 ${className}`}
+      className={`relative min-h-[34em] p-4 md:px-10 ${label ? 'pt-10' : ''} md:pt-16 ${
+        showPromoCode ? 'md:pb-8' : 'md:pb-10'
+      } ${planClassName} text-white text-center transform lg:hover:scale-105 transition-transform duration-300 ${className}`}
     >
       <h2 className="inline-block mb-5 lg:h-14 text-2xl font-shapiro95_super_wide uppercase">
         {name}
@@ -66,7 +104,7 @@ const ProductPlan = ({
       <div>
         <div className="mb-3 lg:mb-5 flex flex-col">
           <span className="font-dharma_gothic_cheavy text-10xl">{price}</span>
-          <span className="text-sm">{isRecurring ? '/mo.' : '1 Credit'}</span>
+          <span className="text-sm">{creditsText}</span>
         </div>
         {seasonPass && showFeatures && (
           <div className="text-xs font-shapiro96_inclined_wide text-left uppercase my-4 p-2">
@@ -87,7 +125,7 @@ const ProductPlan = ({
         >
           {submitText}
         </Button>
-        <p className="text-xs h-24 md:h-30 text-left">{description}</p>
+        {description && <p className="text-xs h-24 md:h-30 text-left">{description}</p>}
         {showPromoCode && (
           <>
             <LineDashedSvg className="text-cc-purple mb-4" />
@@ -103,12 +141,20 @@ const ProductPlan = ({
             <LineDashedSvg className="text-cc-purple mt-4" />
           </>
         )}
+        {trial && (
+          <>
+            <LineDashedSvg className="text-cc-purple mb-4" />
+            <span className="block mb-1">Get $45 off your first month</span>
+            <span className="block opacity-60 text-sm">
+              Buy membership within 7 days post-trial.
+            </span>
+            <LineDashedSvg className="text-cc-purple mt-4" />
+          </>
+        )}
       </div>
       {label && (
         <div
-          className={`lg:block text-xs absolute px-4 inset-x-0 mx-auto top-0 bg-cream w-max ${
-            highlighted ? 'bg-opacity-100 text-black' : 'bg-opacity-25 text-white'
-          } shapiro95_super_wide py-1 uppercase`}
+          className={`lg:block text-xs absolute px-4 inset-x-0 mx-auto top-0 w-max ${labelClassName} shapiro95_super_wide py-1 uppercase`}
         >
           {label}
         </div>

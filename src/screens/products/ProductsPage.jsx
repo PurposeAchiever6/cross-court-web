@@ -9,6 +9,7 @@ import {
   getAvailableProducts,
   getPageLoading,
   getRecurringProducts,
+  getTrialProducts,
 } from 'screens/products/reducer';
 import {
   getShowAddPaymentMethodModal,
@@ -44,6 +45,10 @@ import triangleTexture from 'screens/products/images/triangle-texture.png';
 import Link from 'shared/components/Link';
 import CompareMembershipsTable from 'screens/products/components/CompareMembershipsTable';
 import ArrowPointDownSvg from 'shared/components/svg/ArrowPointDownSvg';
+import { findMostExpensiveProduct } from 'screens/products/utils';
+import Trials from './components/Trials';
+import { isTrial } from './utils';
+import ScheduleTour from './components/ScheduleTour';
 
 const ProductsPage = () => {
   const history = useHistory();
@@ -60,6 +65,7 @@ const ProductsPage = () => {
   const addPaymentMethodModalOpen = useSelector(getShowAddPaymentMethodModal);
   const selectPaymentMethodModalOpen = useSelector(getShowSelectPaymentMethodModal);
   const recurringProducts = useSelector(getRecurringProducts);
+  const trialProducts = useSelector(getTrialProducts);
   const { activeSubscription, reserveTeam } = userProfile;
 
   const showAnimation = state?.showNoCreditsAnimation;
@@ -70,6 +76,12 @@ const ProductsPage = () => {
   const [showPurchaseDetailsModal, setShowPurchaseDetailsModal] = useState(false);
 
   const showMemberships = !comesFromCancelModal && !showScouting;
+
+  const mostExpensiveProduct = findMostExpensiveProduct(recurringProducts);
+
+  const productsToShow = isAuthenticated
+    ? recurringProducts
+    : recurringProducts.filter((product) => product.id !== mostExpensiveProduct.id);
 
   const selectProductHandler = (product) => {
     if (!isAuthenticated) {
@@ -109,6 +121,10 @@ const ProductsPage = () => {
   };
 
   const getSubmitText = (isActiveSubscription, activeSubscription, product = null) => {
+    if (isTrial(product)) {
+      return 'Buy';
+    }
+
     if (isActiveSubscription) {
       return activeSubscription.canceled ? 'Reactivate' : 'Cancel';
     }
@@ -181,7 +197,7 @@ const ProductsPage = () => {
     <>
       <PageLayout noPadding className="relative">
         {showAnimation && <NoSessionCredits />}
-        <SectionLayout className="relative mb-12 md:mb-24 pt-24 md:pt-28 overflow-x-hidden">
+        <SectionLayout className="relative mb-12 md:mb-24 pt-24 md:pt-28">
           <img
             className="scale-[2.5] md:scale-100 top-36 -left-48 bottom-0 inset-x-0 md:inset-0 absolute"
             src={triangleTexture}
@@ -239,17 +255,31 @@ const ProductsPage = () => {
                       getSubmitText={getSubmitText}
                     />
                   ) : (
-                    <Memberships
-                      onSubmit={onSubmit}
-                      availableProducts={availableProducts}
-                      activeSubscription={activeSubscription}
-                      getSubmitText={getSubmitText}
-                    />
+                    <div className="grid gap-6 grid-cols-1 lg:grid-cols-3">
+                      {!isAuthenticated && (
+                        <Trials
+                          onSubmit={onSubmit}
+                          availableProducts={trialProducts}
+                          activeSubscription={activeSubscription}
+                          getSubmitText={getSubmitText}
+                        />
+                      )}
+                      <Memberships
+                        onSubmit={onSubmit}
+                        availableProducts={productsToShow}
+                        activeSubscription={activeSubscription}
+                        getSubmitText={getSubmitText}
+                      />
+                    </div>
                   )}
-                  <DropIns
-                    selectProductHandler={selectProductDropInHandler}
-                    availableProducts={availableProducts}
-                  />
+                  {isAuthenticated ? (
+                    <DropIns
+                      selectProductHandler={selectProductDropInHandler}
+                      availableProducts={availableProducts}
+                    />
+                  ) : (
+                    <ScheduleTour />
+                  )}
                   <div className="text-center">
                     <span>Cancel anytime.</span>
                     <span className="block text-xs">
@@ -266,7 +296,9 @@ const ProductsPage = () => {
           <>
             <div ref={compareMembershipsTableRef}>
               <SectionLayout className="mb-12 md:mb-24">
-                <CompareMembershipsTable products={recurringProducts} />
+                <CompareMembershipsTable
+                  products={[...(isAuthenticated ? [] : trialProducts), ...productsToShow]}
+                />
               </SectionLayout>
             </div>
             <div ref={amenitiesAndFeaturesRef}>

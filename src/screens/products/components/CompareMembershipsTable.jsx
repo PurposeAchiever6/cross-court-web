@@ -2,59 +2,71 @@ import React, { useState, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { UNLIMITED_VALUE } from 'screens/products/constants';
-import { formatPrice } from 'screens/products/utils';
+import { formatPrice, isRecurring } from 'screens/products/utils';
 import ShowMore from 'shared/components/ShowMore';
 import CheckSvg from 'shared/components/svg/CheckSvg';
+import CrossSvg from 'shared/components/svg/CrossSvg';
 import InfoTooltip from 'shared/components/InfoTooltip';
 
 const ROWS = [
   {
-    description: 'Monthly Price',
+    description: 'Price',
     tooltip: '',
-    accessor: ({ priceForUser }) => formatPrice(priceForUser),
+    accessor: (product) =>
+      isRecurring(product)
+        ? `${formatPrice(product.priceForUser)}/month`
+        : formatPrice(product.priceForUser),
   },
   {
-    description: 'Session Credits (refill monthly)',
+    description: 'Session Credits',
     tooltip:
-      'Session credits allow you to book sessions but they can also be used to book any other experience as well (refer to Non Session Credits)',
+      'Session credits allow you to book sessions but they can also be used to book any other experience as well (refer to Non Session Credits).',
     subDescription: 'Can be used for Sessions.',
-    accessor: ({ credits }) => (credits === UNLIMITED_VALUE ? 'Unlimited' : credits),
+    accessor: (product) => {
+      const { credits } = product;
+      if (credits === UNLIMITED_VALUE) {
+        return 'Unlimited';
+      }
+
+      if (isRecurring(product)) {
+        return `${credits}/month`;
+      }
+
+      return credits;
+    },
   },
   {
-    description: 'Non-Session Credits (refill monthly)',
+    description: 'Non-Session Credits',
     tooltip:
       'Non session credits are used to book experiences other than sessions such as SKLZ, Activations, Events, and more. Non session credits can also be used to reserve the court during Office Hours, rent the shooting machine, or to book out our recovery devices.',
     subDescription:
       'Can be used for SKLZ, events, Activations, rentals, and other scheduled experiences besides sessions.',
-    accessor: ({ skillSessionCredits }) =>
-      skillSessionCredits === UNLIMITED_VALUE ? 'Unlimited' : skillSessionCredits,
+    accessor: (product) => {
+      const { skillSessionCredits } = product;
+      if (skillSessionCredits === UNLIMITED_VALUE) {
+        return 'Unlimited';
+      }
+
+      if (isRecurring(product)) {
+        return `${skillSessionCredits}/month`;
+      }
+
+      return skillSessionCredits;
+    },
   },
   {
     description: 'Rollover Credits',
     tooltip:
       'A certain number of unused credits each month carry over to the next month. Only applies to session credits.',
-    accessor: ({ credits, maxRolloverCredits }) =>
-      credits === UNLIMITED_VALUE ? 'N/A' : maxRolloverCredits,
-  },
-  {
-    description: 'Waitlist Priority',
-    tooltip:
-      'Waitlist priority is tiered with MVP members having highest priority, followed by VET and then Rookie members',
-    accessor: ({ waitlistPriority }) => waitlistPriority,
-  },
-  {
-    description: 'Free Membership Freeze',
-    tooltip:
-      'Members have the ability to pause their membership for reasons such as traveling or resting a mild injury. Once your free pause(s) has been used, you can pause your membership by paying a fee. Free pauses reset each year.',
-    accessor: ({ freePausesPerYear }) =>
-      freePausesPerYear > 0 ? `${freePausesPerYear} mo.` : 'None',
-  },
-  {
-    description: 'Last Minute Free Booking',
-    tooltip:
-      'Receive a "last minute" notification to book upcoming sessions that need a few more players using complementary AKA free credits. Email notifications are prioritized for MVP, Vet, and Rookie members in that order',
-    accessor: ({ noBookingChargeFeature, noBookingChargeFeaturePriority }) =>
-      noBookingChargeFeature ? noBookingChargeFeaturePriority : 'N/A',
+    accessor: (product) => {
+      const { credits, maxRolloverCredits } = product;
+
+      if (!isRecurring(product)) {
+        return 0;
+      }
+
+      return credits === UNLIMITED_VALUE ? 'N/A' : maxRolloverCredits;
+    },
   },
 
   {
@@ -64,33 +76,18 @@ const ROWS = [
     accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
   },
   {
-    description: 'Digital Network',
+    description: 'Last Minute Free Booking',
     tooltip:
-      'Discover new connections and learn more about other members using our community Discord server, socially driven schedule, personalized player profiles, and member directory (coming soon).',
-    accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
+      'Receive a "last minute" notification to book upcoming sessions that need a few more players using complementary AKA free credits. Email notifications are prioritized for MVP, Vet, and Rookie members in that order.',
+    accessor: (product) => {
+      const { noBookingChargeFeature, noBookingChargeFeaturePriority } = product;
+
+      return noBookingChargeFeature ? noBookingChargeFeaturePriority : 'N/A';
+    },
   },
   {
-    description: 'Member Events',
-    tooltip:
-      'Access a variety of unique events and meetups hosted by us or built around other members on and off site. Some examples include a group fitness workout, TopGolf outing, yoga class, ball and brunch, and much more. May require a credit.',
-    accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
-  },
-  {
-    description: 'Unlimited Guest Passes',
-    tooltip:
-      'Members can add guests to Office Hours and most experiences available on our schedule using the post session booked page or going into "My Account". See more information in our Member Handbook. Certain restrictions apply.',
-    accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
-  },
-  {
-    description: 'Activations',
-    tooltip:
-      'Unique pop up events and competitive experiences centered around team sport. From a 3v3 tournament, to a dodgeball event, to a skills challenge. May require a credit.',
-    accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
-  },
-  {
-    description: 'Challenges',
-    tooltip:
-      'From a March Madness bracket challenge, to an NFL survivor pool, to the best Crosscourt highlight of the week, we provide consistent opportunities to connect and compete.',
+    description: 'Back to Back Booking',
+    tooltip: 'The ability to book two sessions in a row.',
     accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
   },
   {
@@ -100,21 +97,27 @@ const ROWS = [
     accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
   },
   {
-    description: 'Tiered and Themed Sessions',
+    description: 'Shooting Machine Access',
     tooltip:
-      'Book sessions that fit your desired intensity level or sign up for themed sessions like CC The Game, no win streak limit Wednesdays, Throwback Thursdays, 4 QTR Friday, and others.',
+      'Members have access to our Shooting Machine during Office Hours to work on that jumper.',
     accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
   },
   {
-    description: 'Discounted Day Pass',
+    description: 'Normatec Compression Recovery',
     tooltip:
-      'Purchase additional, discounted one off credits to use for bookings when all of your credits have been used in a given month.',
+      'We have partnered with Hyperice to improve your recovery. Use our Normatec devices in the recovery zone. Our staff will set you up.',
     accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
   },
   {
-    description: 'Private Training Access',
+    description: 'Unlimited Guest Passes',
     tooltip:
-      'Work with our Coaches one on one to develop your skills. Private Training credits sold seperately. Email us to set up.',
+      'Add guests to Office Hours and most experiences available on our schedule using the post session booked page or going into "My Account". See more information in our Member Handbook. Certain restrictions apply.',
+    accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
+  },
+  {
+    description: 'Activations',
+    tooltip:
+      'Unique pop up events and competitive experiences centered around team sport. From a 3v3 tournament, to a dodgeball event, to a skills challenge. May require a credit.',
     accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
   },
   {
@@ -124,15 +127,67 @@ const ROWS = [
     accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
   },
   {
+    description: 'Discounted Day Pass',
+    tooltip:
+      'Purchase additional, discounted one off credits to use for bookings when all of your credits have been used in a given month.',
+    accessor: (product) =>
+      isRecurring(product) ? (
+        <CheckSvg className="w-6 text-cc-purple inline-block" />
+      ) : (
+        <CrossSvg className="w-6 text-white/60 inline-block" />
+      ),
+  },
+  {
+    description: 'Member Events',
+    tooltip:
+      'Access a variety of unique events and meetups hosted by us or built around other members on and off site. Some examples include a group fitness workout, TopGolf outing, yoga class, ball and brunch, and much more. May require a credit.',
+    accessor: (product) =>
+      isRecurring(product) ? (
+        <CheckSvg className="w-6 text-cc-purple inline-block" />
+      ) : (
+        <CrossSvg className="w-6 text-white/60 inline-block" />
+      ),
+  },
+  {
+    description: 'Waitlist Priority',
+    tooltip:
+      'Waitlist priority is tiered with MVP members having highest priority, followed by VET and then Rookie members.',
+    accessor: (product) => {
+      const { waitlistPriority } = product;
+
+      if (!isRecurring(product)) {
+        return <CrossSvg className="w-6 text-white/60 inline-block" />;
+      }
+
+      return waitlistPriority;
+    },
+  },
+  {
     description: 'Free Jersey & Towel Rental',
+    tooltip: 'No charge for jersey and towel rentals.',
     accessor: ({ freeJerseyRental, freeTowelRental }) =>
       freeJerseyRental && freeTowelRental ? (
         <CheckSvg className="w-6 text-cc-purple inline-block" />
-      ) : null,
+      ) : (
+        <CrossSvg className="w-6 text-white/60 inline-block" />
+      ),
   },
   {
-    description: 'SNZS Access (Coming Soon)',
-    accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
+    description: 'Free Membership Freeze',
+    tooltip:
+      'Members have the ability to pause their membership for reasons such as traveling or resting a mild injury. Once your free pause(s) has been used, you can pause your membership by paying a fee. Free pauses reset each year.',
+    accessor: (product) => {
+      const { freePausesPerYear } = product;
+      if (!isRecurring(product)) {
+        return 'N/A';
+      }
+
+      return freePausesPerYear > 0 ? (
+        `${freePausesPerYear} mo.`
+      ) : (
+        <CrossSvg className="w-6 text-white/60 inline-block" />
+      );
+    },
   },
 ];
 
