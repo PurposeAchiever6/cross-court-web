@@ -91,7 +91,7 @@ const ProductsPage = () => {
 
     dispatch(selectProduct({ product }));
 
-    if (product.promoCode?.validForUser) {
+    if (!product.trial && product.promoCode?.validForUser) {
       dispatch(setPromoCodeInit({ promoCode: product.promoCode.code, product }));
     }
 

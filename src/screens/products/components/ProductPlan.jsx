@@ -38,7 +38,7 @@ const ProductPlan = ({
 
   const isRecurring = productType === RECURRING;
 
-  const showPromoCode = promoCode && !currentUser.activeSubscription;
+  const showPromoCode = !trial && promoCode && !currentUser.activeSubscription;
 
   const discountText = (() => {
     if (!promoCode) return;

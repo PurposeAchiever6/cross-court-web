@@ -29,7 +29,7 @@ const OnboardingLayout = ({ disableLink, children }) => {
   }
 
   return (
-    <PageLayout noPadding>
+    <PageLayout className="min-h-screen" noPadding>
       <SectionLayout className="pt-12 pb-32 md:pt-24 md:pb-24">
         <img
           src={gradientEffectBgImg}

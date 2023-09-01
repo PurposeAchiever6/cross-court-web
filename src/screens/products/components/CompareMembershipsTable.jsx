@@ -61,20 +61,10 @@ const ROWS = [
     accessor: (product) => {
       const { credits, maxRolloverCredits } = product;
 
-      if (!isRecurring(product)) {
-        return 0;
-      }
-
-      return credits === UNLIMITED_VALUE ? 'N/A' : maxRolloverCredits;
+      return credits === UNLIMITED_VALUE || !isRecurring(product) ? 'N/A' : maxRolloverCredits;
     },
   },
 
-  {
-    description: 'Office Hours',
-    tooltip:
-      'The Club is open all day for members and their guests to utilize our spaces to get work done, workout, hangout, hoop, recover, and generally use the space as it works for them. Using credits, members can reserve the court, the shooting machine, recovery devices, and other services during Office Hours through the schedule as well as add their guests.',
-    accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
-  },
   {
     description: 'Last Minute Free Booking',
     tooltip:
@@ -84,6 +74,12 @@ const ROWS = [
 
       return noBookingChargeFeature ? noBookingChargeFeaturePriority : 'N/A';
     },
+  },
+  {
+    description: 'Office Hours',
+    tooltip:
+      'The Club is open all day for members and their guests to utilize our spaces to get work done, workout, hangout, hoop, recover, and generally use the space as it works for them. Using credits, members can reserve the court, the shooting machine, recovery devices, and other services during Office Hours through the schedule as well as add their guests.',
+    accessor: () => <CheckSvg className="w-6 text-cc-purple inline-block" />,
   },
   {
     description: 'Back to Back Booking',
