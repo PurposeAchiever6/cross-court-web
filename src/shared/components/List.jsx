@@ -15,7 +15,7 @@ const List = ({ items, align, variant, bulletsColor, className }) => {
   const variantClasses = (() => {
     switch (variant) {
       case 'cross':
-        return "before:text-3xl before:content-['_x'] before:mr-[0.5em]";
+        return "before:text-3xl before:content-['x'] before:mr-[0.5em]";
       case 'square':
       default:
         return 'before:w-[0.75em] before:h-[0.75em] before:mr-[1.5em]';
@@ -24,8 +24,8 @@ const List = ({ items, align, variant, bulletsColor, className }) => {
 
   const bulletsColorClasses = (() => {
     switch (bulletsColor) {
-      case 'warning':
-        return 'before:text-warning';
+      case 'red':
+        return 'before:text-error-400';
       case 'purple':
       default:
         return 'before:bg-cc-purple';

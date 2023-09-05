@@ -52,7 +52,16 @@ export const dropInProducts = (products) =>
       product.productType === ONE_TIME &&
       product.name !== FREE_SESSION &&
       !product.seasonPass &&
-      !product.scouting
+      !product.scouting &&
+      !product.trial
   );
 
 export const isRecurring = (product) => product?.productType === RECURRING;
+
+export const isTrial = (product) => product.trial;
+
+export const findMostExpensiveProduct = (products) => {
+  if (!products.length) return null;
+
+  return products.reduce((max, min) => (Number(max.price) > Number(min.price) ? max : min));
+};

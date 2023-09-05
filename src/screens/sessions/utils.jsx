@@ -208,7 +208,9 @@ export const sessionRestrictions = (session) => {
 };
 
 export const sessionGuestsAllowed = (session) =>
-  session.guestsAllowed > 0 && session.reserved && session.guestsAllowedPerUser > 0;
+  session.guestsAllowed > 0 &&
+  session.reserved &&
+  (session.guestsAllowedPerUser === null || session.guestsAllowedPerUser > 0);
 
 export const sessionGuestsAllowedForUser = (session) => {
   const { full, guestsCount, guestsAllowed, userSession, guestsAllowedPerUser } = session;
@@ -222,7 +224,7 @@ export const sessionGuestsAllowedForUser = (session) => {
     return { guestsAllowedForUser: false, reason: 'The session is full' };
   }
 
-  if (userSessionGuests.length >= guestsAllowedPerUser) {
+  if (guestsAllowedPerUser !== null && userSessionGuests.length >= guestsAllowedPerUser) {
     return {
       guestsAllowedForUser: false,
       reason: "You can't invite more guests to this session",

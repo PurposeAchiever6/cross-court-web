@@ -15,12 +15,15 @@ import Button from 'shared/components/Button';
 import CheckmarkSvg from 'shared/components/svg/CheckmarkSvg';
 import GradientDots from 'shared/components/GradientDots';
 import AccountMissingInformationLink from 'screens/checkout/components/AccountMissingInformationLink';
+import { pluralize } from 'shared/utils/helpers';
 
 const CheckoutConfirm = () => {
   const purchaseConfirmed = useSelector(getPurchaseConfirmed);
   const selectedProductCheckout = useSelector(getSelectedProductCheckout);
   const selectedProductOnboarding = useSelector(getSelectedProductOnboarding);
   const selectedProduct = selectedProductCheckout || selectedProductOnboarding;
+
+  const { trial, credits, creditsExpirationDays } = selectedProduct;
 
   if (!purchaseConfirmed) {
     return <Redirect to={ROUTES.LOCATIONS} />;
@@ -37,13 +40,15 @@ const CheckoutConfirm = () => {
               <h3>Success.</h3>
             </div>
             <h4 className="block font-shapiro95_super_wide text-xl md:text-2xl mb-4">
-              Thanks for purchasing a Crosscourt Day Pass.
+              Thanks for purchasing a Crosscourt {trial ? 'Trial.' : ' Day Pass.'}
             </h4>
             <p className="mb-6">
-              Your Day Pass includes {selectedProduct.credits} credit that can be used for either a
-              Session, SKLZ, or another experience on the schedule and includes Open Club / Office
-              Hours access, which does not require a credit to book. Please note, your Day Pass
-              expires in 30 days.
+              Your {trial ? 'Trial' : 'Day Pass'} includes {credits} {pluralize('credit', credits)}{' '}
+              that can be used for either a Session, SKLZ, or another experience on the schedule and
+              includes Open Club / Office Hours access, which does not require a credit to book.{' '}
+              {creditsExpirationDays > 0 &&
+                `Please note, your ${pluralize('credit', credits)}
+              expire in ${creditsExpirationDays} days.`}
             </p>
             <p className="mb-4">
               Check out our schedule to book your experience and if you're available, come check out

@@ -62,7 +62,6 @@ const TheSessionOfficial = () => {
           </div>
         </div>
       </Section>
-
       <VideoPlayer
         url="https://player.vimeo.com/video/438002745?title=0&byline=0&portrait=0&playsinline=0&autopause=0&app_id=122963"
         playing
@@ -70,20 +69,6 @@ const TheSessionOfficial = () => {
         isModalOpen={showModal}
         closeModalHandler={() => setShowModal(false)}
       />
-      {/* <ReactModal
-        shouldCloseOnOverlayClick
-        style={modalStyle}
-        onRequestClose={() => setShowModal(false)}
-        isOpen={showModal}
-      >
-        <ReactPlayer
-          controls
-          playing
-          width="100%"
-          height="100%"
-          url="https://player.vimeo.com/video/438002745?title=0&byline=0&portrait=0&playsinline=0&autopause=0&app_id=122963"
-        />
-      </ReactModal> */}
     </>
   );
 };

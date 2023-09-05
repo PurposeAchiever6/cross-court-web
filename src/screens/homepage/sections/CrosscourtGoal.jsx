@@ -3,6 +3,7 @@ import React from 'react';
 import ROUTES from 'shared/constants/routes';
 import SectionLayout from 'shared/components/layout/SectionLayout';
 import ExpandedLayout from 'shared/components/layout/ExpandedLayout';
+import VideoPlayer from 'shared/components/VideoPlayer';
 import Button from 'shared/components/Button';
 import List from 'shared/components/List';
 
@@ -14,15 +15,14 @@ const CrosscourtGoal = () => (
       xlBreakpoint={false}
       className="mb-8 md:mb-0"
     >
-      <video
-        className="top-0 left-0 w-full md:w-2/3"
-        src="/how-it-works.mp4"
-        autoPlay
+      <VideoPlayer
+        url="/how-it-works.mp4"
+        playing
         muted
+        loop
         playsInline
         controls
-        loop
-        type="video/mp4"
+        className="top-0 left-0 w-full md:w-2/3"
       />
     </ExpandedLayout>
     <div className="md:absolute top-40 right-16 md:w-1/2 md:ml-auto md:max-w-lg">

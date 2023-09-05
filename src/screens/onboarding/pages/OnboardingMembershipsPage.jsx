@@ -5,7 +5,8 @@ import { useHistory } from 'react-router-dom';
 import ROUTES from 'shared/constants/routes';
 import { initialLoad as productsInitialLoad } from 'screens/products/actionCreators';
 import { selectProduct, setPromoCodeInit } from 'screens/onboarding/actionCreators';
-import { getPageLoading, getRecurringProducts, getDropInProducts } from 'screens/products/reducer';
+import { getPageLoading, getRecurringProducts, getTrialProducts } from 'screens/products/reducer';
+import { findMostExpensiveProduct } from 'screens/products/utils';
 import { getSelectedProduct } from 'screens/onboarding/reducer';
 import OnboardingLayout, {
   OnboardingLayoutContent,
@@ -27,13 +28,18 @@ const OnboardingMembershipsPage = () => {
 
   const isLoading = useSelector(getPageLoading);
   const recurringProducts = useSelector(getRecurringProducts);
-  const dropInProducts = useSelector(getDropInProducts);
+  const mostExpensiveProduct = findMostExpensiveProduct(recurringProducts);
+  const recurringProductsToShow = recurringProducts.filter(
+    (product) => product.id !== mostExpensiveProduct.id
+  );
+
+  const trialProducts = useSelector(getTrialProducts);
   const selectedProduct = useSelector(getSelectedProduct);
 
   const selectProductHandler = (product) => {
     dispatch(selectProduct({ product }));
 
-    if (product.promoCode?.validForUser) {
+    if (!product.trial && product.promoCode?.validForUser) {
       dispatch(setPromoCodeInit({ promoCode: product.promoCode.code, product }));
     }
   };
@@ -67,8 +73,8 @@ const OnboardingMembershipsPage = () => {
                 <ProductsList
                   selectProduct={selectProductHandler}
                   selectedProduct={selectedProduct}
-                  recurringProducts={recurringProducts}
-                  dropInProducts={dropInProducts}
+                  recurringProducts={recurringProductsToShow}
+                  trialProducts={trialProducts}
                 />
                 <div className="text-sm mt-5">
                   Cancel anytime.{' '}
@@ -78,7 +84,7 @@ const OnboardingMembershipsPage = () => {
                   apply.
                 </div>
                 <RecurringProductsPromoCodeInformation
-                  products={recurringProducts}
+                  products={recurringProductsToShow}
                   className="border-t border-black/30 mt-6 pt-6"
                 />
               </div>
@@ -101,7 +107,7 @@ const OnboardingMembershipsPage = () => {
           </OnboardingLayoutSidebar>
         </div>
         <CompareMembershipsTable
-          products={recurringProducts}
+          products={[...trialProducts, ...recurringProductsToShow]}
           initialRowsShown={10}
           ref={compareMembershipsTableRef}
           className="pt-10"

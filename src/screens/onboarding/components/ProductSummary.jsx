@@ -27,11 +27,11 @@ const ProductSummary = ({ product, className }) => {
           />
         </div>
         <div className="text-lg">
-          Total Today:{' '}
+          Total today:{' '}
           <span className={promoCodeAppliedPrice ? 'line-through text-error-600' : ''}>
             {formatPrice(priceForUser)}
           </span>
-          {promoCodeAppliedPrice && (
+          {promoCodeAppliedPrice > 0 && (
             <span className="ml-2">{formatPrice(promoCodeAppliedPrice)}</span>
           )}
         </div>

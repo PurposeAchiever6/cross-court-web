@@ -13,7 +13,7 @@ import InputTextField from 'shared/components/InputTextField';
 import Button from 'shared/components/Button';
 import EnvelopeSvg from 'shared/components/svg/EnvelopeSvg';
 
-const SignupForm = ({ className }) => {
+const SignupForm = ({ dark, submitText, className }) => {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(getSignupLoading);
@@ -54,18 +54,39 @@ const SignupForm = ({ className }) => {
           <InputTextField
             name="email"
             label="Email Address"
-            icon={<EnvelopeSvg className="w-5" />}
-            leftIcon
-            className="mb-6"
             autoComplete="email"
+            dark={dark}
+            labelColor={dark ? 'white' : null}
+            leftIcon
+            icon={<EnvelopeSvg className="w-5" />}
+            className="mb-6"
           />
           <div className="flex mb-4 gap-4">
-            <InputTextField label="First Name*" name="firstName" className="w-full" />
-            <InputTextField label="Last Name*" name="lastName" className="w-full" />
+            <InputTextField
+              label="First Name*"
+              name="firstName"
+              dark={dark}
+              labelColor={dark ? 'white' : null}
+              className="w-full"
+            />
+            <InputTextField
+              label="Last Name*"
+              name="lastName"
+              dark={dark}
+              labelColor={dark ? 'white' : null}
+              className="w-full"
+            />
           </div>
-          <InputPhoneField label="Phone*" name="phoneNumber" showFlag={false} className="mb-4" />
+          <InputPhoneField
+            label="Phone*"
+            name="phoneNumber"
+            dark={dark}
+            labelColor={dark ? 'white' : null}
+            showFlag={false}
+            className="mb-4"
+          />
           <Button type="submit" loading={isLoading}>
-            Join
+            {submitText}
           </Button>
         </Form>
       </Formik>
@@ -74,10 +95,14 @@ const SignupForm = ({ className }) => {
 };
 
 SignupForm.defaultProps = {
+  dark: false,
+  submitText: 'Join',
   className: '',
 };
 
 SignupForm.propTypes = {
+  dark: PropTypes.bool,
+  submitText: PropTypes.string,
   className: PropTypes.string,
 };
 

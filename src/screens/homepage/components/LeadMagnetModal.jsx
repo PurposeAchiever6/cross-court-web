@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { getDropInProducts } from 'screens/products/reducer';
-import Modal from 'shared/components/Modal';
-import Button from 'shared/components/Button';
-import leadMagnetImg from 'screens/homepage/images/lead-magnet-image.png';
 import { initialLoad } from 'screens/products/actionCreators';
-import InputTextField from 'shared/components/InputTextField';
-import EnvelopeSvg from 'shared/components/svg/EnvelopeSvg';
 import { validateEmail } from 'shared/utils/helpers';
-import activeCampaignService from 'shared/services/activeCampaign';
-import CheckmarkSvg from 'shared/components/svg/CheckmarkSvg';
 import { LEAD_MAGNET_EVENT } from 'shared/constants/active_campaign';
 import { formatPrice } from 'screens/products/utils';
+import { confirmDontShowLeadMagnet } from 'shared/utils/leadMagnet';
+import activeCampaignService from 'shared/services/activeCampaign';
+import Modal from 'shared/components/Modal';
+import InputTextField from 'shared/components/InputTextField';
+import Button from 'shared/components/Button';
 import Link from 'shared/components/Link';
+import leadMagnetImg from 'screens/homepage/images/lead-magnet-image.png';
+import EnvelopeSvg from 'shared/components/svg/EnvelopeSvg';
+import CheckmarkSvg from 'shared/components/svg/CheckmarkSvg';
 
 const DISCOUNT = 50;
 export const LOCAL_STORAGE_LEAD_MAGNET_NOT_SHOW_AGAIN_KEY = 'leadMagnetNotShowAgain';
@@ -62,14 +63,15 @@ const LeadMagnetModal = ({ isOpen, closeHandler }) => {
     }
   };
 
-  const handleNotShowAgain = () => {
-    localStorage.setItem('hasClosedLeadMagnetModal', 'true');
-  };
-
   const onClose = () => {
     setSuccess(false);
     closeHandler();
     setEmail('');
+  };
+
+  const handleNotShowAgain = () => {
+    confirmDontShowLeadMagnet();
+    onClose();
   };
 
   return (

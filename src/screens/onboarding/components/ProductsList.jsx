@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import Product from 'screens/onboarding/components/Product';
 
-const ProductsList = ({ selectProduct, selectedProduct, recurringProducts, dropInProducts }) => (
+const ProductsList = ({ selectProduct, selectedProduct, recurringProducts, trialProducts }) => (
   <div>
-    {recurringProducts.map((product) => (
+    {trialProducts.map((product) => (
       <Product
         key={product.id}
         product={product}
@@ -14,7 +14,7 @@ const ProductsList = ({ selectProduct, selectedProduct, recurringProducts, dropI
         className="mb-1"
       />
     ))}
-    {dropInProducts.map((product) => (
+    {recurringProducts.map((product) => (
       <Product
         key={product.id}
         product={product}
@@ -33,7 +33,7 @@ ProductsList.defaultProps = {
 ProductsList.propTypes = {
   selectProduct: PropTypes.func.isRequired,
   recurringProducts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  dropInProducts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  trialProducts: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   selectedProduct: PropTypes.shape(),
 };
 
