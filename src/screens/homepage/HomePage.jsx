@@ -16,7 +16,7 @@ import PlatformForProgress from 'screens/homepage/sections/PlatformForProgress';
 import Testimonials from 'screens/homepage/sections/Testimonials';
 import TrustTheProgress from 'screens/homepage/sections/TrustTheProgress';
 import Faq from 'screens/homepage/sections/Faq';
-import LeadMagnetModal from './components/LeadMagnetModal';
+// import LeadMagnetModal from './components/LeadMagnetModal';
 
 const HomePage = () => {
   const { search } = useLocation();
@@ -30,7 +30,7 @@ const HomePage = () => {
   const openSurveyParam = openSurvey === 'true';
 
   const [showSurveyModal, setShowSurveyModal] = useState(false);
-  const [showLeadMagnetModal, setShowLeadMagnetModal] = useState(false);
+  // const [showLeadMagnetModal, setShowLeadMagnetModal] = useState(false);
 
   useEffect(() => {
     if (!loading) {
@@ -54,7 +54,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (!isAuthenticated && !hasConfirmDontShowLeadMagnet()) {
-      setShowLeadMagnetModal(true);
+      // setShowLeadMagnetModal(true);
     }
   }, [isAuthenticated]);
 
@@ -77,10 +77,10 @@ const HomePage = () => {
         setShowSurveyModal={setShowSurveyModal}
         userSessionInfo={userInfo.lastCheckedInUserSession}
       />
-      <LeadMagnetModal
+      {/* <LeadMagnetModal
         isOpen={showLeadMagnetModal}
         closeHandler={() => setShowLeadMagnetModal(false)}
-      />
+      /> */}
     </>
   );
 };
