@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { getDropInProducts } from 'screens/products/reducer';
-import { initialLoad } from 'screens/products/actionCreators';
+import { getTrialProducts } from 'screens/products/reducer';
+import { initialLoad as getAvailableProducts } from 'screens/products/actionCreators';
 import { validateEmail } from 'shared/utils/helpers';
 import { LEAD_MAGNET_EVENT } from 'shared/constants/active_campaign';
 import { formatPrice } from 'screens/products/utils';
@@ -17,22 +17,26 @@ import leadMagnetImg from 'screens/homepage/images/lead-magnet-image.png';
 import EnvelopeSvg from 'shared/components/svg/EnvelopeSvg';
 import CheckmarkSvg from 'shared/components/svg/CheckmarkSvg';
 
-const DISCOUNT = 50;
 export const LOCAL_STORAGE_LEAD_MAGNET_NOT_SHOW_AGAIN_KEY = 'leadMagnetNotShowAgain';
 
 const LeadMagnetModal = ({ isOpen, closeHandler }) => {
   const dispatch = useDispatch();
+
+  const trialProduct = useSelector(getTrialProducts)?.[0];
+
   const [emailError, setEmailError] = useState(null);
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const dropInProduct = useSelector(getDropInProducts)?.[0];
-  const discountedPrice = dropInProduct ? (dropInProduct.price * DISCOUNT) / 100 : 0;
+  const percentageDiscount = Number(import.meta.env.VITE_LEAD_MAGNET_TRIAL_PERCENTAGE_DISCOUNT);
+  const trialPrice = trialProduct?.price;
+  const trialDiscount = (trialPrice * percentageDiscount) / 100;
+  const modalIsOpen = !!(isOpen && trialProduct && percentageDiscount > 0);
 
   useEffect(() => {
     if (isOpen) {
-      dispatch(initialLoad());
+      dispatch(getAvailableProducts());
     }
   }, [isOpen]);
 
@@ -75,7 +79,7 @@ const LeadMagnetModal = ({ isOpen, closeHandler }) => {
   };
 
   return (
-    <Modal isOpen={isOpen && !!dropInProduct} closeHandler={onClose} size="md">
+    <Modal isOpen={modalIsOpen} closeHandler={onClose} size="md">
       {success ? (
         <div className="flex flex-col items-center">
           <CheckmarkSvg className="w-12 -mt-1 mr-2" />
@@ -83,20 +87,20 @@ const LeadMagnetModal = ({ isOpen, closeHandler }) => {
           <p>Check your email for next steps.</p>
         </div>
       ) : (
-        <>
+        <div>
           <img alt="lead-img" src={leadMagnetImg} />
           <div className="mt-8">
-            <p className="font-shapiro95_super_wide text-3xl mb-3">{DISCOUNT}% off Day Pass</p>
+            <p className="font-shapiro95_super_wide text-3xl mb-3">
+              {percentageDiscount}% off 1 week trial
+            </p>
             <div className="flex mb-5">
               <p className="text-xs">
-                Enter your email to get {DISCOUNT}% off on your first Crosscourt Day Pass.
+                Enter your email to get {percentageDiscount}% off on your first 1 week trial.
               </p>
               <div className="border-2 border-black flex items-center justify-center px-2 ml-2">
-                <span className="m-0 p-0 mr-1 text-md line-through">
-                  {formatPrice(dropInProduct?.price)}
-                </span>
-                <span className="m-0 p-0 ml-1 font-shapiro95_super_wide text-md">
-                  {formatPrice(discountedPrice)}
+                <span className="line-through text-sm mr-2">{formatPrice(trialPrice)}</span>
+                <span className="font-shapiro95_super_wide">
+                  {formatPrice(trialPrice - trialDiscount)}
                 </span>
               </div>
             </div>
@@ -113,13 +117,16 @@ const LeadMagnetModal = ({ isOpen, closeHandler }) => {
             value={email}
             error={emailError}
           />
-          <Button loading={loading} onClick={handleClick}>
+          <Button loading={loading} onClick={handleClick} className="w-full sm:w-auto mb-3 sm:mb-0">
             Use Deal
           </Button>
-          <Link onClick={handleNotShowAgain} className="text-xs ml-4">
+          <Link
+            onClick={handleNotShowAgain}
+            className="inline-block w-full sm:w-auto text-center text-xs sm:ml-4"
+          >
             Don't show me again
           </Link>
-        </>
+        </div>
       )}
     </Modal>
   );
