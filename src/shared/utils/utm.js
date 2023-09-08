@@ -1,10 +1,15 @@
 const UTM_PARAMS_KEY = 'utm-params';
 
-const UTM_SOURCE = 'utm_source';
+export const UTM_SOURCE = 'utm_source';
 const UTM_MEDIUM = 'utm_medium';
 const UTM_CAMPAIGN = 'utm_campaign';
 const UTM_TERM = 'utm_term';
 const UTM_CONTENT = 'utm_content';
+
+export const UTM_SOURCES = {
+  WEB: 'web',
+  GOOGLE: 'google',
+};
 
 const parseUrlUtmParams = (searchParams) => {
   const query = new URLSearchParams(searchParams);
@@ -29,7 +34,7 @@ const getUtmParams = () => {
 
   return {
     ...savedUtmParams,
-    utmSource: savedUtmParams?.utmSource || 'web',
+    utmSource: savedUtmParams?.utmSource || UTM_SOURCES.WEB,
   };
 };
 
