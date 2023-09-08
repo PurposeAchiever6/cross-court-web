@@ -12,7 +12,6 @@ import 'shared/styles/fonts.css';
 import 'shared/styles/index.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import 'external-tools/gtm';
 import 'external-tools/hotjar';
 import 'external-tools/activeCampaign';
 import 'external-tools/activeCampaignModal';

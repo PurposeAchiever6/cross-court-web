@@ -7,7 +7,7 @@ const GOOGLE_ADS_CODE = import.meta.env.VITE_GOOGLE_ADS_CODE;
 const HtmlHead = () => (
   <Helmet>
     <script type="application/ld+json">{faqJson}</script>
-    {import.meta.env.VITE_GTM_ENABLED === 'true' && (
+    {import.meta.env.VITE_GTM_ENABLED === 'true' && GOOGLE_ADS_CODE && (
       <>
         <script
           async

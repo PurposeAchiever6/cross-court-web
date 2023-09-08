@@ -55,7 +55,7 @@ List.defaultProps = {
 
 List.propTypes = {
   variant: PropTypes.oneOf(['square', 'cross']),
-  bulletsColor: PropTypes.oneOf(['purple', 'warning']),
+  bulletsColor: PropTypes.oneOf(['purple', 'red']),
   align: PropTypes.string,
   className: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.node).isRequired,
