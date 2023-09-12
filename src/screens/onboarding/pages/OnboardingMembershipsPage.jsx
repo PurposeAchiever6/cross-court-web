@@ -6,7 +6,7 @@ import ROUTES from 'shared/constants/routes';
 import { initialLoad as productsInitialLoad } from 'screens/products/actionCreators';
 import { selectProduct, setPromoCodeInit } from 'screens/onboarding/actionCreators';
 import { getPageLoading, getRecurringProducts, getTrialProducts } from 'screens/products/reducer';
-import { findMostExpensiveProduct } from 'screens/products/utils';
+import { findMostExpensiveProduct, isRecurring } from 'screens/products/utils';
 import { getSelectedProduct } from 'screens/onboarding/reducer';
 import OnboardingLayout, {
   OnboardingLayoutContent,
@@ -39,7 +39,7 @@ const OnboardingMembershipsPage = () => {
   const selectProductHandler = (product) => {
     dispatch(selectProduct({ product }));
 
-    if (!product.trial && product.promoCode?.validForUser) {
+    if (isRecurring(product) && product.promoCode?.validForUser) {
       dispatch(setPromoCodeInit({ promoCode: product.promoCode.code, product }));
     }
   };

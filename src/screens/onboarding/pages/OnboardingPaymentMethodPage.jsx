@@ -4,7 +4,7 @@ import { useStripe, useElements } from '@stripe/react-stripe-js';
 import { useHistory, Redirect } from 'react-router-dom';
 
 import ROUTES from 'shared/constants/routes';
-import { formatPrice, isRecurring, isTrial } from 'screens/products/utils';
+import { formatPrice, isRecurring } from 'screens/products/utils';
 import { isForever } from 'screens/promo-codes/utils';
 import { getSelectedProduct, getPaymentMethodLoading } from 'screens/onboarding/reducer';
 import { setPaymentMethodInit } from 'screens/onboarding/actionCreators';
@@ -35,7 +35,6 @@ const OnboardingPaymentMethodPage = () => {
 
   const selectedProductPromoCode = selectedProduct?.promoCode;
   const recurringProduct = isRecurring(selectedProduct);
-  const trialProduct = isTrial(selectedProduct);
   const showAwareRecurringProductPromoCode =
     selectedProductPromoCode && !isForever(selectedProduct.promoCode);
 
@@ -65,7 +64,7 @@ const OnboardingPaymentMethodPage = () => {
         <h1 className="font-shapiro95_super_wide text-xl md:text-2xl mb-4">Summary</h1>
         <ProductSummary product={selectedProduct} className="mb-4 md:mb-8" />
         <PaymentMethodForm label="Card Number" className="mb-4 md:mb-8" />
-        {!trialProduct && <PromoCode product={selectedProduct} className="mb-8" />}
+        <PromoCode product={selectedProduct} className="mb-8" />
         <div>
           {recurringProduct && (
             <>

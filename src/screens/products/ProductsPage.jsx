@@ -45,9 +45,8 @@ import triangleTexture from 'screens/products/images/triangle-texture.png';
 import Link from 'shared/components/Link';
 import CompareMembershipsTable from 'screens/products/components/CompareMembershipsTable';
 import ArrowPointDownSvg from 'shared/components/svg/ArrowPointDownSvg';
-import { findMostExpensiveProduct } from 'screens/products/utils';
+import { findMostExpensiveProduct, isTrial, isRecurring } from 'screens/products/utils';
 import Trials from './components/Trials';
-import { isTrial } from './utils';
 import ScheduleTour from './components/ScheduleTour';
 
 const ProductsPage = () => {
@@ -91,7 +90,7 @@ const ProductsPage = () => {
 
     dispatch(selectProduct({ product }));
 
-    if (!product.trial && product.promoCode?.validForUser) {
+    if (isRecurring(product) && product.promoCode?.validForUser) {
       dispatch(setPromoCodeInit({ promoCode: product.promoCode.code, product }));
     }
 
