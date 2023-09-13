@@ -2,13 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
+import { pluralize } from 'shared/utils/helpers';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { RECURRING } from 'screens/products/constants';
+import { isForever, discountAmountText, discountTimeText } from 'screens/promo-codes/utils';
 import { formatPrice } from 'screens/products/utils';
 import Button from 'shared/components/Button';
 import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
-import { isForever } from 'screens/promo-codes/utils';
-import { pluralize } from 'shared/utils/helpers';
 
 const ProductPlan = ({
   product,
@@ -38,12 +38,16 @@ const ProductPlan = ({
 
   const isRecurring = productType === RECURRING;
 
-  const showPromoCode = !trial && promoCode && !currentUser.activeSubscription;
+  const showPromoCode = promoCode && !currentUser.activeSubscription;
 
   const discountText = (() => {
     if (!promoCode) return;
 
     const discountPrice = formatPrice(promoCode.discountedPrice);
+
+    if (trial) {
+      return `Get ${discountAmountText(promoCode)} off ${discountTimeText(promoCode)}`;
+    }
 
     if (isForever(promoCode)) {
       return `${discountPrice} forever`;
@@ -74,7 +78,7 @@ const ProductPlan = ({
     }
 
     if (trial) {
-      return 'bg-white text-black';
+      return 'bg-cream text-black';
     }
 
     return 'bg-cc-blue-900 text-white';
@@ -128,26 +132,24 @@ const ProductPlan = ({
         {description && <p className="text-xs h-24 md:h-30 text-left">{description}</p>}
         {showPromoCode && (
           <>
-            <LineDashedSvg className="text-cc-purple mb-4" />
-            <span className="block text-white text-sm">{discountText}</span>
-            {promoCode.onlyForNewMembers && (
-              <span className="block text-white/60 text-sm mt-2">New Members Only</span>
-            )}
-            {promoCode.userMaxCheckedInSessions === 0 && (
-              <span className="block text-white/60 text-sm mt-2">
-                Expires after your first session
+            <LineDashedSvg className={`text-cc-purple mb-4 ${trial ? 'mt-3' : ''}`} />
+            <span className="block text-sm">{discountText}</span>
+            {trial ? (
+              <span className="block opacity-60 text-sm">
+                Buy membership within 7 days post-trial.
               </span>
+            ) : (
+              <>
+                {promoCode.onlyForNewMembers && (
+                  <span className="block opacity-60 text-sm mt-2">New Members Only</span>
+                )}
+                {promoCode.userMaxCheckedInSessions === 0 && (
+                  <span className="block opacity-60 text-sm mt-2">
+                    Expires after your first session
+                  </span>
+                )}
+              </>
             )}
-            <LineDashedSvg className="text-cc-purple mt-4" />
-          </>
-        )}
-        {trial && (
-          <>
-            <LineDashedSvg className="text-cc-purple mb-4" />
-            <span className="block mb-1">Get $45 off your first month</span>
-            <span className="block opacity-60 text-sm">
-              Buy membership within 7 days post-trial.
-            </span>
             <LineDashedSvg className="text-cc-purple mt-4" />
           </>
         )}

@@ -73,13 +73,13 @@ const MyProfile = ({ profile }) => {
     <SectionLayout className="mb-6">
       <div className="flex flex-col md:flex-row justify-between">
         <div className="md:flex items-center">
-          <div className="relative w-48 h-48 mx-auto md:mr-6 mb-8 mb-4">
+          <div className="relative w-48 h-48 mx-auto md:mr-6 mb-8">
             <img
-              className="relative z-[1] object-cover rounded-full my-0 mx-auto"
+              className="relative z-[1] object-cover rounded-full my-0 mx-auto w-48 h-48"
               src={imageUrl || missingProfileImg}
               alt="Profile"
             />
-            <div className="absolute w-52 h-52 rounded-full bg-cc-purple filter blur-lg top-0 -left-2" />
+            <div className="absolute w-52 h-52 rounded-full bg-cc-purple filter blur-lg top-0 -left-2 w-48 h-48" />
             {newMember && (
               <div className="font-shapiro95_super_wide text-black bg-cream absolute px-3 py-1 text-sm -right-10 -top-6">
                 NEW
@@ -101,15 +101,13 @@ const MyProfile = ({ profile }) => {
                 <span className="font-shapiro95_super_wide">Email:</span> {email}
               </span>
             </div>
-            {instagramUsername ? (
+            {instagramUsername && (
               <Link isExternal to={instagramProfile} target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon
                   icon={faInstagram}
                   className="cursor-pointer text-white text-2xl"
                 />
               </Link>
-            ) : (
-              '-'
             )}
           </div>
         </div>
