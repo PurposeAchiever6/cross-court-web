@@ -1,6 +1,11 @@
 import currency from 'currency.js';
 import { ONE_TIME, RECURRING, FREE_SESSION, UNLIMITED_VALUE } from 'screens/products/constants';
 
+export const THEME = {
+  white: 'white',
+  highlighted: 'highlighted',
+};
+
 export const productDiscount = (product, user) => {
   const userHasActiveSubscription = !!user.activeSubscription;
   const userHasNotReceivedFreeSession = !user.hasReceivedFreeSession;
