@@ -6,7 +6,7 @@ import { pluralize } from 'shared/utils/helpers';
 import { getUserProfile } from 'screens/my-account/reducer';
 import { RECURRING } from 'screens/products/constants';
 import { isForever, discountAmountText, discountTimeText } from 'screens/promo-codes/utils';
-import { formatPrice } from 'screens/products/utils';
+import { formatPrice, THEME } from 'screens/products/utils';
 import Button from 'shared/components/Button';
 import LineDashedSvg from 'shared/components/svg/LineDashedSvg';
 
@@ -27,7 +27,7 @@ const ProductPlan = ({
     productType,
     name,
     description,
-    highlighted,
+    frontendTheme,
     promoCode,
     trial,
     credits,
@@ -73,11 +73,11 @@ const ProductPlan = ({
   })();
 
   const planClassName = (() => {
-    if (highlighted) {
+    if (frontendTheme === THEME.highlighted) {
       return 'bg-cc-blue-300 text-white';
     }
 
-    if (trial) {
+    if (frontendTheme === THEME.white) {
       return 'bg-cream text-black';
     }
 
@@ -85,11 +85,11 @@ const ProductPlan = ({
   })();
 
   const labelClassName = (() => {
-    if (highlighted) {
+    if (frontendTheme === THEME.highlighted) {
       return 'bg-cream bg-opacity-100 text-black';
     }
 
-    if (trial) {
+    if (frontendTheme === THEME.white) {
       return 'bg-black text-white';
     }
 
