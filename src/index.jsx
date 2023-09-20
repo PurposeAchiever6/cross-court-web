@@ -4,6 +4,7 @@ import ReactGA from 'react-ga4';
 import 'regenerator-runtime';
 
 import App from 'shell/Root';
+import ampli from '~/src/ampli';
 import * as serviceWorker from './serviceWorker';
 
 import './assets/main.css';
@@ -17,18 +18,22 @@ import 'external-tools/hotjar';
 import 'external-tools/activeCampaign';
 import 'external-tools/activeCampaignModal';
 
-import 'shared/amplitude/initialize'
-import { initialize } from 'shared/amplitude/initialize';
-
+const AMPLITUDE_API_KEY = import.meta.env.VITE_AMPLITUDE_API_KEY;
 const GOOGLE_ANALYTICS_CODE = import.meta.env.VITE_GOOGLE_ANALYTICS_CODE;
+
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
-const VITE_AMPLITUDE_API_KEY = import.meta.env.VITE_AMPLITUDE_API_KEY;
-initialize(VITE_AMPLITUDE_API_KEY)
+ampli.load({
+  client: {
+    apiKey: AMPLITUDE_API_KEY,
+    configuration: { logLevel: 3, defaultTracking: true },
+  },
+});
 
 ReactGA.initialize(GOOGLE_ANALYTICS_CODE, {
   testMode: import.meta.env.VITE_RUNNING_ENV !== 'production',
 });
+
 root.render(<App />);
 serviceWorker.unregister();

@@ -62,7 +62,7 @@ import * as amplitude from '@amplitude/analytics-browser';
  * @property {string} default
  */
 export const ApiKey = {
-  default: '9f986078da33d19d493e8b02cf64438c'
+  default: '',
 };
 
 /**
@@ -73,14 +73,14 @@ export const DefaultConfiguration = {
     version: '2',
     branch: 'main',
     source: 'web',
-    versionId: 'b5799eac-0fa7-4af4-a5c9-b8ba503e9251'
+    versionId: 'b5799eac-0fa7-4af4-a5c9-b8ba503e9251',
   },
   ...{
     ingestionMetadata: {
       sourceName: 'browser-javascript-ampli',
-      sourceVersion: '2.0.0'
-    }
-  }
+      sourceVersion: '2.0.0',
+    },
+  },
 };
 
 export class Identify {
@@ -245,4 +245,6 @@ export class Ampli {
 
 }
 
-export const ampli = new Ampli();
+const ampli = new Ampli();
+
+export default ampli;
