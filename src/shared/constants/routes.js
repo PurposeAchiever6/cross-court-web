@@ -29,7 +29,6 @@ export default {
   PRIVACY_POLICY: '/privacy-policy',
   PWA: '/app',
   REFERRALS: '/my-account/referrals',
-  RULES: '/rules',
   SELF_CHECK_IN: '/locations/:id/self-check-in',
   SELF_CHECK_IN_CONFIRM: '/locations/:id/self-check-in/confirm',
   SELF_CHECK_IN_ERROR: '/self-check-in/error',

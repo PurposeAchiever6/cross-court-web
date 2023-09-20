@@ -7,8 +7,10 @@ import PropTypes from 'prop-types';
 import { emailRegExp, phoneRegExp } from 'shared/utils/helpers';
 import { longSessionDate, hourRange } from 'shared/utils/date';
 import { initialLoadInit, addSessionGuest } from 'screens/sessions/actionCreators';
+import { getUserProfile } from 'screens/my-account/reducer';
 import { getAddGuestLoading } from 'screens/sessions/reducer';
 import Modal from 'shared/components/Modal';
+import Alert from 'shared/components/Alert';
 import InputTextField from 'shared/components/InputTextField';
 import InputPhoneField from 'shared/components/InputPhoneField';
 import Button from 'shared/components/Button';
@@ -16,11 +18,13 @@ import Button from 'shared/components/Button';
 const AddGuestModal = ({ isOpen, closeHandler, session }) => {
   const dispatch = useDispatch();
 
+  const currentUser = useSelector(getUserProfile);
   const isLoading = useSelector(getAddGuestLoading);
 
   const { time, durationMinutes, userSession, location } = session;
   const { name, address, city, state, zipcode } = location;
   const { id: userSessionId, date } = userSession;
+  const userHasActiveSubscription = !!currentUser.activeSubscription;
 
   const addGuestToSession = (guestInfo) => {
     dispatch(
@@ -55,7 +59,12 @@ const AddGuestModal = ({ isOpen, closeHandler, session }) => {
       title="Add a guest to your session"
       size="2xl"
     >
-      <div>
+      {!userHasActiveSubscription && (
+        <Alert variant="warning" showIcon={false} className="mb-4">
+          Only members can add guests to a session.
+        </Alert>
+      )}
+      <div className={userHasActiveSubscription ? '' : 'opacity-50 pointer-events-none'}>
         <p className="text-sm mb-5">
           Easily invite a friend to your session. Once you provide your guest's contact information
           and click Submit, they will receive a text message with a code to show to their Session
