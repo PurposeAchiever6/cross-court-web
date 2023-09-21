@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unstable-nested-components */
-/* eslint-disable import/first */
 
 import React, { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,6 +31,7 @@ import {
 import ScheduleTourButton from 'shared/components/ScheduleTourButton';
 import PrivateRoute from './PrivateRoute';
 import HtmlHead from './HtmlHead';
+import ampli from '~/src/ampli';
 
 const Home = lazy(() => import('screens/homepage/HomePage'));
 const Login = lazy(() => import('screens/auth/pages/LoginPage'));
@@ -292,6 +292,12 @@ const Routes = () => {
 
     window.cookieAndSessionStorageHandler(isAuthenticated);
   }, [dispatch, isAuthenticated]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      ampli.identify(currentUser.email, currentUser);
+    }
+  }, [currentUser]);
 
   const Pages = () => (
     <main className="pt-16">
