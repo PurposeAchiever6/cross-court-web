@@ -57,7 +57,7 @@ const HomePage = () => {
     if (!isAuthenticated && !hasConfirmDontShowLeadMagnet()) {
       setShowLeadMagnetModal(true);
     }
-    AmpliUtils.ampliUserActivityLevelGroup(isAuthenticated, userInfo?.lastCheckedInUserSession?.created_at);
+    AmpliUtils.ampliUserActivityLevelGroup(isAuthenticated, userInfo?.lastCheckedInUserSession?.date);
   }, [isAuthenticated]);
 
   if (!isAuthenticated && openSurveyParam) {
