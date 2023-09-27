@@ -57,8 +57,11 @@ const HomePage = () => {
     if (!isAuthenticated && !hasConfirmDontShowLeadMagnet()) {
       setShowLeadMagnetModal(true);
     }
-    AmpliUtils.ampliUserActivityLevelGroup(isAuthenticated, userInfo?.lastCheckedInUserSession?.date);
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    AmpliUtils.ampliUserActivityLevelGroup(isAuthenticated, userInfo);
+  }, [isAuthenticated, userInfo]);
 
   if (!isAuthenticated && openSurveyParam) {
     return <Redirect to={ROUTES.LOGIN} />;

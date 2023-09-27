@@ -51,10 +51,10 @@ const ampliUserGroup = (isAuthenticated, currentUser) => {
   }
 };
 
-const ampliUserActivityLevelGroup = (isAuthenticated, lastSessionDate) => {
-  if(isAuthenticated){
+const ampliUserActivityLevelGroup = (isAuthenticated, currentUser) => {
+  if (isAuthenticated && currentUser && currentUser.lastCheckedInUserSession) {
     // 6. User Activity Level: (Possibly determined by User Sessions & Recent Activities)
-    ampli.client.setGroup(userGroup.USER_ACTIVITY_LEVEL.type, userGroup.USER_ACTIVITY_LEVEL.name[userActivityLevel(lastSessionDate)]);
+    ampli.client.setGroup(userGroup.USER_ACTIVITY_LEVEL.type, userGroup.USER_ACTIVITY_LEVEL.name[userActivityLevel(currentUser.lastCheckedInUserSession)]);
   }
 };
 

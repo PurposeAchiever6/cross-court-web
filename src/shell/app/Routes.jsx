@@ -295,7 +295,7 @@ const Routes = () => {
 
   useEffect(() => {
     AmpliUtils.ampliUserGroup(isAuthenticated, currentUser);
-  }, [currentUser]);
+  }, [isAuthenticated, currentUser]);
 
   const Pages = () => (
     <main className="pt-16">
