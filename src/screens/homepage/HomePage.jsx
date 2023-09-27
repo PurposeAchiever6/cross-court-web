@@ -5,6 +5,7 @@ import queryString from 'query-string';
 
 import ROUTES from 'shared/constants/routes';
 import { openContactForm, openContactFormForUser } from 'shared/utils/contactForm';
+import AmpliUtils from 'shared/utils/amplitude';
 import { getUserProfile, getPageLoading } from 'screens/my-account/reducer';
 import { getIsAuthenticated } from 'screens/auth/reducer';
 import { hasConfirmDontShowLeadMagnet } from 'shared/utils/leadMagnet';
@@ -56,6 +57,7 @@ const HomePage = () => {
     if (!isAuthenticated && !hasConfirmDontShowLeadMagnet()) {
       setShowLeadMagnetModal(true);
     }
+    AmpliUtils.ampliUserActivityLevelGroup(isAuthenticated, userInfo?.lastCheckedInUserSession?.created_at);
   }, [isAuthenticated]);
 
   if (!isAuthenticated && openSurveyParam) {

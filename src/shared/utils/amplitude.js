@@ -1,13 +1,6 @@
-import userGroup from 'shared/constants/userGroup'
+import userGroup from 'shared/constants/userGroup';
 import ampli from '~/src/ampli';
 
-const isWithinThreeMonths = (createdTime) => {
-  const now = new Date();
-  const creationDate = new Date(createdTime);
-  const threeMonthsInMilliseconds = 3 * 30 * 24 * 60 * 60 * 1000;
-  return (now - creationDate) <= threeMonthsInMilliseconds;
-};
-  
 const getAgeRange = (age) => {
   if (age >= 13 && age <= 19) {
     return 0;
@@ -43,27 +36,29 @@ const getUserExpertiseLevel = (skillRating) => {
   }
 };
 
-const ampliUserGroup = (currentUser) => {
-  ampli.identify(currentUser.email, currentUser);
-  // 1.	Employment Status: (Using Occupation & Work details)
-  ampli.client.setGroup(userGroup.EMPLOYMENT_STATUS.type, currentUser.employee ? userGroup.EMPLOYMENT_STATUS.name[0] : userGroup.EMPLOYMENT_STATUS.name[1]);
-  // 2. Membership Duration: (Assuming creation date helps determine this)
-  const isNewMember = isWithinThreeMonths(currentUser.createdAt);
-  const membershipStatus = isNewMember ? userGroup.MEMBERSHIP_DURATION.name[0] : userGroup.MEMBERSHIP_DURATION.name[1];
-  ampli.client.setGroup(userGroup.MEMBERSHIP_DURATION.type, membershipStatus);
-  // 3. Age Range: (Derived from the Birthday property)
-  ampli.client.setGroup(userGroup.AGE_RANGE.type, userGroup.AGE_RANGE.name[getAgeRange(currentUser.age)]);
-  // 4. Location: (Using the ZIPCODE property; exact regions need a mapping of ZIP codes)
-  // 5. User Interests: (This would require more data on users' preferences and activities)
-  // 6. User Activity Level: (Possibly determined by User Sessions & Recent Activities)
-  ampli.client.setGroup(userGroup.USER_ACTIVITY_LEVEL.type, userGroup.USER_ACTIVITY_LEVEL.name[userActivityLevel(currentUser.updatedAt)]);
-  // 7.	UserRole: (Requires specific data on user roles)
-  // 8.   Subscription Type: (Using the Membership Status and other related properties)
-  // 9.   Customer Type: (Determined by frequency of transactions & membership tenure)
-  // 10. Expertise Level: (Using Skill Rating)
-  ampli.client.setGroup(userGroup.EXPERTISE_LEVEL.type, userGroup.EXPERTISE_LEVEL.name[getUserExpertiseLevel(currentUser.skillRating)]);
+const ampliUserGroup = (isAuthenticated, currentUser) => {
+  if(isAuthenticated){
+    ampli.identify(currentUser.email, currentUser);
+    // 1.	Employment Status: (Using Occupation & Work details)
+    ampli.client.setGroup(userGroup.EMPLOYMENT_STATUS.type, currentUser.employee ? userGroup.EMPLOYMENT_STATUS.name[0] : userGroup.EMPLOYMENT_STATUS.name[1]);
+    // 2. Membership Duration: (Assuming creation date helps determine this)
+    const membershipStatus = currentUser.newMember ? userGroup.MEMBERSHIP_DURATION.name[0] : userGroup.MEMBERSHIP_DURATION.name[1];
+    ampli.client.setGroup(userGroup.MEMBERSHIP_DURATION.type, membershipStatus);
+    // 3. Age Range: (Derived from the Birthday property)
+    ampli.client.setGroup(userGroup.AGE_RANGE.type, userGroup.AGE_RANGE.name[getAgeRange(currentUser.age)]);
+    // 10. Expertise Level: (Using Skill Rating)
+    ampli.client.setGroup(userGroup.EXPERTISE_LEVEL.type, userGroup.EXPERTISE_LEVEL.name[getUserExpertiseLevel(currentUser.skillRating)]);
+  }
+};
+
+const ampliUserActivityLevelGroup = (isAuthenticated, lastSessionDate) => {
+  if(isAuthenticated){
+    // 6. User Activity Level: (Possibly determined by User Sessions & Recent Activities)
+    ampli.client.setGroup(userGroup.USER_ACTIVITY_LEVEL.type, userGroup.USER_ACTIVITY_LEVEL.name[userActivityLevel(lastSessionDate)]);
+  }
 };
 
 export default {
   ampliUserGroup,
+  ampliUserActivityLevelGroup,
 };

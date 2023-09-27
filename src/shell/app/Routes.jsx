@@ -294,9 +294,7 @@ const Routes = () => {
   }, [dispatch, isAuthenticated]);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      AmpliUtils.ampliUserGroup(currentUser);
-    }
+    AmpliUtils.ampliUserGroup(isAuthenticated, currentUser);
   }, [currentUser]);
 
   const Pages = () => (
